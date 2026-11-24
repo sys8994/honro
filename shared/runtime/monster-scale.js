@@ -29,6 +29,9 @@ const PLACE_VARIANTS=Object.freeze({6:Object.freeze({'midboss-stage6':Object.fre
 })}),16:Object.freeze({'tm-lower-point':Object.freeze({
  species:'eoduksini',growth:Object.freeze([1.6,3.51,8.08]),
  reason:'잠운사 침수 하층에 고인 혼기가 반응할 때만 몸을 일으킨다.'
+})}),44:Object.freeze({'a5-foe-5':Object.freeze({
+ species:'warden',metres:8.5,healthRatio:.64,tone:'groveTimber',reason:'귀림 윗뿌리에 맺힌 혼기로 오래된 수목귀의 껍질과 결이 불었다.',
+ weak:Object.freeze({v:2,key:'warden-face',discovery:'unknown',body:.20,bonus:1,top:.10,bottom:.46,halfWidth:.50})
 })})});
 const activeVersion=b=>b?.honroMonsterScaleRevision===LEGACY_REVISION||b?.honroMonsterScaleRevision===REVISION;
 const placeVariant=(b,u)=>b.honroMonsterScaleRevision===REVISION&&PLACE_VARIANTS[b.honroStage]?.[u.id];
@@ -85,7 +88,7 @@ const covers=(b,u)=>b.units.some(t=>t.honroObjectiveTarget&&alive(t)&&Math.abs(t
 // Grown ordinary bodies that walk up to an objective return to their authored
 // size there (and regain the new size once they leave), so they never wall it off.
 function guard(b,u){
- const sc=u.honroMonsterScale;if(!sc||sc.kept||!sc.base||NAMED[u.id]||sc.why==='midboss'||sc.why==='great-darkness')return false;
+ const sc=u.honroMonsterScale;if(!sc||sc.kept||!sc.base||NAMED[u.id]||sc.why==='named-place'||sc.why==='midboss'||sc.why==='great-darkness')return false;
  const near=covers(b,u);
  if(near&&!sc.covering){sc.covering=true;u.h=sc.base.h;u.r=sc.base.r;return true;}
  if(!near&&sc.covering){const fit=fitted(b,u,sc.rest,sc.restR??sc.base.r);if(fit&&fit.step===1){delete sc.covering;u.h=fit.h;u.r=fit.r;}return true;}
@@ -97,40 +100,36 @@ function apply(b,u){
  // A body standing at an objective (bier knots, seals) keeps its authored
  // size so the line of fire to that objective stays as the stage was tuned.
  if(!named&&covers(b,u)){u.honroMonsterScale={v:b.honroMonsterScaleRevision,why:'objective-cover',kept:true,base:{h:u.h,r:u.r},rest:u.h};return;}
- if(named){
-  const v=placeVariant(b,u);
-  if(v&&look(u)===v.species&&!covers(b,u)){
-   const target=hOf(v.metres,u), radius=rFor(u,target/u.h,64);
-   // The variant promises a complete body and visible face. Keep the
-   // published v1 encounter when its full footprint no longer fits.
-   if(fits(b,u,target,radius)){
-    grow(b,u,v.metres,named[1],.8,64,'named-place');
-    if(u.h===target){
-     // The face is a smaller usable target despite the larger silhouette.
-     // Scale the original armoured encounter budget, preserving injury ratio
-     // and difficulty scale rather than imposing an absolute HP in every mode.
-     if(v.healthRatio&&u.maxHp>0){
-      const old=u.maxHp;u.maxHp=Math.max(1,Math.round(old*v.healthRatio));
-      u.hp=Math.max(1,Math.round(u.hp*u.maxHp/old));
-      if(Number.isFinite(u.combatBaseHp))u.combatBaseHp*=u.maxHp/old;
-     }
-     u.honroMonsterScaleVariant={v:REVISION,tone:v.tone,reason:v.reason};
-     u.honroMonsterWeakPoint={...v.weak};
-     return;
+ const key=look(u),v=placeVariant(b,u);
+ const mid=(u.honroMidboss||u.boss)&&(ROLE_MID[key]||ROLE_MID[u.honroType]);
+ // Exact authored giant only. A partially fitting giant has no matching
+ // exposed hit region: keep the previous encounter instead.
+ if(v?.metres&&key===v.species&&(named||mid)&&!covers(b,u)){
+  const target=hOf(v.metres,u),cap=named?64:67,spawnBaseHp=named?.[1]??1.3;
+  const radius=rFor(u,target/u.h,cap);
+  if(fits(b,u,target,radius)){
+   grow(b,u,v.metres,spawnBaseHp,.8,cap,'named-place');
+   if(u.h===target){
+    // Place health rules are for newly created units only.
+    if(v.healthRatio&&u.maxHp>0){
+     const old=u.maxHp;u.maxHp=Math.max(1,Math.round(old*v.healthRatio));
+     u.hp=Math.max(1,Math.round(u.hp*u.maxHp/old));
+     if(Number.isFinite(u.combatBaseHp))u.combatBaseHp*=u.maxHp/old;
     }
+    u.honroMonsterScaleVariant={v:REVISION,tone:v.tone,reason:v.reason};
+    if(v.weak)u.honroMonsterWeakPoint={...v.weak};
+    return;
    }
-   record(b,u,{why:'named-place',result:'variant-rejected',target});
   }
-  grow(b,u,named[0],named[1],.8,64,'named');return;
+  record(b,u,{why:'named-place',result:'variant-rejected',target});
  }
- const key=look(u);
- if(u.honroMidboss||u.boss){const m=ROLE_MID[key]||ROLE_MID[u.honroType];if(m){grow(b,u,m,1.3,.8,60,'midboss');return;}}
+ if(named){grow(b,u,named[0],named[1],.8,64,'named');return;}
+ if(mid){grow(b,u,mid,1.3,.8,60,'midboss');return;}
  const row=SPECIES[key];if(!row){u.honroMonsterScale={v:b.honroMonsterScaleRevision,why:'species',kept:true};return;}
  let [m,hp,speed]=row;const giant=u.honroMonsterVariant==='giant';
  if(GROWTH[key])m=GROWTH[key][Math.max(0,Math.min(2,(u.honroMonsterGrowth||1)-1))];
  if(giant){m*=1.35;hp*=1.25;}
  grow(b,u,m,hp,speed,giant?52:46,giant?'giant':'species');
- const v=placeVariant(b,u);
  if(v?.growth&&key===v.species&&u.honroMonsterScale?.base){
   u.honroMonsterScaleVariant={v:REVISION,growth:[...v.growth],reason:v.reason};
  }

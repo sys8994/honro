@@ -227,9 +227,9 @@ function emitGeometry(e:Engine,g:SkillGeometry){
 function strikeGeometry(e:Engine,p:Projectile,g:SkillGeometry,directContact?:Collision,covered=false){
  const directTarget=directContact?.unit;
  const b=e.b as Battle & {honroMonsterScaleRevision?:number;honroStage?:number;honroCanonical?:boolean;honroCustom?:boolean;honroMapOrigin?:string};
- const pilotArc=p.skill==='M03'&&p.mode==='waveArc'&&b.honroMonsterScaleRevision===2&&b.mode==='campaign'&&b.honroStage===6&&b.honroCanonical&&!b.honroCustom&&b.honroMapOrigin==='campaign'&&directTarget?.id==='midboss-stage6'&&directTarget.side===1;
- const weak=pilotArc?(directTarget as Unit & {honroMonsterWeakPoint?:{v:number;key:string}}).honroMonsterWeakPoint:undefined;
- const weakContact=weak?.v===2&&weak.key==='warden-face'?directContact:undefined;
+ const pilotArc=p.skill==='M03'&&p.mode==='waveArc'&&b.honroMonsterScaleRevision===2&&b.mode==='campaign'&&b.honroCanonical&&!b.honroCustom&&b.honroMapOrigin==='campaign'&&directTarget?.side===1&&((b.honroStage===6&&directTarget.id==='midboss-stage6')||(b.honroStage===44&&directTarget.id==='a5-foe-5'));
+ const weak=pilotArc?(directTarget as Unit & {honroMonsterWeakPoint?:{v:number;key:string;discovery?:string}}).honroMonsterWeakPoint:undefined;
+ const weakContact=weak?.v===2&&weak.key==='warden-face'&&(b.honroStage!==44||weak.discovery==='unknown')?directContact:undefined;
  emitGeometry(e,g);
  e.emit('sound',{name:'qiWave'});
  for(const u of e.b.units.filter(u=>!u.dead&&u.id!==p.owner)){if(covered&&e.projectileCollision(g.impact||g,at(u),1,p.owner,[],false))continue;const h=geometryHits(g,u);let amount=p.damage*Math.max(h.count,u.id===directTarget?.id?1:0);
@@ -646,4 +646,5 @@ export function redesignPrediction(e:Engine,u:Unit,s:Skill,angle:number,power:nu
  const ranges=s.branch==='stake'?stakeRanges(e,{id:0,skill:s.id,owner:u.id,side:u.side,x:p.x,y:p.y,rank:r,damage:0,shot:0,effectBoost:jucheonBoost(u,s)}):undefined;
  return {x:p.x,y:p.y,unit:contact?.unit?.id,terrain:contact?.terrain?.id,terrainAtEnd,points,time,closest,contacts,apex,geometry,secondaryPoint,triggerRadius:ranges&&s.id!=='M09'?ranges.trigger:undefined,secondaryRadius:s.branch==='gourd'?(s.id==='M04'?260+10*(r-1):s.id==='M13'?240:e.effective(s,u).radius):ranges?.effect};
 }
+
 

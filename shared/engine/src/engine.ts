@@ -63,8 +63,10 @@ export interface Collision {
     unit?: Unit;
 }
 // The policy and ray receipt stay local to the enemy's new campaign battle.
-type MonsterWeakPoint={v:2;key:'warden-face';body:number;bonus:number;top:number;bottom:number;halfWidth:number};
-type MonsterImpact={unit:Unit;x:number;y:number;weak:boolean;spent:boolean};
+type MonsterWeakPoint={v:2;key:'warden-face';body:number;bonus:number;top:number;bottom:number;halfWidth:number;discovery?:'unknown'};
+type MonsterImpact={unit:Unit;x:number;y:number;weak:boolean;spent:boolean;confirmed?:boolean};
+type ScaleTrialObservation44Entry={kind:'resisted'|'weak';shot:number;owner:string;skill:string;round:number};
+type ScaleTrialObservation44={v:1;bodyShots:number[];weakShot?:number;queue:ScaleTrialObservation44Entry[];presented?:string[]};
 export interface Prediction {
     points: Vec[];
     x: number;
@@ -94,9 +96,9 @@ export class Engine {
     private weakImpacts=new WeakMap<Projectile,MonsterImpact>();
     private monsterWeakPoint(u:Unit):MonsterWeakPoint|undefined{
         const b=this.b as Battle & {honroMonsterScaleRevision?:number;honroStage?:number;honroCanonical?:boolean;honroCustom?:boolean;honroMapOrigin?:string};
-        if(b.honroMonsterScaleRevision!==2||b.mode!=='campaign'||!b.honroCanonical||b.honroCustom||b.honroMapOrigin!=='campaign'||b.honroStage!==6||u.id!=='midboss-stage6'||u.side!==1||u.honroObjectiveTarget)return;
+        if(b.honroMonsterScaleRevision!==2||b.mode!=='campaign'||!b.honroCanonical||b.honroCustom||b.honroMapOrigin!=='campaign'||!((b.honroStage===6&&u.id==='midboss-stage6')||(b.honroStage===44&&u.id==='a5-foe-5'))||u.side!==1||u.honroObjectiveTarget)return;
         const w=(u as Unit & {honroMonsterWeakPoint?:MonsterWeakPoint}).honroMonsterWeakPoint;
-        if(w?.v===2&&w.key==='warden-face'&&[w.body,w.bonus,w.top,w.bottom,w.halfWidth].every(Number.isFinite)&&w.body>0&&w.body<=1&&w.bonus>=w.body&&w.bonus<=1.5&&w.top>=0&&w.bottom>w.top&&w.bottom<=1&&w.halfWidth>0&&w.halfWidth<=1)return w;
+        if(w?.v===2&&w.key==='warden-face'&&(b.honroStage!==44||w.discovery==='unknown')&&[w.body,w.bonus,w.top,w.bottom,w.halfWidth].every(Number.isFinite)&&w.body>0&&w.body<=1&&w.bonus>=w.body&&w.bonus<=1.5&&w.top>=0&&w.bottom>w.top&&w.bottom<=1&&w.halfWidth>0&&w.halfWidth<=1)return w;
     }
     private monsterImpact(p:Projectile,h:Collision):MonsterImpact|undefined{
         const u=h.unit,ray=this.weakRays.get(h),w=u&&this.monsterWeakPoint(u);
@@ -112,12 +114,30 @@ export class Engine {
         // Continue the incoming ray to the actual unpadded rectangle: a radius
         // swipe above/around the face is a body strike, not a lucky headshot.
         if(pt.x<minX||pt.x>u.x+u.r||pt.y<topY||pt.y>u.y)return out;
+        out.confirmed=true;
         if(Math.abs(h.n.x)>.5){const y=(pt.y-topY)/u.h;out.weak=y>=w.top&&y<=w.bottom;}
         else if(h.n.y<-.5&&dy>0){
             const faceY=topY+u.h*w.top, faceX=pt.x+dx*Math.max(0,(faceY-pt.y)/dy);
             out.weak=(pt.y-topY)/u.h<=w.bottom&&Math.abs(faceX-u.x)<=u.r*w.halfWidth;
         }
         return out;
+    }
+    private observeScaleTrial44(u:Unit,owner:Unit|undefined,p:Projectile,impact:MonsterImpact,actual:number,regionMultiplier:number){
+        const b=this.b as Battle & {honroStage?:number;honroState?:{scaleTrialObservation44?:ScaleTrialObservation44}};
+        const cast=b.cast, memory=b.honroState;
+        if(b.honroStage!==44||u.id!=='a5-foe-5'||!memory||!impact.confirmed||actual<=0||!owner||owner.side!==0||owner.summoned||owner.enthrall||p.owner!==owner.id||p.child||p.secondary||p.autonomous||p.returning||p.body||p.followup||p.bounces||!cast||cast.owner!==p.owner||cast.skill!==p.skill||cast.shot!==p.shot||!Number.isSafeInteger(p.shot)||p.shot<=0)return;
+        const s=memory.scaleTrialObservation44??={v:1,bodyShots:[],queue:[]};
+        if(s.v!==1||s.weakShot!==undefined)return;
+        const receipt={shot:p.shot,owner:p.owner,skill:p.skill,round:b.round};
+        if(impact.weak){
+            s.weakShot=p.shot;
+            if(!s.presented?.includes('resisted'))s.queue=s.queue.filter(entry=>entry.kind!=='resisted');
+            s.queue.push({kind:'weak',...receipt});
+            return;
+        }
+        if(regionMultiplier>=1||s.bodyShots.length>=2||s.bodyShots.includes(p.shot))return;
+        s.bodyShots.push(p.shot);
+        if(s.bodyShots.length===2)s.queue.push({kind:'resisted',...receipt});
     }
     /** Diagnostics: partial enemy plans discarded because the battle changed mid-search. */
     planRestarts=0;
@@ -1054,6 +1074,7 @@ export class Engine {
             const actual=Math.max(0,hpBefore-u.hp);keeperPressure(this,u,owner,actual);
             // Commit this HP interval before on-hit effects can recursively hurt again.
             endHit(this.b,u,contribution);
+            if(exactImpact&&impact&&p)this.observeScaleTrial44(u,rawSrc,p,impact,actual,regionMultiplier);
             if(src && (src.side!==2||(src as any).honroAlly)){this.b.reviewDamage??={};this.b.reviewDamage[u.id]=(this.b.reviewDamage[u.id]||0)+actual;this.b.reviewFocus={x:u.x,y:u.y-u.h*.7};}
             u.hurt = .7;
             if(damageSource!=='eaterTransfer')this.emit('fx',{name:'text',x:u.x,y:u.y-u.h-7,color:critical?'#ffd45c':u.side===0?'#ffaaa3':'#fff0d2',size:critical?26:19,text:(critical?'치명! −':'−')+dmg,critical:!!critical,damage:dmg,targetId:u.id,attackId:`${owner||'environment'}:${this.b.round}:${p?.shot??this.b.shot}`});
@@ -2680,4 +2701,5 @@ export class Engine {
             this.checkEnd();
     }
 }
+
 

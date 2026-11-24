@@ -3,13 +3,16 @@
 const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
 // Existing Warden fills only. Linework and other actors still take the original palette.
 const WET_TIMBER=Object.freeze({wood:'#425455',woodLight:'#768783',woodDark:'#262e34'});
-const FACE_LIGHT='#e2bd7e';
+const GROVE_TIMBER=Object.freeze({wood:'#465b57',woodLight:'#7a8a77',woodDark:'#30323a'});
+const FACE_LIGHT='#e2bd7e',GROVE_EYES='#b7d4b6';
 const cue=path=>path.fill==='ink'&&path.d.startsWith('M-18 -126 L-12 -128'); // existing Warden eye shapes
-function paintFor(u,id){
+function paintFor(u,id,b){
  if(id!=='warden'||u.dead||u.side!==1)return null;
  const v=u.honroMonsterScaleVariant,w=u.honroMonsterWeakPoint;
- const tone=v?.v===2&&v.tone==='wetTimber'?WET_TIMBER:null;
- const face=w?.v===2&&w.key==='warden-face';
+ const grove=b?.honroStage===44&&b.honroCanonical===true&&!b.honroCustom&&
+  b.honroMonsterScaleRevision===2&&u.id==='a5-foe-5'&&v?.v===2&&v.tone==='groveTimber'&&w?.discovery==='unknown';
+ const tone=grove?GROVE_TIMBER:v?.v===2&&v.tone==='wetTimber'?WET_TIMBER:null;
+ const face=w?.v===2&&w.key==='warden-face'?(w.discovery==='unknown'?(grove?GROVE_EYES:null):FACE_LIGHT):null;
  return tone||face?{tone,face}:null;
 }
 function create(assets){const cache=new Map(),idleRasters=new Map();
@@ -48,7 +51,7 @@ function drawVector(c,id,{time=0,state:st={},pixels=128,mode='paint',detail,acto
    if(mode==='wire'){c.strokeStyle=v.lod===0?'#e3c98f':v.lod===1?'#8fbfaf':'#677c90';c.lineWidth=.3;c.stroke(v.path);continue;}
    if(v.fill){
     c.fillStyle=mode==='silhouette'?'#ddd7c1':
-     actorPaint?.face&&p.id==='face'&&cue(v)?FACE_LIGHT:
+     actorPaint?.face&&p.id==='face'&&cue(v)?actorPaint.face:
       actorPaint?.tone?.[v.fill]??a.palette[v.fill];
     c.fill(v.path);
    }
@@ -108,7 +111,7 @@ function drawBody(scene,c,u,id){
  c.save();c.translate(u.x,u.y);c.scale(scale*(u.facing||1),scale);
  const m=c.getTransform(),ratio=c.canvas.clientWidth?c.canvas.width/c.canvas.clientWidth:1;
  const pixels=a.baseHeight*Math.hypot(m.c,m.d)/ratio;
- draw(c,id,{time:scene.time||0,state:motionState(scene,u,a),pixels,actorPaint:paintFor(u,id)});c.restore();
+ draw(c,id,{time:scene.time||0,state:motionState(scene,u,a),pixels,actorPaint:paintFor(u,id,scene.battle||scene.actorEngine?.b)});c.restore();
 }
 function handoffBody(scene,c,u){
  if(u.honroMonsterState?.mergedInto)return true;
