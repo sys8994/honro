@@ -63,7 +63,10 @@ def stage53(page,state,mobile,original,tap,out,case,packet_path):
     page.screenshot(path=out/f'{case}-native-53-stake.png')
     pose=page.evaluate("""()=>{const e=HonroApp.engine,b=e.b,u=e.active;let count=0;
       for(;count<350&&!['won','lost'].includes(b.phase)&&u.x<2725;count++){e.move(1,1/120);e.tick(1/120);}
-      if(b.phase!=='won'||!e.grounded(u))throw Error('Native 53 exit not completed');
+      for(let settle=0;settle<180&&b.phase!=='won'&&u.x>=2700&&e.grounded(u);settle++){
+        e.tick(1/120);e.checkEnd();
+      }
+      if(b.phase!=='won'||!e.grounded(u))throw Error('Native 53 exit not completed: '+JSON.stringify({phase:b.phase,id:u.id,active:e.active?.id,x:u.x,y:u.y,grounded:e.grounded(u),round:b.round,side:b.side,flags:b.honroState?.flags,shots:b.shot}));
       return {id:u.id,hp:u.hp,focus:u.focus,shield:u.shield,round:b.round,x:u.x,y:u.y,count,loadout:u.loadout};}""")
     page.clock.run_for(96)
     assert page.evaluate("HonroApp.done && HonroApp.engine.b.phase==='won'")
