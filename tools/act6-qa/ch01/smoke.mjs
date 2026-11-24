@@ -1,0 +1,60 @@
+import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
+import {readFileSync,writeFileSync} from 'node:fs';
+import {stripTypeScriptTypes} from 'node:module';
+import vm from 'node:vm';
+import {resolve} from 'node:path';
+import {fileURLToPath} from 'node:url';
+const dir=new URL('./',import.meta.url);
+const root=process.env.HONRO_FIXTURE_CHECKOUT ? resolve(process.env.HONRO_FIXTURE_CHECKOUT) : fileURLToPath(new URL('../../../',dir));
+const read=n=>readFileSync(new URL(n,dir)), json=n=>JSON.parse(read(n));
+const sha=x=>createHash('sha256').update(x).digest('hex');
+const hashJson=o=>sha(JSON.stringify(o));
+const blob=bytes=>createHash('sha1').update('blob '+bytes.length+'\0').update(bytes).digest('hex');
+const fixture=json('source-lock.json');
+for(const [file,ref] of Object.entries(fixture.files)){const bytes=read(file);assert.equal(bytes.length,ref.bytes,file);assert.equal(sha(bytes),ref.sha256,file);}
+const stock=n=>{const bytes=readFileSync(resolve(root,n));assert.equal(blob(bytes),fixture.stock.gitBlobs[n],n+' checkout differs from pinned compiler inputs');return bytes.toString('utf8');};
+const mathSrc=stripTypeScriptTypes(stock('shared/engine/src/math.ts'),{mode:'strip'});
+const math=await import('data:text/javascript;base64,'+Buffer.from(mathSrc).toString('base64'));
+const G=vm.createContext({HONRO_CORE:math});
+for(const name of ['shared/runtime/map-engine.js',...['bounds','environment','geometry','terrain-domain','schema','compiler'].map(n=>'shared/map/'+n+'.js')]) vm.runInContext(stock(name),G,{filename:name});
+assert.equal(G.HonroMaps.VERSION,6);
+const P=p=>({x:p[0],y:p[1]});
+const src=json('terrain-source.json');
+const stage={id:'act6-ch01-r4-qa',width:src.width,height:src.height,playBounds:src.playBounds,terrainBounds:src.terrainBounds,terrains:src.masses.map(({project,points,rim,depth,...t})=>({...t,points:(points??[...rim,...rim.slice().reverse().map(([x,y])=>[x,y+depth])]).map(P),...(project?{playProjection:{bounds:src.playBounds,start:{x:0,y:2460}}}:{})})),elements:[],materials:[]};
+const adapt=(a,category='architecture')=>({...a,category,visual:a.visual.map(({fill,points})=>({fill,points:points.map(P)}))});
+const visual=file=>json('visual/'+file+'.json');
+const aa=visual('a-west-union'), bb=visual('b-body'), bridge=visual('b-bridge'), c=visual('c-gallery'), marks=visual('a-landmarks'), shell=visual('mountain-lithology');
+const local=(a,bounds,window,file)=>({id:a.id,renderer:'shape',category:'rock',anchor:{x:0,y:0},bounds,collision:[],params:{authoredWalkInkStamp:sha(read('visual/'+file+'.json')),authoredWalkInkWindow:window.join(',')},visual:adapt(a).visual});
+const A=local(aa,aa.bounds,[0,1380,1870,2565],'a-west-union'), B=local(bb,{x:1320,y:1768,w:3050,h:1952},[1380,4290,1768,2570],'b-body');
+const owners=[[adapt(bridge.rear),'structural-back'],[adapt(marks.rear),'structural-back'],[adapt(bridge.deck),'prop'],[A,'prop'],[B,'prop'],[adapt(marks.fascia),'prop'],[adapt(visual('ab-miter')),'prop'],...c.library.map(a=>[adapt(a),a.layer,a.layer==='structural-back'?'L1':'L0']),[{...shell,visual:adapt(shell).visual},'prop']];
+const ids=owners.map(([a])=>a.id);
+assert.deepEqual(ids,fixture.owners);assert.equal(new Set(ids).size,12);
+assert(owners.every(([a])=>a.renderer==='shape'&&Array.isArray(a.collision)&&a.collision.length===0));
+const project={library:owners.map(([a])=>a)};
+const elements=owners.map(([a,layer,depthLayer='L1'])=>({id:a.id,x:0,y:0,scale:1,rotation:0,snap:false,assetId:a.id,depthLayer,layer,visualRole:'scenery'}));
+assert.equal(stage.metadata,undefined);
+assert.deepEqual(src.playBounds,{left:0,top:0,right:7168,bottom:4096});
+assert.deepEqual(src.terrainBounds,{left:-4610,top:-1900,right:11880,bottom:12810});
+const plain=G.HonroMaps.compile(stage,{library:[]}), compiled=G.HonroMaps.compile({...stage,elements},project);
+for(const k of ['worldTerrain','terrain','terrainAttachments','materials']) assert.equal(hashJson(compiled[k]),hashJson(plain[k]),k+' changed upon adding artwork');
+assert.equal(hashJson(compiled.terrain),fixture.collider);
+assert.equal(hashJson(compiled.worldTerrain),fixture.worldProjection);
+assert.equal(hashJson(compiled.landmarks),fixture.landmarkProjection);
+assert.deepEqual(Array.from(compiled.landmarks,l=>l.id),ids);
+assert(compiled.landmarks.every(l=>l.collisionIds.length===0));
+const xs=src.masses[0].points.map(p=>p[0]);
+assert(Math.min(...xs)<-3720&&Math.max(...xs)>10888);
+for(const p of ['far-landscape.webp','far-portrait.webp']){
+ const b=read('visual/'+p);assert.equal(b.toString('ascii',0,4),'RIFF');assert.equal(b.toString('ascii',8,16),'WEBPVP8 ');
+ const w=b.readUInt16LE(26)&16383,h=b.readUInt16LE(28)&16383;
+ assert.deepEqual([w,h],fixture.webps[p]);assert.equal(w>h,p.includes('landscape'));
+}
+const esc=s=>s.replaceAll('&','&amp;').replaceAll('"','&quot;').replaceAll('<','&lt;');
+const svg='<svg xmlns="http://www.w3.org/2000/svg" viewBox="-4610 -1900 16490 14710">\n'+compiled.landmarks.map(l=>'<g id="'+esc(l.id)+'" data-layer="'+esc(l.layer)+'">\n'+l.asset.visual.map(s=>{assert(/^#[0-9a-f]{6}$/i.test(s.fill)&&s.points.length>=3&&s.points.every(p=>Number.isFinite(p.x)&&Number.isFinite(p.y)));return '<polygon fill="'+s.fill+'" points="'+s.points.map(({x,y})=>x+','+y).join(' ')+'"/>';}).join('\n')+'\n</g>').join('\n')+'\n</svg>\n';
+if(process.env.HONRO_FIXTURE_EXPORT){
+ const out=resolve(process.env.HONRO_FIXTURE_EXPORT);
+ writeFileSync(out,svg,{flag:'wx'});
+}
+assert.equal(sha(svg),fixture.compiledSvgSha256);
+console.log(JSON.stringify({fixture:stage.id,owners:ids.length,collider:fixture.collider,world:fixture.worldProjection,landmarks:fixture.landmarkProjection,svg:fixture.compiledSvgSha256,claims:['source integrity','stock compiler projection','SVG shape export','WebP header and pixel dimensions'],notRun:['browser','campaign stage','combat','saves','Pages']},null,2));

@@ -1,0 +1,94 @@
+{
+  "fixture": "act6-ch01-r4-qa",
+  "stock": {
+    "commit": "71cfa8e57dd68a1b33a5aeedd9155a115780af5d",
+    "gitBlobs": {
+      "shared/engine/src/math.ts": "ecb5e85cc762e6702ec24d8ff441eb77dac20c3d",
+      "shared/runtime/map-engine.js": "766a2643592f4d8d823d93ffd8ef6841e142931c",
+      "shared/map/bounds.js": "79359fcbf083837f68ac2688949fb6e9dd46e843",
+      "shared/map/environment.js": "a833b7a43da4ab8c985ff0a610ca7013d38e1e4a",
+      "shared/map/geometry.js": "66ff0cce658c4227e8f8b2290e37d788b665f878",
+      "shared/map/terrain-domain.js": "2c71093c6ffd93dd5d5293f21dffd50fcb019b45",
+      "shared/map/schema.js": "7643cdf159ece0b684457720cee0cd79dd2405b5",
+      "shared/map/compiler.js": "8eaec6a3c9e9c415e651889f97ea81d3f2dd6f14"
+    }
+  },
+  "collider": "df4ea8057c24bc4626792d5463e0e2578ebe8fdf1e203a6bd1a7312e91ab906c",
+  "owners": [
+    "ravine-bearing-rear",
+    "act6-01-a-rear-retained",
+    "act6-01-b-lookout-deck-decor",
+    "act6-01-a-west-angular-mountain",
+    "act6-01-b-angular-mountain",
+    "act6-01-a-solid-fascia",
+    "act6-01-ab-facies-miter",
+    "act6-01-mountain-C",
+    "act6-01-threshold-C",
+    "act6-01-roof-C",
+    "act6-01-rear-C",
+    "act6-01-mountain-continuation-lithology"
+  ],
+  "webps": {
+    "far-landscape.webp": [
+      1728,
+      1080
+    ],
+    "far-portrait.webp": [
+      941,
+      1672
+    ]
+  },
+  "files": {
+    "terrain-source.json": {
+      "bytes": 22159,
+      "sha256": "57c1b68e7c5e172839b73355c3aa26239301f4b921d69ff0ddef8360c23c7199"
+    },
+    "visual/a-landmarks.json": {
+      "bytes": 43023,
+      "sha256": "91d06cfb504d31c923b9d892b3b95fdddfc5bd5875b1ec1872b7df8f478afd56"
+    },
+    "visual/a-west-union.json": {
+      "bytes": 55089,
+      "sha256": "81a31584a609c1434ea544ba91aa9919ff9f9b68f0ce52ebbaa40c71bc04ad07"
+    },
+    "visual/ab-miter.json": {
+      "bytes": 12850,
+      "sha256": "3029cbba42a4877690e3dc4546d53e12679987699d20a04e8c5220602312c3cf"
+    },
+    "visual/b-body.json": {
+      "bytes": 78657,
+      "sha256": "6b06f9a8b178fface3ae549e2e6735dcf7babcab844d508c3398dd517e3020cd"
+    },
+    "visual/b-bridge.json": {
+      "bytes": 73058,
+      "sha256": "06c01d03f9edb983f08802e304bbcecfb789797c5c4797f44bc2d4c592fe8650"
+    },
+    "visual/c-gallery.json": {
+      "bytes": 93992,
+      "sha256": "6dfc9040820913ed461e9fdd3096423c496ccdfc80e6441a4e2ab1b13ef77660"
+    },
+    "visual/far-landscape.webp": {
+      "bytes": 84138,
+      "sha256": "00e724f13c0162a73f1d8edb7451189fdc5f25f52628f92b70c40ed1c32b9326"
+    },
+    "visual/far-portrait.webp": {
+      "bytes": 90034,
+      "sha256": "48d4036aca6003c5d6757ff3a6119d8272a2fbddf41d53e77ed559434b763ed1"
+    },
+    "visual/mountain-lithology.json": {
+      "bytes": 16995,
+      "sha256": "4ea9f891694fb15d67d6bfc3e784a715cd016ac39acbb6cfeef4aa664cf4901a"
+    },
+    "visual/terrain-readability.fixture-only.js": {
+      "bytes": 13145,
+      "sha256": "b14fe3f2edb596747a27fba1514bc9a53e818b7a1594c2f9694322532b89a3e2"
+    },
+    "visual/owners.compiled.svg": {
+      "bytes": 65520,
+      "sha256": "44f99832ea3b5d4e8d8815d7238c04f71b909aa673c9afa0b83583ab210fce75"
+    }
+  },
+  "worldProjection": "bf92e3ef56afe74d279699556632eaaa24478faf6bf60eb3a3ae744f6c80af65",
+  "landmarkProjection": "ad09119b4b61ab0fe9b5b933454a77b2ecfecdb1433e9021dd9cc95c84342df3",
+  "compiledSvgSha256": "44f99832ea3b5d4e8d8815d7238c04f71b909aa673c9afa0b83583ab210fce75"
+}
