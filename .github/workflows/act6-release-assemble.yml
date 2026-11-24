@@ -1,0 +1,60 @@
+name: Assemble verified Act6 release without deployment
+on:
+  push:
+    branches:
+      - qa/act6-release-assemble-20261125
+    paths:
+      - .github/workflows/act6-release-assemble.yml
+permissions:
+  contents: write
+jobs:
+  candidate:
+    if: github.repository == 'sys8994/honro' && github.ref == 'refs/heads/qa/act6-release-assemble-20261125'
+    runs-on: ubuntu-22.04
+    timeout-minutes: 19
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 2
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Rebuild verified production graph from clean repository and stage scoped release
+        shell: bash
+        run: |
+          set -euo pipefail
+          PROOF=3f0e2fb1b6c8a2ef1dfe8bcd46cdfe3433da975a
+          BASE=9c837c1b9512e202f4fded1f499541fa5ff73328
+          PLAN=b02a315b67c760564d9ed0274b3e74d911f619e2
+          DEST=refs/heads/release/act6-reunion-ready-20261125
+          test "$(git rev-parse HEAD^)" = "$PROOF"
+          test "$(git ls-remote origin refs/heads/master | cut -f1)" = "$BASE"
+          test -z "$(git ls-remote origin "$DEST")"
+          git fetch --depth=1 origin "$BASE" "$PLAN"
+          BUILD="$(mktemp -d "$RUNNER_TEMP/honro-prod-build-XXXXXXXX")"
+          RELEASE="$(mktemp -d "$RUNNER_TEMP/honro-prod-tree-XXXXXXXX")"
+          RESULTS="$RUNNER_TEMP/release-readback"
+          mkdir -p "$RESULTS"
+          git -c core.hooksPath=/dev/null worktree add --detach "$BUILD" "$PROOF"
+          git -c core.hooksPath=/dev/null worktree add --detach "$RELEASE" "$BASE"
+          (
+            cd "$BUILD"
+            npm ci --no-audit --no-fund > "$RESULTS/npm.log"
+            npm ci --prefix game --include=dev --no-audit --no-fund > "$RESULTS/npm-game.log"
+            npm run build > "$RESULTS/build.log"
+          )
+          python tools/act6-qa/release-assembly/assemble.py tools/act6-qa/release-assembly/pins.json "$BUILD" "$RELEASE" "$RESULTS"
+          git -C "$RELEASE" -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' -c core.hooksPath=/dev/null commit -m 'feat(campaign): release Act 6 reunion and finale'
+          CANDIDATE="$(git -C "$RELEASE" rev-parse HEAD)"
+          test "$(git -C "$RELEASE" rev-parse HEAD^)" = "$BASE"
+          test "$(git ls-remote origin refs/heads/master | cut -f1)" = "$BASE"
+          git -C "$RELEASE" push origin "HEAD:$DEST"
+          test "$(git ls-remote origin "$DEST" | cut -f1)" = "$CANDIDATE"
+          printf '%s\n' "$CANDIDATE" > "$RESULTS/CANDIDATE.txt"
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: act6-release-assembly-readback
+          path: ${{ runner.temp }}/release-readback/
+          retention-days: 7

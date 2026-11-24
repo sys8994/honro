@@ -1,0 +1,611 @@
+{
+  "sha": "3f0e2fb1b6c8a2ef1dfe8bcd46cdfe3433da975a",
+  "root": "c12ee1744bde4afa7c0f3ff6782f708d71336453",
+  "source": [
+    {
+      "path": "game/engine/build.mjs",
+      "sha": "e882612658536c100dc295f7f0f5589df731744d",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/act6-app-qa.mjs",
+      "sha": "dace839f8ca90c4f7fe86d5b3e913e87c5643955",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/act6-boundary/boundary-sha256.mjs",
+      "sha": "f7df01e278c3f0499e30496f989ab0ae824b00f0",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/act6-boundary/browser.inc.js",
+      "sha": "0383b39eddbb7e7f0d55e4ff178c26250cae5c8a",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/act6-boundary/chapter-boundary.mjs",
+      "sha": "d73e58314faac9da5aaca25e210f2f2aba933781",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/act6-late-qa/compose-normal-late-far.mjs",
+      "sha": "4b4f9d1d76b52e24f8c2f15d7faf9eb143b7bc84",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/act6-late-qa/early-art/act6-far-51-portrait.48d4036aca6003c5.webp",
+      "sha": "28bcc9c4dea6e267ec72a20a17ada3c2099d86bb",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/act6-late-qa/early-art/act6-far-51-wide.7d478815691a79c9.webp",
+      "sha": "5a2dfb563fdbda1b2cc5feea943343d965a4f40c",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/act6-late-qa/early-art/act6-far-52-wide.8897aad86e693aec.webp",
+      "sha": "efe2edefc2cb7e54fb98c08e871c8cf9d71a373e",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/act6-late-qa/early-art/act6-far-53-wide.0d0d3394267326ed.webp",
+      "sha": "02ec56d819bb22b94f66f8b4c2afc2d36027fb31",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/act6-late-qa/early-art/act6-far-54-wide.84a1ead89118f40e.webp",
+      "sha": "df2144617c95b0f3c506d8be5c79c8d104f80756",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/act6-late-qa/early-art/act6-far-55-wide.de7755f7d65a8e22.webp",
+      "sha": "527b78ba060a69a915c4e6b91216406f66727f6b",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/act6-late-qa/early-art/act6-far-56-wide.bf12114eae958fae.webp",
+      "sha": "410c06da73c28cd62a15076b56cc8156f1f08436",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/act6-late-qa/early-art/act6-far-57-wide.a4ae7057fd4a26dc.webp",
+      "sha": "bbce01bbb307e077941f544e92b81715df7b2bcb",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/act6-late-qa/early-art/act6-far-58-wide.696fd1dfe489567e.webp",
+      "sha": "583a955dc5fa97270e7125027fab024fb847e84f",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/act6-late-qa/early-art/act6-far-60-playable.13785df44a84667e.webp",
+      "sha": "8efca58c83f7ef53fdef5d2fd22c14f085e5d769",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/act6-late-qa/EARLY-FAR.json",
+      "sha": "90d7090964e1bbc378d5efc3e8ea211fe50a7172",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/act6-late-qa/early-far.mjs",
+      "sha": "d5deaf541cf91fa98b162be3accfb8b99b5c899b",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/act6-late-qa/FAR60.json",
+      "sha": "7a70c59e928b74c05451f159bb6debcc3a214194",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/act6-late-qa/far60.mjs",
+      "sha": "7ddb038143431e59c1d23e04f5e7bb3cdc166477",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/act6-late-qa/load-normal-far.mjs",
+      "sha": "840940f1e4f29ec01eeff8ffd5765c639329964d",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/act6-late-qa/load-normal-final-far.mjs",
+      "sha": "b1380c76e930139c8ea78571ec574b8307e7fe48",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/act6-late-qa/normal-far.inc.js",
+      "sha": "ee447dd82798dadda901b6467a3fe9528593c5ba",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/act6-late-qa/normal-final-far.inc.js",
+      "sha": "f53756c5791d11b0506f494ce8a7ef06cd13c3e1",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/act6-late-qa/normal-giant-forepaw.mjs",
+      "sha": "ecf43e16474e0afab4ac6826ee2c2a5719316f26",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/act6-late-qa/normal-late-far.inc.js",
+      "sha": "f430cc1453812eb815e007a5f78ac06f685f4c74",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/act6-late-qa/normal-stage58-camera.mjs",
+      "sha": "e234f6e5e13d7d7fdd93f57b81a0a4e9871aeb86",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/act6-late-qa/normal-stage58-far-data.mjs",
+      "sha": "461075a86e3535759aa4275858f090daf3f01c49",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/act6-late-qa/normal-stage58-far.mjs",
+      "sha": "20a922af60285135a92de14d3c3ca1b73169833b",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/act6-late-qa/normal-stage58-floor-facets.mjs",
+      "sha": "7813f914c869240cbc21a171943e2047ceeddab0",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/act6-late-qa/normal-stage59-forepaw-cue.mjs",
+      "sha": "4ce732df6cc1f60ea77ea91b5f4a56658c55ddf8",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/act6-late-qa/normal-stage59-matte-bound.mjs",
+      "sha": "8e6d4bc19b9c61f58fee5e87bb9376dc099e5016",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/act6-late-qa/normal-stage59-visual-owner.mjs",
+      "sha": "f2c6697f2bbc41bcf8014ff49f4633dc420b071a",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/act6-late-qa/stage59-far-q94-derived.webp",
+      "sha": "193b8ee4358f6d9ad79d379a4f6029e945b2815d",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/act6-normal-ending-qa/dawn-mobile.webp",
+      "sha": "94fb8d9dccdf4ff438b7b3085c3da7f9b8bc2871",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/act6-normal-ending-qa/dawn-pc.webp",
+      "sha": "a64cdabde8d6bdf5fc8fb15f4e5a921ecfa74f57",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/act6-normal-ending-qa/emit.mjs",
+      "sha": "c9f43f0266afd0031775f4867e7238968bc48eb9",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/act6-normal-ending-qa/ending-dom.css",
+      "sha": "2230bcd38604b9b94eaeae17be923f505e30e1c6",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/act6-normal-ending-qa/ending-dom.mjs",
+      "sha": "3c7abbed4aa6a9141091d6d3c542b90bfcb82d1f",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/act6-normal-ending-qa/gate-masonry.mjs",
+      "sha": "a18569ff93e524f31e04bcc2f74b422492d9f6bf",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/act6-normal-ending-qa/gateway.mjs",
+      "sha": "3be5c4d1b8142da520f00eab15fa8d0065969886",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/act6-normal-ending-qa/host.inc.js",
+      "sha": "4bfcf9d9f92234d650fd7a037ca3301939e761ac",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/act6-normal-ending-qa/native-cuts.mjs",
+      "sha": "f918a3d88d300ba67475851a18916c03917a631d",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/act6-normal-ending-qa/stage60-entry-stock.inc.js",
+      "sha": "c400517dd99fbe413dc0d3c0e50b21b285a0265a",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/act6-normal-ending-qa/stock-slot-60.mjs",
+      "sha": "db824dc0a1bc048ae64e894fb594c96bacc57e94",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/act6-normal-ending-qa/write-port.mjs",
+      "sha": "aa40fee629c1008ddd60c0bbb16f4bbf1de1f336",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/act6-normal-ending-qa/writer-fixed.mjs",
+      "sha": "170d866ddd0b10e69cb5d6f3b085236985284e86",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/act6-release-settings.mjs",
+      "sha": "4cee858cc686b3973d4a12fab51102be2759cb40",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/act6-release.json",
+      "sha": "039de6f18b682377d5fb8b6f85229b145dcea4a3",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/build.mjs",
+      "sha": "86e6c4cfdcbad21ad0f31a3cff800eb9801f9b62",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/data/act6-qa/eighth.json",
+      "sha": "6080df08f2f6f5c19fb9bcb6fa3c270708ee4c62",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/data/act6-qa/fifth.json",
+      "sha": "1e6527b31a4facc11b77b4002eb3f3a5e638272f",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/data/act6-qa/first-two.json",
+      "sha": "a08ab95bffa7693090cf09bde423f632b6d839cf",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/data/act6-qa/fourth.json",
+      "sha": "6c53f0e691815c51b8b07b3873f9073fa9f08ba7",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/data/act6-qa/ninth.json",
+      "sha": "538a065beb51923964a6a2f1bc24fc5d5e625b97",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/data/act6-qa/seventh.json",
+      "sha": "64238df0604a9cc77c4f0be641a46c0b482a2820",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/data/act6-qa/sixth.json",
+      "sha": "49ee966549dd788c157d76dfe0008147df595183",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/data/act6-qa/tenth-guard.json",
+      "sha": "0ba7032e14ebc5341da3be0a34df2755d538f5c5",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/data/act6-qa/tenth.json",
+      "sha": "32217a6a6affda133d964b7c6028ef584ad2673f",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/data/act6-qa/third.json",
+      "sha": "8e1b0f0434ef326c55d173720b85457077148700",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/runtime/act6-app-qa.js",
+      "sha": "454ac109a9c7a2714ba9436c901b0981c7099893",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/runtime/act6-fifty-rest-qa.mjs",
+      "sha": "e99e257fbc8726baf36a627d59069b75c4f7b548",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/runtime/act6-first-missions.mjs",
+      "sha": "b92febc2af34cd74fe18b5227e1d055b0ff9a089",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/runtime/act6-inner-missions.mjs",
+      "sha": "e2ec65d67c35dbcc86766f7838b116fd01cb0724",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/runtime/chart-packet.mjs",
+      "sha": "f7aca672bbac75e3644ab970884ae288afd7f139",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/runtime/native-bind.mjs",
+      "sha": "4a75263ce943e610e87bb2b029d786442e2de7c5",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/runtime/normal-scope.mjs",
+      "sha": "4d6c9635de9f9d8a82b6eb1d1bed696e0e4db66a",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/runtime/role-paint.mjs",
+      "sha": "207913a0b2f05ea0424479222e117ded2168f60a",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/runtime/stage51-campaign-provider.mjs",
+      "sha": "6a07d9560cad48986f8fcde48cf0903a3533ab04",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/runtime/stage51-entry.inc.js",
+      "sha": "eaa0ec34085c5b56d0eb71158f9130c787747590",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/runtime/stage53-actions.mjs",
+      "sha": "2ecdbb8bdeadc4d5f39a5a90a7f3987df6435d14",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/runtime/stage53-entry.inc.js",
+      "sha": "51d360923b9223c2a44593af2a60f03d3f741224",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/runtime/stage54-entry.inc.js",
+      "sha": "b76b34e1185289e40b43cf2eb363edf4c535fffd",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/runtime/stage54-pilot-owner.mjs",
+      "sha": "ef02bd8671a52d23971a6bcbc553efa67be5cc6e",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/runtime/stage55-entry.inc.js",
+      "sha": "024781e26856398bf4aaee164fc5ae7382957fb4",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/runtime/stage55-pilot-owner.mjs",
+      "sha": "d7087b90e9396e0771f90a80792ed649f191a37e",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/runtime/stage56-adapter.mjs",
+      "sha": "7f14fd077b1a8b5204a093a765d1fb3091c1d221",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/runtime/stage56-entry.inc.js",
+      "sha": "151a3dd691c854808f1b66437c92245e4d472126",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/runtime/stage56-owner.mjs",
+      "sha": "d52b6d9e2a5faecffcdb9b3115a09b34575e09f8",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/runtime/stage56-presentation.mjs",
+      "sha": "ac2757e711377f81629e53fc1e2f2e1891e1cbab",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/runtime/stage57-adapter.mjs",
+      "sha": "a3db33c8211e30d3d68a33264aac54154aba03f3",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/runtime/stage57-bridge.mjs",
+      "sha": "96ceed7f9f5d31400c6ac37d74904eb6f28b0d05",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/runtime/stage57-emergency.mjs",
+      "sha": "b5615924fa337a2ce7904b401f846a51ed0ef0b4",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/runtime/stage57-entry.inc.js",
+      "sha": "8f631742354df308b186b8cfee16407c50dcf912",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/runtime/stage57-mission.mjs",
+      "sha": "7d2519249efec49192abc45d98eb8fb2051e0433",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/runtime/stage57-owner.mjs",
+      "sha": "a356716d3a64d6c6d3b8d36631d972c2b8776e7f",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/runtime/stage58-normal-adapter.mjs",
+      "sha": "6141fdadc5c42dca4a76db1cc6a756a8ce8b9d09",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/runtime/stage58-normal-entry.inc.js",
+      "sha": "019304e3b1dead9368c65155acc7e7629adaf323",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/runtime/stage58-owner.mjs",
+      "sha": "251312b41896f7cf89b7728031b152e78c86fc99",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/runtime/stage59-adapter.mjs",
+      "sha": "b8c7f0539950caf7eef0fc5fc9c31ed0eafbd05d",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/runtime/stage59-normal-entry.inc.js",
+      "sha": "43ee544e01b5e4a1f9a38f4d4e3dc58d62eefac1",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/runtime/stage59-owner.mjs",
+      "sha": "eee8315a563d0183f18f00e6c7b4c18419776d93",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/runtime/stage60-card.mjs",
+      "sha": "75ca843a1f4068d6d9caa41323fdf6565f406420",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/runtime/stage60-ending.mjs",
+      "sha": "457091f44f55c543de4921ac18238f528c00f526",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/runtime/stage60-normal-entry.inc.js",
+      "sha": "3c4ab84b45e6eefdf3f6af5e06073c7014f80737",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/runtime/stage60-owner.mjs",
+      "sha": "b5885cb162d4dd93587b3b0e21c52ad48c38c04a",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/runtime/strip.mjs",
+      "sha": "937488210e04875d57698b998b89589ad02d97c8",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/runtime/wave.mjs",
+      "sha": "69306b33d1529ef6b622128a2b5eb8ca02c4916e",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/stage51-compiler.mjs",
+      "sha": "e0ea02fc0ff0e2217bf89c62987faebe1e43adc5",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "shared/web-build.mjs",
+      "sha": "f5f9b44ae239f01240132d9e5f4f480835a6cc1b",
+      "mode": "100644",
+      "type": "blob"
+    }
+  ],
+  "activeGraphSHA256": "cee4c087f0da2b0ceb2315131080cf35591ded00f69b8284a34e6c9e87a69c18",
+  "baseMaster": "9c837c1b9512e202f4fded1f499541fa5ff73328",
+  "planRef": "b02a315b67c760564d9ed0274b3e74d911f619e2",
+  "planPath": "game/docs/planning/act6-finale-20261125/HONRO-ACT6-FINALE-REVISED.ko.md",
+  "planBlob": "8d6ef80220b681e63e78431dd8f0f844fd1614cb"
+}
