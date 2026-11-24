@@ -1,0 +1,26 @@
+{
+  "old": "217b5b0c12adb849789d4ce9050117a9741dab53d9fb335526d76397c73e39f3",
+  "new": "c17aa19e1f126fc442da441d532fa559e683ca5cf8cfde99e5f26956e9638662",
+  "changedOwners": [
+    "B-02-center-lower-short-climb",
+    "B-central-lower-floor"
+  ],
+  "raysBeforeAndAfterIdentical": [
+    {
+      "id": "shaft-down-open",
+      "hit": null
+    },
+    {
+      "id": "east-open-channel",
+      "hit": null
+    },
+    {
+      "id": "E-true-stone",
+      "hit": {
+        "owner": "E-joined-ordinary-floor",
+        "x": 550,
+        "y": 506.23076634154774
+      }
+    }
+  ]
+}
