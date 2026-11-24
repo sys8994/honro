@@ -1,0 +1,44 @@
+{
+  "playSHA": "a2f2d75d9cfbd3611c22097f6b9c5ada5c2e6c2f903a844f4c0624327510d75d",
+  "worldSHA": "3d5ddd7dbe0b5d2087ca868b391bbaaf368f390e0c2cb77c5d3d015a81f112e3",
+  "mapSHA": "d6414922edf169ce665d310430c8ae05b818e0e048b73c7c13b55a55194717a9",
+  "assetSHA": "1decdc5afa66eb55c16ff69ecca4e04273f2ec912767641dd69223ab5f7d3394",
+  "roleSHA": "fce44d58ea4471363c610eb0df91244203d72d1e8e311c3d9de1d263a771f2b2",
+  "ownerSHA": "01362a5a0cb9ecf889f7b95af4f57b7e6f1a55c15108258869e10579d69dcf77",
+  "sha256": "dd829cb01460592a296b5f8127825260036386a437206928e21cb928cdb8d333",
+  "bytes": 171398,
+  "path": "/web/data/act6-qa-chapter-59.dd829cb01460592a.json",
+  "id": 59,
+  "previous": 58,
+  "authoredId": "stage-59",
+  "entry": [
+    "archer",
+    "knight",
+    "occultist",
+    "mage"
+  ],
+  "parked": [],
+  "exit": [
+    "archer",
+    "knight",
+    "occultist",
+    "mage"
+  ],
+  "parkedOnExit": [],
+  "requiresFlags": {
+    "act6.daedosaStopped": true,
+    "act6.innerRevisionReady": true,
+    "act6.fourCorporealReturned": true
+  },
+  "terminalFlags": {
+    "act6.garmjinCompleted": true,
+    "act6.finalThreatResolved": true
+  },
+  "events": [
+    "interact",
+    "tick",
+    "nativeRelease",
+    "nativeImpact"
+  ],
+  "runtimeReleaseEnabled": false
+}

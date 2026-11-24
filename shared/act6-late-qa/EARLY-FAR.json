@@ -1,0 +1,182 @@
+{
+  "schema": "honro-act6-stagefar-51-57/v1",
+  "source": "authored originals in parent MANIFEST; q94 derivative encoding for 53,54,57 only; original source refs retained",
+  "rows": {
+    "51": {
+      "stage": 51,
+      "authoringId": "qa-act6-r4-01",
+      "title": "빠진 산의 회청색 운해",
+      "sky": "#283740",
+      "plates": {
+        "wide": {
+          "stage": 51,
+          "source": "vector-production/01/far-local.webp",
+          "sha": "7d478815691a79c9e0022f6e0393b58d6748eaa0729b0026ef0cd289842a63cb",
+          "bytes": 85944,
+          "w": 2172,
+          "h": 724,
+          "mime": "image/webp",
+          "path": "/web/graphics/act6-far-51-wide.7d478815691a79c9.webp",
+          "focus": [
+            0.53,
+            0.49
+          ]
+        },
+        "portrait": {
+          "stage": 51,
+          "source": "ch01/repo-fixture-final-r6/tools/act6-qa/ch01/visual/far-portrait.webp",
+          "sha": "48d4036aca6003c5d6757ff3a6119d8272a2fbddf41d53e77ed559434b763ed1",
+          "bytes": 90034,
+          "w": 941,
+          "h": 1672,
+          "mime": "image/webp",
+          "path": "/web/graphics/act6-far-51-portrait.48d4036aca6003c5.webp",
+          "focus": [
+            0.49,
+            0.49
+          ]
+        }
+      }
+    },
+    "52": {
+      "stage": 52,
+      "authoringId": "qa-act6-r4-02",
+      "title": "세 곳의 암벽 협곡",
+      "sky": "#2d3944",
+      "plates": {
+        "wide": {
+          "stage": 52,
+          "source": "vector-production/02/far-local.webp",
+          "sha": "8897aad86e693aec7e6b65227561fd8cbca3c70dacef436c879c96ea30cd0ddb",
+          "bytes": 57550,
+          "w": 1254,
+          "h": 1254,
+          "mime": "image/webp",
+          "path": "/web/graphics/act6-far-52-wide.8897aad86e693aec.webp",
+          "focus": [
+            0.47,
+            0.5
+          ]
+        }
+      }
+    },
+    "53": {
+      "stage": 53,
+      "authoringId": "contact-q-03",
+      "title": "법당 기둥 사이의 먹빛 원경",
+      "sky": "#282526",
+      "plates": {
+        "wide": {
+          "stage": 53,
+          "source": "vector-production/03/far.png",
+          "sha": "0d0d3394267326edf7ce343513d587e34eea98a4d4af7bbad59690f8ebff9aac",
+          "bytes": 137822,
+          "w": 1254,
+          "h": 1254,
+          "mime": "image/webp",
+          "path": "/web/graphics/act6-far-53-wide.0d0d3394267326ed.webp",
+          "focus": [
+            0.52,
+            0.42
+          ],
+          "packedSource": "53-wide-q94.webp",
+          "authorSHA": "f4859d73dd81d2c16177eff8c05211aa301f16c5bc9cd8d688fc4b21fb311be4"
+        }
+      }
+    },
+    "54": {
+      "stage": 54,
+      "authoringId": "contact-q-04",
+      "title": "처마에 매달린 곧은 추의 역방향 회랑",
+      "sky": "#222329",
+      "plates": {
+        "wide": {
+          "stage": 54,
+          "source": "vector-production/04/far.png",
+          "sha": "84a1ead89118f40e6671c7a0d22be91c4f435693076949940c330c9a13826ce4",
+          "bytes": 377246,
+          "w": 1086,
+          "h": 1448,
+          "mime": "image/webp",
+          "path": "/web/graphics/act6-far-54-wide.84a1ead89118f40e.webp",
+          "focus": [
+            0.53,
+            0.37
+          ],
+          "packedSource": "54-wide-q94.webp",
+          "authorSHA": "6cbde31d95328d14114b9f3bf4efa7fe8469901f22a742ff1894fcd01f7aff06"
+        }
+      },
+      "runtimeAuthoringId": "stage-54"
+    },
+    "55": {
+      "stage": 55,
+      "authoringId": "qa-act6-05",
+      "title": "비어 있는 종터의 먼 능선",
+      "sky": "#323b43",
+      "plates": {
+        "wide": {
+          "stage": 55,
+          "source": "vector-production/05-edge-repair-r1/far-local.webp",
+          "sha": "de7755f7d65a8e2207d4dcce723628fb8017435838cc201fea6249b1a26953a4",
+          "bytes": 41024,
+          "w": 2172,
+          "h": 724,
+          "mime": "image/webp",
+          "path": "/web/graphics/act6-far-55-wide.de7755f7d65a8e22.webp",
+          "focus": [
+            0.47,
+            0.53
+          ]
+        }
+      },
+      "runtimeAuthoringId": "stage-55"
+    },
+    "56": {
+      "stage": 56,
+      "authoringId": "qa-act6-06",
+      "title": "죽은 자들의 큰길과 상하 심연",
+      "sky": "#252932",
+      "plates": {
+        "wide": {
+          "stage": 56,
+          "source": "vector-production/06-E-B-route-proof-r4/far-local.webp",
+          "sha": "bf12114eae958faef4f3619767fd492b241433dfac5ff6c6354d6451e5238d10",
+          "bytes": 53574,
+          "w": 1024,
+          "h": 1536,
+          "mime": "image/webp",
+          "path": "/web/graphics/act6-far-56-wide.bf12114eae958fae.webp",
+          "focus": [
+            0.52,
+            0.51
+          ]
+        }
+      }
+    },
+    "57": {
+      "stage": 57,
+      "authoringId": "a6-local-playable-07",
+      "title": "무너지는 세 자리와 잔류 산로",
+      "sky": "#353533",
+      "plates": {
+        "wide": {
+          "stage": 57,
+          "source": "vector-production/07/far.png",
+          "sha": "a4ae7057fd4a26dcc59d9f8c27fc42ed009dc4a3b7de248af999b2589bf0e7bb",
+          "bytes": 237428,
+          "w": 1536,
+          "h": 1024,
+          "mime": "image/webp",
+          "path": "/web/graphics/act6-far-57-wide.a4ae7057fd4a26dc.webp",
+          "focus": [
+            0.55,
+            0.5
+          ],
+          "packedSource": "57-wide-q94.webp",
+          "authorSHA": "88082829da4c8587f5a4731b52b2a79a355018a0430a08db788a212c749a40dd"
+        }
+      }
+    }
+  }
+}
