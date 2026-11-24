@@ -140,6 +140,24 @@ export async function buildWeb({vector=true,destination=path.join(root,'HONRO.ht
     assert(idx>=0&&entries.filter(entry=>entry.qaAct6).length===1,'Expected exact one Act6 QA pilot');
     const [{qaAct6}]=entries.splice(idx,1);
     const descriptors={origin:'http://127.0.0.1:18861',rows:{}};
+    if(normal51&&process.env.HONRO_ACT6_QA_NORMAL_FAR==='1'){
+      const {loadNormalFar}=await import('./act6-late-qa/load-normal-far.mjs');
+      const {manifest,extras}=await loadNormalFar();
+      for(const asset of extras)assert.equal('/'+await emit('graphics',asset.stem,'webp',asset.bytes),asset.plate.path,'R12 FAR pathname drift');
+      descriptors.farEarly=manifest;
+      if(process.env.HONRO_ACT6_QA_NORMAL_FINAL_FAR==='1'){
+        const {loadNormalFinalFar}=await import('./act6-late-qa/load-normal-final-far.mjs');
+        const {plate,stem,bytes}=await loadNormalFinalFar();
+        assert.equal('/'+await emit('graphics',stem,'webp',bytes),plate.path,'R12 final playable FAR pathname drift');
+        descriptors.normalFinalFar=plate;
+      }
+      if(process.env.HONRO_ACT6_QA_NORMAL_LATE_FAR==='1'){
+        const {loadNormalLateFar}=await import('./act6-late-qa/compose-normal-late-far.mjs');
+        const late=await loadNormalLateFar();
+        for(const asset of late.extras)assert.equal('/'+await emit('graphics',asset.stem,'webp',asset.bytes),asset.plate.path,'R12 late FAR pathname drift');
+        descriptors.normalLateFar=late.manifest;
+      }
+    }
     for(const packet of qaAct6.packets){
       const id=packet.trace.stageId,bytes=Buffer.from(JSON.stringify(packet)+'\n');
       assert(bytes.length<webJsonPartBytes,'Act6 QA packet must remain a bounded single signed JSON');
