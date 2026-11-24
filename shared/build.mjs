@@ -80,7 +80,7 @@ export async function skillAudioData(){
   return {version:3,assets};
 }
 // This is the only bundle manifest. Game, Stage view and playtest use it.
-export async function runtimeEntries({vector=true,render=true,app=false,productionStory=app,act6QaWeb=false}={}) {
+export async function runtimeEntries({vector=true,render=true,app=false,productionStory=app,act6QaWeb=false,act6BuildEnv=process.env,act6Release=null}={}) {
   const parts=[];
   const code=(name,code)=>parts.push({name,code});
   const file=async source=>code(source,await read(source));
@@ -96,7 +96,7 @@ export async function runtimeEntries({vector=true,render=true,app=false,producti
   const skillImages=await validateSkillIcons({allowPending:true});
   if(skillImages.errors.length)throw Error(skillImages.errors.join('\n'));
   data('HONRO_SKILL_ICON_MANIFEST',{...skillImages.source,complete:skillImages.complete,icons:Object.fromEntries(Object.entries(skillImages.source.icons).map(([id,item])=>[id,{...item,url:item.status==='ready'?item.file:null}]))});
-  code('engine/core',await buildCore({normal51:app&&act6QaWeb&&process.env.HONRO_ACT6_QA_NORMAL51==='1'}));
+  code('engine/core',await buildCore({normal51:app&&act6QaWeb&&act6BuildEnv.HONRO_ACT6_QA_NORMAL51==='1'}));
   const itemIcons={},itemDefinitions=JSON.parse(await read('game/docs/equipment/honro_equipment_52_v03.json')).items;
   if(itemDefinitions.length!==52)throw Error('Equipment requires all 52 approved definitions');
   for(const item of itemDefinitions)itemIcons[item.itemId]='data:image/webp;base64,'+(await readFile(path.join(root,item.iconAssetProposal))).toString('base64');
@@ -267,10 +267,10 @@ function stage33CoastRestore(b,library){
   }
   // Optional, separate QA owner. Do not append to the stock campaign project.
   if(act6QaWeb){
-    if(process.env.HONRO_ACT6_QA_WEB_BUILD!=='1'||!app||!render||!vector||!productionStory||!act5)
+    if(act6BuildEnv.HONRO_ACT6_QA_WEB_BUILD!=='1'||!app||!render||!vector||!productionStory||!act5)
       throw Error('Act6 Web QA pilot requires the normal App and explicit opt-in');
     const {createAct6WebQa}=await import('./act6-app-qa.mjs');
-    parts.push({name:'act6-app-qa',qaAct6:await createAct6WebQa(project,root)});
+    parts.push({name:'act6-app-qa',qaAct6:await createAct6WebQa(project,root,act6BuildEnv,act6Release)});
   }
   parts.push({name:'campaign',project,code:'globalThis.HONRO_PROJECT='+authorProjectExpression(JSON.stringify(project))+';'});
   if(vector){

@@ -1,4 +1,4 @@
-      const mounted54=new WeakMap(),charts54Steps=Object.freeze(['N>L','L>C','C>L']);
+      const mounted54=new WeakMap(),cold54=new WeakSet(),charts54Steps=Object.freeze(['N>L','L>C','C>L']);
       const scope54=(app,e,s)=>s===active.get(app)&&!!s?.normal51&&app.engine===e&&app.stageId===54&&s.b===e.b&&mounted54.get(e)===s&&
         app.profile===app.normalProfile&&e.b.mode==='campaign'&&e.b.honroCanonical===true&&e.b.honroCustom===false&&normal51Provider.content(e.b)===e.stage&&
         e.b.honroGrowth?.limit.total===0&&e.b.honroGrowth?.limit.combat===0&&runtime(app);
@@ -25,13 +25,22 @@
         check(eligible54(app,prev)&&active.get(app)===prev&&app.profile===app.normalProfile&&e.stage.id===53&&normal51Provider.content(e.b)===e.stage&&
           mage?.cls==='mage'&&e.grounded(mage)&&mage.hp>0&&!mage.dead&&t?.mage?.id===mage.id&&carryFields.every(k=>same(t.mage[k],mage[k]))&&
           same(t.external,prev.incoming53.external),'Actual 53 chart predecessor changed');
+        return mountFrom53(app,grant,t,mage,e.stage,normal51Provider.budget(e.b));
+      }
+      function mountCold54(app,grant,data,stays,key){
+        if(!cold54.has(key)||!stays()||data.from!==53||data.to!==54||!runtime(app))return false;
+        cold54.delete(key);
+        return mountFrom53(app,grant,data.terminal,data.custody.mage,data.stageSeed,data.budget);
+      }
+      function mountFrom53(app,grant,t,mage,stageSeed,budget){
+        const m=grant.packet.map;
         const spawn=grant.packet.spawn,support=grant.packet.charts.N.terrain.find(x=>x.id===spawn.support),y=C.topAt(support,spawn.x);
         check(spawn.x===250&&spawn.support==='foothill'&&Number.isFinite(y),'Invalid native foothill arrival');
         const st={...m,metadata:{stageId:54,campaign:true,act:6,actStage:4},units:[{id:mage.id,kind:'mage',team:'player',x:spawn.x,y}]};
         const project={...G.HONRO_PROJECT,stages:[st],library:grant.packet.library},p=structuredClone(app.profile);
-        const content=Object.freeze({...e.stage,id:54,local:54,actStage:4,active:1,requires:[53],name:'거꾸로 선 처마',goal:'처마의 세 방향 확인',
+        const content=Object.freeze({...stageSeed,id:54,local:54,actStage:4,active:1,requires:[53],name:'거꾸로 선 처마',goal:'처마의 세 방향 확인',
           objective:'act6-gallery-charts',w:st.width,h:st.height,wind:[0],victoryRule:{kind:'scripted',target:'act6-native-54'}});
-        const budget=normal51Provider.budget(e.b);check(budget?.id===53,'Missing 53 budget quote');
+        check(budget?.id===53,'Missing 53 budget quote');
         const b=normal51Provider.begin(st,project,p,content,Object.freeze({...budget,id:54}),o=>G.HonroMaps.createBattle(st,project,p,o));
         check(b&&b.stageId===54&&b.honroStage===54&&Array.isArray(b.units)&&b.units.length===1&&b.units[0]?.id===mage.id,'Wrong normal 54 bodies');
         for(const [v,h] of [[b.terrain,grant.known[0][1]],[b.honroWorldTerrain,grant.known[1][1]]]){
