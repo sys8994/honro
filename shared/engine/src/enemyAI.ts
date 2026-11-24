@@ -196,7 +196,7 @@ function* planFlight(e:Engine,u:Unit,target:Unit,attackFailed=false):Generator<v
 export function planWaitingFlights(e:Engine){
  const b=e.b,eligible=new Set(e.combatEnemies().map(u=>u.id));
  for(const u of b.units){
-  if(u.honroMonsterWindup||u.honroMonsterState?.mergedInto||u.honroMonsterState?.attachedTo)continue;
+  if(e.smallRoostHolding(u)||u.honroMonsterWindup||u.honroMonsterState?.mergedInto||u.honroMonsterState?.attachedTo)continue;
   if(!flyingEnemy(u)||u.boss||u.dead||u.hp<=0||u.summonFloating||u.summoned||u.enthrall||u.eaterCapturedBy||u.carriedBy!==undefined||u.aiMove||b.queue.includes(u.id)||(u.stun||0)>0||u.stunnedRound===b.round)continue;
   const target=eligible.has(u.id)?targetFor(e,u):undefined,budget=Math.min(u.moveLeft,96);if(budget<2)continue;
   if(!flightClear(e,u,u)){const escape=finishPlanning(planFlightEscape(e,u,target||u,Math.min(192,u.moveLeft)));if(escape)u.aiMove={...escape,waitingFlight:true};continue;}
@@ -511,7 +511,7 @@ export function* planEnemyLuresSteps(e:Engine):Generator<void,boolean,unknown>{
  if(!e.b.stakes?.some(z=>z.skill==='M08'&&(z.expires===undefined||z.expires>e.b.round)))return false;
  const plans:{u:Unit;plan?:AIMovePlan}[]=[];
  for(const u of e.actors(1)){
-  if(u.lureRound===e.b.round)continue;
+  if(e.smallRoostHolding(u)||u.lureRound===e.b.round)continue;
   const z=lureStakeFor(e,u);if(!z)continue;
   const owner=e.unit(z.owner)!;
   const plan=yield* planLuredMove(e,u,owner,z);plans.push({u,plan});yield;
@@ -632,3 +632,4 @@ export function* chooseEnemyShotSteps(e:Engine,u:Unit,target:Unit,skills:Skill[]
 export function debugMoveOptions(e:Engine,u:Unit,target:Unit){
  return candidates(e,u,target).map(p=>({x:Math.round(p.x),y:Math.round(p.y),position:Math.round(positionScore(e,u,target,p)),lane:Math.round(finishPlanning(shotOpportunity(e,u,target,p))),reach:!!traceTravel(e,u,u,p,Math.min(u.moveLeft,610))}));
 }
+

@@ -63,6 +63,7 @@ export interface Collision {
     unit?: Unit;
 }
 // The policy and ray receipt stay local to the enemy's new campaign battle.
+type SmallRoost={v:1;kind:'east-rock-watch';revealed:boolean};
 type MonsterWeakPoint={v:2;key:'warden-face';body:number;bonus:number;top:number;bottom:number;halfWidth:number;discovery?:'unknown'};
 type MonsterImpact={unit:Unit;x:number;y:number;weak:boolean;spent:boolean;confirmed?:boolean};
 type ScaleTrialObservation44Entry={kind:'resisted'|'weak';shot:number;owner:string;skill:string;round:number};
@@ -277,6 +278,18 @@ export class Engine {
         if (killer?.side === 0)
             this.b.heroes[killer.cls].kills++;
     }
+    private smallRoost(u:Unit):SmallRoost|undefined{
+        const b=this.b as Battle & {honroStage?:number;honroCanonical?:boolean;honroCustom?:boolean;honroMapOrigin?:string};
+        if(b.honroStage!==6||!b.honroCanonical||b.honroCustom||b.honroMapOrigin!=='campaign'||b.mode!=='campaign'||u.id!=='foe-7'||u.side!==1||u.dead||u.hp<=0||!u.fixed||u.summoned||u.enthrall)return;
+        const actor=u as Unit & {honroType?:string;honroSmallRoost?:SmallRoost};
+        const watch=actor.honroSmallRoost;
+        if(actor.honroType==='bat'&&watch?.v===1&&watch.kind==='east-rock-watch'&&typeof watch.revealed==='boolean')return watch;
+    }
+    smallRoostHolding(u:Unit){return this.smallRoost(u)?.revealed===false;}
+    private revealSmallRoost(u:Unit){
+        const watch=this.smallRoost(u);
+        if(watch&&!watch.revealed){watch.revealed=true;u.awake=true;}
+    }
     refreshActivation() {
         const allies = (this.b as any).honroStage?this.b.units.filter(v=>!v.dead&&(v.side===0||(v as any).honroAlly)):this.actors(0);
         const act5=(globalThis as any).HonroAct5;
@@ -288,12 +301,23 @@ export class Engine {
             if (wake.has(e.group)) {
                 e.awake = true;
             }
+        // The far bat can be group-awake while actually still in its roost.
+        // A controllable ally on an exposed lane or a damaging hit reveals it.
+        const bat=(this.b as Battle & {honroStage?:number}).honroStage===6?this.b.units.find(u=>u.id==='foe-7'):undefined;
+        if(bat&&this.smallRoostHolding(bat)){
+            const from={x:bat.x,y:bat.y-bat.h*.5};
+            const exposed=this.heroesAlive().some(u=>{
+                const to={x:u.x,y:u.y-u.h*.5};
+                return Math.abs(from.y-to.y)<=360&&Math.hypot(from.x-to.x,from.y-to.y)<=720&&this.grounded(u)&&this.contactSurface(u.x,u.y-4,u.y+5)?.t.id==='bridge-east'&&!this.projectileCollision(from,to,2,bat.id,[],false);
+            });
+            if(exposed)this.revealSmallRoost(bat);
+        }
     }
     combatEnemies() {
         const allies = (this.b as any).honroStage?this.b.units.filter(v=>!v.dead&&(v.side===0||(v as any).honroAlly)):this.actors(0);
         const act5=(globalThis as any).HonroAct5;
         return this.actors(1).filter(e => !e.summoned && !e.honroObjectiveTarget && !e.honroMonsterState?.mergedInto &&
-            !e.honroMonsterState?.attachedTo && e.awake && ((act5?.wakeEligible(this.b,e,allies,2300)??
+            !e.honroMonsterState?.attachedTo && !this.smallRoostHolding(e) && e.awake && ((act5?.wakeEligible(this.b,e,allies,2300)??
                 allies.some(p => Math.hypot(p.x - e.x, (p.y - e.y) * .7) < 2300)) || e.aggroUntil >= this.b.round));
     }
     setMoveTarget(x: number) { if (!this.canAct()||this.active?.meleeFollow==='ready')
@@ -1093,6 +1117,12 @@ export class Engine {
                 if(p&&!newSkill(p)&&equippedRank(src,'MP03')&&src.refundShot!==p.shot){src.refundShot=p.shot;src.focus=Math.min(src.maxFocus,src.focus+5*equippedRank(src,'MP03'));this.fx('rune',src.x,src.y-src.h*.5,'#98d9db',30);}
                 u.aggroUntil = this.b.round + 3;
                 u.awake = true;
+                // A player can flush the roost with a deliberate damaging cast
+                // (including primary splash) or a direct melee hit. An ally,
+                // lingering zone or autonomous continuation cannot reveal it.
+                if(actual>0&&this.smallRoostHolding(u)&&rawSrc===src&&!src.summoned&&!src.enthrall&&damageSource==='normal'&&
+                    (p? p.owner===src.id&&p.shot===this.b.shot&&!p.autonomous&&!p.child&&!p.secondary&&!p.followup&&!p.returning&&p.mode!=='stake'
+                      : direct&&!!source&&!provenance))this.revealSmallRoost(u);
                 this.b.heroes[src.cls].damage += actual;
                 const sum = Object.values(u.damageBy).reduce((a, b) => a + b, 0), budget = Math.floor(Math.min(1, sum / u.maxHp) * u.xpBudget), granted = Math.max(u.xpGranted, budget), xp = granted - u.xpGranted;
                 // Checkpoint retry restores damage/HP but retains earned XP. Never
@@ -2405,7 +2435,7 @@ export class Engine {
             planWaitingFlights(this);
             if (!enemies.length) {
                 if(this.waitingEnemyMoves()){b.active='';b.phase='enemy';b.turnAge=0;this.emit('change');return;}
-                if(this.actors(1).some(u=>u.lureRound!==b.round&&lureStakeFor(this,u))){b.active='';b.phase='enemy';b.turnAge=0;this.emit('change');return;}
+                if(this.actors(1).some(u=>!this.smallRoostHolding(u)&&u.lureRound!==b.round&&lureStakeFor(this,u))){b.active='';b.phase='enemy';b.turnAge=0;this.emit('change');return;}
                 this.endTeam();
                 return;
             }
@@ -2701,5 +2731,6 @@ export class Engine {
             this.checkEnd();
     }
 }
+
 
 

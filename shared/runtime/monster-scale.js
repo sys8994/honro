@@ -143,6 +143,12 @@ function apply(b,u){
 function prepare(b){
  if(disabled()||!b||b.honroMonsterScaleRevision||b.honroMapOrigin!=='campaign'||b.honroCustom||!b.honroCanonical)return;
  b.honroMonsterScaleRevision=PLACE_VARIANTS[b.honroStage]?REVISION:LEGACY_REVISION;
+ if(b.honroStage===6){
+  // The late upper bat already sits behind the east rock. Sign only new
+  // canonical battles; Continue and noncampaign maps never acquire a latch.
+  const u=b.units.find(u=>u.id==='foe-7'&&u.side===1&&u.fixed&&look(u)==='bat');
+  if(u)u.honroSmallRoost={v:1,kind:'east-rock-watch',revealed:false};
+ }
  for(const u of b.units)apply(b,u);
  addDarkness(b);
 }
