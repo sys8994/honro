@@ -10,11 +10,23 @@
           fingerprints.get(JSON.stringify(e.b.terrain))===declared53[53].playSHA&&fingerprints.get(JSON.stringify(e.b.honroWorldTerrain))===declared53[53].worldSHA});
       const actions53=createStage53PhysicalActions({C,authenticate:trust53});
       function enterNormal53(app,grant,predecessor){
-        const t=predecessor?.terminal,e=predecessor?.engine,{packet,known}=grant,m=packet.map,d=packet.mission;
+        const t=predecessor?.terminal,e=predecessor?.engine;
         check(predecessor?.normal51&&active.get(app)===predecessor&&app.engine===e&&e.b===predecessor.b&&e.b.phase==='won'&&app.done&&
           app.profile===app.normalProfile&&e.stage.id===52&&normal51Provider.content(e.b)===e.stage&&t?.stage===52&&t.settlement===false&&
           t.flags?.['act6.outerSitesPrepared']===true&&t.flags?.['act6.darmheoInTemple']===true,'Previous normal 52 owner absent');
-        const real=e.b.units.filter(u=>u.side===0&&!u.summoned&&!u.honroAlly),mage=real.find(a=>a.cls==='mage'),mageView=t.actors.find(a=>a.cls==='mage');
+        const real=e.b.units.filter(u=>u.side===0&&!u.summoned&&!u.honroAlly);
+        return enterFrom52(app,grant,t,real,e.stage,normal51Provider.budget(e.b));
+      }
+      const coldIssuers=new WeakSet();
+      function coldBoundary53(app,grant,sealed,stays,issuer){
+        check(coldIssuers.has(issuer)&&!app.engine&&app.profile===app.normalProfile&&stays()&&runtime(app)&&sealed?.from===52&&sealed.to===53,
+          'Cold Stage53 checkpoint denied');
+        coldIssuers.delete(issuer);
+        return enterFrom52(app,grant,sealed.terminal,Object.values(sealed.custody.full),sealed.stageSeed,sealed.budget);
+      }
+      function enterFrom52(app,grant,t,real,previousStage,budget){
+        const {packet,known}=grant,m=packet.map,d=packet.mission;
+        const mage=real.find(a=>a.cls==='mage'),mageView=t.actors.find(a=>a.cls==='mage');
         check(real.length===4&&t.actors.length===4&&t.actors.every(v=>real.some(u=>u.id===v.id&&carryFields.every(k=>same(u[k],v[k]))&&u.hp>0&&!u.dead)),'Real 52 bodies changed');
         const external=Object.fromEntries(real.filter(a=>a!==mage).map(x=>[x.cls,structuredClone(x)]));
         check(Object.keys(external).sort().join(',')==='archer,knight,occultist','External three required');
@@ -26,9 +38,9 @@
           return {...native,...u,cls:r.cls,runtimeTemplate:true};
         })};
         const p=structuredClone(app.profile),project={...G.HONRO_PROJECT,stages:[st],library:packet.library};
-        const content=Object.freeze({...e.stage,id:53,local:53,actStage:3,active:1,requires:[52],name:'끝없이 이어지는 법당',goal:'담허의 진목을 지정 받침에 설치하세요.',
+        const content=Object.freeze({...previousStage,id:53,local:53,actStage:3,active:1,requires:[52],name:'끝없이 이어지는 법당',goal:'담허의 진목을 지정 받침에 설치하세요.',
           w:st.width,h:st.height,wind:[0],victoryRule:{kind:'scripted',target:'act6-native-53'}});
-        const budget=normal51Provider.budget(e.b);check(budget?.id===52,'Missing normal 52 budget quote');
+        check(budget?.id===52,'Missing normal 52 budget quote');
         const b=normal51Provider.begin(st,project,p,content,Object.freeze({...budget,id:53}),o=>G.HonroMaps.createBattle(st,project,p,o));
         check(b&&b.stageId===53&&b.honroStage===53&&b.honroGrowth?.limit.total===0&&b.honroGrowth.limit.combat===0,'Native 53 factory refused');
         for(const [value,expected] of [[b.terrain,d.playSHA],[b.honroWorldTerrain,d.worldSHA]]){
@@ -65,9 +77,32 @@
         check(trust53(app,e,s),'Native 53 scoped owner refused '+JSON.stringify([s===active.get(app),s?.normal51,s.b===e.b,s.source53===verified53.get(e),app.engine===e,app.stageId,app.profile===app.normalProfile,e.b.mode,e.b.honroAuthoredId,e.b.honroCanonical,e.b.honroCustom,normal51Provider.content(e.b)===e.stage&&app.stage?.id===53&&app.stage?.objective===e.stage.objective,e.b.honroGrowth?.limit,runtime(app)]));check(indoor53.mount(app,e,s),'Native 53 mission refused');check(actions53.mount(app,e,s),'Native 53 actions refused '+JSON.stringify([e.active?.x,e.active?.y,e.active?.airborne,e.canAct(),e.grounded(e.active),e.b.stakes?.length,e.b.phase]));
         s.engine=e;e.checkEnd=()=>app.checkMission(e);return true;
       }
+      function contextualStakeIds(app,e,ids,allowed){
+        const state=active.get(app),full=ids.slice(0,4).filter(Boolean).length===4;
+        const dedicated=!!(state&&allowed&&full&&!ids.includes('M09'));
+        if(dedicated&&!state.stakeControl){
+          const host=appUI(app);
+          if(host){
+            const button=document.createElement('button');
+            button.type='button';button.dataset.act6QaContextStake='';
+            button.dataset.action='combat-skill';button.dataset.skill='M09';
+            button.textContent='축지진목 조준';styleAction(button);host.append(button);
+            state.stakeControl=button;
+          }
+        }
+        if(state?.stakeControl){
+          state.stakeControl.hidden=!dedicated;state.stakeControl.disabled=!dedicated;
+          state.stakeControl.setAttribute('aria-pressed', String(dedicated&&app.selected==='M09'));
+        }
+        if(!allowed||ids.includes('M09'))return ids;
+        if(full)return [...ids,'M09']; // normal HUD keeps its four; the visible contextual button selects the same skill
+        const shown=ids.slice(),blank=Array.from({length:4},(_,i)=>i).find(i=>!shown[i]);
+        shown[blank]='M09';return shown;
+      }
       function context53(app,u,ids){
         const e=app.engine;
-        return e?.b?.honroStage===53&&e.active===u&&actions53.aim(app,e)&&!ids.includes('M09')&&ids.length<4?[...ids,'M09']:ids;
+        return e?.b?.honroStage===53&&e.active===u&&actions53.aim(app,e)
+          ?contextualStakeIds(app,e,ids,true):contextualStakeIds(app,e,ids,false);
       }
       function release53(app,u){
         const e=app.engine;
