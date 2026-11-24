@@ -21,11 +21,14 @@ const GROWTH={eoduksini:[1.6,3.0,4.8]},EXPANDED={geuseundae:4.0};
 const NAMED={'midboss-stage6':[6.5,1.3],'midboss-stage3':[6.5,1.3],'final40-tide-keeper-1':[7.5,1.3]};
 // Story figures keep the body their scenes were staged with.
 const KEEP=new Set(['stage29-hantaerok']);
-// An explicit single-actor trial. A place variant cannot bleed into other
+// Explicit chapter-and-actor variants cannot bleed into other
 // chapters, difficulty profiles, Workshop maps or an existing v1 battle.
 const PLACE_VARIANTS=Object.freeze({6:Object.freeze({'midboss-stage6':Object.freeze({
  species:'warden',metres:8.5,healthRatio:.32,tone:'wetTimber',reason:'무너진 교각 아래, 물을 먹은 장승의 목재가 불었다.',
  weak:Object.freeze({v:2,key:'warden-face',body:.20,bonus:1,top:.10,bottom:.46,halfWidth:.50})
+})}),16:Object.freeze({'tm-lower-point':Object.freeze({
+ species:'eoduksini',growth:Object.freeze([1.6,3.51,8.08]),
+ reason:'잠운사 침수 하층에 고인 혼기가 반응할 때만 몸을 일으킨다.'
 })})});
 const activeVersion=b=>b?.honroMonsterScaleRevision===LEGACY_REVISION||b?.honroMonsterScaleRevision===REVISION;
 const placeVariant=(b,u)=>b.honroMonsterScaleRevision===REVISION&&PLACE_VARIANTS[b.honroStage]?.[u.id];
@@ -127,6 +130,10 @@ function apply(b,u){
  if(GROWTH[key])m=GROWTH[key][Math.max(0,Math.min(2,(u.honroMonsterGrowth||1)-1))];
  if(giant){m*=1.35;hp*=1.25;}
  grow(b,u,m,hp,speed,giant?52:46,giant?'giant':'species');
+ const v=placeVariant(b,u);
+ if(v?.growth&&key===v.species&&u.honroMonsterScale?.base){
+  u.honroMonsterScaleVariant={v:REVISION,growth:[...v.growth],reason:v.reason};
+ }
 }
 function prepare(b){
  if(disabled()||!b||b.honroMonsterScaleRevision||b.honroMapOrigin!=='campaign'||b.honroCustom||!b.honroCanonical)return;
@@ -144,7 +151,11 @@ function sync(b){
   if(guard(b,u))continue;
   const key=u.honroMonsterSpecies;let m=null;
   if(u.honroGreatDarkness)m=DARK_GROWTH[Math.max(0,Math.min(2,(u.honroMonsterGrowth||1)-1))];
-  else if(GROWTH[key])m=GROWTH[key][Math.max(0,Math.min(2,(u.honroMonsterGrowth||1)-1))];
+  else if(GROWTH[key]){
+   const v=placeVariant(b,u),variant=u.honroMonsterScaleVariant;
+   const growth=v?.growth&&variant?.v===REVISION&&variant.growth?.length===3?v.growth:GROWTH[key];
+   m=growth[Math.max(0,Math.min(2,(u.honroMonsterGrowth||1)-1))];
+  }
   else if(EXPANDED[key])m=u.honroMonsterWindup?EXPANDED[key]:0;
   if(m===null)continue;
   const want=Math.max(m?hOf(m,u):0,key in EXPANDED?sc.rest:sc.base.h);if(Math.abs(want-u.h)<2)continue;
