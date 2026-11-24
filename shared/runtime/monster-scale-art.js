@@ -6,7 +6,7 @@
 const S=G.HonroScene?.prototype;if(!S?.unitBody)return;
 const OMEN={16:{x:4300,y:3480,m:13,sink:.04,alpha:.3}};G.HonroMonsterOmen=OMEN;
 function omen(scene,c){
- const b=scene.battle||scene.actorEngine?.b,o=b?.honroMonsterScaleRevision===1&&OMEN[b.honroStage];if(!o)return;
+ const b=scene.battle||scene.actorEngine?.b,o=(b?.honroMonsterScaleRevision===1||b?.honroMonsterScaleRevision===2)&&OMEN[b.honroStage];if(!o)return;
  const V=G.HonroMonsterVisual,a=V?.assets?.eoduksini3;if(!a)return;
  const h=o.m*60.6,scale=h/a.baseHeight;
  c.save();c.beginPath();c.rect(o.x-h,o.y-h*1.2,h*2,h*1.2);c.clip(); // rises out of the water line

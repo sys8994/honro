@@ -5,7 +5,7 @@
 // rectangle is 2r × h, so one change moves art, hit area and HP together.
 // Every enlargement is fitted to the spot: if the head or body would meet
 // solid terrain the unit steps down toward its old size instead.
-const C=G.HONRO_CORE,REVISION=1,PX_PER_M=60.6; // hero h92 draws 103px = 1.7 m
+const C=G.HONRO_CORE,LEGACY_REVISION=1,REVISION=2,PX_PER_M=60.6; // hero h92 draws 103px = 1.7 m
 // Drawn height / body h for each art (measured with the game renderer).
 const RATIO={hound:.97,boar:.97,stag:1.05,human:1.05,possessedArcher:1.15,possessedGuard:1.15,archiveFiend:1.15,gateMaster:1.33,kilnFiend:1.23,archerMaster:1.29,
  mourner:.92,shade:1.02,warden:1.12,dueoksini:1.01,eoduksini:.64,eoduksini2:.76,eoduksini3:1,geuseundae:.99,geuseunsae:1.01,mulgwishin:1.12,
@@ -21,6 +21,14 @@ const GROWTH={eoduksini:[1.6,3.0,4.8]},EXPANDED={geuseundae:4.0};
 const NAMED={'midboss-stage6':[6.5,1.3],'midboss-stage3':[6.5,1.3],'final40-tide-keeper-1':[7.5,1.3]};
 // Story figures keep the body their scenes were staged with.
 const KEEP=new Set(['stage29-hantaerok']);
+// An explicit single-actor trial. A place variant cannot bleed into other
+// chapters, difficulty profiles, Workshop maps or an existing v1 battle.
+const PLACE_VARIANTS=Object.freeze({6:Object.freeze({'midboss-stage6':Object.freeze({
+ species:'warden',metres:8.5,tone:'wetTimber',reason:'무너진 교각 아래, 물을 먹은 장승의 목재가 불었다.',
+ weak:Object.freeze({v:2,key:'warden-face',body:.20,bonus:1,top:.10,bottom:.46,halfWidth:.50})
+})})});
+const activeVersion=b=>b?.honroMonsterScaleRevision===LEGACY_REVISION||b?.honroMonsterScaleRevision===REVISION;
+const placeVariant=(b,u)=>b.honroMonsterScaleRevision===REVISION&&PLACE_VARIANTS[b.honroStage]?.[u.id];
 const ROLE_MID={warden:5.5,vanguard:5.5,marksman:4.5,pursuer:4.2,shade:4.0};
 const NOT=new Set(['bat','crow','lantern','ghost','dokkaebibul','hound','human','muyeo','sonmalmyeong','gaekgwi','yagwanggwi','picks','minecart','resonance']);
 const disabled=()=>G.HONRO_MONSTER_SCALE_DISABLED===true;
@@ -32,7 +40,7 @@ function look(u){
  return u.honroType==='beast'?(v||'stag'):u.honroType;
 }
 function eligible(b,u){
- return b?.honroMonsterScaleRevision===REVISION&&u?.side===1&&alive(u)&&!u.summoned&&!u.enthrall&&!u.honroObjectiveTarget&&
+ return activeVersion(b)&&u?.side===1&&alive(u)&&!u.summoned&&!u.enthrall&&!u.honroObjectiveTarget&&
   !(u.fixed&&C.flyingEnemy?.(u))&&!u.honroAct4WreckBoss&&u.id!=='boss'&&!KEEP.has(u.id)&&!u.honroFinalBoss&&!u.honroMonsterState?.attachedTo&&!u.honroMonsterState?.mergedInto;
 }
 function art(u){const k=look(u);if(k==='eoduksini')return u.honroMonsterGrowth>=3?'eoduksini3':u.honroMonsterGrowth>=2?'eoduksini2':k;return RATIO[k]?k:RATIO[u.honroVariant]?u.honroVariant:u.honroType;}
@@ -60,14 +68,14 @@ function fitted(b,u,h,r){
 function rFor(u,scale,cap){return Math.min(cap,Math.max(u.r,Math.round(u.r*Math.pow(scale,.6))));}
 function record(b,u,info){(b.honroMonsterScaleLog??=[]).push({id:u.id,look:look(u),...info});if(b.honroMonsterScaleLog.length>200)b.honroMonsterScaleLog.shift();}
 function grow(b,u,metres,hpMul,speedMul,cap,why){
- const target=hOf(metres,u),scale=target/u.h;if(scale<=1.02){u.honroMonsterScale={v:REVISION,why,kept:true,base:{h:u.h,r:u.r},rest:u.h};return;}
+ const target=hOf(metres,u),scale=target/u.h;if(scale<=1.02){u.honroMonsterScale={v:b.honroMonsterScaleRevision,why,kept:true,base:{h:u.h,r:u.r},rest:u.h};return;}
  const fit=fitted(b,u,target,rFor(u,scale,cap));
- if(!fit){u.honroMonsterScale={v:REVISION,why,kept:true,base:{h:u.h,r:u.r},rest:u.h};record(b,u,{why,result:'no-room',target});return;}
+ if(!fit){u.honroMonsterScale={v:b.honroMonsterScaleRevision,why,kept:true,base:{h:u.h,r:u.r},rest:u.h};record(b,u,{why,result:'no-room',target});return;}
  const base={h:u.h,r:u.r},ratio=fit.h/u.h,hpGain=1+(hpMul-1)*Math.min(1,(ratio-1)/Math.max(.01,scale-1));
  Object.assign(u,{h:fit.h,r:fit.r});
  if(hpGain>1.001){const full=u.hp>=u.maxHp;u.maxHp=Math.round(u.maxHp*hpGain);u.hp=full?u.maxHp:Math.round(u.hp*hpGain);if(Number.isFinite(u.combatBaseHp))u.combatBaseHp*=hpGain;}
  if(speedMul<1){if(Number.isFinite(u.walkSpeed))u.walkSpeed*=speedMul;if(Number.isFinite(u.maxMove)){u.maxMove=Math.round(u.maxMove*speedMul);u.moveLeft=Math.min(u.moveLeft??u.maxMove,u.maxMove);}}
- u.honroMonsterScale={v:REVISION,why,base,rest:fit.h,restR:fit.r,step:fit.step,hp:+hpGain.toFixed(3)};
+ u.honroMonsterScale={v:b.honroMonsterScaleRevision,why,base,rest:fit.h,restR:fit.r,step:fit.step,hp:+hpGain.toFixed(3)};
  if(fit.step<1)record(b,u,{why,result:'reduced',step:fit.step,target,h:fit.h});
 }
 const covers=(b,u)=>b.units.some(t=>t.honroObjectiveTarget&&alive(t)&&Math.abs(t.x-u.x)<t.r+u.r+200&&Math.abs(t.y-u.y)<220);
@@ -85,11 +93,28 @@ function apply(b,u){
  const named=NAMED[u.id];
  // A body standing at an objective (bier knots, seals) keeps its authored
  // size so the line of fire to that objective stays as the stage was tuned.
- if(!named&&covers(b,u)){u.honroMonsterScale={v:REVISION,why:'objective-cover',kept:true,base:{h:u.h,r:u.r},rest:u.h};return;}
- if(named){grow(b,u,named[0],named[1],.8,64,'named');return;}
+ if(!named&&covers(b,u)){u.honroMonsterScale={v:b.honroMonsterScaleRevision,why:'objective-cover',kept:true,base:{h:u.h,r:u.r},rest:u.h};return;}
+ if(named){
+  const v=placeVariant(b,u);
+  if(v&&look(u)===v.species&&!covers(b,u)){
+   const target=hOf(v.metres,u), radius=rFor(u,target/u.h,64);
+   // The variant promises a complete body and visible face. Keep the
+   // published v1 encounter when its full footprint no longer fits.
+   if(fits(b,u,target,radius)){
+    grow(b,u,v.metres,named[1],.8,64,'named-place');
+    if(u.h===target){
+     u.honroMonsterScaleVariant={v:REVISION,tone:v.tone,reason:v.reason};
+     u.honroMonsterWeakPoint={...v.weak};
+     return;
+    }
+   }
+   record(b,u,{why:'named-place',result:'variant-rejected',target});
+  }
+  grow(b,u,named[0],named[1],.8,64,'named');return;
+ }
  const key=look(u);
  if(u.honroMidboss||u.boss){const m=ROLE_MID[key]||ROLE_MID[u.honroType];if(m){grow(b,u,m,1.3,.8,60,'midboss');return;}}
- const row=SPECIES[key];if(!row){u.honroMonsterScale={v:REVISION,why:'species',kept:true};return;}
+ const row=SPECIES[key];if(!row){u.honroMonsterScale={v:b.honroMonsterScaleRevision,why:'species',kept:true};return;}
  let [m,hp,speed]=row;const giant=u.honroMonsterVariant==='giant';
  if(GROWTH[key])m=GROWTH[key][Math.max(0,Math.min(2,(u.honroMonsterGrowth||1)-1))];
  if(giant){m*=1.35;hp*=1.25;}
@@ -97,14 +122,14 @@ function apply(b,u){
 }
 function prepare(b){
  if(disabled()||!b||b.honroMonsterScaleRevision||b.honroMapOrigin!=='campaign'||b.honroCustom||!b.honroCanonical)return;
- b.honroMonsterScaleRevision=REVISION;
+ b.honroMonsterScaleRevision=PLACE_VARIANTS[b.honroStage]?REVISION:LEGACY_REVISION;
  for(const u of b.units)apply(b,u);
  addDarkness(b);
 }
 // Growth/expansion move the body with the art. Runs at the mission tick; a
 // size that does not fit the spot stays at the largest one that does.
 function sync(b){
- if(b?.honroMonsterScaleRevision!==REVISION)return;
+ if(!activeVersion(b))return;
  for(const u of b.units){
   if(!u.honroMonsterScale){apply(b,u);continue;} // late arrivals from any spawn path
   const sc=u.honroMonsterScale;if(!eligible(b,u)||!sc?.base)continue;
@@ -139,13 +164,13 @@ function addDarkness(b){
   loadout:[],maxMove:0,moveLeft:0,walkSpeed:0,awake:false,aggroUntil:-1,group:-460,xpBudget:0,xpGranted:0,honroXpWeight:0,damageBy:{},
   intent:'우물 바닥에 웅크린 그림자',honroType:'shade',honroVariant:'shade',honroMonsterSpecies:'eoduksini',honroMonsterPattern:'eoduksini',honroMonsterGrowth:1,
   honroGreatDarkness:{v:1,optional:true},honroContributionId:spot.id});
- u.honroMonsterScale={v:REVISION,why:'great-darkness',base:{h,r:90},rest:h};
+ u.honroMonsterScale={v:b.honroMonsterScaleRevision,why:'great-darkness',base:{h,r:90},rest:h};
  b.units.push(u);
 }
 // Ending an action inside the shade feeds it, like a strike does.
 const lastActive=new WeakMap();
 function shade(app){
- const b=app?.engine?.b;if(!b||b.honroMonsterScaleRevision!==REVISION)return;
+ const b=app?.engine?.b;if(!activeVersion(b))return;
  // Reward: what the darkness had swallowed — one of each field supply, once.
  // (Kept off the equipment ledger, whose items are authored per act.)
  const dead=b.units.find(v=>v.honroGreatDarkness&&!alive(v));
@@ -165,11 +190,11 @@ function hookWake(){
 }
 // First sight of a very large body: one short camera hold on it.
 function reveal(app){
- const b=app?.engine?.b;if(b?.honroMonsterScaleRevision!==REVISION||app.dialogue||!app.scene?.focusUnit)return;
+ const b=app?.engine?.b;if(!activeVersion(b)||app.dialogue||!app.scene?.focusUnit)return;
  for(const u of b.units){const sc=u.honroMonsterScale;if(!sc||sc.kept||sc.revealed||u.h<250||!alive(u)||!u.awake)continue;
   sc.revealed=true;app.scene.focusUnit(u.id,1500);return;}
 }
-G.HonroMonsterScale={REVISION,KEEP,addDarkness,DARK,prepare,apply,sync,headroom,look,SPECIES,NAMED,ROLE_MID,OFF_STAGES};
+G.HonroMonsterScale={REVISION,LEGACY_REVISION,PLACE_VARIANTS,KEEP,addDarkness,DARK,prepare,apply,sync,headroom,look,SPECIES,NAMED,ROLE_MID,OFF_STAGES};
 // Later finite waves and act-5 reserves use the same path.
 const diversity=G.HonroMonsterDiversity;
 if(diversity){const spawn=diversity.spawn;diversity.spawn=function(b,u,...rest){const out=spawn.call(this,b,u,...rest);apply(b,u);return out;};}

@@ -1,6 +1,17 @@
 (function(G){'use strict';
 // The same retained vector renderer serves game, Stage View, portraits and the art lab.
 const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
+// Existing Warden fills only. Linework and other actors still take the original palette.
+const WET_TIMBER=Object.freeze({wood:'#425455',woodLight:'#768783',woodDark:'#262e34'});
+const FACE_LIGHT='#e2bd7e';
+const cue=path=>path.fill==='ink'&&path.d.startsWith('M-18 -126 L-12 -128'); // existing Warden eye shapes
+function paintFor(u,id){
+ if(id!=='warden'||u.dead||u.side!==1)return null;
+ const v=u.honroMonsterScaleVariant,w=u.honroMonsterWeakPoint;
+ const tone=v?.v===2&&v.tone==='wetTimber'?WET_TIMBER:null;
+ const face=w?.v===2&&w.key==='warden-face';
+ return tone||face?{tone,face}:null;
+}
 function create(assets){const cache=new Map(),idleRasters=new Map();
 function sample(keys,t){if(t<=keys[0][0])return keys[0][1];for(let i=1;i<keys.length;i++)if(t<=keys[i][0]){const a=keys[i-1],b=keys[i],f=(t-a[0])/(b[0]-a[0]),s=f*f*(3-2*f);return a[1]+(b[1]-a[1])*s;}return keys.at(-1)[1];}
 function compile(id){if(cache.has(id))return cache.get(id);const a=assets[id],byId=new Map(a.parts.map(p=>[p.id,p]));const parts=a.parts.map(p=>{const chain=[];let q=p;while(q){chain.unshift(q);q=byId.get(q.parent);}return{...p,chain,paths:p.paths.map(v=>({...v,path:new Path2D(v.d)}))};});const value={asset:a,parts};cache.set(id,value);return value;}
@@ -30,12 +41,17 @@ function state(u){
  // Map preparation, the brief snap and recovery onto the existing full-body attack rig.
  const attack=t<.42?t/.42*.27:t<.64?.27+(t-.42)/.22*.38:.65+Math.min(1,(t-.64)/.42)*.35;
  return{move:false,attack,hit,beast:u.honroVariant,aim:u.angle};}return{move:(u.moving||0)>.01&&!u.airborne&&!u.jumping,attack:u.anim>.44?clamp((1-u.anim)/.56,0,1):undefined,hit,aim:u.angle};}
-function drawVector(c,id,{time=0,state:st={},pixels=128,mode='paint',detail}={}){
+function drawVector(c,id,{time=0,state:st={},pixels=128,mode='paint',detail,actorPaint=null}={}){
  const q=compile(id),a=q.asset,poses=pose(a,time,st),lod=detail??(pixels>=120?2:pixels>=48?1:0);
  for(const p of q.parts){c.save();for(const joint of p.chain){const v=poses[joint.id],[x,y]=joint.pivot;c.translate(x+v.x,y+v.y);c.rotate(v.rotate*Math.PI/180);c.scale(v.scaleX,v.scaleY);c.translate(-x,-y);}
   c.lineJoin='round';c.lineCap='round';for(const v of p.paths){if(v.lod>lod)continue;c.lineWidth=v.width;
    if(mode==='wire'){c.strokeStyle=v.lod===0?'#e3c98f':v.lod===1?'#8fbfaf':'#677c90';c.lineWidth=.3;c.stroke(v.path);continue;}
-   if(v.fill){c.fillStyle=mode==='silhouette'?'#ddd7c1':a.palette[v.fill];c.fill(v.path);}
+   if(v.fill){
+    c.fillStyle=mode==='silhouette'?'#ddd7c1':
+     actorPaint?.face&&p.id==='face'&&cue(v)?FACE_LIGHT:
+      actorPaint?.tone?.[v.fill]??a.palette[v.fill];
+    c.fill(v.path);
+   }
    if(v.stroke&&(mode!=='silhouette'||v.lod===0)){c.strokeStyle=mode==='silhouette'?'#ddd7c1':a.palette[v.stroke];c.stroke(v.path);}
   }c.restore();
  }
@@ -43,7 +59,7 @@ function drawVector(c,id,{time=0,state:st={},pixels=128,mode='paint',detail}={})
 }
 function draw(c,id,options={}){
  const {time=0,state:st={},pixels=128,mode='paint',detail}=options,a=assets[id];
- if(!['act3-authored','monster-handoff'].includes(a.budget)||pixels>=32||mode!=='paint'||detail!==undefined||st.move||st.attack!==undefined||st.hit!==undefined||st.jump!==undefined||typeof document==='undefined')return drawVector(c,id,options);
+ if(!['act3-authored','monster-handoff'].includes(a.budget)||pixels>=32||mode!=='paint'||options.actorPaint||detail!==undefined||st.move||st.attack!==undefined||st.hit!==undefined||st.jump!==undefined||typeof document==='undefined')return drawVector(c,id,options);
  // Reuse the exact current idle pose across a distant formation. One generously
  // oversampled image per species/aim is refreshed every frame, so neither the
  // vector source nor animation rate is reduced. Motion and close views stay vector.
@@ -92,7 +108,7 @@ function drawBody(scene,c,u,id){
  c.save();c.translate(u.x,u.y);c.scale(scale*(u.facing||1),scale);
  const m=c.getTransform(),ratio=c.canvas.clientWidth?c.canvas.width/c.canvas.clientWidth:1;
  const pixels=a.baseHeight*Math.hypot(m.c,m.d)/ratio;
- draw(c,id,{time:scene.time||0,state:motionState(scene,u,a),pixels});c.restore();
+ draw(c,id,{time:scene.time||0,state:motionState(scene,u,a),pixels,actorPaint:paintFor(u,id)});c.restore();
 }
 function handoffBody(scene,c,u){
  if(u.honroMonsterState?.mergedInto)return true;

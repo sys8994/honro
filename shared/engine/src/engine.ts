@@ -62,6 +62,9 @@ export interface Collision {
     terrain?: Terrain;
     unit?: Unit;
 }
+// The policy and ray receipt stay local to the enemy's new campaign battle.
+type MonsterWeakPoint={v:2;key:'warden-face';body:number;bonus:number;top:number;bottom:number;halfWidth:number};
+type MonsterImpact={unit:Unit;x:number;y:number;weak:boolean;spent:boolean};
 export interface Prediction {
     points: Vec[];
     x: number;
@@ -87,6 +90,35 @@ export class Engine {
     private indexedVersion = -1;
     private indexedCount = -1;
     private planningRemaining=Infinity;
+    private weakRays=new WeakMap<Collision,{dx:number;dy:number;radius:number;projectile:Projectile}>();
+    private weakImpacts=new WeakMap<Projectile,MonsterImpact>();
+    private monsterWeakPoint(u:Unit):MonsterWeakPoint|undefined{
+        const b=this.b as Battle & {honroMonsterScaleRevision?:number;honroCanonical?:boolean;honroCustom?:boolean;honroMapOrigin?:string};
+        if(b.honroMonsterScaleRevision!==2||b.mode!=='campaign'||!b.honroCanonical||b.honroCustom||b.honroMapOrigin!=='campaign'||b.stageId!==6||u.id!=='midboss-stage6'||u.side!==1||u.honroObjectiveTarget)return;
+        const w=(u as Unit & {honroMonsterWeakPoint?:MonsterWeakPoint}).honroMonsterWeakPoint;
+        if(w?.v===2&&w.key==='warden-face'&&[w.body,w.bonus,w.top,w.bottom,w.halfWidth].every(Number.isFinite)&&w.body>0&&w.body<=1&&w.bonus>=w.body&&w.bonus<=1.5&&w.top>=0&&w.bottom>w.top&&w.bottom<=1&&w.halfWidth>0&&w.halfWidth<=1)return w;
+    }
+    private monsterImpact(p:Projectile,h:Collision):MonsterImpact|undefined{
+        const u=h.unit,ray=this.weakRays.get(h),w=u&&this.monsterWeakPoint(u);
+        if(!u||!ray||ray.projectile!==p||!w)return;
+        const out:MonsterImpact={unit:u,x:h.x,y:h.y,weak:false,spent:false};
+        // Skill descendants, body skills, automatic hits and returns must not
+        // gain a precision bonus from a neighbouring primary contact.
+        if(h.t<=1e-9||p.body||p.child||p.secondary||p.autonomous||p.returning||p.bounces||p.mode.startsWith('curse'))return out;
+        const length=Math.hypot(ray.dx,ray.dy);if(!length)return out;
+        const dx=ray.dx/length,dy=ray.dy/length,inward=-(dx*h.n.x+dy*h.n.y);
+        if(inward<.20||h.n.y>.5)return out;
+        const minX=u.x-u.r,topY=u.y-u.h,pt={x:h.x+dx*(ray.radius/inward+1),y:h.y+dy*(ray.radius/inward+1)};
+        // Continue the incoming ray to the actual unpadded rectangle: a radius
+        // swipe above/around the face is a body strike, not a lucky headshot.
+        if(pt.x<minX||pt.x>u.x+u.r||pt.y<topY||pt.y>u.y)return out;
+        if(Math.abs(h.n.x)>.5){const y=(pt.y-topY)/u.h;out.weak=y>=w.top&&y<=w.bottom;}
+        else if(h.n.y<-.5&&dy>0){
+            const faceY=topY+u.h*w.top, faceX=pt.x+dx*Math.max(0,(faceY-pt.y)/dy);
+            out.weak=(pt.y-topY)/u.h<=w.bottom&&Math.abs(faceX-u.x)<=u.r*w.halfWidth;
+        }
+        return out;
+    }
     /** Diagnostics: partial enemy plans discarded because the battle changed mid-search. */
     planRestarts=0;
     /** >0 while the enemy AI screens many candidate shots. Uniform-force HONRO projectiles
@@ -380,7 +412,10 @@ export class Engine {
             }
             if(u.x-u.r>right||u.x+u.r<left||u.y-u.h>bottom||u.y<top)continue;
             const h=segRect(a,c,u.x-u.r,u.y-u.h,u.r*2,u.h,r);
-            if(h&&(!best||h.t<best.t))best={x:a.x+(c.x-a.x)*h.t,y:a.y+(c.y-a.y)*h.t,t:h.t,n:h.n,unit:u};
+            if(h&&(!best||h.t<best.t)){
+                best={x:a.x+(c.x-a.x)*h.t,y:a.y+(c.y-a.y)*h.t,t:h.t,n:h.n,unit:u};
+                if(projectile&&attack&&this.monsterWeakPoint(u))this.weakRays.set(best,{dx:c.x-a.x,dy:c.y-a.y,radius:r,projectile:attack});
+            }
         }
         return best;
     }
@@ -906,6 +941,13 @@ export class Engine {
             return;
         const rawSrc = this.unit(owner), src = this.creditUnit(rawSrc);
         if(damageSource==='normal'&&direct&&rawSrc&&gearAlly(this,u,rawSrc,p||provenance||{}))return;
+        // Persistent ticks have no physical projectile/direct/source argument.
+        const weakRule=damageSource==='normal'&&src?.side===0&&(p||direct||source)?this.monsterWeakPoint(u):undefined;
+        const impact=weakRule&&p?this.weakImpacts.get(p):undefined;
+        const exactImpact=impact&&!impact.spent&&impact.unit===u&&source&&Math.abs(source.x-impact.x)<.001&&Math.abs(source.y-impact.y)<.001;
+        const weak=!!(exactImpact&&impact.weak);
+        if(exactImpact)impact.spent=true;
+        const regionMultiplier=weakRule?(weak?weakRule.bonus:weakRule.body):1;
         const damageRoll=damageSource==='normal'?((p||provenance)?.damageRoll??1):1;
         let dmg = amount*damageRoll;if(p?.wraithBurst&&p.wraithMarked?.includes(u.id)&&this.guidanceTarget(rawSrc,u))dmg*=1.30;
         const canCritical=damageSource==='normal'&&!!src&&src.side!==1&&!rawSrc?.summoned&&(!!p||direct);
@@ -954,7 +996,7 @@ export class Engine {
             this.fx('text', u.x, u.y - u.h - 20, '#f4d39c', 15, '핵심 적중');
         }
         const pierce=direct&&p?.preparedRank?preparedShot(p.preparedRank).pierce:0;
-        const defenseMultiplier=(damageSource==='normal'?1-Math.max(0,clamp(armor*(p?.skill==='S02'?.65:1),0,HERO_ARMOR_CAP)-pierce):1)
+        const defenseMultiplier=regionMultiplier*(damageSource==='normal'?1-Math.max(0,clamp(armor*(p?.skill==='S02'?.65:1),0,HERO_ARMOR_CAP)-pierce):1)
             *(u.arrivalGuard!==undefined?.90:1)*(damageSource==='normal'?monsterDefense(this,u,p&&Math.abs(p.vy)>Math.abs(p.vx)*.85?{x:u.x,y:u.y-u.h-200}:source||(rawSrc?{x:rawSrc.x,y:rawSrc.y-rawSrc.h*.44}:undefined)):1)
             *(u.martialGuard&&u.martialGuard.round>=this.b.round?1-u.martialGuard.reduction:1);
         let attack=damageSource==='normal'?(damageSkill&&SKILLS[damageSkill]?attackForSkill(SKILLS[damageSkill]):attackForHit(p,rawSrc,src,SKILLS)):undefined;
@@ -972,6 +1014,7 @@ export class Engine {
         }
         if (dmg <= 0)
             return;
+        if(exactImpact&&weakRule)this.fx('text',u.x,u.y-u.h-36,weak?'#e9c479':'#a2b1b6',weak?19:15,weak?'약점!':'감쇄');
         const friendlyFire=damageSource==='normal'?this.friendlyFireMultiplier(u,owner,p||provenance):1;
         // Reduce the existing rounded result. Fractional tenths preserve 1 -> 0.3
         // and prevent the old minimum-one rule from undoing the reduction.
@@ -1137,6 +1180,10 @@ export class Engine {
             if(u.honroObjectiveTarget&&(this.b as any).honroStage5WaterfallRevision===1&&u.id==='cliff-cleat'){
                 const to={x:clamp(x,u.x-u.r,u.x+u.r),y:clamp(y,u.y-u.h,u.y)},sheet=waterfallSheet(this.b);
                 if(this.b.terrain.some(t=>!t.broken&&(segmentProjectileTerrain({x,y},to,t.id===sheet?.id?sheet:t,0)||terrainRectIntersects(t.id===sheet?.id?sheet:t,x-.1,y-.1,.2,.2,0))))continue;
+            }
+            const impact=p&&this.weakImpacts.get(p);
+            if(impact&&!impact.spent&&impact.unit===u&&Math.abs(x-impact.x)<.001&&Math.abs(y-impact.y)<.001){
+                yield{unit:u,distance:0,head:{x,y},equipmentScale:1};continue;
             }
             const shape=wreckDamage(this.b,u);
             if(shape){const near=damageNearest(shape.polygons,{x,y});if(near.distance<radius)yield{unit:u,distance:near.distance,head:near.point,equipmentScale:1};continue;}
@@ -1469,7 +1516,10 @@ export class Engine {
         if(kind[p.mode]){if(p.mode==='summonHost'){this.spawnSummon(owner,'stalker',p.x-35,p.y,1.12,1,false,h,p.skill,p);this.spawnSummon(owner,'charger',p.x+35,p.y,1.12,1,false,h,p.skill,p);this.remove(p);}else this.summonAtProjectile(p,kind[p.mode],h);return true;}
         return false;
     }
-    impact(p:Projectile,h:Collision){return this.audioScope(p.owner,p.skill,p.shot,()=>{const bounced=p.bounces,vx=p.vx,vy=p.vy;this.resolveImpact(p,h);if(h.terrain){const reflected=p.bounces!==bounced||p.vx*vx+p.vy*vy<0;this.skillSound(reflected?'reflect':'block',p.owner,p.skill,p.shot, h.terrain.id,!!p.autonomous,h.terrain.mat);}},!!p.autonomous);}
+    impact(p:Projectile,h:Collision){return this.audioScope(p.owner,p.skill,p.shot,()=>{const bounced=p.bounces,vx=p.vx,vy=p.vy;
+        const receipt=this.monsterImpact(p,h);if(receipt)this.weakImpacts.set(p,receipt);
+        try{this.resolveImpact(p,h);}finally{if(receipt)this.weakImpacts.delete(p);}
+        if(h.terrain){const reflected=p.bounces!==bounced||p.vx*vx+p.vy*vy<0;this.skillSound(reflected?'reflect':'block',p.owner,p.skill,p.shot, h.terrain.id,!!p.autonomous,h.terrain.mat);}},!!p.autonomous);}
     private resolveImpact(p: Projectile, h: Collision) {
         if(keeperImpact(this,p,h))return;
         if(h.unit&&!this.attackAllows(h.unit,p.owner,p))return;
@@ -2630,3 +2680,4 @@ export class Engine {
             this.checkEnd();
     }
 }
+
