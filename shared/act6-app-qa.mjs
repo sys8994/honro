@@ -304,10 +304,18 @@ function replaceOne(src,old,next){
  assert.equal(src.split(old).length,2,'Unreviewed normal App callsite '+old);
  return src.replace(old,()=>next);
 }
-export function makeQaMain(main,source,descriptor){
+export function makeQaMain(main,source,descriptor,terrainArt=null){
  const bytes=Buffer.from(main);
  assert.equal(hash(Buffer.concat([Buffer.from('blob '+bytes.length+'\0'),bytes]),'sha1'),pinnedMain);
- const proto=source.replace('/* SIGNED_ASSET */',JSON.stringify(descriptor));
+ let proto=source.replace('/* SIGNED_ASSET */',JSON.stringify(descriptor));
+ // Art is appended AFTER boundary build identity is computed. Chapter packets,
+ // map/library pins, save owner and boundary source are deliberately unchanged.
+ if(terrainArt){
+  assert(descriptor.boundary&&source.includes('function mountNormalFar('));
+  proto=replaceOne(proto,'      function eligible(app,id)',terrainArt+'\n      function eligible(app,id)');
+  proto=replaceOne(proto,'disposeNormalFar(app);active.delete(app);','disposeNormalFar(app);active.get(app)?.terrainArt?.dispose();active.delete(app);');
+  proto=replaceOne(proto,'active:app=>active.has(app),mountNormalFar,','active:app=>active.has(app),mountNormalFar,mountAct6TerrainArt,');
+ }
  assert.equal(source.split('/* SIGNED_ASSET */').length,2);
  const edits=[
  ['    class App {',proto+'\n    class App {'],
@@ -345,6 +353,6 @@ export function makeQaMain(main,source,descriptor){
  if(source.includes('function enterNormal58('))edits.push(['if (!heroes.length || objective?.dead || rescuedResidentLost || channelerLost || act2Failure)', 'if (!heroes.length || objective?.dead || rescuedResidentLost || channelerLost || act2Failure || (b.honroStage===58&&qa51.goalState(this,e)?.failed===true))']);
  if(source.includes('function mountNormalFar('))edits.push([
   "this.scene = new G.HonroScene($('battlecanvas')); const u = e.active;",
-  "this.scene = new G.HonroScene($('battlecanvas')); qa51.mountNormalFar(this,e); const u = e.active;"]);
+  "this.scene = new G.HonroScene($('battlecanvas')); "+(terrainArt?'qa51.mountAct6TerrainArt(this,e); ':'')+"qa51.mountNormalFar(this,e); const u = e.active;"]);
  return edits.reduce((code,[a,b])=>replaceOne(code,a,b),main);
 }
