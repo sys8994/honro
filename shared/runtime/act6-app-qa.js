@@ -11,7 +11,10 @@
       const same=(x,y)=>JSON.stringify(x)===JSON.stringify(y);
       const check=(value,label)=>{if(!value)throw Error(label);};
       const sha=async bytes=>Array.from(new Uint8Array(await G.crypto.subtle.digest('SHA-256',bytes)),v=>v.toString(16).padStart(2,'0')).join('');
-      const runtime=app=>G.isSecureContext&&G.location.origin===descriptor.origin&&['/HONRO.html','/index.html','/'].includes(G.location.pathname)&&!G.HONRO_EMBEDDED&&G.HONRO_PROJECT_MODE!=='full'&&!app.debugMode&&!app.training&&!app.customMap&&!app.endingGallery&&!app.profileStore.locked;
+      const routeBase=descriptor.basePath??'/',rtPath=Object.freeze([routeBase,routeBase+'HONRO.html',routeBase+'index.html']);
+      const pathAt=(path)=>routeBase+String(path).replace(/^\//,'');
+      const urlAt=(path)=>new URL(pathAt(path),descriptor.origin);
+      const runtime=app=>G.isSecureContext&&G.location.origin===descriptor.origin&&rtPath.includes(G.location.pathname)&&!G.HONRO_EMBEDDED&&G.HONRO_PROJECT_MODE!=='full'&&!app.debugMode&&!app.training&&!app.customMap&&!app.endingGallery&&!app.profileStore.locked;
       function eligible(app,id){
         if(!runtime(app)||!stages.has(id))return false;
         const p=app.profile;
@@ -36,8 +39,8 @@
         button.style.cssText='pointer-events:auto;min-width:0;min-height:40px;padding:6px 12px;line-height:1.35;text-align:left;white-space:normal;';
       }
       async function prepareExact(id){
-      const pin=descriptor.rows[id],url=new URL(pin.path,G.location.origin);
-      check(url.origin===descriptor.origin&&new RegExp('^/web/data/act6-qa-chapter-'+id+'\\.[a-f0-9]{16}\\.json$').test(url.pathname),'Unexpected QA locator');
+      const pin=descriptor.rows[id],url=urlAt(pin.path);
+      check(url.origin===descriptor.origin&&new RegExp('^'+routeBase+'web/data/act6-qa-chapter-'+id+'\\.[a-f0-9]{16}\\.json$').test(url.pathname),'Unexpected QA locator');
       const response=await G.fetch(url,{redirect:'error',cache:'no-store',credentials:'omit'});check(response.ok&&response.url===url.href,'QA chapter unavailable');
       const bytes=await response.arrayBuffer();check(bytes.byteLength===pin.bytes&&await sha(bytes)===pin.sha256,'QA chapter integrity mismatch');
       const packet=JSON.parse(new TextDecoder('utf-8',{fatal:true}).decode(bytes)),idName='qa-act6-r4-0'+(id-50);
@@ -99,6 +102,7 @@
         });
       }
       function offer(app){
+        if(descriptor.previewBuildShape===true)return; // No fresh-title developer entry in this Pages-shaped build.
         const bar=app.root.querySelector('.title-actions');
         if(!bar||!eligible(app,51)||bar.querySelector('[data-act6-qa-entry]'))return;
         const button=document.createElement('button');button.type='button';button.dataset.act6QaEntry='';button.textContent='6막 1장 검수 시작';
