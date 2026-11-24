@@ -37,7 +37,23 @@
     if(typeof r.accepted==='boolean')check(accepted===r.accepted,'Native chart input outcome changed at '+i);
     assertPose(r.after);
   }
-  check(b.phase==='won'&&grounded()&&same(order.map(q=>q.id),['N>L','L>C','C>L']),'Native 54 terminal differs');
-  return {pose:view(),hp:u.hp,focus:u.focus,shield:u.shield,loadout:structuredClone(u.loadout),order};
+  const wanted=['N>L','L>C','C>L'],exitFrom=view();
+  check(same(order.map(q=>q.id),wanted),'All native chart landings are required '+JSON.stringify({order,exitFrom}));
+  let footTicks=0;
+  if(b.phase!=='won'){
+   const support=()=>e.contactSurface(u.x,u.y-4,u.y+4)?.t.id;
+   const actualStake=b.stakes.find(z=>z.shot===b.shot&&z.skill==='M09'&&z.owner===u.id&&z.y===2930);
+   // Same signed tape is selected through the M09 shot. Different real gear
+   // can move a different number of WU per tick, so finish by legal stepping
+   // on the same ledge rather than copy an isolated profile's last x.
+   check(safe()&&b.phase==='aim'&&b.side===0&&grounded()&&support()==='mid-contact'&&actualStake&&Math.abs(u.x-2316)<190,
+      'Native 54 exit not actionable '+JSON.stringify({exitFrom,support:support(),stake:actualStake?.id??null,shot:b.shot}));
+   while(b.phase==='aim'&&grounded()&&support()==='mid-contact'&&footTicks<180){
+     if(u.x<2308||u.x>2324)e.move(Math.sign(2316-u.x),dt);
+     tick();footTicks++;
+   }
+  }
+  check(b.phase==='won'&&grounded(),'Native 54 terminal differs '+JSON.stringify({exitFrom,end:view(),footTicks,shot:b.shot,order}));
+  return {pose:view(),hp:u.hp,focus:u.focus,shield:u.shield,loadout:structuredClone(u.loadout),order,exitFrom,footTicks};
  })();
 }
