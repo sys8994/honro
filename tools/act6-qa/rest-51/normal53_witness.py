@@ -31,11 +31,19 @@ def stage53(page,state,mobile,original,tap,out,case,packet_path):
     page.clock.run_for(96)
     assert page.evaluate("HonroApp.engine.active.x===2640 && HonroApp.engine.grounded(HonroApp.engine.active)")
     assert page.locator(skill).count()==1
+    # Native player turn banner locks App input for 250 ms. Advance the
+    # installed virtual clock rather than bypassing canInput or clearing it.
+    for _ in range(40):
+        if page.evaluate("HonroApp.canInput()"): break
+        page.clock.run_for(25)
+    assert page.evaluate("HonroApp.canInput()"), page.evaluate("()=>({phase:HonroApp.engine.b.phase,turn:HonroApp.turnNotice,now:performance.now(),dialogue:!!HonroApp.dialogue,modal:HonroApp.modal.classList.contains('open')})")
     tap(page,skill,mobile)
+    assert page.locator('#fire').is_enabled()
+    assert page.evaluate("HonroApp.engine.fire('M09',94,.42)===false")
     # Exact angle and charge are input values on the native App mechanism.
     # No battle position / HP / flags / time-to-win are assigned.
     released=page.evaluate("""()=>{const a=HonroApp,e=a.engine,b=e.b,u=e.active,sk=HONRO_CORE.SKILLS.M09;
-      if(a.selected!=='M09'||!a.beginCharge())throw Error('Native App would not charge contextual M09');
+      if(a.selected!=='M09'||!a.beginCharge())throw Error('Native App would not charge contextual M09: '+JSON.stringify({selected:a.selected,charging:a.charging,canInput:a.canInput(),noncombat:e.noncombatWalk(),retreat:!!u.retreat,dialogue:!!a.dialogue,modal:a.modal.classList.contains('open'),turnPaused:HONRO_CORE&&globalThis.HonroStory.turnPaused(a),turnNotice:a.turnNotice,now:performance.now(),ground:e.grounded(u),stockAllowed:e.skillAllowed(sk,u),afford:e.canAfford(sk,u,0),cd:e.cooldownLeft(u,'M09')}));
       u.angle=94;let l=0,r=9;for(let i=0;i<40;i++){let t=(l+r)/2;if(e.chargePower(u,sk,t)<.42)l=t;else r=t;}
       a.chargeAt=performance.now()-((l+r)/2)*1000;
       const before=b.shot; a.releaseCharge();
