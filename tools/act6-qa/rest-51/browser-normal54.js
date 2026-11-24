@@ -21,7 +21,7 @@
       accepted=b.sceneVersion!==old;
       if(accepted){
         for(let n=0;n<700&&!grounded();n++)tick();
-        check(grounded(),'No actual 54 chart landing');order.push({id:r.args[0],...view()});
+        check(grounded(),'No actual 54 chart landing');order.push({...view(),actorId:u.id,id:r.args[0]});
       }
     }else if(r.op==='contextual'){
       const old=b.shot;
