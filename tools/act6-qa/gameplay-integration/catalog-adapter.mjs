@@ -16,6 +16,20 @@ const checked=(e,read)=>{
 };
 const exact=(bytes,digest)=>{assert.equal(sha(bytes),digest,'stock root manifest identity');return JSON.parse(bytes);};
 const stdId=(id,row)=>id===row?.id&&row?.act===6&&row?.actStage===id-50;
+function packet(path,bytes,loadPart){
+ const obj=JSON.parse(bytes), descriptor=path.includes('-parts.');
+ assert((obj?.$honroJsonParts===1)===descriptor,'split descriptor/alias disagreement');
+ if(!descriptor)return obj;
+ assert(Array.isArray(obj.parts)&&obj.parts.length>0&&obj.parts.length<=512&&Number.isSafeInteger(obj.bytes)&&obj.bytes>0&&obj.bytes<=64*1024*1024,'invalid split descriptor');
+ const base=path.split('-parts.')[0], chunks=[];let total=0;
+ for(const [i,part] of obj.parts.entries()){
+  assert.equal(part.path,base+'-part-'+String(i).padStart(3,'0')+'.'+part.sha256?.slice(0,16)+'.bin','wrong split part order/name');
+  const b=loadPart(part);total+=b.length;assert(total<=obj.bytes);chunks.push(b);
+ }
+ assert.equal(total,obj.bytes,'split byte sum');
+ const joined=Buffer.concat(chunks,total);assert.equal(sha(joined),obj.sha256,'split joined SHA256');
+ return JSON.parse(joined);
+}
 function refsOf(o,set=new Set()){
  if(Array.isArray(o))for(const v of o)refsOf(v,set);
  else if(o&&typeof o==='object'){if(Object.hasOwn(o,'$honroAsset')){assert(safe(o.$honroAsset));set.add(o.$honroAsset);}for(const v of Object.values(o))refsOf(v,set);}
@@ -45,9 +59,10 @@ export function admitCatalog({enabled=false,baseBytes,baseSHA256,stages,read,dec
    same(x.content.requires,[id-1],'predecessor mismatch');
    same(x.content.playableRoster,party(id),'content roster mismatch');
    assert(x.journey?.stageId===id&&typeof x.journey?.anchorId==='string'&&x.journey.anchorId,'missing journey node');
-   assert.equal(x.map?.path,'web/data/'+tag+'.'+x.map?.sha256?.slice(0,16)+'.json');
-   assert(x.assets?.path.startsWith('web/data/'+tag+'-assets.'),'wrong provider name');
-   const m=JSON.parse(load(x.map));
+   const exactRole=(p,role)=>['','-parts'].some(suffix=>p?.path==='web/data/'+role+suffix+'.'+p.sha256?.slice(0,16)+'.json');
+   assert(exactRole(x.map,tag),'wrong map name');
+   assert(exactRole(x.assets,tag+'-assets'),'wrong provider name');
+   const m=packet(x.map.path,load(x.map),load);
    assert.equal(m.id,'stage-'+id);
    same([m.metadata?.stageId,m.metadata?.act,m.metadata?.actStage,m.metadata?.campaign],[id,6,i+1,true]);
    same([m.name,m.width,m.height,m.backdrop],[x.content.name,x.content.w,x.content.h,x.catalogBackdrop]);
@@ -63,8 +78,8 @@ export function admitCatalog({enabled=false,baseBytes,baseSHA256,stages,read,dec
    assert(m.units.every(u=>typeof u.id==='string'&&u.id), 'missing actor ID');
    same(new Set(m.units.map(u=>u.id)).size,m.units.length,'duplicate actor ID');
    const encoding=x.assets.encoding??'json';
-   const packet=JSON.parse(load(x.assets));
-   const providers=encoding==='json'?packet:encoding==='json-pool-v1'&&decodeAssets?decodeAssets(packet):null;
+   const rawPacket=packet(x.assets.path,load(x.assets),load);
+   const providers=encoding==='json'?rawPacket:encoding==='json-pool-v1'&&decodeAssets?decodeAssets(rawPacket):null;
    assert(Array.isArray(providers)&&providers.length,'no decoded chapter provider packet');
    const local=new Set();
    for(const a6 of providers){assert(typeof a6.id==='string'&&a6.id.startsWith('act6:'),'invalid Act6 provider ID');
@@ -100,4 +115,25 @@ export function verifyCompiledPrefix(baseBytes,baseSHA256,emittedBytes){
  }
  same(b.catalog.slice(50).map(r=>r.metadata.stageId),IDS,'new stage IDs');
  return true;
+}
+
+// Optional release gate. Requires actual byte access to both detached trees;
+// checks 100 exact chapter routes plus descriptors, ordered binary parts and
+// their existing media; numeric catalog equality isn't a byte witness.
+export function verifyPrefixFiles(baseBytes,baseSHA256,emittedBytes,{readA,readB}){
+ verifyCompiledPrefix(baseBytes,baseSHA256,emittedBytes);
+ const a=exact(baseBytes,baseSHA256), checkedPaths=new Set();
+ function sameFile(path){
+  assert(safe(path));const left=readA(path),right=readB(path);
+  assert(Buffer.isBuffer(left)&&Buffer.isBuffer(right)&&left.equals(right),'physical legacy bytes changed '+path);
+  const suffix=/\.([0-9a-f]{16})\.[A-Za-z0-9]+$/.exec(path);
+  assert(suffix&&sha(left).startsWith(suffix[1]),'legacy alias/hash mismatch '+path);
+  checkedPaths.add(path);return left;
+ }
+ for(const path of [...a.stages,...a.stageLibraries]){
+  const bytes=sameFile(path);
+  if(path.includes('-parts.'))packet(path,bytes,part=>{const left=sameFile(part.path);assert(left.length===part.bytes&&sha(left)===part.sha256,'legacy part signature');return left;});
+ }
+ for(const path of [...a.assetPaths.stages.flat(),...a.assetPaths.stageLibraries.flat()])if(!checkedPaths.has(path))sameFile(path);
+ return [...checkedPaths];
 }
