@@ -99,7 +99,7 @@ jobs:
           HONRO_ACT6_QA_NORMAL_LATE_WITNESS=1 HONRO_ACT6_RELEASE_HOST_TEST=1 HONRO_ACT6_QA_NORMAL_BOUNDARY=1 HONRO_ACT6_QA_QUIET_MATTE_WITNESS=1 HONRO_ACT6_QA_PAGES_SHAPE=1 HONRO_ACT6_QA_NORMAL_FAR=1 HONRO_ACT6_QA_NORMAL_LATE_FAR=1 HONRO_ACT6_QA_NORMAL_FINAL_FAR=1 HONRO_ACT6_QA_NORMAL_ENDING_STOCK=1 HONRO_ACT6_QA_WEB_ROOT="$W" npm run build > "$OUT/WITNESS-BUILD.log" 2>&1
           # Late stage witness probes enable extra instrumentation. The release
           # candidate is separately rebuilt, compared and assembled below.
-      - name: Verify scale-fit includes both realm labels and the complete plate
+      - name: Verify whole plate and every visible label at scale-fit
         run: |
           set -euo pipefail
           python -m pip install 'playwright==1.58.0'
