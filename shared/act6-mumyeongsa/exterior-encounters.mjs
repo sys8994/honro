@@ -46,8 +46,10 @@ function installExteriorEncounters(app,e,paused=()=>false,admit=()=>true){
      [['hound','west',1318,1210],['hound','court',1570,1356]],
      [['shade','court',1740,1400],['shade','court',1618,1372]]]},
     {id:'bell-descent',label:'종터로 내려가는 돌턱 양옆에서 기척이 납니다.',at:[1520,1320],units:[
-     ['hound','west',775,915],[['hound','court',1765,1420],['hound','west',1290,1220]],
-     [['shade','court',1890,1455],['shade','west',1162,1124]],['stag','west',1110,1096]]},
+     [['hound','west',775,915],['hound','west',844,950],['hound','court',1515,1339]],
+     [['hound','court',1765,1420],['hound','west',1290,1195],['hound','court',1580,1359]],
+     [['shade','court',1890,1455],['shade','west',1162,1124],['shade','court',1710,1400]],
+     [['stag','west',1110,1096],['stag','west',555,794],['stag','court',1592,1363]]]},
     {id:'outer-ward',label:'돌단을 바라보는 낮은 암반에서 적이 밀려옵니다.',at:[2040,1490],units:[
      ['shade','low',794,2497],[['hound','court',1520,1340],['hound','court',1647,1380]],
      [['shade','court',2010,1490],['shade','court',1831,1432]],['hound','west',1240,1158]]},
