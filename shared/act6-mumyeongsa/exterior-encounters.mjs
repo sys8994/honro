@@ -37,9 +37,14 @@ function installExteriorEncounters(app,e,paused=()=>false,admit=()=>true){
      units:[['hound','floor',1510,2400],[['shade','floor',1645,2370],['shade','floor',1718,2330]]]},
    ]},
   55:{active:10,attacks:7,roomReach:975,priority:'draft-pressure-0',sites:{west:'west-ring-descent',court:'arrival-core-terrace',low:'west-lower-branch'},
-   initial:[['hound','west',640,840],['shade','west',920,1000],['shade','court',1470,1325],['stag','court',2794,1732]],
+   initial:[['hound','west',410,711],['hound','west',640,840],['shade','west',920,1000],['shade','west',1180,1135],
+    ['shade','court',1470,1325],['stag','court',2794,1732]],
    waves:[
-    {id:'west-bank',label:'서쪽 돌벽 너머에서 수의귀들이 내려옵니다.',at:[850,930],units:[['shade','west',460,740],['hound','west',545,780],['hound','west',1070,1075],['shade','west',1170,1125]]},
+    {id:'west-bank',label:'서쪽 돌벽 너머에서 수의귀들이 내려옵니다.',at:[1380,1210],units:[
+     [['shade','west',1070,1075],['shade','west',930,1010]],
+     [['hound','west',1024,1050],['hound','west',722,885]],
+     [['hound','west',1318,1210],['hound','court',1570,1356]],
+     [['shade','court',1740,1400],['shade','court',1618,1372]]]},
     {id:'bell-descent',label:'종터로 내려가는 돌턱 양옆에서 기척이 납니다.',at:[1520,1320],units:[
      ['hound','west',775,915],[['hound','court',1765,1420],['hound','west',1290,1220]],
      [['shade','court',1890,1455],['shade','west',1162,1124]],['stag','west',1110,1096]]},
@@ -47,7 +52,8 @@ function installExteriorEncounters(app,e,paused=()=>false,admit=()=>true){
      ['shade','low',794,2497],[['hound','court',1520,1340],['hound','court',1647,1380]],
      [['shade','court',2010,1490],['shade','court',1831,1432]],['hound','west',1240,1158]]},
     {id:'thread-pressure',label:'종터 뒤 돌턱과 서쪽 비탈에서 적이 더 다가옵니다.',at:[2500,1640],units:[
-     ['shade','court',1805,1429],['hound','court',1960,1476],
+     [['shade','court',1805,1429],['shade','court',2848,1750],['shade','west',1000,1030]],
+     [['hound','court',1960,1476],['hound','west',1298,1240]],
      [['stag','low',860,2540],['stag','west',1214,1155]],
      [['shade','court',2842,1748],['shade','court',1664,1385]]]},
    ]},
