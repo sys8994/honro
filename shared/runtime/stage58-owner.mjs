@@ -70,7 +70,7 @@ export function createStage58Owner({C,authorize,isolate=()=>false,preview=()=>fa
   // Flight: past the first phase he floats; when exposed he sinks to the floor (a melee window).
   const hover=(u,x,lift)=>{const g=ground(x);if(!g)return false;Object.assign(u,{x,y:g.y-lift,spawnX:x,spawnY:g.y-lift,vx:0,vy:0,airborne:lift>0,jumping:false,fixed:u.fixed||lift>0});return true;};
   for(const [u,x] of [[boss,BOSS58.stand[0]],[node,4896],[vesselA,4300],[vesselB,5000],[inkA,5420],[inkB,5560]])if(!place(u,x))return no('reserved pose unsupported '+u.id);
-  const originalUnits=new Set(four), east=new Set(), log=[], ritual=[], dead=[], fieldEvents=[], said=new Set();
+  const originalUnits=new Set(four), east=new Set(), log=[], ritual=[], dead=[], fieldEvents=[], said=new Set(), signatures=new Set();
   let phase=1,pendingPhase=0,carryOver=0,presented=false,quiet=false,quietFire=false,terminal=null,tick=0,lostSpoken=false,firstBand=false,nearWarned=false;
   // Serializable fight record; the renderer draws marks/shelters from exactly this object.
   const rec=b.honroDaedosa={version:2,boss:boss.id,phase:0,mark:null,charge:0,exposed:false,guarded:false,exposedRounds:0,nodeDead:false,dead:false,shelters:[],shadowOffset:-70,history:[]};
@@ -164,15 +164,23 @@ export function createStage58Owner({C,authorize,isolate=()=>false,preview=()=>fa
    if(m.kind==='swap'){hover(boss,m.x,BOSS58.lift[phase-1]);rec.shadowOffset=-rec.shadowOffset;}
    if(m.kind==='band')rec.shelters=[];
    e.fx('ring',m.kind==='circle'?m.x:(m.x0+m.x1)/2,m.kind==='circle'?m.y:m.y1-60,'#2a2f33',m.kind==='circle'?m.r:180);e.emit('sound',{name:'hit'});
-   boss.anim=1;if(m.phase===phase)presented=true;note('resolve',{mark:m.kind,hits,neutralized:!!m.neutralized});
+   const avoided=!!m.neutralized||!hits.some(h=>!h.lash);
+   if(m.phase===phase){
+    signatures.add(m.kind);
+    presented=phase===3||avoided||signatures.size>=2;
+   }
+   boss.anim=1;note('resolve',{mark:m.kind,hits,neutralized:!!m.neutralized,avoided});
+   Object.assign(rec.history.at(-1),{phase,mark:m.kind,avoided,affected:hits.filter(h=>!h.lash).map(h=>h.id)});
    rec.mark=null;rec.guarded=false;rec.exposed=true;hover(boss,boss.x,0);sync();
-   e.message('대도사 · '+m.label+(hits.length?` · ${hits.length}명 적중`:' · 비껴감')+' · 지금 드러났습니다');
+   const cue=phase<3&&!presented?' · 다음 표식도 피하거나 막으십시오':' · 지금 드러났습니다';
+   e.message('대도사 · '+m.label+(hits.length?` · ${hits.length}명 적중`:' · 비껴감')+cue);
    return hits;
   }
   // P2: Damheo's M09 stake inside the tilted zone holds a short normal floor.
   const stakeHolds=m=>m.kind==='zone'&&(b.stakes??[]).some(s=>s.skill==='M09'&&s.side===0&&s.x>=m.x0&&s.x<=m.x1);
   function transition(to){
    phase=to;rec.phase=to;pendingPhase=0;presented=false;rec.mark=null;rec.shelters=[];rec.exposed=false;rec.guarded=false;rec.exposedRounds=0;
+   signatures.clear();
    const carry=Math.round(carryOver*BOSS58.carry);carryOver=0;
    if(carry>0){const floor=to<3?BOSS58.floors[to-1]:1;boss.hp=Math.max(floor+1,boss.hp-carry);}
    const x=BOSS58.stand[to-1];rec.shadowOffset=x>boss.x?90:-90;hover(boss,x,BOSS58.lift[to-1]);boss.facing=-1;
@@ -217,8 +225,8 @@ export function createStage58Owner({C,authorize,isolate=()=>false,preview=()=>fa
    if(grotTurn())return true;
    if(e.active!==boss||!alive(boss))return false;
    bossTurns++;if(bossTurns%BOSS58.grot.every===0&&grotSpawned<BOSS58.grot.total&&grots.filter(alive).length<BOSS58.grot.maxAlive)spawnGrot();
-   // A phase ends only after its signature shape has been announced AND resolved once,
-   // so a heavy opening volley cannot erase the pattern the player is meant to read.
+   // A clean dodge or a grounded stake breaks the first shape. If it strikes,
+   // the next signature tests a different path before the phase can move on.
    // P3: the node draws the far side closer on every turn he takes (a cut ledger seam delays one).
    if(phase===3&&!pendingPhase&&!rec.nodeDead&&rec.mark?.kind!=='great'){
     if(quiet){quiet=false;sync();fieldEvents.push(note('suppression-ended'));}

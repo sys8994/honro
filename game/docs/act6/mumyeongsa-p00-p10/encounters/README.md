@@ -85,3 +85,15 @@ python game/docs/act6/mumyeongsa-p00-p10/baseline/interior_join.py --build "$PWD
 p=game/docs/act6/mumyeongsa-p00-p10
 python "$p/baseline/exterior_combat.py" --build "$PWD" --out /tmp/honro-51-controlled-31717 --stages 51 --rounds-per-site 0 --finish-overlook --press-flanks --rng 31717
 ```
+
+### 58 지상과 상층의 같은 시드 통과
+
+대도사의 1·2상은 실제 첫 표식을 피하거나 바닥 진목으로 막으면 다음 국면이 열릴 수 있다. 맞았으면 다른 모양을 해결하는 다음 차례에 대응한다. 대도사의 기본 HP·원래 리그·정상 3상·기괴 전투와 9/6 상한은 그대로다. 지상은 맞은편에서 실제 피해를 준 적을 엄폐 중에 견제하고, 대도사가 노출되거나 유지점이 열리면 그 사선으로 돌아왔다. 대도사와 유지점이 살아 있던 이전 25라운드 과방어 판도 남겼다. [과방어 실패](hall-pressure/ground-overdefense.json)
+
+같은 RNG 19388에서 지상은 시작 4명·누적 16명·11라운드, 상층은 시작 4명·누적 20명·13라운드였다. 양쪽 활성·공격 순서는 9·6이다. 지상에서 적 발사 13회·피해 37건, 상층에서 31회·50건을 기록했다. 두 판의 네 실제 객체는 R을 직접 걸어 59로 들어갔고 새 일반 기록을 다시 열었다. 양쪽 판은 앞의 두 표식을 회피했다. 3상 대피와 유지점 차단이 실제로 일어났지만 1·2상의 첫 표식에 맞고 두 번째를 해결하는 경로와 두 대조 시드는 추가 표본이 필요하다. 상층 판은 안내 문장 정리 전 동일한 국면 규칙으로 실행했고, 같은 최신 빌드에서도 상층을 다시 확인한다. [지상](hall-pressure/ground-exposure-window.json) · [지상 실제 R](hall-pressure/ground-exposure-r.webp) · [상층](hall-pressure/ceiling-signatures.json) · [상층 포격](hall-pressure/ceiling-signature-fire.webp)
+
+```bash
+p=game/docs/act6/mumyeongsa-p00-p10
+python "$p/baseline/daedosa_return.py" --build "$PWD" --out /tmp/honro-58-exposed-ground --pressure --tactic ground-guard --turns 76
+python "$p/baseline/daedosa_return.py" --build "$PWD" --out /tmp/honro-58-signature-upper --pressure --tactic ceiling
+```

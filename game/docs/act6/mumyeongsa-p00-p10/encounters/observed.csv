@@ -49,3 +49,6 @@ stage,scenario,input,initial_rng,reported_opening,reported_cumulative,peak_awake
 57,normal railing and on-foot relay defense,desktop,19388,7,17,9,6,,7,,0,,FAIL_NUMERIC_FLOOR,57-native-capped.json,Actual four-person D and fresh 58 passed; totals and duration still below target.
 51,controlled lookout and signed fresh 52,desktop,31717,8,17,8,5,,,,0,,PASS_ROUTE,overlook-controlled-31717.json,Last native confrontation round eight. Exact terminal round unrecorded.
 51,controlled lookout and signed fresh 52,desktop,46183,8,17,8,5,,,,0,,PASS_ROUTE,overlook-controlled-46183.json,Last native confrontation round nine. Exact terminal round unrecorded.
+58,older ground pressure strategy stayed on support enemies,desktop,19388,4,23,9,6,,25,,0,83.3,FAIL_ROUTE,hall-pressure/ground-overdefense.json,Boss and node remained alive after the test input budget.
+58,ground fight with exposure and actual node counterplay,desktop,19388,4,16,9,6,,11,,0,50.0,PASS_ROUTE,hall-pressure/ground-exposure-window.json,Ground setting; actual R with four objects and fresh signed 59. Concurrent host frame time.
+58,upper gallery counterfire and genuine phase marks,desktop,19388,4,20,9,6,,13,,0,133.4,PASS_ROUTE,hall-pressure/ceiling-signatures.json,Real ceiling fire and ordinary return. Actual R and fresh signed 59. Concurrent host frame time.

@@ -19,11 +19,12 @@ from second_pass import sample_walk
 TARGETS="""() => {
  const e=HonroApp.engine,b=e.b,major=b.units.filter(u=>['a6-c08-boss','a6-c08-expansion-node'].includes(u.id));
  return {round:b.round,phase:b.phase,side:b.side,shot:b.shot,major:major.map(u=>({id:u.id,x:u.x,y:u.y,hp:u.hp,dead:u.dead})),
-  state:b.honroDaedosa?.phase,mark:b.honroDaedosa?.mark,flags:b.honroState?.flags};
+  state:b.honroDaedosa?.phase,mark:b.honroDaedosa?.mark,exposed:b.honroDaedosa?.exposed,flags:b.honroState?.flags};
 }"""
-CANDIDATE="""() => {
+CANDIDATE="""(priorities=[]) => {
  const e=HonroApp.engine,b=e.b,u=e.active,C=HONRO_CORE,opts=[];
  const possible=b.units.filter(v=>v.side===1&&!v.dead&&v.hp>0);
+ const weight=t=>priorities?.includes(t.id)?10:t.id==='a6-c08-expansion-node'?6:t.id==='a6-c08-boss'?5:1;
  for(const id of u.loadout){
   const sk=C.SKILLS[id],effect=e.effective(sk,u);
   if(!sk||!effect||effect.damage<=0||['M10','M07','M08','M09'].includes(id))continue;
@@ -36,8 +37,7 @@ CANDIDATE="""() => {
     if(angle< -85)angle+=360;
     const radius=sk.radius*(1+power*.23);
     if(Math.sign(dx)!==u.facing||Math.hypot(dx,dy)>radius+t.r||e.collision(org,hit,1,u.id,[],false))continue;
-    const weight=t.id==='a6-c08-expansion-node'?6:t.id==='a6-c08-boss'?5:1;
-    opts.push({id,angle,power,target:t.id,score:Math.min(t.hp,effect.damage*1.3)*weight});
+    opts.push({id,angle,power,target:t.id,score:Math.min(t.hp,effect.damage*1.3)*weight(t)});
    }
    continue;
   }
@@ -51,8 +51,7 @@ CANDIDATE="""() => {
     if(!t)continue;
     const durable=[[-1.3,.0],[0,.015],[1.3,.025]].every(([a,k])=>tryAim(angle+a,power+k).unit===t.id);
     if(!durable)continue;
-    const weight=t.id==='a6-c08-expansion-node'?6:t.id==='a6-c08-boss'?5:1;
-    const score=Math.min(t.hp+Math.max(0,t.shield),effect.damage*(1+power*.28))*weight;
+    const score=Math.min(t.hp+Math.max(0,t.shield),effect.damage*(1+power*.28))*weight(t);
     opts.push({id,angle,power,score,target:t.id,x:p.x,y:p.y});
    }
   }
@@ -102,7 +101,7 @@ def escape_mark(actor,mark,desired,boss):
             return spot['x']+(spot['r']+92)*(1 if x>=spot['x'] else -1)
     return desired
 
-def lower_turn(page,report):
+def lower_turn(page,report,guard_fronts=False):
     action_ready(page)
     before=actor(page)
     cfg=foes_moved(page)
@@ -110,6 +109,14 @@ def lower_turn(page,report):
         return False
     prime=next((u for key in ('a6-c08-expansion-node','a6-c08-boss') for u in cfg['major'] if u['id']==key and not u['dead']),None)
     boss=next(u for u in cfg['major'] if u['id']=='a6-c08-boss')
+    fronts=page.evaluate("""()=>{
+        const e=HonroApp.engine,c=e.active;
+        const rows=a6Exterior.damage.filter(d=>d.round>=e.b.round-1&&d.id&&
+          !['a6-c08-boss','a6-c08-expansion-node'].includes(d.id));
+        const units=[...new Set(rows.map(d=>d.id))].map(id=>e.unit(id)).filter(u=>u&&!u.dead&&
+          Math.hypot(u.x-c.x,u.y-c.y)<1050);
+        return units.sort((a,b)=>Math.abs(a.x-c.x)-Math.abs(b.x-c.x)).map(u=>({id:u.id,x:u.x,y:u.y}));
+    }""") if guard_fronts and not cfg['exposed'] and (not prime or 'node' not in prime['id']) else []
     ledger=page.locator('[data-act6-qa-lookout][data-act6-mission="ledger"]')
     if ledger.count() and (cfg.get('mark') or {}).get('kind')!='great' and abs(before['x']-4464)<=before['move']*.87:
         sample_walk(page,1 if before['x']<4464 else -1,4464,4200)
@@ -120,7 +127,8 @@ def lower_turn(page,report):
             if proof['flags'].get('localLedgerCounterSpent'):
                 report.setdefault('ledgerUse',[]).append({'round':proof['round'],'foot':seated,'flags':proof['flags']})
                 cfg=proof
-    desired=(prime or boss)['x']+{'archer':305,'mage':185,'occultist':525,'knight':65}[before['cls']]
+    tactical=fronts[0] if fronts else prime or boss
+    desired=tactical['x']+{'archer':305,'mage':185,'occultist':525,'knight':65}[before['cls']]
     safe=escape_mark(before,cfg.get('mark'),desired,boss)
     avoiding=safe!=desired
     desired=safe
@@ -128,24 +136,27 @@ def lower_turn(page,report):
         sample_walk(page,1 if desired>before['x'] else -1,desired,5200)
     action_ready(page)
     current=actor(page)
-    intended=1 if (prime or boss)['x']>current['x'] else -1
+    intended=1 if tactical['x']>current['x'] else -1
     if page.evaluate('HonroApp.engine.active.facing')!=intended:
         sample_walk(page,intended,current['x']+13*intended,450)
+    threats=[u['id'] for u in fronts]
     options=page.evaluate(MENDING)
     if current['hp']>=current['maxHp']*.46:
-        options=options or page.evaluate(CANDIDATE)
-    if not options and not avoiding and prime and current['move']>115:
-        other=prime['x']-{'archer':185,'mage':135,'occultist':280,'knight':85}[before['cls']]
+        options=options or page.evaluate(CANDIDATE,threats)
+    if not options and not avoiding and current['move']>115:
+        other=tactical['x']-{'archer':185,'mage':135,'occultist':280,'knight':85}[before['cls']]
         if abs(other-current['x'])>65:
             sample_walk(page,1 if other>current['x'] else -1,other,4800)
             action_ready(page)
             current=actor(page)
-            want=1 if prime['x']>current['x'] else -1
+            want=1 if tactical['x']>current['x'] else -1
             if page.evaluate('HonroApp.engine.active.facing')!=want:
                 sample_walk(page,want,current['x']+13*want,450)
-            options=page.evaluate(MENDING) or page.evaluate(CANDIDATE)
+            options=page.evaluate(MENDING) or page.evaluate(CANDIDATE,threats)
     plan={'round':cfg['round'],'actor':before['id'],'from':[before['x'],before['y']],
           'feet':[current['x'],current['y']],'targets':cfg['major'],'plan':options}
+    if guard_fronts:
+        plan['recentGroundThreats']=threats
     if options:
         s=options['id']
         page.locator(f'[data-action="combat-skill"][data-skill="{s}"]').first.click(timeout=5200)
@@ -159,7 +170,7 @@ def lower_turn(page,report):
               'party',[(u['id'],round(u['hp'])) for u in state(page)['actors'] if u['side']==0],flush=True)
     return True
 
-def all_once_east(page,report,limit=100):
+def all_once_east(page,report,limit=100,guard_fronts=False):
     marked=set()
     for _ in range(limit):
         action_ready(page)
@@ -177,7 +188,7 @@ def all_once_east(page,report,limit=100):
                 sample_walk(page,1,3790,4200)
             page.locator('[data-act6-qa-return]').click(timeout=5500)
         else:
-            lower_turn(page,report)
+            lower_turn(page,report,guard_fronts)
     raise AssertionError({'major':foes_moved(page),'actorsEast':sorted(marked),'turns':len(report['turns'])})
 
 def open_from_ceiling(page,out,report):
@@ -253,7 +264,7 @@ def play(browser,out,turns,session=None,pressure=False,tactic='ground',rng=None,
         if rng is not None:
             page.evaluate('seed=>{HonroApp.engine.b.rng=seed;}',rng)
             q['controlledRng']=rng
-        if pressure:
+        if pressure or tactic=='ground-guard':
             page.evaluate(TRACE)
         march(page,3496,cls='occultist',tolerance=45)
         mission_click(page,'column','threshold')
@@ -262,8 +273,9 @@ def play(browser,out,turns,session=None,pressure=False,tactic='ground',rng=None,
         wall_trace(page)
         if tactic=='ceiling':
             open_from_ceiling(page,out,q)
-        all_once_east(page,q,turns)
+        all_once_east(page,q,turns,guard_fronts=tactic=='ground-guard')
         q['winTargets']=foes_moved(page)
+        q['signatureHistory']=page.evaluate("HonroApp.engine.b.honroDaedosa?.history??[]")
         march(page,3680,cls='mage',tolerance=40)
         mission_click(page,'stake')
         q['returnRoute']=[]
@@ -273,7 +285,12 @@ def play(browser,out,turns,session=None,pressure=False,tactic='ground',rng=None,
         else:
             for cls,x in [('archer',3075),('occultist',3010),('knight',3140)]:
                 action_ready(page)
-                end=march(page,x,cls=cls,tolerance=22)
+                try:
+                    end=march(page,x,cls=cls,tolerance=22,max_attempts=5)
+                except AssertionError:
+                    end=actor(page,cls)
+                    if not 2840<=end['x']<=3248 or not end['grounded'] or end['contact']!='local-lower-08-body':
+                        raise
                 q['returnRoute'].append(end)
             select(page,'mage',advance=True)
             hold(page,'ArrowLeft',"()=>HonroApp.done&&HonroApp.engine.b.phase==='won'",None,7500)
@@ -316,7 +333,7 @@ def play(browser,out,turns,session=None,pressure=False,tactic='ground',rng=None,
         page.screenshot(path=out/'r-live-failure.png')
     finally:
         q['projectileTrace']=page.evaluate('window.nativeWall??[]')
-        if pressure:
+        if pressure or tactic=='ground-guard':
             q['encounters']=page.evaluate('window.a6Exterior??null')
             if q['encounters']:
                 frames=q['encounters'].pop('frames')
@@ -331,7 +348,7 @@ def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--build',type=Path,required=True)
     p.add_argument('--pressure',action='store_true')
-    p.add_argument('--tactic',choices=('ground','ceiling'),default='ground')
+    p.add_argument('--tactic',choices=('ground','ground-guard','ceiling'),default='ground')
     p.add_argument('--rng',type=int)
     p.add_argument('--touch-return',action='store_true')
     p.add_argument('--out',type=Path,required=True)
