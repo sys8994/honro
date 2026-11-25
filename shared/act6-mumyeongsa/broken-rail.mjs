@@ -66,6 +66,15 @@ export function installBrokenRail({C,e,scene,B,hero,canTurn=()=>false,afterLand=
  const within=(v,lo,hi)=>Math.max(lo,Math.min(hi,v));
  const contact=u=>({id:u.id,x:u.x,y:u.y,vx:u.vx,vy:u.vy,grounded:e.grounded(u),surface:B.wall.id});
  const minX=u=>u.y-u.r<B.jamb.bottom?B.jamb.right+u.h:B.turnX;
+ const alongRail=(u,end,x)=>{
+  for(const v of b.units){
+   if(v===u||v.dead||!wallBody(v)||v.x-v.h>=x||x-u.h>=v.x)continue;
+   const gap=u.r+v.r+2;
+   if(end<u.y&&v.y<u.y)end=Math.min(u.y,Math.max(end,v.y+gap));
+   if(end>u.y&&v.y>u.y)end=Math.max(u.y,Math.min(end,v.y-gap));
+  }
+  return end;
+ };
  let enabled=false;
  e.grounded=u=>wallBody(u)?!u.dead&&!u.jumping&&u.x===wallX&&u.y>=minY(u)&&u.y<=maxY(u)&&Math.abs(u.vx)<2&&Math.abs(u.vy)<2:stock.grounded(u);
  e.honroBBodyEmbedded=u=>wallBody(u)?b.terrain.some(t=>!t.broken&&!t.oneWay&&
@@ -75,13 +84,7 @@ export function installBrokenRail({C,e,scene,B,hero,canTurn=()=>false,afterLand=
   if(!wallBody(u))return stock.walk(u,dir,dt,needSupport);
   if(!dir||u.dead||u.fixed||u.moveLeft<=0||(!u.jumping||needSupport)&&!e.grounded(u))return false;
   const speed=u.walkSpeed*(1-(u.slowed?.factor??0));
-  let end=within(u.y-dir*Math.min(u.moveLeft,speed*dt),minY(u),maxY(u));
-  for(const v of b.units){
-   if(v===u||v.dead||!wallBody(v)||v.x-v.h>u.x||u.x-u.h>v.x)continue;
-   const gap=u.r+v.r+2;
-   if(end<u.y&&v.y<u.y)end=Math.min(u.y,Math.max(end,v.y+gap));
-   if(end>u.y&&v.y>u.y)end=Math.max(u.y,Math.min(end,v.y-gap));
-  }
+  const end=alongRail(u,within(u.y-dir*Math.min(u.moveLeft,speed*dt),minY(u),maxY(u)),u.x);
   if(end===u.y)return false;
   u.moveLeft-=Math.abs(end-u.y);
   u.y=end;u.facing=Math.sign(dir);u.moving=.08;
@@ -116,7 +119,8 @@ export function installBrokenRail({C,e,scene,B,hero,canTurn=()=>false,afterLand=
   }
   const gravity=C.environmentAt(b.physics,u.x-u.h*.5,u.y,true).gravity.x;
   const next=C.advanceLinear(u.x,u.y,u.vx,u.vy,gravity*(u.jumping?1000/B.gravity:1),0,.015,dt);
-  u.y=within(next.y,minY(u),maxY(u));
+  const x=within(next.x,minX(u),wallX);
+  u.y=alongRail(u,within(next.y,minY(u),maxY(u)),x);
   u.vy=next.y===u.y&&Math.abs(next.vy)>=2?next.vy:0;
   if(next.x>=wallX){
    u.x=wallX;u.vx=0;

@@ -1,0 +1,1374 @@
+{
+  "60": {
+    "status": "PASS",
+    "requestHz": 60,
+    "guardContact": {
+      "stage": 54,
+      "round": 1,
+      "phase": "aim",
+      "active": "p-mage",
+      "gravity": {
+        "x": 320,
+        "y": 0
+      },
+      "enemyLimit": 4,
+      "queue": [],
+      "actionReason": "이동·발사 가능",
+      "actors": [
+        {
+          "id": "p-mage",
+          "x": 3240,
+          "y": 454.59999999999854,
+          "vx": 0,
+          "vy": 0,
+          "hp": 1677.9,
+          "dead": false,
+          "embedded": false,
+          "grounded": true,
+          "support": "b-inner-jamb"
+        },
+        {
+          "id": "mumyeongsa-b-wall-guard",
+          "x": 3240,
+          "y": 240,
+          "vx": 0,
+          "vy": 0,
+          "hp": 600,
+          "dead": false,
+          "embedded": false,
+          "grounded": true,
+          "support": "b-inner-jamb"
+        },
+        {
+          "id": "mumyeongsa-b-aperture-ghost",
+          "x": 3240,
+          "y": 128,
+          "vx": 0,
+          "vy": 0,
+          "hp": 325,
+          "dead": false,
+          "embedded": false,
+          "grounded": true,
+          "support": "b-inner-jamb"
+        },
+        {
+          "id": "mumyeongsa-b-rear-shade",
+          "x": 3240,
+          "y": 548,
+          "vx": 0,
+          "vy": 0,
+          "hp": 325,
+          "dead": false,
+          "embedded": false,
+          "grounded": true,
+          "support": "b-inner-jamb"
+        },
+        {
+          "id": "mumyeongsa-b-rear-guard",
+          "x": 3240,
+          "y": 661,
+          "vx": 0,
+          "vy": 0,
+          "hp": 325,
+          "dead": false,
+          "embedded": false,
+          "grounded": true,
+          "support": "b-inner-jamb"
+        }
+      ]
+    },
+    "bypass": {
+      "stage": 54,
+      "round": 5,
+      "phase": "aim",
+      "active": "p-mage",
+      "gravity": {
+        "x": 320,
+        "y": 0
+      },
+      "enemyLimit": 4,
+      "queue": [
+        "mumyeongsa-b-rear-shade",
+        "mumyeongsa-b-rear-guard",
+        "mumyeongsa-b-aperture-ghost"
+      ],
+      "actionReason": "이동·발사 가능",
+      "actors": [
+        {
+          "id": "p-mage",
+          "x": 3152.352858759672,
+          "y": 287.3333333333334,
+          "vx": -508.68529288139564,
+          "vy": 0,
+          "hp": 1669.9,
+          "dead": false,
+          "embedded": false,
+          "grounded": false,
+          "support": null
+        },
+        {
+          "id": "mumyeongsa-b-wall-guard",
+          "x": 3240,
+          "y": 259.16666666666663,
+          "vx": 0,
+          "vy": 0,
+          "hp": 0,
+          "dead": true,
+          "embedded": false,
+          "grounded": false,
+          "support": null
+        },
+        {
+          "id": "mumyeongsa-b-aperture-ghost",
+          "x": 3240,
+          "y": 244.33333333333343,
+          "vx": 0,
+          "vy": 0,
+          "hp": 325,
+          "dead": false,
+          "embedded": false,
+          "grounded": true,
+          "support": "b-inner-jamb"
+        },
+        {
+          "id": "mumyeongsa-b-rear-shade",
+          "x": 3240,
+          "y": 330.3333333333334,
+          "vx": 0,
+          "vy": 0,
+          "hp": 305,
+          "dead": false,
+          "embedded": false,
+          "grounded": true,
+          "support": "b-inner-jamb"
+        },
+        {
+          "id": "mumyeongsa-b-rear-guard",
+          "x": 3240,
+          "y": 544.3333333333312,
+          "vx": 0,
+          "vy": 0,
+          "hp": 325,
+          "dead": false,
+          "embedded": false,
+          "grounded": true,
+          "support": "b-inner-jamb"
+        }
+      ]
+    },
+    "wallTrace": [
+      {
+        "event": "fire",
+        "skill": "HSH01",
+        "angle": 94.74489920545648,
+        "power": 0.62,
+        "actor": "mumyeongsa-b-rear-shade",
+        "grounded": true,
+        "x": 3240,
+        "y": 518.8333333333328,
+        "prediction": {
+          "x": 3186.226944458468,
+          "y": 462.4999999999984,
+          "unit": "p-mage",
+          "terrain": null
+        },
+        "shot": 1,
+        "gravity": {
+          "x": 66.82209028875788,
+          "y": 33.99946871694025
+        }
+      },
+      {
+        "event": "impact",
+        "skill": "HSH01",
+        "actor": "mumyeongsa-b-rear-shade",
+        "target": "p-mage",
+        "terrain": null,
+        "x": 3186.226944458468,
+        "y": 462.4999999999984,
+        "normal": {
+          "x": 0,
+          "y": 1
+        },
+        "radius": 6,
+        "shot": 1,
+        "before": 1759.9,
+        "after": 1759.9,
+        "shieldBefore": 246,
+        "shieldAfter": 246
+      },
+      {
+        "event": "fire",
+        "skill": "LA01",
+        "angle": 265,
+        "power": 0.62,
+        "actor": "mumyeongsa-b-wall-guard",
+        "grounded": true,
+        "x": 3240,
+        "y": 269.00000000000006,
+        "prediction": {
+          "x": 3175.1426295551496,
+          "y": 409.4999999999984,
+          "unit": "p-mage",
+          "terrain": null
+        },
+        "shot": 2,
+        "gravity": {
+          "x": 322.19310814739913,
+          "y": -25.067340830384218
+        }
+      },
+      {
+        "event": "impact",
+        "skill": "LA01",
+        "actor": "mumyeongsa-b-wall-guard",
+        "target": "p-mage",
+        "terrain": null,
+        "x": 3175.1426295551496,
+        "y": 409.4999999999984,
+        "normal": {
+          "x": 0,
+          "y": -1
+        },
+        "radius": 3,
+        "shot": 2,
+        "before": 1759.9,
+        "after": 1759.9,
+        "shieldBefore": 246,
+        "shieldAfter": 219
+      },
+      {
+        "event": "fire",
+        "skill": "M01",
+        "angle": 71.8441999999769,
+        "power": 0.7879827968259829,
+        "actor": "p-mage",
+        "grounded": true,
+        "x": 3240,
+        "y": 434.4999999999984,
+        "prediction": {
+          "x": 3230.3055570195756,
+          "y": 298.00000000000006,
+          "unit": "mumyeongsa-b-wall-guard",
+          "terrain": null
+        },
+        "shot": 3,
+        "gravity": {
+          "x": 302.08306044840475,
+          "y": 54.63669899821525
+        }
+      },
+      {
+        "event": "impact",
+        "skill": "M01",
+        "actor": "p-mage",
+        "target": "mumyeongsa-b-wall-guard",
+        "terrain": null,
+        "x": 3230.3055570195756,
+        "y": 298.00000000000006,
+        "normal": {
+          "x": 0,
+          "y": 1
+        },
+        "radius": 6,
+        "shot": 3,
+        "before": 600,
+        "after": 390,
+        "shieldBefore": 0,
+        "shieldAfter": 0
+      },
+      {
+        "event": "fire",
+        "skill": "HSH01",
+        "angle": 97.23151395769253,
+        "power": 0.62,
+        "actor": "mumyeongsa-b-rear-shade",
+        "grounded": true,
+        "x": 3240,
+        "y": 489.66666666666623,
+        "prediction": {
+          "x": 3185.824844007585,
+          "y": 449.9848420597754,
+          "unit": "p-mage",
+          "terrain": null
+        },
+        "shot": 4,
+        "gravity": {
+          "x": 68.29453363870172,
+          "y": 33.845015105007114
+        }
+      },
+      {
+        "event": "impact",
+        "skill": "HSH01",
+        "actor": "mumyeongsa-b-rear-shade",
+        "target": "p-mage",
+        "terrain": null,
+        "x": 3185.824844007585,
+        "y": 449.9848420597754,
+        "normal": {
+          "x": 0,
+          "y": -1
+        },
+        "radius": 6,
+        "shot": 4,
+        "before": 1759.9,
+        "after": 1759.9,
+        "shieldBefore": 0,
+        "shieldAfter": 0
+      },
+      {
+        "event": "fire",
+        "skill": "LA01",
+        "angle": 265,
+        "power": 0.62,
+        "actor": "mumyeongsa-b-wall-guard",
+        "grounded": true,
+        "x": 3240,
+        "y": 230.16666666666669,
+        "prediction": {
+          "x": 3174.461215398454,
+          "y": 409.4999999999984,
+          "unit": "p-mage",
+          "terrain": null
+        },
+        "shot": 5,
+        "gravity": {
+          "x": 322.19310814739913,
+          "y": -25.067340830384218
+        }
+      },
+      {
+        "event": "impact",
+        "skill": "LA01",
+        "actor": "mumyeongsa-b-wall-guard",
+        "target": "p-mage",
+        "terrain": null,
+        "x": 3174.461215398454,
+        "y": 409.4999999999984,
+        "normal": {
+          "x": 0,
+          "y": -1
+        },
+        "radius": 3,
+        "shot": 5,
+        "before": 1759.9,
+        "after": 1732.9,
+        "shieldBefore": 0,
+        "shieldAfter": 0
+      },
+      {
+        "event": "fire",
+        "skill": "M01",
+        "angle": 78.1433999999538,
+        "power": 0.7923999288030039,
+        "actor": "p-mage",
+        "grounded": true,
+        "x": 3240,
+        "y": 434.4999999999984,
+        "prediction": {
+          "x": 3225.238370682271,
+          "y": 259.1666666666667,
+          "unit": "mumyeongsa-b-wall-guard",
+          "terrain": null
+        },
+        "shot": 6,
+        "gravity": {
+          "x": 308.1197716409261,
+          "y": 56.58812687869365
+        }
+      },
+      {
+        "event": "impact",
+        "skill": "M01",
+        "actor": "p-mage",
+        "target": "mumyeongsa-b-wall-guard",
+        "terrain": null,
+        "x": 3225.238370682271,
+        "y": 259.1666666666667,
+        "normal": {
+          "x": 0,
+          "y": 1
+        },
+        "radius": 6,
+        "shot": 6,
+        "before": 390,
+        "after": 156,
+        "shieldBefore": 0,
+        "shieldAfter": 0
+      },
+      {
+        "event": "fire",
+        "skill": "HSH01",
+        "angle": 99.24611274556321,
+        "power": 0.62,
+        "actor": "mumyeongsa-b-rear-shade",
+        "grounded": true,
+        "x": 3240,
+        "y": 477.4999999999984,
+        "prediction": {
+          "x": 3184.4329759167317,
+          "y": 438.019709202778,
+          "unit": "p-mage",
+          "terrain": null
+        },
+        "shot": 7,
+        "gravity": {
+          "x": 69.48167150410444,
+          "y": 33.67312495378457
+        }
+      },
+      {
+        "event": "impact",
+        "skill": "HSH01",
+        "actor": "mumyeongsa-b-rear-shade",
+        "target": "p-mage",
+        "terrain": null,
+        "x": 3184.4329759167317,
+        "y": 438.019709202778,
+        "normal": {
+          "x": 0,
+          "y": -1
+        },
+        "radius": 6,
+        "shot": 7,
+        "before": 1732.9,
+        "after": 1732.9,
+        "shieldBefore": 0,
+        "shieldAfter": 0
+      },
+      {
+        "event": "fire",
+        "skill": "LA01",
+        "angle": 265,
+        "power": 0.62,
+        "actor": "mumyeongsa-b-wall-guard",
+        "grounded": true,
+        "x": 3240,
+        "y": 259.16666666666663,
+        "prediction": {
+          "x": 3174.886160872904,
+          "y": 409.4999999999984,
+          "unit": "p-mage",
+          "terrain": null
+        },
+        "shot": 8,
+        "gravity": {
+          "x": 322.19310814739913,
+          "y": -25.067340830384218
+        }
+      },
+      {
+        "event": "impact",
+        "skill": "LA01",
+        "actor": "mumyeongsa-b-wall-guard",
+        "target": "p-mage",
+        "terrain": null,
+        "x": 3174.886160872904,
+        "y": 409.4999999999984,
+        "normal": {
+          "x": 0,
+          "y": -1
+        },
+        "radius": 3,
+        "shot": 8,
+        "before": 1732.9,
+        "after": 1704.9,
+        "shieldBefore": 0,
+        "shieldAfter": 0
+      },
+      {
+        "event": "fire",
+        "skill": "M01",
+        "angle": 74.01419999997688,
+        "power": 0.7902193193458881,
+        "actor": "p-mage",
+        "grounded": true,
+        "x": 3240,
+        "y": 434.4999999999984,
+        "prediction": {
+          "x": 3228.072310006372,
+          "y": 288.16666666666663,
+          "unit": "mumyeongsa-b-wall-guard",
+          "terrain": null
+        },
+        "shot": 9,
+        "gravity": {
+          "x": 304.1197601843788,
+          "y": 55.43282452817521
+        }
+      },
+      {
+        "event": "impact",
+        "skill": "M01",
+        "actor": "p-mage",
+        "target": "mumyeongsa-b-wall-guard",
+        "terrain": null,
+        "x": 3228.072310006372,
+        "y": 288.16666666666663,
+        "normal": {
+          "x": 0,
+          "y": 1
+        },
+        "radius": 6,
+        "shot": 9,
+        "before": 156,
+        "after": 0,
+        "shieldBefore": 0,
+        "shieldAfter": 0
+      },
+      {
+        "event": "fire",
+        "skill": "HSH01",
+        "angle": 99.24611274556321,
+        "power": 0.62,
+        "actor": "mumyeongsa-b-rear-shade",
+        "grounded": true,
+        "x": 3240,
+        "y": 477.4999999999984,
+        "prediction": {
+          "x": 3184.4329759167317,
+          "y": 438.019709202778,
+          "unit": "p-mage",
+          "terrain": null
+        },
+        "shot": 10,
+        "gravity": {
+          "x": 69.48167150410444,
+          "y": 33.67312495378457
+        }
+      },
+      {
+        "event": "impact",
+        "skill": "HSH01",
+        "actor": "mumyeongsa-b-rear-shade",
+        "target": "p-mage",
+        "terrain": null,
+        "x": 3184.4329759167317,
+        "y": 438.019709202778,
+        "normal": {
+          "x": 0,
+          "y": -1
+        },
+        "radius": 6,
+        "shot": 10,
+        "before": 1704.9,
+        "after": 1704.9,
+        "shieldBefore": 0,
+        "shieldAfter": 0
+      },
+      {
+        "event": "fire",
+        "skill": "HGS01",
+        "angle": 265,
+        "power": 0.62,
+        "actor": "mumyeongsa-b-aperture-ghost",
+        "grounded": true,
+        "x": 3240,
+        "y": 244.33333333333343,
+        "prediction": {
+          "x": 3178.8800547302344,
+          "y": 406.4999999999984,
+          "unit": "p-mage",
+          "terrain": null
+        },
+        "shot": 11,
+        "gravity": {
+          "x": 73.62515904029286,
+          "y": -36.8637365152709
+        }
+      },
+      {
+        "event": "impact",
+        "skill": "HGS01",
+        "actor": "mumyeongsa-b-aperture-ghost",
+        "target": "p-mage",
+        "terrain": null,
+        "x": 3178.8800547302344,
+        "y": 406.4999999999984,
+        "normal": {
+          "x": 0,
+          "y": -1
+        },
+        "radius": 6,
+        "shot": 11,
+        "before": 1704.9,
+        "after": 1695.9,
+        "shieldBefore": 0,
+        "shieldAfter": 0
+      },
+      {
+        "event": "fire",
+        "skill": "LA01",
+        "angle": 103.56019968692874,
+        "power": 0.62,
+        "actor": "mumyeongsa-b-rear-guard",
+        "grounded": true,
+        "x": 3240,
+        "y": 544.3333333333312,
+        "prediction": {
+          "x": 3146.2693287959637,
+          "y": 312.3333333333334,
+          "unit": "p-mage",
+          "terrain": null
+        },
+        "shot": 12,
+        "gravity": {
+          "x": 325.899912320273,
+          "y": 24.46165027682978
+        }
+      },
+      {
+        "event": "impact",
+        "skill": "LA01",
+        "actor": "mumyeongsa-b-rear-guard",
+        "target": "p-mage",
+        "terrain": null,
+        "x": 3146.2693287959637,
+        "y": 312.3333333333334,
+        "normal": {
+          "x": 0,
+          "y": 1
+        },
+        "radius": 3,
+        "shot": 12,
+        "before": 1695.9,
+        "after": 1669.9,
+        "shieldBefore": 0,
+        "shieldAfter": 0
+      }
+    ],
+    "ordinary54": {
+      "stage": 54,
+      "round": 5,
+      "phase": "aim",
+      "active": "p-mage",
+      "gravity": {
+        "x": 0,
+        "y": 320
+      },
+      "enemyLimit": 4,
+      "queue": [],
+      "actionReason": "이동·발사 가능",
+      "actors": [
+        {
+          "id": "p-mage",
+          "x": 283.82583505294826,
+          "y": 2650.3062320522627,
+          "vx": 0,
+          "vy": 0,
+          "hp": 1669.9,
+          "dead": false,
+          "embedded": false,
+          "grounded": true,
+          "support": "foothill"
+        },
+        {
+          "id": "mumyeongsa-b-wall-guard",
+          "x": 3240,
+          "y": 259.16666666666663,
+          "vx": 0,
+          "vy": 0,
+          "hp": 0,
+          "dead": true,
+          "embedded": false,
+          "grounded": false,
+          "support": null
+        },
+        {
+          "id": "a6-54-opening-1",
+          "x": 680,
+          "y": 2608.4701492537315,
+          "vx": 0,
+          "vy": 0,
+          "hp": 655,
+          "dead": false,
+          "embedded": false,
+          "grounded": true,
+          "support": "foothill"
+        },
+        {
+          "id": "a6-54-opening-2",
+          "x": 817,
+          "y": 2481.574468085106,
+          "vx": 0,
+          "vy": 0,
+          "hp": 595,
+          "dead": false,
+          "embedded": false,
+          "grounded": true,
+          "support": "gallery-outer-balcony"
+        },
+        {
+          "id": "a6-54-opening-3",
+          "x": 1060,
+          "y": 2535.743902439024,
+          "vx": 0,
+          "vy": 0,
+          "hp": 655,
+          "dead": false,
+          "embedded": false,
+          "grounded": true,
+          "support": "foothill"
+        },
+        {
+          "id": "a6-54-opening-4",
+          "x": 1280,
+          "y": 2387.2972972972975,
+          "vx": 0,
+          "vy": 0,
+          "hp": 595,
+          "dead": false,
+          "embedded": false,
+          "grounded": true,
+          "support": "gallery-observation-beam"
+        }
+      ]
+    },
+    "ordinarySaveUnchanged": true,
+    "clock": {
+      "medianMs": 16.700000001117587,
+      "solverSteps": [
+        0.008333333333333333
+      ]
+    },
+    "sealedThread55": {
+      "version": 1,
+      "body": "p-occultist",
+      "casts": []
+    },
+    "next": {
+      "newContext54": {
+        "stage": 54,
+        "byteExact": true
+      },
+      "newContext55": {
+        "stage": 55,
+        "byteExact": true
+      }
+    }
+  },
+  "120": {
+    "status": "PASS",
+    "requestHz": 120,
+    "guardContact": {
+      "stage": 54,
+      "round": 1,
+      "phase": "aim",
+      "active": "p-mage",
+      "gravity": {
+        "x": 320,
+        "y": 0
+      },
+      "enemyLimit": 4,
+      "queue": [],
+      "actionReason": "이동·발사 가능",
+      "actors": [
+        {
+          "id": "p-mage",
+          "x": 3240,
+          "y": 454.59999999999854,
+          "vx": 0,
+          "vy": 0,
+          "hp": 1485.9,
+          "dead": false,
+          "embedded": false,
+          "grounded": true,
+          "support": "b-inner-jamb"
+        },
+        {
+          "id": "mumyeongsa-b-wall-guard",
+          "x": 3240,
+          "y": 240,
+          "vx": 0,
+          "vy": 0,
+          "hp": 600,
+          "dead": false,
+          "embedded": false,
+          "grounded": true,
+          "support": "b-inner-jamb"
+        },
+        {
+          "id": "mumyeongsa-b-aperture-ghost",
+          "x": 3240,
+          "y": 128,
+          "vx": 0,
+          "vy": 0,
+          "hp": 325,
+          "dead": false,
+          "embedded": false,
+          "grounded": true,
+          "support": "b-inner-jamb"
+        },
+        {
+          "id": "mumyeongsa-b-rear-shade",
+          "x": 3240,
+          "y": 548,
+          "vx": 0,
+          "vy": 0,
+          "hp": 325,
+          "dead": false,
+          "embedded": false,
+          "grounded": true,
+          "support": "b-inner-jamb"
+        },
+        {
+          "id": "mumyeongsa-b-rear-guard",
+          "x": 3240,
+          "y": 661,
+          "vx": 0,
+          "vy": 0,
+          "hp": 325,
+          "dead": false,
+          "embedded": false,
+          "grounded": true,
+          "support": "b-inner-jamb"
+        }
+      ]
+    },
+    "bypass": {
+      "stage": 54,
+      "round": 4,
+      "phase": "aim",
+      "active": "p-mage",
+      "gravity": {
+        "x": 320,
+        "y": 0
+      },
+      "enemyLimit": 4,
+      "queue": [
+        "mumyeongsa-b-rear-shade",
+        "mumyeongsa-b-aperture-ghost",
+        "mumyeongsa-b-rear-guard"
+      ],
+      "actionReason": "공중 이동 중 · 착지 후 발사·도약 가능",
+      "actors": [
+        {
+          "id": "p-mage",
+          "x": 3148.148800357053,
+          "y": 229.3333333333336,
+          "vx": -500.28889867202304,
+          "vy": 0,
+          "hp": 1486.3000000000002,
+          "dead": false,
+          "embedded": false,
+          "grounded": false,
+          "support": null
+        },
+        {
+          "id": "mumyeongsa-b-wall-guard",
+          "x": 3240,
+          "y": 298.0000000000003,
+          "vx": 0,
+          "vy": 0,
+          "hp": 0,
+          "dead": true,
+          "embedded": false,
+          "grounded": false,
+          "support": null
+        },
+        {
+          "id": "mumyeongsa-b-aperture-ghost",
+          "x": 3240,
+          "y": 186.3333333333336,
+          "vx": 0,
+          "vy": 0,
+          "hp": 325,
+          "dead": false,
+          "embedded": false,
+          "grounded": true,
+          "support": "b-inner-jamb"
+        },
+        {
+          "id": "mumyeongsa-b-rear-shade",
+          "x": 3240,
+          "y": 460.49999999999983,
+          "vx": 0,
+          "vy": 0,
+          "hp": 325,
+          "dead": false,
+          "embedded": false,
+          "grounded": true,
+          "support": "b-inner-jamb"
+        },
+        {
+          "id": "mumyeongsa-b-rear-guard",
+          "x": 3240,
+          "y": 573.4999999999984,
+          "vx": 0,
+          "vy": 0,
+          "hp": 325,
+          "dead": false,
+          "embedded": false,
+          "grounded": true,
+          "support": "b-inner-jamb"
+        }
+      ]
+    },
+    "spirit53": [
+      {
+        "event": "impact",
+        "skill": "O06",
+        "actor": "p-occultist",
+        "target": "draft-lower-lane-guard",
+        "terrain": null,
+        "x": 1080.5287258544383,
+        "y": 1993.76547948067,
+        "normal": {
+          "x": 0,
+          "y": -1
+        },
+        "radius": 6,
+        "shot": 1,
+        "before": 290,
+        "after": 0,
+        "shieldBefore": 0,
+        "shieldAfter": 0
+      }
+    ],
+    "spirit54": [
+      {
+        "event": "impact",
+        "skill": "O06",
+        "actor": "p-occultist",
+        "target": "mumyeongsa-b-wall-guard",
+        "terrain": null,
+        "x": 3219.871349753935,
+        "y": 298.00000000000006,
+        "normal": {
+          "x": 0,
+          "y": 1
+        },
+        "radius": 6,
+        "shot": 3,
+        "before": 600,
+        "after": 236,
+        "shieldBefore": 0,
+        "shieldAfter": 0
+      }
+    ],
+    "wallTrace": [
+      {
+        "event": "fire",
+        "skill": "HSH01",
+        "angle": 94.24161228112905,
+        "power": 0.62,
+        "actor": "mumyeongsa-b-rear-shade",
+        "grounded": true,
+        "x": 3240,
+        "y": 518.8333333333328,
+        "prediction": {
+          "x": 3186.046149418057,
+          "y": 452.44999999999834,
+          "unit": "p-mage",
+          "terrain": null
+        },
+        "shot": 1,
+        "gravity": {
+          "x": 66.52333344915715,
+          "y": 34.02294600613628
+        }
+      },
+      {
+        "event": "impact",
+        "skill": "HSH01",
+        "actor": "mumyeongsa-b-rear-shade",
+        "target": "p-mage",
+        "terrain": null,
+        "x": 3186.046149418057,
+        "y": 452.44999999999834,
+        "normal": {
+          "x": 0,
+          "y": 1
+        },
+        "radius": 6,
+        "shot": 1,
+        "before": 1567.9,
+        "after": 1567.9,
+        "shieldBefore": 246,
+        "shieldAfter": 246
+      },
+      {
+        "event": "fire",
+        "skill": "LA01",
+        "angle": 265,
+        "power": 0.62,
+        "actor": "mumyeongsa-b-wall-guard",
+        "grounded": true,
+        "x": 3240,
+        "y": 269.00000000000006,
+        "prediction": {
+          "x": 3175.4673046398725,
+          "y": 399.44999999999834,
+          "unit": "p-mage",
+          "terrain": null
+        },
+        "shot": 2,
+        "gravity": {
+          "x": 322.19310814739913,
+          "y": -25.067340830384218
+        }
+      },
+      {
+        "event": "impact",
+        "skill": "LA01",
+        "actor": "mumyeongsa-b-wall-guard",
+        "target": "p-mage",
+        "terrain": null,
+        "x": 3175.4673046398725,
+        "y": 399.44999999999834,
+        "normal": {
+          "x": 0,
+          "y": -1
+        },
+        "radius": 3,
+        "shot": 2,
+        "before": 1567.9,
+        "after": 1567.9,
+        "shieldBefore": 246,
+        "shieldAfter": 219
+      },
+      {
+        "event": "impact",
+        "skill": "O06",
+        "actor": "p-occultist",
+        "target": "mumyeongsa-b-wall-guard",
+        "terrain": null,
+        "x": 3219.871349753935,
+        "y": 298.00000000000006,
+        "normal": {
+          "x": 0,
+          "y": 1
+        },
+        "radius": 6,
+        "shot": 3,
+        "before": 600,
+        "after": 236,
+        "shieldBefore": 0,
+        "shieldAfter": 0
+      },
+      {
+        "event": "fire",
+        "skill": "HSH01",
+        "angle": 96.12636052285939,
+        "power": 0.62,
+        "actor": "mumyeongsa-b-rear-shade",
+        "grounded": true,
+        "x": 3240,
+        "y": 489.66666666666623,
+        "prediction": {
+          "x": 3186.5911386798753,
+          "y": 449.89510870083416,
+          "unit": "p-mage",
+          "terrain": null
+        },
+        "shot": 4,
+        "gravity": {
+          "x": 67.64095344133246,
+          "y": 33.92154956174835
+        }
+      },
+      {
+        "event": "impact",
+        "skill": "HSH01",
+        "actor": "mumyeongsa-b-rear-shade",
+        "target": "p-mage",
+        "terrain": null,
+        "x": 3186.5911386798753,
+        "y": 449.89510870083416,
+        "normal": {
+          "x": 0,
+          "y": -1
+        },
+        "radius": 6,
+        "shot": 4,
+        "before": 1567.9,
+        "after": 1567.9,
+        "shieldBefore": 0,
+        "shieldAfter": 0
+      },
+      {
+        "event": "fire",
+        "skill": "LA01",
+        "angle": 265,
+        "power": 0.62,
+        "actor": "mumyeongsa-b-wall-guard",
+        "grounded": true,
+        "x": 3240,
+        "y": 298.0000000000003,
+        "prediction": {
+          "x": 3176.7343736566854,
+          "y": 399.44999999999834,
+          "unit": "p-mage",
+          "terrain": null
+        },
+        "shot": 5,
+        "gravity": {
+          "x": 322.19310814739913,
+          "y": -25.067340830384218
+        }
+      },
+      {
+        "event": "impact",
+        "skill": "LA01",
+        "actor": "mumyeongsa-b-wall-guard",
+        "target": "p-mage",
+        "terrain": null,
+        "x": 3176.7343736566854,
+        "y": 399.44999999999834,
+        "normal": {
+          "x": 0,
+          "y": -1
+        },
+        "radius": 3,
+        "shot": 5,
+        "before": 1567.9,
+        "after": 1543.9,
+        "shieldBefore": 0,
+        "shieldAfter": 0
+      },
+      {
+        "event": "fire",
+        "skill": "M01",
+        "angle": 63.4928000000231,
+        "power": 0.8172253287741589,
+        "actor": "p-mage",
+        "grounded": true,
+        "x": 3240,
+        "y": 424.44999999999834,
+        "prediction": {
+          "x": 3232.0197633974067,
+          "y": 327.0000000000003,
+          "unit": "mumyeongsa-b-wall-guard",
+          "terrain": null
+        },
+        "shot": 6,
+        "gravity": {
+          "x": 293.3850546810324,
+          "y": 53.364527255790584
+        }
+      },
+      {
+        "event": "impact",
+        "skill": "M01",
+        "actor": "p-mage",
+        "target": "mumyeongsa-b-wall-guard",
+        "terrain": null,
+        "x": 3232.0197633974067,
+        "y": 327.0000000000003,
+        "normal": {
+          "x": 0,
+          "y": 1
+        },
+        "radius": 6,
+        "shot": 6,
+        "before": 236,
+        "after": 0,
+        "shieldBefore": 0,
+        "shieldAfter": 0
+      },
+      {
+        "event": "fire",
+        "skill": "HSH01",
+        "angle": 91.73445394436237,
+        "power": 0.62,
+        "actor": "mumyeongsa-b-rear-shade",
+        "grounded": true,
+        "x": 3240,
+        "y": 460.49999999999983,
+        "prediction": {
+          "x": 3188.9058385038684,
+          "y": 257.3333333333336,
+          "unit": "p-mage",
+          "terrain": null
+        },
+        "shot": 7,
+        "gravity": {
+          "x": 65.03261131069759,
+          "y": 34.100759236608205
+        }
+      },
+      {
+        "event": "impact",
+        "skill": "HSH01",
+        "actor": "mumyeongsa-b-rear-shade",
+        "target": "p-mage",
+        "terrain": null,
+        "x": 3188.9058385038684,
+        "y": 257.3333333333336,
+        "normal": {
+          "x": 0,
+          "y": 1
+        },
+        "radius": 6,
+        "shot": 7,
+        "before": 1495.3000000000002,
+        "after": 1495.3000000000002,
+        "shieldBefore": 0,
+        "shieldAfter": 0
+      },
+      {
+        "event": "fire",
+        "skill": "HGS01",
+        "angle": 260.75388725443673,
+        "power": 0.62,
+        "actor": "mumyeongsa-b-aperture-ghost",
+        "grounded": true,
+        "x": 3240,
+        "y": 186.3333333333336,
+        "prediction": {
+          "x": 3184.4329759167317,
+          "y": 225.81362413055405,
+          "unit": "p-mage",
+          "terrain": null
+        },
+        "shot": 8,
+        "gravity": {
+          "x": 76.3457283510128,
+          "y": -36.52375987050707
+        }
+      },
+      {
+        "event": "impact",
+        "skill": "HGS01",
+        "actor": "mumyeongsa-b-aperture-ghost",
+        "target": "p-mage",
+        "terrain": null,
+        "x": 3184.4329759167317,
+        "y": 225.81362413055405,
+        "normal": {
+          "x": 0,
+          "y": -1
+        },
+        "radius": 6,
+        "shot": 8,
+        "before": 1495.3000000000002,
+        "after": 1486.3000000000002,
+        "shieldBefore": 0,
+        "shieldAfter": 0
+      }
+    ],
+    "ordinary54": {
+      "stage": 54,
+      "round": 4,
+      "phase": "aim",
+      "active": "p-mage",
+      "gravity": {
+        "x": 0,
+        "y": 320
+      },
+      "enemyLimit": 4,
+      "queue": [],
+      "actionReason": "이동·발사 가능",
+      "actors": [
+        {
+          "id": "p-mage",
+          "x": 338.4758350529479,
+          "y": 2641.6947169007476,
+          "vx": 0,
+          "vy": 0,
+          "hp": 1486.3000000000002,
+          "dead": false,
+          "embedded": false,
+          "grounded": true,
+          "support": "foothill"
+        },
+        {
+          "id": "mumyeongsa-b-wall-guard",
+          "x": 3240,
+          "y": 298.0000000000003,
+          "vx": 0,
+          "vy": 0,
+          "hp": 0,
+          "dead": true,
+          "embedded": false,
+          "grounded": false,
+          "support": null
+        },
+        {
+          "id": "a6-54-opening-1",
+          "x": 680,
+          "y": 2608.4701492537315,
+          "vx": 0,
+          "vy": 0,
+          "hp": 655,
+          "dead": false,
+          "embedded": false,
+          "grounded": true,
+          "support": "foothill"
+        },
+        {
+          "id": "a6-54-opening-2",
+          "x": 817,
+          "y": 2481.574468085106,
+          "vx": 0,
+          "vy": 0,
+          "hp": 595,
+          "dead": false,
+          "embedded": false,
+          "grounded": true,
+          "support": "gallery-outer-balcony"
+        },
+        {
+          "id": "a6-54-opening-3",
+          "x": 1060,
+          "y": 2535.743902439024,
+          "vx": 0,
+          "vy": 0,
+          "hp": 655,
+          "dead": false,
+          "embedded": false,
+          "grounded": true,
+          "support": "foothill"
+        },
+        {
+          "id": "a6-54-opening-4",
+          "x": 1280,
+          "y": 2387.2972972972975,
+          "vx": 0,
+          "vy": 0,
+          "hp": 595,
+          "dead": false,
+          "embedded": false,
+          "grounded": true,
+          "support": "gallery-observation-beam"
+        }
+      ]
+    },
+    "ordinarySaveUnchanged": true,
+    "clock": {
+      "medianMs": 9.600000001490116,
+      "solverSteps": [
+        0.008333333333333333
+      ]
+    },
+    "sealedThread55": {
+      "version": 1,
+      "body": "p-occultist",
+      "casts": [
+        {
+          "stage": 53,
+          "skill": "O06",
+          "shot": 1,
+          "cost": 36
+        },
+        {
+          "stage": 54,
+          "skill": "O06",
+          "shot": 3,
+          "cost": 36
+        }
+      ]
+    },
+    "next": {
+      "newContext54": {
+        "stage": 54,
+        "byteExact": true
+      },
+      "newContext55": {
+        "stage": 55,
+        "byteExact": true
+      }
+    }
+  }
+}

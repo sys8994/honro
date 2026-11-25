@@ -1,0 +1,15 @@
+stage,scenario,input,initial_rng,reported_opening,reported_cumulative,peak_awake,queue_limit,peak_projectile_owners_per_round,last_measured_round,party_hp,dead_players,host_frame_p95_ms,status,evidence,limit
+51,approach,desktop,,8,17,8,5,5,5,,,16.8,PARTIAL,pressure-51.json,Actual projectile releases per round
+52,approach,desktop,,9,16,9,6,3,2,,,33.3,PARTIAL,approach-52.json,Actual projectile releases per round
+51,lookout and new 52s,desktop,,8,17,8,5,,5,9920,0,66.6,PASS_ROUTE,overlook-live-51.json,Warm and cold stage 52; rounds below proposed range
+53,native B route,desktop 120 Hz,,5,9,,4,,,,,,PARTIAL,interior-53.json,Live M09 and B; cumulative below minimum
+54,native B wall and M09,desktop 120 Hz,,4,8,,4,,,,,,PARTIAL,lateral-54.json,At least 8 observed across B and gallery; room-specific counts are not a whole chapter peak
+55,intact,desktop,,8,18,,7,7,2,7317.2,0,,PASS_ROUTE,bell-intact-55.json,Both saves read back; below proposed cumulative count
+55,repair,desktop,,8,18,,7,6,4,7453.1,0,,PASS_ROUTE,bell-repair-55.json,Both saves read back; below proposed cumulative count
+56,physical reflow,desktop,,5,16,,5,,,,,,PASS_ROUTE,interior-56.json,Includes original reserved enemy; same hero cast and next save replay
+57,fold and new 58,desktop,,7,17,,6,,7,9266.9,0,,PASS_ROUTE,folded-57.json,Cumulative one below minimum; original crew identities retained
+58,rites and ceiling hit,desktop 60 Hz,,4,7,,6,,,,,,PARTIAL,hall-58-60.json,At least 7 with boss and vessels; damage proven from ceiling
+58,rites and ceiling hit,desktop 120 Hz,,4,7,,6,,,,,,PARTIAL,hall-58-120.json,At least 7 with boss and vessels; damage proven from ceiling
+58,three Daoist phases and R,desktop,,4,,,6,,10,,,,PASS_ROUTE,daedosa-return-58.json,Win and warm/cold 59 proven; current show case is under proposed minimum rounds
+59,hold and both fronts,390x844 touch host,,10,14,14,8,8,5,,,50,PARTIAL,courtyard-touch-59.json,Both fronts; frame p95 over target and cumulative below minimum
+60,noncombat guidance,desktop and touch,,0,0,0,0,0,3,,,,PASS_ROUTE,../exterior/README.md,"Actual two souls, memorial, result receipt and title"

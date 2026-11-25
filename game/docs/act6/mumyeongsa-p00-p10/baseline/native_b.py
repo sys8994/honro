@@ -172,6 +172,8 @@ def finish_wall(page,report,spirit=False):
     report['jump']=page.evaluate(POSE)
     page.wait_for_function("HonroApp.engine.grounded(HonroApp.engine.active)",timeout=4000)
     report['reland']=page.evaluate(POSE)
+    foot=page.evaluate('HonroApp.engine.active.y')
+    hold(page,'ArrowRight','y=>HonroApp.engine.active.y<y',foot-15,3600)
     page.keyboard.press('f')
     page.wait_for_function("nativeWall.some(v=>v.event==='fire'&&v.actor==='mumyeongsa-b-wall-guard')",timeout=17000)
     page.wait_for_function("HonroApp.canInput()",timeout=16000)
@@ -182,27 +184,40 @@ def finish_wall(page,report,spirit=False):
         report['spirit54']=page.evaluate("nativeWall.filter(v=>v.actor==='p-occultist')")
         assert page.evaluate("!HonroApp.engine.b.units.some(u=>u.id==='p-occultist') && !HonroApp.engine.b.projectiles.length")
     report['attacks']=[]
-    for _ in range(5):
+    for _ in range(8):
         if page.evaluate(f"HonroApp.engine.unit('{GUARD}').dead"):
             break
         spec=page.evaluate("""target=>{
           const a=HonroApp,e=a.engine,u=e.active,v=e.unit(target),s=HONRO_CORE.SKILLS.M01;
-          for(const power of [.78,.65,.9,.52,.39])for(let angle=48;angle<=156;angle+=2){
+          const angles=[...Array.from({length:55},(_,i)=>48+i*2),...Array.from({length:89},(_,i)=>-86+i*4)];
+          for(const power of [.78,.65,.9,.52,.39])for(const angle of angles){
             if([-.8,0,.8].every(d=>[0,.025].every(k=>e.predict(u,s,angle+d,power+k,v,false).unit===target)))
               return {angle,power};
           }
           return null;
         }""",GUARD)
-        assert spec,'No M01 attack from live wall contact'
+        if not spec:
+            foot=page.evaluate('HonroApp.engine.active.y')
+            if foot<425:
+                hold(page,'ArrowLeft','y=>HonroApp.engine.active.y>=y',foot+60,3400)
+            else:
+                hold(page,'ArrowRight','y=>HonroApp.engine.active.y<=y',foot-60,3400)
+            continue
         page.keyboard.press('1')
         report['attacks'].append(aim(page,spec,world=True))
         page.wait_for_function("HonroApp.canInput()",timeout=20000)
     assert page.evaluate(f"HonroApp.engine.unit('{GUARD}').dead")
-    hold(page,'ArrowRight',"HonroApp.engine.b.width===3200",None,7500)
+    try:
+        hold(page,'ArrowRight',"HonroApp.engine.b.width===3200",None,3400)
+    except Error:
+        page.keyboard.press('Control')
+        page.wait_for_function('HonroApp.engine.active.x<3155',timeout=3600)
+        report['bypass']=page.evaluate(POSE)
+        hold(page,'ArrowRight',"HonroApp.engine.b.width===3200",None,10800)
     report['ordinary54']=page.evaluate(POSE)
     assert report['ordinary54']['gravity']=={'x':0,'y':320}
 
-def run(browser,out,hz,forks=False,mobile=False,spirit=False):
+def run(browser,out,hz,forks=False,mobile=False,spirit=False,spirit53=False):
     ctx=seeded_context(browser,53,init_script=FRAME_DRIVER.replace('HZ',str(hz)))
     page=ctx.new_page()
     errors=[]
@@ -225,6 +240,12 @@ def run(browser,out,hz,forks=False,mobile=False,spirit=False):
             assert seg['reached'],seg['end']
             seg['length']=sum(math.dist(a[:2],b[:2]) for a,b in zip(seg['points'],seg['points'][1:]) if a[2] and b[2])
             report['walk'].append(seg)
+            if spirit53 and target==1150:
+                wall_trace(page)
+                page.locator('[data-act6-sodan-spirit]').click(timeout=6000)
+                page.wait_for_function("""nativeWall.some(v=>v.event==='impact'&&v.actor==='p-occultist'&&v.skill==='O06'&&v.target&&v.after<v.before)""",timeout=15000)
+                page.wait_for_function('HonroApp.canInput()',timeout=26000)
+                report['spirit53']=page.evaluate("nativeWall.filter(v=>v.actor==='p-occultist')")
         assert sum(q['length'] for q in report['walk'])>1.8*90.46
         page.screenshot(path=out/'native-53-upper-rail.png')
         page.locator('[data-act6-qa-lookout]').click(timeout=3000)
@@ -308,12 +329,13 @@ if __name__=='__main__':
     parser.add_argument('--forks',action='store_true')
     parser.add_argument('--mobile',action='store_true')
     parser.add_argument('--spirit',action='store_true')
+    parser.add_argument('--spirit53',action='store_true')
     args=parser.parse_args()
     base.ROOT=args.build.resolve()
     args.out.mkdir(parents=True,exist_ok=True)
     with sync_playwright() as pw:
         with pw.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox','--disable-dev-shm-usage']) as browser:
-            result=run(browser,args.out,args.hz,args.forks,args.mobile,args.spirit)
+            result=run(browser,args.out,args.hz,args.forks,args.mobile,args.spirit,args.spirit53)
     (args.out/'native-b.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
     print(result['status'],result.get('error',''),flush=True)
     raise SystemExit(0 if result['status']=='PASS' else 1)
