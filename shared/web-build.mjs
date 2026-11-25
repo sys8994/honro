@@ -228,7 +228,24 @@ export async function buildWeb({vector=true,destination=path.join(root,'HONRO.ht
       const {prepareEndingReplan}=await import('./act6-ending-replan/build.mjs');
       endingReplan=await prepareEndingReplan({root,emit,descriptor:descriptors});
     }
-    mains[0].code=makeQaMain(mains[0].code,qaAct6.source,descriptors,terrainArt,journeyArt,endingReplan);
+    let debugStages=null;
+    if(descriptors.releaseEnabled&&descriptors.boundary){
+      const rows=JSON.parse(await read('shared/act6-debug-stages/fixtures.json'));
+      assert.deepEqual(Object.keys(rows),Array.from({length:9},(_,i)=>String(52+i)));
+      for(const [id,record] of Object.entries(rows)){
+        assert.equal(record.body.to,Number(id));
+        assert.equal(record.body.from,Number(id)-1);
+        assert.equal(record.body.pin.fromPacket,descriptors.rows[Number(id)-1].sha256);
+        assert.equal(record.body.pin.toPacket,descriptors.rows[id].sha256);
+        assert.equal(record.body.runId,record.profile.equipment.runId);
+        assert(record.profile.cleared[50]);
+      }
+      const bytes=Buffer.from(JSON.stringify({schema:1,rows})+'\n');
+      assert(bytes.length<400000);
+      descriptors.debugFixtures={path:'/'+await emit('data','act6-debug-stages','json',bytes),bytes:bytes.length,sha256:hash(bytes)};
+      debugStages=await read('shared/act6-debug-stages/menu.inc.js');
+    }
+    mains[0].code=makeQaMain(mains[0].code,qaAct6.source,descriptors,terrainArt,journeyArt,endingReplan,debugStages);
   }
   const appStart=entries.findIndex(e=>e.name==='game/vendor/ui/fa.js');
   assert(appStart>0,'Game application boundary required');
@@ -448,3 +465,4 @@ catch(error){if(globalThis.HonroStartup)globalThis.HonroStartup.failed(error);el
   console.log(JSON.stringify(summary));
   return gameHtml();
 }
+
