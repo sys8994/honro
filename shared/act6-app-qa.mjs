@@ -304,7 +304,7 @@ function replaceOne(src,old,next){
  assert.equal(src.split(old).length,2,'Unreviewed normal App callsite '+old);
  return src.replace(old,()=>next);
 }
-export function makeQaMain(main,source,descriptor,terrainArt=null){
+export function makeQaMain(main,source,descriptor,terrainArt=null,journeyArt=null){
  const bytes=Buffer.from(main);
  assert.equal(hash(Buffer.concat([Buffer.from('blob '+bytes.length+'\0'),bytes]),'sha1'),pinnedMain);
  let proto=source.replace('/* SIGNED_ASSET */',JSON.stringify(descriptor));
@@ -315,6 +315,11 @@ export function makeQaMain(main,source,descriptor,terrainArt=null){
   proto=replaceOne(proto,'      function eligible(app,id)',terrainArt+'\n      function eligible(app,id)');
   proto=replaceOne(proto,'disposeNormalFar(app);active.delete(app);','disposeNormalFar(app);active.get(app)?.terrainArt?.dispose();active.delete(app);');
   proto=replaceOne(proto,'active:app=>active.has(app),mountNormalFar,','active:app=>active.has(app),mountNormalFar,mountAct6TerrainArt,');
+ }
+ if(journeyArt){
+  assert(descriptor.releaseEnabled&&descriptor.boundary&&descriptor.journeyMap);
+  // Cartography is additive: keep the boundary build/proof bytes stable for existing saves.
+  proto=replaceOne(proto,'      function eligible(app,id)',journeyArt+'\n      function eligible(app,id)');
  }
  assert.equal(source.split('/* SIGNED_ASSET */').length,2);
  const edits=[

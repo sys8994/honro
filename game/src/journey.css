@@ -211,3 +211,28 @@ body:has(#modal.open .journey-confirm) #turn-banner,body:has(#modal.open .pause-
 .honro #app .journey-record-menu :is(button,.report-missing){display:block;width:100%;min-height:44px;box-sizing:border-box;margin:0;padding:10px 12px;font-size:12px;white-space:normal;text-align:left}
 .honro #app .journey-record-menu:has(>p[data-reviewed-row]){width:min(34rem,80vw);max-width:min(34rem,80vw)}
 .honro #app .journey-record-menu>p[data-reviewed-row]{margin:0;padding:14px 16px;font-size:14px;line-height:1.7;white-space:normal}
+
+/* The impossible distance of the temple is a route convention, not an axis. */
+.journey-act-6 .journey-map-viewport{position:relative}
+.journey-act-6 .journey-map-scroll{background:#131f25}
+.journey-act-6 .journey6-legend{position:absolute;z-index:6;top:12px;left:50%;transform:translateX(-50%);display:grid;gap:3px;justify-items:center;pointer-events:none;white-space:nowrap;padding:7px 14px;background:#141f25e8;border:1px solid #b49f7459;color:#f2e6ca}
+.journey-act-6 .journey6-legend strong{font-size:1rem;font-weight:650}
+.journey-act-6 .journey6-legend span{font-size:.68rem;color:#e4d6b6}
+.journey-act-6 .journey-progress .journey6-outside{stroke:#ebcd85;stroke-dasharray:none}
+.journey-act-6 .journey-progress .journey6-inside{stroke:#b4f5fa;stroke-dasharray:none}
+.journey-act-6 .journey-progress .journey6-fold{stroke:#acf0ed;stroke-dasharray:2 7;stroke-linecap:round}
+.journey-act-6 .journey-progress .progress-current{stroke:#fff1b2;stroke-width:3.5}
+.journey-act-6 .journey6-inner i{border-color:#8fe4e6;color:#e9ffff}
+.journey-act-6 .journey6-detail p{max-width:440px}
+@media(max-width:700px){
+ .journey-act-6 .journey6-legend{top:7px;padding:4px 9px}
+ .journey-act-6 .journey6-legend strong{font-size:.85rem}
+ .journey-act-6 .journey-detail{min-height:80px}
+}
+
+.journey-act-6 .journey-progress .journey6-return-underlay{stroke:#121d23;stroke-width:7;stroke-dasharray:none}
+.journey-act-6 .journey-progress .journey6-return{stroke:#ffd0a0;stroke-width:2.5;stroke-dasharray:none}
+.honro #app .journey-image-screen.journey-act-6 .journey-detail{padding-bottom:max(21px,env(safe-area-inset-bottom))}
+
+.journey-act-6 .journey6-realm{position:absolute;z-index:4;transform:translate(-50%,-50%);padding:3px 7px;border:1px solid #e8d5b069;background:#222325d9;font-size:clamp(9px,1.75vw,13px);letter-spacing:.13em;line-height:1.2;color:#ffe3b3;white-space:nowrap;pointer-events:none}
+.journey-act-6 .journey6-realm.inside{background:#151528e8;border-color:#b0b8e578;color:#e0e6ff}
