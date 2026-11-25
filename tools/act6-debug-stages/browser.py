@@ -24,11 +24,6 @@ with sync_playwright() as pw:
  for dev,w,h,mobile in [('PC',1440,900,False),('M',390,844,True)]:
   with b.new_context(viewport={'width':w,'height':h},is_mobile=mobile,has_touch=mobile,device_scale_factor=1) as ctx:
    if root is not None:route_local(ctx)
-   ctx.add_init_script("""()=>{const init=Storage.prototype.setItem;const rm=Storage.prototype.removeItem;
-    window.qaWrites=[];
-    Storage.prototype.setItem=function(k,v){qaWrites.push(['set',k]);return init.call(this,k,v);};
-    Storage.prototype.removeItem=function(k){qaWrites.push(['remove',k]);return rm.call(this,k);};
-   }""")
    t=ctx.new_page(); failures=[]; requests=[]
    t.on('pageerror',lambda e:failures.append(str(e)))
    t.on('console',lambda m:failures.append(m.type+': '+m.text) if m.type in ('error','warning') and 'Debug chapter' in m.text else None)
@@ -53,6 +48,11 @@ with sync_playwright() as pw:
    settings()
    assert t.locator('[data-act6-debug-stage]').count()==10
    t.screenshot(path=out/f'{dev}-debug-menu.png')
+   t.evaluate("""()=>{const init=Storage.prototype.setItem;const rm=Storage.prototype.removeItem;
+    window.qaWrites=[];
+    Storage.prototype.setItem=function(k,v){qaWrites.push(['set',k]);return init.call(this,k,v);};
+    Storage.prototype.removeItem=function(k){qaWrites.push(['remove',k]);return rm.call(this,k);};
+   }""")
    saved=t.evaluate(store)
    t.evaluate("()=>{window.qaWrites.length=0; window.realNormal=HonroApp.normalProfile;window.realStore=HonroApp.profileStore;window.realDebug=HonroApp.profile;}")
    result={}

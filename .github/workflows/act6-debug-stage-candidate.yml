@@ -66,7 +66,7 @@ jobs:
           (o/'MANIFEST.sha256').write_text(sha256(new_raw).hexdigest()+'\n')
           (o/'NEW.txt').write_text('\n'.join(generated)+'\n')
           PY
-      - name: Click open all ten actual chapters on PC and mobile
+      - name: Verify ten chapters by trusted desktop and touch controls
         run: |
           set -euo pipefail
           python -m pip install 'playwright==1.58.0'
