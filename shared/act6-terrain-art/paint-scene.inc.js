@@ -8,6 +8,17 @@
         const layer=scene._landmarkLayer,cache=new WeakMap(),abort=new G.AbortController();
         let layouts=null;
         const valid=()=>active.get(app)===s&&app.engine===e&&app.scene===scene&&s.b===b;
+        function bellRecess(item){
+          if(id!==55||item.asset.id!=='ch05-v2-local-native-art')return item.asset.visual;
+          // These original rear faces cross the open bell shaft in projection.
+          // Retain their silhouette and dim their shelf-like edges behind the playable banks.
+          const rear=new Map([[9,['#6f6362','#494950']],[10,['#88776c','#535159']],
+            [11,['#756763','#4e4c55']],[62,['#8b776d','#524f57']]]);
+          return item.asset.visual.map((face,i)=>{
+            const pair=rear.get(i);
+            return pair&&face.fill===pair[0]?{...face,fill:pair[1]}:face;
+          });
+        }
         function project(base,frame){
           if(!Array.isArray(base)||!['N','L','C'].includes(frame))return null;
           const prior=cache.get(base);if(prior?.frame===frame)return prior;
@@ -28,7 +39,8 @@
               return {id:'act6-terrain-face-'+key+'-'+i,fill:palette[color],points};
             });
             faces+=paint.length;
-            replacements.set(item,{...item,asset:{...asset,visual:[...asset.visual,...paint]}});
+            const original=bellRecess(item);
+            replacements.set(item,{...item,asset:{...asset,visual:[...original,...paint]}});
             known.set(item.id,{anchor:item,paint});
           }
           if(sources!==Object.keys(layouts).length||faces<1)return null;
