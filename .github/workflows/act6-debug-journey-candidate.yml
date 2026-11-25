@@ -36,8 +36,8 @@ jobs:
           echo "CANDIDATE_ROOT=$R" >> "$GITHUB_ENV"
           git worktree add --detach "$R" "$BASE"
           cd "$R"
-          git checkout "$GITHUB_SHA" -- shared/act6-app-qa.mjs shared/web-build.mjs shared/act6-debug-stages shared/act6-journey/journey.inc.js shared/runtime/rest-journey.js shared/runtime/menu-ui.js
-          node tools/release/retain-published-web.mjs "$BASE" --published-at 2026-11-25T06:24:00Z --evidence https://github.com/sys8994/honro/actions/runs/45557054477 > "$OUT/RETENTION.log" 2>&1
+          git checkout --no-overlay "$GITHUB_SHA" -- shared/act6-app-qa.mjs shared/web-build.mjs shared/act6-debug-stages shared/act6-journey/journey.inc.js shared/runtime/rest-journey.js shared/runtime/menu-ui.js
+          node tools/release/retain-published-web.mjs "$BASE" --published-at 2026-11-25T05:59:09Z --evidence https://github.com/sys8994/honro/actions/runs/45557054477 > "$OUT/RETENTION.log" 2>&1
           npm ci --no-audit --no-fund > "$OUT/NPM.log" 2>&1
           npm ci --prefix game --include=dev --no-audit --no-fund > "$OUT/NPM-GAME.log" 2>&1
           npm run build > "$OUT/BUILD.log" 2>&1
