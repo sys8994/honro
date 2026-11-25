@@ -2,11 +2,12 @@
 import argparse
 import json
 from pathlib import Path
+import subprocess
 
 from playwright.sync_api import Error, sync_playwright
 
 import browser as base
-from cold_resume import seeded_context, storage_hash
+from cold_resume import NODE, saved_context, seeded_context, storage_hash
 from legacy54_live import resume
 from relay_live_chain import BELL, pose, stage55_trace
 from second_pass import touch
@@ -22,8 +23,22 @@ def walk_touch(page,session,target):
     finally:
         touch(page,session,x+36,y,'touchEnd')
 
-def check(browser,out):
-    ctx=seeded_context(browser,55,mobile=True)
+def equipped_warden(browser,build):
+    mask="""
+    profile.heroes.occultist.ranks.O13=1;
+    for(const original of [body.terminal.external.occultist,body.custody.external.occultist]){
+      original.loadout=[...original.loadout.slice(0,3),'O13'];original.ranks.O13=1;
+    }
+    body.profileSHA=sha(profile);body.terminalSHA=sha(body.terminal);body.custodySHA=sha(body.custody);
+    """
+    source=NODE.replace('console.log(JSON.stringify({',mask+'console.log(JSON.stringify({')
+    path=build/'shared/act6-debug-stages/fixtures.json'
+    records=json.loads(subprocess.check_output(['node','-e',source,str(path),'55','warden'],text=True))
+    return saved_context(browser,records,mobile=True)
+
+def check(browser,args):
+    out=args.out
+    ctx=equipped_warden(browser,args.build) if args.warden else seeded_context(browser,55,mobile=True)
     page=ctx.new_page()
     q={'status':'FAIL','errors':[]}
     page.on('pageerror',lambda e:q['errors'].append(str(e)))
@@ -34,7 +49,7 @@ def check(browser,out):
         q['anchorBefore']=pose(page,'p-occultist')
         page.locator('[data-action="select-hero"][data-id="p-occultist"]:visible').first.tap(force=True,timeout=6500)
         assert page.evaluate("HonroApp.engine.active.id==='p-knight'")
-        assert page.locator('[data-act6-sodan-body]').is_disabled()
+        assert page.locator('[data-act6-sodan-body]').is_disabled() is (not args.warden)
         session=ctx.new_cdp_session(page)
         walk_touch(page,session,1248)
         page.locator('#jump').tap(timeout=4200)
@@ -43,6 +58,20 @@ def check(browser,out):
         walk_touch(page,session,2650)
         q['guardAtBell']=pose(page,'p-knight')
         page.locator(f'{BELL}[data-act6-mark="reach-bell"]').tap(timeout=6500)
+        if args.warden:
+            focus=page.evaluate("HonroApp.engine.unit('p-occultist').focus")
+            page.locator('[data-act6-sodan-body]').tap(timeout=6500)
+            page.wait_for_function("HonroApp.engine.b.units.some(u=>u.summonKind==='warden'&&u.summonOwner==='p-occultist'&&!u.dead)",timeout=14000)
+            q['support']=page.evaluate("""() => {const e=HonroApp.engine,u=e.unit('p-occultist');
+              return {focus:u.focus,actingGuard:e.active?.id,warden:e.b.units.filter(v=>v.summonKind==='warden').map(v=>({id:v.id,x:v.x,y:v.y,owner:v.summonOwner})),shots:e.b.shot};}""")
+            assert q['support']['focus']<focus and q['support']['warden'],q['support']
+            q['focusBefore']=focus
+            q['anchorAfter']=pose(page,'p-occultist')
+            assert all(q['anchorBefore'][k]==q['anchorAfter'][k] for k in ('id','x','y','support'))
+            q['storageUnchanged']=original==storage_hash(base.saved_bytes(page))
+            assert q['storageUnchanged'] and not q['errors']
+            q['status']='PASS'
+            return q
         walk_touch(page,session,2798)
         for _ in range(10):
             page.wait_for_function('HonroApp.canInput()||HonroApp.done',timeout=52000)
@@ -74,12 +103,13 @@ def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--build',required=True,type=Path)
     p.add_argument('--out',required=True,type=Path)
+    p.add_argument('--warden',action='store_true')
     args=p.parse_args()
     base.ROOT=args.build.resolve()
     args.out.mkdir(parents=True,exist_ok=True)
     with sync_playwright() as pw:
         with pw.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox','--disable-dev-shm-usage']) as b:
-            q=check(b,args.out)
+            q=check(b,args)
     (args.out/'mobile-bell.json').write_text(json.dumps(q,ensure_ascii=False,indent=2)+'\n')
     print(q['status'],q.get('error',''),flush=True)
 

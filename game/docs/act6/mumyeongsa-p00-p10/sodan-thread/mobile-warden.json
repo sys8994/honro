@@ -1,0 +1,55 @@
+{
+  "status": "PASS",
+  "errors": [],
+  "anchorBefore": {
+    "id": "p-occultist",
+    "x": 2688,
+    "y": 1700.3076923076924,
+    "grounded": true,
+    "hp": 2144.1,
+    "acted": true,
+    "move": 3132,
+    "support": "arrival-core-terrace",
+    "facing": 1,
+    "angle": 44
+  },
+  "guardAtBell": {
+    "id": "p-knight",
+    "x": 2660.163545047273,
+    "y": 1691.7426292453147,
+    "grounded": true,
+    "hp": 3688.1,
+    "acted": false,
+    "move": 1318,
+    "support": "arrival-core-terrace",
+    "facing": 1,
+    "angle": 44
+  },
+  "support": {
+    "focus": 681,
+    "actingGuard": "p-knight",
+    "warden": [
+      {
+        "id": "summon-2",
+        "x": 2614.4346613087278,
+        "y": 1677.6722034796085,
+        "owner": "p-occultist"
+      }
+    ],
+    "shots": 1
+  },
+  "focusBefore": 751,
+  "anchorAfter": {
+    "id": "p-occultist",
+    "x": 2688,
+    "y": 1700.3076923076924,
+    "grounded": true,
+    "hp": 2144.1,
+    "acted": true,
+    "move": 3132,
+    "support": "arrival-core-terrace",
+    "facing": -1,
+    "angle": 194
+  },
+  "storageUnchanged": true
+}
