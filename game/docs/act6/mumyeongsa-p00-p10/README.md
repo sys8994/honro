@@ -108,3 +108,5 @@ git ls-tree HEAD web/data/chapter-01-assets.088719e10e63d482.json web/data/chapt
 | 시각 | 단계 | 상태 | 검증 배점 | 증거 커밋 | 후속 |
 |---|---|---|---:|---|---|
 | 2026-11-25 13:44 UTC / 22:44 KST | P00 / P10 1차 | 기준선 표본·시안·경계 설계 기록, 전체 게이트 대기 | 0% | [`ba543671d11013ac5f3ed790c23b673d41f17fbd`](https://github.com/sys8994/honro/commit/ba543671d11013ac5f3ed790c23b673d41f17fbd) | 위 FAIL·NOT RUN 및 [경계 검수표](continuity.md#연속성과-입력-증거-요구) |
+| 2026-11-25 13:55 UTC / 22:55 KST | P00 보강 | 모바일 10장·외부 국소 표본, 기존 54 전환 거부·검수 재로드, 선택안 보정 | 게이트 대기 | [e58e1c6c](https://github.com/sys8994/honro/commit/e58e1c6cd2d9ce8429abf57f956a9656d0974530) | [보강 기록](second-pass.md) |
+| 2026-11-25 14:15 UTC / 23:15 KST | 첫 B 수직 슬라이스 | 로컬 60/120 Hz 접지·이동·점프·실제 사격 PASS, 54~56 캡처 기록 재로드 PASS | 전체 게이트 대기 | [934b1a04](https://github.com/sys8994/honro/commit/934b1a048ef64ad5c56ccb3f82acb32c65f49be6) | [검수 실행·화면·누락](proof-slice/README.md) |

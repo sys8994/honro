@@ -53,14 +53,55 @@ def m09(page,report):
         hold(page,"ArrowUp" if up else "ArrowDown",
              "([angle,increase])=>increase?HonroApp.engine.active.angle>=angle-.8:HonroApp.engine.active.angle<=angle+.8",
              [target["aim"],diff>0])
-    hold(page,"Space","power=>HonroApp.charging&&HonroApp.power>=power",target["power"])
+    for _ in range(4):
+        angle=page.evaluate('HonroApp.engine.active.angle')
+        if abs(angle-target['aim'])<=.23:
+            break
+        box=page.locator('#joystick').bounding_box()
+        x=box['x']+box['width']*.5
+        y=box['y']+box['height']*.5
+        increase=angle<target['aim']
+        sign=1 if increase==(pose['facing']<0) else -1
+        page.mouse.move(x,y)
+        page.mouse.down()
+        try:
+            page.mouse.move(x,y+sign*9)
+            page.wait_for_function('([a,up])=>up?HonroApp.engine.active.angle>=a:HonroApp.engine.active.angle<=a',
+                                   arg=[target['aim'],increase],polling=8,timeout=1500)
+        finally:
+            page.mouse.up()
+    aim_power=page.evaluate("""() => {
+      const e=HonroApp.engine,u=e.active,k=HONRO_CORE.SKILLS.M09;
+      for (const power of [.74,.71,.77,.68,.64,.59,.81]){
+        if([0,.01,.022].every(delta=>{
+          const p=e.predict(u,k,u.angle,power+delta,undefined,true);
+          return p.terrain==='mid-contact'&&p.x>=2300&&p.x<=2312;
+        }))return power;
+      }return null;
+    }""")
+    if aim_power is None:
+        raise AssertionError('Positioned angle does not give a stable relay tip')
+    hold(page,"Space","power=>HonroApp.charging&&HonroApp.power>=power",aim_power)
     report["input"]=page.evaluate("()=>({angle:HonroApp.engine.active.angle,power:HonroApp.power,shot:HonroApp.engine.b.shot})")
-    page.wait_for_function("HonroApp.engine.b.stakes?.some(s=>s.skill==='M09'&&s.y===2930)",timeout=9000)
+    page.wait_for_function("HonroApp.engine.b.stakes?.some(s=>s.skill==='M09'&&s.x<2325)",timeout=9000)
     return {"target":target,"shot":page.evaluate("HonroApp.engine.b.shot"),
             "stakes":page.evaluate("HonroApp.engine.b.stakes")}
 
 def grounded_length(samples):
     return round(sum(math.dist(a[:2],b[:2]) for a,b in zip(samples,samples[1:]) if a[2] and b[2]),2)
+
+def walk_nudge(page,target,direction):
+    box=page.locator('#joystick').bounding_box()
+    x=box['x']+box['width']*.5
+    y=box['y']+box['height']*.5
+    page.mouse.move(x,y)
+    page.mouse.down()
+    try:
+        page.mouse.move(x+direction*14,y)
+        page.wait_for_function('([x,d])=>(HonroApp.engine.active.x-x)*d>=0',arg=[target,direction],timeout=3500,polling=10)
+    finally:
+        page.mouse.up()
+    page.wait_for_timeout(120)
 
 def run(browser,out):
     context=seeded_context(browser,54)
@@ -73,13 +114,21 @@ def run(browser,out):
         resume(page,54,True)
         results["start"]=page.evaluate(base.SNAPSHOT)
         before=base.saved_bytes(page)
-        traces["N_walk"]=sample_walk(page,1,538)
+        traces["N_walk"]=sample_walk(page,1,510)
+        x=page.evaluate('HonroApp.engine.active.x')
+        if not 548<=x<=554:
+            walk_nudge(page,550,1 if x<550 else -1)
+        results["N_nudge"]=page.evaluate(FOOT)
         results["N_L"]=chart(page)
         assert results["N_L"]["changed"]
-        traces["L_fall"]=sample_walk(page,-1,2450)
+        page.keyboard.press('Control')
+        traces["L_fall"]=sample_walk(page,-1,2387,limit=2700)
         page.wait_for_function("HonroApp.engine.grounded(HonroApp.engine.active)",timeout=3400)
         traces["L_fall"]["landed"]=page.evaluate(FOOT)
-        traces["L_sill"]=sample_walk(page,-1,2370)
+        at=page.evaluate(FOOT)
+        if at['x']>2362:
+            walk_nudge(page,2360,-1)
+        results['L_nudge']={"before":at,"after":page.evaluate(FOOT)}
         results["L_C"]=chart(page)
         assert results["L_C"]["changed"]
         results["C_L"]=chart(page)
@@ -111,6 +160,8 @@ def run(browser,out):
         if page.evaluate("!!HonroApp.engine"):
             results["stopped"]=page.evaluate(base.SNAPSHOT)
             results["remainingStakes"]=page.evaluate("HonroApp.engine.b.stakes??[]")
+        if 'before' in locals():
+            results['saveUnchangedAtStop']=before==base.saved_bytes(page)
         page.screenshot(path=out/"legacy54-stopped.png")
     finally:
         results["groundedArclength"]={key:grounded_length(w["points"]) for key,w in traces.items() if w["points"]}

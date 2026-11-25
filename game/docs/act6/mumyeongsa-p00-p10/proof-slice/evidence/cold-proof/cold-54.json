@@ -1,0 +1,259 @@
+{
+  "stage": 54,
+  "negativeM09": false,
+  "errors": [],
+  "warnings": [],
+  "first": {
+    "digestBefore": "ad3d6c2970540ad6732f5d01f80b8b386a9d98b4dbc4c2dc9c66471ba0ac8e86",
+    "mounted": {
+      "stageId": 54,
+      "honroStage": 54,
+      "mode": "campaign",
+      "authoredId": "stage-54",
+      "round": 1,
+      "phase": "aim",
+      "side": 0,
+      "shot": 0,
+      "rng": 19388,
+      "active": "p-mage",
+      "dialogue": false,
+      "isolatedStore": false,
+      "play": [
+        3200,
+        3000
+      ],
+      "terrainBounds": {
+        "left": -260,
+        "top": -280,
+        "right": 3580,
+        "bottom": 3450
+      },
+      "playBounds": {
+        "left": 0,
+        "top": 0,
+        "right": 3200,
+        "bottom": 3000
+      },
+      "camera": {
+        "x": 261.92379999999986,
+        "y": 2484.6544036363634,
+        "zoom": null
+      },
+      "gravity": {
+        "x": 0,
+        "y": 320
+      },
+      "fieldFlags": [],
+      "terrain": [
+        {
+          "id": "foothill",
+          "vertices": 30,
+          "oneWay": false
+        },
+        {
+          "id": "mid-contact",
+          "vertices": 54,
+          "oneWay": false
+        },
+        {
+          "id": "east-spine",
+          "vertices": 26,
+          "oneWay": false
+        },
+        {
+          "id": "post-contact",
+          "vertices": 29,
+          "oneWay": false
+        },
+        {
+          "id": "west-continuation",
+          "vertices": 6,
+          "oneWay": false
+        }
+      ],
+      "worldTerrain": [
+        {
+          "id": "foothill",
+          "vertices": 38
+        },
+        {
+          "id": "mid-contact",
+          "vertices": 54
+        },
+        {
+          "id": "east-spine",
+          "vertices": 30
+        },
+        {
+          "id": "post-contact",
+          "vertices": 29
+        },
+        {
+          "id": "west-continuation",
+          "vertices": 8
+        }
+      ],
+      "enemies": [],
+      "units": [
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "side": 0,
+          "level": 25,
+          "hp": 1708.9,
+          "maxHp": 2050,
+          "loadout": [
+            "M01",
+            "M10",
+            "M07"
+          ],
+          "pos": [
+            250,
+            2655.64
+          ],
+          "h": 92,
+          "r": 22,
+          "awake": true,
+          "dead": false,
+          "airborne": false,
+          "grounded": true,
+          "validContact": true,
+          "support": "foothill",
+          "fixed": false,
+          "objective": false,
+          "role": "mage",
+          "summoned": false,
+          "ally": false
+        }
+      ]
+    },
+    "digestAfter": "ad3d6c2970540ad6732f5d01f80b8b386a9d98b4dbc4c2dc9c66471ba0ac8e86"
+  },
+  "reload": {
+    "digestBefore": "ad3d6c2970540ad6732f5d01f80b8b386a9d98b4dbc4c2dc9c66471ba0ac8e86",
+    "mounted": {
+      "stageId": 54,
+      "honroStage": 54,
+      "mode": "campaign",
+      "authoredId": "stage-54",
+      "round": 1,
+      "phase": "aim",
+      "side": 0,
+      "shot": 0,
+      "rng": 19388,
+      "active": "p-mage",
+      "dialogue": false,
+      "isolatedStore": false,
+      "play": [
+        3200,
+        3000
+      ],
+      "terrainBounds": {
+        "left": -260,
+        "top": -280,
+        "right": 3580,
+        "bottom": 3450
+      },
+      "playBounds": {
+        "left": 0,
+        "top": 0,
+        "right": 3200,
+        "bottom": 3000
+      },
+      "camera": {
+        "x": 301.70559519999995,
+        "y": 2481.3782557963636,
+        "zoom": null
+      },
+      "gravity": {
+        "x": 0,
+        "y": 320
+      },
+      "fieldFlags": [],
+      "terrain": [
+        {
+          "id": "foothill",
+          "vertices": 30,
+          "oneWay": false
+        },
+        {
+          "id": "mid-contact",
+          "vertices": 54,
+          "oneWay": false
+        },
+        {
+          "id": "east-spine",
+          "vertices": 26,
+          "oneWay": false
+        },
+        {
+          "id": "post-contact",
+          "vertices": 29,
+          "oneWay": false
+        },
+        {
+          "id": "west-continuation",
+          "vertices": 6,
+          "oneWay": false
+        }
+      ],
+      "worldTerrain": [
+        {
+          "id": "foothill",
+          "vertices": 38
+        },
+        {
+          "id": "mid-contact",
+          "vertices": 54
+        },
+        {
+          "id": "east-spine",
+          "vertices": 30
+        },
+        {
+          "id": "post-contact",
+          "vertices": 29
+        },
+        {
+          "id": "west-continuation",
+          "vertices": 8
+        }
+      ],
+      "enemies": [],
+      "units": [
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "side": 0,
+          "level": 25,
+          "hp": 1708.9,
+          "maxHp": 2050,
+          "loadout": [
+            "M01",
+            "M10",
+            "M07"
+          ],
+          "pos": [
+            250,
+            2655.64
+          ],
+          "h": 92,
+          "r": 22,
+          "awake": true,
+          "dead": false,
+          "airborne": false,
+          "grounded": true,
+          "validContact": true,
+          "support": "foothill",
+          "fixed": false,
+          "objective": false,
+          "role": "mage",
+          "summoned": false,
+          "ally": false
+        }
+      ]
+    },
+    "digestAfter": "ad3d6c2970540ad6732f5d01f80b8b386a9d98b4dbc4c2dc9c66471ba0ac8e86"
+  },
+  "status": "PASS"
+}

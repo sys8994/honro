@@ -45,3 +45,19 @@ python "$evidence/second_pass.py" --out /tmp/act6-touch --case mobile
 python "$evidence/second_pass.py" --out /tmp/act6-outside --case outside
 python "$evidence/second_pass.py" --out /tmp/act6-paths --case routes
 ```
+
+## 원본 54의 실제 M09와 55 이어가기 차단
+
+고정 원본 빌드에서 저장소의 54 시작 기록으로 바로 진입했다. 이후 조이스틱과 키보드 입력으로 N→L→C→L을 모두 밟고, L의 `mid-contact`에서 실제 M09를 발사했다. 담허가 x=2323.64/y=2930에 붙은 채 54의 승리를 확인한 뒤 55 버튼을 눌렀다.
+
+- 이 경로에서 N 접지 이동에 소비한 길이 312.09 world, L 진목 전 접지 이동 22.16 world, L 출구 쪽 접지 이동 표본 13.40 world였다. 보행 표본 합은 347.65 world다. Ctrl로 건넌 공중 이동과 차트 이동은 제외했다.
+- 발사 자리의 가까운 진목은 (2337.04,2930)에, 실제 목표 진목은 (2309.835,2924)에 놓였다. 라이브 55 연결의 새 기록은 `invalid-new-checkpoint`로 거부됐다. 54의 완료 표시와 경계 저장의 수신 조건이 6 world 어긋난 사례다. 진목 중심을 접촉 증거로 반환하는 현재 엔진 동작과 y=2930을 요구하는 장 경계 계약을 함께 확인했다.
+- 이 시도에서 일반 기록 및 기존 54 경계 저장의 바이트가 보존됐다. 저장소에 이미 캡처되어 있던 정상 55 기록은 별도의 정식 이어가기 검수에서 열렸다. 새 55 기록의 쓰기와 그 기록 재로드는 이 경로에서 미완료다.
+
+[버튼을 누른 뒤 정지한 화면](baseline/second-pass/legacy54-stopped.webp) · [M09 실제 출력](baseline/second-pass/legacy54-m09.webp) · [입력, 샷, 저장 상태](baseline/second-pass/legacy54-live-blocked.json)
+
+```sh
+folder=game/docs/act6/mumyeongsa-p00-p10
+python "$folder/baseline/legacy54_live.py" --build "$PWD" --out /tmp/act6-legacy54
+python "$folder/baseline/cold_resume.py" --build "$PWD" --out /tmp/act6-cold-stock
+```
