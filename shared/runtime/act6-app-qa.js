@@ -85,24 +85,24 @@
         });
       }
       async function advance(app,button,id){
-        if(!button.isConnected||!eligible(app,id)||inflight.has(app))return;
-        const original={profile:app.profile,node:app.root.firstElementChild,screen:app.screen,revision:app.profileImportSequence,engine:app.engine};
-        const owns=()=>button.isConnected&&eligible(app,id)&&app.profile===original.profile&&app.root.firstElementChild===original.node&&app.screen===original.screen&&app.profileImportSequence===original.revision&&app.engine===original.engine;
-        let ticket;
-        button.disabled=true;inflight.set(app,original);
-        try{
-          const {packet,compiled,known}=await prepareExact(id);
-          if(!owns()||inflight.get(app)!==original)return;
-          ticket={};permits.set(app,{ticket,id,packet,compiled,known,owns});
-          check(app.launch(id,false,null,ticket)===true,'Author-signed chapter did not mount');
-        }catch(error){
-          if(owns())app.notify(descriptor.releaseEnabled?'다음 장을 열지 못했습니다. 기록은 보존됩니다.':'검수 장을 열지 못했습니다.');
-          console.error(error);
-        }finally{
-          if(permits.get(app)?.ticket===ticket)permits.delete(app);
-          if(inflight.get(app)===original)inflight.delete(app);
-          button.disabled=false;
-        }
+          if(!button.isConnected||!eligible(app,id)||inflight.has(app))return;
+          const original={profile:app.profile,node:app.root.firstElementChild,screen:app.screen,revision:app.profileImportSequence,engine:app.engine};
+          const owns=()=>button.isConnected&&eligible(app,id)&&app.profile===original.profile&&app.root.firstElementChild===original.node&&app.screen===original.screen&&app.profileImportSequence===original.revision&&app.engine===original.engine;
+          let ticket;
+          button.disabled=true;inflight.set(app,original);
+          try{
+            const {packet,compiled,known}=await prepareExact(id);
+            if(!owns()||inflight.get(app)!==original)return;
+            ticket={};permits.set(app,{ticket,id,packet,compiled,known,owns});
+            check(app.launch(id,false,null,ticket)===true,'Author-signed chapter did not mount');
+          }catch(error){
+            if(owns())app.notify(descriptor.releaseEnabled?'다음 장을 열지 못했습니다. 기록은 보존됩니다.':'검수 장을 열지 못했습니다.');
+            console.error(error);
+          }finally{
+            if(permits.get(app)?.ticket===ticket)permits.delete(app);
+            if(inflight.get(app)===original)inflight.delete(app);
+            button.disabled=false;
+          }
       }
       function offer(app){
         if(descriptor.previewBuildShape===true)return; // No fresh-title developer entry in this Pages-shaped build.
