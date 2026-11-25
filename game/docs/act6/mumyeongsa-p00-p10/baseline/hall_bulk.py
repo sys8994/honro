@@ -19,12 +19,13 @@ const json=p=>JSON.parse(readFileSync(p,'utf8'));
 const packet=id=>json('shared/data/act6-qa/'+id+'.json');
 const rail=createBrokenRail(json('shared/act6-b-slice/layout.json'));
 const entry=packet('third'), normal=packet('fourth'), late=packet('eighth');
-const a=composeHall53(JSON.parse(entry.mapText),JSON.parse(entry.libraryText),rail);
+const rock=json('shared/act6-mumyeongsa/art/stage53-bedrock.json');
+const a=composeHall53(JSON.parse(entry.mapText),JSON.parse(entry.libraryText),rail,rock);
 const b=composeGallery54(normal.map,normal.library);
 const c=hallB58();
 const row=(label,roi,assets)=>({label,roi,assets:assets.map(a=>({id:a.id,visual:a.visual}))});
 console.log(JSON.stringify([
- row('53 halls and balconies',a.map.playBounds,a.library.filter(u=>u.id.startsWith('m53-'))),
+ row('53 halls and balconies',a.map.playBounds,a.library.filter(u=>u.id.startsWith('m53-')&&u.visual.length)),
  row('53/54 shared B playable clip',a.map.playBounds,rail.assets),
  row('54 N gallery balconies',b.map.playBounds,b.library.filter(u=>u.id==='m54-observation-balconies')),
  row('58 upper hall, structure and roof',late.map.playBounds,c.visual.map(u=>u.asset)),

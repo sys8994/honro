@@ -125,7 +125,9 @@ export async function createAct6WebQa(project,repoRoot,env=process.env,release=n
   const bindRail='const {createBrokenRail,validBrokenRailCrossing,installBrokenRail}=(()=>{'+railCode.replaceAll('export ','')+'\nreturn {createBrokenRail,validBrokenRailCrossing,installBrokenRail};})();\nconst brokenRail=createBrokenRail('+railSource+');\n';
   const eaveExports='tornEave,validTornEave,composeTornEave,swapTornEave,installTornEave';
   const bindEave='const {'+eaveExports+'}=(()=>{'+eaveCode.replaceAll('export ','')+'\nreturn {'+eaveExports+'};})();\n';
-  const bind53=bindRail+bindEave+'const createInnerMissionOwner=(()=>{'+mission53.replace('export function','function')+'\nreturn createInnerMissionOwner;})();\n'+
+  const rock53=JSON.parse(await readFile(new URL('./act6-mumyeongsa/art/stage53-bedrock.json',import.meta.url),'utf8'));
+  assert.equal(rock53.id,'m53-grey-bedrock');assert.equal(rock53.collision.length,0);assert.equal(rock53.vector.version,1);
+  const bind53=bindRail+bindEave+'const bedrock53='+JSON.stringify(rock53)+';\nconst createInnerMissionOwner=(()=>{'+mission53.replace('export function','function')+'\nreturn createInnerMissionOwner;})();\n'+
     'const createStage53PhysicalActions=(()=>{'+actions53.replace('export function','function')+'\nreturn createStage53PhysicalActions;})();\n'+
     'const {hall53,composeHall53}=(()=>{'+hallSource53.replaceAll('export ','')+'\nreturn {hall53,composeHall53};})();\n'+b53+code54+code55;
   source=replaceOne(source,'      function enter(app,id,ticket){',bind53+'\n      function enter(app,id,ticket){');

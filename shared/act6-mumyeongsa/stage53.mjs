@@ -30,6 +30,23 @@ const paint=(id,bounds,visual,layer='prop')=>({
 });
 const face=(fill,v)=>({fill,points:v.map(point)});
 const lips=(line,offset)=>[...line,...line.slice().reverse().map(([x,y])=>[x,y+offset])];
+function rockBody53(asset,terrain){
+ const hosts=terrain.filter(t=>['south','west','north','east'].includes(t.id));
+ const paths=hosts.map(({points})=>{
+  const area=points.reduce((sum,p,i)=>{
+   const next=points[(i+1)%points.length];
+   return sum+p.x*next.y-next.x*p.y;
+  },0);
+  const ordered=area<0?points.slice().reverse():points;
+  return 'M'+ordered.map(p=>`${p.x} ${p.y}`).join('L')+'Z';
+ });
+ return {
+  asset:{...asset,renderer:'vector',vector:{...asset.vector,
+   clips:{rockBody:paths},root:{tag:'g',clipPath:'rockBody',children:[asset.vector.root]}}},
+  element:{id:'art-'+asset.id,assetId:asset.id,x:0,y:0,scale:1,rotation:0,snap:false,
+   layer:'prop',depthLayer:'L1',visualRole:'scenery'}
+ };
+}
 function vector53(walk,forks){
  const floor=paint('m53-walk-fascia',{x:-305,y:1060,w:3300,h:2390},[
   face('#797160',lips(walk,16)),
@@ -64,7 +81,7 @@ function nativeY(line,x){
  const [a,ay]=line[index-1],[b,by]=line[index];
  return ay+(by-ay)*(x-a)/(b-a);
 }
-export function composeHall53(map,library,B){
+export function composeHall53(map,library,B,bedrock){
  const {walk,forks}=hall53;
  const upper=map.terrains.find(t=>t.id==='upper-threshold-footing');
  const retained=map.elements.find(e=>e.assetId==='approved-upper-door-sill-extension');
@@ -78,7 +95,7 @@ export function composeHall53(map,library,B){
   ...B.terrain,
   upper
  ];
- const artwork=vector53(walk,forks);
+ const artwork=[rockBody53(bedrock,terrain),...vector53(walk,forks)];
  const positions={
   'draft-lower-lane-guard':{x:1100,y:nativeY(forks[0].points,1100)},
   'draft-upper-side-guard':{x:2905,y:1060}
@@ -86,7 +103,8 @@ export function composeHall53(map,library,B){
  const units=map.units.map(u=>u.team==='player'?{...u,x:hall53.entryX,y:nativeY(walk,hall53.entryX)}:{...u,...positions[u.id]});
  return {
   map:{...map,width:B.width,terrains:terrain,units,materials:[],
-   playBounds:{...map.playBounds,right:B.width},terrainBounds:{...map.terrainBounds,right:B.width+305},
+   playBounds:{...map.playBounds,right:B.width},
+   terrainBounds:{...map.terrainBounds,top:Math.min(map.terrainBounds.top,B.assets[0].bounds.y),right:B.width+305},
    elements:[...artwork.map(a=>a.element),retained,...B.elements],
    objectives:[{...map.objectives[0]},{...map.objectives[1],label:'파손 난간 통과',x:B.wall.left,y:B.crossY}],
    routes:[...map.routes||[]]},

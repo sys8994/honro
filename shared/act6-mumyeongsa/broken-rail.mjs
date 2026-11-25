@@ -8,10 +8,10 @@ export function createBrokenRail(spec){
  // The blocks behind the entry and outside the frame share the near silhouette
  // on both sides. They sit away from the playable lane and its outgoing ledge.
  const dummies=[
-  {id:'b-dummy-north',paint:'#51483e',points:[[cap.left,-320],[wall.right,-320],[wall.right,cap.top],[cap.left,cap.top]]},
-  {id:'b-dummy-west',paint:'#53473a',points:[[2632,cap.top-28],[cap.left,cap.top],[jamb.left,188],[2789,170],[2698,126]]},
-  {id:'b-dummy-east',paint:'#4b473e',points:[[wall.right,wall.top],[wall.right+305,wall.top-44],[wall.right+305,wall.bottom+115],[wall.right,wall.bottom]]},
-  {id:'b-dummy-south',paint:'#4f473d',points:[[wall.left,wall.bottom],[wall.right,wall.bottom],[wall.right+305,wall.bottom+115],[wall.right+305,wall.bottom+274],[3220,wall.bottom+227]]}
+  {id:'b-dummy-north',paint:'#3e413c',points:[[cap.left,-320],[wall.right,-320],[wall.right,cap.top],[cap.left,cap.top]]},
+  {id:'b-dummy-west',paint:'#42433d',points:[[2632,cap.top-28],[cap.left,cap.top],[jamb.left,188],[2789,170],[2698,126]]},
+  {id:'b-dummy-east',paint:'#3b413e',points:[[wall.right,wall.top],[wall.right+305,wall.top-44],[wall.right+305,wall.bottom+115],[wall.right,wall.bottom]]},
+  {id:'b-dummy-south',paint:'#3d403b',points:[[wall.left,wall.bottom],[wall.right,wall.bottom],[wall.right+305,wall.bottom+115],[wall.right+305,wall.bottom+274],[3220,wall.bottom+227]]}
  ];
  const terrain=[...outlines,...dummies].map(({id,points})=>({id,name:id,points:points.map(plain),type:'solid',baseMaterial:'rock',breakable:false}));
  const crossY=spec.seamY+y;
@@ -24,11 +24,11 @@ export function createBrokenRail(spec){
    return [[i%2?'#665b49':'#5a5346',[[ax+7,ay+9],[ax+81,ay+3],[ax+179,ay+14],[ax+283,ay+1],[ax+267,by],[ax+158,by-17],[ax+61,by-3],[ax+9,by-12]]],
            ['#393733',[[ax+9,by-10],[ax+70,by-6],[ax+159,by-15],[ax+266,by],[ax+182,by-2],[ax+68,by+2],[ax+9,by-6]]]];
   }),
-  ['#8b7b61',[[wall.left,wall.top],[wall.left+8,wall.top],[wall.left+11,wall.top+188],[wall.left+7,wall.top+360],
-              [wall.left+10,wall.bottom],[wall.left,wall.bottom]]],
+  ['#ac9875',[[wall.left,wall.top],[wall.left+10,wall.top],[wall.left+14,wall.top+188],[wall.left+10,wall.top+360],
+              [wall.left+12,wall.bottom],[wall.left,wall.bottom]]],
   ['#806749',[[jamb.right-10,jamb.top],[jamb.right,jamb.top],[jamb.right,jamb.bottom],[jamb.right-10,jamb.bottom]]],
   ['#5b6350',[[wall.left, crossY-9],[wall.left+165,crossY-14],[wall.left+176,crossY+2],[wall.left,crossY+9]]],
-  ['#746c55',[[floor.left,floor.top],[floor.right,floor.top],[floor.right,floor.top+14],[floor.left,floor.top+12]]]
+  ['#9b8a69',[[floor.left,floor.top],[floor.right,floor.top],[floor.right,floor.top+14],[floor.left,floor.top+12]]]
  ].map(([fill,points])=>({fill,points:points.map(plain)}));
  const asset={id:spec.id,renderer:'vector',category:'terrain',layer:'prop',anchor:{x:0,y:0},
   bounds:{x:2632,y:-320,w:wall.right+305-2632,h:wall.bottom+274+320},collision:[],visual:art,sockets:[],params:{}};

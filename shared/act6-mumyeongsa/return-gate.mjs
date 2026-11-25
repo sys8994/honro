@@ -23,7 +23,10 @@ export function returnGateArt(){
  const {id,sill}=returnGate,y=grade(sill),rail=[3108,3208,3260,3350,3400];
  const step=[...rail.map(x=>[x,grade(x)]),...rail.slice().reverse().map(x=>[x,grade(x)+22])];
  const visual=[
-  polygon('#726b5b',step),
+  polygon('#514c40',[[3078,grade(3078)+14],[3132,grade(3132)+10],[3208,grade(3208)+12],[3350,grade(3350)+13],[3400,grade(3400)+9],
+   [3410,grade(3410)+47],[3314,grade(3314)+64],[3240,grade(3240)+52],[3120,grade(3120)+68]]),
+  polygon('#82775f',[[3100,grade(3100)+25],[3190,grade(3190)+26],[3249,grade(3249)+32],[3217,grade(3217)+53],[3145,grade(3145)+46]]),
+  polygon('#978865',step),
   polygon('#675848',[[3129,y-255],[3181,y-263],[3181,grade(3181)-10],[3131,grade(3131)-17]]),
   polygon('#75604c',[[3331,y-353],[3375,y-359],[3376,grade(3376)-13],[3327,grade(3327)-8]]),
   polygon('#857058',[[3134,y-253],[3147,y-256],[3146,grade(3131)-17],[3134,grade(3131)-17]]),
@@ -34,7 +37,7 @@ export function returnGateArt(){
   polygon('#a08861',[[3253,y-11],[3260,y],[3280,grade(3280)],[3271,grade(3280)-11]])
  ];
  const asset={id,renderer:'vector',category:'terrain-art',layer:'prop',anchor:{x:0,y:0},
-  bounds:{x:3078,y:y-399,w:380,h:510},collision:[],visual,sockets:[],params:{}};
+  bounds:{x:3078,y:y-399,w:380,h:530},collision:[],visual,sockets:[],params:{}};
  return {id:'art-'+id,assetId:id,x:0,y:0,scale:1,rotation:0,snap:false,layer:'prop',depthLayer:'L1',
   visualRole:'scenery',kind:'canonical-element',collisionIds:[],asset};
 }

@@ -1,7 +1,7 @@
       const declared53=Object.create(null),verified53=new WeakMap();
       const preparedHalls53=new WeakMap();
       async function prepareHall53(packet){
-        const {map,library}=composeHall53(packet.map,packet.library,brokenRail);
+        const {map,library}=composeHall53(packet.map,packet.library,brokenRail,bedrock53);
         const compiled=G.HonroMaps.compile(map,{library});
         const known=await Promise.all([compiled.terrain,compiled.worldTerrain].map(async v=>{
           const serial=JSON.stringify(v);return [serial,await sha(new TextEncoder().encode(serial))];

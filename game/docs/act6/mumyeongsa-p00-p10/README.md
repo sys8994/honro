@@ -153,3 +153,5 @@ git ls-tree HEAD web/data/chapter-01-assets.088719e10e63d482.json web/data/chapt
 | 이전 정상 기록과 여정첩 | [1899cfd3](https://github.com/sys8994/honro/commit/1899cfd3) · [변경 전후](journey-boundary/README.md) |
 
 `npm run test:release-guard`는 19개 통과했다. `test:runtime-contracts`와 `test:campaign-contracts`는 각각 `shared/build.mjs`와 `tools/environment/stage22-vertical-art.mjs`의 승인 SHA 검사에서 멈췄다. 두 파일의 실측 SHA가 기존 `master dd409de2`의 실제 바이트와 같은 것을 확인했다. 기존 승인 SHA를 직접 바꾸지 않았다.
+
+[53·54·58 본체와 외곽 실측, B·58 천장·R의 같은 카메라 전후](visual-atlas/README.md)

@@ -51,14 +51,19 @@ GEOMETRY = """() => {
 }"""
 CAPTURE = """camera=>{
  const a=HonroApp,e=a.engine,s=a.scene,cv=document.querySelector('#battlecanvas'),r=cv.getBoundingClientRect();
- const before={x:s.x,y:s.y,scale:s.scale,manual:s.manual};
+ const keys=['x','y','scale','manual','storyTween','goalFocus','focusId','focusUntil','speakerId','speakerUntil','storyFrame','storyFrameReport'];
+ const before=Object.fromEntries(keys.map(k=>[k,s[k]]));
  const previous=s.viewOptions?.debugTerrainOutline;
- if(camera)Object.assign(s,{...camera,manual:true});
+ const cameraDriver=HonroReinforcementCamera;
+ const {update,checkpoint}=cameraDriver;
+ const frame=()=>{if(camera)Object.assign(s,{...camera,manual:true,storyTween:null,goalFocus:null,focusId:null,focusUntil:0,speakerId:null,speakerUntil:0,storyFrame:null,storyFrameReport:null});};
  try{
-  s.viewOptions??={};s.viewOptions.debugTerrainOutline=false;s.render(e,0,a.selected,a.power,false,0,true);
-  const plain=cv.toDataURL();s.viewOptions.debugTerrainOutline=true;s.render(e,0,a.selected,a.power,false,0,true);
+  if(camera){cameraDriver.update=()=>true;cameraDriver.checkpoint=()=>{};}
+  s.viewOptions??={};frame();s.viewOptions.debugTerrainOutline=false;s.render(e,0,a.selected,a.power,false,0,true);
+  const plain=cv.toDataURL();frame();s.viewOptions.debugTerrainOutline=true;s.render(e,0,a.selected,a.power,false,0,true);
   return {plain,outline:cv.toDataURL(),left:s.world(0,0),right:s.world(r.width,r.height),scale:s.scale};
  }finally{
+  cameraDriver.update=update;cameraDriver.checkpoint=checkpoint;
   Object.assign(s,before);s.viewOptions.debugTerrainOutline=previous;
  }
 }"""
