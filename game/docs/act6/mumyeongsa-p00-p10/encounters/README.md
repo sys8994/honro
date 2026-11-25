@@ -54,3 +54,5 @@ python game/docs/act6/mumyeongsa-p00-p10/baseline/courtyard_combat.py --build "$
 python game/docs/act6/mumyeongsa-p00-p10/baseline/courtyard_combat.py --build "$PWD" --out /tmp/honro-act6-courtyard59-win --rounds 18 --finish
 python tools/act6-ending-v2/normal.py --chromium /usr/bin/chromium --from-courtyard-proof /tmp/honro-act6-courtyard59-win/court.json
 ```
+
+[58 대도사 전 구간 실전과 활성 상한 초과 실측](hall-pressure/README.md)

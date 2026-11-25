@@ -7,6 +7,7 @@ from playwright.sync_api import Error, sync_playwright
 
 import browser as base
 from cold_resume import saved_context, seeded_context, storage_hash
+from exterior_combat import TRACE
 from hall_passage import actor, march, mission_click, select, state
 from legacy54_live import hold, resume
 from native_b import aim, wall_trace
@@ -143,7 +144,7 @@ def all_once_east(page,report,limit=100):
             lower_turn(page,report)
     raise AssertionError({'major':foes_moved(page),'actorsEast':sorted(marked),'turns':len(report['turns'])})
 
-def play(browser,out,turns,session=None):
+def play(browser,out,turns,session=None,pressure=False):
     ctx,page=session if session else (seeded_context(browser,58),None)
     if page is None:
         page=ctx.new_page()
@@ -154,6 +155,8 @@ def play(browser,out,turns,session=None):
             resume(page,58,True)
         else:
             base.dismiss_dialogue(page)
+        if pressure:
+            page.evaluate(TRACE)
         march(page,3496,cls='occultist',tolerance=45)
         mission_click(page,'column','threshold')
         march(page,3680,cls='mage',tolerance=40)
@@ -173,6 +176,10 @@ def play(browser,out,turns,session=None):
         hold(page,'ArrowLeft',"()=>HonroApp.done&&HonroApp.engine.b.phase==='won'",None,7500)
         q['returnRoute'].append(actor(page))
         q['outgoing']=page.evaluate(ROOM)
+        if pressure:
+            q['encounters']=page.evaluate('window.a6Exterior')
+            frames=q['encounters'].pop('frames')
+            q['hostP95']=sorted(frames)[int(.95*(len(frames)-1))] if frames else None
         page.screenshot(path=out/'r-source-58.png')
         page.locator('[data-act6-qa-next="59"]').click(timeout=6200)
         page.wait_for_function("HonroApp.engine?.b?.honroStage===59",timeout=12000)
@@ -218,6 +225,7 @@ def play(browser,out,turns,session=None):
 def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--build',type=Path,required=True)
+    p.add_argument('--pressure',action='store_true')
     p.add_argument('--out',type=Path,required=True)
     p.add_argument('--turns',type=int,default=100)
     opts=p.parse_args()
@@ -226,7 +234,7 @@ def main():
     with sync_playwright() as pw:
         browser=pw.chromium.launch(executable_path='/usr/bin/chromium',headless=True,
                                    args=['--no-sandbox','--disable-dev-shm-usage'])
-        q=play(browser,opts.out,opts.turns)
+        q=play(browser,opts.out,opts.turns,pressure=opts.pressure)
         (opts.out/'r-live.json').write_text(json.dumps(q,ensure_ascii=False,indent=2)+'\n')
         print(q['status'],q.get('error',''),flush=True)
         browser.close()

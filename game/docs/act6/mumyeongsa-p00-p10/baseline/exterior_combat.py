@@ -38,7 +38,7 @@ TRACE = """() => {
     return out;
   };
   const observe=()=>{
-    const combat=b.units.filter(u=>u.side===1&&u.loadout.length&&!u.summoned&&!u.honroShotTarget);
+    const combat=b.units.filter(u=>u.side===1&&(u.loadout.length||u.id==='a6-c08-boss')&&!u.summoned&&!u.honroShotTarget&&!u.honroObjectiveTarget);
     data.peak=Math.max(data.peak,combat.filter(u=>u.hp>0&&!u.dead&&u.awake).length);
     for(const u of combat)if(!seen.has(u.id)){
       seen.add(u.id);

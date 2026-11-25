@@ -178,6 +178,7 @@ export function createStage58Owner({C,authorize,isolate=()=>false,preview=()=>fa
    const x=BOSS58.stand[to-1];rec.shadowOffset=x>boss.x?90:-90;hover(boss,x,BOSS58.lift[to-1]);boss.facing=-1;
    if(to===2)say('phase2');
    if(to===3){say('phase3');rec.charge=1;for(const u of [node,inkA,inkB])if(!b.units.includes(u))b.units.push(u);
+    e.refreshActivation();
     mark('local-08-ledger-seam',{type:'interaction',action:'authored',authoredAction:'localLedgerCounter',label:'먹선을 끊어 충전 늦추기',x:sites.ledger.x,y:sites.ledger.y,radius:82});
     fieldEvents.push(note('field-active',{roles:[ledger.id,echo.id]}));}
    note('bossPhase',{phase:to,hp:boss.hp,carry});e.fx('ring',boss.x,boss.y-60,'#1b2124',140);
@@ -193,7 +194,8 @@ export function createStage58Owner({C,authorize,isolate=()=>false,preview=()=>fa
    const tpl=structuredClone(vesselA);delete tpl.id;
    const u=C.makeUnit(tpl.cls,1,x,0,{...tpl,id,name,hp,maxHp:hp,armor,honroRigAsset:rig,honroGrotesque:rig,h:rig==='grot_hands'?140:150,r:rig==='grot_door'?36:30,fixed:rig!=='grot_hands',dead:false,acted:false,attack:(tpl.attack||1)*1.2,elite:true});
    if(!hover(u,x,rig==='grot_hanging'?260:0))return;
-   b.units.push(u);grots.push(u);gid.add(u.id);grotSpawned++;note('grotesque',{id,rig});e.message(grotLines[rig]);e.fx('ring',u.x,u.y-60,'#1b2124',120);
+   b.units.push(u);grots.push(u);gid.add(u.id);grotSpawned++;e.refreshActivation();
+   note('grotesque',{id,rig});e.message(grotLines[rig]);e.fx('ring',u.x,u.y-60,'#1b2124',120);
   }
   function grotTurn(){
    const u=e.active;if(!u||!gid.has(u.id)||!alive(u))return false;const h=heroes();if(!h.length)return false;
@@ -251,7 +253,8 @@ export function createStage58Owner({C,authorize,isolate=()=>false,preview=()=>fa
     flags.localColumnSealAligned=true;flags.localThresholdGravityNormalized=true;sync();say('column');
    }else if(k==='threshold'){
     if(!flags.localColumnSealAligned||!flags.localThresholdGravityNormalized||flags.localBossManifested||b.units.some(x=>x.side===1&&!vanguard(x,e)))return false;
-    flags.localBossManifested=true;b.units.push(boss,vesselA,vesselB);b.honroConvoyActors=[...(b.honroConvoyActors??[]),ledger,echo];
+    flags.localBossManifested=true;b.units.push(boss,vesselA,vesselB);e.refreshActivation();
+    b.honroConvoyActors=[...(b.honroConvoyActors??[]),ledger,echo];
     rec.phase=1;rec.shadowOffset=-90;say('manifest');sync();
    }else if(k==='ledger'){
     if(phase!==3||flags.localLedgerCounterSpent||rec.nodeDead)return false;
