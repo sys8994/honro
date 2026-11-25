@@ -39,10 +39,12 @@ TRACE = """() => {
   };
   const observe=()=>{
     const combat=b.units.filter(u=>u.side===1&&(u.loadout.length||u.id==='a6-c08-boss')&&!u.summoned&&!u.honroShotTarget&&!u.honroObjectiveTarget);
-    data.peak=Math.max(data.peak,combat.filter(u=>u.hp>0&&!u.dead&&u.awake).length);
+    const awake=combat.filter(u=>u.hp>0&&!u.dead&&u.awake);
+    const bossPhase=b.honroDaedosa?.phase??null;
+    if(awake.length>data.peak){data.peak=awake.length;data.peakWitness={round:b.round,bossPhase,phase:b.phase,ids:awake.map(u=>u.id)};}
     for(const u of combat)if(!seen.has(u.id)){
       seen.add(u.id);
-      data.joins.push({id:u.id,role:u.role,source:u.honroSpawnSource??'original',round:b.round,
+      data.joins.push({id:u.id,role:u.role,source:u.honroSpawnSource??'original',round:b.round,bossPhase,
        x:u.x,y:u.y,grounded:e.grounded(u),surface:e.contactSurface(u.x,u.y-4,u.y+5)?.t.id??null});
     }
     const side=b.side===1;
@@ -60,7 +62,7 @@ TRACE = """() => {
     const action=side&&e.active?.side===1?`${b.round}/${e.active.id}`:null;
     if(action&&action!==previousActive){
       const u=e.active;
-      data.enemyTurns.push({id:u.id,round:b.round,phase:b.phase,grounded:e.grounded(u),x:u.x,y:u.y});
+      data.enemyTurns.push({id:u.id,round:b.round,bossPhase,phase:b.phase,grounded:e.grounded(u),x:u.x,y:u.y});
     }
     previousActive=action;
   };

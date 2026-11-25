@@ -18,3 +18,5 @@
 npm run build
 python game/docs/act6/mumyeongsa-p00-p10/baseline/daedosa_return.py --build "$PWD" --out /tmp/honro-58-pressure --pressure --turns 100
 ```
+
+활성 갱신을 고친 판에서는 시작 4명, 누적 16명, 최대 활성 9명, 라운드별 행동자 최대 6명, 실제 발사 18회와 체력·실드 피해 기록 34건을 확인했다. 네 원본이 R을 직접 건너 59에 라이브 및 새 컨텍스트로 들어갔다. 대도사·유지점을 쓰러뜨린 뒤 8라운드에 돌아왔으므로 11라운드 하한은 여전히 미달이다. [활성 상한 수정 후 실제 지상 판](activation-capped-ground.json) · [R 출발](activation-capped-ground.webp)

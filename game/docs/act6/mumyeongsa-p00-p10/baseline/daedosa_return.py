@@ -8,7 +8,7 @@ from playwright.sync_api import Error, sync_playwright
 import browser as base
 from cold_resume import saved_context, seeded_context, storage_hash
 from exterior_combat import TRACE
-from hall_passage import actor, march, mission_click, select, state
+from hall_passage import actor, combat_from_ceiling, march, mission_click, near, select, state
 from legacy54_live import hold, resume
 from native_b import aim, wall_trace
 from relay_live_chain import boundary_of
@@ -144,7 +144,37 @@ def all_once_east(page,report,limit=100):
             lower_turn(page,report)
     raise AssertionError({'major':foes_moved(page),'actorsEast':sorted(marked),'turns':len(report['turns'])})
 
-def play(browser,out,turns,session=None,pressure=False):
+def open_from_ceiling(page,out,report):
+    select(page,'mage')
+    near(page,3360)
+    page.keyboard.press('Control')
+    page.wait_for_function("""()=>{const e=HonroApp.engine,u=e.active;
+      return e.grounded(u)&&e.contactSurface(u.x,u.y-4,u.y+5)?.t.id.startsWith('m58-');}""",timeout=5400)
+    near(page,4172)
+    page.wait_for_function('HonroApp.engine.active.x===4380&&HonroApp.engine.grounded(HonroApp.engine.active)',timeout=6500)
+    wall=actor(page)
+    assert wall['family']=={'x':320,'y':0} and wall['normal']=={'x':-1,'y':0},wall
+    hold(page,'ArrowRight','HonroApp.engine.active.y<2716',None,5400)
+    page.wait_for_function('HonroApp.engine.active.y===2570&&HonroApp.engine.grounded(HonroApp.engine.active)',timeout=5200)
+    footing=actor(page)
+    assert footing['family']=={'x':0,'y':-320} and footing['normal']=={'x':0,'y':1},footing
+    combat=combat_from_ceiling(page,out,'opening')
+    assert any(row['event']=='impact' and row['actor']=='p-mage' and row['target'] and row['after']<row['before']
+               for row in combat['trace']),combat
+    report['upperOpening']={'wall':wall,'ceiling':footing,'combat':combat}
+    for _ in range(8):
+        action_ready(page)
+        if actor(page)['cls']=='mage':
+            break
+        lower_turn(page,report)
+    assert actor(page)['cls']=='mage'
+    hold(page,'ArrowLeft','HonroApp.engine.active.x<3960',None,5400)
+    page.wait_for_function('HonroApp.engine.active.y>2662&&HonroApp.engine.grounded(HonroApp.engine.active)',timeout=5200)
+    report['upperOpening']['dismount']=actor(page)
+    assert report['upperOpening']['dismount']['family']=={'x':0,'y':320}
+
+
+def play(browser,out,turns,session=None,pressure=False,tactic='ground',rng=None):
     ctx,page=session if session else (seeded_context(browser,58),None)
     if page is None:
         page=ctx.new_page()
@@ -155,6 +185,9 @@ def play(browser,out,turns,session=None,pressure=False):
             resume(page,58,True)
         else:
             base.dismiss_dialogue(page)
+        if rng is not None:
+            page.evaluate('seed=>{HonroApp.engine.b.rng=seed;}',rng)
+            q['controlledRng']=rng
         if pressure:
             page.evaluate(TRACE)
         march(page,3496,cls='occultist',tolerance=45)
@@ -162,6 +195,8 @@ def play(browser,out,turns,session=None,pressure=False):
         march(page,3680,cls='mage',tolerance=40)
         mission_click(page,'threshold')
         wall_trace(page)
+        if tactic=='ceiling':
+            open_from_ceiling(page,out,q)
         all_once_east(page,q,turns)
         q['winTargets']=foes_moved(page)
         march(page,3680,cls='mage',tolerance=40)
@@ -226,6 +261,8 @@ def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--build',type=Path,required=True)
     p.add_argument('--pressure',action='store_true')
+    p.add_argument('--tactic',choices=('ground','ceiling'),default='ground')
+    p.add_argument('--rng',type=int)
     p.add_argument('--out',type=Path,required=True)
     p.add_argument('--turns',type=int,default=100)
     opts=p.parse_args()
@@ -234,7 +271,7 @@ def main():
     with sync_playwright() as pw:
         browser=pw.chromium.launch(executable_path='/usr/bin/chromium',headless=True,
                                    args=['--no-sandbox','--disable-dev-shm-usage'])
-        q=play(browser,opts.out,opts.turns,pressure=opts.pressure)
+        q=play(browser,opts.out,opts.turns,pressure=opts.pressure,tactic=opts.tactic,rng=opts.rng)
         (opts.out/'r-live.json').write_text(json.dumps(q,ensure_ascii=False,indent=2)+'\n')
         print(q['status'],q.get('error',''),flush=True)
         browser.close()
