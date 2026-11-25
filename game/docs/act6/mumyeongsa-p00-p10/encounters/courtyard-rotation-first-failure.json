@@ -1,0 +1,291 @@
+{
+  "status": "FAIL",
+  "sameCheckpointHash": "71967cd69770cdf901a794fb976bdf3e4596f21314cfac364273fb1fe746dd1b",
+  "initialRng": 19388,
+  "lastRound": 13,
+  "phase": "lost",
+  "progress": {
+    "retreat": true,
+    "cliff": true,
+    "bridge": true,
+    "bell": true,
+    "soul": true,
+    "mage": true,
+    "forepaw": "guard",
+    "activated": false,
+    "cleared": false,
+    "soulPending": false,
+    "breach": 3,
+    "breachLimit": 3,
+    "lost": "posts-overrun",
+    "fronts": [
+      {
+        "id": "west-return",
+        "next": 6,
+        "of": 6,
+        "held": 1,
+        "alive": 5,
+        "spawned": 16
+      },
+      {
+        "id": "east-fault",
+        "next": 1,
+        "of": 7,
+        "held": 0,
+        "alive": 0,
+        "spawned": 5
+      }
+    ],
+    "giant": {
+      "id": "finale-giant-forepaw",
+      "alive": false,
+      "attackRound": 6
+    },
+    "approachesSecured": false
+  },
+  "peakAlive": 14,
+  "enemyQueueLimit": 8,
+  "selectedDamage": [
+    {
+      "id": "finale-west-return-s0-r3-lead",
+      "target": "p-archer",
+      "skill": "HMO01",
+      "before": 1169,
+      "after": 1169,
+      "shieldBefore": 206,
+      "shieldAfter": 150,
+      "amount": 108.42596646270715,
+      "round": 3
+    },
+    {
+      "id": "finale-west-return-s0-r3-lower",
+      "target": "p-knight",
+      "skill": "HSH01",
+      "before": 3846,
+      "after": 3846,
+      "shieldBefore": 429,
+      "shieldAfter": 410,
+      "amount": 68.6257994016461,
+      "round": 3
+    },
+    {
+      "id": "finale-west-return-s0-r3-rear",
+      "target": "p-archer",
+      "skill": "HMO02",
+      "before": 1169,
+      "after": 1169,
+      "shieldBefore": 53,
+      "shieldAfter": 8,
+      "amount": 78.05715560050828,
+      "round": 3
+    },
+    {
+      "id": "finale-east-fault-s0-r4-lead",
+      "target": "p-mage",
+      "skill": "HMO01",
+      "before": 1313.9,
+      "after": 1313.9,
+      "shieldBefore": 193,
+      "shieldAfter": 134,
+      "amount": 122.50572790281166,
+      "round": 4
+    },
+    {
+      "id": "finale-east-fault-s0-r4-knot",
+      "target": "p-mage",
+      "skill": "HSH01",
+      "before": 1313.9,
+      "after": 1313.9,
+      "shieldBefore": 134,
+      "shieldAfter": 101,
+      "amount": 68.6257994016461,
+      "round": 4
+    },
+    {
+      "id": "finale-east-fault-s0-r4-rear",
+      "target": "p-occultist",
+      "skill": "HMO02",
+      "before": 2257.2,
+      "after": 2257.2,
+      "shieldBefore": 276,
+      "shieldAfter": 233,
+      "amount": 83.93068062502786,
+      "round": 4
+    },
+    {
+      "id": "finale-giant-forepaw",
+      "target": "p-knight",
+      "skill": "HWD01",
+      "before": 3846,
+      "after": 3846,
+      "shieldBefore": 389,
+      "shieldAfter": 354,
+      "amount": 115.06193928010163,
+      "round": 6
+    }
+  ],
+  "forepawWithdrawal": {
+    "id": "finale-giant-forepaw",
+    "front": "east-fault",
+    "from": 3744.721651470509,
+    "target": 4367.5690607734805,
+    "dir": 1,
+    "reason": "guard",
+    "round": 7,
+    "distance": 612.9082373299229,
+    "exit": {
+      "x": 4357.629888800432,
+      "y": 2898.8429119331504,
+      "support": "finale-cutout-near-body",
+      "round": 7
+    }
+  },
+  "completedWithdrawalsByFront": {
+    "west-return": 15,
+    "east-fault": 10
+  },
+  "eastSpawns": [
+    {
+      "round": 4,
+      "action": "spawn",
+      "front": "east-fault",
+      "squad": 0,
+      "line": "동쪽 파열의 낮은 굽이와 암반 이음에서 원혼이 밀려 나옵니다.",
+      "id": "finale-east-fault-s0-r4",
+      "cap": 630,
+      "squadActors": [
+        {
+          "id": "finale-east-fault-s0-r4-lead",
+          "kind": "mourner",
+          "entry": [
+            6176.795580110497,
+            2273.65868631062
+          ],
+          "deck": "finale-cutout-near-body"
+        },
+        {
+          "id": "finale-east-fault-s0-r4-knot",
+          "kind": "shade",
+          "entry": [
+            6482.044198895028,
+            2122.430939226519
+          ],
+          "deck": "finale-cutout-near-body"
+        },
+        {
+          "id": "finale-east-fault-s0-r4-rear",
+          "kind": "mourner",
+          "entry": [
+            6679.558011049724,
+            2007.4496842936064
+          ],
+          "deck": "finale-cutout-near-body"
+        }
+      ],
+      "emergence": {
+        "finale-east-fault-s0-r4-lead": {
+          "actualMovement": 465.84897681014263,
+          "steps": 224
+        },
+        "finale-east-fault-s0-r4-knot": {
+          "actualMovement": 493.7299558783434,
+          "steps": 225
+        },
+        "finale-east-fault-s0-r4-rear": {
+          "actualMovement": 428.6559346529639,
+          "steps": 224
+        }
+      }
+    },
+    {
+      "round": 5,
+      "action": "spawn",
+      "front": "east-fault",
+      "squad": 1,
+      "line": "동쪽 파열의 낮은 굽이와 암반 이음에서 원혼이 밀려 나옵니다.",
+      "id": "finale-east-fault-s1-r5",
+      "cap": 340,
+      "squadActors": [
+        {
+          "id": "finale-east-fault-s1-r5-rear",
+          "kind": "shade",
+          "entry": [
+            6751.381215469613,
+            1957.4299526440407
+          ],
+          "deck": "finale-cutout-near-body"
+        }
+      ],
+      "emergence": {
+        "finale-east-fault-s1-r5-rear": {
+          "actualMovement": 340.59988077485013,
+          "steps": 164
+        }
+      }
+    },
+    {
+      "round": 6,
+      "action": "spawn",
+      "front": "east-fault",
+      "squad": 1,
+      "line": "동쪽 파열의 낮은 굽이와 암반 이음에서 원혼이 밀려 나옵니다.",
+      "id": "finale-east-fault-s1-r6",
+      "cap": 630,
+      "squadActors": [
+        {
+          "id": "finale-east-fault-s1-r6-knot",
+          "kind": "shade",
+          "entry": [
+            6212.7071823204415,
+            2255.9878979216
+          ],
+          "deck": "finale-cutout-near-body"
+        }
+      ],
+      "emergence": {
+        "finale-east-fault-s1-r6-knot": {
+          "actualMovement": 518.248986818141,
+          "steps": 225
+        }
+      }
+    }
+  ],
+  "partyAtLoss": [
+    {
+      "id": "p-archer",
+      "pos": [
+        1892.91,
+        1886.99
+      ],
+      "hp": 1720,
+      "support": "finale-cutout-west-terrace"
+    },
+    {
+      "id": "p-knight",
+      "pos": [
+        3471.02,
+        2929.54
+      ],
+      "hp": 3846,
+      "support": "finale-cutout-near-body"
+    },
+    {
+      "id": "p-occultist",
+      "pos": [
+        6302.14,
+        2211.98
+      ],
+      "hp": 2304,
+      "support": "finale-cutout-near-body"
+    },
+    {
+      "id": "p-mage",
+      "pos": [
+        6001.49,
+        2343.86
+      ],
+      "hp": 1969.9,
+      "support": "finale-cutout-near-body"
+    }
+  ]
+}

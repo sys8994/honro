@@ -89,11 +89,26 @@ def finish59(browser,page,args,q):
         if u['cls']=='archer' and not p.get('cliff'):
             goal={'skills':['A01'],'surface':'finale-cutout-west-terrace','x':522*K,'y':1871.8947026324342,'radius':32}
             act['shot']=anchor_shot(page,'archer',(1645,1775,1960),goal,['A02','A01'],act)
+        elif u['cls']=='archer' and not p.get('approachesSecured'):
+            act['westHold']=march(page,1810,cls='archer',tolerance=44)
         elif u['cls']=='mage' and not p.get('mage'):
             goal={'skills':['M01'],'surface':'finale-cutout-near-body','x':1710*K,'y':2291.3294746996403,'radius':28}
             act['shot']=anchor_shot(page,'mage',(5900,6052,6255),goal,['M01','M07'],act)
         elif u['cls']=='knight' and not p.get('bridge'):
             act['guard']=march(page,958*K,cls='knight',tolerance=54)
+        elif u['cls']=='knight' and p.get('giant') and not p.get('forepaw'):
+            if getattr(args,'forepaw','guard')=='guard':
+                act['forepawGuard']=march(page,958*K,cls='knight',tolerance=52)
+                if not (getattr(args,'touch',False) and page.locator('button[data-action="defend"]:visible').first.is_visible()):
+                    page.keyboard.press('f')
+                else:
+                    page.locator('button[data-action="defend"]:visible').first.tap(timeout=6500)
+                continue
+            giant=p['giant']['id']
+            target=page.evaluate('id=>HonroApp.engine.unit(id)?.x',giant)
+            if target:
+                act['forepawApproach']=march(page,target-100,cls='knight',tolerance=33)
+                act['shot']=shot(page,{'skills':['S03','S00'],'actor':giant})
         elif u['cls']=='knight' and p.get('activated'):
             target=result['threat']
             march(page,target-105,cls='knight',tolerance=42)
@@ -109,9 +124,12 @@ def finish59(browser,page,args,q):
             march(page,5390,cls='occultist',tolerance=45)
             act['shot']=shot(page,{'skills':['O06','O04','O01'],'actor':'qa-bell-shade'})
         elif u['cls']=='occultist' and all(p.get(k) for k in ('bridge','bell','soul','cliff','mage')) and not p.get('activated'):
-            march(page,1755*K,cls='occultist',tolerance=37)
-            page.locator('[data-act6-mission="activateGarmjin"]').click(timeout=6000)
-            act['interaction']='activateGarmjin'
+            if p.get('approachesSecured') is False or (p.get('giant') and not p.get('forepaw')):
+                act['eastHold']=march(page,1490*K,cls='occultist',tolerance=46)
+            else:
+                march(page,1755*K,cls='occultist',tolerance=37)
+                page.locator('[data-act6-mission="activateGarmjin"]').click(timeout=6000)
+                act['interaction']='activateGarmjin'
         if not act.get('shot') and not page.evaluate('HonroApp.done'):
             page.keyboard.press('f')
         page.wait_for_timeout(200)
@@ -182,7 +200,7 @@ def expose(page,context,mobile,state):
 def fight(browser,args,mobile):
     c=seeded_context(browser,59,mobile=mobile)
     page=c.new_page()
-    q={'status':'FAIL','interface':'touch' if mobile else 'keyboard','route':'advance' if args.advance else 'defend','errors':[],'turns':[]}
+    q={'status':'FAIL','interface':'touch' if mobile else 'keyboard','route':f'finish-{args.forepaw}' if args.finish else 'advance' if args.advance else 'defend','errors':[],'turns':[]}
     page.on('pageerror',lambda e:q['errors'].append(str(e)))
     try:
         resume(page,59,True,mobile=mobile)
@@ -247,6 +265,7 @@ def main():
     p.add_argument('--rounds',type=int,default=5)
     p.add_argument('--touch',action='store_true')
     p.add_argument('--finish',action='store_true')
+    p.add_argument('--forepaw',choices=['guard','strike'],default='guard')
     p.add_argument('--check-defend',action='store_true')
     p.add_argument('--advance',action='store_true')
     args=p.parse_args()
