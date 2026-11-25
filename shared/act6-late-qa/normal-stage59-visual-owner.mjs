@@ -23,7 +23,7 @@ export function attachStage59Visual({G,app,engine:e,scene,permit,verify,image,ve
  }
  function render(eng,dt=0,selected='',power=.6,charging=false,effectDt=dt,paused=false){
   const draw=()=>native.call(this,eng,dt,selected,power,charging,effectDt,paused);
-  if(this!==scene||eng!==e||!own()||b.phase!=='won'||!v.cleared()||b.projectiles?.length)return draw();
+  if(this!==scene||eng!==e||!own()||b.phase!=='won'||v.cleared?.()===false||b.projectiles?.length)return draw();
   const lease=G.HonroAttackCamera?.status?.(scene),t=performance.now();
   if(scene.manual||app.contacts?.size||lease?.manual||lease?.gesture){framed=true;last={reason:'manual'};return draw();}
   if(charging||app.dialogue||app.modal?.classList?.contains('open')||scene.storyFrame||scene.storyTween||scene.storyFrozen||
