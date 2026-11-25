@@ -37,57 +37,68 @@ def m09(page,report,attempt=0):
         walk_nudge(page,2338,-1,10)
     skill=page.locator('[data-action="combat-skill"][data-skill="M09"]')
     skill.first.click(timeout=3600)
-    target=page.evaluate("""() => {
-      const e=HonroApp.engine,u=e.active,k=HONRO_CORE.SKILLS.M09;
-      const fits=[];
-      for (const power of [.75,.64,.53,.42,.28,.82]) for(let aim=91;aim<=106;aim+=.25){
-        const p=e.predict(u,k,aim,power,undefined,true);
-        const contact=e.contactSurface(p.x,p.y-6,p.y+13);
-        if(p.terrain==='mid-contact'&&p.x>=2290&&p.x<=2312&&Math.abs(p.y-2924)<1e-7&&contact?.y===2930)
-          fits.push({aim,power,x:p.x,y:p.y,score:Math.abs(p.x-2304)+Math.abs(aim-91)*3});
+    candidates=page.evaluate("""() => {
+      const e=HonroApp.engine,u=e.active,k=HONRO_CORE.SKILLS.M09,results=[];
+      const lands=p=>p.terrain==='mid-contact'&&p.x>=2305&&p.x<=u.x-25&&Math.abs(p.y-2924)<1e-7;
+      for(let aim=90.625;aim<=109;aim+=.125)for(const power of [.42,.46,.50,.54,.58,.62,.66,.70,.74,.75,.78,.82]){
+        const at=q=>e.predict(u,k,aim,power+q,undefined,true),p=at(0);
+        if(lands(p)){
+          const stable=[.008,.015,.022,.03].filter(q=>lands(at(q))).length;
+          results.push({aim,power,x:p.x,y:p.y,score:stable*2-Math.abs(p.x-2309.5)*.25});
+        }
       }
-      return fits.sort((a,b)=>a.score-b.score)[0]??null;
+      const seen=new Set();
+      return results.sort((a,b)=>b.score-a.score).filter(p=>{
+        if(seen.has(p.aim))return false;
+        seen.add(p.aim);return true;
+      }).slice(0,10);
     }""")
-    if not target:
+    if not candidates:
         raise AssertionError("No native left relay trajectory at this contact")
-    report["target"]=target
-    pose=page.evaluate("()=>({angle:HonroApp.engine.active.angle,facing:HonroApp.engine.active.facing})")
-    diff=target["aim"]-pose["angle"]
-    if abs(diff)>1.5:
-        up=(diff>0)==(pose["facing"]>0)
-        hold(page,"ArrowUp" if up else "ArrowDown",
-             "([angle,increase])=>increase?HonroApp.engine.active.angle>=angle-.8:HonroApp.engine.active.angle<=angle+.8",
-             [target["aim"],diff>0])
-    for _ in range(4):
-        angle=page.evaluate('HonroApp.engine.active.angle')
-        if abs(angle-target['aim'])<=.23:
+    aim_power=None
+    for target in candidates:
+        pose=page.evaluate("()=>({angle:HonroApp.engine.active.angle,facing:HonroApp.engine.active.facing})")
+        diff=target["aim"]-pose["angle"]
+        if abs(diff)>1.5:
+            up=(diff>0)==(pose["facing"]>0)
+            hold(page,"ArrowUp" if up else "ArrowDown",
+                 "([angle,increase])=>increase?HonroApp.engine.active.angle>=angle-.8:HonroApp.engine.active.angle<=angle+.8",
+                 [target["aim"],diff>0])
+        for _ in range(4):
+            angle=page.evaluate('HonroApp.engine.active.angle')
+            if abs(angle-target['aim'])<=.09:
+                break
+            box=page.locator('#joystick').bounding_box()
+            x=box['x']+box['width']*.5
+            y=box['y']+box['height']*.5
+            increase=angle<target['aim']
+            sign=1 if increase==(pose['facing']<0) else -1
+            page.mouse.move(x,y)
+            page.mouse.down()
+            try:
+                page.mouse.move(x,y+sign*9)
+                page.wait_for_function('([a,up])=>up?HonroApp.engine.active.angle>=a:HonroApp.engine.active.angle<=a',
+                                       arg=[target['aim'],increase],polling=8,timeout=1500)
+            finally:
+                page.mouse.up()
+        aim_power=page.evaluate("""([attempt,candidate]) => {
+          const e=HonroApp.engine,u=e.active,k=HONRO_CORE.SKILLS.M09;
+          const choices=Array.from({length:201},(_,i)=>.42+i*.002);
+          choices.sort((a,b)=>Math.abs(a-candidate)-Math.abs(b-candidate));
+          if(attempt>0) choices.splice(0,4);
+          for (const power of choices){
+            if([0,.01,.02,.028].every(delta=>{
+              const p=e.predict(u,k,u.angle,power+delta,undefined,true);
+              return p.terrain==='mid-contact'&&p.x>=2305&&p.x<=u.x-25&&Math.abs(p.y-2924)<1e-7;
+            }))return power;
+          }
+          return null;
+        }""",[attempt,target['power']])
+        if aim_power is not None:
             break
-        box=page.locator('#joystick').bounding_box()
-        x=box['x']+box['width']*.5
-        y=box['y']+box['height']*.5
-        increase=angle<target['aim']
-        sign=1 if increase==(pose['facing']<0) else -1
-        page.mouse.move(x,y)
-        page.mouse.down()
-        try:
-            page.mouse.move(x,y+sign*9)
-            page.wait_for_function('([a,up])=>up?HonroApp.engine.active.angle>=a:HonroApp.engine.active.angle<=a',
-                                   arg=[target['aim'],increase],polling=8,timeout=1500)
-        finally:
-            page.mouse.up()
-    aim_power=page.evaluate("""attempt => {
-      const e=HonroApp.engine,u=e.active,k=HONRO_CORE.SKILLS.M09;
-      const choices=attempt===0?[.74,.71,.77,.68,.64,.59,.81]:[.81,.75,.69,.64,.59,.85,.73];
-      choices.push(...Array.from({length:52},(_,i)=>.42+i*.01));
-      for (const power of choices){
-        if([0,.01,.022].every(delta=>{
-          const p=e.predict(u,k,u.angle,power+delta,undefined,true);
-          return p.terrain==='mid-contact'&&p.x>=2292&&p.x<=2312&&Math.abs(p.y-2924)<1e-7;
-        }))return power;
-      }return null;
-    }""",attempt)
     if aim_power is None:
-        raise AssertionError('Positioned angle does not give a stable relay tip')
+        raise AssertionError('Positioned angles do not give a stable relay tip')
+    report["target"]=target
     hold(page,"Space","power=>HonroApp.charging&&HonroApp.power>=power",aim_power)
     report["input"]=page.evaluate("()=>({angle:HonroApp.engine.active.angle,power:HonroApp.power,shot:HonroApp.engine.b.shot})")
     page.wait_for_function("HonroApp.engine.b.stakes?.some(s=>s.skill==='M09'&&s.shot===HonroApp.engine.b.shot&&s.x<2325)",timeout=9000)
@@ -134,14 +145,17 @@ def play54(page,out,results):
     traces["L_fall"]=sample_walk(page,-1,2387,limit=2700)
     page.wait_for_function("HonroApp.engine.grounded(HonroApp.engine.active)",timeout=3400)
     traces["L_fall"]["landed"]=page.evaluate(FOOT)
-    at=page.evaluate(FOOT)
-    if at['x']>2362:
-        walk_nudge(page,2360,-1)
-    results['L_nudge']={"before":at,"after":page.evaluate(FOOT)}
+    start=page.evaluate(FOOT)
+    for _ in range(4):
+        at=page.evaluate(FOOT)
+        if 2356<=at['x']<=2362:
+            break
+        walk_nudge(page,2359,1 if at['x']<2359 else -1,10)
+    results['L_nudge']={"before":start,"after":page.evaluate(FOOT)}
     results["L_C"]=chart(page)
-    assert results["L_C"]["changed"]
+    assert results["L_C"]["changed"],results['L_C']['notice']
     results["C_L"]=chart(page)
-    assert results["C_L"]["changed"]
+    assert results["C_L"]["changed"],results['C_L']['notice']
     results['previousRelayAttempts']=[]
     for attempt in range(3):
         results["relayAttempt"]={}
