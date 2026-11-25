@@ -64,6 +64,8 @@ function prepare(b){const ts=G.HonroTerrainDomain?.render(b)||b.terrain||[],prio
    // Stage 30: below the play floor every canonical mass closure (mesa sides, floor) is dummy depth, not a cliff to read.
    if(!walkable&&b.honroStage===30&&b.honroCanonical===true&&b.honroCustom===false&&b.honroMapOrigin==='campaign'&&
       b.height===7200&&t.id?.startsWith('sf-')&&a.y>=7200&&z.y>=7200)continue;
+   // The quiet return sill's downhill face continues as the receiver's rock apron.
+   if(b.honroStage===59&&b.honroReturnGatePending===true&&t.id==='m59-return-gate-stone'&&dx===0&&nx>0)continue;
    // Stage 7 east: preserve the real side rim through the authored mirrored wing (1063*3.13), not its hanging collision closure.
    const east7Ink=!walkable&&b.honroStage===7&&b.honroCanonical===true&&b.honroCustom===false&&
       b.honroMapOrigin==='campaign'&&b.honroAuthoredId==='stage-7'&&t.id==='root-floor'&&

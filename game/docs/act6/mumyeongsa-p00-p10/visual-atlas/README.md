@@ -63,3 +63,5 @@ python game/docs/act6/mumyeongsa-p00-p10/baseline/visual_edges.py --build "$PWD"
 59의 첫 산문에서 양쪽 장이 공유하는 돌턱의 발 닿는 윗변은 그대로 두고, 동쪽 암면 아래에 녹청색 절리 세 면을 그렸다. 이 벡터에는 충돌이 없다. 좁은 화면에서 지지면 윗변 아래로 어두운 암면이 이어지고 바탕의 적갈색 대비가 줄었다. x3400에 실제 지지면이 끝나는 가는 수직선은 남는다. 58의 R 송신 문틀과 그래픽은 그대로다.
 
 동일한 정상 저장·카메라·화면 크기로 B 터치, B PC, 58 천장, 58 R 송신, 59 R 수신을 다시 캡처했다. 58 천장 컷은 전후 픽셀까지 일치했다. 카메라 좌표와 저장 바이트 해시는 다섯 쌍이 모두 같다. [59 수신 전](return-apron-before-plain.webp) · [수신 후](return-apron-after-plain.webp) · [충돌선 전](return-apron-before-outline.webp) · [충돌선 후](return-apron-after-outline.webp) · [다섯 시점 원자료](return-apron-seams.json)
+
+59 수신의 남은 세로선은 공용 돌턱의 끝을 그린 기본 윤곽에서 나왔다. R 수신 상태의 동쪽 수직 닫힘 면만 일반 화면의 윤곽에서 뺐다. 발이 닿는 윗면과 실제 충돌 디버그 윤곽은 남는다. 바뀐 화면에서는 끝돌 짧은 색차 뒤로 같은 암면이 이어진다. 같은 다섯 카메라와 저장 해시를 다시 대조했다. [제거 전](return-apron-after-plain.webp) · [제거 후](return-closure-plain.webp) · [같은 충돌선](return-closure-outline.webp) · [카메라·저장](return-closure-seams.json)
