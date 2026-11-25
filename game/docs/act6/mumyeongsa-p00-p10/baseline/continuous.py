@@ -103,7 +103,10 @@ def play(browser,args):
         six=transitioned(56)
         relay['new56']=cold_new(browser,six,56)
         relay['ceilingReceive']=walk_eave(page,args.out,True,'-continuous')
-        reversal56(page,args.out,relay,finish=True)
+        try:
+            reversal56(page,args.out,relay,finish=True)
+        finally:
+            write(args.out,'relay',relay)
         seven=transitioned(57)
         relay['new57']=cold_new(browser,seven,57)
         write(args.out,'relay',relay)

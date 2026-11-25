@@ -32,13 +32,18 @@ def hold(page,key,condition,arg,timeout=3600):
         page.keyboard.up(key)
 
 def m09(page,report,attempt=0):
+    if attempt:
+        x=2335+attempt
+        pose=page.evaluate(FOOT)
+        if abs(pose['x']-x)>.24:
+            walk_nudge(page,x,1 if pose['x']<x else -1,9)
     for _ in range(8):
         pose=page.evaluate(FOOT)
         if 2334<=pose['x']<=2340 and page.evaluate('HonroApp.engine.active.facing')<0:
             break
         if pose['x']<2334 or pose['x']<=2340 and page.evaluate('HonroApp.engine.active.facing')>=0:
-            walk_nudge(page,2343,1,8)
-        walk_nudge(page,2338,-1,8)
+            walk_nudge(page,2343,1,9)
+        walk_nudge(page,2338,-1,9)
     else:
         raise AssertionError({'relayPose':page.evaluate(FOOT)})
     skill=page.locator('[data-action="combat-skill"][data-skill="M09"]')
@@ -105,22 +110,35 @@ def m09(page,report,attempt=0):
     if aim_power is None:
         raise AssertionError('Positioned angles do not give a stable relay tip')
     report["target"]=target
+    report["chargePlan"]={"angle":page.evaluate('HonroApp.engine.active.angle'),"power":aim_power}
     before=page.evaluate('HonroApp.engine.b.shot')
+    page.evaluate('window.m09ChargeObserved=[]')
     page.keyboard.down('Space')
     try:
         page.wait_for_function("""min=>{
           const a=HonroApp,e=a.engine,u=e.active;
-          if(!a.charging||a.power<min-.04)return false;
-          return [0,.018,.033].every(d=>{
-            const p=e.predict(u,HONRO_CORE.SKILLS.M09,u.angle,Math.min(1,a.power+d),undefined,true);
+          const power=a.power, log=m09ChargeObserved;
+          if(log.length<90&&(log.length===0||Math.abs(log.at(-1).power-power)>.008))
+            log.push({charging:a.charging,power,angle:u.angle});
+          if(!a.charging||power<min-.06)return false;
+          return [0,.012,.022].every(d=>{
+            const p=e.predict(u,HONRO_CORE.SKILLS.M09,u.angle,Math.min(1,power+d),undefined,true);
             return p.terrain==='mid-contact'&&p.x>=2305&&p.x<=u.x-25&&Math.abs(p.y-2924)<1e-7;
           });
         }""",arg=aim_power,polling=7,timeout=3500)
-    finally:
+    except Error:
+        report['chargeObserved']=page.evaluate('m09ChargeObserved')
+        page.keyboard.press('Escape')
         page.keyboard.up('Space')
+        page.keyboard.press('Escape')
+        report['canceled']=page.evaluate("n=>!HonroApp.charging&&HonroApp.engine.b.shot===n",before)
+        assert report['canceled'],report
+        raise
+    page.keyboard.up('Space')
     report["input"]=page.evaluate("()=>({angle:HonroApp.engine.active.angle,power:HonroApp.power,shot:HonroApp.engine.b.shot})")
     report['released']=report['input']['shot']>before
-    page.wait_for_function("HonroApp.engine.b.stakes?.some(s=>s.skill==='M09'&&s.shot===HonroApp.engine.b.shot&&s.x<2325)",timeout=9000)
+    page.wait_for_function("""HonroApp.engine.b.stakes?.some(s=>s.skill==='M09'&&
+        s.shot===HonroApp.engine.b.shot&&s.x<2325&&Math.abs(s.y-2924)<1e-7)""",timeout=9000)
     return {"target":target,"shot":page.evaluate("HonroApp.engine.b.shot"),
             "stakes":page.evaluate("HonroApp.engine.b.stakes")}
 
@@ -261,31 +279,32 @@ def play54(page,out,results,touch_context=None,on_chart=None):
         on_chart(page,'54-C-return-L')
     results['previousRelayAttempts']=[]
     watch_eave(page)
-    for attempt in range(3):
+    for attempt in range(4):
         results["relayAttempt"]={}
         try:
             results["relay"]=m09(page,results["relayAttempt"],attempt)
         except (AssertionError,Error) as error:
             results['previousRelayAttempts'].append({**results['relayAttempt'],'error':str(error),'pose':page.evaluate(FOOT)})
             page.wait_for_function('HonroApp.canInput()&&HonroApp.engine.grounded(HonroApp.engine.active)',timeout=12000)
-            hit=page.evaluate("""()=>{const b=HonroApp.engine.b;return b.stakes?.some(s=>s.skill==='M09'&&s.shot===b.shot&&s.x<2325)?
+            hit=page.evaluate("""()=>{const b=HonroApp.engine.b;return b.stakes?.some(s=>s.skill==='M09'&&s.shot===b.shot&&s.x<2325&&Math.abs(s.y-2924)<1e-7)?
               {shot:b.shot,stakes:b.stakes}:null;}""")
             if not hit:
-                if attempt==2:
+                if attempt==3:
                     raise
                 continue
             results['relay']=hit
         page.screenshot(path=out/"legacy54-m09.png")
         page.wait_for_function("HonroApp.engine.b.phase==='aim' && HonroApp.engine.grounded(HonroApp.engine.active)",timeout=8500)
         traces["L_exit"]=sample_walk(page,-1,2330,1600)
-        if page.evaluate("HonroApp.engine.b.phase==='aim'&&HonroApp.engine.active.x>2324"):
-            walk_nudge(page,2318,-1,10)
+        foot=page.evaluate(FOOT)
+        if foot['phase']=='aim' and foot['support']=='mid-contact' and not 2308<=foot['x']<=2324:
+            walk_nudge(page,2316,1 if foot['x']<2308 else -1,10)
         try:
             page.wait_for_function("HonroApp.engine.b.phase==='won'||document.querySelector('[data-act6-torn-eave=send]')",timeout=2200)
             break
         except Error:
             results['previousRelayAttempts'].append({**results['relayAttempt'],'stakes':results['relay']['stakes'],'exit':traces['L_exit']['end']})
-            if attempt==2:
+            if attempt==3:
                 raise
             walk_nudge(page,2336,1,10)
     if page.locator('[data-act6-torn-eave="send"]').count():

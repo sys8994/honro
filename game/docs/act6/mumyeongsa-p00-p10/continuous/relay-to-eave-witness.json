@@ -1,0 +1,149 @@
+{
+  "status": "FAIL",
+  "error": "Page.wait_for_function: Timeout 5500ms exceeded.",
+  "relayAttempt": {
+    "target": {
+      "aim": 90.875,
+      "power": 0.75,
+      "x": 2309.1477357562353,
+      "y": 2924,
+      "score": 5.911933939058827
+    },
+    "chargePlan": {
+      "angle": 90.9626406945792,
+      "power": 0.704
+    },
+    "input": {
+      "angle": 90.9626406945792,
+      "power": 0.7299403071811746,
+      "shot": 9
+    },
+    "released": true
+  },
+  "relay": {
+    "target": {
+      "aim": 90.875,
+      "power": 0.75,
+      "x": 2309.1477357562353,
+      "y": 2924,
+      "score": 5.911933939058827
+    },
+    "shot": 9,
+    "stakes": [
+      {
+        "attackSide": 0,
+        "damageRoll": 1,
+        "id": 10,
+        "skill": "M09",
+        "owner": "p-mage",
+        "side": 0,
+        "x": 2334.6314939431586,
+        "y": 2930,
+        "rank": 1,
+        "damage": 0,
+        "shot": 9,
+        "effectBoost": 0,
+        "expires": 10
+      },
+      {
+        "attackSide": 0,
+        "damageRoll": 1,
+        "id": 11,
+        "skill": "M09",
+        "owner": "p-mage",
+        "side": 0,
+        "x": 2307.855675995269,
+        "y": 2924,
+        "rank": 1,
+        "damage": 0,
+        "shot": 9,
+        "effectBoost": 0,
+        "expires": 10
+      }
+    ]
+  },
+  "C_L": {
+    "before": {
+      "id": "p-mage",
+      "x": 2884,
+      "y": 708.96,
+      "vx": 0,
+      "vy": 0,
+      "move": 298.37423946788385,
+      "grounded": true,
+      "support": "mid-contact",
+      "phase": "aim",
+      "round": 4,
+      "chart": [
+        3200,
+        3000
+      ],
+      "gravity": {
+        "x": 0,
+        "y": 320
+      }
+    },
+    "after": {
+      "id": "p-mage",
+      "x": 2337.04,
+      "y": 2930,
+      "vx": 0,
+      "vy": 0,
+      "move": 298.37423946788385,
+      "grounded": true,
+      "support": "mid-contact",
+      "phase": "aim",
+      "round": 4,
+      "chart": [
+        3000,
+        3200
+      ],
+      "gravity": {
+        "x": 0,
+        "y": 320
+      }
+    },
+    "notice": "되돌아가는 돌턱에 뒤처진 혼이 모입니다.",
+    "changed": true
+  },
+  "previousRelayAttempts": [],
+  "last": {
+    "stage": 54,
+    "round": 5,
+    "phase": "won",
+    "active": "p-mage",
+    "gravity": {
+      "x": 0,
+      "y": -320
+    },
+    "enemyLimit": 4,
+    "queue": [],
+    "actionReason": "이동·발사 가능",
+    "actors": [
+      {
+        "id": "p-mage",
+        "x": 736,
+        "y": 900,
+        "vx": 0,
+        "vy": 0,
+        "hp": 1613.1,
+        "dead": false,
+        "embedded": false,
+        "grounded": true,
+        "support": null
+      },
+      {
+        "id": "mumyeongsa-b-wall-guard",
+        "x": 3240,
+        "y": 298.0000000000003,
+        "vx": 0,
+        "vy": 0,
+        "hp": 0,
+        "dead": true,
+        "embedded": false,
+        "grounded": false,
+        "support": null
+      }
+    ]
+  }
+}
