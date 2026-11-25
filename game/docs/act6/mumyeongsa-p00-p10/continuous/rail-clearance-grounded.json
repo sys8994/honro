@@ -1,0 +1,81 @@
+{
+  "statusRail": "PASS",
+  "result": {
+    "unsafe": {
+      "id": "p-knight",
+      "cls": "knight",
+      "side": 0,
+      "x": 3329.5466301690803,
+      "y": 3324.6989358428673,
+      "vx": 0,
+      "vy": 0,
+      "hp": 3846,
+      "maxHp": 3846,
+      "shield": 0,
+      "r": 22,
+      "h": 92,
+      "ammo": null,
+      "loadout": [
+        "S00",
+        "S01",
+        "S03"
+      ],
+      "dead": false,
+      "actorsMoved": false,
+      "move": 3797.5,
+      "grounded": true,
+      "family": {
+        "x": 0,
+        "y": 320
+      },
+      "contact": "local-lower-07-west",
+      "normal": null
+    },
+    "safe": {
+      "id": "p-knight",
+      "cls": "knight",
+      "side": 0,
+      "x": 3438.3971936053813,
+      "y": 3341.2161660418533,
+      "vx": 0,
+      "vy": 0,
+      "hp": 3846,
+      "maxHp": 3846,
+      "shield": 0,
+      "r": 22,
+      "h": 92,
+      "ammo": null,
+      "loadout": [
+        "S00",
+        "S01",
+        "S03"
+      ],
+      "dead": false,
+      "actorsMoved": false,
+      "move": 3681.9802539533603,
+      "grounded": true,
+      "family": {
+        "x": 0,
+        "y": 320
+      },
+      "contact": "local-lower-07-west",
+      "normal": null
+    },
+    "marker": {
+      "id": "stage57-rail-clearance",
+      "kind": "route",
+      "x": 3424,
+      "y": 3348.1481481481483,
+      "label": "난간 밖 안전한 발판"
+    },
+    "reason": "난간 붕괴 범위에 있는 휘겸을 안전한 발판으로 옮기십시오.",
+    "opened": true
+  },
+  "followingStatus": "FAIL",
+  "followingError": "{'target': 5260, 'actor': {'id': 'p-knight', 'cls': 'knight', 'side': 0, 'x': 5216.095844241328, 'y': 3050.272022251239, 'vx': 0, 'vy': 0, 'hp': 3846, 'maxHp': 3846, 'shield': 0, 'r': 22, 'h': 92, 'ammo': None, 'loadout': ['S00', 'S01', 'S03'], 'dead': False, 'actorsMoved': False, 'move': 3734.355760946525, 'grounded': True, 'family': {'x': 0, 'y': 320}, 'contact': 'local-lower-07-west', 'normal': None}, 'state': {'stage': 57, 'active': 'p-knight', 'phase': 'aim', 'round': 7, 'side': 0, 'shot': 24, 'flags': {'act6.firstGarmjinFailed': True, 'bellSiteEmergencyStabilized': True, 'bridgeRetreatOpened': True, 'relayMovedToFallback': True, 'act6.fallbackRelaySecured': True, 'act6.local.07.bridge-v3.open': True}, 'notice': '네 사람을 원래 돌단에서 모으기', 'actors': [{'id': 'p-archer', 'cls': 'archer', 'side': 0, 'x': 5392.551577117155, 'y': 2976, 'vx': 0, 'vy': 0, 'hp': 1720, 'maxHp': 1720, 'shield': 0, 'r': 22, 'h': 92, 'ammo': None, 'loadout': ['A01', 'A14', 'A02', 'A05'], 'dead': False, 'actorsMoved': False, 'move': 2921, 'grounded': True, 'family': {'x': 0, 'y': 320}, 'contact': 'a6-c07-stationary-stone-ward', 'normal': None}, {'id': 'p-knight', 'cls': 'knight', 'side': 0, 'x': 5216.095844241328, 'y': 3050.272022251239, 'vx': 0, 'vy': 0, 'hp': 3846, 'maxHp': 3846, 'shield': 0, 'r': 22, 'h': 92, 'ammo': None, 'loadout': ['S00', 'S01', 'S03'], 'dead': False, 'actorsMoved': False, 'move': 3734.355760946525, 'grounded': True, 'family': {'x': 0, 'y': 320}, 'contact': 'local-lower-07-west', 'normal': None}, {'id': 'p-occultist', 'cls': 'occultist', 'side': 0, 'x': 6207.337665786777, 'y': 2635.3320954894925, 'vx': 0, 'vy': 0, 'hp': 2304, 'maxHp': 2304, 'shield': 0, 'r': 22, 'h': 92, 'ammo': None, 'loadout': ['O01', 'O04', 'O03', 'O06'], 'dead': False, 'actorsMoved': False, 'move': 3132, 'grounded': True, 'family': {'x': 0, 'y': 320}, 'contact': 'local-07-08-exact-receiving-slice', 'normal': None}, {'id': 'a6-c07-optional-drift', 'cls': 'occultist', 'side': 1, 'x': 5336, 'y': 2988, 'vx': 0, 'vy': 0, 'hp': 850, 'maxHp': 850, 'shield': 0, 'r': 21, 'h': 105, 'ammo': None, 'loadout': ['LA01'], 'dead': False, 'actorsMoved': False, 'move': 550, 'grounded': True, 'family': {'x': 0, 'y': 320}, 'contact': 'a6-c07-stationary-stone-ward', 'normal': None}, {'id': 'a6-c07-ward-pressure', 'cls': 'occultist', 'side': 1, 'x': 5720, 'y': 2939.4285714285716, 'vx': 0, 'vy': 0, 'hp': 850, 'maxHp': 850, 'shield': 0, 'r': 21, 'h': 105, 'ammo': None, 'loadout': ['HGS01', 'HGS02'], 'dead': False, 'actorsMoved': False, 'move': 550, 'grounded': True, 'family': {'x': 0, 'y': 320}, 'contact': 'local-lower-07-west', 'normal': None}, {'id': 'p-mage', 'cls': 'mage', 'side': 0, 'x': 5384, 'y': 2976, 'vx': 0, 'vy': 0, 'hp': 1396.9, 'maxHp': 2050, 'shield': 0, 'r': 22, 'h': 92, 'ammo': None, 'loadout': ['M01', 'M10', 'M07'], 'dead': False, 'actorsMoved': False, 'move': 3075, 'grounded': True, 'family': {'x': 0, 'y': 320}, 'contact': 'a6-c07-stationary-stone-ward', 'normal': None}, {'id': 'a6-57-opening-1', 'cls': 'knight', 'side': 1, 'x': 1899.6077204962216, 'y': 3130.0615545692694, 'vx': 0, 'vy': 0, 'hp': 573, 'maxHp': 655, 'shield': 0, 'r': 32, 'h': 88, 'ammo': None, 'loadout': ['HBM01'], 'dead': False, 'actorsMoved': False, 'move': 550, 'grounded': True, 'family': {'x': 0, 'y': 320}, 'contact': 'local-lower-07-west', 'normal': None}, {'id': 'a6-57-opening-2', 'cls': 'knight', 'side': 1, 'x': 2028.0711493130798, 'y': 3197.7346140894515, 'vx': 0, 'vy': 0, 'hp': 655, 'maxHp': 655, 'shield': 0, 'r': 32, 'h': 88, 'ammo': None, 'loadout': ['HBM01'], 'dead': False, 'actorsMoved': False, 'move': 550, 'grounded': True, 'family': {'x': 0, 'y': 320}, 'contact': 'local-lower-07-west', 'normal': None}, {'id': 'a6-57-opening-3', 'cls': 'occultist', 'side': 1, 'x': 2838.5824848131288, 'y': 3297.132892048769, 'vx': 0, 'vy': 0, 'hp': 684, 'maxHp': 684, 'shield': 0, 'r': 24, 'h': 137, 'ammo': None, 'loadout': ['HSH01', 'HSH02'], 'dead': False, 'actorsMoved': False, 'move': 550, 'grounded': True, 'family': {'x': 0, 'y': 320}, 'contact': 'local-lower-07-west', 'normal': None}, {'id': 'a6-57-opening-4', 'cls': 'knight', 'side': 1, 'x': 3668.8866801061795, 'y': 3259.527087533181, 'vx': 0, 'vy': 0, 'hp': 868, 'maxHp': 868, 'shield': 0, 'r': 42, 'h': 139, 'ammo': None, 'loadout': ['HBM03'], 'dead': False, 'actorsMoved': False, 'move': 550, 'grounded': True, 'family': {'x': 0, 'y': 320}, 'contact': 'local-lower-07-west', 'normal': None}, {'id': 'a6-57-opening-5', 'cls': 'occultist', 'side': 1, 'x': 6700, 'y': 2839.6363636363635, 'vx': 0, 'vy': 0, 'hp': 684, 'maxHp': 684, 'shield': 0, 'r': 24, 'h': 137, 'ammo': None, 'loadout': ['HSH01', 'HSH02'], 'dead': False, 'actorsMoved': False, 'move': 550, 'grounded': True, 'family': {'x': 0, 'y': 320}, 'contact': 'local-lower-07-east', 'normal': None}, {'id': 'a6-57-occluded-bank-1', 'cls': 'occultist', 'side': 1, 'x': 4940, 'y': 3156.1428571428573, 'vx': 0, 'vy': 0, 'hp': 684, 'maxHp': 684, 'shield': 0, 'r': 24, 'h': 137, 'ammo': None, 'loadout': ['HSH01', 'HSH02'], 'dead': False, 'actorsMoved': False, 'move': 550, 'grounded': True, 'family': {'x': 0, 'y': 320}, 'contact': 'local-lower-07-west', 'normal': None}, {'id': 'a6-57-folding-ridge-1', 'cls': 'occultist', 'side': 1, 'x': 2476.593842079303, 'y': 3213.470876596078, 'vx': 0, 'vy': 0, 'hp': 684, 'maxHp': 684, 'shield': 0, 'r': 24, 'h': 137, 'ammo': None, 'loadout': ['HSH01', 'HSH02'], 'dead': False, 'actorsMoved': False, 'move': 550, 'grounded': True, 'family': {'x': 0, 'y': 320}, 'contact': 'local-lower-07-west', 'normal': None}, {'id': 'a6-57-folding-ridge-2', 'cls': 'knight', 'side': 1, 'x': 2029.2121009072953, 'y': 3198.060600259227, 'vx': 0, 'vy': 0, 'hp': 655, 'maxHp': 655, 'shield': 0, 'r': 32, 'h': 88, 'ammo': None, 'loadout': ['HBM01'], 'dead': False, 'actorsMoved': False, 'move': 550, 'grounded': True, 'family': {'x': 0, 'y': 320}, 'contact': 'local-lower-07-west', 'normal': None}, {'id': 'a6-57-folding-ridge-3', 'cls': 'knight', 'side': 1, 'x': 3874.696485255307, 'y': 3323.8426516422833, 'vx': 0, 'vy': 0, 'hp': 655, 'maxHp': 655, 'shield': 0, 'r': 32, 'h': 88, 'ammo': None, 'loadout': ['HBM01'], 'dead': False, 'actorsMoved': False, 'move': 550, 'grounded': True, 'family': {'x': 0, 'y': 320}, 'contact': 'local-lower-07-west', 'normal': None}, {'id': 'a6-57-folding-ridge-4', 'cls': 'occultist', 'side': 1, 'x': 3570, 'y': 3277.8518518518517, 'vx': 0, 'vy': 0, 'hp': 684, 'maxHp': 684, 'shield': 0, 'r': 24, 'h': 137, 'ammo': None, 'loadout': ['HSH01', 'HSH02'], 'dead': False, 'actorsMoved': False, 'move': 550, 'grounded': True, 'family': {'x': 0, 'y': 320}, 'contact': 'local-lower-07-west', 'normal': None}, {'id': 'a6-c07-optional-pressure', 'cls': 'archer', 'side': 1, 'x': 4416, 'y': 3204.190476190476, 'vx': 0, 'vy': 0, 'hp': 1200, 'maxHp': 1200, 'shield': 0, 'r': 21, 'h': 91, 'ammo': None, 'loadout': ['LA01', 'LA02'], 'dead': False, 'actorsMoved': False, 'move': 550, 'grounded': True, 'family': {'x': 0, 'y': 320}, 'contact': 'local-lower-07-west', 'normal': None}, {'id': 'a6-57-occluded-bank-2', 'cls': 'occultist', 'side': 1, 'x': 5070, 'y': 3071.1428571428573, 'vx': 0, 'vy': 0, 'hp': 684, 'maxHp': 684, 'shield': 0, 'r': 24, 'h': 137, 'ammo': None, 'loadout': ['HSH01', 'HSH02'], 'dead': False, 'actorsMoved': False, 'move': 550, 'grounded': True, 'family': {'x': 0, 'y': 320}, 'contact': 'local-lower-07-west', 'normal': None}, {'id': 'a6-57-occluded-bank-3', 'cls': 'knight', 'side': 1, 'x': 4840, 'y': 3224, 'vx': 0, 'vy': 0, 'hp': 655, 'maxHp': 655, 'shield': 0, 'r': 32, 'h': 88, 'ammo': None, 'loadout': ['HBM01'], 'dead': False, 'actorsMoved': False, 'move': 550, 'grounded': True, 'family': {'x': 0, 'y': 320}, 'contact': 'local-lower-07-west', 'normal': None}, {'id': 'local-07-gwakjin-return-keeper', 'cls': 'archer', 'side': 2, 'x': 2030.6097790989013, 'y': 3198.4599368854006, 'vx': 0, 'vy': 0, 'hp': 309, 'maxHp': 365, 'shield': 0, 'r': 21, 'h': 72, 'ammo': None, 'loadout': ['A01'], 'dead': False, 'actorsMoved': False, 'move': 1100, 'grounded': True, 'family': {'x': 0, 'y': 320}, 'contact': 'local-lower-07-west', 'normal': None}, {'id': 'a6-57-occluded-bank-4', 'cls': 'occultist', 'side': 1, 'x': 6970, 'y': 3007.0555555555557, 'vx': 0, 'vy': 0, 'hp': 684, 'maxHp': 684, 'shield': 0, 'r': 24, 'h': 137, 'ammo': None, 'loadout': ['HSH01', 'HSH02'], 'dead': False, 'actorsMoved': False, 'move': 550, 'grounded': True, 'family': {'x': 0, 'y': 320}, 'contact': 'local-lower-07-east', 'normal': None}], 'landmarks': [{'id': 'art-mumyeongsa-hall-sill', 'x': 3200, 'y': -758, 'visual': 7}]}}",
+  "retreatFlags": {
+    "act6.firstGarmjinFailed": true,
+    "bellSiteEmergencyStabilized": true,
+    "bridgeRetreatOpened": true
+  }
+}

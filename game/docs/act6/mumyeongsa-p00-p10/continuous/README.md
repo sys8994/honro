@@ -23,3 +23,9 @@ python game/docs/act6/mumyeongsa-p00-p10/baseline/continuous.py --build "$PWD" -
 다음 같은 탭은 낮은 단에서 계속해 57까지 6개 서명을 남겼다. 담허 옛 돌단에 뛰기 전 설오의 실제 발점이 `(5275.641,3041.766)`에서 더 왼쪽으로 움직이지 않았다. 기존 검사기의 x 목표 5260에서 15.64 world px 떨어져 도약을 시도하기 전에 멈췄다. 다음 검수는 이 발점도 도약 출발점으로 쓰고 실제 돌단 착지와 접힐 지형의 발점 검사는 동일하게 수행한다. [여섯 경계 해시와 첫 중단](ward-approach-first.json) · [중단 화면](ward-approach-first.webp)
 
 다음 한 탭도 57까지 실제 경계를 남겼다. 돌단에 가기 전, 난간의 안전 범위 오른쪽 경계가 x3350인데 휘겸이 `(3342.897,3328.915)`에 서 있었다. 난간 경고 입력은 정상이며 두 번째 입력에서 게임이 붕괴를 거부했다. 다음 검수는 휘겸을 오른쪽 x3424 부근의 안전한 발점으로 직접 옮긴다. [원본 해시와 금지 구간](rail-clearance-first.json) · [난간 화면](rail-clearance-first.webp)
+
+같은 보호 범위의 실제 발점 (3329.547,3324.699)에서 난간 개방을 다시 눌렀다. 휘겸을 안전한 발판으로 옮기라는 문구와 실제 바닥의 표시 (3424,3348.148)가 표시됐다. 이 입력에서는 난간의 체력이 그대로였다. 휘겸을 오른쪽 실제 발점 (3438.397,3341.216)까지 걸어서 다시 누르자 원래 난간 붕괴가 처리됐다. 이후 이 판은 돌단 합류를 통과하고 접힌 석교로 올라가는 휘겸의 별도 이동에서 멈췄다. [실제 발점·안내·거부·성공](rail-clearance-grounded.json) · [차단 화면](rail-clearance-blocked.webp) · [개방 화면](rail-clearance-safe.webp)
+
+```bash
+python game/docs/act6/mumyeongsa-p00-p10/baseline/hall_passage.py --build "$PWD" --out /tmp/honro-57-grounded-rail --case live-d --check-clearance
+```

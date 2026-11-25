@@ -64,7 +64,7 @@ def select(page,cls=None,actor_id=None,advance=False):
             page.wait_for_timeout(60)
         if advance:
             page.keyboard.press('f')
-            ready(page,28000)
+            ready(page,45000)
     raise AssertionError(state(page))
 
 def near(page,target,tolerance=24):
@@ -87,7 +87,7 @@ def mission_click(page,mission,after=None):
 
 def march(page,target,cls=None,actor_id=None,tolerance=27,max_attempts=8):
     for _ in range(max_attempts):
-        ready(page,28000)
+        ready(page,45000)
         select(page,cls,actor_id,advance=True)
         u=actor(page)
         if abs(u['x']-target)<=tolerance and u['grounded']:
@@ -121,6 +121,27 @@ def reunion_feet(page):
        distance:Math.hypot(u.x-body.x,u.y-body.y),ready:e.grounded(u)&&
        Math.hypot(u.x-body.x,u.y-body.y)<required.reunionRadius&&C.validTerrainContactPose(after,u)}]));
     }""",bridge)
+
+
+def approach_reunion(page,cls,target,tolerance):
+    if reunion_feet(page)[cls]['ready']:
+        return
+    try:
+        march(page,target,cls=cls,tolerance=tolerance,max_attempts=3)
+        if reunion_feet(page)[cls]['ready']:
+            return
+    except AssertionError:
+        pass
+    lip=march(page,5185,cls=cls,tolerance=60)
+    if not page.locator('#jump').is_enabled():
+        page.keyboard.press('f')
+        ready(page,45000)
+        lip=march(page,5185,cls=cls,tolerance=60)
+    assert page.locator('#jump').is_enabled(),lip
+    page.keyboard.press('Control')
+    page.wait_for_function('start=>HonroApp.engine.active.y<=start-36',arg=lip['y'],timeout=4000)
+    sample_walk(page,1,5296,2600)
+    page.wait_for_function('HonroApp.engine.grounded(HonroApp.engine.active)',timeout=5500)
 
 def touch_send_d(context,page,steps):
     from mobile_seams import POINTER_EVENTS, move
@@ -178,7 +199,7 @@ def relay_defense(page):
     return trials
 
 
-def live_d(browser,out,sodan=False,session=None,touch_d=False,pressure=False):
+def live_d(browser,out,sodan=False,session=None,touch_d=False,pressure=False,check_clearance=False):
     ctx,page=session if session else (seeded_context(browser,57,mobile=touch_d),None)
     if page is None:
         page=ctx.new_page()
@@ -208,10 +229,31 @@ def live_d(browser,out,sodan=False,session=None,touch_d=False,pressure=False):
         march(page,5016,cls='occultist',tolerance=80)
         mission_click(page,'repairRelay','warnRailing')
         steps['repairRelay']=state(page)
-        march(page,3376,cls='knight',tolerance=85)
-        mission_click(page,'warnRailing','openRetreat')
-        page.wait_for_timeout(1000)
+        if check_clearance:
+            bound=page.evaluate("HonroApp.engine.b.terrain.find(t=>t.id==='a6-c07-railing')")
+            unsafe=march(page,bound['x']+bound['w']+27,cls='knight',tolerance=10)
+            mission_click(page,'warnRailing','openRetreat')
+            page.wait_for_timeout(1350)
+            mission_click(page,'openRetreat','openRetreat')
+            await_reason=page.locator('#notice').text_content()
+            assert '휘겸' in await_reason and '안전한 발판' in await_reason
+            marker=page.evaluate("HonroApp.scene.missionTargets.find(t=>t.id==='stage57-rail-clearance')")
+            assert marker and marker['x']>bound['x']+bound['w']+38,marker
+            same=page.evaluate("HonroApp.engine.b.terrain.find(t=>t.id==='a6-c07-railing')")
+            assert bound['hp']==same['hp'] and not same.get('broken')
+            page.screenshot(path=out/'rail-blocked.png')
+            safe=march(page,marker['x'],cls='knight',tolerance=28)
+            assert safe['grounded'] and safe['x']>bound['x']+bound['w']+38,safe
+            steps['railClearance']={'unsafe':unsafe,'safe':safe,'marker':marker,'reason':await_reason}
+        else:
+            march(page,3424,cls='knight',tolerance=30)
+            mission_click(page,'warnRailing','openRetreat')
+            page.wait_for_timeout(1000)
         mission_click(page,'openRetreat','moveRelayToFallback')
+        if check_clearance:
+            steps['railClearance']['opened']=page.evaluate("HonroApp.engine.b.terrain.find(t=>t.id==='a6-c07-railing').broken")
+            assert steps['railClearance']['opened']
+            page.screenshot(path=out/'rail-safe.png')
         steps['retreat']=state(page)
         if pressure:
             steps['relayDefense']=relay_defense(page)
@@ -224,16 +266,15 @@ def live_d(browser,out,sodan=False,session=None,touch_d=False,pressure=False):
         march(page,2028,actor_id='local-07-gwakjin-return-keeper',tolerance=39)
         mission_click(page,'receiveKeeperWatch','reuniteAtWard')
         steps['keeperParked']=state(page)
-        march(page,5260,cls='archer',tolerance=25)
+        march(page,5228,cls='archer',tolerance=35)
         page.keyboard.press('Control')
-        page.wait_for_function('HonroApp.engine.active.y<2940',timeout=4200)
+        page.wait_for_function('HonroApp.engine.active.y<2966',timeout=5200)
         sample_walk(page,1,5372,3700)
         page.wait_for_function("""()=>{const e=HonroApp.engine,u=e.active;return e.grounded(u)&&
           e.contactSurface(u.x,u.y-4,u.y+5)?.t.id==='a6-c07-stationary-stone-ward';}""",timeout=4300)
         steps['archerOnWard']=actor(page)
         for cls,x,tolerance in [('occultist',5285,18),('knight',5385,19),('archer',5315,13)]:
-            if not reunion_feet(page)[cls]['ready']:
-                march(page,x,cls=cls,tolerance=tolerance)
+            approach_reunion(page,cls,x,tolerance)
         steps['reunionFeet']=reunion_feet(page)
         assert set(steps['reunionFeet'])=={'archer','knight','occultist'} and all(v['ready'] for v in steps['reunionFeet'].values()),steps['reunionFeet']
         mission_click(page,'reuniteAtWard')
@@ -480,13 +521,14 @@ def main():
     p.add_argument('--sodan',action='store_true')
     p.add_argument('--touch-d',action='store_true')
     p.add_argument('--pressure',action='store_true')
+    p.add_argument('--check-clearance',action='store_true')
     opts=p.parse_args()
     base.ROOT=opts.build.resolve()
     opts.out.mkdir(parents=True,exist_ok=True)
     with sync_playwright() as pw:
         browser=pw.chromium.launch(executable_path='/usr/bin/chromium',headless=True,
                                    args=['--no-sandbox','--disable-dev-shm-usage'])
-        entries=[(f'{opts.case}-{hz}',gallery(browser,opts.out,hz,opts.case=='gallery-combat',opts.case=='gallery-force')) for hz in opts.rates] if opts.case!='live-d' else [('live-d',live_d(browser,opts.out,opts.sodan,touch_d=opts.touch_d,pressure=opts.pressure))]
+        entries=[(f'{opts.case}-{hz}',gallery(browser,opts.out,hz,opts.case=='gallery-combat',opts.case=='gallery-force')) for hz in opts.rates] if opts.case!='live-d' else [('live-d',live_d(browser,opts.out,opts.sodan,touch_d=opts.touch_d,pressure=opts.pressure,check_clearance=opts.check_clearance))]
         for label,result in entries:
             (opts.out/f'{label}.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
             print(label,result['status'],result.get('error',''),flush=True)

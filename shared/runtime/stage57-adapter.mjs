@@ -75,12 +75,18 @@ export function stage57Adapter(G,{normalPort=null}={}){
     k.honroAlly=false;
    }
    const ok=ret===true||ret==='warned';
-   return {ok,label:route[key][0],reason:!ok&&key==='reuniteAtWard'?'돌단 주변에서 새 석교에 걸리지 않는 곳에 세 동행을 세우십시오.':undefined};
+   let reason=!ok&&key==='reuniteAtWard'?'돌단 주변에서 새 석교에 걸리지 않는 곳에 세 동행을 세우십시오.':undefined;
+   if(!ok&&key==='openRetreat'){
+    const blocked=mission.read().emergency.railing?.blocked??[];
+    if(blocked.length)reason=`난간 붕괴 범위에 있는 ${blocked.map(u=>u.name).join(' · ')}을 안전한 발판으로 옮기십시오.`;
+   }
+   return {ok,label:route[key][0],reason};
   }
   function project(){
    const key=act(),row=route[key],complete=ready?.won===true,failed=ready?.won===false;
    const summary=failed?'귀환 통로가 무너졌습니다.':complete?'네 사람의 실체가 이어졌습니다.':row?.[0]??'같은 길을 밟고 실체 전원을 안쪽 받침으로 이동시키십시오.';
-   return {complete,objectiveReady:complete,failed,summary,targets:row?[{id:key,kind:'route',x:row[1],label:row[0]}]:[],appActions:{mission:key,alt:key==='repairRelay'?'splitRepair':null}};
+   const safe=key==='openRetreat'?mission.read().emergency.railing?.approach:null;
+   return {complete,objectiveReady:complete,failed,summary,targets:row?[{id:key,kind:'route',x:safe?.x??row[1],y:safe?.y,label:row[0]}]:[],appActions:{mission:key,alt:key==='repairRelay'?'splitRepair':null}};
   }
   function terminal(){
    if(e.b.phase!=='won'||!ready?.won||!mission.settlement(ready))return null;

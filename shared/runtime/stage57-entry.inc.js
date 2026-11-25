@@ -84,6 +84,11 @@
       function tick57(a){
         const s=active.get(a),e=a.engine;if(e?.b?.honroStage!==57||!scope57(a,e,s)||!s.owner57)return;
         s.owner57.tick();const r=s.owner57.project();
+        const id='stage57-rail-clearance',target=r.targets?.find(t=>t.id==='openRetreat'&&Number.isFinite(t.y));
+        const targets=a.scene.missionTargets??[],present=targets.find(t=>t.id===id);
+        if(target&&(present?.x!==target.x||present?.y!==target.y)){
+          a.scene.missionTargets=[...targets.filter(t=>t.id!==id),{...target,id,label:'난간 밖 안전한 발판'}];
+        }else if(!target&&present)a.scene.missionTargets=targets.filter(t=>t.id!==id);
         if(!s.hallSill57&&e.b.honroState.flags[s.packet.bridge.required.marker]){
           const slice=s.packet.bridge.additions.terrain.find(t=>t.id===hallSill.source);
           check(slice&&same(e.b.terrain.find(t=>t.id===hallSill.source),slice),'Folded receiving slice was revised');

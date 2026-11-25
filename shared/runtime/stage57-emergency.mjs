@@ -1,6 +1,7 @@
 const phaseRows=[
  ['bellSiteEmergencyStabilized','occultist',5016],['bridgeRetreatOpened','knight',3376],['relayMovedToFallback','occultist',1992]
 ];
+const approachRange=115;
 const ids={gate:'a6-c07-railing',relay:'a6-c07-protective-relay',ward:'a6-c07-stationary-stone-ward'};
 const once=new WeakSet();
 export function mountEmergency57({G,engine:e,authorize,authority,heroes,foes,observe=()=>{},replayLoss=false}){
@@ -16,8 +17,17 @@ export function mountEmergency57({G,engine:e,authorize,authority,heroes,foes,obs
  let seconds=0,ticks=0,bellStart=false,repair=false,warningAt=null,ready=false,loss=null;
  const stamp=(kind,data={})=>{const item={kind,round:b.round,tick:ticks,...data};events.push(item);observe(item);};
  const copyBroken=t=>{for(const z of b.honroWorldTerrain)if(z.id===t.id)z.broken=true;e.invalidateTerrainCollisionIndex();};
- const grounded=(a,x,r=115)=>a&&!a.dead&&a.hp>0&&e.grounded(a)&&Math.abs(a.x-x)<=r;
+ const grounded=(a,x,r=approachRange)=>a&&!a.dead&&a.hp>0&&e.grounded(a)&&Math.abs(a.x-x)<=r;
  const native=()=>b.phase==='aim'&&b.side===0&&e.canAct()&&!b.projectiles.length;
+ function railing(){
+  const left=gate.x-38,right=gate.x+gate.w+38,top=gate.y-92,bottom=gate.y+gate.h+30;
+  const blocked=heroes.filter(u=>!u.dead&&u.x>left&&u.x<right&&u.y>top&&u.y<bottom);
+  const knight=heroes.find(u=>u.cls==='knight'),x=right+(knight?.r??22)*2+30;
+  const face=knight&&Math.abs(x-phaseRows[1][2])<=approachRange&&e.contactSurface(x,top,bottom+60);
+  const approach=face&&Number.isFinite(face.y)&&C.validTerrainContactPose(b.terrain,{...knight,x,y:face.y})
+   ?{x,y:face.y,support:face.t.id}:null;
+  return {blocked:blocked.map(u=>({id:u.id,name:u.name})),approach};
+ }
  function inspect(){
   if(loss)return;
   const bodyStillPresent=b.units.some(u=>u.id==='a6-c07-original-darmheo-body');
@@ -45,8 +55,7 @@ export function mountEmergency57({G,engine:e,authorize,authority,heroes,foes,obs
   if(f===phaseRows[1][0]){
    if(warningAt===null){warningAt=seconds;stamp('bridge-railing-warning',{x:gate.x,y:gate.y});e.fx('text',gate.x,gate.y-35,'#edcf96',20,'석교 난간 붕괴 주의');return 'warned';}
    if(seconds-warningAt<.7)return false;
-   const l=gate.x-38,r=gate.x+gate.w+38,top=gate.y-92,bottom=gate.y+gate.h+30;
-   if(heroes.some(u=>!u.dead&&u.x>l&&u.x<r&&u.y>top&&u.y<bottom))return false;
+   if(railing().blocked.length)return false;
    if(b.units.some(x=>x.id===foes[1].id))return false;
    const before=gate.hp;e.damageTerrain(gate,gate.hp+1,0,a.id);if(!gate.broken)return false;
    copyBroken(gate);b.units.push(foes[1]);stamp('retreatReached(bridge)',{spawned:foes[1].id});
@@ -95,5 +104,6 @@ export function mountEmergency57({G,engine:e,authorize,authority,heroes,foes,obs
   return enemy();
  };
  once.add(e);
- return Object.freeze({interact,inspect,read:()=>({ready,loss,events:events.slice(),structure:structure.slice(),ai:ai.slice()}),structure,ai});
+ return Object.freeze({interact,inspect,read:()=>({ready,loss,events:events.slice(),structure:structure.slice(),ai:ai.slice(),
+  railing:flags.bellSiteEmergencyStabilized&&!flags.bridgeRetreatOpened&&warningAt!==null?railing():null}),structure,ai});
 }

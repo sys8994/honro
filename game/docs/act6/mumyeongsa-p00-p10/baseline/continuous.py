@@ -107,7 +107,7 @@ def play(browser,args):
         seven=transitioned(57)
         relay['new57']=cold_new(browser,seven,57)
         write(args.out,'relay',relay)
-        approved('hall',hall_passage.live_d(browser,args.out,sodan=True,session=session))
+        approved('hall',hall_passage.live_d(browser,args.out,session=session))
         transitioned(58)
         approved('daedosa',daedosa_return.play(browser,args.out,100,session=session))
         transitioned(59)
