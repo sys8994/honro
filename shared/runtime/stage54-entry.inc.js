@@ -207,5 +207,9 @@
         s.spiritButton=btn;appUI(app).append(btn);updateSodanSpirit(s);
       }
       function updateSodanSpirit(s){
-        if(s.spiritButton)s.spiritButton.disabled=!s.spirit.canCast();
+        if(!s.spiritButton)return;
+        const reason=s.spirit.unavailableReason(),label=reason||'소단의 혼 · 주박부';
+        s.spiritButton.disabled=!!reason;
+        if(s.spiritButton.textContent!==label)s.spiritButton.textContent=label;
+        s.spiritButton.style.opacity=reason?'.88':'';
       }

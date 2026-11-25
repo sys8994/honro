@@ -98,9 +98,12 @@
         if(e?.b.honroStage!==55||!s?.owner55)return;
         const r=s.owner55.project(a,e);if(!r)return;
         if(s.button){s.button.textContent=r.summary;s.button.disabled=r.complete||r.failed;s.button.dataset.act6Binding=r.binding;s.button.dataset.act6Mark=r.targets?.[0]?.id??'';}
-        if(s.support55){s.support55.disabled=!s.seated55.available()||r.complete||r.failed;
+        if(s.support55){const reason=s.seated55.unavailableReason();
+          s.support55.disabled=!!reason||r.complete||r.failed;
           const body=e.b.units.find(u=>u.side===0&&u.cls==='occultist');
-          s.support55.textContent=body.loadout.includes(sodanSkills.body)?'소단 · 좌정한 채 호혼령 부르기':'소단 · 혼줄 유지 중 · 직접 공격과 이동 봉인';}
+          const label=body.loadout.includes(sodanSkills.body)?reason||'소단 · 좌정한 채 호혼령 부르기':'소단 · 좌정해 혼줄 유지 · 직접 공격과 이동 봉인';
+          if(s.support55.textContent!==label)s.support55.textContent=label;
+          s.support55.style.opacity=s.support55.disabled?'.88':'';}
         if((r.complete||r.failed)&&!a.done)e.checkEnd();
       }
       function terminalNormal55(a,s){

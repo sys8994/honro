@@ -29,7 +29,8 @@ console.log(JSON.stringify({'honro-first-act-profile-1':JSON.stringify(profile),
 """
 READ = """() => {
  const a=HonroApp,e=a.engine,u=e.active,s=e.unit('p-occultist');
- return {shot:e.b.shot,round:e.b.round,focus:s.focus,disabled:document.querySelector('[data-act6-sodan-spirit]').disabled,
+ const button=document.querySelector('[data-act6-sodan-spirit]');
+ return {shot:e.b.shot,round:e.b.round,focus:s.focus,disabled:button.disabled,label:button.textContent,
   active:u.id,grounded:e.grounded(u),near:e.b.units.filter(v=>v.side===1&&!v.dead&&Math.hypot(v.x-u.x,v.y-u.y)<940).map(v=>v.id),
   spiritLoadout:s.loadout,activeLoadout:u.loadout};
 }"""
@@ -53,16 +54,17 @@ def run(browser, out, low):
         assert start['grounded'] and start['near'] and start['active'] == 'p-mage', start
         wall_trace(page)
         button = page.locator(SLOT)
+        assert button.is_visible()
         used = None
         if low:
-            assert start['focus'] == 0 and start['disabled'], start
+            assert start['focus'] == 0 and start['disabled'] and start['label']=='소단의 기력이 부족합니다.', start
         else:
             assert not start['disabled'], start
             button.tap(timeout=5000)
             page.wait_for_function("nativeWall.some(r=>r.event==='impact'&&r.actor==='p-occultist'&&r.skill==='O06'&&r.after<r.before)", timeout=15000)
             ready(page, 36000)
             used = page.evaluate(READ)
-            assert used['shot'] > start['shot'] and used['disabled'], used
+            assert used['shot'] > start['shot'] and used['disabled'] and used['label']=='이 장에서 주박부를 이미 썼습니다.', used
         rect = button.bounding_box()
         page.touchscreen.tap(rect['x'] + rect['width']/2, rect['y'] + rect['height']/2)
         page.wait_for_timeout(400)

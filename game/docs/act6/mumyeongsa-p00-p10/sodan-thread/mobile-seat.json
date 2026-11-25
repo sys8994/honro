@@ -1,0 +1,42 @@
+{
+  "status": "PASS",
+  "errors": [],
+  "anchorBefore": {
+    "id": "p-occultist",
+    "x": 2688,
+    "y": 1700.3076923076924,
+    "grounded": true,
+    "hp": 2144.1,
+    "acted": true,
+    "move": 3132,
+    "support": "arrival-core-terrace",
+    "facing": 1,
+    "angle": 44
+  },
+  "seatedControl": "소단 · 좌정해 혼줄 유지 · 직접 공격과 이동 봉인",
+  "guardAtBell": {
+    "id": "p-knight",
+    "x": 2703.5706263018883,
+    "y": 1705.098654246735,
+    "grounded": true,
+    "hp": 3688.1,
+    "acted": false,
+    "move": 1272.5,
+    "support": "arrival-core-terrace",
+    "facing": 1,
+    "angle": 44
+  },
+  "anchorAfter": {
+    "id": "p-occultist",
+    "x": 2688,
+    "y": 1700.3076923076924,
+    "grounded": true,
+    "hp": 2144.1,
+    "acted": true,
+    "move": 3132,
+    "support": "arrival-core-terrace",
+    "facing": 1,
+    "angle": 44
+  },
+  "storageUnchanged": true
+}

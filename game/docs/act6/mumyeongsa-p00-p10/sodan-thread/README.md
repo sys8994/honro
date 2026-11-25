@@ -45,3 +45,25 @@ python game/docs/act6/mumyeongsa-p00-p10/baseline/sodan_acceptance.py --build "$
 ```
 
 57 일반 저장에서 담허 회수 전 O06이 차단된 것을 확인했다. 회수 뒤 동일한 기예 배열을 가진 소단이 다시 실제 O06을 적중시켰고 사용 뒤 배열도 그대로였다. 네 원본은 동일 객체로 D를 건넜으며 58 새 컨텍스트가 같은 저장 바이트를 읽었다. [57 복귀와 명중](restore-loadout.json)
+
+### P40 독립 검수표
+
+| 검수 단위 | 판정과 실제 화면 |
+|---|---|
+| 53 혼 기예와 같은 장 재탭 | 통과. 실제 O06이 맞은 뒤 버튼에 ‘이 장에서 주박부를 이미 썼습니다.’가 표시됐다. 재탭은 발사, 기력, 상태에 변화를 만들지 않았다. [사용 후](reason-used.webp) |
+| 53 기력 부족 표시 | 통과. 원본 장착을 유지한 복제 기록에서 기력만 0으로 설정했다. 적 사정권에 발을 붙인 뒤 ‘소단의 기력이 부족합니다.’가 표시됐고 탭으로 발사되지 않았다. [기력 부족](reason-focus.webp) |
+| 55 실제 모바일 좌정 | 통과. 일반 장착 기록의 390×844 화면에서 소단의 좌정한 몸·혼줄·안내를 보고, 소단 초상에 터치해도 휘겸이 실제 행동자로 유지됐다. 휘겸이 돌단 양 옆을 걸어도 소단의 x·y·접지·HP가 같다. [좌정 화면](mobile-seat.webp) · [발점·안내 원자료](mobile-seat.json) |
+| 55 복구·온전한 정렬·방치 | 통과. 실제 HLN01 피격 뒤 복구, 사선을 유도해 온전하게 정렬, 방치해 실제 패배를 분리했다. 두 승리에서 56을 라이브·새 컨텍스트로 열었다. [종터 원자료](../encounters/bell-lane/README.md) |
+| 57 소단 복귀와 다음 장 | 통과. 복귀 전 O06 제한, 복귀 후 일반 기예 슬롯의 실제 명중, 전후 동일 기예 배열과 네 원본의 D 인계, 새 58의 바이트 일치를 확인했다. [복귀 원자료](restore-loadout.json) |
+
+[혼 기예 두 모바일 판의 원자료](sodan-reasons.json) · [장착 복제판 O13 실제 소환](mobile-warden-rechecked.json) · [O13 화면](mobile-warden-rechecked.webp)
+
+기력이 없는 53과 새 O13 장착은 복제 기록으로 표본을 통제했다. 정상 성장 중 장착·기력 조합을 모두 돌리지는 않았다. 위 직접 경로 판정과는 별도다.
+
+```bash
+p=game/docs/act6/mumyeongsa-p00-p10/baseline
+python "$p/sodan_acceptance.py" --build "$PWD" --out /tmp/honro-sodan-reasons
+python "$p/mobile_bell.py" --build "$PWD" --out /tmp/honro-mobile-seat --seat-only
+python "$p/mobile_bell.py" --build "$PWD" --out /tmp/honro-mobile-warden --warden
+python "$p/hall_passage.py" --build "$PWD" --out /tmp/honro-sodan-restored --case live-d --sodan
+```

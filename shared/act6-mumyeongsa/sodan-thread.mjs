@@ -19,10 +19,15 @@ export function mountSeatedSodan({C,e,scene,body}){
   releasing&&skill?.id===sodanSkills.body&&stock.skillAllowed(skill,u);
  e.fire=(...args)=>e.active!==body&&stock.fire(...args);
  const anchored=()=>!body.dead&&body.hp>0&&body.x===pose.x&&body.y===pose.y&&e.grounded(body);
- function available(){
+ function unavailableReason(){
   const s=C.SKILLS[sodanSkills.body];
-  return anchored()&&e.canAct()&&body.loadout.includes(s.id)&&e.cooldownLeft(body,s.id)===0&&e.canAfford(s,body,.18);
+  if(!body.loadout.includes(s.id))return '호혼령이 장착되지 않았습니다.';
+  if(!anchored())return '육신이 돌단에 있을 때 부를 수 있습니다.';
+  if(!e.canAct())return '동행이 움직일 수 있을 때 부를 수 있습니다.';
+  if(e.cooldownLeft(body,s.id)!==0)return '호혼령이 돌아올 때까지 기다리세요.';
+  return e.canAfford(s,body,.18)?'':'소단의 기력이 부족합니다.';
  }
+ const available=()=>!unavailableReason();
  function release(){
   if(!available())return false;
   const b=e.b,active=b.active,acted=body.acted;
@@ -44,7 +49,7 @@ export function mountSeatedSodan({C,e,scene,body}){
   c.scale(1.07,.71);c.translate(-body.x,-body.y);
   try{return draw.call(this,c,u,...args);}finally{c.restore();}
  };
- return {anchored,available,release};
+ return {anchored,unavailableReason,release};
 }
 
 const spiritChapters=[53,54,56];
@@ -83,13 +88,15 @@ export function mountSodanSpirit({C,e,scene,hero,body,previous,stage,isWall=()=>
   spirit.y=hero.y-(wall?54:24);
   return wall;
  }
- function canCast(){
-  return rank>0&&body.hp>0&&!body.dead&&e.active===hero&&e.canAct()&&e.grounded(hero)&&
-    !e.b.projectiles.length&&!record.casts.some(c=>c.stage===stage)&&
-    funds()>=Math.min(...powers.map(power=>e.manaCost(skill,spirit,power)))&&
-    e.b.units.some(u=>u.side===1&&!u.dead&&Math.hypot(u.x-hero.x,u.y-hero.y)<940);
+ function unavailableReason(){
+  if(rank<=0||body.hp<=0||body.dead)return '소단의 혼이 주박부를 쓸 수 없습니다.';
+  if(record.casts.some(c=>c.stage===stage))return '이 장에서 주박부를 이미 썼습니다.';
+  if(funds()<Math.min(...powers.map(power=>e.manaCost(skill,spirit,power))))return '소단의 기력이 부족합니다.';
+  if(e.active!==hero||!e.canAct()||!e.grounded(hero)||e.b.projectiles.length)return '담허가 발을 붙이고 행동할 때 쓸 수 있습니다.';
+  return e.b.units.some(u=>u.side===1&&!u.dead&&Math.hypot(u.x-hero.x,u.y-hero.y)<940)?'':'적에게 혼줄이 닿는 곳에서 쓸 수 있습니다.';
  }
  const funds=()=>body.focus-threadCost(record,after);
+ const canCast=()=>!unavailableReason();
  function target(){
   const foes=new Set(e.b.units.filter(u=>u.side===1&&u.hp>0&&!u.dead).map(u=>u.id));
   const preferred=preferredTarget();
@@ -131,5 +138,5 @@ export function mountSodanSpirit({C,e,scene,hero,body,previous,stage,isWall=()=>
   try{draw.call(this,c,spirit,0);}finally{c.restore();}
   return output;
  };
- return {canCast,cast,record:()=>structuredClone(record)};
+ return {unavailableReason,cast,record:()=>structuredClone(record)};
 }

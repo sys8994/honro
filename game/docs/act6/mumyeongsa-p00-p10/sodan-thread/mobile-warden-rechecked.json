@@ -1,0 +1,56 @@
+{
+  "status": "PASS",
+  "errors": [],
+  "anchorBefore": {
+    "id": "p-occultist",
+    "x": 2688,
+    "y": 1700.3076923076924,
+    "grounded": true,
+    "hp": 2144.1,
+    "acted": true,
+    "move": 3132,
+    "support": "arrival-core-terrace",
+    "facing": 1,
+    "angle": 44
+  },
+  "seatedControl": "소단 · 좌정한 채 호혼령 부르기",
+  "guardAtBell": {
+    "id": "p-knight",
+    "x": 2725.513387148084,
+    "y": 1711.850272968641,
+    "grounded": true,
+    "hp": 3688.1,
+    "acted": false,
+    "move": 1248,
+    "support": "arrival-core-terrace",
+    "facing": 1,
+    "angle": 44
+  },
+  "support": {
+    "focus": 681,
+    "actingGuard": "p-knight",
+    "warden": [
+      {
+        "id": "summon-2",
+        "x": 2807.4592102009965,
+        "y": 1737.0643723695373,
+        "owner": "p-occultist"
+      }
+    ],
+    "shots": 1
+  },
+  "focusBefore": 751,
+  "anchorAfter": {
+    "id": "p-occultist",
+    "x": 2688,
+    "y": 1700.3076923076924,
+    "grounded": true,
+    "hp": 2144.1,
+    "acted": true,
+    "move": 3132,
+    "support": "arrival-core-terrace",
+    "facing": 1,
+    "angle": -14
+  },
+  "storageUnchanged": true
+}

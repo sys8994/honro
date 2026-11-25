@@ -49,7 +49,11 @@ def check(browser,args):
         q['anchorBefore']=pose(page,'p-occultist')
         page.locator('[data-action="select-hero"][data-id="p-occultist"]:visible').first.tap(force=True,timeout=6500)
         assert page.evaluate("HonroApp.engine.active.id==='p-knight'")
-        assert page.locator('[data-act6-sodan-body]').is_disabled() is (not args.warden)
+        seated=page.locator('[data-act6-sodan-body]')
+        assert seated.is_visible() and seated.is_disabled() is (not args.warden)
+        q['seatedControl']=seated.inner_text()
+        if not args.warden:
+            assert '좌정' in q['seatedControl'] and '이동 봉인' in q['seatedControl']
         session=ctx.new_cdp_session(page)
         walk_touch(page,session,1248)
         page.locator('#jump').tap(timeout=4200)
@@ -58,6 +62,14 @@ def check(browser,args):
         walk_touch(page,session,2650)
         q['guardAtBell']=pose(page,'p-knight')
         page.locator(f'{BELL}[data-act6-mark="reach-bell"]').tap(timeout=6500)
+        if args.seat_only:
+            walk_touch(page,session,2798)
+            q['anchorAfter']=pose(page,'p-occultist')
+            assert q['anchorAfter']==q['anchorBefore']
+            q['storageUnchanged']=original==storage_hash(base.saved_bytes(page))
+            assert q['storageUnchanged'] and not q['errors']
+            q['status']='PASS'
+            return q
         if args.warden:
             focus=page.evaluate("HonroApp.engine.unit('p-occultist').focus")
             page.locator('[data-act6-sodan-body]').tap(timeout=6500)
@@ -104,6 +116,7 @@ def main():
     p.add_argument('--build',required=True,type=Path)
     p.add_argument('--out',required=True,type=Path)
     p.add_argument('--warden',action='store_true')
+    p.add_argument('--seat-only',action='store_true')
     args=p.parse_args()
     base.ROOT=args.build.resolve()
     args.out.mkdir(parents=True,exist_ok=True)

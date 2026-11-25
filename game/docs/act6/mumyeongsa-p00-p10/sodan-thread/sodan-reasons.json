@@ -1,0 +1,158 @@
+[
+  {
+    "case": "actual-use-and-retap",
+    "before": {
+      "shot": 0,
+      "round": 1,
+      "focus": 751,
+      "disabled": false,
+      "label": "소단의 혼 · 주박부",
+      "active": "p-mage",
+      "grounded": true,
+      "near": [
+        "draft-lower-lane-guard",
+        "a6-53-opening-1",
+        "a6-53-opening-2",
+        "a6-53-gate-timber-1",
+        "a6-53-archive-balcony-1",
+        "a6-53-archive-balcony-2"
+      ],
+      "spiritLoadout": [
+        "O06"
+      ],
+      "activeLoadout": [
+        "M01",
+        "M10",
+        "M07"
+      ]
+    },
+    "afterFirst": {
+      "shot": 4,
+      "round": 2,
+      "focus": 715,
+      "disabled": true,
+      "label": "이 장에서 주박부를 이미 썼습니다.",
+      "active": "p-mage",
+      "grounded": true,
+      "near": [
+        "a6-53-opening-1",
+        "a6-53-opening-2",
+        "a6-53-gate-timber-1",
+        "a6-53-archive-balcony-1",
+        "a6-53-archive-balcony-2",
+        "a6-53-archive-balcony-3"
+      ],
+      "spiritLoadout": [
+        "O06"
+      ],
+      "activeLoadout": [
+        "M01",
+        "M10",
+        "M07"
+      ]
+    },
+    "afterDeniedTap": {
+      "shot": 4,
+      "round": 2,
+      "focus": 715,
+      "disabled": true,
+      "label": "이 장에서 주박부를 이미 썼습니다.",
+      "active": "p-mage",
+      "grounded": true,
+      "near": [
+        "a6-53-opening-1",
+        "a6-53-opening-2",
+        "a6-53-gate-timber-1",
+        "a6-53-archive-balcony-1",
+        "a6-53-archive-balcony-2",
+        "a6-53-archive-balcony-3"
+      ],
+      "spiritLoadout": [
+        "O06"
+      ],
+      "activeLoadout": [
+        "M01",
+        "M10",
+        "M07"
+      ]
+    },
+    "trace": [
+      {
+        "event": "impact",
+        "skill": "O06",
+        "actor": "p-occultist",
+        "target": "draft-lower-lane-guard",
+        "terrain": null,
+        "x": 1080.5287258544383,
+        "y": 1993.76547948067,
+        "normal": {
+          "x": 0,
+          "y": -1
+        },
+        "radius": 6,
+        "shot": 1,
+        "before": 290,
+        "after": 0,
+        "shieldBefore": 0,
+        "shieldAfter": 0
+      }
+    ],
+    "saveSHA256": "c3077702e274692890fa5b523f15addd49a3a6f721a6456c3f2647d820e15ebe"
+  },
+  {
+    "case": "low-focus-copy",
+    "before": {
+      "shot": 0,
+      "round": 1,
+      "focus": 0,
+      "disabled": true,
+      "label": "소단의 기력이 부족합니다.",
+      "active": "p-mage",
+      "grounded": true,
+      "near": [
+        "draft-lower-lane-guard",
+        "a6-53-opening-1",
+        "a6-53-opening-2",
+        "a6-53-gate-timber-1",
+        "a6-53-archive-balcony-1",
+        "a6-53-archive-balcony-2"
+      ],
+      "spiritLoadout": [
+        "O06"
+      ],
+      "activeLoadout": [
+        "M01",
+        "M10",
+        "M07"
+      ]
+    },
+    "afterFirst": null,
+    "afterDeniedTap": {
+      "shot": 0,
+      "round": 1,
+      "focus": 0,
+      "disabled": true,
+      "label": "소단의 기력이 부족합니다.",
+      "active": "p-mage",
+      "grounded": true,
+      "near": [
+        "draft-lower-lane-guard",
+        "a6-53-opening-1",
+        "a6-53-opening-2",
+        "a6-53-gate-timber-1",
+        "a6-53-archive-balcony-1",
+        "a6-53-archive-balcony-2"
+      ],
+      "spiritLoadout": [
+        "O06"
+      ],
+      "activeLoadout": [
+        "M01",
+        "M10",
+        "M07"
+      ]
+    },
+    "trace": [],
+    "saveSHA256": "cb55e437df5f526923e6844400f0cc600a188fdd76c819f55ce669185a240523"
+  }
+]
