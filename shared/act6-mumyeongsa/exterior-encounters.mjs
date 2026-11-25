@@ -19,7 +19,7 @@ function installExteriorEncounters(app,e,paused=()=>false,admit=()=>true){
     {id:'broken-arch',label:'끊어진 석교 양쪽에서 응전합니다.',at:[2890,2370],units:[['stag','westArch',3000,2340],['shade','eastArch',3880,2280],['hound','eastArch',4145,2380]]},
     {id:'bell-approach',label:'낮은 종터 앞과 퇴로를 지키던 혼이 모입니다.',at:[4300,3890],units:[['shade','return',4480,3807],['hound','return',4620,3685],['shade','return',4710,3605],['stag','lowBridge',3740,4330]]},
    ]},
-  53:{active:6,attacks:4,sites:{floor:'south',library:'library-balcony',beam:'sanctuary-beam'},
+  53:{active:6,attacks:4,roomReach:690,sites:{floor:'south',library:'library-balcony',beam:'sanctuary-beam'},
    initial:[['hound','floor',740,2390],['shade','library',1320,1910],['stag','floor',1985,1590]],
    waves:[
     {id:'gate-timber',label:'산문 뒤에서 바닥을 긁는 소리가 납니다.',at:[670,2390],units:[['hound','floor',970,2200],['shade','floor',1140,2075],['shade','library',1005,2040]]},
@@ -97,7 +97,8 @@ function installExteriorEncounters(app,e,paused=()=>false,admit=()=>true){
   if(e.active?.side===0&&!e.active.summoned)anchor=e.active;
   const dist=u=>anchor?Math.hypot(u.x-anchor.x,(u.y-anchor.y)*.85):Infinity;
   const priority=e.unit(plan.priority),localBoss=priority&&e.heroesAlive().some(u=>Math.hypot(u.x-priority.x,(u.y-priority.y)*.8)<1250);
-  const near=paused()?[]:b.units.filter(alive).filter(u=>u===priority&&localBoss||dist(u)<1250||u.aggroUntil>=b.round&&dist(u)<1600);
+  const reach=plan.roomReach??1250,chase=plan.roomReach?reach+160:1600;
+  const near=paused()?[]:b.units.filter(alive).filter(u=>u===priority&&localBoss||dist(u)<reach||u.aggroUntil>=b.round&&dist(u)<chase);
   near.sort((a,z)=>Number(z===priority)-Number(a===priority)||dist(a)-dist(z)||a.id.localeCompare(z.id));
   eligible=new Set(near.slice(0,plan.active));
   for(const u of b.units.filter(alive))u.awake=eligible.has(u);

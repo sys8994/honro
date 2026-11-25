@@ -1,0 +1,40 @@
+{
+  "error": "{'ok': False, 'reason': '서로 연결된 축지진목에 다가가세요.', 'stakes': []}",
+  "gate": {
+    "ok": false,
+    "reason": "서로 연결된 축지진목에 다가가세요.",
+    "stakes": []
+  },
+  "round": 8,
+  "phase": "aim",
+  "exit": {
+    "id": "p-mage",
+    "cls": "mage",
+    "side": 0,
+    "level": 25,
+    "hp": 1661.9,
+    "maxHp": 2050,
+    "loadout": [
+      "M01",
+      "M10",
+      "M07"
+    ],
+    "pos": [
+      2708.35,
+      1060
+    ],
+    "h": 92,
+    "r": 22,
+    "awake": true,
+    "dead": false,
+    "airborne": false,
+    "grounded": true,
+    "validContact": true,
+    "support": "south",
+    "fixed": false,
+    "objective": false,
+    "role": "mage",
+    "summoned": false,
+    "ally": false
+  }
+}

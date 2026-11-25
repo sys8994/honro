@@ -6,5 +6,7 @@
 
 ```bash
 python game/docs/act6/mumyeongsa-p00-p10/baseline/hall_encounters.py --build "$PWD" --out /tmp/honro-53-pressure --stage 53
-python game/docs/act6/mumyeongsa-p00-p10/baseline/hall_encounters.py --build "$PWD" --out /tmp/honro-54-pressure --stage 54 --b-proof /tmp/b-receipt.json
+python game/docs/act6/mumyeongsa-p00-p10/baseline/hall_encounters.py --build "$PWD" --out /tmp/honro-54-pressure --stage 54 --b-proof game/docs/act6/mumyeongsa-p00-p10/visual-atlas/capture-input-b.json
 ```
+
+53 재현에서 여덟 번째 라운드에 실제 발점이 맞았지만 두 진목이 모두 사라진 것을 확인했다. 플레이어 설치물을 처리하는 기존 유효기간 부여가 장 소유의 고정 통로에도 적용되었다. 고정 통로의 정확히 두 진목을 구분했다. 53 방 세 곳의 접지 거리 범위도 조정해 후방 적이 멀어지면 살아 있는 몸을 유지한 채 다음 방에 자리가 생기도록 했다. 변경 후 같은 일반 앱에서 시작 5명, 누적 12명, 활성 최대 6과 라운드 공격 큐 최대 4를 확인했다. 목진목 11·12를 원래 발점에서 사용한 뒤 실제 M09와 공용 B를 밟아 54 새 저장을 읽었다. 이 판은 빠른 경로로, 장기 대치 후 재통과와 8라운드 하한은 추가 검수 중이다. [TTL 실패](53-expired-gates.json) · [12명 실전과 새 54](53-retained-route.json)

@@ -21,7 +21,7 @@ export function createStage53PhysicalActions({C, authenticate, entryX=425, passa
   if(![lower,upper].every(id=>b.terrain.filter(t=>t.id===id).length===1))return false;
   // These are two visible retained pieces of the authored passage, not an
   // invisible teleport. Native Engine owns useGate's check and movement.
-  const control=(id,surface,x)=>({id,x,y:C.topAt(b.terrain.find(t=>t.id===surface),x),side:0,skill,rank:1,owner:u.id,hp:90,r:13,h:36});
+  const control=(id,surface,x)=>({id,x,y:C.topAt(b.terrain.find(t=>t.id===surface),x),side:0,skill,rank:1,owner:u.id,hp:90,r:13,h:36,authoredPassage:true});
   const pair=[control(11,lower,passageX),control(12,upper,2640)];
   if(pair.some(s=>!Number.isFinite(s.y)))return false;
   for (const s of pair) if(!C.validTerrainContactPose(b.terrain,{...u,x:s.x,y:s.y}))return false;

@@ -27,3 +27,4 @@ stage,scenario,input,initial_rng,reported_opening,reported_cumulative,peak_awake
 58,alternate wall and ceiling clear after activation cap,desktop,19388,4,18,9,6,,10,,0,,FAIL_ROUND_FLOOR,hall-pressure/activation-capped-ceiling.json,"Actual ceiling M01 then normal gravity, three phases, native R and new 59."
 54,three galleries on lower route after native B,desktop,19388,4,13,6,4,,13,,1,,FAIL_PLAYER_LOSS,interior-pressure/54-first.json,13 real enemies reached; Damheo died before M09.
 53,all three pressure sites before upper passage,desktop,19388,5,7,6,4,,8,,0,,FAIL_ROUTE,interior-pressure/53-first.json,"Real combat, seven entered. Upper passage attempt did not land."
+53,three rooms with their fixed passages,desktop,19388,5,12,6,4,,4,,0,,PASS_ROUTE,interior-pressure/53-retained-route.json,"Retained M09 pair had no combat TTL, native M09 and B; below proposed round floor."

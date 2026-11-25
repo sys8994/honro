@@ -480,6 +480,7 @@ export function tickRedesign(e:Engine,dt:number){
   }
  }
  for(const z of [...(b.stakes||[])]){
+  if(z.skill==='M09'&&z.authoredPassage===true)continue;
   // Old saves acquire a finite lifetime without consuming their remaining use.
   z.expires??=b.round+stakeDuration(z.skill,z.rank);
   if(z.expires!==undefined&&b.round>=z.expires){b.stakes=b.stakes!.filter(s=>s.id!==z.id);continue;}

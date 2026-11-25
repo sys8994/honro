@@ -471,7 +471,7 @@ export interface Battle {
     practiceCombat?: boolean;
     skillRevision?: number;
     cast?: {owner:string;skill:string;shot:number;cost:number;enemyDamage:number;refunded?:boolean};
-    stakes?: (DamageOrigin & {equipmentHealScale?:number;effectBoost?:number;id:number;skill:string;owner:string;side:Side;x:number;y:number;rank:number;damage:number;shot:number;active?:boolean;expires?:number;lastTriggerRound?:number;usedRounds?:Record<string,number>;inside?:string[];crossed?:Record<string,string>;budgetTurns?:Record<string,string>})[];
+    stakes?: (DamageOrigin & {equipmentHealScale?:number;effectBoost?:number;id:number;skill:string;owner:string;side:Side;x:number;y:number;rank:number;damage:number;shot:number;active?:boolean;expires?:number;authoredPassage?:true;lastTriggerRound?:number;usedRounds?:Record<string,number>;inside?:string[];crossed?:Record<string,string>;budgetTurns?:Record<string,string>})[];
     physics?:PhysicsEnvironment;
     summonTurn?:{queue:string[];index:number;stage:'approach'|'attack'|'wait';elapsed:number;hold:number;start?:Vec;destination?:Vec;targetId?:string;returnActive:string;practice:boolean;afterActor?:boolean};
     occultTraps?: (DamageOrigin & {autonomous?:boolean;id:number;x:number;y:number;owner:string;skill:string;rank:number;damage:number;expires:number})[];

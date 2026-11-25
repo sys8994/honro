@@ -30,8 +30,8 @@
 
 ```bash
 npm run build
-python game/docs/act6/mumyeongsa-p00-p10/baseline/visual_edges.py --build "$PWD" --out /tmp/honro-hull --b-proof /tmp/b-receipt.json --d-proof /tmp/d-receipt.json
-python game/docs/act6/mumyeongsa-p00-p10/baseline/visual_edges.py --build "$PWD" --out /tmp/honro-seams --seams --b-proof /tmp/b-receipt.json --d-proof /tmp/d-receipt.json --r-proof game/docs/act6/mumyeongsa-p00-p10/mobile-seams/captured-r-source.json
+python game/docs/act6/mumyeongsa-p00-p10/baseline/visual_edges.py --build "$PWD" --out /tmp/honro-hull --b-proof game/docs/act6/mumyeongsa-p00-p10/visual-atlas/capture-input-b.json --d-proof game/docs/act6/mumyeongsa-p00-p10/visual-atlas/capture-input-d.json
+python game/docs/act6/mumyeongsa-p00-p10/baseline/visual_edges.py --build "$PWD" --out /tmp/honro-seams --seams --b-proof game/docs/act6/mumyeongsa-p00-p10/visual-atlas/capture-input-b.json --d-proof game/docs/act6/mumyeongsa-p00-p10/visual-atlas/capture-input-d.json --r-proof game/docs/act6/mumyeongsa-p00-p10/mobile-seams/captured-r-source.json
 ```
 
 B 입력은 표준 53 일반 저장에서 실제 진목과 B를 통과해 작성한 `checkpoint54`를 옮긴 JSON, D 입력은 표준 57에서 실제 네 몸이 통과한 `baseline/interior_join.py`의 `exterior.checkpoint58`을 옮긴 JSON이다. 새 코드에서도 저장 원문을 바꾸지 않고 열 수 있다.
