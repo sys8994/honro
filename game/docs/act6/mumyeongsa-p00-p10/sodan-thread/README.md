@@ -33,3 +33,13 @@ python game/docs/act6/mumyeongsa-p00-p10/baseline/relay_live_chain.py --build "$
 python game/docs/act6/mumyeongsa-p00-p10/baseline/mobile_bell.py --build "$PWD" --out /tmp/honro-sodan-mobile
 python game/docs/act6/mumyeongsa-p00-p10/baseline/mobile_bell.py --build "$PWD" --out /tmp/honro-sodan-warden --warden
 ```
+
+### 53 터치에서 재사용 및 기력 부족 차단
+
+390×844에서 일반 쉼터로 53을 열고 실제 조이스틱으로 적의 사정권에 들어갔다. 평상 기록에서는 주박부를 눌러 O06 실제 명중을 확인한 뒤 방어 턴이 돌아와 같은 위치를 다시 탭했다. 공격 수와 혼 기력, 장착 목록이 재탭 전후 정확히 같았다. 비교판은 같은 53 기록을 격리 복제하고 보관된 소단의 시작 기력만 0으로 맞췄다. 해당 복제판에서 적과 담허가 접지한 상태로 버튼이 비활성화됐고 입력 뒤 실제 발사 수가 그대로였다. 두 판 모두 일반 저장 바이트와 담허의 기예 목록을 보존했다. 기력 고갈 자체를 정상 성장 플레이로 재현한 기록은 아니다.
+
+[기력·발사·장착 원자료](sodan-acceptance.json) · [사용 후 재탭](actual-use-and-retap.webp) · [기력이 없는 복제판](low-focus-copy.webp)
+
+```bash
+python game/docs/act6/mumyeongsa-p00-p10/baseline/sodan_acceptance.py --build "$PWD" --out /tmp/honro-sodan-acceptance
+```

@@ -125,6 +125,7 @@ def live_d(browser,out,sodan=False,session=None):
             base.dismiss_dialogue(page)
         steps['initial']=state(page)
         if sodan:
+            initial_loadout=actor(page,'occultist')['loadout']
             assert not page.evaluate("HonroApp.engine.skillAllowed(HONRO_CORE.SKILLS.O06,HonroApp.engine.unit('p-occultist'))")
         select(page,'occultist')
         mission_click(page,'warnBell','repairRelay')
@@ -168,6 +169,7 @@ def live_d(browser,out,sodan=False,session=None):
             select(page,'occultist')
             assert page.evaluate("HonroApp.engine.skillAllowed(HONRO_CORE.SKILLS.O06,HonroApp.engine.active)")
             assert not page.evaluate("HonroApp.engine.active.fixed")
+            assert actor(page)['loadout']==initial_loadout
             wall_trace(page)
             spec=page.evaluate("""()=>{
               const e=HonroApp.engine,u=e.active,s=HONRO_CORE.SKILLS.O06;
@@ -183,6 +185,8 @@ def live_d(browser,out,sodan=False,session=None):
             page.wait_for_function("nativeWall.some(p=>p.event==='impact'&&p.actor==='p-occultist'&&p.skill==='O06'&&p.target?.startsWith('a6-c07-'))",timeout=12000)
             steps['sodanAfterReunion']=page.evaluate('nativeWall')
             ready(page,30000)
+            steps['restoredLoadout']={'before':initial_loadout,'after':actor(page,'occultist')['loadout']}
+            assert steps['restoredLoadout']['after']==initial_loadout
         page.evaluate("window.dOriginals=new Map(HonroApp.engine.b.units.filter(u=>u.side===0&&!u.summoned).map(u=>[u.id,u]))")
         for cls,x in [('occultist',6200),('knight',6090),('mage',5992),('archer',5872)]:
             select(page,cls,advance=True)

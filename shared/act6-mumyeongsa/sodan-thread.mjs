@@ -73,6 +73,7 @@ export function mountSodanSpirit({C,e,scene,hero,body,previous,stage,isWall=()=>
  const after=stage===56?54:0;
  const byId=e.unit.bind(e),fire=e.fire.bind(e),draw=scene.unitBody;
  const skill=C.SKILLS[sodanSkills.spirit],rank=body.ranks[skill.id]??0;
+ const powers=[.42,.61,.29,.78];
  const spirit={...structuredClone(body),loadout:[skill.id],ranks:{[skill.id]:rank},equipmentIds:[],gearBonuses:{},gearStats:undefined,
   equipmentState:{version:1},fixed:true,acted:false,airborne:false,jumping:false,vx:0,vy:0};
  e.unit=id=>id===spirit.id?spirit:byId(id);
@@ -84,13 +85,16 @@ export function mountSodanSpirit({C,e,scene,hero,body,previous,stage,isWall=()=>
  }
  function canCast(){
   return rank>0&&body.hp>0&&!body.dead&&e.active===hero&&e.canAct()&&e.grounded(hero)&&
-    !e.b.projectiles.length&&!record.casts.some(c=>c.stage===stage)&&e.b.units.some(u=>u.side===1&&!u.dead&&Math.hypot(u.x-hero.x,u.y-hero.y)<940);
+    !e.b.projectiles.length&&!record.casts.some(c=>c.stage===stage)&&
+    funds()>=Math.min(...powers.map(power=>e.manaCost(skill,spirit,power)))&&
+    e.b.units.some(u=>u.side===1&&!u.dead&&Math.hypot(u.x-hero.x,u.y-hero.y)<940);
  }
+ const funds=()=>body.focus-threadCost(record,after);
  function target(){
   const foes=new Set(e.b.units.filter(u=>u.side===1&&u.hp>0&&!u.dead).map(u=>u.id));
   const preferred=preferredTarget();
   let other=null;
-  for(const power of [.42,.61,.29,.78]){
+  for(const power of powers){
    if(!e.canAfford(skill,spirit,power))continue;
    for(let angle=-80;angle<=260;angle+=5){
     const hits=e.predict(spirit,skill,angle,power,undefined,true);
@@ -104,8 +108,7 @@ export function mountSodanSpirit({C,e,scene,hero,body,previous,stage,isWall=()=>
  function cast(){
   if(!canCast())return false;
   position();
-  spirit.focus=body.focus-threadCost(record,after);
-  if(spirit.focus<0)return false;
+  spirit.focus=funds();
   const aim=target();
   if(!aim)return false;
   const b=e.b,before=spirit.focus,active=b.active;
