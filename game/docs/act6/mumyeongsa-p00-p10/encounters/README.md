@@ -97,3 +97,12 @@ p=game/docs/act6/mumyeongsa-p00-p10
 python "$p/baseline/daedosa_return.py" --build "$PWD" --out /tmp/honro-58-exposed-ground --pressure --tactic ground-guard --turns 76
 python "$p/baseline/daedosa_return.py" --build "$PWD" --out /tmp/honro-58-signature-upper --pressure --tactic ceiling
 ```
+
+55의 31717·46183 일반 복구 판은 같은 좌정·차폐 배치에서 각각 24명·12라운드와 24명·14라운드였다. 두 판 모두 초기 10명, 최대 활성 10명·공격 순서 7명에서 실제 피격·소단의 복구·정렬을 거쳐 56 라이브와 독립 저장을 열었다. 적 발사는 72·88회, 피해 처리 66·75건이었다. 기본 시드 26명·12라운드와 같은 제약에서 실행했다. [31717](bell-lane/controlled-repair-31717.json) · [46183](bell-lane/controlled-repair-46183.json)
+
+```bash
+p=game/docs/act6/mumyeongsa-p00-p10
+for rng in 31717 46183; do
+  python "$p/baseline/relay_live_chain.py" --build "$PWD" --out "/tmp/honro-55-controlled-$rng" --bell-only --bell-case repair --pressure --rng "$rng"
+done
+```

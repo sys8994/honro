@@ -1,0 +1,7342 @@
+{
+  "controlledRng": 46183,
+  "battle55Actions": [
+    {
+      "approach": {
+        "id": "p-knight",
+        "x": 2678.9419973971358,
+        "y": 1697.5206145837342,
+        "grounded": true,
+        "hp": 3688.1,
+        "acted": false,
+        "move": 1243,
+        "support": "arrival-core-terrace",
+        "facing": 1,
+        "angle": 44
+      }
+    },
+    {
+      "guardAtWest": {
+        "id": "p-knight",
+        "x": 1490.9086895557552,
+        "y": 1331.971904478694,
+        "grounded": true,
+        "hp": 3688.1,
+        "acted": false,
+        "move": 0,
+        "support": "arrival-core-terrace",
+        "facing": -1,
+        "angle": 136
+      }
+    },
+    {
+      "defend": "p-archer",
+      "binding": "stable"
+    },
+    {
+      "rebind": {
+        "id": "p-occultist",
+        "x": 2688,
+        "y": 1700.3076923076924,
+        "grounded": true,
+        "hp": 2024.1,
+        "acted": true,
+        "move": 3132,
+        "support": "arrival-core-terrace",
+        "facing": 1,
+        "angle": 44
+      }
+    },
+    {
+      "archerShot": {
+        "id": "A01",
+        "angle": 76,
+        "power": 0.44
+      },
+      "priorGate": {
+        "id": "draft-pressure-0",
+        "x": 2112,
+        "y": 1523.076923076923,
+        "grounded": true,
+        "hp": 480,
+        "acted": false,
+        "move": 550,
+        "support": "arrival-core-terrace",
+        "facing": 1,
+        "angle": -14.301521309708837
+      }
+    },
+    {
+      "archerShot": {
+        "id": "A01",
+        "angle": 76,
+        "power": 0.44
+      },
+      "priorGate": {
+        "id": "draft-pressure-0",
+        "x": 2112,
+        "y": 1523.076923076923,
+        "grounded": true,
+        "hp": 480,
+        "acted": false,
+        "move": 550,
+        "support": "arrival-core-terrace",
+        "facing": 1,
+        "angle": -14.301521309708837
+      }
+    },
+    {
+      "defend": "p-knight",
+      "binding": "secured"
+    },
+    {
+      "archerShot": {
+        "id": "A01",
+        "angle": 76,
+        "power": 0.44
+      },
+      "priorGate": {
+        "id": "draft-pressure-0",
+        "x": 2112,
+        "y": 1523.076923076923,
+        "grounded": true,
+        "hp": 374,
+        "acted": false,
+        "move": 550,
+        "support": "arrival-core-terrace",
+        "facing": 1,
+        "angle": 17.883831257598732
+      }
+    },
+    {
+      "defend": "p-knight",
+      "binding": "secured"
+    },
+    {
+      "archerShot": {
+        "id": "A01",
+        "angle": 76,
+        "power": 0.44
+      },
+      "priorGate": {
+        "id": "draft-pressure-0",
+        "x": 2112,
+        "y": 1523.076923076923,
+        "grounded": true,
+        "hp": 265,
+        "acted": false,
+        "move": 550,
+        "support": "arrival-core-terrace",
+        "facing": 1,
+        "angle": 17.883831257598732
+      }
+    },
+    {
+      "guardFinish": null,
+      "priorGate": {
+        "id": "draft-pressure-0",
+        "x": 2112,
+        "y": 1523.076923076923,
+        "grounded": true,
+        "hp": 158,
+        "acted": false,
+        "move": 550,
+        "support": "arrival-core-terrace",
+        "facing": 1,
+        "angle": 17.883831257598732
+      }
+    },
+    {
+      "guardFinish": {
+        "id": "S03",
+        "angle": 158.32899341261296,
+        "power": 0.95
+      },
+      "priorGate": {
+        "id": "draft-pressure-0",
+        "x": 2112,
+        "y": 1523.076923076923,
+        "grounded": true,
+        "hp": 158,
+        "acted": false,
+        "move": 550,
+        "support": "arrival-core-terrace",
+        "facing": 1,
+        "angle": 17.883831257598732
+      }
+    },
+    {
+      "defend": "p-archer",
+      "binding": "secured"
+    },
+    {
+      "defend": "p-archer",
+      "binding": "secured"
+    },
+    {
+      "defend": "p-archer",
+      "binding": "secured"
+    },
+    {
+      "defend": "p-archer",
+      "binding": "secured"
+    },
+    {
+      "defend": "p-archer",
+      "binding": "secured"
+    },
+    {
+      "defend": "p-archer",
+      "binding": "secured"
+    },
+    {
+      "defend": "p-archer",
+      "binding": "secured"
+    },
+    {
+      "defend": "p-archer",
+      "binding": "secured"
+    },
+    {
+      "align": {
+        "id": "p-knight",
+        "x": 2650.550290339656,
+        "y": 1688.784704719894,
+        "grounded": true,
+        "hp": 1127,
+        "acted": false,
+        "move": 3965.5,
+        "support": "arrival-core-terrace",
+        "facing": -1,
+        "angle": 105.8307999999959
+      }
+    }
+  ],
+  "keeperEntry": {
+    "id": "draft-pressure-0",
+    "x": 2112,
+    "y": 1523.076923076923,
+    "grounded": true,
+    "hp": 480,
+    "acted": false,
+    "move": 550,
+    "support": "arrival-core-terrace",
+    "facing": -1,
+    "angle": 136
+  },
+  "seatedEntry": {
+    "id": "p-occultist",
+    "x": 2688,
+    "y": 1700.3076923076924,
+    "grounded": true,
+    "hp": 2144.1,
+    "acted": true,
+    "move": 3132,
+    "support": "arrival-core-terrace",
+    "facing": 1,
+    "angle": 44
+  },
+  "frontActions": [
+    {
+      "position": {
+        "id": "p-knight",
+        "x": 1470.861930369687,
+        "y": 1325.8036708829807,
+        "grounded": true,
+        "hp": 3801,
+        "acted": false,
+        "move": 3342.5,
+        "support": "arrival-core-terrace",
+        "facing": -1,
+        "angle": 158.7353999999989
+      },
+      "actualInput": {
+        "id": "S03",
+        "angle": 143.37857713195322,
+        "power": 0.9,
+        "target": "draft-pressure-3",
+        "score": 796
+      }
+    },
+    {
+      "position": {
+        "id": "p-knight",
+        "x": 1852.2177548497439,
+        "y": 1443.143924569152,
+        "grounded": true,
+        "hp": 3731,
+        "acted": false,
+        "move": 3682,
+        "support": "arrival-core-terrace",
+        "facing": 1,
+        "angle": 37.39080000000146
+      },
+      "actualInput": {
+        "id": "S03",
+        "angle": -9.345690982951636,
+        "power": 0.9,
+        "target": "a6-55-outer-ward-3",
+        "score": 684
+      }
+    },
+    {
+      "position": {
+        "id": "p-knight",
+        "x": 2183.3951813718986,
+        "y": 1545.0446711913535,
+        "grounded": true,
+        "hp": 3657,
+        "acted": false,
+        "move": 3734.5,
+        "support": "arrival-core-terrace",
+        "facing": 1,
+        "angle": -10.144599999997451
+      },
+      "actualInput": {
+        "id": "S03",
+        "angle": -10.913823102779155,
+        "power": 0.9,
+        "target": "a6-55-bell-descent-3",
+        "score": 684
+      }
+    },
+    {
+      "position": {
+        "id": "p-knight",
+        "x": 1208.8632373037185,
+        "y": 2965.5374328915345,
+        "grounded": false,
+        "hp": 2838,
+        "acted": false,
+        "move": 2579.499999999999,
+        "support": null,
+        "facing": 1,
+        "angle": -10.144599999997439
+      },
+      "actualInput": null
+    },
+    {
+      "position": {
+        "id": "p-knight",
+        "x": 953.8,
+        "y": 2623.425,
+        "grounded": true,
+        "hp": 2068,
+        "acted": false,
+        "move": 2432.499999999999,
+        "support": "west-lower-branch",
+        "facing": -1,
+        "angle": 190.14459999999744
+      },
+      "actualInput": {
+        "id": "S03",
+        "angle": 137.00145322571385,
+        "power": 0.9,
+        "target": "a6-55-outer-ward-1",
+        "score": 684
+      }
+    },
+    {
+      "position": {
+        "id": "p-knight",
+        "x": 1660.3632373037185,
+        "y": 1384.111765324221,
+        "grounded": true,
+        "hp": 1298,
+        "acted": false,
+        "move": 3366.999999999999,
+        "support": "arrival-core-terrace",
+        "facing": 1,
+        "angle": 42.55540000000269
+      },
+      "actualInput": {
+        "id": "S00",
+        "angle": -17.96517578870833,
+        "power": 0.9,
+        "target": "a6-55-bell-descent-2",
+        "score": 655
+      }
+    },
+    {
+      "position": {
+        "id": "p-knight",
+        "x": 2068.48087402799,
+        "y": 1509.686422777843,
+        "grounded": true,
+        "hp": 1127,
+        "acted": false,
+        "move": 3654,
+        "support": "arrival-core-terrace",
+        "facing": 1,
+        "angle": -18.409199999996574
+      },
+      "actualInput": {
+        "id": "S00",
+        "angle": -4.412756410370869,
+        "power": 0.9,
+        "target": "a6-55-outer-ward-3",
+        "score": 355
+      }
+    },
+    {
+      "position": {
+        "id": "p-knight",
+        "x": 2760.942765847041,
+        "y": 1722.751620260628,
+        "grounded": true,
+        "hp": 1127,
+        "acted": false,
+        "move": 3356.5,
+        "support": "arrival-core-terrace",
+        "facing": 1,
+        "angle": -3.9445999999972914
+      },
+      "actualInput": {
+        "id": "S03",
+        "angle": 73.86671185289599,
+        "power": 0.9,
+        "target": "a6-55-opening-6",
+        "score": 730
+      }
+    }
+  ],
+  "stage55Outcome": {
+    "stageId": 55,
+    "honroStage": 55,
+    "mode": "campaign",
+    "authoredId": "stage-55",
+    "round": 14,
+    "phase": "won",
+    "side": 0,
+    "shot": 100,
+    "rng": 190482890735,
+    "active": "p-knight",
+    "dialogue": false,
+    "isolatedStore": false,
+    "play": [
+      6800,
+      3200
+    ],
+    "terrainBounds": {
+      "left": -4496,
+      "top": -1992,
+      "right": 11536,
+      "bottom": 11768
+    },
+    "playBounds": {
+      "left": 0,
+      "top": 0,
+      "right": 6800,
+      "bottom": 3200
+    },
+    "camera": {
+      "x": 2572.888779715538,
+      "y": 1504.9734648897695,
+      "zoom": null
+    },
+    "gravity": {
+      "x": 0,
+      "y": 320
+    },
+    "fieldFlags": [],
+    "terrain": [
+      {
+        "id": "west-ring-descent",
+        "vertices": 4,
+        "oneWay": false
+      },
+      {
+        "id": "arrival-core-terrace",
+        "vertices": 4,
+        "oneWay": false
+      },
+      {
+        "id": "right-return-rise",
+        "vertices": 4,
+        "oneWay": false
+      },
+      {
+        "id": "east-upper-end",
+        "vertices": 4,
+        "oneWay": false
+      },
+      {
+        "id": "west-lower-branch",
+        "vertices": 4,
+        "oneWay": false
+      },
+      {
+        "id": "east-lower-branch",
+        "vertices": 4,
+        "oneWay": false
+      }
+    ],
+    "worldTerrain": [
+      {
+        "id": "west-ring-descent",
+        "vertices": 4
+      },
+      {
+        "id": "arrival-core-terrace",
+        "vertices": 4
+      },
+      {
+        "id": "right-return-rise",
+        "vertices": 4
+      },
+      {
+        "id": "east-upper-end",
+        "vertices": 4
+      },
+      {
+        "id": "west-lower-branch",
+        "vertices": 4
+      },
+      {
+        "id": "east-lower-branch",
+        "vertices": 4
+      }
+    ],
+    "enemies": [
+      "draft-pressure-2",
+      "a6-55-bell-descent-2",
+      "a6-55-outer-ward-4",
+      "a6-55-west-bank-3"
+    ],
+    "units": [
+      {
+        "id": "p-knight",
+        "cls": "knight",
+        "side": 0,
+        "level": 25,
+        "hp": 1127,
+        "maxHp": 3846,
+        "loadout": [
+          "S00",
+          "S01",
+          "S03"
+        ],
+        "pos": [
+          2650.55,
+          1688.78
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "arrival-core-terrace",
+        "fixed": false,
+        "objective": false,
+        "role": "knight",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "p-archer",
+        "cls": "archer",
+        "side": 0,
+        "level": 25,
+        "hp": 964,
+        "maxHp": 1720,
+        "loadout": [
+          "A01",
+          "A14",
+          "A02",
+          "A05"
+        ],
+        "pos": [
+          1834.68,
+          1437.75
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "arrival-core-terrace",
+        "fixed": false,
+        "objective": false,
+        "role": "archer",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "p-occultist",
+        "cls": "occultist",
+        "side": 0,
+        "level": 25,
+        "hp": 619.0999999999999,
+        "maxHp": 2304,
+        "loadout": [
+          "O01",
+          "O04",
+          "O03",
+          "O06"
+        ],
+        "pos": [
+          2688,
+          1700.31
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "arrival-core-terrace",
+        "fixed": true,
+        "objective": false,
+        "role": "occultist",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "draft-pressure-0",
+        "cls": "occultist",
+        "side": 1,
+        "level": 12,
+        "hp": 0,
+        "maxHp": 480,
+        "loadout": [
+          "HLN01",
+          "HLN02"
+        ],
+        "pos": [
+          2112,
+          1523.08
+        ],
+        "h": 92,
+        "r": 25,
+        "awake": true,
+        "dead": true,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "arrival-core-terrace",
+        "fixed": true,
+        "objective": false,
+        "role": "fire",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "draft-pressure-1",
+        "cls": "occultist",
+        "side": 1,
+        "level": 8,
+        "hp": 106,
+        "maxHp": 409,
+        "loadout": [
+          "HGS01",
+          "HGS02"
+        ],
+        "pos": [
+          912,
+          2590.33
+        ],
+        "h": 88,
+        "r": 32,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "west-lower-branch",
+        "fixed": false,
+        "objective": false,
+        "role": "fire",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "draft-pressure-2",
+        "cls": "knight",
+        "side": 1,
+        "level": 8,
+        "hp": 409,
+        "maxHp": 409,
+        "loadout": [
+          "HBM01"
+        ],
+        "pos": [
+          1889.58,
+          1454.64
+        ],
+        "h": 88,
+        "r": 32,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "arrival-core-terrace",
+        "fixed": false,
+        "objective": false,
+        "role": "leaper",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "draft-pressure-3",
+        "cls": "archer",
+        "side": 1,
+        "level": 12,
+        "hp": 0,
+        "maxHp": 796,
+        "loadout": [
+          "LA01",
+          "LA02"
+        ],
+        "pos": [
+          1308.54,
+          1204.66
+        ],
+        "h": 91,
+        "r": 21,
+        "awake": true,
+        "dead": true,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "west-ring-descent",
+        "fixed": false,
+        "objective": false,
+        "role": "bow",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-55-opening-1",
+        "cls": "knight",
+        "side": 1,
+        "level": 25,
+        "hp": 655,
+        "maxHp": 655,
+        "loadout": [
+          "HBM01"
+        ],
+        "pos": [
+          410,
+          714.55
+        ],
+        "h": 88,
+        "r": 32,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "west-ring-descent",
+        "fixed": false,
+        "objective": false,
+        "role": "leaper",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-55-opening-2",
+        "cls": "knight",
+        "side": 1,
+        "level": 25,
+        "hp": 655,
+        "maxHp": 655,
+        "loadout": [
+          "HBM01"
+        ],
+        "pos": [
+          640,
+          840
+        ],
+        "h": 88,
+        "r": 32,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "west-ring-descent",
+        "fixed": false,
+        "objective": false,
+        "role": "leaper",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-55-opening-3",
+        "cls": "occultist",
+        "side": 1,
+        "level": 25,
+        "hp": 684,
+        "maxHp": 684,
+        "loadout": [
+          "HSH01",
+          "HSH02"
+        ],
+        "pos": [
+          588.16,
+          811.72
+        ],
+        "h": 137,
+        "r": 24,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "west-ring-descent",
+        "fixed": false,
+        "objective": false,
+        "role": "ice",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-55-opening-4",
+        "cls": "occultist",
+        "side": 1,
+        "level": 25,
+        "hp": 684,
+        "maxHp": 684,
+        "loadout": [
+          "HSH01",
+          "HSH02"
+        ],
+        "pos": [
+          1172.27,
+          1130.33
+        ],
+        "h": 137,
+        "r": 24,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "west-ring-descent",
+        "fixed": false,
+        "objective": false,
+        "role": "ice",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-55-opening-5",
+        "cls": "occultist",
+        "side": 1,
+        "level": 25,
+        "hp": 376,
+        "maxHp": 684,
+        "loadout": [
+          "HSH01",
+          "HSH02"
+        ],
+        "pos": [
+          1316.3,
+          1208.89
+        ],
+        "h": 137,
+        "r": 24,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "west-ring-descent",
+        "fixed": false,
+        "objective": false,
+        "role": "ice",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-55-opening-6",
+        "cls": "knight",
+        "side": 1,
+        "level": 25,
+        "hp": 0,
+        "maxHp": 868,
+        "loadout": [
+          "HBM03"
+        ],
+        "pos": [
+          2767.18,
+          1724.67
+        ],
+        "h": 139,
+        "r": 42,
+        "awake": true,
+        "dead": true,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "arrival-core-terrace",
+        "fixed": false,
+        "objective": false,
+        "role": "leaper",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-55-west-bank-1",
+        "cls": "occultist",
+        "side": 1,
+        "level": 25,
+        "hp": 684,
+        "maxHp": 684,
+        "loadout": [
+          "HSH01",
+          "HSH02"
+        ],
+        "pos": [
+          738.16,
+          893.54
+        ],
+        "h": 137,
+        "r": 24,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "west-ring-descent",
+        "fixed": false,
+        "objective": false,
+        "role": "ice",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-55-west-bank-2",
+        "cls": "knight",
+        "side": 1,
+        "level": 25,
+        "hp": 655,
+        "maxHp": 655,
+        "loadout": [
+          "HBM01"
+        ],
+        "pos": [
+          722,
+          884.73
+        ],
+        "h": 88,
+        "r": 32,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "west-ring-descent",
+        "fixed": false,
+        "objective": false,
+        "role": "leaper",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-55-bell-descent-1",
+        "cls": "knight",
+        "side": 1,
+        "level": 25,
+        "hp": 655,
+        "maxHp": 655,
+        "loadout": [
+          "HBM01"
+        ],
+        "pos": [
+          844,
+          951.27
+        ],
+        "h": 88,
+        "r": 32,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "west-ring-descent",
+        "fixed": false,
+        "objective": false,
+        "role": "leaper",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-55-bell-descent-2",
+        "cls": "knight",
+        "side": 1,
+        "level": 25,
+        "hp": 52,
+        "maxHp": 655,
+        "loadout": [
+          "HBM01"
+        ],
+        "pos": [
+          1890.85,
+          1455.03
+        ],
+        "h": 88,
+        "r": 32,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "arrival-core-terrace",
+        "fixed": false,
+        "objective": false,
+        "role": "leaper",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-55-bell-descent-3",
+        "cls": "occultist",
+        "side": 1,
+        "level": 25,
+        "hp": 0,
+        "maxHp": 684,
+        "loadout": [
+          "HSH01",
+          "HSH02"
+        ],
+        "pos": [
+          2379.26,
+          1605.31
+        ],
+        "h": 137,
+        "r": 24,
+        "awake": true,
+        "dead": true,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "arrival-core-terrace",
+        "fixed": false,
+        "objective": false,
+        "role": "ice",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-55-bell-descent-4",
+        "cls": "knight",
+        "side": 1,
+        "level": 25,
+        "hp": 868,
+        "maxHp": 868,
+        "loadout": [
+          "HBM03"
+        ],
+        "pos": [
+          555,
+          793.64
+        ],
+        "h": 139,
+        "r": 42,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "west-ring-descent",
+        "fixed": false,
+        "objective": false,
+        "role": "leaper",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-55-outer-ward-1",
+        "cls": "occultist",
+        "side": 1,
+        "level": 25,
+        "hp": 0,
+        "maxHp": 684,
+        "loadout": [
+          "HSH01",
+          "HSH02"
+        ],
+        "pos": [
+          794,
+          2496.92
+        ],
+        "h": 137,
+        "r": 24,
+        "awake": true,
+        "dead": true,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "west-lower-branch",
+        "fixed": false,
+        "objective": false,
+        "role": "ice",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-55-thread-pressure-1",
+        "cls": "occultist",
+        "side": 1,
+        "level": 25,
+        "hp": 684,
+        "maxHp": 684,
+        "loadout": [
+          "HSH01",
+          "HSH02"
+        ],
+        "pos": [
+          1000,
+          1036.36
+        ],
+        "h": 137,
+        "r": 24,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "west-ring-descent",
+        "fixed": false,
+        "objective": false,
+        "role": "ice",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-55-thread-pressure-2",
+        "cls": "knight",
+        "side": 1,
+        "level": 25,
+        "hp": 0,
+        "maxHp": 655,
+        "loadout": [
+          "HBM01"
+        ],
+        "pos": [
+          2158.64,
+          1537.43
+        ],
+        "h": 88,
+        "r": 32,
+        "awake": true,
+        "dead": true,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "arrival-core-terrace",
+        "fixed": false,
+        "objective": false,
+        "role": "leaper",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-55-outer-ward-2",
+        "cls": "knight",
+        "side": 1,
+        "level": 25,
+        "hp": 0,
+        "maxHp": 655,
+        "loadout": [
+          "HBM01"
+        ],
+        "pos": [
+          1888.68,
+          1454.36
+        ],
+        "h": 88,
+        "r": 32,
+        "awake": true,
+        "dead": true,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "arrival-core-terrace",
+        "fixed": false,
+        "objective": false,
+        "role": "leaper",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-55-outer-ward-3",
+        "cls": "occultist",
+        "side": 1,
+        "level": 25,
+        "hp": 0,
+        "maxHp": 684,
+        "loadout": [
+          "HSH01",
+          "HSH02"
+        ],
+        "pos": [
+          2166.09,
+          1539.72
+        ],
+        "h": 137,
+        "r": 24,
+        "awake": true,
+        "dead": true,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "arrival-core-terrace",
+        "fixed": false,
+        "objective": false,
+        "role": "ice",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-55-outer-ward-4",
+        "cls": "knight",
+        "side": 1,
+        "level": 25,
+        "hp": 52,
+        "maxHp": 655,
+        "loadout": [
+          "HBM01"
+        ],
+        "pos": [
+          1765.74,
+          1416.54
+        ],
+        "h": 88,
+        "r": 32,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "arrival-core-terrace",
+        "fixed": false,
+        "objective": false,
+        "role": "leaper",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-55-west-bank-3",
+        "cls": "knight",
+        "side": 1,
+        "level": 25,
+        "hp": 655,
+        "maxHp": 655,
+        "loadout": [
+          "HBM01"
+        ],
+        "pos": [
+          1766.1,
+          1416.65
+        ],
+        "h": 88,
+        "r": 32,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "arrival-core-terrace",
+        "fixed": false,
+        "objective": false,
+        "role": "leaper",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-55-west-bank-4",
+        "cls": "occultist",
+        "side": 1,
+        "level": 25,
+        "hp": 684,
+        "maxHp": 684,
+        "loadout": [
+          "HSH01",
+          "HSH02"
+        ],
+        "pos": [
+          1412.58,
+          1307.87
+        ],
+        "h": 137,
+        "r": 24,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "arrival-core-terrace",
+        "fixed": false,
+        "objective": false,
+        "role": "ice",
+        "summoned": false,
+        "ally": false
+      }
+    ]
+  },
+  "seatedExit": {
+    "id": "p-occultist",
+    "x": 2688,
+    "y": 1700.3076923076924,
+    "grounded": true,
+    "hp": 619.0999999999999,
+    "acted": true,
+    "move": 3132,
+    "support": "arrival-core-terrace",
+    "facing": 1,
+    "angle": 44
+  },
+  "bellTrace": [
+    {
+      "type": "fire",
+      "id": "HLN01",
+      "owner": "draft-pressure-0",
+      "angle": -14.301521309708837,
+      "power": 0.7437821252543857,
+      "shot": 1,
+      "round": 1
+    },
+    {
+      "type": "impact",
+      "id": "HLN01",
+      "owner": "draft-pressure-0",
+      "target": "p-occultist",
+      "x": 2660,
+      "y": 1641.2111578627998,
+      "before": 2144.1,
+      "after": 2105.1,
+      "round": 1
+    },
+    {
+      "type": "fire",
+      "id": "HBM01",
+      "owner": "draft-pressure-2",
+      "angle": 180,
+      "power": 0.5,
+      "shot": 2,
+      "round": 1
+    },
+    {
+      "type": "fire",
+      "id": "LA01",
+      "owner": "draft-pressure-3",
+      "angle": 171.8056073471671,
+      "power": 0.3442231715281959,
+      "shot": 3,
+      "round": 1
+    },
+    {
+      "type": "impact",
+      "id": "LA01",
+      "owner": "draft-pressure-3",
+      "target": "p-archer",
+      "x": 1222.4288122389617,
+      "y": 1117.0472895530597,
+      "before": 1720,
+      "after": 1720,
+      "round": 1
+    },
+    {
+      "type": "fire",
+      "id": "HSH01",
+      "owner": "a6-55-opening-3",
+      "angle": -5.2161092379828915,
+      "power": 0.6735962800004054,
+      "shot": 4,
+      "round": 1
+    },
+    {
+      "type": "impact",
+      "id": "HSH01",
+      "owner": "a6-55-opening-3",
+      "target": "p-occultist",
+      "x": 2660,
+      "y": 1667.6632478594959,
+      "before": 2105.1,
+      "after": 2075.1,
+      "round": 1
+    },
+    {
+      "type": "fire",
+      "id": "HSH01",
+      "owner": "a6-55-opening-4",
+      "angle": -70.62380233523143,
+      "power": 0.5124530432582735,
+      "shot": 5,
+      "round": 1
+    },
+    {
+      "type": "impact",
+      "id": "HSH01",
+      "owner": "a6-55-opening-4",
+      "target": "p-archer",
+      "x": 1204,
+      "y": 1116.676704200347,
+      "before": 1720,
+      "after": 1720,
+      "round": 1
+    },
+    {
+      "type": "fire",
+      "id": "HSH01",
+      "owner": "a6-55-west-bank-1",
+      "angle": -4.3982441265834495,
+      "power": 0.6875051991324872,
+      "shot": 6,
+      "round": 1
+    },
+    {
+      "type": "impact",
+      "id": "HSH01",
+      "owner": "a6-55-west-bank-1",
+      "target": "p-occultist",
+      "x": 2700.231093198835,
+      "y": 1602.3076923076924,
+      "before": 2075.1,
+      "after": 2075.1,
+      "round": 1
+    },
+    {
+      "type": "fire",
+      "id": "HSH02",
+      "owner": "a6-55-thread-pressure-1",
+      "angle": -5,
+      "power": 0.75,
+      "shot": 7,
+      "round": 1
+    },
+    {
+      "type": "fire",
+      "id": "A01",
+      "owner": "p-archer",
+      "angle": 76.26911749235637,
+      "power": 0.48480990882630637,
+      "shot": 8,
+      "round": 2
+    },
+    {
+      "type": "fire",
+      "id": "HLN01",
+      "owner": "draft-pressure-0",
+      "angle": -14.301521309708837,
+      "power": 0.7437821252543857,
+      "shot": 9,
+      "round": 2
+    },
+    {
+      "type": "impact",
+      "id": "HLN01",
+      "owner": "draft-pressure-0",
+      "target": "p-occultist",
+      "x": 2660,
+      "y": 1641.2111578627998,
+      "before": 2024.1,
+      "after": 1985.1,
+      "round": 2
+    },
+    {
+      "type": "fire",
+      "id": "HBM01",
+      "owner": "draft-pressure-2",
+      "angle": 180,
+      "power": 0.5,
+      "shot": 10,
+      "round": 2
+    },
+    {
+      "type": "fire",
+      "id": "LA01",
+      "owner": "draft-pressure-3",
+      "angle": -5.645843313657679,
+      "power": 0.3435292149598244,
+      "shot": 11,
+      "round": 2
+    },
+    {
+      "type": "impact",
+      "id": "LA01",
+      "owner": "draft-pressure-3",
+      "target": "p-archer",
+      "x": 1835.1416818549721,
+      "y": 1342.748125764471,
+      "before": 1720,
+      "after": 1664,
+      "round": 2
+    },
+    {
+      "type": "fire",
+      "id": "HBM03",
+      "owner": "a6-55-opening-6",
+      "angle": 180,
+      "power": 0.5,
+      "shot": 12,
+      "round": 2
+    },
+    {
+      "type": "fire",
+      "id": "HBM01",
+      "owner": "a6-55-bell-descent-2",
+      "angle": 0,
+      "power": 0.5,
+      "shot": 13,
+      "round": 2
+    },
+    {
+      "type": "fire",
+      "id": "HSH01",
+      "owner": "a6-55-bell-descent-3",
+      "angle": -23.37808433760809,
+      "power": 0.7010037078436612,
+      "shot": 14,
+      "round": 2
+    },
+    {
+      "type": "impact",
+      "id": "HSH01",
+      "owner": "a6-55-bell-descent-3",
+      "target": "p-occultist",
+      "x": 2660,
+      "y": 1649.578250651709,
+      "before": 1891.1,
+      "after": 1861.1,
+      "round": 2
+    },
+    {
+      "type": "fire",
+      "id": "HBM01",
+      "owner": "a6-55-thread-pressure-2",
+      "angle": 180,
+      "power": 0.5,
+      "shot": 15,
+      "round": 2
+    },
+    {
+      "type": "fire",
+      "id": "A01",
+      "owner": "p-archer",
+      "angle": 76.26911749235637,
+      "power": 0.4745757758201234,
+      "shot": 16,
+      "round": 3
+    },
+    {
+      "type": "damage",
+      "id": "A01",
+      "owner": "p-archer",
+      "target": "draft-pressure-0",
+      "before": 480,
+      "after": 374,
+      "round": 3
+    },
+    {
+      "type": "impact",
+      "id": "A01",
+      "owner": "p-archer",
+      "target": "draft-pressure-0",
+      "x": 2130.081888776108,
+      "y": 1428.076923076923,
+      "before": 480,
+      "after": 374,
+      "round": 3
+    },
+    {
+      "type": "fire",
+      "id": "HLN02",
+      "owner": "draft-pressure-0",
+      "angle": 17.883831257598732,
+      "power": 0.20015351215781593,
+      "shot": 17,
+      "round": 3
+    },
+    {
+      "type": "impact",
+      "id": "HLN02",
+      "owner": "draft-pressure-0",
+      "target": "p-occultist",
+      "x": 2660,
+      "y": 1621.196007078272,
+      "before": 1861.1,
+      "after": 1823.1,
+      "round": 3
+    },
+    {
+      "type": "fire",
+      "id": "HBM01",
+      "owner": "draft-pressure-2",
+      "angle": 180,
+      "power": 0.5,
+      "shot": 18,
+      "round": 3
+    },
+    {
+      "type": "fire",
+      "id": "LA01",
+      "owner": "draft-pressure-3",
+      "angle": -5,
+      "power": 0.35,
+      "shot": 19,
+      "round": 3
+    },
+    {
+      "type": "impact",
+      "id": "LA01",
+      "owner": "draft-pressure-3",
+      "target": "p-archer",
+      "x": 1849.8731785194536,
+      "y": 1342.748125764471,
+      "before": 1450,
+      "after": 1403,
+      "round": 3
+    },
+    {
+      "type": "fire",
+      "id": "HSH02",
+      "owner": "a6-55-opening-4",
+      "angle": 24.285391695215367,
+      "power": 0.349159376058029,
+      "shot": 20,
+      "round": 3
+    },
+    {
+      "type": "fire",
+      "id": "HBM01",
+      "owner": "a6-55-bell-descent-2",
+      "angle": 0,
+      "power": 0.5,
+      "shot": 21,
+      "round": 3
+    },
+    {
+      "type": "fire",
+      "id": "HSH01",
+      "owner": "a6-55-thread-pressure-1",
+      "angle": -6.8332077218273115,
+      "power": 0.6441426566683057,
+      "shot": 22,
+      "round": 3
+    },
+    {
+      "type": "impact",
+      "id": "HSH01",
+      "owner": "a6-55-thread-pressure-1",
+      "target": "p-occultist",
+      "x": 2660,
+      "y": 1630.3862561359442,
+      "before": 1774.1,
+      "after": 1744.1,
+      "round": 3
+    },
+    {
+      "type": "fire",
+      "id": "HBM01",
+      "owner": "a6-55-thread-pressure-2",
+      "angle": 180,
+      "power": 0.5,
+      "shot": 23,
+      "round": 3
+    },
+    {
+      "type": "fire",
+      "id": "A01",
+      "owner": "p-archer",
+      "angle": 76.26911749235637,
+      "power": 0.4648559208525748,
+      "shot": 24,
+      "round": 4
+    },
+    {
+      "type": "damage",
+      "id": "A01",
+      "owner": "p-archer",
+      "target": "draft-pressure-0",
+      "before": 374,
+      "after": 265,
+      "round": 4
+    },
+    {
+      "type": "impact",
+      "id": "A01",
+      "owner": "p-archer",
+      "target": "draft-pressure-0",
+      "x": 2119.5588499285823,
+      "y": 1428.076923076923,
+      "before": 374,
+      "after": 265,
+      "round": 4
+    },
+    {
+      "type": "fire",
+      "id": "HLN02",
+      "owner": "draft-pressure-0",
+      "angle": 17.883831257598732,
+      "power": 0.20015351215781593,
+      "shot": 25,
+      "round": 4
+    },
+    {
+      "type": "impact",
+      "id": "HLN02",
+      "owner": "draft-pressure-0",
+      "target": "p-occultist",
+      "x": 2660,
+      "y": 1621.196007078272,
+      "before": 1744.1,
+      "after": 1706.1,
+      "round": 4
+    },
+    {
+      "type": "fire",
+      "id": "HBM01",
+      "owner": "draft-pressure-2",
+      "angle": 180,
+      "power": 0.5,
+      "shot": 26,
+      "round": 4
+    },
+    {
+      "type": "fire",
+      "id": "LA01",
+      "owner": "draft-pressure-3",
+      "angle": -5,
+      "power": 0.35,
+      "shot": 27,
+      "round": 4
+    },
+    {
+      "type": "impact",
+      "id": "LA01",
+      "owner": "draft-pressure-3",
+      "target": "p-archer",
+      "x": 1849.8731785194536,
+      "y": 1342.748125764471,
+      "before": 1197,
+      "after": 1147,
+      "round": 4
+    },
+    {
+      "type": "fire",
+      "id": "HSH02",
+      "owner": "a6-55-opening-4",
+      "angle": 26.77686910785269,
+      "power": 0.35031790006230584,
+      "shot": 28,
+      "round": 4
+    },
+    {
+      "type": "impact",
+      "id": "HSH02",
+      "owner": "a6-55-opening-4",
+      "target": "p-occultist",
+      "x": 2660,
+      "y": 1683.6824241834252,
+      "before": 1706.1,
+      "after": 1653.1,
+      "round": 4
+    },
+    {
+      "type": "fire",
+      "id": "HBM01",
+      "owner": "a6-55-bell-descent-2",
+      "angle": 0,
+      "power": 0.5,
+      "shot": 29,
+      "round": 4
+    },
+    {
+      "type": "fire",
+      "id": "HSH01",
+      "owner": "a6-55-thread-pressure-1",
+      "angle": -6.8332077218273115,
+      "power": 0.6441426566683057,
+      "shot": 30,
+      "round": 4
+    },
+    {
+      "type": "impact",
+      "id": "HSH01",
+      "owner": "a6-55-thread-pressure-1",
+      "target": "p-occultist",
+      "x": 2660,
+      "y": 1630.3862561359442,
+      "before": 1653.1,
+      "after": 1623.1,
+      "round": 4
+    },
+    {
+      "type": "fire",
+      "id": "HBM01",
+      "owner": "a6-55-thread-pressure-2",
+      "angle": 180,
+      "power": 0.5,
+      "shot": 31,
+      "round": 4
+    },
+    {
+      "type": "fire",
+      "id": "A01",
+      "owner": "p-archer",
+      "angle": 76.26911749235637,
+      "power": 0.4644959262264887,
+      "shot": 32,
+      "round": 5
+    },
+    {
+      "type": "damage",
+      "id": "A01",
+      "owner": "p-archer",
+      "target": "draft-pressure-0",
+      "before": 265,
+      "after": 158,
+      "round": 5
+    },
+    {
+      "type": "impact",
+      "id": "A01",
+      "owner": "p-archer",
+      "target": "draft-pressure-0",
+      "x": 2119.172673434467,
+      "y": 1428.076923076923,
+      "before": 265,
+      "after": 158,
+      "round": 5
+    },
+    {
+      "type": "fire",
+      "id": "HLN02",
+      "owner": "draft-pressure-0",
+      "angle": 17.883831257598732,
+      "power": 0.20015351215781593,
+      "shot": 33,
+      "round": 5
+    },
+    {
+      "type": "impact",
+      "id": "HLN02",
+      "owner": "draft-pressure-0",
+      "target": "p-occultist",
+      "x": 2660,
+      "y": 1621.196007078272,
+      "before": 1623.1,
+      "after": 1585.1,
+      "round": 5
+    },
+    {
+      "type": "fire",
+      "id": "HBM03",
+      "owner": "a6-55-opening-6",
+      "angle": 180,
+      "power": 0.5,
+      "shot": 34,
+      "round": 5
+    },
+    {
+      "type": "fire",
+      "id": "HBM01",
+      "owner": "a6-55-bell-descent-2",
+      "angle": 0,
+      "power": 0.5,
+      "shot": 35,
+      "round": 5
+    },
+    {
+      "type": "fire",
+      "id": "HSH01",
+      "owner": "a6-55-bell-descent-3",
+      "angle": 168.9814867792884,
+      "power": 0.36079797833273186,
+      "shot": 36,
+      "round": 5
+    },
+    {
+      "type": "impact",
+      "id": "HSH01",
+      "owner": "a6-55-bell-descent-3",
+      "target": "p-occultist",
+      "x": 2675.3357206292576,
+      "y": 1614.5367502336594,
+      "before": 1490.1,
+      "after": 1490.1,
+      "round": 5
+    },
+    {
+      "type": "fire",
+      "id": "HBM01",
+      "owner": "a6-55-thread-pressure-2",
+      "angle": 180,
+      "power": 0.5,
+      "shot": 37,
+      "round": 5
+    },
+    {
+      "type": "fire",
+      "id": "HBM01",
+      "owner": "a6-55-outer-ward-2",
+      "angle": 180,
+      "power": 0.5,
+      "shot": 38,
+      "round": 5
+    },
+    {
+      "type": "fire",
+      "id": "HSH01",
+      "owner": "a6-55-outer-ward-3",
+      "angle": -5,
+      "power": 0.35,
+      "shot": 39,
+      "round": 5
+    },
+    {
+      "type": "impact",
+      "id": "HSH01",
+      "owner": "a6-55-outer-ward-3",
+      "target": "p-occultist",
+      "x": 2660,
+      "y": 1667.9720055569512,
+      "before": 1490.1,
+      "after": 1460.1,
+      "round": 5
+    },
+    {
+      "type": "fire",
+      "id": "S03",
+      "owner": "p-knight",
+      "angle": 158.7353999999989,
+      "power": 0.9640112930559828,
+      "shot": 40,
+      "round": 6
+    },
+    {
+      "type": "damage",
+      "id": "S03",
+      "owner": "p-knight",
+      "target": "draft-pressure-0",
+      "before": 158,
+      "after": 0,
+      "round": 6
+    },
+    {
+      "type": "fire",
+      "id": "HSH01",
+      "owner": "a6-55-bell-descent-3",
+      "angle": 173.28355578609347,
+      "power": 0.5439655341929195,
+      "shot": 41,
+      "round": 6
+    },
+    {
+      "type": "impact",
+      "id": "HSH01",
+      "owner": "a6-55-bell-descent-3",
+      "target": "p-knight",
+      "x": 2191.299222191645,
+      "y": 1501.4300214164052,
+      "before": 3846,
+      "after": 3828,
+      "round": 6
+    },
+    {
+      "type": "fire",
+      "id": "LA01",
+      "owner": "draft-pressure-3",
+      "angle": 26.18201779469382,
+      "power": 0.34461589506315066,
+      "shot": 42,
+      "round": 6
+    },
+    {
+      "type": "impact",
+      "id": "LA01",
+      "owner": "draft-pressure-3",
+      "target": "p-occultist",
+      "x": 2663,
+      "y": 1654.6642074687763,
+      "before": 1460.1,
+      "after": 1416.1,
+      "round": 6
+    },
+    {
+      "type": "fire",
+      "id": "HSH02",
+      "owner": "a6-55-opening-4",
+      "angle": -5.781058789463714,
+      "power": 0.35528005998721346,
+      "shot": 43,
+      "round": 6
+    },
+    {
+      "type": "fire",
+      "id": "HBM03",
+      "owner": "a6-55-opening-6",
+      "angle": 180,
+      "power": 0.5,
+      "shot": 44,
+      "round": 6
+    },
+    {
+      "type": "fire",
+      "id": "HBM01",
+      "owner": "a6-55-bell-descent-2",
+      "angle": 0,
+      "power": 0.5,
+      "shot": 45,
+      "round": 6
+    },
+    {
+      "type": "fire",
+      "id": "HSH01",
+      "owner": "a6-55-thread-pressure-1",
+      "angle": -5.132510456489399,
+      "power": 0.3501710857560392,
+      "shot": 46,
+      "round": 6
+    },
+    {
+      "type": "impact",
+      "id": "HSH01",
+      "owner": "a6-55-thread-pressure-1",
+      "target": "p-knight",
+      "x": 2148.704728310845,
+      "y": 1450.4672286928671,
+      "before": 3801,
+      "after": 3801,
+      "round": 6
+    },
+    {
+      "type": "fire",
+      "id": "HBM01",
+      "owner": "a6-55-outer-ward-2",
+      "angle": 180,
+      "power": 0.5,
+      "shot": 47,
+      "round": 6
+    },
+    {
+      "type": "fire",
+      "id": "S03",
+      "owner": "p-knight",
+      "angle": 142.60919999999854,
+      "power": 0.9203749294196192,
+      "shot": 48,
+      "round": 7
+    },
+    {
+      "type": "fire",
+      "id": "HBM01",
+      "owner": "a6-55-outer-ward-2",
+      "angle": 180,
+      "power": 0.5,
+      "shot": 49,
+      "round": 7
+    },
+    {
+      "type": "fire",
+      "id": "HBM01",
+      "owner": "draft-pressure-2",
+      "angle": 0,
+      "power": 0.5,
+      "shot": 50,
+      "round": 7
+    },
+    {
+      "type": "fire",
+      "id": "HBM03",
+      "owner": "a6-55-opening-6",
+      "angle": 180,
+      "power": 0.5,
+      "shot": 51,
+      "round": 7
+    },
+    {
+      "type": "fire",
+      "id": "HBM01",
+      "owner": "a6-55-bell-descent-2",
+      "angle": 0,
+      "power": 0.5,
+      "shot": 52,
+      "round": 7
+    },
+    {
+      "type": "fire",
+      "id": "HSH01",
+      "owner": "a6-55-bell-descent-3",
+      "angle": -17.710512124327945,
+      "power": 0.7436113568229537,
+      "shot": 53,
+      "round": 7
+    },
+    {
+      "type": "impact",
+      "id": "HSH01",
+      "owner": "a6-55-bell-descent-3",
+      "target": "p-occultist",
+      "x": 2660,
+      "y": 1639.8717942251053,
+      "before": 1237.1,
+      "after": 1207.1,
+      "round": 7
+    },
+    {
+      "type": "fire",
+      "id": "HSH02",
+      "owner": "a6-55-outer-ward-3",
+      "angle": 70,
+      "power": 0.35,
+      "shot": 54,
+      "round": 7
+    },
+    {
+      "type": "fire",
+      "id": "HBM01",
+      "owner": "a6-55-outer-ward-4",
+      "angle": 180,
+      "power": 0.5,
+      "shot": 55,
+      "round": 7
+    },
+    {
+      "type": "fire",
+      "id": "S03",
+      "owner": "p-knight",
+      "angle": -10.144599999997451,
+      "power": 0.9132738565765889,
+      "shot": 56,
+      "round": 8
+    },
+    {
+      "type": "fire",
+      "id": "HBM01",
+      "owner": "a6-55-bell-descent-2",
+      "angle": 0,
+      "power": 0.5,
+      "shot": 57,
+      "round": 8
+    },
+    {
+      "type": "fire",
+      "id": "HBM01",
+      "owner": "draft-pressure-2",
+      "angle": 180,
+      "power": 0.5,
+      "shot": 58,
+      "round": 8
+    },
+    {
+      "type": "fire",
+      "id": "HSH02",
+      "owner": "a6-55-opening-5",
+      "angle": -5,
+      "power": 0.68,
+      "shot": 59,
+      "round": 8
+    },
+    {
+      "type": "impact",
+      "id": "HSH02",
+      "owner": "a6-55-opening-5",
+      "target": "p-occultist",
+      "x": 2660,
+      "y": 1659.5682851087327,
+      "before": 1207.1,
+      "after": 1148.1,
+      "round": 8
+    },
+    {
+      "type": "fire",
+      "id": "HBM03",
+      "owner": "a6-55-opening-6",
+      "angle": 180,
+      "power": 0.5,
+      "shot": 60,
+      "round": 8
+    },
+    {
+      "type": "fire",
+      "id": "HSH01",
+      "owner": "a6-55-bell-descent-3",
+      "angle": -22.87624719916856,
+      "power": 0.6910673280292542,
+      "shot": 61,
+      "round": 8
+    },
+    {
+      "type": "impact",
+      "id": "HSH01",
+      "owner": "a6-55-bell-descent-3",
+      "target": "p-occultist",
+      "x": 2660,
+      "y": 1647.30913723129,
+      "before": 1063.1,
+      "after": 1033.1,
+      "round": 8
+    },
+    {
+      "type": "fire",
+      "id": "HSH01",
+      "owner": "a6-55-outer-ward-3",
+      "angle": -28.43673003219802,
+      "power": 0.6109827659575493,
+      "shot": 62,
+      "round": 8
+    },
+    {
+      "type": "impact",
+      "id": "HSH01",
+      "owner": "a6-55-outer-ward-3",
+      "target": "p-occultist",
+      "x": 2660,
+      "y": 1645.608716750182,
+      "before": 1033.1,
+      "after": 1003.0999999999999,
+      "round": 8
+    },
+    {
+      "type": "fire",
+      "id": "S03",
+      "owner": "p-knight",
+      "angle": -10.144599999997451,
+      "power": 0.9072569169956435,
+      "shot": 63,
+      "round": 9
+    },
+    {
+      "type": "fire",
+      "id": "HBM01",
+      "owner": "a6-55-bell-descent-2",
+      "angle": 0,
+      "power": 0.5,
+      "shot": 64,
+      "round": 9
+    },
+    {
+      "type": "fire",
+      "id": "HBM01",
+      "owner": "draft-pressure-2",
+      "angle": 180,
+      "power": 0.5,
+      "shot": 65,
+      "round": 9
+    },
+    {
+      "type": "fire",
+      "id": "HSH02",
+      "owner": "a6-55-opening-5",
+      "angle": -3.95182123221457,
+      "power": 0.3461192082038615,
+      "shot": 66,
+      "round": 9
+    },
+    {
+      "type": "impact",
+      "id": "HSH02",
+      "owner": "a6-55-opening-5",
+      "target": "p-knight",
+      "x": 2155.3951813718986,
+      "y": 1478.4016788181984,
+      "before": 3657,
+      "after": 3626,
+      "round": 9
+    },
+    {
+      "type": "fire",
+      "id": "HBM03",
+      "owner": "a6-55-opening-6",
+      "angle": 180,
+      "power": 0.5,
+      "shot": 67,
+      "round": 9
+    },
+    {
+      "type": "fire",
+      "id": "HSH01",
+      "owner": "a6-55-thread-pressure-1",
+      "angle": -5.380255301017314,
+      "power": 0.34685964588075874,
+      "shot": 68,
+      "round": 9
+    },
+    {
+      "type": "impact",
+      "id": "HSH01",
+      "owner": "a6-55-thread-pressure-1",
+      "target": "p-knight",
+      "x": 2183.705139116885,
+      "y": 1491.0233836305686,
+      "before": 3626,
+      "after": 3608,
+      "round": 9
+    },
+    {
+      "type": "fire",
+      "id": "HSH01",
+      "owner": "a6-55-outer-ward-3",
+      "angle": 172.20576532220002,
+      "power": 0.35890844318084414,
+      "shot": 69,
+      "round": 9
+    },
+    {
+      "type": "impact",
+      "id": "HSH01",
+      "owner": "a6-55-outer-ward-3",
+      "target": "p-occultist",
+      "x": 2665.050818149325,
+      "y": 1613.705758019091,
+      "before": 912.0999999999999,
+      "after": 912.0999999999999,
+      "round": 9
+    },
+    {
+      "type": "fire",
+      "id": "HBM01",
+      "owner": "a6-55-outer-ward-4",
+      "angle": 0,
+      "power": 0.5,
+      "shot": 70,
+      "round": 9
+    },
+    {
+      "type": "fire",
+      "id": "S03",
+      "owner": "p-knight",
+      "angle": 137.4445999999973,
+      "power": 0.9099130434790684,
+      "shot": 71,
+      "round": 10
+    },
+    {
+      "type": "fire",
+      "id": "HSH01",
+      "owner": "a6-55-outer-ward-3",
+      "angle": -23.26356127839226,
+      "power": 0.6947881999012246,
+      "shot": 72,
+      "round": 10
+    },
+    {
+      "type": "impact",
+      "id": "HSH01",
+      "owner": "a6-55-outer-ward-3",
+      "target": "p-occultist",
+      "x": 2660,
+      "y": 1651.1512772560461,
+      "before": 912.0999999999999,
+      "after": 882.0999999999999,
+      "round": 10
+    },
+    {
+      "type": "fire",
+      "id": "HBM01",
+      "owner": "draft-pressure-2",
+      "angle": 180,
+      "power": 0.5,
+      "shot": 73,
+      "round": 10
+    },
+    {
+      "type": "fire",
+      "id": "HSH01",
+      "owner": "a6-55-opening-5",
+      "angle": -11,
+      "power": 0.9299999999999999,
+      "shot": 74,
+      "round": 10
+    },
+    {
+      "type": "impact",
+      "id": "HSH01",
+      "owner": "a6-55-opening-5",
+      "target": "p-occultist",
+      "x": 2715.6094244009014,
+      "y": 1602.3076923076924,
+      "before": 882.0999999999999,
+      "after": 882.0999999999999,
+      "round": 10
+    },
+    {
+      "type": "fire",
+      "id": "HBM03",
+      "owner": "a6-55-opening-6",
+      "angle": 180,
+      "power": 0.5,
+      "shot": 75,
+      "round": 10
+    },
+    {
+      "type": "fire",
+      "id": "HBM01",
+      "owner": "a6-55-bell-descent-2",
+      "angle": 0,
+      "power": 0.5,
+      "shot": 76,
+      "round": 10
+    },
+    {
+      "type": "fire",
+      "id": "HBM01",
+      "owner": "a6-55-outer-ward-4",
+      "angle": 0,
+      "power": 0.5,
+      "shot": 77,
+      "round": 10
+    },
+    {
+      "type": "fire",
+      "id": "HBM01",
+      "owner": "a6-55-west-bank-3",
+      "angle": 180,
+      "power": 0.5,
+      "shot": 78,
+      "round": 10
+    },
+    {
+      "type": "fire",
+      "id": "S00",
+      "owner": "p-knight",
+      "angle": -18.409199999996574,
+      "power": 0.9095335968371367,
+      "shot": 79,
+      "round": 11
+    },
+    {
+      "type": "fire",
+      "id": "HBM01",
+      "owner": "a6-55-bell-descent-2",
+      "angle": 0,
+      "power": 0.5,
+      "shot": 80,
+      "round": 11
+    },
+    {
+      "type": "fire",
+      "id": "HBM01",
+      "owner": "draft-pressure-2",
+      "angle": 0,
+      "power": 0.5,
+      "shot": 81,
+      "round": 11
+    },
+    {
+      "type": "fire",
+      "id": "HSH01",
+      "owner": "a6-55-opening-5",
+      "angle": -11,
+      "power": 0.9299999999999999,
+      "shot": 82,
+      "round": 11
+    },
+    {
+      "type": "impact",
+      "id": "HSH01",
+      "owner": "a6-55-opening-5",
+      "target": "p-occultist",
+      "x": 2715.7937873895835,
+      "y": 1602.3076923076924,
+      "before": 799.0999999999999,
+      "after": 799.0999999999999,
+      "round": 11
+    },
+    {
+      "type": "fire",
+      "id": "HBM03",
+      "owner": "a6-55-opening-6",
+      "angle": 180,
+      "power": 0.5,
+      "shot": 83,
+      "round": 11
+    },
+    {
+      "type": "fire",
+      "id": "HSH01",
+      "owner": "a6-55-outer-ward-3",
+      "angle": 154.39348039450124,
+      "power": 0.3585297893618699,
+      "shot": 84,
+      "round": 11
+    },
+    {
+      "type": "impact",
+      "id": "HSH01",
+      "owner": "a6-55-outer-ward-3",
+      "target": "p-knight",
+      "x": 1688.3632373037185,
+      "y": 1292.222114725451,
+      "before": 1229,
+      "after": 1229,
+      "round": 11
+    },
+    {
+      "type": "fire",
+      "id": "HBM01",
+      "owner": "a6-55-outer-ward-4",
+      "angle": 180,
+      "power": 0.5,
+      "shot": 85,
+      "round": 11
+    },
+    {
+      "type": "fire",
+      "id": "HBM01",
+      "owner": "a6-55-west-bank-3",
+      "angle": 180,
+      "power": 0.5,
+      "shot": 86,
+      "round": 11
+    },
+    {
+      "type": "fire",
+      "id": "S00",
+      "owner": "p-knight",
+      "angle": -3.9445999999972914,
+      "power": 0.9118644833423403,
+      "shot": 87,
+      "round": 12
+    },
+    {
+      "type": "fire",
+      "id": "HBM03",
+      "owner": "a6-55-opening-6",
+      "angle": 180,
+      "power": 0.5,
+      "shot": 88,
+      "round": 12
+    },
+    {
+      "type": "fire",
+      "id": "HSH01",
+      "owner": "a6-55-opening-4",
+      "angle": -5,
+      "power": 0.27999999999999997,
+      "shot": 89,
+      "round": 12
+    },
+    {
+      "type": "impact",
+      "id": "HSH01",
+      "owner": "a6-55-opening-4",
+      "target": "p-knight",
+      "x": 2089.96392780521,
+      "y": 1411.686422777843,
+      "before": 1127,
+      "after": 1127,
+      "round": 12
+    },
+    {
+      "type": "fire",
+      "id": "HSH01",
+      "owner": "a6-55-opening-5",
+      "angle": -12.649419098626822,
+      "power": 0.3574225946909282,
+      "shot": 90,
+      "round": 12
+    },
+    {
+      "type": "impact",
+      "id": "HSH01",
+      "owner": "a6-55-opening-5",
+      "target": "p-knight",
+      "x": 2040.48087402799,
+      "y": 1429.6420994816997,
+      "before": 1127,
+      "after": 1127,
+      "round": 12
+    },
+    {
+      "type": "fire",
+      "id": "HBM01",
+      "owner": "a6-55-outer-ward-4",
+      "angle": 0,
+      "power": 0.5,
+      "shot": 91,
+      "round": 12
+    },
+    {
+      "type": "fire",
+      "id": "HBM01",
+      "owner": "a6-55-west-bank-3",
+      "angle": 0,
+      "power": 0.5,
+      "shot": 92,
+      "round": 12
+    },
+    {
+      "type": "fire",
+      "id": "S03",
+      "owner": "p-knight",
+      "angle": 74.1692000000041,
+      "power": 0.9124607566350734,
+      "shot": 93,
+      "round": 13
+    },
+    {
+      "type": "fire",
+      "id": "HSH01",
+      "owner": "a6-55-west-bank-4",
+      "angle": -6.111111338366754,
+      "power": 0.6932859285022133,
+      "shot": 94,
+      "round": 13
+    },
+    {
+      "type": "impact",
+      "id": "HSH01",
+      "owner": "a6-55-west-bank-4",
+      "target": "p-occultist",
+      "x": 2691.944955024176,
+      "y": 1602.3076923076924,
+      "before": 619.0999999999999,
+      "after": 619.0999999999999,
+      "round": 13
+    },
+    {
+      "type": "fire",
+      "id": "HBM01",
+      "owner": "draft-pressure-2",
+      "angle": 180,
+      "power": 0.5,
+      "shot": 95,
+      "round": 13
+    },
+    {
+      "type": "fire",
+      "id": "HSH01",
+      "owner": "a6-55-opening-5",
+      "angle": -1.1447642574785277,
+      "power": 0.36104877960262816,
+      "shot": 96,
+      "round": 13
+    },
+    {
+      "type": "impact",
+      "id": "HSH01",
+      "owner": "a6-55-opening-5",
+      "target": "p-occultist",
+      "x": 2660,
+      "y": 1698.2179542264637,
+      "before": 619.0999999999999,
+      "after": 619.0999999999999,
+      "round": 13
+    },
+    {
+      "type": "fire",
+      "id": "HBM01",
+      "owner": "a6-55-bell-descent-2",
+      "angle": 180,
+      "power": 0.5,
+      "shot": 97,
+      "round": 13
+    },
+    {
+      "type": "fire",
+      "id": "HSH01",
+      "owner": "a6-55-thread-pressure-1",
+      "angle": -5,
+      "power": 0.68,
+      "shot": 98,
+      "round": 13
+    },
+    {
+      "type": "impact",
+      "id": "HSH01",
+      "owner": "a6-55-thread-pressure-1",
+      "target": "p-knight",
+      "x": 2774.3877162965273,
+      "y": 1624.751620260628,
+      "before": 1127,
+      "after": 1127,
+      "round": 13
+    },
+    {
+      "type": "fire",
+      "id": "HBM01",
+      "owner": "a6-55-outer-ward-4",
+      "angle": 0,
+      "power": 0.5,
+      "shot": 99,
+      "round": 13
+    },
+    {
+      "type": "fire",
+      "id": "HBM01",
+      "owner": "a6-55-west-bank-3",
+      "angle": 0,
+      "power": 0.5,
+      "shot": 100,
+      "round": 13
+    }
+  ],
+  "keeperExit": {
+    "id": "draft-pressure-0",
+    "x": 2112,
+    "y": 1523.076923076923,
+    "grounded": true,
+    "hp": 0,
+    "acted": false,
+    "move": 550,
+    "support": "arrival-core-terrace",
+    "facing": 1,
+    "angle": 17.883831257598732
+  },
+  "live56": {
+    "stageId": 56,
+    "honroStage": 56,
+    "mode": "campaign",
+    "authoredId": "stage-56",
+    "round": 1,
+    "phase": "aim",
+    "side": 0,
+    "shot": 0,
+    "rng": 19388,
+    "active": "p-mage",
+    "dialogue": false,
+    "isolatedStore": false,
+    "play": [
+      6720,
+      5040
+    ],
+    "terrainBounds": {
+      "left": -4528,
+      "top": -1992,
+      "right": 11488,
+      "bottom": 13776
+    },
+    "playBounds": {
+      "left": 0,
+      "top": 0,
+      "right": 6720,
+      "bottom": 5040
+    },
+    "camera": {
+      "x": 1139.1594267543328,
+      "y": 992.9805537960231,
+      "zoom": null
+    },
+    "gravity": {
+      "x": 0,
+      "y": 320
+    },
+    "fieldFlags": [],
+    "terrain": [
+      {
+        "id": "A-01-upper-entry",
+        "vertices": 4,
+        "oneWay": false
+      },
+      {
+        "id": "C-01-west-upper-descent",
+        "vertices": 4,
+        "oneWay": false
+      },
+      {
+        "id": "C-02-west-shaft-descent",
+        "vertices": 8,
+        "oneWay": false
+      },
+      {
+        "id": "C-03-west-refuge-lower",
+        "vertices": 7,
+        "oneWay": false
+      },
+      {
+        "id": "B-01-center-stone-ascent",
+        "vertices": 4,
+        "oneWay": false
+      },
+      {
+        "id": "B-02-center-lower-short-climb",
+        "vertices": 6,
+        "oneWay": false
+      },
+      {
+        "id": "A-upper-veranda",
+        "vertices": 4,
+        "oneWay": false
+      },
+      {
+        "id": "B-left-broken-balcony",
+        "vertices": 4,
+        "oneWay": false
+      },
+      {
+        "id": "B-central-lower-floor",
+        "vertices": 6,
+        "oneWay": false
+      },
+      {
+        "id": "E-joined-ordinary-floor",
+        "vertices": 8,
+        "oneWay": false
+      },
+      {
+        "id": "west-extension-prototype",
+        "vertices": 4,
+        "oneWay": false
+      }
+    ],
+    "worldTerrain": [
+      {
+        "id": "A-01-upper-entry",
+        "vertices": 4
+      },
+      {
+        "id": "C-01-west-upper-descent",
+        "vertices": 4
+      },
+      {
+        "id": "C-02-west-shaft-descent",
+        "vertices": 8
+      },
+      {
+        "id": "C-03-west-refuge-lower",
+        "vertices": 7
+      },
+      {
+        "id": "B-01-center-stone-ascent",
+        "vertices": 4
+      },
+      {
+        "id": "B-02-center-lower-short-climb",
+        "vertices": 6
+      },
+      {
+        "id": "A-upper-veranda",
+        "vertices": 4
+      },
+      {
+        "id": "B-left-broken-balcony",
+        "vertices": 4
+      },
+      {
+        "id": "B-central-lower-floor",
+        "vertices": 6
+      },
+      {
+        "id": "E-joined-ordinary-floor",
+        "vertices": 8
+      },
+      {
+        "id": "west-extension-prototype",
+        "vertices": 14
+      }
+    ],
+    "enemies": [
+      "a6-56-opening-1"
+    ],
+    "units": [
+      {
+        "id": "p-mage",
+        "cls": "mage",
+        "side": 0,
+        "level": 25,
+        "hp": 1708.9,
+        "maxHp": 2050,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "pos": [
+          928,
+          1136
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "A-upper-veranda",
+        "fixed": false,
+        "objective": false,
+        "role": "mage",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "draft-pressure-0",
+        "cls": "knight",
+        "side": 1,
+        "level": 8,
+        "hp": 409,
+        "maxHp": 409,
+        "loadout": [
+          "HBM01"
+        ],
+        "pos": [
+          1936,
+          3784.07
+        ],
+        "h": 88,
+        "r": 32,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "C-03-west-refuge-lower",
+        "fixed": false,
+        "objective": false,
+        "role": "leaper",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "draft-pressure-1",
+        "cls": "occultist",
+        "side": 1,
+        "level": 12,
+        "hp": 987,
+        "maxHp": 987,
+        "loadout": [
+          "HLN01",
+          "HLN02"
+        ],
+        "pos": [
+          3456,
+          2247.2
+        ],
+        "h": 92,
+        "r": 25,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "B-01-center-stone-ascent",
+        "fixed": true,
+        "objective": false,
+        "role": "fire",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "draft-pressure-2",
+        "cls": "occultist",
+        "side": 1,
+        "level": 8,
+        "hp": 409,
+        "maxHp": 409,
+        "loadout": [
+          "HGS01",
+          "HGS02"
+        ],
+        "pos": [
+          5872,
+          3694.83
+        ],
+        "h": 88,
+        "r": 32,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "E-joined-ordinary-floor",
+        "fixed": false,
+        "objective": false,
+        "role": "fire",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-56-opening-1",
+        "cls": "occultist",
+        "side": 1,
+        "level": 25,
+        "hp": 595,
+        "maxHp": 595,
+        "loadout": [
+          "HSH01",
+          "HSH02"
+        ],
+        "pos": [
+          1512,
+          1136
+        ],
+        "h": 115,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "A-upper-veranda",
+        "fixed": false,
+        "objective": false,
+        "role": "ice",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-56-opening-2",
+        "cls": "knight",
+        "side": 1,
+        "level": 25,
+        "hp": 655,
+        "maxHp": 655,
+        "loadout": [
+          "HBM01"
+        ],
+        "pos": [
+          2545,
+          1136
+        ],
+        "h": 88,
+        "r": 32,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "A-upper-veranda",
+        "fixed": false,
+        "objective": false,
+        "role": "leaper",
+        "summoned": false,
+        "ally": false
+      }
+    ]
+  },
+  "checkpoint56": {
+    "schema": "honro-act6-boundary/v2",
+    "slot": "honro-campaign-act6-boundary-v2:eq-mwuu06k6-y7h4w7qc",
+    "runId": "eq-mwuu06k6-y7h4w7qc",
+    "from": 55,
+    "to": 56,
+    "kind": "three-active-plus-original-parked-mage",
+    "generation": 5,
+    "parent": "a3f6b1acb2aa75c5b6e5e368a26ba285d611f5f2f02e251aad326f1523f6901d",
+    "pin": {
+      "from": 55,
+      "to": 56,
+      "build": "764a084e4e59b9ce283702ab570f90e9416ed072b2172334b17c70022927006e",
+      "fromPacket": "a512361224885cc60579d53ae09566877761f522a7c494101624883ac97dec43",
+      "toPacket": "9da6dfc59e034e71f32dfbb5f040c1013941a90d169cc8535ab59cdc20951ce1",
+      "owner": "1d8f88398988c42929a3639e129c1987e0cc4545c456fc07a3e8d3921f1c372e",
+      "play": "c17aa19e1f126fc442da441d532fa559e683ca5cf8cfde99e5f26956e9638662",
+      "world": "cbdb034494d220c5bd6dc6d51388b558e461219a0e3fa96afe9fa3bee8d0b51e"
+    },
+    "profileSHA": "624977606fd1a5b7c23ca6ca492fec8aee57a04e9b2a0a25bd358bcc64a8747b",
+    "terminal": {
+      "stage": 55,
+      "won": true,
+      "flags": {
+        "act6.outerAnchorBellReady": true,
+        "act6.outerThreeAnchorsReady": true
+      },
+      "actors": [
+        {
+          "id": "p-knight",
+          "name": "휘겸",
+          "role": "knight",
+          "cls": "knight",
+          "side": 0,
+          "x": 2650.550290339656,
+          "y": 1688.784704719894,
+          "vx": 0,
+          "vy": 0,
+          "hp": 1127,
+          "maxHp": 3846,
+          "r": 22,
+          "h": 92,
+          "focus": 477,
+          "maxFocus": 477,
+          "regen": 28,
+          "level": 25,
+          "attack": 9.98515,
+          "armor": 0.7,
+          "shield": 0,
+          "bound": 0,
+          "mark": 0,
+          "breaks": 0,
+          "acted": false,
+          "moveLeft": 3965.5,
+          "maxMove": 4081,
+          "walkSpeed": 420,
+          "angle": 105.8307999999959,
+          "lastPower": 0.9124607566350734,
+          "loadout": [
+            "S00",
+            "S01",
+            "S03"
+          ],
+          "tune": 0.5,
+          "facing": -1,
+          "hurt": 0,
+          "anim": 0,
+          "airborne": false,
+          "fixed": false,
+          "spawnX": 176,
+          "spawnY": 586.9090909090909,
+          "intent": "",
+          "dead": false,
+          "ranks": {
+            "S00": 1,
+            "S01": 4,
+            "S03": 4
+          },
+          "group": 0,
+          "awake": true,
+          "lastAct": 0,
+          "aggroUntil": 0,
+          "xpBudget": 0,
+          "xpGranted": 0,
+          "killRewarded": false,
+          "damageBy": {},
+          "honroAlly": false,
+          "honroCivilian": false,
+          "critChance": 0.1648,
+          "critMultiplier": 2.5330000000000004,
+          "cooldowns": {},
+          "equipmentState": {
+            "version": 1
+          },
+          "eaterSwallow": 0,
+          "moving": 0,
+          "landing": 0,
+          "impactCooldown": 0,
+          "salheunFlash": 0,
+          "honroShieldSources": {
+            "p-knight": 0
+          },
+          "walkPhase": 536.7635950689514,
+          "jumping": false,
+          "jucheon": 0,
+          "jucheonReady": false,
+          "harmony": false
+        },
+        {
+          "id": "p-archer",
+          "name": "설오",
+          "role": "archer",
+          "cls": "archer",
+          "side": 0,
+          "x": 1834.681408734531,
+          "y": 1437.748125764471,
+          "vx": 0,
+          "vy": 0,
+          "hp": 964,
+          "maxHp": 1720,
+          "r": 22,
+          "h": 92,
+          "focus": 404,
+          "maxFocus": 404,
+          "regen": 28,
+          "level": 25,
+          "attack": 11.98825,
+          "armor": 0.42800000000000005,
+          "shield": 0,
+          "bound": 0,
+          "mark": 0,
+          "breaks": 0,
+          "acted": false,
+          "moveLeft": 2921,
+          "maxMove": 2921,
+          "walkSpeed": 425,
+          "angle": 76.26911749235637,
+          "lastPower": 0.4644959262264887,
+          "loadout": [
+            "A01",
+            "A14",
+            "A02",
+            "A05"
+          ],
+          "tune": 0.5,
+          "facing": 1,
+          "hurt": 0,
+          "anim": 0,
+          "airborne": false,
+          "fixed": false,
+          "spawnX": 1232,
+          "spawnY": 1162.909090909091,
+          "intent": "",
+          "dead": false,
+          "ranks": {
+            "A01": 1,
+            "A14": 4,
+            "A02": 4,
+            "A05": 4
+          },
+          "group": 0,
+          "awake": true,
+          "lastAct": 0,
+          "aggroUntil": 0,
+          "xpBudget": 0,
+          "xpGranted": 0,
+          "killRewarded": false,
+          "damageBy": {},
+          "honroAlly": false,
+          "honroCivilian": false,
+          "critChance": 0.28400000000000003,
+          "critMultiplier": 3.085,
+          "cooldowns": {},
+          "moving": 0,
+          "eaterSwallow": 0,
+          "landing": 0,
+          "impactCooldown": 0,
+          "salheunFlash": 0,
+          "walkPhase": 176.35350244717182,
+          "honroShieldSources": {
+            "": 0,
+            "p-archer": 0
+          },
+          "jumping": false,
+          "equipmentState": {
+            "version": 1
+          },
+          "jucheon": 0,
+          "jucheonReady": false
+        },
+        {
+          "id": "p-occultist",
+          "name": "소단",
+          "role": "occultist",
+          "cls": "occultist",
+          "side": 0,
+          "x": 2688,
+          "y": 1700.3076923076924,
+          "vx": 0,
+          "vy": 0,
+          "hp": 619.0999999999999,
+          "maxHp": 2304,
+          "r": 22,
+          "h": 92,
+          "focus": 751,
+          "maxFocus": 751,
+          "regen": 32,
+          "level": 25,
+          "attack": 11.170800000000002,
+          "armor": 0.487,
+          "shield": 0,
+          "bound": 0,
+          "mark": 0,
+          "breaks": 0,
+          "acted": true,
+          "moveLeft": 3132,
+          "maxMove": 3132,
+          "walkSpeed": 416,
+          "angle": 44,
+          "lastPower": 0.55,
+          "loadout": [
+            "O01",
+            "O04",
+            "O03",
+            "O06"
+          ],
+          "tune": 0.5,
+          "facing": 1,
+          "hurt": 0,
+          "anim": 0,
+          "airborne": false,
+          "fixed": true,
+          "spawnX": 2688,
+          "spawnY": 1700.3076923076924,
+          "intent": "",
+          "dead": false,
+          "spiritSight": true,
+          "ranks": {
+            "O01": 1,
+            "O06": 5,
+            "O02": 4,
+            "O03": 3,
+            "O04": 2
+          },
+          "group": 0,
+          "awake": true,
+          "lastAct": 0,
+          "aggroUntil": 0,
+          "xpBudget": 0,
+          "xpGranted": 0,
+          "killRewarded": false,
+          "damageBy": {},
+          "honroAlly": false,
+          "honroCivilian": false,
+          "critChance": 0.20700000000000002,
+          "critMultiplier": 2.4855,
+          "cooldowns": {},
+          "eaterSwallow": 0,
+          "moving": 0,
+          "landing": 0,
+          "impactCooldown": 0,
+          "salheunFlash": 0,
+          "honroShieldSources": {
+            "p-occultist": 0
+          },
+          "walkPhase": 158.8154148591665,
+          "jumping": false,
+          "equipmentState": {
+            "version": 1
+          },
+          "jucheon": 0,
+          "jucheonReady": false
+        }
+      ],
+      "parkedMage": {
+        "id": "p-mage",
+        "name": "담허",
+        "role": "mage",
+        "cls": "mage",
+        "side": 0,
+        "x": 2322.834563352722,
+        "y": 2930,
+        "vx": 0,
+        "vy": 0,
+        "hp": 1708.9,
+        "maxHp": 2050,
+        "r": 22,
+        "h": 92,
+        "focus": 692,
+        "maxFocus": 724,
+        "regen": 28,
+        "level": 25,
+        "attack": 11.4116,
+        "armor": 0.472,
+        "shield": 0,
+        "bound": 0,
+        "mark": 0,
+        "breaks": 0,
+        "acted": false,
+        "moveLeft": 3061.6000000000004,
+        "maxMove": 3075,
+        "walkSpeed": 402,
+        "angle": 91,
+        "lastPower": 0.7500585931658798,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "tune": 0.5,
+        "facing": -1,
+        "hurt": 0,
+        "anim": 0,
+        "airborne": false,
+        "fixed": false,
+        "spawnX": 2655.6363636363635,
+        "spawnY": 2950,
+        "intent": "",
+        "dead": false,
+        "ranks": {
+          "M01": 1,
+          "M07": 4,
+          "M10": 3
+        },
+        "group": 0,
+        "awake": true,
+        "lastAct": 0,
+        "aggroUntil": 0,
+        "xpBudget": 0,
+        "xpGranted": 0,
+        "killRewarded": false,
+        "damageBy": {},
+        "honroAlly": false,
+        "honroCivilian": false,
+        "critChance": 0.174,
+        "critMultiplier": 2.51,
+        "cooldowns": {},
+        "equipmentState": {
+          "version": 1
+        },
+        "jumping": false,
+        "moving": 0.11166666666666666,
+        "walkPhase": 45.60947671046575,
+        "eaterSwallow": 0,
+        "landing": 0,
+        "impactCooldown": 0,
+        "salheunFlash": 0,
+        "jucheon": 0,
+        "jucheonReady": false
+      },
+      "events": [
+        {
+          "id": "trustedInnerStakeAndReturnReceived",
+          "round": 1,
+          "detail": null
+        },
+        {
+          "id": "hwigyeomBellTerraceReached",
+          "round": 1,
+          "detail": "p-knight"
+        },
+        {
+          "id": "bellLinkFrayedByNativeImpact",
+          "round": 1,
+          "detail": {
+            "projectile": 1,
+            "target": "p-occultist",
+            "x": 2660,
+            "y": 1641.2111578627998
+          }
+        },
+        {
+          "id": "sodanGroundedBellLinkRebound",
+          "round": 2,
+          "detail": {
+            "actor": "p-occultist",
+            "guard": "p-knight",
+            "x": 2688,
+            "y": 1700.3076923076924
+          }
+        },
+        {
+          "id": "bellAlignedAfterGateDefeat",
+          "round": 14,
+          "detail": "p-knight"
+        }
+      ],
+      "settlement": false
+    },
+    "terminalSHA": "e94220647974c5019147994d0e7ba7541435791fa125bbdbe1e615ba8a40658d",
+    "custody": {
+      "outer": {
+        "knight": {
+          "id": "p-knight",
+          "name": "휘겸",
+          "role": "knight",
+          "cls": "knight",
+          "side": 0,
+          "x": 2650.550290339656,
+          "y": 1688.784704719894,
+          "vx": 0,
+          "vy": 0,
+          "hp": 1127,
+          "maxHp": 3846,
+          "r": 22,
+          "h": 92,
+          "focus": 477,
+          "maxFocus": 477,
+          "regen": 28,
+          "level": 25,
+          "attack": 9.98515,
+          "armor": 0.7,
+          "shield": 0,
+          "bound": 0,
+          "mark": 0,
+          "breaks": 0,
+          "acted": false,
+          "moveLeft": 3965.5,
+          "maxMove": 4081,
+          "walkSpeed": 420,
+          "angle": 105.8307999999959,
+          "lastPower": 0.9124607566350734,
+          "loadout": [
+            "S00",
+            "S01",
+            "S03"
+          ],
+          "tune": 0.5,
+          "facing": -1,
+          "hurt": 0,
+          "anim": 0,
+          "airborne": false,
+          "fixed": false,
+          "spawnX": 176,
+          "spawnY": 586.9090909090909,
+          "intent": "",
+          "dead": false,
+          "ranks": {
+            "S00": 1,
+            "S01": 4,
+            "S03": 4
+          },
+          "group": 0,
+          "awake": true,
+          "lastAct": 0,
+          "aggroUntil": 0,
+          "xpBudget": 0,
+          "xpGranted": 0,
+          "killRewarded": false,
+          "damageBy": {},
+          "honroAlly": false,
+          "honroCivilian": false,
+          "critChance": 0.1648,
+          "critMultiplier": 2.5330000000000004,
+          "cooldowns": {},
+          "equipmentState": {
+            "version": 1
+          },
+          "eaterSwallow": 0,
+          "moving": 0,
+          "landing": 0,
+          "impactCooldown": 0,
+          "salheunFlash": 0,
+          "honroShieldSources": {
+            "p-knight": 0
+          },
+          "walkPhase": 536.7635950689514,
+          "jumping": false,
+          "jucheon": 0,
+          "jucheonReady": false,
+          "harmony": false
+        },
+        "archer": {
+          "id": "p-archer",
+          "name": "설오",
+          "role": "archer",
+          "cls": "archer",
+          "side": 0,
+          "x": 1834.681408734531,
+          "y": 1437.748125764471,
+          "vx": 0,
+          "vy": 0,
+          "hp": 964,
+          "maxHp": 1720,
+          "r": 22,
+          "h": 92,
+          "focus": 404,
+          "maxFocus": 404,
+          "regen": 28,
+          "level": 25,
+          "attack": 11.98825,
+          "armor": 0.42800000000000005,
+          "shield": 0,
+          "bound": 0,
+          "mark": 0,
+          "breaks": 0,
+          "acted": false,
+          "moveLeft": 2921,
+          "maxMove": 2921,
+          "walkSpeed": 425,
+          "angle": 76.26911749235637,
+          "lastPower": 0.4644959262264887,
+          "loadout": [
+            "A01",
+            "A14",
+            "A02",
+            "A05"
+          ],
+          "tune": 0.5,
+          "facing": 1,
+          "hurt": 0,
+          "anim": 0,
+          "airborne": false,
+          "fixed": false,
+          "spawnX": 1232,
+          "spawnY": 1162.909090909091,
+          "intent": "",
+          "dead": false,
+          "ranks": {
+            "A01": 1,
+            "A14": 4,
+            "A02": 4,
+            "A05": 4
+          },
+          "group": 0,
+          "awake": true,
+          "lastAct": 0,
+          "aggroUntil": 0,
+          "xpBudget": 0,
+          "xpGranted": 0,
+          "killRewarded": false,
+          "damageBy": {},
+          "honroAlly": false,
+          "honroCivilian": false,
+          "critChance": 0.28400000000000003,
+          "critMultiplier": 3.085,
+          "cooldowns": {},
+          "moving": 0,
+          "eaterSwallow": 0,
+          "landing": 0,
+          "impactCooldown": 0,
+          "salheunFlash": 0,
+          "walkPhase": 176.35350244717182,
+          "honroShieldSources": {
+            "": 0,
+            "p-archer": 0
+          },
+          "jumping": false,
+          "equipmentState": {
+            "version": 1
+          },
+          "jucheon": 0,
+          "jucheonReady": false
+        },
+        "occultist": {
+          "id": "p-occultist",
+          "name": "소단",
+          "role": "occultist",
+          "cls": "occultist",
+          "side": 0,
+          "x": 2688,
+          "y": 1700.3076923076924,
+          "vx": 0,
+          "vy": 0,
+          "hp": 619.0999999999999,
+          "maxHp": 2304,
+          "r": 22,
+          "h": 92,
+          "focus": 751,
+          "maxFocus": 751,
+          "regen": 32,
+          "level": 25,
+          "attack": 11.170800000000002,
+          "armor": 0.487,
+          "shield": 0,
+          "bound": 0,
+          "mark": 0,
+          "breaks": 0,
+          "acted": true,
+          "moveLeft": 3132,
+          "maxMove": 3132,
+          "walkSpeed": 416,
+          "angle": 44,
+          "lastPower": 0.55,
+          "loadout": [
+            "O01",
+            "O04",
+            "O03",
+            "O06"
+          ],
+          "tune": 0.5,
+          "facing": 1,
+          "hurt": 0,
+          "anim": 0,
+          "airborne": false,
+          "fixed": true,
+          "spawnX": 2688,
+          "spawnY": 1700.3076923076924,
+          "intent": "",
+          "dead": false,
+          "spiritSight": true,
+          "ranks": {
+            "O01": 1,
+            "O06": 5,
+            "O02": 4,
+            "O03": 3,
+            "O04": 2
+          },
+          "group": 0,
+          "awake": true,
+          "lastAct": 0,
+          "aggroUntil": 0,
+          "xpBudget": 0,
+          "xpGranted": 0,
+          "killRewarded": false,
+          "damageBy": {},
+          "honroAlly": false,
+          "honroCivilian": false,
+          "critChance": 0.20700000000000002,
+          "critMultiplier": 2.4855,
+          "cooldowns": {},
+          "eaterSwallow": 0,
+          "moving": 0,
+          "landing": 0,
+          "impactCooldown": 0,
+          "salheunFlash": 0,
+          "honroShieldSources": {
+            "p-occultist": 0
+          },
+          "walkPhase": 158.8154148591665,
+          "jumping": false,
+          "equipmentState": {
+            "version": 1
+          },
+          "jucheon": 0,
+          "jucheonReady": false
+        }
+      },
+      "mage": {
+        "id": "p-mage",
+        "name": "담허",
+        "role": "mage",
+        "cls": "mage",
+        "side": 0,
+        "x": 2322.834563352722,
+        "y": 2930,
+        "vx": 0,
+        "vy": 0,
+        "hp": 1708.9,
+        "maxHp": 2050,
+        "r": 22,
+        "h": 92,
+        "focus": 692,
+        "maxFocus": 724,
+        "regen": 28,
+        "level": 25,
+        "attack": 11.4116,
+        "armor": 0.472,
+        "shield": 0,
+        "bound": 0,
+        "mark": 0,
+        "breaks": 0,
+        "acted": false,
+        "moveLeft": 3061.6000000000004,
+        "maxMove": 3075,
+        "walkSpeed": 402,
+        "angle": 91,
+        "lastPower": 0.7500585931658798,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "tune": 0.5,
+        "facing": -1,
+        "hurt": 0,
+        "anim": 0,
+        "airborne": false,
+        "fixed": false,
+        "spawnX": 2655.6363636363635,
+        "spawnY": 2950,
+        "intent": "",
+        "dead": false,
+        "ranks": {
+          "M01": 1,
+          "M07": 4,
+          "M10": 3
+        },
+        "group": 0,
+        "awake": true,
+        "lastAct": 0,
+        "aggroUntil": 0,
+        "xpBudget": 0,
+        "xpGranted": 0,
+        "killRewarded": false,
+        "damageBy": {},
+        "honroAlly": false,
+        "honroCivilian": false,
+        "critChance": 0.174,
+        "critMultiplier": 2.51,
+        "cooldowns": {},
+        "equipmentState": {
+          "version": 1
+        },
+        "jumping": false,
+        "moving": 0.11166666666666666,
+        "walkPhase": 45.60947671046575,
+        "eaterSwallow": 0,
+        "landing": 0,
+        "impactCooldown": 0,
+        "salheunFlash": 0,
+        "jucheon": 0,
+        "jucheonReady": false
+      }
+    },
+    "custodySHA": "866e0f2642a69d2774dacd92fae6686b04a9d4a977786c03f69736f111aaf051",
+    "stageSeed": {
+      "id": 55,
+      "local": 55,
+      "region": 6,
+      "act": 6,
+      "actStage": 5,
+      "active": 3,
+      "requires": [
+        54
+      ],
+      "name": "빈 종터의 방어선",
+      "goal": "휘겸으로 빈 종터 방어선에 닿으십시오.",
+      "objective": "act6-empty-bell",
+      "w": 6800,
+      "h": 3200,
+      "story": [],
+      "outro": [],
+      "wind": [
+        0
+      ],
+      "victoryRule": {
+        "kind": "scripted",
+        "target": "act6-native-55"
+      }
+    },
+    "budget": {
+      "id": 55,
+      "act": 6,
+      "entryLevel": 25,
+      "exitLevel": 25,
+      "rewardCurve": "current",
+      "balanceStatus": "detached-zero-increment-horizon"
+    }
+  },
+  "newContext56": {
+    "snapshot": {
+      "stageId": 56,
+      "honroStage": 56,
+      "mode": "campaign",
+      "authoredId": "stage-56",
+      "round": 1,
+      "phase": "aim",
+      "side": 0,
+      "shot": 0,
+      "rng": 19388,
+      "active": "p-mage",
+      "dialogue": false,
+      "isolatedStore": false,
+      "play": [
+        6720,
+        5040
+      ],
+      "terrainBounds": {
+        "left": -4528,
+        "top": -1992,
+        "right": 11488,
+        "bottom": 13776
+      },
+      "playBounds": {
+        "left": 0,
+        "top": 0,
+        "right": 6720,
+        "bottom": 5040
+      },
+      "camera": {
+        "x": 2033.5,
+        "y": 1107.2534722222222,
+        "zoom": null
+      },
+      "gravity": {
+        "x": 0,
+        "y": 320
+      },
+      "fieldFlags": [],
+      "terrain": [
+        {
+          "id": "A-01-upper-entry",
+          "vertices": 4,
+          "oneWay": false
+        },
+        {
+          "id": "C-01-west-upper-descent",
+          "vertices": 4,
+          "oneWay": false
+        },
+        {
+          "id": "C-02-west-shaft-descent",
+          "vertices": 8,
+          "oneWay": false
+        },
+        {
+          "id": "C-03-west-refuge-lower",
+          "vertices": 7,
+          "oneWay": false
+        },
+        {
+          "id": "B-01-center-stone-ascent",
+          "vertices": 4,
+          "oneWay": false
+        },
+        {
+          "id": "B-02-center-lower-short-climb",
+          "vertices": 6,
+          "oneWay": false
+        },
+        {
+          "id": "A-upper-veranda",
+          "vertices": 4,
+          "oneWay": false
+        },
+        {
+          "id": "B-left-broken-balcony",
+          "vertices": 4,
+          "oneWay": false
+        },
+        {
+          "id": "B-central-lower-floor",
+          "vertices": 6,
+          "oneWay": false
+        },
+        {
+          "id": "E-joined-ordinary-floor",
+          "vertices": 8,
+          "oneWay": false
+        },
+        {
+          "id": "west-extension-prototype",
+          "vertices": 4,
+          "oneWay": false
+        }
+      ],
+      "worldTerrain": [
+        {
+          "id": "A-01-upper-entry",
+          "vertices": 4
+        },
+        {
+          "id": "C-01-west-upper-descent",
+          "vertices": 4
+        },
+        {
+          "id": "C-02-west-shaft-descent",
+          "vertices": 8
+        },
+        {
+          "id": "C-03-west-refuge-lower",
+          "vertices": 7
+        },
+        {
+          "id": "B-01-center-stone-ascent",
+          "vertices": 4
+        },
+        {
+          "id": "B-02-center-lower-short-climb",
+          "vertices": 6
+        },
+        {
+          "id": "A-upper-veranda",
+          "vertices": 4
+        },
+        {
+          "id": "B-left-broken-balcony",
+          "vertices": 4
+        },
+        {
+          "id": "B-central-lower-floor",
+          "vertices": 6
+        },
+        {
+          "id": "E-joined-ordinary-floor",
+          "vertices": 8
+        },
+        {
+          "id": "west-extension-prototype",
+          "vertices": 14
+        }
+      ],
+      "enemies": [
+        "a6-56-opening-1"
+      ],
+      "units": [
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "side": 0,
+          "level": 25,
+          "hp": 1708.9,
+          "maxHp": 2050,
+          "loadout": [
+            "M01",
+            "M10",
+            "M07"
+          ],
+          "pos": [
+            928,
+            1136
+          ],
+          "h": 92,
+          "r": 22,
+          "awake": true,
+          "dead": false,
+          "airborne": false,
+          "grounded": true,
+          "validContact": true,
+          "support": "A-upper-veranda",
+          "fixed": false,
+          "objective": false,
+          "role": "mage",
+          "summoned": false,
+          "ally": false
+        },
+        {
+          "id": "draft-pressure-0",
+          "cls": "knight",
+          "side": 1,
+          "level": 8,
+          "hp": 409,
+          "maxHp": 409,
+          "loadout": [
+            "HBM01"
+          ],
+          "pos": [
+            1936,
+            3784.07
+          ],
+          "h": 88,
+          "r": 32,
+          "awake": false,
+          "dead": false,
+          "airborne": false,
+          "grounded": true,
+          "validContact": true,
+          "support": "C-03-west-refuge-lower",
+          "fixed": false,
+          "objective": false,
+          "role": "leaper",
+          "summoned": false,
+          "ally": false
+        },
+        {
+          "id": "draft-pressure-1",
+          "cls": "occultist",
+          "side": 1,
+          "level": 12,
+          "hp": 987,
+          "maxHp": 987,
+          "loadout": [
+            "HLN01",
+            "HLN02"
+          ],
+          "pos": [
+            3456,
+            2247.2
+          ],
+          "h": 92,
+          "r": 25,
+          "awake": false,
+          "dead": false,
+          "airborne": false,
+          "grounded": true,
+          "validContact": true,
+          "support": "B-01-center-stone-ascent",
+          "fixed": true,
+          "objective": false,
+          "role": "fire",
+          "summoned": false,
+          "ally": false
+        },
+        {
+          "id": "draft-pressure-2",
+          "cls": "occultist",
+          "side": 1,
+          "level": 8,
+          "hp": 409,
+          "maxHp": 409,
+          "loadout": [
+            "HGS01",
+            "HGS02"
+          ],
+          "pos": [
+            5872,
+            3694.83
+          ],
+          "h": 88,
+          "r": 32,
+          "awake": false,
+          "dead": false,
+          "airborne": false,
+          "grounded": true,
+          "validContact": true,
+          "support": "E-joined-ordinary-floor",
+          "fixed": false,
+          "objective": false,
+          "role": "fire",
+          "summoned": false,
+          "ally": false
+        },
+        {
+          "id": "a6-56-opening-1",
+          "cls": "occultist",
+          "side": 1,
+          "level": 25,
+          "hp": 595,
+          "maxHp": 595,
+          "loadout": [
+            "HSH01",
+            "HSH02"
+          ],
+          "pos": [
+            1512,
+            1136
+          ],
+          "h": 115,
+          "r": 22,
+          "awake": true,
+          "dead": false,
+          "airborne": false,
+          "grounded": true,
+          "validContact": true,
+          "support": "A-upper-veranda",
+          "fixed": false,
+          "objective": false,
+          "role": "ice",
+          "summoned": false,
+          "ally": false
+        },
+        {
+          "id": "a6-56-opening-2",
+          "cls": "knight",
+          "side": 1,
+          "level": 25,
+          "hp": 655,
+          "maxHp": 655,
+          "loadout": [
+            "HBM01"
+          ],
+          "pos": [
+            2545,
+            1136
+          ],
+          "h": 88,
+          "r": 32,
+          "awake": false,
+          "dead": false,
+          "airborne": false,
+          "grounded": true,
+          "validContact": true,
+          "support": "A-upper-veranda",
+          "fixed": false,
+          "objective": false,
+          "role": "leaper",
+          "summoned": false,
+          "ally": false
+        }
+      ]
+    },
+    "savedBytesBefore": "1203ed07aacc9d9c9e5fd02c182b0bbcfdb4879ab808aae966e4df6c4e476aa3",
+    "savedBytesAfter": "1203ed07aacc9d9c9e5fd02c182b0bbcfdb4879ab808aae966e4df6c4e476aa3"
+  },
+  "status": "PASS",
+  "pressure": {
+    "shots": [
+      {
+        "id": "draft-pressure-0",
+        "skill": "HLN01",
+        "round": 1
+      },
+      {
+        "id": "draft-pressure-2",
+        "skill": "HBM01",
+        "round": 1
+      },
+      {
+        "id": "draft-pressure-3",
+        "skill": "LA01",
+        "round": 1
+      },
+      {
+        "id": "a6-55-opening-3",
+        "skill": "HSH01",
+        "round": 1
+      },
+      {
+        "id": "a6-55-opening-4",
+        "skill": "HSH01",
+        "round": 1
+      },
+      {
+        "id": "a6-55-west-bank-1",
+        "skill": "HSH01",
+        "round": 1
+      },
+      {
+        "id": "a6-55-thread-pressure-1",
+        "skill": "HSH02",
+        "round": 1
+      },
+      {
+        "id": "draft-pressure-0",
+        "skill": "HLN01",
+        "round": 2
+      },
+      {
+        "id": "draft-pressure-2",
+        "skill": "HBM01",
+        "round": 2
+      },
+      {
+        "id": "draft-pressure-3",
+        "skill": "LA01",
+        "round": 2
+      },
+      {
+        "id": "a6-55-opening-6",
+        "skill": "HBM03",
+        "round": 2
+      },
+      {
+        "id": "a6-55-bell-descent-2",
+        "skill": "HBM01",
+        "round": 2
+      },
+      {
+        "id": "a6-55-bell-descent-3",
+        "skill": "HSH01",
+        "round": 2
+      },
+      {
+        "id": "a6-55-thread-pressure-2",
+        "skill": "HBM01",
+        "round": 2
+      },
+      {
+        "id": "draft-pressure-0",
+        "skill": "HLN02",
+        "round": 3
+      },
+      {
+        "id": "draft-pressure-2",
+        "skill": "HBM01",
+        "round": 3
+      },
+      {
+        "id": "draft-pressure-3",
+        "skill": "LA01",
+        "round": 3
+      },
+      {
+        "id": "a6-55-opening-4",
+        "skill": "HSH02",
+        "round": 3
+      },
+      {
+        "id": "a6-55-bell-descent-2",
+        "skill": "HBM01",
+        "round": 3
+      },
+      {
+        "id": "a6-55-thread-pressure-1",
+        "skill": "HSH01",
+        "round": 3
+      },
+      {
+        "id": "a6-55-thread-pressure-2",
+        "skill": "HBM01",
+        "round": 3
+      },
+      {
+        "id": "draft-pressure-0",
+        "skill": "HLN02",
+        "round": 4
+      },
+      {
+        "id": "draft-pressure-2",
+        "skill": "HBM01",
+        "round": 4
+      },
+      {
+        "id": "draft-pressure-3",
+        "skill": "LA01",
+        "round": 4
+      },
+      {
+        "id": "a6-55-opening-4",
+        "skill": "HSH02",
+        "round": 4
+      },
+      {
+        "id": "a6-55-bell-descent-2",
+        "skill": "HBM01",
+        "round": 4
+      },
+      {
+        "id": "a6-55-thread-pressure-1",
+        "skill": "HSH01",
+        "round": 4
+      },
+      {
+        "id": "a6-55-thread-pressure-2",
+        "skill": "HBM01",
+        "round": 4
+      },
+      {
+        "id": "draft-pressure-0",
+        "skill": "HLN02",
+        "round": 5
+      },
+      {
+        "id": "a6-55-opening-6",
+        "skill": "HBM03",
+        "round": 5
+      },
+      {
+        "id": "a6-55-bell-descent-2",
+        "skill": "HBM01",
+        "round": 5
+      },
+      {
+        "id": "a6-55-bell-descent-3",
+        "skill": "HSH01",
+        "round": 5
+      },
+      {
+        "id": "a6-55-thread-pressure-2",
+        "skill": "HBM01",
+        "round": 5
+      },
+      {
+        "id": "a6-55-outer-ward-2",
+        "skill": "HBM01",
+        "round": 5
+      },
+      {
+        "id": "a6-55-outer-ward-3",
+        "skill": "HSH01",
+        "round": 5
+      },
+      {
+        "id": "a6-55-bell-descent-3",
+        "skill": "HSH01",
+        "round": 6
+      },
+      {
+        "id": "draft-pressure-3",
+        "skill": "LA01",
+        "round": 6
+      },
+      {
+        "id": "a6-55-opening-4",
+        "skill": "HSH02",
+        "round": 6
+      },
+      {
+        "id": "a6-55-opening-6",
+        "skill": "HBM03",
+        "round": 6
+      },
+      {
+        "id": "a6-55-bell-descent-2",
+        "skill": "HBM01",
+        "round": 6
+      },
+      {
+        "id": "a6-55-thread-pressure-1",
+        "skill": "HSH01",
+        "round": 6
+      },
+      {
+        "id": "a6-55-outer-ward-2",
+        "skill": "HBM01",
+        "round": 6
+      },
+      {
+        "id": "a6-55-outer-ward-2",
+        "skill": "HBM01",
+        "round": 7
+      },
+      {
+        "id": "draft-pressure-2",
+        "skill": "HBM01",
+        "round": 7
+      },
+      {
+        "id": "a6-55-opening-6",
+        "skill": "HBM03",
+        "round": 7
+      },
+      {
+        "id": "a6-55-bell-descent-2",
+        "skill": "HBM01",
+        "round": 7
+      },
+      {
+        "id": "a6-55-bell-descent-3",
+        "skill": "HSH01",
+        "round": 7
+      },
+      {
+        "id": "a6-55-outer-ward-3",
+        "skill": "HSH02",
+        "round": 7
+      },
+      {
+        "id": "a6-55-outer-ward-4",
+        "skill": "HBM01",
+        "round": 7
+      },
+      {
+        "id": "a6-55-bell-descent-2",
+        "skill": "HBM01",
+        "round": 8
+      },
+      {
+        "id": "draft-pressure-2",
+        "skill": "HBM01",
+        "round": 8
+      },
+      {
+        "id": "a6-55-opening-5",
+        "skill": "HSH02",
+        "round": 8
+      },
+      {
+        "id": "a6-55-opening-6",
+        "skill": "HBM03",
+        "round": 8
+      },
+      {
+        "id": "a6-55-bell-descent-3",
+        "skill": "HSH01",
+        "round": 8
+      },
+      {
+        "id": "a6-55-outer-ward-3",
+        "skill": "HSH01",
+        "round": 8
+      },
+      {
+        "id": "a6-55-bell-descent-2",
+        "skill": "HBM01",
+        "round": 9
+      },
+      {
+        "id": "draft-pressure-2",
+        "skill": "HBM01",
+        "round": 9
+      },
+      {
+        "id": "a6-55-opening-5",
+        "skill": "HSH02",
+        "round": 9
+      },
+      {
+        "id": "a6-55-opening-6",
+        "skill": "HBM03",
+        "round": 9
+      },
+      {
+        "id": "a6-55-thread-pressure-1",
+        "skill": "HSH01",
+        "round": 9
+      },
+      {
+        "id": "a6-55-outer-ward-3",
+        "skill": "HSH01",
+        "round": 9
+      },
+      {
+        "id": "a6-55-outer-ward-4",
+        "skill": "HBM01",
+        "round": 9
+      },
+      {
+        "id": "a6-55-outer-ward-3",
+        "skill": "HSH01",
+        "round": 10
+      },
+      {
+        "id": "draft-pressure-2",
+        "skill": "HBM01",
+        "round": 10
+      },
+      {
+        "id": "a6-55-opening-5",
+        "skill": "HSH01",
+        "round": 10
+      },
+      {
+        "id": "a6-55-opening-6",
+        "skill": "HBM03",
+        "round": 10
+      },
+      {
+        "id": "a6-55-bell-descent-2",
+        "skill": "HBM01",
+        "round": 10
+      },
+      {
+        "id": "a6-55-outer-ward-4",
+        "skill": "HBM01",
+        "round": 10
+      },
+      {
+        "id": "a6-55-west-bank-3",
+        "skill": "HBM01",
+        "round": 10
+      },
+      {
+        "id": "a6-55-bell-descent-2",
+        "skill": "HBM01",
+        "round": 11
+      },
+      {
+        "id": "draft-pressure-2",
+        "skill": "HBM01",
+        "round": 11
+      },
+      {
+        "id": "a6-55-opening-5",
+        "skill": "HSH01",
+        "round": 11
+      },
+      {
+        "id": "a6-55-opening-6",
+        "skill": "HBM03",
+        "round": 11
+      },
+      {
+        "id": "a6-55-outer-ward-3",
+        "skill": "HSH01",
+        "round": 11
+      },
+      {
+        "id": "a6-55-outer-ward-4",
+        "skill": "HBM01",
+        "round": 11
+      },
+      {
+        "id": "a6-55-west-bank-3",
+        "skill": "HBM01",
+        "round": 11
+      },
+      {
+        "id": "a6-55-opening-6",
+        "skill": "HBM03",
+        "round": 12
+      },
+      {
+        "id": "a6-55-opening-4",
+        "skill": "HSH01",
+        "round": 12
+      },
+      {
+        "id": "a6-55-opening-5",
+        "skill": "HSH01",
+        "round": 12
+      },
+      {
+        "id": "a6-55-outer-ward-4",
+        "skill": "HBM01",
+        "round": 12
+      },
+      {
+        "id": "a6-55-west-bank-3",
+        "skill": "HBM01",
+        "round": 12
+      },
+      {
+        "id": "a6-55-west-bank-4",
+        "skill": "HSH01",
+        "round": 13
+      },
+      {
+        "id": "draft-pressure-2",
+        "skill": "HBM01",
+        "round": 13
+      },
+      {
+        "id": "a6-55-opening-5",
+        "skill": "HSH01",
+        "round": 13
+      },
+      {
+        "id": "a6-55-bell-descent-2",
+        "skill": "HBM01",
+        "round": 13
+      },
+      {
+        "id": "a6-55-thread-pressure-1",
+        "skill": "HSH01",
+        "round": 13
+      },
+      {
+        "id": "a6-55-outer-ward-4",
+        "skill": "HBM01",
+        "round": 13
+      },
+      {
+        "id": "a6-55-west-bank-3",
+        "skill": "HBM01",
+        "round": 13
+      }
+    ],
+    "heroShots": [
+      {
+        "id": "p-archer",
+        "skill": "A01",
+        "round": 2,
+        "shot": 8
+      },
+      {
+        "id": "p-archer",
+        "skill": "A01",
+        "round": 3,
+        "shot": 16
+      },
+      {
+        "id": "p-archer",
+        "skill": "A01",
+        "round": 4,
+        "shot": 24
+      },
+      {
+        "id": "p-archer",
+        "skill": "A01",
+        "round": 5,
+        "shot": 32
+      },
+      {
+        "id": "p-knight",
+        "skill": "S03",
+        "round": 6,
+        "shot": 40
+      },
+      {
+        "id": "p-knight",
+        "skill": "S03",
+        "round": 7,
+        "shot": 48
+      },
+      {
+        "id": "p-knight",
+        "skill": "S03",
+        "round": 8,
+        "shot": 56
+      },
+      {
+        "id": "p-knight",
+        "skill": "S03",
+        "round": 9,
+        "shot": 63
+      },
+      {
+        "id": "p-knight",
+        "skill": "S03",
+        "round": 10,
+        "shot": 71
+      },
+      {
+        "id": "p-knight",
+        "skill": "S00",
+        "round": 11,
+        "shot": 79
+      },
+      {
+        "id": "p-knight",
+        "skill": "S00",
+        "round": 12,
+        "shot": 87
+      },
+      {
+        "id": "p-knight",
+        "skill": "S03",
+        "round": 13,
+        "shot": 93
+      }
+    ],
+    "damage": [
+      {
+        "id": "draft-pressure-0",
+        "target": "p-occultist",
+        "skill": "HLN01",
+        "before": 2144.1,
+        "after": 2105.1,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 102.63361045210576,
+        "round": 1
+      },
+      {
+        "id": "draft-pressure-2",
+        "target": "p-knight",
+        "skill": "HBM01",
+        "before": 3842.1,
+        "after": 3842.1,
+        "shieldBefore": 462,
+        "shieldAfter": 441,
+        "amount": 80.15625,
+        "round": 1
+      },
+      {
+        "id": "draft-pressure-3",
+        "target": "p-archer",
+        "skill": "LA01",
+        "before": 1720,
+        "after": 1720,
+        "shieldBefore": 206,
+        "shieldAfter": 156,
+        "amount": 110.92269811285018,
+        "round": 1
+      },
+      {
+        "id": "a6-55-opening-3",
+        "target": "p-occultist",
+        "skill": "HSH01",
+        "before": 2105.1,
+        "after": 2075.1,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 64.29693181042863,
+        "round": 1
+      },
+      {
+        "id": "a6-55-opening-4",
+        "target": "p-archer",
+        "skill": "HSH01",
+        "before": 1720,
+        "after": 1720,
+        "shieldBefore": 156,
+        "shieldAfter": 123,
+        "amount": 64.29693181042863,
+        "round": 1
+      },
+      {
+        "id": "a6-55-thread-pressure-1",
+        "target": "p-occultist",
+        "skill": "HSH02",
+        "before": 2075.1,
+        "after": 2024.1,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 108.3661169110049,
+        "round": 1
+      },
+      {
+        "id": "draft-pressure-0",
+        "target": "p-occultist",
+        "skill": "HLN01",
+        "before": 2024.1,
+        "after": 1985.1,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 102.63361045210576,
+        "round": 2
+      },
+      {
+        "id": "draft-pressure-2",
+        "target": "p-knight",
+        "skill": "HBM01",
+        "before": 3842.1,
+        "after": 3842.1,
+        "shieldBefore": 462,
+        "shieldAfter": 441,
+        "amount": 80.15625,
+        "round": 2
+      },
+      {
+        "id": "draft-pressure-3",
+        "target": "p-archer",
+        "skill": "LA01",
+        "before": 1720,
+        "after": 1664,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 110.92269811285018,
+        "round": 2
+      },
+      {
+        "id": "a6-55-opening-6",
+        "target": "p-occultist",
+        "skill": "HBM03",
+        "before": 1985.1,
+        "after": 1891.1,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 177.36375803790185,
+        "round": 2
+      },
+      {
+        "id": "a6-55-bell-descent-2",
+        "target": "p-archer",
+        "skill": "HBM01",
+        "before": 1664,
+        "after": 1555,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 182.50335288197294,
+        "round": 2
+      },
+      {
+        "id": "a6-55-bell-descent-3",
+        "target": "p-occultist",
+        "skill": "HSH01",
+        "before": 1891.1,
+        "after": 1861.1,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 64.29693181042863,
+        "round": 2
+      },
+      {
+        "id": "a6-55-thread-pressure-2",
+        "target": "p-archer",
+        "skill": "HBM01",
+        "before": 1555,
+        "after": 1450,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 182.50335288197294,
+        "round": 2
+      },
+      {
+        "id": "draft-pressure-0",
+        "target": "p-occultist",
+        "skill": "HLN02",
+        "before": 1861.1,
+        "after": 1823.1,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 98.8314047914862,
+        "round": 3
+      },
+      {
+        "id": "draft-pressure-2",
+        "target": "p-knight",
+        "skill": "HBM01",
+        "before": 3846,
+        "after": 3846,
+        "shieldBefore": 462,
+        "shieldAfter": 441,
+        "amount": 80.15625,
+        "round": 3
+      },
+      {
+        "id": "draft-pressure-3",
+        "target": "p-archer",
+        "skill": "LA01",
+        "before": 1450,
+        "after": 1403,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 110.92269811285018,
+        "round": 3
+      },
+      {
+        "id": "a6-55-opening-4",
+        "target": "p-occultist",
+        "skill": "HSH02",
+        "before": 1823.1,
+        "after": 1774.1,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 105.31154246544084,
+        "round": 3
+      },
+      {
+        "id": "a6-55-bell-descent-2",
+        "target": "p-archer",
+        "skill": "HBM01",
+        "before": 1403,
+        "after": 1298,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 182.50335288197294,
+        "round": 3
+      },
+      {
+        "id": "a6-55-thread-pressure-1",
+        "target": "p-occultist",
+        "skill": "HSH01",
+        "before": 1774.1,
+        "after": 1744.1,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 64.29693181042863,
+        "round": 3
+      },
+      {
+        "id": "a6-55-thread-pressure-2",
+        "target": "p-archer",
+        "skill": "HBM01",
+        "before": 1298,
+        "after": 1197,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 182.50335288197294,
+        "round": 3
+      },
+      {
+        "id": "draft-pressure-0",
+        "target": "p-occultist",
+        "skill": "HLN02",
+        "before": 1744.1,
+        "after": 1706.1,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 98.8314047914862,
+        "round": 4
+      },
+      {
+        "id": "draft-pressure-2",
+        "target": "p-knight",
+        "skill": "HBM01",
+        "before": 3846,
+        "after": 3846,
+        "shieldBefore": 462,
+        "shieldAfter": 442,
+        "amount": 80.15625,
+        "round": 4
+      },
+      {
+        "id": "draft-pressure-3",
+        "target": "p-archer",
+        "skill": "LA01",
+        "before": 1197,
+        "after": 1147,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 110.92269811285018,
+        "round": 4
+      },
+      {
+        "id": "a6-55-opening-4",
+        "target": "p-occultist",
+        "skill": "HSH02",
+        "before": 1706.1,
+        "after": 1653.1,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 113.66727243611358,
+        "round": 4
+      },
+      {
+        "id": "a6-55-bell-descent-2",
+        "target": "p-archer",
+        "skill": "HBM01",
+        "before": 1147,
+        "after": 1048,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 182.50335288197294,
+        "round": 4
+      },
+      {
+        "id": "a6-55-thread-pressure-1",
+        "target": "p-occultist",
+        "skill": "HSH01",
+        "before": 1653.1,
+        "after": 1623.1,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 64.29693181042863,
+        "round": 4
+      },
+      {
+        "id": "a6-55-thread-pressure-2",
+        "target": "p-archer",
+        "skill": "HBM01",
+        "before": 1048,
+        "after": 952,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 182.50335288197294,
+        "round": 4
+      },
+      {
+        "id": "draft-pressure-0",
+        "target": "p-occultist",
+        "skill": "HLN02",
+        "before": 1623.1,
+        "after": 1585.1,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 98.8314047914862,
+        "round": 5
+      },
+      {
+        "id": "a6-55-opening-6",
+        "target": "p-occultist",
+        "skill": "HBM03",
+        "before": 1585.1,
+        "after": 1490.1,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 177.36375803790185,
+        "round": 5
+      },
+      {
+        "id": "a6-55-bell-descent-2",
+        "target": "p-archer",
+        "skill": "HBM01",
+        "before": 952,
+        "after": 841,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 182.50335288197294,
+        "round": 5
+      },
+      {
+        "id": "a6-55-thread-pressure-2",
+        "target": "p-knight",
+        "skill": "HBM01",
+        "before": 3846,
+        "after": 3846,
+        "shieldBefore": 462,
+        "shieldAfter": 410,
+        "amount": 182.50335288197294,
+        "round": 5
+      },
+      {
+        "id": "a6-55-outer-ward-2",
+        "target": "p-archer",
+        "skill": "HBM01",
+        "before": 841,
+        "after": 745,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 182.50335288197294,
+        "round": 5
+      },
+      {
+        "id": "a6-55-outer-ward-3",
+        "target": "p-occultist",
+        "skill": "HSH01",
+        "before": 1490.1,
+        "after": 1460.1,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 64.29693181042863,
+        "round": 5
+      },
+      {
+        "id": "a6-55-bell-descent-3",
+        "target": "p-knight",
+        "skill": "HSH01",
+        "before": 3846,
+        "after": 3828,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 64.29693181042863,
+        "round": 6
+      },
+      {
+        "id": "draft-pressure-3",
+        "target": "p-occultist",
+        "skill": "LA01",
+        "before": 1460.1,
+        "after": 1416.1,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 110.92269811285018,
+        "round": 6
+      },
+      {
+        "id": "a6-55-opening-4",
+        "target": "p-knight",
+        "skill": "HSH02",
+        "before": 3828,
+        "after": 3801,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 98.28955333158274,
+        "round": 6
+      },
+      {
+        "id": "a6-55-opening-6",
+        "target": "p-occultist",
+        "skill": "HBM03",
+        "before": 1416.1,
+        "after": 1325.1,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 177.36375803790185,
+        "round": 6
+      },
+      {
+        "id": "a6-55-bell-descent-2",
+        "target": "p-archer",
+        "skill": "HBM01",
+        "before": 814,
+        "after": 814,
+        "shieldBefore": 206,
+        "shieldAfter": 94,
+        "amount": 182.50335288197294,
+        "round": 6
+      },
+      {
+        "id": "a6-55-outer-ward-2",
+        "target": "p-archer",
+        "skill": "HBM01",
+        "before": 814,
+        "after": 797,
+        "shieldBefore": 94,
+        "shieldAfter": 0,
+        "amount": 182.50335288197294,
+        "round": 6
+      },
+      {
+        "id": "a6-55-outer-ward-2",
+        "target": "p-archer",
+        "skill": "HBM01",
+        "before": 866,
+        "after": 866,
+        "shieldBefore": 206,
+        "shieldAfter": 107,
+        "amount": 182.50335288197294,
+        "round": 7
+      },
+      {
+        "id": "draft-pressure-2",
+        "target": "p-knight",
+        "skill": "HBM01",
+        "before": 3801,
+        "after": 3781,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 80.15625,
+        "round": 7
+      },
+      {
+        "id": "a6-55-opening-6",
+        "target": "p-occultist",
+        "skill": "HBM03",
+        "before": 1325.1,
+        "after": 1237.1,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 177.36375803790185,
+        "round": 7
+      },
+      {
+        "id": "a6-55-bell-descent-2",
+        "target": "p-archer",
+        "skill": "HBM01",
+        "before": 866,
+        "after": 866,
+        "shieldBefore": 107,
+        "shieldAfter": 9,
+        "amount": 182.50335288197294,
+        "round": 7
+      },
+      {
+        "id": "a6-55-bell-descent-3",
+        "target": "p-occultist",
+        "skill": "HSH01",
+        "before": 1237.1,
+        "after": 1207.1,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 64.29693181042863,
+        "round": 7
+      },
+      {
+        "id": "a6-55-outer-ward-4",
+        "target": "p-knight",
+        "skill": "HBM01",
+        "before": 3781,
+        "after": 3731,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 182.50335288197294,
+        "round": 7
+      },
+      {
+        "id": "a6-55-bell-descent-2",
+        "target": "p-knight",
+        "skill": "HBM01",
+        "before": 3731,
+        "after": 3678,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 182.50335288197294,
+        "round": 8
+      },
+      {
+        "id": "draft-pressure-2",
+        "target": "p-knight",
+        "skill": "HBM01",
+        "before": 3678,
+        "after": 3657,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 80.15625,
+        "round": 8
+      },
+      {
+        "id": "a6-55-opening-5",
+        "target": "p-occultist",
+        "skill": "HSH02",
+        "before": 1207.1,
+        "after": 1148.1,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 125.48675918648324,
+        "round": 8
+      },
+      {
+        "id": "a6-55-opening-6",
+        "target": "p-occultist",
+        "skill": "HBM03",
+        "before": 1148.1,
+        "after": 1063.1,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 177.36375803790185,
+        "round": 8
+      },
+      {
+        "id": "a6-55-bell-descent-3",
+        "target": "p-occultist",
+        "skill": "HSH01",
+        "before": 1063.1,
+        "after": 1033.1,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 64.29693181042863,
+        "round": 8
+      },
+      {
+        "id": "a6-55-outer-ward-3",
+        "target": "p-occultist",
+        "skill": "HSH01",
+        "before": 1033.1,
+        "after": 1003.0999999999999,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 64.29693181042863,
+        "round": 8
+      },
+      {
+        "id": "a6-55-bell-descent-2",
+        "target": "p-archer",
+        "skill": "HBM01",
+        "before": 1004,
+        "after": 1004,
+        "shieldBefore": 206,
+        "shieldAfter": 107,
+        "amount": 182.50335288197294,
+        "round": 9
+      },
+      {
+        "id": "draft-pressure-2",
+        "target": "p-archer",
+        "skill": "HBM01",
+        "before": 1004,
+        "after": 1004,
+        "shieldBefore": 107,
+        "shieldAfter": 70,
+        "amount": 80.15625,
+        "round": 9
+      },
+      {
+        "id": "a6-55-opening-5",
+        "target": "p-knight",
+        "skill": "HSH02",
+        "before": 3657,
+        "after": 3626,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 113.27418816902507,
+        "round": 9
+      },
+      {
+        "id": "a6-55-opening-6",
+        "target": "p-occultist",
+        "skill": "HBM03",
+        "before": 1003.0999999999999,
+        "after": 912.0999999999999,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 177.36375803790185,
+        "round": 9
+      },
+      {
+        "id": "a6-55-thread-pressure-1",
+        "target": "p-knight",
+        "skill": "HSH01",
+        "before": 3626,
+        "after": 3608,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 64.29693181042863,
+        "round": 9
+      },
+      {
+        "id": "a6-55-outer-ward-4",
+        "target": "p-archer",
+        "skill": "HBM01",
+        "before": 1004,
+        "after": 976,
+        "shieldBefore": 70,
+        "shieldAfter": 0,
+        "amount": 182.50335288197294,
+        "round": 9
+      },
+      {
+        "id": "a6-55-outer-ward-3",
+        "target": "p-occultist",
+        "skill": "HSH01",
+        "before": 912.0999999999999,
+        "after": 882.0999999999999,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 64.29693181042863,
+        "round": 10
+      },
+      {
+        "id": "draft-pressure-2",
+        "target": "p-archer",
+        "skill": "HBM01",
+        "before": 1045,
+        "after": 1045,
+        "shieldBefore": 206,
+        "shieldAfter": 171,
+        "amount": 80.15625,
+        "round": 10
+      },
+      {
+        "id": "a6-55-opening-6",
+        "target": "p-occultist",
+        "skill": "HBM03",
+        "before": 882.0999999999999,
+        "after": 799.0999999999999,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 177.36375803790185,
+        "round": 10
+      },
+      {
+        "id": "a6-55-bell-descent-2",
+        "target": "p-archer",
+        "skill": "HBM01",
+        "before": 1045,
+        "after": 1045,
+        "shieldBefore": 171,
+        "shieldAfter": 73,
+        "amount": 182.50335288197294,
+        "round": 10
+      },
+      {
+        "id": "a6-55-outer-ward-4",
+        "target": "p-archer",
+        "skill": "HBM01",
+        "before": 1045,
+        "after": 1009,
+        "shieldBefore": 73,
+        "shieldAfter": 0,
+        "amount": 182.50335288197294,
+        "round": 10
+      },
+      {
+        "id": "a6-55-west-bank-3",
+        "target": "p-archer",
+        "skill": "HBM01",
+        "before": 1009,
+        "after": 913,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 182.50335288197294,
+        "round": 10
+      },
+      {
+        "id": "a6-55-bell-descent-2",
+        "target": "p-knight",
+        "skill": "HBM01",
+        "before": 1298,
+        "after": 1248,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 182.50335288197294,
+        "round": 11
+      },
+      {
+        "id": "draft-pressure-2",
+        "target": "p-knight",
+        "skill": "HBM01",
+        "before": 1248,
+        "after": 1229,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 80.15625,
+        "round": 11
+      },
+      {
+        "id": "a6-55-opening-6",
+        "target": "p-occultist",
+        "skill": "HBM03",
+        "before": 799.0999999999999,
+        "after": 714.0999999999999,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 177.36375803790185,
+        "round": 11
+      },
+      {
+        "id": "a6-55-outer-ward-4",
+        "target": "p-knight",
+        "skill": "HBM01",
+        "before": 1229,
+        "after": 1178,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 182.50335288197294,
+        "round": 11
+      },
+      {
+        "id": "a6-55-west-bank-3",
+        "target": "p-knight",
+        "skill": "HBM01",
+        "before": 1178,
+        "after": 1127,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 182.50335288197294,
+        "round": 11
+      },
+      {
+        "id": "a6-55-opening-6",
+        "target": "p-occultist",
+        "skill": "HBM03",
+        "before": 714.0999999999999,
+        "after": 619.0999999999999,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 177.36375803790185,
+        "round": 12
+      },
+      {
+        "id": "a6-55-outer-ward-4",
+        "target": "p-archer",
+        "skill": "HBM01",
+        "before": 1051,
+        "after": 1051,
+        "shieldBefore": 206,
+        "shieldAfter": 112,
+        "amount": 182.50335288197294,
+        "round": 12
+      },
+      {
+        "id": "a6-55-west-bank-3",
+        "target": "p-archer",
+        "skill": "HBM01",
+        "before": 1051,
+        "after": 1051,
+        "shieldBefore": 112,
+        "shieldAfter": 1,
+        "amount": 182.50335288197294,
+        "round": 12
+      },
+      {
+        "id": "draft-pressure-2",
+        "target": "p-archer",
+        "skill": "HBM01",
+        "before": 1120,
+        "after": 1120,
+        "shieldBefore": 206,
+        "shieldAfter": 167,
+        "amount": 80.15625,
+        "round": 13
+      },
+      {
+        "id": "a6-55-bell-descent-2",
+        "target": "p-archer",
+        "skill": "HBM01",
+        "before": 1120,
+        "after": 1120,
+        "shieldBefore": 167,
+        "shieldAfter": 59,
+        "amount": 182.50335288197294,
+        "round": 13
+      },
+      {
+        "id": "a6-55-outer-ward-4",
+        "target": "p-archer",
+        "skill": "HBM01",
+        "before": 1120,
+        "after": 1075,
+        "shieldBefore": 59,
+        "shieldAfter": 0,
+        "amount": 182.50335288197294,
+        "round": 13
+      },
+      {
+        "id": "a6-55-west-bank-3",
+        "target": "p-archer",
+        "skill": "HBM01",
+        "before": 1075,
+        "after": 964,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 182.50335288197294,
+        "round": 13
+      }
+    ],
+    "impacts": [
+      {
+        "id": "draft-pressure-0",
+        "target": "p-occultist",
+        "skill": "HLN01",
+        "before": {
+          "hp": 2144.1,
+          "shield": 0
+        },
+        "after": {
+          "hp": 2105.1,
+          "shield": 0
+        },
+        "x": 2660,
+        "y": 1641.2111578627998,
+        "shot": 1,
+        "round": 1
+      },
+      {
+        "id": "draft-pressure-3",
+        "target": "p-archer",
+        "skill": "LA01",
+        "before": {
+          "hp": 1720,
+          "shield": 206
+        },
+        "after": {
+          "hp": 1720,
+          "shield": 156
+        },
+        "x": 1222.4288122389617,
+        "y": 1117.0472895530597,
+        "shot": 3,
+        "round": 1
+      },
+      {
+        "id": "a6-55-opening-3",
+        "target": "p-occultist",
+        "skill": "HSH01",
+        "before": {
+          "hp": 2105.1,
+          "shield": 0
+        },
+        "after": {
+          "hp": 2075.1,
+          "shield": 0
+        },
+        "x": 2660,
+        "y": 1667.6632478594959,
+        "shot": 4,
+        "round": 1
+      },
+      {
+        "id": "a6-55-opening-4",
+        "target": "p-archer",
+        "skill": "HSH01",
+        "before": {
+          "hp": 1720,
+          "shield": 156
+        },
+        "after": {
+          "hp": 1720,
+          "shield": 123
+        },
+        "x": 1204,
+        "y": 1116.676704200347,
+        "shot": 5,
+        "round": 1
+      },
+      {
+        "id": "a6-55-west-bank-1",
+        "target": "p-occultist",
+        "skill": "HSH01",
+        "before": {
+          "hp": 2075.1,
+          "shield": 0
+        },
+        "after": {
+          "hp": 2075.1,
+          "shield": 0
+        },
+        "x": 2700.231093198835,
+        "y": 1602.3076923076924,
+        "shot": 6,
+        "round": 1
+      },
+      {
+        "id": "draft-pressure-0",
+        "target": "p-occultist",
+        "skill": "HLN01",
+        "before": {
+          "hp": 2024.1,
+          "shield": 0
+        },
+        "after": {
+          "hp": 1985.1,
+          "shield": 0
+        },
+        "x": 2660,
+        "y": 1641.2111578627998,
+        "shot": 9,
+        "round": 2
+      },
+      {
+        "id": "draft-pressure-3",
+        "target": "p-archer",
+        "skill": "LA01",
+        "before": {
+          "hp": 1720,
+          "shield": 0
+        },
+        "after": {
+          "hp": 1664,
+          "shield": 0
+        },
+        "x": 1835.1416818549721,
+        "y": 1342.748125764471,
+        "shot": 11,
+        "round": 2
+      },
+      {
+        "id": "a6-55-bell-descent-3",
+        "target": "p-occultist",
+        "skill": "HSH01",
+        "before": {
+          "hp": 1891.1,
+          "shield": 0
+        },
+        "after": {
+          "hp": 1861.1,
+          "shield": 0
+        },
+        "x": 2660,
+        "y": 1649.578250651709,
+        "shot": 14,
+        "round": 2
+      },
+      {
+        "id": "draft-pressure-0",
+        "target": "p-occultist",
+        "skill": "HLN02",
+        "before": {
+          "hp": 1861.1,
+          "shield": 0
+        },
+        "after": {
+          "hp": 1823.1,
+          "shield": 0
+        },
+        "x": 2660,
+        "y": 1621.196007078272,
+        "shot": 17,
+        "round": 3
+      },
+      {
+        "id": "draft-pressure-3",
+        "target": "p-archer",
+        "skill": "LA01",
+        "before": {
+          "hp": 1450,
+          "shield": 0
+        },
+        "after": {
+          "hp": 1403,
+          "shield": 0
+        },
+        "x": 1849.8731785194536,
+        "y": 1342.748125764471,
+        "shot": 19,
+        "round": 3
+      },
+      {
+        "id": "a6-55-thread-pressure-1",
+        "target": "p-occultist",
+        "skill": "HSH01",
+        "before": {
+          "hp": 1774.1,
+          "shield": 0
+        },
+        "after": {
+          "hp": 1744.1,
+          "shield": 0
+        },
+        "x": 2660,
+        "y": 1630.3862561359442,
+        "shot": 22,
+        "round": 3
+      },
+      {
+        "id": "draft-pressure-0",
+        "target": "p-occultist",
+        "skill": "HLN02",
+        "before": {
+          "hp": 1744.1,
+          "shield": 0
+        },
+        "after": {
+          "hp": 1706.1,
+          "shield": 0
+        },
+        "x": 2660,
+        "y": 1621.196007078272,
+        "shot": 25,
+        "round": 4
+      },
+      {
+        "id": "draft-pressure-3",
+        "target": "p-archer",
+        "skill": "LA01",
+        "before": {
+          "hp": 1197,
+          "shield": 0
+        },
+        "after": {
+          "hp": 1147,
+          "shield": 0
+        },
+        "x": 1849.8731785194536,
+        "y": 1342.748125764471,
+        "shot": 27,
+        "round": 4
+      },
+      {
+        "id": "a6-55-opening-4",
+        "target": "p-occultist",
+        "skill": "HSH02",
+        "before": {
+          "hp": 1706.1,
+          "shield": 0
+        },
+        "after": {
+          "hp": 1653.1,
+          "shield": 0
+        },
+        "x": 2660,
+        "y": 1683.6824241834252,
+        "shot": 28,
+        "round": 4
+      },
+      {
+        "id": "a6-55-thread-pressure-1",
+        "target": "p-occultist",
+        "skill": "HSH01",
+        "before": {
+          "hp": 1653.1,
+          "shield": 0
+        },
+        "after": {
+          "hp": 1623.1,
+          "shield": 0
+        },
+        "x": 2660,
+        "y": 1630.3862561359442,
+        "shot": 30,
+        "round": 4
+      },
+      {
+        "id": "draft-pressure-0",
+        "target": "p-occultist",
+        "skill": "HLN02",
+        "before": {
+          "hp": 1623.1,
+          "shield": 0
+        },
+        "after": {
+          "hp": 1585.1,
+          "shield": 0
+        },
+        "x": 2660,
+        "y": 1621.196007078272,
+        "shot": 33,
+        "round": 5
+      },
+      {
+        "id": "a6-55-bell-descent-3",
+        "target": "p-occultist",
+        "skill": "HSH01",
+        "before": {
+          "hp": 1490.1,
+          "shield": 0
+        },
+        "after": {
+          "hp": 1490.1,
+          "shield": 0
+        },
+        "x": 2675.3357206292576,
+        "y": 1614.5367502336594,
+        "shot": 36,
+        "round": 5
+      },
+      {
+        "id": "a6-55-outer-ward-3",
+        "target": "p-occultist",
+        "skill": "HSH01",
+        "before": {
+          "hp": 1490.1,
+          "shield": 0
+        },
+        "after": {
+          "hp": 1460.1,
+          "shield": 0
+        },
+        "x": 2660,
+        "y": 1667.9720055569512,
+        "shot": 39,
+        "round": 5
+      },
+      {
+        "id": "a6-55-bell-descent-3",
+        "target": "p-knight",
+        "skill": "HSH01",
+        "before": {
+          "hp": 3846,
+          "shield": 0
+        },
+        "after": {
+          "hp": 3828,
+          "shield": 0
+        },
+        "x": 2191.299222191645,
+        "y": 1501.4300214164052,
+        "shot": 41,
+        "round": 6
+      },
+      {
+        "id": "draft-pressure-3",
+        "target": "p-occultist",
+        "skill": "LA01",
+        "before": {
+          "hp": 1460.1,
+          "shield": 0
+        },
+        "after": {
+          "hp": 1416.1,
+          "shield": 0
+        },
+        "x": 2663,
+        "y": 1654.6642074687763,
+        "shot": 42,
+        "round": 6
+      },
+      {
+        "id": "a6-55-thread-pressure-1",
+        "target": "p-knight",
+        "skill": "HSH01",
+        "before": {
+          "hp": 3801,
+          "shield": 0
+        },
+        "after": {
+          "hp": 3801,
+          "shield": 0
+        },
+        "x": 2148.704728310845,
+        "y": 1450.4672286928671,
+        "shot": 46,
+        "round": 6
+      },
+      {
+        "id": "a6-55-bell-descent-3",
+        "target": "p-occultist",
+        "skill": "HSH01",
+        "before": {
+          "hp": 1237.1,
+          "shield": 0
+        },
+        "after": {
+          "hp": 1207.1,
+          "shield": 0
+        },
+        "x": 2660,
+        "y": 1639.8717942251053,
+        "shot": 53,
+        "round": 7
+      },
+      {
+        "id": "a6-55-opening-5",
+        "target": "p-occultist",
+        "skill": "HSH02",
+        "before": {
+          "hp": 1207.1,
+          "shield": 0
+        },
+        "after": {
+          "hp": 1148.1,
+          "shield": 0
+        },
+        "x": 2660,
+        "y": 1659.5682851087327,
+        "shot": 59,
+        "round": 8
+      },
+      {
+        "id": "a6-55-bell-descent-3",
+        "target": "p-occultist",
+        "skill": "HSH01",
+        "before": {
+          "hp": 1063.1,
+          "shield": 0
+        },
+        "after": {
+          "hp": 1033.1,
+          "shield": 0
+        },
+        "x": 2660,
+        "y": 1647.30913723129,
+        "shot": 61,
+        "round": 8
+      },
+      {
+        "id": "a6-55-outer-ward-3",
+        "target": "p-occultist",
+        "skill": "HSH01",
+        "before": {
+          "hp": 1033.1,
+          "shield": 0
+        },
+        "after": {
+          "hp": 1003.0999999999999,
+          "shield": 0
+        },
+        "x": 2660,
+        "y": 1645.608716750182,
+        "shot": 62,
+        "round": 8
+      },
+      {
+        "id": "a6-55-opening-5",
+        "target": "p-knight",
+        "skill": "HSH02",
+        "before": {
+          "hp": 3657,
+          "shield": 0
+        },
+        "after": {
+          "hp": 3626,
+          "shield": 0
+        },
+        "x": 2155.3951813718986,
+        "y": 1478.4016788181984,
+        "shot": 66,
+        "round": 9
+      },
+      {
+        "id": "a6-55-thread-pressure-1",
+        "target": "p-knight",
+        "skill": "HSH01",
+        "before": {
+          "hp": 3626,
+          "shield": 0
+        },
+        "after": {
+          "hp": 3608,
+          "shield": 0
+        },
+        "x": 2183.705139116885,
+        "y": 1491.0233836305686,
+        "shot": 68,
+        "round": 9
+      },
+      {
+        "id": "a6-55-outer-ward-3",
+        "target": "p-occultist",
+        "skill": "HSH01",
+        "before": {
+          "hp": 912.0999999999999,
+          "shield": 0
+        },
+        "after": {
+          "hp": 912.0999999999999,
+          "shield": 0
+        },
+        "x": 2665.050818149325,
+        "y": 1613.705758019091,
+        "shot": 69,
+        "round": 9
+      },
+      {
+        "id": "a6-55-outer-ward-3",
+        "target": "p-occultist",
+        "skill": "HSH01",
+        "before": {
+          "hp": 912.0999999999999,
+          "shield": 0
+        },
+        "after": {
+          "hp": 882.0999999999999,
+          "shield": 0
+        },
+        "x": 2660,
+        "y": 1651.1512772560461,
+        "shot": 72,
+        "round": 10
+      },
+      {
+        "id": "a6-55-opening-5",
+        "target": "p-occultist",
+        "skill": "HSH01",
+        "before": {
+          "hp": 882.0999999999999,
+          "shield": 0
+        },
+        "after": {
+          "hp": 882.0999999999999,
+          "shield": 0
+        },
+        "x": 2715.6094244009014,
+        "y": 1602.3076923076924,
+        "shot": 74,
+        "round": 10
+      },
+      {
+        "id": "a6-55-opening-5",
+        "target": "p-occultist",
+        "skill": "HSH01",
+        "before": {
+          "hp": 799.0999999999999,
+          "shield": 0
+        },
+        "after": {
+          "hp": 799.0999999999999,
+          "shield": 0
+        },
+        "x": 2715.7937873895835,
+        "y": 1602.3076923076924,
+        "shot": 82,
+        "round": 11
+      },
+      {
+        "id": "a6-55-outer-ward-3",
+        "target": "p-knight",
+        "skill": "HSH01",
+        "before": {
+          "hp": 1229,
+          "shield": 0
+        },
+        "after": {
+          "hp": 1229,
+          "shield": 0
+        },
+        "x": 1688.3632373037185,
+        "y": 1292.222114725451,
+        "shot": 84,
+        "round": 11
+      },
+      {
+        "id": "a6-55-opening-4",
+        "target": "p-knight",
+        "skill": "HSH01",
+        "before": {
+          "hp": 1127,
+          "shield": 0
+        },
+        "after": {
+          "hp": 1127,
+          "shield": 0
+        },
+        "x": 2089.96392780521,
+        "y": 1411.686422777843,
+        "shot": 89,
+        "round": 12
+      },
+      {
+        "id": "a6-55-opening-5",
+        "target": "p-knight",
+        "skill": "HSH01",
+        "before": {
+          "hp": 1127,
+          "shield": 0
+        },
+        "after": {
+          "hp": 1127,
+          "shield": 0
+        },
+        "x": 2040.48087402799,
+        "y": 1429.6420994816997,
+        "shot": 90,
+        "round": 12
+      },
+      {
+        "id": "a6-55-west-bank-4",
+        "target": "p-occultist",
+        "skill": "HSH01",
+        "before": {
+          "hp": 619.0999999999999,
+          "shield": 0
+        },
+        "after": {
+          "hp": 619.0999999999999,
+          "shield": 0
+        },
+        "x": 2691.944955024176,
+        "y": 1602.3076923076924,
+        "shot": 94,
+        "round": 13
+      },
+      {
+        "id": "a6-55-opening-5",
+        "target": "p-occultist",
+        "skill": "HSH01",
+        "before": {
+          "hp": 619.0999999999999,
+          "shield": 0
+        },
+        "after": {
+          "hp": 619.0999999999999,
+          "shield": 0
+        },
+        "x": 2660,
+        "y": 1698.2179542264637,
+        "shot": 96,
+        "round": 13
+      },
+      {
+        "id": "a6-55-thread-pressure-1",
+        "target": "p-knight",
+        "skill": "HSH01",
+        "before": {
+          "hp": 1127,
+          "shield": 0
+        },
+        "after": {
+          "hp": 1127,
+          "shield": 0
+        },
+        "x": 2774.3877162965273,
+        "y": 1624.751620260628,
+        "shot": 98,
+        "round": 13
+      }
+    ],
+    "knockbacks": [],
+    "enemyTurns": [
+      {
+        "id": "draft-pressure-0",
+        "round": 1,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 2112,
+        "y": 1523.076923076923
+      },
+      {
+        "id": "draft-pressure-2",
+        "round": 1,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1624,
+        "y": 1372.923076923077
+      },
+      {
+        "id": "draft-pressure-3",
+        "round": 1,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1264,
+        "y": 1180.3636363636365
+      },
+      {
+        "id": "a6-55-opening-3",
+        "round": 1,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 920,
+        "y": 992.7272727272727
+      },
+      {
+        "id": "a6-55-opening-4",
+        "round": 1,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1180,
+        "y": 1134.5454545454545
+      },
+      {
+        "id": "a6-55-west-bank-1",
+        "round": 1,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1070,
+        "y": 1074.5454545454545
+      },
+      {
+        "id": "a6-55-thread-pressure-1",
+        "round": 1,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1000,
+        "y": 1036.3636363636363
+      },
+      {
+        "id": "draft-pressure-0",
+        "round": 2,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 2112,
+        "y": 1523.076923076923
+      },
+      {
+        "id": "draft-pressure-2",
+        "round": 2,
+        "bossPhase": null,
+        "phase": "flight",
+        "grounded": true,
+        "x": 1561.635419680895,
+        "y": 1353.7339752864293
+      },
+      {
+        "id": "draft-pressure-3",
+        "round": 2,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1264,
+        "y": 1180.3636363636365
+      },
+      {
+        "id": "a6-55-opening-6",
+        "round": 2,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 2794,
+        "y": 1732.923076923077
+      },
+      {
+        "id": "a6-55-bell-descent-2",
+        "round": 2,
+        "bossPhase": null,
+        "phase": "flight",
+        "grounded": true,
+        "x": 1765,
+        "y": 1416.3076923076924
+      },
+      {
+        "id": "a6-55-bell-descent-3",
+        "round": 2,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1890,
+        "y": 1454.7692307692307
+      },
+      {
+        "id": "a6-55-thread-pressure-2",
+        "round": 2,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1957.690200728922,
+        "y": 1475.5969848396683
+      },
+      {
+        "id": "draft-pressure-0",
+        "round": 3,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 2112,
+        "y": 1523.076923076923
+      },
+      {
+        "id": "draft-pressure-2",
+        "round": 3,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1559.325620409817,
+        "y": 1353.0232678184052
+      },
+      {
+        "id": "draft-pressure-3",
+        "round": 3,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1176.9999999999973,
+        "y": 1132.9090909090894
+      },
+      {
+        "id": "a6-55-opening-4",
+        "round": 3,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1180,
+        "y": 1134.5454545454545
+      },
+      {
+        "id": "a6-55-bell-descent-2",
+        "round": 3,
+        "bossPhase": null,
+        "phase": "flight",
+        "grounded": true,
+        "x": 1767.309799271078,
+        "y": 1417.0183997757163
+      },
+      {
+        "id": "a6-55-thread-pressure-1",
+        "round": 3,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1000,
+        "y": 1036.3636363636363
+      },
+      {
+        "id": "a6-55-thread-pressure-2",
+        "round": 3,
+        "bossPhase": null,
+        "phase": "flight",
+        "grounded": true,
+        "x": 1906.8746167652068,
+        "y": 1459.9614205431405
+      },
+      {
+        "id": "draft-pressure-0",
+        "round": 4,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 2112,
+        "y": 1523.076923076923
+      },
+      {
+        "id": "draft-pressure-2",
+        "round": 4,
+        "bossPhase": null,
+        "phase": "flight",
+        "grounded": true,
+        "x": 1557.015821138739,
+        "y": 1352.3125603503813
+      },
+      {
+        "id": "draft-pressure-3",
+        "round": 4,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1176.9999999999973,
+        "y": 1132.9090909090894
+      },
+      {
+        "id": "a6-55-opening-4",
+        "round": 4,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1176.1335252815966,
+        "y": 1132.4364683354163
+      },
+      {
+        "id": "a6-55-bell-descent-2",
+        "round": 4,
+        "bossPhase": null,
+        "phase": "flight",
+        "grounded": true,
+        "x": 1769.619598542156,
+        "y": 1417.7291072437404
+      },
+      {
+        "id": "a6-55-thread-pressure-1",
+        "round": 4,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1000,
+        "y": 1036.3636363636363
+      },
+      {
+        "id": "a6-55-thread-pressure-2",
+        "round": 4,
+        "bossPhase": null,
+        "phase": "flight",
+        "grounded": true,
+        "x": 1904.5648174941289,
+        "y": 1459.2507130751167
+      },
+      {
+        "id": "draft-pressure-0",
+        "round": 5,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 2112,
+        "y": 1523.076923076923
+      },
+      {
+        "id": "a6-55-opening-6",
+        "round": 5,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 2785.6633009231145,
+        "y": 1730.3579387455736
+      },
+      {
+        "id": "a6-55-bell-descent-2",
+        "round": 5,
+        "bossPhase": null,
+        "phase": "flight",
+        "grounded": true,
+        "x": 1771.929397813234,
+        "y": 1418.4398147117643
+      },
+      {
+        "id": "a6-55-bell-descent-3",
+        "round": 5,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 2381.987244739639,
+        "y": 1606.1499214583505
+      },
+      {
+        "id": "a6-55-thread-pressure-2",
+        "round": 5,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1902.255018223051,
+        "y": 1458.5400056070926
+      },
+      {
+        "id": "a6-55-outer-ward-2",
+        "round": 5,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1647,
+        "y": 1380
+      },
+      {
+        "id": "a6-55-outer-ward-3",
+        "round": 5,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 2010,
+        "y": 1491.6923076923076
+      },
+      {
+        "id": "a6-55-bell-descent-3",
+        "round": 6,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 2714.5983397748987,
+        "y": 1708.491796853815
+      },
+      {
+        "id": "draft-pressure-3",
+        "round": 6,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1176.9999999999973,
+        "y": 1132.9090909090894
+      },
+      {
+        "id": "a6-55-opening-4",
+        "round": 6,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1172.2670505631932,
+        "y": 1130.327482125378
+      },
+      {
+        "id": "a6-55-opening-6",
+        "round": 6,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 2783.3535016520364,
+        "y": 1729.6472312775495
+      },
+      {
+        "id": "a6-55-bell-descent-2",
+        "round": 6,
+        "bossPhase": null,
+        "phase": "flight",
+        "grounded": true,
+        "x": 1774.2391970843119,
+        "y": 1419.1505221797884
+      },
+      {
+        "id": "a6-55-thread-pressure-1",
+        "round": 6,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1000,
+        "y": 1036.3636363636363
+      },
+      {
+        "id": "a6-55-outer-ward-2",
+        "round": 6,
+        "bossPhase": null,
+        "phase": "flight",
+        "grounded": true,
+        "x": 1889.5289234631862,
+        "y": 1454.6242841425187
+      },
+      {
+        "id": "a6-55-outer-ward-2",
+        "round": 7,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1888.718886675955,
+        "y": 1454.37504205414
+      },
+      {
+        "id": "draft-pressure-2",
+        "round": 7,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1554.706021867661,
+        "y": 1351.6018528823572
+      },
+      {
+        "id": "a6-55-opening-6",
+        "round": 7,
+        "bossPhase": null,
+        "phase": "flight",
+        "grounded": true,
+        "x": 2781.043702380958,
+        "y": 1728.9365238095256
+      },
+      {
+        "id": "a6-55-bell-descent-2",
+        "round": 7,
+        "bossPhase": null,
+        "phase": "flight",
+        "grounded": true,
+        "x": 1776.5489963553898,
+        "y": 1419.8612296478123
+      },
+      {
+        "id": "a6-55-bell-descent-3",
+        "round": 7,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 2381.4189419616846,
+        "y": 1605.9750590651338
+      },
+      {
+        "id": "a6-55-outer-ward-3",
+        "round": 7,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1676.8206021867559,
+        "y": 1389.175569903617
+      },
+      {
+        "id": "a6-55-outer-ward-4",
+        "round": 7,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1242.1215809678765,
+        "y": 1168.4299532552054
+      },
+      {
+        "id": "a6-55-bell-descent-2",
+        "round": 8,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1778.8587956264678,
+        "y": 1420.5719371158361
+      },
+      {
+        "id": "draft-pressure-2",
+        "round": 8,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1412.0158211387345,
+        "y": 1307.6971757349952
+      },
+      {
+        "id": "a6-55-opening-5",
+        "round": 8,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1470,
+        "y": 1325.5384615384614
+      },
+      {
+        "id": "a6-55-opening-6",
+        "round": 8,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 2778.73390310988,
+        "y": 1728.2258163415015
+      },
+      {
+        "id": "a6-55-bell-descent-3",
+        "round": 8,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 2176.002275295031,
+        "y": 1542.7699308600095
+      },
+      {
+        "id": "a6-55-outer-ward-3",
+        "round": 8,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 2009.4316972219826,
+        "y": 1491.5174452990716
+      },
+      {
+        "id": "a6-55-outer-ward-4",
+        "round": 8,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1530.1417523993514,
+        "y": 1344.0436161228774
+      },
+      {
+        "id": "a6-55-bell-descent-2",
+        "round": 9,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1781.1685948975457,
+        "y": 1421.2826445838602
+      },
+      {
+        "id": "draft-pressure-2",
+        "round": 9,
+        "bossPhase": null,
+        "phase": "flight",
+        "grounded": true,
+        "x": 1908.6226644204967,
+        "y": 1460.4992813601527
+      },
+      {
+        "id": "a6-55-opening-5",
+        "round": 9,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1320.166666666662,
+        "y": 1210.9999999999973
+      },
+      {
+        "id": "a6-55-opening-6",
+        "round": 9,
+        "bossPhase": null,
+        "phase": "flight",
+        "grounded": true,
+        "x": 2776.424103838802,
+        "y": 1727.5151088734774
+      },
+      {
+        "id": "a6-55-thread-pressure-1",
+        "round": 9,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1000,
+        "y": 1036.3636363636363
+      },
+      {
+        "id": "a6-55-outer-ward-3",
+        "round": 9,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 2501.4189419616337,
+        "y": 1642.898135988195
+      },
+      {
+        "id": "a6-55-outer-ward-4",
+        "round": 9,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1735.7138875252901,
+        "y": 1407.2965807770124
+      },
+      {
+        "id": "a6-55-outer-ward-3",
+        "round": 10,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 2704.6812778165145,
+        "y": 1705.4403931743122
+      },
+      {
+        "id": "draft-pressure-2",
+        "round": 10,
+        "bossPhase": null,
+        "phase": "flight",
+        "grounded": true,
+        "x": 1906.3128651494187,
+        "y": 1459.7885738921289
+      },
+      {
+        "id": "a6-55-opening-5",
+        "round": 10,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1320.166666666662,
+        "y": 1210.9999999999973
+      },
+      {
+        "id": "a6-55-opening-6",
+        "round": 10,
+        "bossPhase": null,
+        "phase": "flight",
+        "grounded": true,
+        "x": 2774.1143045677236,
+        "y": 1726.8044014054535
+      },
+      {
+        "id": "a6-55-bell-descent-2",
+        "round": 10,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1781.1685948975457,
+        "y": 1421.2826445838602
+      },
+      {
+        "id": "a6-55-outer-ward-4",
+        "round": 10,
+        "bossPhase": null,
+        "phase": "flight",
+        "grounded": true,
+        "x": 1763.4314787782257,
+        "y": 1415.8250703933002
+      },
+      {
+        "id": "a6-55-west-bank-3",
+        "round": 10,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1570,
+        "y": 1356.3076923076924
+      },
+      {
+        "id": "a6-55-bell-descent-2",
+        "round": 11,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1781.1685948975457,
+        "y": 1421.2826445838602
+      },
+      {
+        "id": "draft-pressure-2",
+        "round": 11,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1904.0030658783407,
+        "y": 1459.0778664241047
+      },
+      {
+        "id": "a6-55-opening-5",
+        "round": 11,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1320.166666666662,
+        "y": 1210.9999999999973
+      },
+      {
+        "id": "a6-55-opening-6",
+        "round": 11,
+        "bossPhase": null,
+        "phase": "flight",
+        "grounded": true,
+        "x": 2771.8045052966454,
+        "y": 1726.0936939374294
+      },
+      {
+        "id": "a6-55-outer-ward-3",
+        "round": 11,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 2371.5018800033004,
+        "y": 1602.9236553856308
+      },
+      {
+        "id": "a6-55-outer-ward-4",
+        "round": 11,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1763.4314787782257,
+        "y": 1415.8250703933002
+      },
+      {
+        "id": "a6-55-west-bank-3",
+        "round": 11,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1891.062098679837,
+        "y": 1455.0960303630268
+      },
+      {
+        "id": "a6-55-opening-6",
+        "round": 12,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 2769.494706025567,
+        "y": 1725.3829864694053
+      },
+      {
+        "id": "draft-pressure-2",
+        "round": 12,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1589.3020622337203,
+        "y": 1362.2467883796062
+      },
+      {
+        "id": "a6-55-opening-4",
+        "round": 12,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1172.2670505631932,
+        "y": 1130.327482125378
+      },
+      {
+        "id": "a6-55-opening-5",
+        "round": 12,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1316.3001919482588,
+        "y": 1208.8910137899593
+      },
+      {
+        "id": "a6-55-bell-descent-2",
+        "round": 12,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1599.8117275019513,
+        "y": 1365.480531539062
+      },
+      {
+        "id": "a6-55-outer-ward-4",
+        "round": 12,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1731.0942889831342,
+        "y": 1405.8751658409644
+      },
+      {
+        "id": "a6-55-west-bank-3",
+        "round": 12,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1726.8356327420872,
+        "y": 1404.5648100744884
+      },
+      {
+        "id": "a6-55-west-bank-4",
+        "round": 13,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1618,
+        "y": 1371.076923076923
+      },
+      {
+        "id": "draft-pressure-2",
+        "round": 13,
+        "bossPhase": null,
+        "phase": "flight",
+        "grounded": true,
+        "x": 1891.8857667449336,
+        "y": 1455.3494666907488
+      },
+      {
+        "id": "a6-55-opening-5",
+        "round": 13,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1316.3001919482588,
+        "y": 1208.8910137899593
+      },
+      {
+        "id": "a6-55-bell-descent-2",
+        "round": 13,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1893.1562349288527,
+        "y": 1455.7403799781084
+      },
+      {
+        "id": "a6-55-thread-pressure-1",
+        "round": 13,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1000,
+        "y": 1036.3636363636363
+      },
+      {
+        "id": "a6-55-outer-ward-4",
+        "round": 13,
+        "bossPhase": null,
+        "phase": "flight",
+        "grounded": true,
+        "x": 1763.4314787782257,
+        "y": 1415.8250703933002
+      },
+      {
+        "id": "a6-55-west-bank-3",
+        "round": 13,
+        "bossPhase": null,
+        "phase": "flight",
+        "grounded": true,
+        "x": 1763.7924210793346,
+        "y": 1415.936129562872
+      }
+    ],
+    "joins": [
+      {
+        "id": "draft-pressure-0",
+        "role": "fire",
+        "source": "original",
+        "round": 1,
+        "bossPhase": null,
+        "x": 2112,
+        "y": 1523.076923076923,
+        "grounded": true,
+        "surface": "arrival-core-terrace"
+      },
+      {
+        "id": "draft-pressure-1",
+        "role": "fire",
+        "source": "original",
+        "round": 1,
+        "bossPhase": null,
+        "x": 912,
+        "y": 2590.3333333333335,
+        "grounded": true,
+        "surface": "west-lower-branch"
+      },
+      {
+        "id": "draft-pressure-2",
+        "role": "leaper",
+        "source": "original",
+        "round": 1,
+        "bossPhase": null,
+        "x": 1624,
+        "y": 1372.923076923077,
+        "grounded": true,
+        "surface": "arrival-core-terrace"
+      },
+      {
+        "id": "draft-pressure-3",
+        "role": "bow",
+        "source": "original",
+        "round": 1,
+        "bossPhase": null,
+        "x": 1264,
+        "y": 1180.3636363636365,
+        "grounded": true,
+        "surface": "west-ring-descent"
+      },
+      {
+        "id": "a6-55-opening-1",
+        "role": "leaper",
+        "source": "opening",
+        "round": 1,
+        "bossPhase": null,
+        "x": 410,
+        "y": 714.5454545454545,
+        "grounded": true,
+        "surface": "west-ring-descent"
+      },
+      {
+        "id": "a6-55-opening-2",
+        "role": "leaper",
+        "source": "opening",
+        "round": 1,
+        "bossPhase": null,
+        "x": 640,
+        "y": 840,
+        "grounded": true,
+        "surface": "west-ring-descent"
+      },
+      {
+        "id": "a6-55-opening-3",
+        "role": "ice",
+        "source": "opening",
+        "round": 1,
+        "bossPhase": null,
+        "x": 920,
+        "y": 992.7272727272727,
+        "grounded": true,
+        "surface": "west-ring-descent"
+      },
+      {
+        "id": "a6-55-opening-4",
+        "role": "ice",
+        "source": "opening",
+        "round": 1,
+        "bossPhase": null,
+        "x": 1180,
+        "y": 1134.5454545454545,
+        "grounded": true,
+        "surface": "west-ring-descent"
+      },
+      {
+        "id": "a6-55-opening-5",
+        "role": "ice",
+        "source": "opening",
+        "round": 1,
+        "bossPhase": null,
+        "x": 1470,
+        "y": 1325.5384615384614,
+        "grounded": true,
+        "surface": "arrival-core-terrace"
+      },
+      {
+        "id": "a6-55-opening-6",
+        "role": "leaper",
+        "source": "opening",
+        "round": 1,
+        "bossPhase": null,
+        "x": 2794,
+        "y": 1732.923076923077,
+        "grounded": true,
+        "surface": "arrival-core-terrace"
+      },
+      {
+        "id": "a6-55-west-bank-1",
+        "role": "ice",
+        "source": "west-bank",
+        "round": 1,
+        "bossPhase": null,
+        "x": 1070,
+        "y": 1074.5454545454545,
+        "grounded": true,
+        "surface": "west-ring-descent"
+      },
+      {
+        "id": "a6-55-west-bank-2",
+        "role": "leaper",
+        "source": "west-bank",
+        "round": 1,
+        "bossPhase": null,
+        "x": 722,
+        "y": 884.7272727272727,
+        "grounded": true,
+        "surface": "west-ring-descent"
+      },
+      {
+        "id": "a6-55-bell-descent-1",
+        "role": "leaper",
+        "source": "bell-descent",
+        "round": 1,
+        "bossPhase": null,
+        "x": 844,
+        "y": 951.2727272727273,
+        "grounded": true,
+        "surface": "west-ring-descent"
+      },
+      {
+        "id": "a6-55-bell-descent-2",
+        "role": "leaper",
+        "source": "bell-descent",
+        "round": 1,
+        "bossPhase": null,
+        "x": 1765,
+        "y": 1416.3076923076924,
+        "grounded": true,
+        "surface": "arrival-core-terrace"
+      },
+      {
+        "id": "a6-55-bell-descent-3",
+        "role": "ice",
+        "source": "bell-descent",
+        "round": 1,
+        "bossPhase": null,
+        "x": 1890,
+        "y": 1454.7692307692307,
+        "grounded": true,
+        "surface": "arrival-core-terrace"
+      },
+      {
+        "id": "a6-55-bell-descent-4",
+        "role": "leaper",
+        "source": "bell-descent",
+        "round": 1,
+        "bossPhase": null,
+        "x": 555,
+        "y": 793.6363636363636,
+        "grounded": true,
+        "surface": "west-ring-descent"
+      },
+      {
+        "id": "a6-55-outer-ward-1",
+        "role": "ice",
+        "source": "outer-ward",
+        "round": 1,
+        "bossPhase": null,
+        "x": 794,
+        "y": 2496.9166666666665,
+        "grounded": true,
+        "surface": "west-lower-branch"
+      },
+      {
+        "id": "a6-55-thread-pressure-1",
+        "role": "ice",
+        "source": "thread-pressure",
+        "round": 1,
+        "bossPhase": null,
+        "x": 1000,
+        "y": 1036.3636363636363,
+        "grounded": true,
+        "surface": "west-ring-descent"
+      },
+      {
+        "id": "a6-55-thread-pressure-2",
+        "role": "leaper",
+        "source": "thread-pressure",
+        "round": 1,
+        "bossPhase": null,
+        "x": 1960,
+        "y": 1476.3076923076924,
+        "grounded": true,
+        "surface": "arrival-core-terrace"
+      },
+      {
+        "id": "a6-55-outer-ward-2",
+        "role": "leaper",
+        "source": "outer-ward",
+        "round": 5,
+        "bossPhase": null,
+        "x": 1647,
+        "y": 1380,
+        "grounded": true,
+        "surface": "arrival-core-terrace"
+      },
+      {
+        "id": "a6-55-outer-ward-3",
+        "role": "ice",
+        "source": "outer-ward",
+        "round": 5,
+        "bossPhase": null,
+        "x": 2010,
+        "y": 1491.6923076923076,
+        "grounded": true,
+        "surface": "arrival-core-terrace"
+      },
+      {
+        "id": "a6-55-outer-ward-4",
+        "role": "leaper",
+        "source": "outer-ward",
+        "round": 7,
+        "bossPhase": null,
+        "x": 1240,
+        "y": 1167.2727272727273,
+        "grounded": true,
+        "surface": "west-ring-descent"
+      },
+      {
+        "id": "a6-55-west-bank-3",
+        "role": "leaper",
+        "source": "west-bank",
+        "round": 9,
+        "bossPhase": null,
+        "x": 1570,
+        "y": 1356.3076923076924,
+        "grounded": true,
+        "surface": "arrival-core-terrace"
+      },
+      {
+        "id": "a6-55-west-bank-4",
+        "role": "ice",
+        "source": "west-bank",
+        "round": 13,
+        "bossPhase": null,
+        "x": 1618,
+        "y": 1371.076923076923,
+        "grounded": true,
+        "surface": "arrival-core-terrace"
+      }
+    ],
+    "queues": [
+      {
+        "round": 1,
+        "queue": [
+          "draft-pressure-0",
+          "draft-pressure-3",
+          "a6-55-opening-4",
+          "draft-pressure-2",
+          "a6-55-west-bank-1",
+          "a6-55-thread-pressure-1",
+          "a6-55-opening-3"
+        ],
+        "fronts": []
+      },
+      {
+        "round": 2,
+        "queue": [
+          "draft-pressure-0",
+          "a6-55-bell-descent-3",
+          "a6-55-bell-descent-2",
+          "draft-pressure-2",
+          "a6-55-opening-6",
+          "a6-55-thread-pressure-2",
+          "draft-pressure-3"
+        ],
+        "fronts": []
+      },
+      {
+        "round": 3,
+        "queue": [
+          "draft-pressure-0",
+          "a6-55-bell-descent-2",
+          "draft-pressure-2",
+          "a6-55-thread-pressure-2",
+          "draft-pressure-3",
+          "a6-55-opening-4",
+          "a6-55-thread-pressure-1"
+        ],
+        "fronts": []
+      },
+      {
+        "round": 4,
+        "queue": [
+          "draft-pressure-0",
+          "a6-55-bell-descent-2",
+          "draft-pressure-2",
+          "a6-55-thread-pressure-2",
+          "draft-pressure-3",
+          "a6-55-opening-4",
+          "a6-55-thread-pressure-1"
+        ],
+        "fronts": []
+      },
+      {
+        "round": 5,
+        "queue": [
+          "draft-pressure-0",
+          "a6-55-opening-6",
+          "a6-55-bell-descent-2",
+          "a6-55-thread-pressure-2",
+          "a6-55-bell-descent-3",
+          "a6-55-outer-ward-3",
+          "a6-55-outer-ward-2"
+        ],
+        "fronts": []
+      },
+      {
+        "round": 6,
+        "queue": [
+          "a6-55-bell-descent-3",
+          "a6-55-outer-ward-2",
+          "a6-55-bell-descent-2",
+          "a6-55-opening-6",
+          "draft-pressure-3",
+          "a6-55-opening-4",
+          "a6-55-thread-pressure-1"
+        ],
+        "fronts": []
+      },
+      {
+        "round": 7,
+        "queue": [
+          "a6-55-outer-ward-2",
+          "a6-55-bell-descent-2",
+          "a6-55-opening-6",
+          "a6-55-bell-descent-3",
+          "draft-pressure-2",
+          "a6-55-outer-ward-3",
+          "a6-55-outer-ward-4"
+        ],
+        "fronts": []
+      },
+      {
+        "round": 8,
+        "queue": [
+          "a6-55-bell-descent-2",
+          "a6-55-opening-6",
+          "a6-55-outer-ward-3",
+          "a6-55-opening-5",
+          "a6-55-outer-ward-4",
+          "a6-55-bell-descent-3",
+          "draft-pressure-2"
+        ],
+        "fronts": []
+      },
+      {
+        "round": 9,
+        "queue": [
+          "a6-55-bell-descent-2",
+          "draft-pressure-2",
+          "a6-55-opening-6",
+          "a6-55-outer-ward-3",
+          "a6-55-opening-5",
+          "a6-55-thread-pressure-1",
+          "a6-55-outer-ward-4"
+        ],
+        "fronts": []
+      },
+      {
+        "round": 10,
+        "queue": [
+          "a6-55-outer-ward-3",
+          "a6-55-bell-descent-2",
+          "a6-55-outer-ward-4",
+          "draft-pressure-2",
+          "a6-55-opening-6",
+          "a6-55-opening-5",
+          "a6-55-west-bank-3"
+        ],
+        "fronts": []
+      },
+      {
+        "round": 11,
+        "queue": [
+          "a6-55-bell-descent-2",
+          "a6-55-west-bank-3",
+          "a6-55-outer-ward-4",
+          "draft-pressure-2",
+          "a6-55-opening-6",
+          "a6-55-outer-ward-3",
+          "a6-55-opening-5"
+        ],
+        "fronts": []
+      },
+      {
+        "round": 12,
+        "queue": [
+          "a6-55-opening-6",
+          "a6-55-opening-5",
+          "a6-55-outer-ward-4",
+          "a6-55-west-bank-3",
+          "a6-55-bell-descent-2",
+          "draft-pressure-2",
+          "a6-55-opening-4"
+        ],
+        "fronts": []
+      },
+      {
+        "round": 13,
+        "queue": [
+          "a6-55-west-bank-4",
+          "draft-pressure-2",
+          "a6-55-bell-descent-2",
+          "a6-55-west-bank-3",
+          "a6-55-outer-ward-4",
+          "a6-55-opening-5",
+          "a6-55-thread-pressure-1"
+        ],
+        "fronts": []
+      }
+    ],
+    "peak": 10,
+    "initialRng": 46183,
+    "seed": 19388,
+    "peakWitness": {
+      "round": 1,
+      "bossPhase": null,
+      "phase": "aim",
+      "ids": [
+        "draft-pressure-0",
+        "draft-pressure-2",
+        "draft-pressure-3",
+        "a6-55-opening-1",
+        "a6-55-opening-2",
+        "a6-55-opening-3",
+        "a6-55-opening-4",
+        "a6-55-opening-5",
+        "a6-55-west-bank-1",
+        "a6-55-west-bank-2"
+      ]
+    },
+    "initial": 10,
+    "limit": 7
+  },
+  "chromium": "154.0.8037.57"
+}
