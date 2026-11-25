@@ -240,7 +240,7 @@ def boundary_of(records):
     slot=next(k for k in records if 'act6-boundary' in k)
     return json.loads(records[slot])["honroAct6ChapterBoundary"]["body"]
 
-def reversal56(page,out,report,finish=False,exit_route=None):
+def reversal56(page,out,report,finish=False,exit_route=None,check_pressure=False):
     actions=[]
     report['gaereumjin56']=actions
     def walk(target,margin=25):
@@ -293,6 +293,14 @@ def reversal56(page,out,report,finish=False,exit_route=None):
     if not finish:
         return
     use('warnShelf',3264,'B-central-lower-floor')
+    if check_pressure:
+        unsafe=page.evaluate(FOOT)
+        page.keyboard.press('f')
+        ready(page,35000)
+        page.locator(f'{BELL}[data-act6-mission="warnShelf"]').wait_for(timeout=6000)
+        assert not page.evaluate('HonroApp.done||!!HonroApp.engine.b.honroState.localHallD56')
+        report['deniedUnsafeShelf']={'before':unsafe,'after':page.evaluate(FOOT)}
+        use('warnShelf',3264,'B-central-lower-floor')
     safe=walk(3045,13)
     assert safe['support']=='B-central-lower-floor' and safe['x']<3070,safe
     page.keyboard.press('f')

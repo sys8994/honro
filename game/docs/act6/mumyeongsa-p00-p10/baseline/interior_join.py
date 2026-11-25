@@ -69,6 +69,7 @@ def play(browser,args,mobile):
 
     def walk_d(p,out,q):
         q['beforeExtension']=p.evaluate(OBSERVE)
+        old_record=base.saved_bytes(p)
         assert q['beforeExtension']['support']=='E-joined-ordinary-floor'
         p.evaluate(POINTER_EVENTS)
 
@@ -82,6 +83,10 @@ def play(browser,args,mobile):
         q['atOldExit']=p.evaluate(OBSERVE)
         assert q['atOldExit']['mode']=='aim' and q['atOldExit']['terrain']==q['beforeExtension']['terrain']+1
         assert not p.locator('[data-act6-qa-next="57"]').is_visible()
+        assert p.evaluate('HonroApp.canInput()&&!HonroApp.done')
+        sealed=base.saved_bytes(p)
+        assert sealed==old_record and boundary_of(sealed)['to']==56
+        q['oldExitCheckpoint']={'clickable':False,'canMove':True,'destination':56,'unchanged':True,'digest':storage_hash(sealed)}
         input_until("HonroApp.engine.active.x>=6670")
         q['onSharedStone']=p.evaluate(OBSERVE)
         assert q['onSharedStone']['support']=='m56-d-hall-sill' and q['onSharedStone']['grounded']
@@ -98,12 +103,14 @@ def play(browser,args,mobile):
     try:
         resume(page,56,True,mobile=mobile)
         saved_profile=base.saved_bytes(page)['honro-first-act-profile-1']
-        reversal56(page,args.out,report,finish=True,exit_route=walk_d)
+        reversal56(page,args.out,report,finish=True,exit_route=walk_d,check_pressure=args.check_pressure)
         new57=base.saved_bytes(page)
         report['checkpoint57']=body57=boundary_of(new57)
         receipt=body57['terminal']['boundary']['interiorD']
         assert body57['custody']['interiorD']==receipt
         assert receipt['contact']['x']==report['exitFoot']['x'] and receipt['contact']['y']==report['exitFoot']['y']
+        if args.check_pressure:
+            assert any(x['key']=='inside-at-live-pressure' for x in body57['terminal']['boundary']['reflow'])
         assert report['checkpoint57']['from']==56 and body57['terminal']['sodanThread']['casts'][-1]['stage']==56
         report['cold57']=cold_new(browser,new57,57)
         assert report['cold57']['savedBytesBefore']==report['cold57']['savedBytesAfter']
@@ -136,6 +143,7 @@ if __name__=='__main__':
     parser.add_argument('--build',required=True,type=Path)
     parser.add_argument('--out',required=True,type=Path)
     parser.add_argument('--touch',action='store_true')
+    parser.add_argument('--check-pressure',action='store_true')
     args=parser.parse_args()
     base.ROOT=args.build.resolve()
     args.out.mkdir(parents=True,exist_ok=True)
