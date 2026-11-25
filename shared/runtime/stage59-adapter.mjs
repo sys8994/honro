@@ -54,8 +54,9 @@ export function stage59Adapter(G,{verifyPrevious,verifyNormal,paint=false}={}){
       const u=G.HonroUnits.create({id,kind,x,y,facing,team:'enemy',behavior:'aggressive'},{mode:'campaign',honroStage:50,honroMapOrigin:'campaign',honroCanonical:true},runtime.app.profile,G.HONRO_CONTENT.stages[49]);
       return u?.level===25&&u.hp===2292&&u.h===146&&u.r===32&&u.ranks.HWD01===4?u:null;
     }
-    const u=G.HonroUnits.create({id,kind,x,y,facing,team:'enemy',behavior:'aggressive'},{mode:'act6-isolated',honroStage:59,honroMapOrigin:'act6-qa',honroCanonical:true},runtime.app.profile,G.HONRO_CONTENT.stages[0]);
-    const miss=Object.keys(spec.spec).filter(v=>!eq(u?.[v],spec.spec[v]));if(miss.length)console.log('role mismatch',id,kind,miss.map(k=>[k,u?.[k],spec.spec[k]]));return u&&!miss.length?u:null;
+    // Revision 2: courtyard bodies use the act's own entry strength (Stage 50 table), not Stage 1.
+    const u=G.HonroUnits.create({id,kind,x,y,facing,team:'enemy',behavior:'aggressive'},{mode:'campaign',honroStage:50,honroMapOrigin:'campaign',honroCanonical:true},runtime.app.profile,G.HONRO_CONTENT.stages[49]);
+    return u&&u.honroType===kind&&u.side===1&&u.level===25&&['cls','loadout','h','r'].every(k=>eq(u[k],spec.spec[k]))?u:null;
    },paint:paint&&G.HonroMonsterVisual?createStage59RolePaint(G.HonroMonsterVisual):null});
   const out={units,reserved:[],story:stage59,previous,guard:copy(checked.guard)};
   const start=(app,e,key)=>{
