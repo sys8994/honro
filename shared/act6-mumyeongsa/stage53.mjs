@@ -64,7 +64,15 @@ function vector53(walk,forks){
   {x:1600,y:1844,w:365,h:410,color:'#5c534b'},
   {x:2420,y:1190,w:530,h:480,color:'#68584e'}
  ];
- const chambers=paint('m53-retained-timber',{x:325,y:670,w:2650,h:1830},arches.flatMap(({x,y,w,h,color},i)=>{
+ const roomDetails=[
+  face('#50504a',[[410,2423],[594,2408],[668,2428],[655,2471],[414,2477]]),
+  face('#766453',[[457,2374],[533,2361],[545,2411],[465,2421]]),
+  face('#4b3e36',[[1058,1830],[1406,1750],[1418,1868],[1074,1982]]),
+  face('#796655',[[1071,1902],[1414,1813],[1414,1839],[1074,1937]]),
+  face('#725d4a',[[1700,1510],[1802,1484],[1866,1504],[1907,1460],[1930,1476],[1868,1529],[1821,1515],[1698,1540]]),
+  face('#514638',[[2247,1220],[2310,1165],[2442,1165],[2410,1223],[2305,1250]])
+ ];
+ const chambers=paint('m53-retained-timber',{x:325,y:670,w:2650,h:1830},[...roomDetails,...arches.flatMap(({x,y,w,h,color},i)=>{
   const end=x+w,top=y-h;
   return [
    face('#423d37',[[x-28,top+25],[end+30,top-12],[end+9,top+25],[x-32,top+56]]),
@@ -73,7 +81,7 @@ function vector53(walk,forks){
    face('#837259',[[x+44,top+94],[end-55,top+62],[end-62,top+83],[x+39,top+119]]),
    ...(i===1?[face('#76654e',[[x+68,y-170],[end-61,y-187],[end-61,y-176],[x+68,y-158]])]:[])
   ];
- }), 'back');
+ })], 'back');
  return [floor,chambers];
 }
 function nativeY(line,x){

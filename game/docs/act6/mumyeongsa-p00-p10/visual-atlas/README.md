@@ -51,3 +51,9 @@ python game/docs/act6/mumyeongsa-p00-p10/baseline/visual_edges.py --build "$PWD"
 53 서쪽의 상·하층 암면을 독립된 절리로 꺾었다. 54는 동편 받침을 외곽 전면으로 옮기고 두 면을 이어 원래 직선 위로 이어지게 했다. 58 천장 처마는 더 어두운 바깥 목재와 층을 나눠, 실제 접지 띠 y2570이 주변 보와 구별되게 했다. 세 장 전체를 이전과 같은 카메라로 확인했다. 공용 B 네 면과 54·58의 로컬·월드 충돌 배열이 그대로였다. 54 외부의 깊은 명암 경계와 B에서 공용 문짝의 직선 형태는 남는다. [53 전체](room-faces-53-world-plain.webp) · [54 전체](room-faces-54-native-N-world-plain.webp) · [58 전체](room-faces-58-world-plain.webp) · [전체·모서리 원자료](room-faces-world.json)
 
 같은 저장 해시와 카메라의 B·58 천장·R 다섯 지점을 다시 실행했다. 58의 밝은 띠가 실제 밑변을 따라 이어지고 바로 옆 장식은 한 단계 어둡다. [58 천장 화면](room-faces-58-soffit-touch-plain.webp) · [동일 충돌선](room-faces-58-soffit-touch-outline.webp) · [다섯 시점 원자료](room-faces-seams.json)
+
+## 네 번째 수정과 화면 대조
+
+54 동쪽의 기존 직선은 앞에 색을 덮으면 안쪽에 옛 절단선이 남았다. 플레이 영역 x3200 바깥에서 원래 `foothill`의 월드 윤곽과 원본 BODY 미술에 같은 아홉 꼭짓점을 넣고 겹쳐 놓았던 앞쪽 면을 제거했다. 전후 화면의 카메라·플레이 충돌·B 네 마스크는 동일하며, 월드 충돌은 54의 `foothill` 윤곽만 바뀌었다. 53은 산문 기단·서고 선반·파손 들보를 나누었고 58은 첫 석단 띠와 위 마루 두께를 실제 윗변에 붙였다. [53 전체](core-and-eave-53-world-plain.webp) · [54 동쪽](core-and-eave-54-native-N-world-plain.webp) · [58 전체](core-and-eave-58-world-plain.webp) · [모서리·마스크](core-and-eave-world.json)
+
+변경 빌드에서 53 진목, 54 B 실제 교전, N→L→C→L, 실제 M09 `(y=2924, 반경 6)`과 C를 순서대로 밟았다. 새 55를 독립 일반 쉼터에서 열었고 기존 저장 바이트는 같다. [실제 장 경계](core-and-eave-proof.json)
