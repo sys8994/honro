@@ -32,7 +32,7 @@ export function stage56Adapter(G,{normalPort=null}={}){
   return Object.freeze({units:[mage,...foes],reserved,story:{id:56,actStage:6,name:packet.map.name,objective:'authored'},
     objectives,parked:Object.fromEntries(party.map(k=>[k,previous.crew[k]])),previous:old});
  }
- function attach({app,engine:e,prepared,receipt,packet,compiled,grant}){
+ function attach({app,engine:e,prepared,receipt,packet,compiled,grant,exitGate=null}){
   const normal=grant&&normalPort?.claim(grant,app,e,prepared,receipt);
   if(grant&&(!normal||normal.sourcePacket!==packet||normal.compiled!==compiled))return null;
   const authoredId=normal?.canonicalId??D.authoredId;
@@ -43,7 +43,7 @@ export function stage56Adapter(G,{normalPort=null}={}){
   const shape=Object.freeze({authoredId,playSHA:D.playSHA,worldSHA:D.worldSHA,terrain:compiled.terrain,world:compiled.worldTerrain});
   const previous=Object.freeze({parkedActor:prepared.previous}),records=[];
   sessions.set(e,{app,shape,scope,previous,issued:receipt});
-  const mission=mountStage({G,engine:e,packet:shape,scope,previous,observe:key=>records.push(key),reflowActor:prepared.reserved});
+  const mission=mountStage({G,engine:e,packet:shape,scope,previous,observe:key=>records.push(key),exitGate,reflowActor:prepared.reserved});
   if(!mission.accepted){sessions.delete(e);throw Error('Stage56 owner refused live Engine: '+mission.reason);}
   const display=()=>stage56Display(mission,e,C);
   function interact(id){

@@ -45,6 +45,71 @@ export function installHallArt(e,scene,assets){
  scene._releaseDomainTiles?.();scene._releaseScreenCaches?.();
 }
 
+const interiorD=Object.freeze({id:'m56-d-hall-sill',anchor:'E-joined-ordinary-floor',x:6536,y:3232,touch:2928,worldEdge:7200});
+const dGravity={x:0,y:320},dNormal={x:0,y:-1};
+function dOffsets(slice){
+ const first=slice.vertices[0];
+ return {x:interiorD.x-(first.x-hallSill.offset.x),y:interiorD.y-(first.y-hallSill.offset.y)};
+}
+const closeD=(a,b)=>Number.isFinite(a)&&Math.abs(a-b)<1e-8;
+const vectorD=(value,expected)=>value?.x===expected.x&&value?.y===expected.y;
+export function legacyHallExit56(actor){
+ return actor?.cls==='mage'&&actor.x>=6316&&actor.x<=6484&&closeD(actor.y,9768-actor.x);
+}
+export function verifyHallD56(C,slice,actor,receipt,{atExit=false}={}){
+ if(!slice||slice.id!==hallSill.source||!actor||actor.cls!=='mage'||receipt?.version!==1||receipt.edge!==hallSill.id||
+    receipt.actor!==actor.id||receipt.clearWidth!==hallSill.clearWidth)return false;
+ const d=dOffsets(slice),{approach,entry,contact}=receipt;
+ const pose=(p,id)=>p?.support===id&&vectorD(p.normal,dNormal)&&vectorD(p.gravity,dGravity);
+ const grade=x=>C.topAt(slice,x-d.x+hallSill.offset.x)-hallSill.offset.y+d.y;
+ if(!pose(approach,interiorD.anchor)||approach.x<6480||approach.x>interiorD.x||
+    !closeD(approach.y,9768-approach.x)||!pose(entry,interiorD.id)||entry.x<interiorD.x||entry.x>interiorD.x+22||
+    !closeD(entry.y,grade(entry.x))||!pose(contact,interiorD.id)||contact.x<interiorD.touch+d.x||contact.x>interiorD.touch+d.x+22||
+    !closeD(contact.y,grade(contact.x))||!closeD(contact.junctionX,contact.x-d.x)||!closeD(contact.junctionY,contact.y-d.y))return false;
+ return !atExit||(actor.x===contact.x&&actor.y===contact.y);
+}
+export function mountHallD56({C,e,scene,mage,slice}){
+ const b=e.b,d=dOffsets(slice),move=e.walk,quiet=e.noncombatWalk,fire=e.fire;
+ const anchor=b.terrain.find(t=>t.id===interiorD.anchor);
+ if(!anchor||b.width!==6720||slice.id!==hallSill.source||C.topAt(anchor,interiorD.x)!==interiorD.y||
+    !e.grounded(mage)||e.contactSurface(mage.x,mage.y-4,mage.y+5)?.t!==anchor)return null;
+ const translate=(x,y)=>({x:x-hallSill.offset.x+d.x,y:y-hallSill.offset.y+d.y});
+ const support={...slice,...translate(slice.x,slice.y),id:interiorD.id,vertices:slice.vertices.map(v=>translate(v.x,v.y))};
+ b.terrain=[...b.terrain,support];b.honroWorldTerrain=[...b.honroWorldTerrain,support];
+ b.width=interiorD.worldEdge;
+ if(b.honroPlayBounds)b.honroPlayBounds={...b.honroPlayBounds,right:b.width};
+ e.invalidateTerrainCollisionIndex();
+ const art=hallSillArt(slice);
+ installHallArt(e,scene,[{...art,x:d.x,y:d.y}]);
+ let approach=null,entry=null,done=null;
+ const pose=()=>{
+  if(!e.grounded(mage)||!C.validTerrainContactPose(b.terrain,mage))return null;
+  const support=e.contactSurface(mage.x,mage.y-4,mage.y+5)?.t.id;
+  const gravity=C.environmentAt(b.physics,mage.x,mage.y-mage.h*.5,true).gravity;
+  if(!vectorD(gravity,dGravity))return null;
+  return {x:mage.x,y:mage.y,support,gravity:{...gravity},normal:{...dNormal}};
+ };
+ e.noncombatWalk=()=>e.active===mage||quiet.call(e);
+ e.fire=(...args)=>e.active!==mage&&fire.apply(e,args);
+ e.walk=(u,dir,dt,...args)=>{
+  if(u===mage&&done)return false;
+  const before=u===mage&&dir>0&&b.side===0&&b.phase==='aim'?pose():null;
+  const ret=move.call(e,u,dir,dt,...args);
+  if(!before||u.x<=before.x)return ret;
+  if(before.support===interiorD.anchor&&before.x>=6480)approach=before;
+  const after=pose();
+  if(!after)return ret;
+  if(!entry&&approach&&after.support===interiorD.id&&after.x<=interiorD.x+22)entry=after;
+  if(entry&&after.support===interiorD.id&&after.x>=interiorD.touch+d.x){
+   const contact={...after,junctionX:after.x-d.x,junctionY:after.y-d.y};
+   const receipt={version:1,edge:hallSill.id,actor:u.id,clearWidth:hallSill.clearWidth,approach,entry,contact};
+   if(verifyHallD56(C,slice,mage,receipt,{atExit:true}))done=receipt;
+  }
+  return ret;
+ };
+ return {support,proof:()=>done};
+}
+
 export const hallUpper=Object.freeze({
  sill:'m58-upper-deck',wall:'m58-apse-pier',ceiling:'m58-timber-soffit',
  xIn:4168,wallX:4380,floorY:3080,plane:2570,left:3890,dismount:3960,turnY:2716,

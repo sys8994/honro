@@ -25,6 +25,9 @@
       }
       async function mountFrom56(a,grant,previous,stageSeed,budget,stays,coldLease){
         const {packet,compiled}=grant,m=packet.map,p=structuredClone(a.profile);
+        const mage=previous.boundary.fullMage,interiorD=previous.boundary.interiorD;
+        check(interiorD?verifyHallD56(C,capturedHallSlice,mage,interiorD,{atExit:true}):legacyHallExit56(mage),
+          '56 interior threshold or legacy E exit is invalid');
         const prepared=await adapter57.prepare({descriptor:descriptor57,packet,compiled,previous});
         check(prepared&&stays(),'56 owner expired during preparation');
         check(debitSodanThread(prepared.heroes.find(u=>u.cls==='occultist'),previous.sodanThread,56,54),'Deep support cost exceeds the returning body reserve');
@@ -48,7 +51,7 @@
         b.honroGeometryReady=true;b.honroGeometryRevision=2;b.honroContactRevision=2;
         a.stopBattle();
         const old={profile:a.profile,stage:a.stage,stageId:a.stageId,training:a.training,selectedByUnit:a.selectedByUnit,done:a.done};
-        const s={old,b,packet,previous,terminal:null,ordinaryRest:true,normal51:true,prepared57:prepared,lease57:lease};
+        const s={old,b,packet,previous,terminal:null,ordinaryRest:true,normal51:true,prepared57:prepared,lease57:lease,interiorD};
         a.close();active.set(a,s);Object.assign(a,{stageId:57,stage:content,training:false,selectedByUnit:{}});
         try{
           a.mount(b,{freshReport:true,reportScope:'custom'});
@@ -89,6 +92,11 @@
           e.b.terrain=[...e.b.terrain,approach];e.b.honroWorldTerrain=[...e.b.honroWorldTerrain,approach];
           e.invalidateTerrainCollisionIndex();
           installHallArt(e,a.scene,[hallSillArt(slice,true),lead.landmark]);
+          if(s.interiorD){
+            check(verifyHallD56(C,slice,e.unit(s.interiorD.actor),s.interiorD),'The exterior branch no longer meets D');
+            e.b.honroState.localHallDOrigin=structuredClone(s.interiorD);
+            e.message('담허: 안쪽 돌길에서 닿았던 문턱이다. 바깥 길도 여기에서 만나는군.');
+          }
           s.hallSill57=true;
         }
         if(s.button){s.button.textContent=s.hallSill57&&!r.complete&&!r.failed&&!r.appActions?.mission?'서쪽 징검석에 뛰어올라 네 사람이 산문을 건너십시오.':r.summary;s.button.disabled=r.complete||r.failed;s.button.dataset.act6Mission=r.appActions?.mission??'';}
@@ -101,5 +109,5 @@
         const active=e.b.units.filter(u=>u.side===0&&!u.summoned),full=Object.fromEntries(active.map(u=>[u.cls,structuredClone(u)]));
         if(active.length!==4||Object.keys(full).length!==4||!r.body.every(row=>{const u=e.unit(row.id);return u?.cls===row.role&&u.x-3200===row.receiving[0]&&u.y+758===row.receiving[1]&&e.grounded(u)&&
           e.contactSurface(u.x,u.y-4,u.y+5)?.t.id==='local-07-08-exact-receiving-slice';}))return null;
-        return {stage:57,won:true,settlement:false,flags:r.flags,crew:full,boundary:{full,receiving:Object.fromEntries(r.body.map(row=>[row.role,{x:row.receiving[0],y:row.receiving[1]}])),guard:r.guard,association:r.association}};
+        return {stage:57,won:true,settlement:false,flags:r.flags,crew:full,boundary:{full,receiving:Object.fromEntries(r.body.map(row=>[row.role,{x:row.receiving[0],y:row.receiving[1]}])),guard:r.guard,association:r.association,...(s.interiorD?{interiorD:structuredClone(s.interiorD)}:{})}};
       }

@@ -10,7 +10,7 @@ const sameActor=(a,p)=>[...new Set([...Object.keys(a),...Object.keys(p)])].every
 // Engine-only port. Retain factory & owner capability in App's private launch path.
 export function createStage56Owner({authorize,previousOutcome,projectScene=()=>{},isDetachedFixture=()=>false}){
  if(typeof authorize!=='function'||typeof previousOutcome!=='function')throw TypeError('private stage56 App capability required');
- return function mountStage56({G,engine:e,packet,scope,previous,observe=()=>{},onResult=()=>{},reflowActor=null}={}){
+ return function mountStage56({G,engine:e,packet,scope,previous,observe=()=>{},onResult=()=>{},exitGate=null,reflowActor=null}={}){
  if(scope?.enabled!==true)return reject('off');
  if(scope.integerStageKey!==56||scope.storyOwner!==owner56.storyOwner||!authorize({engine:e,packet,scope})||packet?.playSHA!==owner56.playSHA||packet?.worldSHA!==owner56.worldSHA)return reject('owner mismatch');
  const b=e?.b,auth=b?.honroAuthoredId,core=G?.HONRO_CORE,fixture=isDetachedFixture({engine:e,packet,scope})===true;
@@ -30,7 +30,7 @@ export function createStage56Owner({authorize,previousOutcome,projectScene=()=>{
  keyed.add(e);
  const flags=Object.fromEntries(kList.map(k=>[k,false])),order=[],events=[],action=()=>b.phase==='aim'&&e.active===m&&e.canAct()&&m.hp>0&&!m.dead&&!b.projectiles?.length;
  const support=()=>e.contactSurface(m.x,m.y-3,m.y+4)?.t.id,live=()=>e.grounded(m),near=(x,id,r=180)=>live()&&support()===id&&Math.abs(m.x-x)<=r;
- let seeded=null,ward=null,reflow=null,done=false,scopeFrame='quiet',seconds=0,gapAttackAt=null,terminal=null;
+ let seeded=null,ward=null,reflow=null,done=false,oldExit=false,scopeFrame='quiet',seconds=0,gapAttackAt=null,terminal=null;
  const oldFire=e.fire.bind(e);e.fire=(...args)=>{const who=e.active,result=oldFire(...args);if(result&&resolvedGap&&who===resolvedGap&&args[0]==='HBM01')gapAttackAt=seconds;return result;};
  const emit=(k)=>{if(!flags[k]){flags[k]=true;order.push(k);observe(k);}};
  const say=(x)=>e.message(x);
@@ -93,10 +93,13 @@ const fieldsBefore=()=>structuredClone(b.physics?.regions??[]);
   if(done)return true;
   if(m.dead||m.hp<=0){done=true;terminal=Object.freeze({id:56,stage:56,won:false,settlement:false,reason:'darmheo-unable-to-continue'});onResult(terminal);return true;}
   const reach=G.HonroAuthored.objectiveState(b);
-  if(reach.complete&&kList.every(k=>flags[k])&&live()&&support()===E&&reflow==='evaded'){
-   done=true;terminal=Object.freeze({id:56,stage:56,won:true,settlement:false,actors:Object.freeze([structuredClone(m)]),flags:Object.freeze({'act6.firstGarmjinFailed':true,'act6.temporaryPassageEscaped':true})});observe('exitReached');onResult(terminal);return true;
-  }
-  return false;
+  if(!oldExit&&reach.complete&&kList.every(k=>flags[k])&&live()&&support()===E&&reflow==='evaded')oldExit=true;
+  if(!oldExit)return false;
+  const interior=exitGate?.(m);
+  if(exitGate&&!interior)return false;
+  done=true;terminal=Object.freeze({id:56,stage:56,won:true,settlement:false,actors:Object.freeze([structuredClone(m)]),
+   flags:Object.freeze({'act6.firstGarmjinFailed':true,'act6.temporaryPassageEscaped':true}),...(interior?{interiorD:structuredClone(interior)}:{})});
+  observe('exitReached');onResult(terminal);return true;
  };
  return Object.freeze({accepted:true,act,observePosition,terminal:()=>terminal,drawOwner:actor=>resolvedGap===actor?Object.freeze({id:'act6-06-gap-shard-r2-local',secondsAfterAttack:gapAttackAt===null?null:seconds-gapAttackAt}):null,read:()=>({flags:{...flags},order:[...order],events:structuredClone(events),reflow,scopeFrame,done}),project:()=>({id:56,authoredId:auth,flag:flags.firstGarmjinFailed?'act6.firstGarmjinFailed':null,ready:terminal?.won===true&&flags.eastReturnObserved})});
 }

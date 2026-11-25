@@ -61,5 +61,5 @@ export function native56Handoff({app,engine:e,result,previous,isTerminal}={}){
     !parked.every(r=>intact(previous.boundary.fullOuter[r],result.actors.find(u=>u.cls===r),r)))return null;
  const fullOuter=structuredClone(previous.boundary.fullOuter),fullMage=structuredClone(mage);
  return {stage:56,won:true,settlement:false,flags:structuredClone(result.flags),crew:{mage:fullMage,...fullOuter},
- boundary:{fullMage,fullOuter,events:structuredClone(result.events),reflow:structuredClone(result.reflow)}};
+ boundary:{fullMage,fullOuter,events:structuredClone(result.events),reflow:structuredClone(result.reflow),...(result.interiorD?{interiorD:structuredClone(result.interiorD)}:{})}};
 }

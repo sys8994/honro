@@ -240,7 +240,7 @@ def boundary_of(records):
     slot=next(k for k in records if 'act6-boundary' in k)
     return json.loads(records[slot])["honroAct6ChapterBoundary"]["body"]
 
-def reversal56(page,out,report,finish=False):
+def reversal56(page,out,report,finish=False,exit_route=None):
     actions=[]
     report['gaereumjin56']=actions
     def walk(target,margin=25):
@@ -300,7 +300,10 @@ def reversal56(page,out,report,finish=False):
     use('open',3055,'B-central-lower-floor')
     use('returnEast',5200,'E-joined-ordinary-floor')
     walk(6050)
-    hold(page,'ArrowRight',"()=>HonroApp.engine.b.phase==='won'",None,11000)
+    if exit_route:
+        exit_route(page,out,report)
+    else:
+        hold(page,'ArrowRight',"()=>HonroApp.engine.b.phase==='won'",None,11000)
     page.locator('[data-act6-qa-next="57"]').click(timeout=5500)
     page.wait_for_function('HonroApp.engine?.b.honroStage===57',timeout=12000)
     report['live57']=page.evaluate(base.SNAPSHOT)

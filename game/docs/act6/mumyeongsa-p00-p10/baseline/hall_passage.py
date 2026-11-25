@@ -9,7 +9,7 @@ import browser as base
 from cold_resume import saved_context, seeded_context, storage_hash
 from legacy54_live import hold, resume
 from native_b import FRAME_DRIVER, aim, wall_trace
-from relay_live_chain import ready
+from relay_live_chain import boundary_of, ready
 from second_pass import sample_walk
 
 MISSION = '[data-act6-qa-lookout]'
@@ -208,13 +208,26 @@ def live_d(browser,out,sodan=False,session=None):
         assert q['sameObjects'],q['live']
         page.screenshot(path=out/'d-live-58.png')
         saved=base.saved_bytes(page)
+        q['checkpoint58']=boundary_of(saved)
         cold=saved_context(browser,saved)
         try:
             fresh=cold.new_page()
             resume(fresh,58,True)
             q['newCold']=state(fresh)
-            assert [u for u in q['newCold']['actors'] if u['side']==0]==[u for u in q['live']['actors'] if u['side']==0],q['newCold']
-            assert storage_hash(saved)==storage_hash(base.saved_bytes(fresh)),'Stored bytes changed'
+            warm_crew=[u for u in q['live']['actors'] if u['side']==0]
+            cold_crew=[u for u in q['newCold']['actors'] if u['side']==0]
+            assert len(warm_crew)==len(cold_crew)==4
+            q['coordinateDifference']={}
+            for warm,restored in zip(warm_crew,cold_crew):
+                assert {k:v for k,v in warm.items() if k not in ('x','y')}=={
+                    k:v for k,v in restored.items() if k not in ('x','y')},(warm,restored)
+                delta=[abs(warm[k]-restored[k]) for k in ('x','y')]
+                # Live support projection and cold hydration can round an IEEE-754 foot one ULP apart.
+                assert max(delta)<=1e-9,(warm,restored)
+                q['coordinateDifference'][warm['id']]=delta
+            q['savedBefore']=storage_hash(saved)
+            q['savedAfter']=storage_hash(base.saved_bytes(fresh))
+            assert q['savedBefore']==q['savedAfter'],'Stored bytes changed'
             fresh.screenshot(path=out/'d-new-checkpoint-58.png')
         finally:
             cold.close()

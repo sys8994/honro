@@ -57,7 +57,7 @@
         try{
           a.mount(b,{freshReport:true,reportScope:'custom'});
           check(scope56(a,a.engine,s)&&a.engine.stage===content&&a.scene&&a.screen==='battle','Native normal 56 mount failed');
-          s.exterior=installExteriorEncounters(a,a.engine,()=>!!s.eave56);
+          s.exterior=installExteriorEncounters(a,a.engine,()=>!!s.eave56||!!s.d56);
           const nearby=a.engine.combatEnemies.bind(a.engine);
           // During the marked shelf evasion, the original reflow actor gets
           // its attack before the separated banks resume their own turns.
@@ -73,7 +73,14 @@
       function bindNormal56(a,e,s){
         s.engine=e;mounted56.set(e,s);
         check(scope56(a,e,s),'Native 56 scope changed');
-        s.owner56=adapter56.attach({app:a,engine:e,prepared:s.prepared56,receipt:s.previous,packet:s.packet,compiled:s.compiled56,grant:s.lease56});
+        s.owner56=adapter56.attach({app:a,engine:e,prepared:s.prepared56,receipt:s.previous,packet:s.packet,compiled:s.compiled56,grant:s.lease56,exitGate:mage=>{
+          if(!s.d56){
+            s.d56=mountHallD56({C,e,scene:a.scene,mage,slice:capturedHallSlice});
+            check(s.d56,'D branch did not meet the original E floor');
+            e.b.honroState.localHallD56={edge:hallSill.id,support:s.d56.support.id};
+          }
+          return s.d56.proof();
+        }});
         check(s.owner56,'Native 56 owner refused');e.checkEnd=()=>a.checkMission(e);return true;
       }
       function mountEave56(a,s,proof){
@@ -90,6 +97,7 @@
         focusChart54(a,u,{x:u.x,y:u.y+95});
       }
       function projectNormal56(a,e,s){
+        if(s?.d56&&!s.owner56.project().complete)return {complete:false,objectiveReady:false,summary:'오른쪽 돌문턱에 발을 디디십시오.',targets:[]};
         if(!s?.eave56)return s?.owner56?.project();
         return {complete:false,objectiveReady:false,summary:'같은 처마를 따라 오른쪽으로 이동해 난간에 내려서세요.',targets:[]};
       }
@@ -116,13 +124,15 @@
           if(s.button)delete s.button.dataset.act6TornEave;
           focusChart54(a,u);a.updateHUD(true);
         }
-        s.owner56.tick();const r=s.owner56.project();
-        if(s.button){s.button.textContent=r.summary;s.button.disabled=r.complete||r.failed;s.button.dataset.act6Mission=r.appActions?.mission??'';}
+        s.owner56.tick();const r=projectNormal56(a,e,s);
+        if(s.button){s.button.textContent=r.summary;s.button.disabled=r.complete||r.failed;s.button.dataset.act6Mission=r.appActions?.mission??'';if(s.d56)s.button.dataset.act6HallD='approach';}
         if((r.complete||r.failed)&&!a.done)e.checkEnd();
       }
       function terminalNormal56(a,s){
         if(!scope56(a,s.engine,s))return null;
         const e=s.engine,result=s.owner56.terminal();
+        if(!s.d56||e.contactSurface(e.active.x,e.active.y-4,e.active.y+5)?.t!==s.d56.support||
+          !verifyHallD56(C,capturedHallSlice,e.active,result?.interiorD,{atExit:true}))return null;
         const t=native56Handoff({app:a,engine:e,result,previous:s.previous,isTerminal:(aa,ee,rr)=>aa===a&&ee===e&&rr===result});
         return t?{...t,sodanThread:s.spirit.record()}:null;
       }

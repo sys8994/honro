@@ -191,7 +191,7 @@ export async function createAct6WebQa(project,repoRoot,env=process.env,release=n
   packets.push({...seventh,schema:'honro-act6-normal-57-source/v1',trace:{stageId:57,authoredId:seventh.authoredId,mapSHA256:hash(JSON.stringify(seventh.map)),assetSHA256:hash(JSON.stringify(seventh.library))}});
   const code57=await Promise.all(['bridge','owner','emergency','mission','adapter'].map(q=>readFile(new URL('./runtime/stage57-'+q+'.mjs',import.meta.url),'utf8')));
   const hallCode=await readFile(new URL('./act6-mumyeongsa/hall-b.mjs',import.meta.url),'utf8');
-  const hallExports='hallSill,hallSillArt,installHallArt,hallLead57,hallB58,installHallAxes';
+  const hallExports='hallSill,hallSillArt,installHallArt,hallLead57,hallB58,installHallAxes,mountHallD56,verifyHallD56,legacyHallExit56';
   const returnCode=await readFile(new URL('./act6-mumyeongsa/return-gate.mjs',import.meta.url),'utf8');
   const returnExports='returnGateArt,verifyReturnGate,watchReturnGate,mountReturnGate';
   const wrap57=(name,i)=>'const {'+name+'}='+mod(code57[i],name);

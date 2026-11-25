@@ -42,10 +42,12 @@ const carriedEave=(r,mage,verify)=>!Object.hasOwn(r,'eave')||
 const validate55=(r,p,_verifyRelay,_verifyBridge,verifyEave)=>withFlags(r,status55)&&shapeRoles(p.outer,outer)&&takeRow(p.mage,'mage')&&
   !Object.values(p.outer).some(a=>a.id===p.mage.id)&&r.actors?.length===3&&r.actors.every(a=>same(a,p.outer[a.cls]))&&same(r.parkedMage,p.mage)&&
   same(r.eave,p.eave)&&carriedEave(r,p.mage,verifyEave);
-const validate57=(r,p)=>withFlags(r,status57)&&shapeRoles(p.full,combat)&&names(p.receiving)===combat.join(',')&&
+const validate57=(r,p,_relay,_bridge,_eave,_return,verifyD)=>withFlags(r,status57)&&shapeRoles(p.full,combat)&&names(p.receiving)===combat.join(',')&&
   combat.every(k=>p.full[k].x-3200===p.receiving[k].x&&p.full[k].y+758===p.receiving[k].y)&&
   p.guard?.ref==='local-07-gwakjin-return-keeper'&&p.guard.afterSide===2&&p.guard.end?.x-p.guard.spawn?.x>160&&p.association?.seamReady===true&&
-  same(p.association.guard,p.guard)&&same(r.crew,p.full)&&same(r.boundary,{full:p.full,receiving:p.receiving,guard:p.guard,association:p.association});
+  same(p.association.guard,p.guard)&&same(r.crew,p.full)&&same(r.boundary,{full:p.full,receiving:p.receiving,guard:p.guard,association:p.association,
+    ...(Object.hasOwn(p,'interiorD')?{interiorD:p.interiorD}:{})})&&
+  (!Object.hasOwn(p,'interiorD')||verifyD(p.full.mage,p.interiorD));
 
 const exactRoster=(r,p,stage51=false)=>shapeRoles(p.full,combat,stage51)&&r.actors?.length===4&&r.actors.every(a=>{
   const u=p.full[a.cls];return !!u&&Object.keys(a).every(k=>same(a[k],u[k]));
@@ -76,9 +78,11 @@ function captureRelay(ctx,k){
   const r=ctx.terminal[k],v=ctx.engine.b.stakes.find(x=>x.owner===p.mage.id&&x.skill==='M09'&&x.shot===r?.shot&&x.x===r?.x&&x.y===r?.y);
   return v?{...p,witness:v}:null;
 }
-const verify56=(r,p)=>withFlags(r,['act6.firstGarmjinFailed','act6.temporaryPassageEscaped'])&&takeRow(p.mage,'mage')&&shapeRoles(p.external,outer)&&
+const verify56=(r,p,_relay,_bridge,_eave,_return,verifyD,legacyD)=>withFlags(r,['act6.firstGarmjinFailed','act6.temporaryPassageEscaped'])&&takeRow(p.mage,'mage')&&shapeRoles(p.external,outer)&&
   same(r.boundary.fullMage,p.mage)&&same(r.boundary.fullOuter,p.external)&&r.boundary.events.includes('exitReached')&&p.grounded===true&&
-  r.boundary.reflow.some(x=>x.key==='native-reversal')&&r.boundary.reflow.some(x=>x.key==='native-evade');
+  r.boundary.reflow.some(x=>x.key==='native-reversal')&&r.boundary.reflow.some(x=>x.key==='native-evade')&&
+  (Object.hasOwn(r.boundary,'interiorD')?same(r.boundary.interiorD,p.interiorD)&&verifyD(p.mage,p.interiorD,{atExit:true}):
+    !Object.hasOwn(p,'interiorD')&&legacyD(p.mage));
 const verify59=(r,p)=>withFlags(r,['act6.garmjinCompleted','act6.finalThreatResolved'])&&exactRoster(r,p)&&p.physical.closed===true&&
   p.physical.witness?.id===p.full.knight.id&&p.physical.witness.grounded===true&&p.physical.guardAftermath.anchor==='local-return-anchor-07'&&
   p.physical.guardAftermath.poses?.length===3&&p.physical.finalThreat.grounded===true&&
@@ -93,7 +97,7 @@ const recipes={
    capture({engine:e,terminal:r,upstream}){
     const u=originals(e);
     if(u.length!==1||!e.grounded(u[0])||!same(r.boundary.fullOuter,upstream?.boundary?.fullOuter))return null;
-    return {mage:u[0],external:r.boundary.fullOuter,grounded:true};
+    return {mage:u[0],external:r.boundary.fullOuter,grounded:true,...(r.boundary.interiorD?{interiorD:r.boundary.interiorD}:{})};
    }},
  60:{from:59,kind:'four-injured-with-actual-defeat-and-guard-closure',validate:verify59,
    capture(ctx){const full=captureFull(ctx);return full&&ctx.physical?{full,physical:ctx.physical}:null;}},
@@ -137,7 +141,7 @@ const recipes={
    }}
 };
 const reject=reason=>({ok:false,reason,keepOriginal:true});
-export function createChapterBoundary({slot,key,storage,locks,normalize,hash,verifyOwner,verifyCold,releasePin,verifyRelay54,verifyBridge,verifyEave,verifyReturn=()=>false,verifyThread=()=>false,ownedStore=(a,w)=>a?.profileStore===w,originalProfile=a=>a.profile}){
+export function createChapterBoundary({slot,key,storage,locks,normalize,hash,verifyOwner,verifyCold,releasePin,verifyRelay54,verifyBridge,verifyEave,verifyReturn=()=>false,verifyThread=()=>false,verifyD=()=>false,legacyD=()=>false,ownedStore=(a,w)=>a?.profileStore===w,originalProfile=a=>a.profile}){
  if(!slot||!key||typeof locks?.request!=='function'||typeof hash!=='function'||!storage||typeof normalize!=='function'||typeof verifyOwner!=='function'||typeof verifyCold!=='function'||typeof releasePin!=='function'||typeof verifyRelay54!=='function'||typeof verifyBridge!=='function'||typeof verifyEave!=='function')return null;
  const written=new WeakSet(),booted=new WeakMap(),working=new WeakSet();
  const digest=v=>hash(JSON.stringify(v)), read=()=>storage.getItem(key), exclusive=f=>locks.request('honro:profile-slot:'+slot,{mode:'exclusive'},f);
@@ -167,7 +171,7 @@ export function createChapterBoundary({slot,key,storage,locks,normalize,hash,ver
   return !!(x&&r&&pinOkay(pin,id)&&x.schema===schema&&x.slot===slot&&x.runId===p?.equipment?.runId&&x.kind===r.kind&&x.from===r.from&&x.to===id&&
    x.profileSHA===digest(naked(p))&&same(pin,releasePin(id))&&pinCompatible(x.pin,pin,id)&&x.generation>=1&&Number.isSafeInteger(x.generation)&&x.parent&&(x.parent==='initial'&&x.generation===1||hash64(x.parent)&&x.generation>1)&&
    x.terminal?.stage===r.from&&([51,52].includes(r.from)?x.terminal.won===undefined:x.terminal.won===true)&&x.terminal.settlement===false&&x.terminalSHA===digest(x.terminal)&&x.custodySHA===digest(x.custody)&&
-   x.stageSeed?.id===r.from&&x.budget?.id===r.from&&r.validate(x.terminal,x.custody,verifyRelay54,verifyBridge,verifyEave,verifyReturn)&&
+   x.stageSeed?.id===r.from&&x.budget?.id===r.from&&r.validate(x.terminal,x.custody,verifyRelay54,verifyBridge,verifyEave,verifyReturn,verifyD,legacyD)&&
    (!Object.hasOwn(x.terminal,'sodanThread')||verifyThread(x.terminal.sodanThread,(x.custody.external??x.custody.outer)?.occultist,r.from))&&sha===digest(x));
  }
  async function checkpoint({app,engine:e,store,terminal,upstream,physical,stageSeed,budget,to,pin,expectedRaw}){

@@ -79,6 +79,13 @@
         check(base&&s.prepared58.units.every(u=>e.grounded(u)&&
           e.contactSurface(u.x,u.y-3,u.y+4)?.t===base&&Math.abs(C.topAt(from,u.x+hallSill.offset.x)-hallSill.offset.y-u.y)<1e-8),
           'D receiving faces do not coincide');
+        const interiorD=s.previous.boundary.interiorD;
+        if(interiorD){
+          check(verifyHallD56(C,from,e.unit(interiorD.actor),interiorD)&&
+            Math.abs(C.topAt(base,interiorD.contact.junctionX)-interiorD.contact.junctionY)<1e-8,
+            'The interior route does not meet the 58 receiving ground');
+          b.honroState.localHallDOrigin=structuredClone(interiorD);
+        }
         const H=hallB58(),near=H.terrain.map(t=>G.HonroGeometry.terrain(t,b.height));
         b.terrain=[...b.terrain,...near];b.honroWorldTerrain=[...b.honroWorldTerrain,...near];
         e.invalidateTerrainCollisionIndex();
