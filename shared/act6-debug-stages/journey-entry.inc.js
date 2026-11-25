@@ -1,9 +1,8 @@
-      // Separate trusted menu entry. A preview has no normal slot or checkpoint
-      // authority; native stage owners only see disposable fixture data.
-      const stageDebug=new WeakMap(),stageDebugBusy=new WeakSet(),stageDebugInstalled=new WeakSet();
+      // The existing journey map opens the native chapter in a disposable profile.
+      const stageDebug=new WeakMap(),stageDebugBusy=new WeakSet();
       const debugStageIds=Array.from({length:10},(_,i)=>51+i);
       let debugFixturesPromise=null;
-      function debugMenuAllowed(a){
+      function debugJourneyAllowed(a){
         return descriptor.releaseEnabled&&descriptor.debugFixtures&&G.isSecureContext&&G.location.origin===descriptor.origin&&rtPath.includes(G.location.pathname)&&
           !G.HONRO_EMBEDDED&&!a.endingGallery&&!a.customMap&&a.debugMode===true&&!a.profileStore.locked&&!stageDebug.has(a);
       }
@@ -27,12 +26,12 @@
         stageDebug.delete(a);Object.assign(a,s.real,{dirty:false});return true;
       }
       async function launchDebugStage(a,id,still){
-        if(stageDebugBusy.has(a)||!debugMenuAllowed(a)||!debugStageIds.includes(id)||!still())return false;
+        if(stageDebugBusy.has(a)||!debugJourneyAllowed(a)||!debugStageIds.includes(id)||!still())return false;
         stageDebugBusy.add(a);
         let s;
         try{
           const [fixture,grant]=await Promise.all([debugFixtures(),prepareExact(id)]);
-          if(!still()||!debugMenuAllowed(a))return false;
+          if(!still()||!debugJourneyAllowed(a))return false;
           const selected=fixture.rows[id===51?52:id];
           const profile=structuredClone(selected.profile), body=structuredClone(selected.body);
           check(profile?.cleared?.[50]&&profile?.equipment?.runId===body.runId,'Wrong debug practice roster');
@@ -57,33 +56,32 @@
           }else ok=await restoreBoundaryMount(a,grant,body,owns);
           check(ok&&owns()&&a.engine?.b?.honroStage===id&&a.scene,'Debug chapter did not mount');
           s.mounting=false;
-          const insert=appUI(a);check(insert,'Debug stage controls not found');
-          const bar=document.createElement('div');bar.dataset.act6DebugActive=String(id);bar.style.cssText='pointer-events:auto;background:#172227;color:#f3ead8;padding:6px 10px;border-radius:6px;font-size:12px;line-height:1.3;';
-          const label=document.createElement('div');label.textContent='6막 '+(id-50)+'장 검수 · 저장 안 됨';bar.append(label);
-          const back=document.createElement('button');back.type='button';back.dataset.act6DebugBack='';back.textContent='검수 목록';bar.append(back);
-          back.addEventListener('click',event=>{if(event.isTrusted&&owns()){a.showTitle();a.settings('debug');}});
-          insert.prepend(bar);return true;
+          return true;
         }catch(error){
-          if(s&&stageDebug.get(a)===s){s.mounting=false;a.showTitle();a.settings('debug');}
+          if(s&&stageDebug.get(a)===s){s.mounting=false;returnDebugStage(a);}
           a.notify('6막 검수 전투를 열지 못했습니다. 일반 기록은 그대로입니다.');G.console.warn(error);return false;
         }finally{stageDebugBusy.delete(a);}
       }
-      function installDebugStages(a){
-        const service=G.HonroActEndings;
-        if(!descriptor.debugFixtures||!service||stageDebugInstalled.has(service)||G.HONRO_EMBEDDED)return;
-        stageDebugInstalled.add(service);
-        const previous=service.debugControls;
-        service.debugControls=app=>{
-          const initial=previous(app);
-          if(!debugMenuAllowed(app))return initial;
-          const buttons=debugStageIds.map(id=>'<button type="button" data-act6-debug-stage="'+id+'">'+(id-50)+'장</button>').join('');
-          return initial+'<section class="settings-group" data-act6-debug-list><h3>6막 스테이지 검수</h3><div style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px">'+buttons+'</div><p class="menu-note">검수용 파티로 시작합니다. 일반 기록과 보상은 바뀌지 않습니다.</p></section>';
-        };
-        document.addEventListener('click',event=>{
-          const control=event.target.closest?.('[data-act6-debug-stage]');
-          if(!event.isTrusted||!control||control.disabled||!a.modal.contains(control)||!debugMenuAllowed(a))return;
-          const parent=control.closest('[data-act6-debug-list]'),profile=a.profile;
-          const live=()=>!!parent?.isConnected&&a.modal.contains(control)&&a.profile===profile;
-          control.disabled=true;launchDebugStage(a,Number(control.dataset.act6DebugStage),live).finally(()=>{control.disabled=false;});
-        });
+      function travelDebug(a,id,event,button){
+        if(!event.isTrusted||!button||!a.root.contains(button)||a.screen!=='journey'||a.journeyAct!==6||
+           a.journeySelection!==id||button.dataset.action!=='journey-travel'||Number(button.dataset.id)!==id||!debugJourneyAllowed(a))return false;
+        const profile=a.profile, book=a.root.firstElementChild;
+        const still=()=>a.profile===profile&&a.screen==='journey'&&a.journeyAct===6&&a.journeySelection===id&&a.root.firstElementChild===book&&a.root.contains(button);
+        button.disabled=true;
+        launchDebugStage(a,id,still).finally(()=>{button.disabled=false;});
+        return true;
+      }
+      function returnDebugStage(a){
+        const s=stageDebug.get(a);
+        if(!s||s.mounting)return false;
+        a.stopBattle();
+        G.HonroRestJourney.showBook(a,s.id,null,6);
+        return true;
+      }
+      function debugStageOutcome(a){
+        const s=stageDebug.get(a),phase=a.engine?.b?.phase;
+        if(!s||s.mounting||!['won','lost'].includes(phase))return false;
+        a.done=true;a.resultDismissed=false;a.cancelInput();
+        a.open('<h2>'+(phase==='won'?'전투 완료':'전투 패배')+'</h2><div class="actions"><button class="primary" data-action="result-continue">여정첩으로</button></div>','result');
+        return true;
       }

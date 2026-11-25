@@ -187,22 +187,22 @@ function bookRecords(app,id){
 }
 function book6Body(app,view,def){
  const visible=def.stages.filter(row=>row.stageNumber<=view.through), selected=visible.find(row=>row.stageNumber===app.journeySelection)||visible.at(-1);
- const reached=row=>view.finished||row.stageNumber<view.through;
+ const reached=row=>!view.debug&&(view.finished||row.stageNumber<view.through);
  const isInterior=row=>row.realm==='무명사 안';
  const pins=visible.map(row=>{
   const id=row.stageNumber, here=id===view.current, passed=reached(row), picked=id===selected.stageNumber;
-  return `<button type="button" class="journey-pin ${passed?'passed':''} ${here?'current':''} ${picked?'selected':''} ${isInterior(row)?'journey6-inner':'journey6-outer'}" data-action="journey-select" data-id="${id}" style="left:${row.x/def.width*100}%;top:${row.y/def.height*100}%;--label-side:${row.labelOffsetX}" aria-label="6막 ${id-50}장 ${esc(row.mapLabel)} · ${here?'현재 길목':passed?'지나온 길':'산문'}" aria-pressed="${picked}" ${here?'aria-current="location"':''}><i>${id-50}</i><span>${esc(row.mapLabel)}</span></button>`;
+  return `<button type="button" class="journey-pin ${passed?'passed':''} ${here?'current':''} ${picked?'selected':''} ${isInterior(row)?'journey6-inner':'journey6-outer'}" data-action="journey-select" data-id="${id}" style="left:${row.x/def.width*100}%;top:${row.y/def.height*100}%;--label-side:${row.labelOffsetX}" aria-label="6막 ${id-50}장 ${esc(row.mapLabel)} · ${here?'현재 길목':passed?'지나온 길':view.debug?'선택 가능':'산문'}" aria-pressed="${picked}" ${here?'aria-current="location"':''}><i>${id-50}</i><span>${esc(row.mapLabel)}</span></button>`;
  }).join('');
  const routes=`<svg class="journey-progress" viewBox="0 0 ${def.width} ${def.height}" aria-hidden="true">${def.progressRoutes.slice(0,visible.length-1).map((d,i)=>{
   const from=visible[i],to=visible[i+1],cross=isInterior(from)!==isInterior(to);
   return `<path class="progress-underlay${to.stageNumber===60?' journey6-return-underlay':''}" d="${d}" vector-effect="non-scaling-stroke"/><path data-from="${from.stageNumber}" data-to="${to.stageNumber}" class="${reached(to)?'progress-complete':'progress-current'} ${cross?'journey6-fold':to.stageNumber===60?'journey6-return':isInterior(to)?'journey6-inside':'journey6-outside'}" d="${d}" vector-effect="non-scaling-stroke"/>`;
  }).join('')}</svg>`;
- const fog=view.finished?'':`<svg class="journey-fog" viewBox="0 0 ${def.width} ${def.height}" aria-hidden="true"><defs><radialGradient id="journey6-reveal"><stop offset=".26" stop-color="black"/><stop offset="1" stop-color="black" stop-opacity="0"/></radialGradient><mask id="journey6-fog"><rect width="100%" height="100%" fill="white"/>${visible.map(v=>`<ellipse cx="${v.x}" cy="${v.y}" rx="285" ry="265" fill="url(#journey6-reveal)"/>`).join('')}</mask></defs><rect width="100%" height="100%" fill="#0a161a" opacity=".80" mask="url(#journey6-fog)"/></svg>`;
+ const fog=view.debug||view.finished?'':`<svg class="journey-fog" viewBox="0 0 ${def.width} ${def.height}" aria-hidden="true"><defs><radialGradient id="journey6-reveal"><stop offset=".26" stop-color="black"/><stop offset="1" stop-color="black" stop-opacity="0"/></radialGradient><mask id="journey6-fog"><rect width="100%" height="100%" fill="white"/>${visible.map(v=>`<ellipse cx="${v.x}" cy="${v.y}" rx="285" ry="265" fill="url(#journey6-reveal)"/>`).join('')}</mask></defs><rect width="100%" height="100%" fill="#0a161a" opacity=".80" mask="url(#journey6-fog)"/></svg>`;
  const tags=(def.realms||[]).filter(r=>r.first<=view.through).map(r=>`<span class="journey6-realm ${r.first===51?'outside':'inside'}" aria-hidden="true" style="left:${r.x/def.width*100}%;top:${r.y/def.height*100}%">${esc(r.label)}</span>`).join('');
- const here=selected.stageNumber===view.current, short=view.readable?here?'현재 길목':view.finished?'여정 완료':'지나온 길':'이어가기 기록 확인 필요';
+ const here=selected.stageNumber===view.current, short=view.debug?'검수 모드':view.readable?here?'현재 길목':view.finished?'여정 완료':'지나온 길':'이어가기 기록 확인 필요';
  // A destination's narrative annotation only becomes readable after the journey gets there.
  const note=reached(selected)?esc(selected.note):'';
- const action=here?'<button class="primary" data-action="rest">쉼터에서 이어가기</button>':'';
+ const action=view.debug?`<button class="primary" data-action="journey-travel" data-id="${selected.stageNumber}">진입</button>`:here?'<button class="primary" data-action="rest">쉼터에서 이어가기</button>':'';
  return {pins:tags+pins,routes,fog,details:`<div class="journey6-detail"><p>${esc(selected.realm)} · 6막 ${selected.stageNumber-50}장 · ${short}</p><h2>${esc(selected.mapLabel)}</h2>${note?`<p>${note}</p>`:''}</div>${action}`};
 }
 function bookMarkup(app){
@@ -292,11 +292,11 @@ function showBook(app,id,layer,act){
  if(G.HonroActEndings?.show(app))return;if(app.screen==='battle'&&app.engine)return requestRest(app);
  const d=data(),target=id==='end'?d.ending:d.at(+id)||d.at(app.journeySelection)||d.at(currentId(app.profile))||d.places[0];
  const six=journal6(app);
- act=Number(act)||(six&&app.screen==='rest'?6:actOf(target.stageId));
+ act=Number(act)||(six&&!six.debug&&app.screen==='rest'?6:actOf(target.stageId));
  if(act===6&&six){
   if(app.screen==='rest')app.stopBattle();
   app.close();app.screen='journey';app.journeyAct=6;app.journeyLayer=null;app.journeyZoom=1;
-  app.journeySelection=six.current||six.through;
+  app.journeySelection=six.debug?((+id>=51&&+id<=60)?+id:51):six.current||six.through;
   app.root.innerHTML=bookMarkup(app);mountBook(app);fitBook(app);app.updateAudio();return;
  }
  if(app.journeyAct===6)app.journeyZoom=1;
