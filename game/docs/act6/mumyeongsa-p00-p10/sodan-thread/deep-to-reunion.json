@@ -1,0 +1,515 @@
+{
+  "status": "PASS",
+  "spirit56": [
+    {
+      "type": "impact",
+      "id": "O06",
+      "owner": "p-occultist",
+      "target": "draft-pressure-1",
+      "x": 3425,
+      "y": 2226.8693210186584,
+      "before": 987,
+      "after": 440,
+      "round": 1
+    }
+  ],
+  "carriedSodan": {
+    "before": 751,
+    "after": 715,
+    "thread": {
+      "version": 1,
+      "body": "p-occultist",
+      "casts": [
+        {
+          "stage": 56,
+          "skill": "O06",
+          "shot": 1,
+          "cost": 36
+        }
+      ]
+    }
+  },
+  "flowForward56": {
+    "region": {
+      "id": "act6-06-local-failure-reflow",
+      "x": 4910,
+      "y": 3800,
+      "w": 510,
+      "h": 380,
+      "gravity": {
+        "x": 0,
+        "y": 320
+      },
+      "flow": {
+        "x": 145,
+        "y": 0
+      },
+      "dragScale": 1,
+      "projectileOnly": true
+    },
+    "force": {
+      "x": 145,
+      "y": 0,
+      "k": 1
+    },
+    "foes": [
+      "draft-pressure-0",
+      "draft-pressure-1",
+      "draft-pressure-2"
+    ]
+  },
+  "flowReverse56": {
+    "region": {
+      "id": "act6-06-local-failure-reflow",
+      "x": 4910,
+      "y": 3800,
+      "w": 510,
+      "h": 380,
+      "gravity": {
+        "x": 0,
+        "y": 320
+      },
+      "flow": {
+        "x": -145,
+        "y": 0
+      },
+      "dragScale": 1,
+      "projectileOnly": true
+    },
+    "force": {
+      "x": -145,
+      "y": 0,
+      "k": 1
+    },
+    "foes": [
+      "draft-pressure-0",
+      "draft-pressure-1",
+      "draft-pressure-2",
+      "draft-pressure-3"
+    ]
+  },
+  "gaereumjin56": [
+    {
+      "walk": 1872,
+      "end": {
+        "id": "p-mage",
+        "x": 1872.6999999999775,
+        "y": 1136,
+        "vx": 0,
+        "vy": 0,
+        "move": 2130.3000000000256,
+        "grounded": true,
+        "support": "A-upper-veranda",
+        "phase": "aim",
+        "round": 1,
+        "chart": [
+          6720,
+          5040
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      }
+    },
+    {
+      "used": "stakeA",
+      "pose": {
+        "id": "p-mage",
+        "x": 1872.6999999999775,
+        "y": 1136,
+        "vx": 0,
+        "vy": 0,
+        "move": 2130.3000000000256,
+        "grounded": true,
+        "support": "A-upper-veranda",
+        "phase": "aim",
+        "round": 1,
+        "chart": [
+          6720,
+          5040
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      }
+    },
+    {
+      "walk": 3300,
+      "end": {
+        "id": "p-mage",
+        "x": 3309.8499999999385,
+        "y": 1202.5225054826815,
+        "vx": 0,
+        "vy": 204.36104088120322,
+        "move": 693.1500000000647,
+        "grounded": false,
+        "support": null,
+        "phase": "aim",
+        "round": 1,
+        "chart": [
+          6720,
+          5040
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      }
+    },
+    {
+      "walk": 3600,
+      "end": {
+        "id": "p-mage",
+        "x": 3602.406523382231,
+        "y": 2226.61868971047,
+        "vx": 0,
+        "vy": 124.9736746970134,
+        "move": 2693.1000000000295,
+        "grounded": false,
+        "support": null,
+        "phase": "aim",
+        "round": 2,
+        "chart": [
+          6720,
+          5040
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      }
+    },
+    {
+      "used": "stakeB",
+      "pose": {
+        "id": "p-mage",
+        "x": 3602.406523382231,
+        "y": 3511.0948356557337,
+        "vx": 0,
+        "vy": 0,
+        "move": 2693.1000000000295,
+        "grounded": true,
+        "support": "B-02-center-lower-short-climb",
+        "phase": "aim",
+        "round": 2,
+        "chart": [
+          6720,
+          5040
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      }
+    },
+    {
+      "walk": 4250,
+      "end": {
+        "id": "p-mage",
+        "x": 4256.617024998042,
+        "y": 3202.52250548268,
+        "vx": 0,
+        "vy": 204.36104088120322,
+        "move": 1909.2000000000521,
+        "grounded": false,
+        "support": null,
+        "phase": "aim",
+        "round": 2,
+        "chart": [
+          6720,
+          5040
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      }
+    },
+    {
+      "walk": 5190,
+      "end": {
+        "id": "p-mage",
+        "x": 5191.256223479565,
+        "y": 4048.0420373871175,
+        "vx": 0,
+        "vy": 0,
+        "move": 974.5499999999523,
+        "grounded": true,
+        "support": "E-joined-ordinary-floor",
+        "phase": "aim",
+        "round": 2,
+        "chart": [
+          6720,
+          5040
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      }
+    },
+    {
+      "used": "activate",
+      "pose": {
+        "id": "p-mage",
+        "x": 5191.256223479565,
+        "y": 4048.0420373871175,
+        "vx": 0,
+        "vy": 0,
+        "move": 974.5499999999523,
+        "grounded": true,
+        "support": "E-joined-ordinary-floor",
+        "phase": "aim",
+        "round": 2,
+        "chart": [
+          6720,
+          5040
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      }
+    },
+    {
+      "walk": 5030,
+      "end": {
+        "id": "p-mage",
+        "x": 5020.408197950685,
+        "y": 4048.863422125237,
+        "vx": 0,
+        "vy": 0,
+        "move": 803.6999999999396,
+        "grounded": true,
+        "support": "E-joined-ordinary-floor",
+        "phase": "aim",
+        "round": 2,
+        "chart": [
+          6720,
+          5040
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      }
+    },
+    {
+      "used": "readNarrowing",
+      "pose": {
+        "id": "p-mage",
+        "x": 5020.408197950685,
+        "y": 4048.863422125237,
+        "vx": 0,
+        "vy": 0,
+        "move": 803.6999999999396,
+        "grounded": true,
+        "support": "E-joined-ordinary-floor",
+        "phase": "aim",
+        "round": 2,
+        "chart": [
+          6720,
+          5040
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      }
+    },
+    {
+      "walk": 3264,
+      "end": {
+        "id": "p-mage",
+        "x": 3256.152301616681,
+        "y": 3840,
+        "vx": 0,
+        "vy": 0,
+        "move": 1229.1499999999392,
+        "grounded": true,
+        "support": "B-central-lower-floor",
+        "phase": "aim",
+        "round": 3,
+        "chart": [
+          6720,
+          5040
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      }
+    },
+    {
+      "used": "warnShelf",
+      "pose": {
+        "id": "p-mage",
+        "x": 3256.152301616681,
+        "y": 3840,
+        "vx": 0,
+        "vy": 0,
+        "move": 1229.1499999999392,
+        "grounded": true,
+        "support": "B-central-lower-floor",
+        "phase": "aim",
+        "round": 3,
+        "chart": [
+          6720,
+          5040
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      }
+    },
+    {
+      "walk": 3045,
+      "end": {
+        "id": "p-mage",
+        "x": 3035.052301616687,
+        "y": 3840,
+        "vx": 0,
+        "vy": 0,
+        "move": 1008.0499999999452,
+        "grounded": true,
+        "support": "B-central-lower-floor",
+        "phase": "aim",
+        "round": 3,
+        "chart": [
+          6720,
+          5040
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      }
+    },
+    {
+      "walk": 3055,
+      "end": {
+        "id": "p-mage",
+        "x": 3077.4931268729015,
+        "y": 3840,
+        "vx": 0,
+        "vy": 0,
+        "move": 3021.4000000000015,
+        "grounded": true,
+        "support": "B-central-lower-floor",
+        "phase": "aim",
+        "round": 4,
+        "chart": [
+          6720,
+          5040
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      }
+    },
+    {
+      "used": "open",
+      "pose": {
+        "id": "p-mage",
+        "x": 3077.4931268729015,
+        "y": 3840,
+        "vx": 0,
+        "vy": 0,
+        "move": 3021.4000000000015,
+        "grounded": true,
+        "support": "B-central-lower-floor",
+        "phase": "aim",
+        "round": 4,
+        "chart": [
+          6720,
+          5040
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      }
+    },
+    {
+      "walk": 5200,
+      "end": {
+        "id": "p-mage",
+        "x": 5207.004958883566,
+        "y": 4044.318561754622,
+        "vx": 0,
+        "vy": 0,
+        "move": 810.0835856303914,
+        "grounded": true,
+        "support": "E-joined-ordinary-floor",
+        "phase": "aim",
+        "round": 4,
+        "chart": [
+          6720,
+          5040
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      }
+    },
+    {
+      "used": "returnEast",
+      "pose": {
+        "id": "p-mage",
+        "x": 5207.004958883566,
+        "y": 4044.318561754622,
+        "vx": 0,
+        "vy": 0,
+        "move": 810.0835856303914,
+        "grounded": true,
+        "support": "E-joined-ordinary-floor",
+        "phase": "aim",
+        "round": 4,
+        "chart": [
+          6720,
+          5040
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      }
+    },
+    {
+      "walk": 6050,
+      "end": {
+        "id": "p-mage",
+        "x": 6050.970439850365,
+        "y": 3600.774659348713,
+        "vx": 0,
+        "vy": 0,
+        "move": 2113.1788759743863,
+        "grounded": true,
+        "support": "E-joined-ordinary-floor",
+        "phase": "aim",
+        "round": 5,
+        "chart": [
+          6720,
+          5040
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      }
+    }
+  ],
+  "checkpoint": {
+    "savedBytesBefore": "d5fba492d29b425c1af730503c1ff90c5a0e9c125959991bcca44fccbb8ba63f",
+    "savedBytesAfter": "d5fba492d29b425c1af730503c1ff90c5a0e9c125959991bcca44fccbb8ba63f",
+    "nativeStage": [
+      57,
+      57
+    ]
+  }
+}
