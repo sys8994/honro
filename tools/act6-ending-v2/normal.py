@@ -8,6 +8,7 @@ CUTS=json.loads(subprocess.check_output(['node','--input-type=module','-e',"impo
 arg=argparse.ArgumentParser()
 arg.add_argument('--chromium',required=True)
 arg.add_argument('--live',action='store_true')
+arg.add_argument('--from-courtyard-proof',type=Path)
 args=arg.parse_args()
 origin='https://sys8994.github.io'
 sh=lambda data:hashlib.sha256(data.encode('utf-8')).hexdigest()
@@ -16,6 +17,18 @@ q=json.loads((r/'shared/act6-debug-stages/fixtures.json').read_text())['60']
 boot=jsonstr(q['profile'])
 raw={**q['profile'],'honroAct6ChapterBoundary':{'body':q['body'],'sha':sh(jsonstr(q['body']))}}
 fixture=jsonstr(raw)
+if args.from_courtyard_proof:
+ program="""
+ const fs=require('node:fs'),crypto=require('node:crypto');
+ const {profile}=JSON.parse(fs.readFileSync('shared/act6-debug-stages/fixtures.json'))['59'];
+ const proof=JSON.parse(fs.readFileSync(process.argv[1],'utf8')),body=proof.seal60;
+ const sha=o=>crypto.createHash('sha256').update(JSON.stringify(o)).digest('hex');
+ if(proof.status!=='PASS'||body?.to!==60||body?.from!==59||body.profileSHA!==sha(profile)||
+    body.terminalSHA!==sha(body.terminal)||body.custodySHA!==sha(body.custody))throw Error('Missing valid courtyard proof');
+ console.log(JSON.stringify({body,boot:JSON.stringify(profile),fixture:JSON.stringify({...profile,honroAct6ChapterBoundary:{body,sha:sha(body)}})}));
+ """
+ q=json.loads(subprocess.check_output(['node','-e',program,str(args.from_courtyard_proof.resolve())]))
+ boot,fixture=q['boot'],q['fixture']
 path60=next((r/'web/data').glob('act6-qa-chapter-60.483701a278a8ccc6.json'))
 quiet=json.loads(path60.read_text())['quiet']
 driver=(r/'tools/act6-ending-v2/drive60.js').read_text()

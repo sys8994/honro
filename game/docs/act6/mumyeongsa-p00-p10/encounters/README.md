@@ -20,11 +20,13 @@
 
 전진 판의 4라운드에 서쪽 증원 HMO01이 휘겸 실드 `400→370`, 동쪽 증원 HMO02가 담허 체력 `691.4→650.4`를 줄였다. 5라운드에는 서쪽이 휘겸 체력을, 동쪽이 소단 실드를 줄였다. 서쪽은 3라운드에 접지와 사격 후보를 만족했으나 큐에 들지 않았고 4라운드부터 양쪽이 참가했다. [전진 원자료](courtyard-advance-59.json) · [화면](screens/courtyard-advance-59.webp)
 
+59의 승리 판은 양쪽 지지점에 각각 두 라운드의 실제 타격을 넣고, 교각 수비와 소단의 혼길 한 턴 유지 뒤 가름진을 열었다. 8라운드에 휘겸의 기예 62번으로 문턱 갑주를 밀어냈다. 갑주가 실제 암반 위 240.27 px를 물러났고 증원 유입을 종료했다. 60 라이브·새 저장을 확인하고, 그 판에서 작성된 경계로 1440 PC와 390 모바일에서 두 혼 인도·추모·완료 영수증·타이틀 복귀를 검수했다. 이 59 판의 누적 15와 8라운드는 계획 최소 34와 11에 못 미쳤으며 거대 앞발 개체의 후속 유입은 관측하지 못했다. [59 승리 기록](courtyard-won-59.json) · [59 승리 화면](screens/courtyard-won-59.webp) · [60 검수](actual-59-ending-60.json) · [60 모바일 화면](screens/actual-60-390.webp)
+
 54는 담허와 원래 수문지기 객체를 유지하고 장 소유자가 검사한 적만 각 방에 들인다. 진행 중인 포격·진목·장 효과가 남으면 방을 바꾸지 않는다. 실제 발점과 원래 수문지기 제압이 확인된 뒤 이전 방의 증원만 남겨 두고, 관측과 발점이 맞으면 다시 다음 차트로 넘어간다.
 
 [정량 표본 CSV](observed.csv)는 라운드마다 실제 발사한 적 수와 엔진 공격 큐 상한을 함께 기록했다. 빈 칸은 관측하지 못한 값이다. 라운드 표본은 전체 범위 승인을 뜻하지 않는다.
 
-PC에서 51은 일반 쉼터, 52는 기존 정상 기록을 열어 실제 키로 세 구간을 이동했다. 기존 원본 발점과 신설 적의 실제 발판을 기록했다. PC 호스트의 수집 표본은 각각 16.8·33.3 ms p95였다. 390×844 59 터치 방어의 호스트 p95는 Chromium 병렬 실행 때 50.0 ms, 단독 실행 때 16.8 ms였다. 단독 표본은 33 ms 목표 이내였다. 저사양 실기기, 장 완료까지 연속 세 시드, 난이도 차이와 59 가름진 종료는 별도 검수한다.
+PC에서 51은 일반 쉼터, 52는 기존 정상 기록을 열어 실제 키로 세 구간을 이동했다. 기존 원본 발점과 신설 적의 실제 발판을 기록했다. PC 호스트의 수집 표본은 각각 16.8·33.3 ms p95였다. 390×844 59 터치 방어의 호스트 p95는 Chromium 병렬 실행 때 50.0 ms, 단독 실행 때 16.8 ms였다. 단독 표본은 33 ms 목표 이내였다. 저사양 실기기, 여러 시드의 장별 완주, 난이도별 성능과 51부터 60까지 한 기록에서 연속으로 플레이하는 검수는 남아 있다.
 
 ```bash
 npm run build
@@ -46,4 +48,6 @@ python game/docs/act6/mumyeongsa-p00-p10/baseline/courtyard_combat.py --build "$
 python game/docs/act6/mumyeongsa-p00-p10/baseline/courtyard_combat.py --build "$PWD" --out /tmp/honro-act6-courtyard59-defend --rounds 3 --touch --check-defend
 python game/docs/act6/mumyeongsa-p00-p10/baseline/courtyard_combat.py --build "$PWD" --out /tmp/honro-act6-courtyard59-advance --rounds 6 --touch --advance
 python game/docs/act6/mumyeongsa-p00-p10/baseline/courtyard_combat.py --build "$PWD" --out /tmp/honro-act6-courtyard59-solo --rounds 6 --touch --check-defend
+python game/docs/act6/mumyeongsa-p00-p10/baseline/courtyard_combat.py --build "$PWD" --out /tmp/honro-act6-courtyard59-win --rounds 18 --finish
+python tools/act6-ending-v2/normal.py --chromium /usr/bin/chromium --from-courtyard-proof /tmp/honro-act6-courtyard59-win/court.json
 ```

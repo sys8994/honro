@@ -52,6 +52,24 @@ def shot(page,goal):
     aim(page,spec)
     return spec
 
+def anchor_shot(page,cls,positions,goal,clear_skills,action):
+    action['stances']=[]
+    for x in positions:
+        u=march(page,x,cls=cls,tolerance=40)
+        action['stances'].append([u['x'],u['y'],u['contact']])
+        spec=shot(page,goal)
+        if spec:
+            return spec
+    nearby=page.evaluate("""() => {const e=HonroApp.engine,u=e.active;
+      const dist=v=>Math.hypot(v.x-u.x,v.y-u.y);
+      return e.combatEnemies().filter(v=>dist(v)<580).sort((a,c)=>dist(a)-dist(c)).map(x=>x.id);}""")
+    for name in nearby[:3]:
+        spec=shot(page,{'skills':clear_skills,'actor':name})
+        if spec:
+            action['clearLane']=name
+            return spec
+    return None
+
 def finish59(browser,page,args,q):
     wall_trace(page)
     q['actions']=[]
@@ -70,22 +88,10 @@ def finish59(browser,page,args,q):
             break
         if u['cls']=='archer' and not p.get('cliff'):
             goal={'skills':['A01'],'surface':'finale-cutout-west-terrace','x':522*K,'y':1871.8947026324342,'radius':32}
-            for x in (1645,1775,1960):
-                march(page,x,cls='archer',tolerance=40)
-                act['shot']=shot(page,goal)
-                if act['shot']:
-                    break
-            if not act['shot']:
-                blocked=page.evaluate("""() => {const e=HonroApp.engine,u=e.active;
-                  return e.combatEnemies().filter(v=>Math.hypot(v.x-u.x,v.y-u.y)<520).sort((a,c)=>Math.abs(a.x-u.x)-Math.abs(c.x-u.x)).map(x=>x.id);}""")
-                for name in blocked[:3]:
-                    act['shot']=shot(page,{'skills':['A02','A01'],'actor':name})
-                    if act['shot']:
-                        act['clearLane']=name
-                        break
+            act['shot']=anchor_shot(page,'archer',(1645,1775,1960),goal,['A02','A01'],act)
         elif u['cls']=='mage' and not p.get('mage'):
-            march(page,5900,cls='mage',tolerance=45)
-            act['shot']=shot(page,{'skills':['M01'],'surface':'finale-cutout-near-body','x':1710*K,'y':2291.3294746996403,'radius':28})
+            goal={'skills':['M01'],'surface':'finale-cutout-near-body','x':1710*K,'y':2291.3294746996403,'radius':28}
+            act['shot']=anchor_shot(page,'mage',(5900,6052,6255),goal,['M01','M07'],act)
         elif u['cls']=='knight' and not p.get('bridge'):
             act['guard']=march(page,958*K,cls='knight',tolerance=54)
         elif u['cls']=='knight' and p.get('activated'):

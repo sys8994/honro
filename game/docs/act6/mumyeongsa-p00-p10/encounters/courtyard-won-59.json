@@ -1,0 +1,7719 @@
+{
+  "status": "PASS",
+  "initialStorageHash": "71967cd69770cdf901a794fb976bdf3e4596f21314cfac364273fb1fe746dd1b",
+  "actions": [
+    {
+      "round": 1,
+      "actor": "p-knight",
+      "before": {
+        "retreat": true,
+        "cliff": false,
+        "bridge": false,
+        "bell": false,
+        "soul": false,
+        "mage": false,
+        "activated": false,
+        "cleared": false,
+        "soulPending": false,
+        "breach": 0,
+        "breachLimit": 3,
+        "lost": null,
+        "fronts": [
+          {
+            "id": "west-return",
+            "next": 0,
+            "of": 6,
+            "held": 0,
+            "alive": 0,
+            "spawned": 0
+          },
+          {
+            "id": "east-fault",
+            "next": 0,
+            "of": 7,
+            "held": 0,
+            "alive": 0,
+            "spawned": 0
+          }
+        ],
+        "giant": null
+      },
+      "guard": {
+        "id": "p-knight",
+        "cls": "knight",
+        "side": 0,
+        "x": 3459.6415909323277,
+        "y": 2929.0127823099238,
+        "vx": 0,
+        "vy": 0,
+        "hp": 3688.1,
+        "maxHp": 3846,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "S00",
+          "S01",
+          "S03"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 3661,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "finale-cutout-near-body",
+        "normal": null
+      }
+    },
+    {
+      "round": 1,
+      "actor": "p-archer",
+      "before": {
+        "retreat": true,
+        "cliff": false,
+        "bridge": false,
+        "bell": false,
+        "soul": false,
+        "mage": false,
+        "activated": false,
+        "cleared": false,
+        "soulPending": false,
+        "breach": 0,
+        "breachLimit": 3,
+        "lost": null,
+        "fronts": [
+          {
+            "id": "west-return",
+            "next": 0,
+            "of": 6,
+            "held": 0,
+            "alive": 0,
+            "spawned": 0
+          },
+          {
+            "id": "east-fault",
+            "next": 0,
+            "of": 7,
+            "held": 0,
+            "alive": 0,
+            "spawned": 0
+          }
+        ],
+        "giant": null
+      },
+      "shot": {
+        "id": "A01",
+        "angle": -43,
+        "power": 0.57
+      }
+    },
+    {
+      "round": 1,
+      "actor": "p-occultist",
+      "before": {
+        "retreat": true,
+        "cliff": false,
+        "bridge": false,
+        "bell": false,
+        "soul": false,
+        "mage": false,
+        "activated": false,
+        "cleared": false,
+        "soulPending": false,
+        "breach": 0,
+        "breachLimit": 3,
+        "lost": null,
+        "fronts": [
+          {
+            "id": "west-return",
+            "next": 0,
+            "of": 6,
+            "held": 0,
+            "alive": 0,
+            "spawned": 0
+          },
+          {
+            "id": "east-fault",
+            "next": 0,
+            "of": 7,
+            "held": 0,
+            "alive": 0,
+            "spawned": 0
+          }
+        ],
+        "giant": null
+      },
+      "shot": {
+        "id": "O06",
+        "angle": 3,
+        "power": 0.57
+      }
+    },
+    {
+      "round": 1,
+      "actor": "p-mage",
+      "before": {
+        "retreat": true,
+        "cliff": false,
+        "bridge": false,
+        "bell": false,
+        "soul": false,
+        "mage": false,
+        "activated": false,
+        "cleared": false,
+        "soulPending": false,
+        "breach": 0,
+        "breachLimit": 3,
+        "lost": null,
+        "fronts": [
+          {
+            "id": "west-return",
+            "next": 0,
+            "of": 6,
+            "held": 0,
+            "alive": 0,
+            "spawned": 0
+          },
+          {
+            "id": "east-fault",
+            "next": 0,
+            "of": 7,
+            "held": 0,
+            "alive": 0,
+            "spawned": 0
+          }
+        ],
+        "giant": null
+      },
+      "shot": {
+        "id": "M01",
+        "angle": 8,
+        "power": 0.57
+      }
+    },
+    {
+      "round": 2,
+      "actor": "p-archer",
+      "before": {
+        "retreat": true,
+        "cliff": false,
+        "bridge": true,
+        "bell": false,
+        "soul": false,
+        "mage": false,
+        "activated": false,
+        "cleared": false,
+        "soulPending": false,
+        "breach": 0,
+        "breachLimit": 3,
+        "lost": null,
+        "fronts": [
+          {
+            "id": "west-return",
+            "next": 0,
+            "of": 6,
+            "held": 0,
+            "alive": 0,
+            "spawned": 0
+          },
+          {
+            "id": "east-fault",
+            "next": 0,
+            "of": 7,
+            "held": 0,
+            "alive": 0,
+            "spawned": 0
+          }
+        ],
+        "giant": null
+      },
+      "shot": {
+        "id": "A01",
+        "angle": 219,
+        "power": 0.57
+      }
+    },
+    {
+      "round": 2,
+      "actor": "p-knight",
+      "before": {
+        "retreat": true,
+        "cliff": true,
+        "bridge": true,
+        "bell": false,
+        "soul": false,
+        "mage": false,
+        "activated": false,
+        "cleared": false,
+        "soulPending": false,
+        "breach": 0,
+        "breachLimit": 3,
+        "lost": null,
+        "fronts": [
+          {
+            "id": "west-return",
+            "next": 0,
+            "of": 6,
+            "held": 0,
+            "alive": 0,
+            "spawned": 0
+          },
+          {
+            "id": "east-fault",
+            "next": 0,
+            "of": 7,
+            "held": 0,
+            "alive": 0,
+            "spawned": 0
+          }
+        ],
+        "giant": null
+      }
+    },
+    {
+      "round": 2,
+      "actor": "p-occultist",
+      "before": {
+        "retreat": true,
+        "cliff": true,
+        "bridge": true,
+        "bell": false,
+        "soul": false,
+        "mage": false,
+        "activated": false,
+        "cleared": false,
+        "soulPending": false,
+        "breach": 0,
+        "breachLimit": 3,
+        "lost": null,
+        "fronts": [
+          {
+            "id": "west-return",
+            "next": 0,
+            "of": 6,
+            "held": 0,
+            "alive": 0,
+            "spawned": 0
+          },
+          {
+            "id": "east-fault",
+            "next": 0,
+            "of": 7,
+            "held": 0,
+            "alive": 0,
+            "spawned": 0
+          }
+        ],
+        "giant": null
+      },
+      "shot": {
+        "id": "O06",
+        "angle": 5,
+        "power": 0.57
+      }
+    },
+    {
+      "round": 2,
+      "actor": "p-mage",
+      "before": {
+        "retreat": true,
+        "cliff": true,
+        "bridge": true,
+        "bell": true,
+        "soul": false,
+        "mage": false,
+        "activated": false,
+        "cleared": false,
+        "soulPending": false,
+        "breach": 0,
+        "breachLimit": 3,
+        "lost": null,
+        "fronts": [
+          {
+            "id": "west-return",
+            "next": 0,
+            "of": 6,
+            "held": 0,
+            "alive": 0,
+            "spawned": 0
+          },
+          {
+            "id": "east-fault",
+            "next": 0,
+            "of": 7,
+            "held": 0,
+            "alive": 0,
+            "spawned": 0
+          }
+        ],
+        "giant": null
+      },
+      "shot": null
+    },
+    {
+      "round": 3,
+      "actor": "p-archer",
+      "before": {
+        "retreat": true,
+        "cliff": true,
+        "bridge": true,
+        "bell": true,
+        "soul": false,
+        "mage": false,
+        "activated": false,
+        "cleared": false,
+        "soulPending": false,
+        "breach": 0,
+        "breachLimit": 3,
+        "lost": null,
+        "fronts": [
+          {
+            "id": "west-return",
+            "next": 0,
+            "of": 6,
+            "held": 0,
+            "alive": 2,
+            "spawned": 2
+          },
+          {
+            "id": "east-fault",
+            "next": 0,
+            "of": 7,
+            "held": 0,
+            "alive": 0,
+            "spawned": 0
+          }
+        ],
+        "giant": null
+      }
+    },
+    {
+      "round": 3,
+      "actor": "p-knight",
+      "before": {
+        "retreat": true,
+        "cliff": true,
+        "bridge": true,
+        "bell": true,
+        "soul": false,
+        "mage": false,
+        "activated": false,
+        "cleared": false,
+        "soulPending": false,
+        "breach": 0,
+        "breachLimit": 3,
+        "lost": null,
+        "fronts": [
+          {
+            "id": "west-return",
+            "next": 0,
+            "of": 6,
+            "held": 0,
+            "alive": 2,
+            "spawned": 2
+          },
+          {
+            "id": "east-fault",
+            "next": 0,
+            "of": 7,
+            "held": 0,
+            "alive": 0,
+            "spawned": 0
+          }
+        ],
+        "giant": null
+      }
+    },
+    {
+      "round": 3,
+      "actor": "p-occultist",
+      "before": {
+        "retreat": true,
+        "cliff": true,
+        "bridge": true,
+        "bell": true,
+        "soul": false,
+        "mage": false,
+        "activated": false,
+        "cleared": false,
+        "soulPending": false,
+        "breach": 0,
+        "breachLimit": 3,
+        "lost": null,
+        "fronts": [
+          {
+            "id": "west-return",
+            "next": 0,
+            "of": 6,
+            "held": 0,
+            "alive": 2,
+            "spawned": 2
+          },
+          {
+            "id": "east-fault",
+            "next": 0,
+            "of": 7,
+            "held": 0,
+            "alive": 0,
+            "spawned": 0
+          }
+        ],
+        "giant": null
+      },
+      "interaction": "markSoulPath"
+    },
+    {
+      "round": 3,
+      "actor": "p-mage",
+      "before": {
+        "retreat": true,
+        "cliff": true,
+        "bridge": true,
+        "bell": true,
+        "soul": false,
+        "mage": false,
+        "activated": false,
+        "cleared": false,
+        "soulPending": true,
+        "breach": 0,
+        "breachLimit": 3,
+        "lost": null,
+        "fronts": [
+          {
+            "id": "west-return",
+            "next": 0,
+            "of": 6,
+            "held": 0,
+            "alive": 2,
+            "spawned": 2
+          },
+          {
+            "id": "east-fault",
+            "next": 0,
+            "of": 7,
+            "held": 0,
+            "alive": 0,
+            "spawned": 0
+          }
+        ],
+        "giant": null
+      },
+      "shot": null
+    },
+    {
+      "round": 4,
+      "actor": "p-archer",
+      "before": {
+        "retreat": true,
+        "cliff": true,
+        "bridge": true,
+        "bell": true,
+        "soul": true,
+        "mage": false,
+        "activated": false,
+        "cleared": false,
+        "soulPending": false,
+        "breach": 0,
+        "breachLimit": 3,
+        "lost": null,
+        "fronts": [
+          {
+            "id": "west-return",
+            "next": 0,
+            "of": 6,
+            "held": 1,
+            "alive": 2,
+            "spawned": 2
+          },
+          {
+            "id": "east-fault",
+            "next": 0,
+            "of": 7,
+            "held": 0,
+            "alive": 1,
+            "spawned": 1
+          }
+        ],
+        "giant": null
+      }
+    },
+    {
+      "round": 4,
+      "actor": "p-knight",
+      "before": {
+        "retreat": true,
+        "cliff": true,
+        "bridge": true,
+        "bell": true,
+        "soul": true,
+        "mage": false,
+        "activated": false,
+        "cleared": false,
+        "soulPending": false,
+        "breach": 0,
+        "breachLimit": 3,
+        "lost": null,
+        "fronts": [
+          {
+            "id": "west-return",
+            "next": 0,
+            "of": 6,
+            "held": 1,
+            "alive": 2,
+            "spawned": 2
+          },
+          {
+            "id": "east-fault",
+            "next": 0,
+            "of": 7,
+            "held": 0,
+            "alive": 1,
+            "spawned": 1
+          }
+        ],
+        "giant": null
+      }
+    },
+    {
+      "round": 4,
+      "actor": "p-occultist",
+      "before": {
+        "retreat": true,
+        "cliff": true,
+        "bridge": true,
+        "bell": true,
+        "soul": true,
+        "mage": false,
+        "activated": false,
+        "cleared": false,
+        "soulPending": false,
+        "breach": 0,
+        "breachLimit": 3,
+        "lost": null,
+        "fronts": [
+          {
+            "id": "west-return",
+            "next": 0,
+            "of": 6,
+            "held": 1,
+            "alive": 2,
+            "spawned": 2
+          },
+          {
+            "id": "east-fault",
+            "next": 0,
+            "of": 7,
+            "held": 0,
+            "alive": 1,
+            "spawned": 1
+          }
+        ],
+        "giant": null
+      }
+    },
+    {
+      "round": 4,
+      "actor": "p-mage",
+      "before": {
+        "retreat": true,
+        "cliff": true,
+        "bridge": true,
+        "bell": true,
+        "soul": true,
+        "mage": false,
+        "activated": false,
+        "cleared": false,
+        "soulPending": false,
+        "breach": 0,
+        "breachLimit": 3,
+        "lost": null,
+        "fronts": [
+          {
+            "id": "west-return",
+            "next": 0,
+            "of": 6,
+            "held": 1,
+            "alive": 2,
+            "spawned": 2
+          },
+          {
+            "id": "east-fault",
+            "next": 0,
+            "of": 7,
+            "held": 0,
+            "alive": 1,
+            "spawned": 1
+          }
+        ],
+        "giant": null
+      },
+      "shot": null
+    },
+    {
+      "round": 5,
+      "actor": "p-archer",
+      "before": {
+        "retreat": true,
+        "cliff": true,
+        "bridge": true,
+        "bell": true,
+        "soul": true,
+        "mage": false,
+        "activated": false,
+        "cleared": false,
+        "soulPending": false,
+        "breach": 0,
+        "breachLimit": 3,
+        "lost": null,
+        "fronts": [
+          {
+            "id": "west-return",
+            "next": 0,
+            "of": 6,
+            "held": 2,
+            "alive": 2,
+            "spawned": 2
+          },
+          {
+            "id": "east-fault",
+            "next": 0,
+            "of": 7,
+            "held": 1,
+            "alive": 1,
+            "spawned": 1
+          }
+        ],
+        "giant": null
+      }
+    },
+    {
+      "round": 5,
+      "actor": "p-knight",
+      "before": {
+        "retreat": true,
+        "cliff": true,
+        "bridge": true,
+        "bell": true,
+        "soul": true,
+        "mage": false,
+        "activated": false,
+        "cleared": false,
+        "soulPending": false,
+        "breach": 0,
+        "breachLimit": 3,
+        "lost": null,
+        "fronts": [
+          {
+            "id": "west-return",
+            "next": 0,
+            "of": 6,
+            "held": 2,
+            "alive": 2,
+            "spawned": 2
+          },
+          {
+            "id": "east-fault",
+            "next": 0,
+            "of": 7,
+            "held": 1,
+            "alive": 1,
+            "spawned": 1
+          }
+        ],
+        "giant": null
+      }
+    },
+    {
+      "round": 5,
+      "actor": "p-occultist",
+      "before": {
+        "retreat": true,
+        "cliff": true,
+        "bridge": true,
+        "bell": true,
+        "soul": true,
+        "mage": false,
+        "activated": false,
+        "cleared": false,
+        "soulPending": false,
+        "breach": 0,
+        "breachLimit": 3,
+        "lost": null,
+        "fronts": [
+          {
+            "id": "west-return",
+            "next": 0,
+            "of": 6,
+            "held": 2,
+            "alive": 2,
+            "spawned": 2
+          },
+          {
+            "id": "east-fault",
+            "next": 0,
+            "of": 7,
+            "held": 1,
+            "alive": 1,
+            "spawned": 1
+          }
+        ],
+        "giant": null
+      }
+    },
+    {
+      "round": 5,
+      "actor": "p-mage",
+      "before": {
+        "retreat": true,
+        "cliff": true,
+        "bridge": true,
+        "bell": true,
+        "soul": true,
+        "mage": false,
+        "activated": false,
+        "cleared": false,
+        "soulPending": false,
+        "breach": 0,
+        "breachLimit": 3,
+        "lost": null,
+        "fronts": [
+          {
+            "id": "west-return",
+            "next": 0,
+            "of": 6,
+            "held": 2,
+            "alive": 2,
+            "spawned": 2
+          },
+          {
+            "id": "east-fault",
+            "next": 0,
+            "of": 7,
+            "held": 1,
+            "alive": 1,
+            "spawned": 1
+          }
+        ],
+        "giant": null
+      },
+      "shot": {
+        "id": "M01",
+        "angle": 70,
+        "power": 0.44
+      }
+    },
+    {
+      "round": 6,
+      "actor": "p-archer",
+      "before": {
+        "retreat": true,
+        "cliff": true,
+        "bridge": true,
+        "bell": true,
+        "soul": true,
+        "mage": false,
+        "activated": false,
+        "cleared": false,
+        "soulPending": false,
+        "breach": 0,
+        "breachLimit": 3,
+        "lost": null,
+        "fronts": [
+          {
+            "id": "west-return",
+            "next": 0,
+            "of": 6,
+            "held": 3,
+            "alive": 2,
+            "spawned": 2
+          },
+          {
+            "id": "east-fault",
+            "next": 0,
+            "of": 7,
+            "held": 2,
+            "alive": 1,
+            "spawned": 1
+          }
+        ],
+        "giant": null
+      }
+    },
+    {
+      "round": 6,
+      "actor": "p-knight",
+      "before": {
+        "retreat": true,
+        "cliff": true,
+        "bridge": true,
+        "bell": true,
+        "soul": true,
+        "mage": false,
+        "activated": false,
+        "cleared": false,
+        "soulPending": false,
+        "breach": 0,
+        "breachLimit": 3,
+        "lost": null,
+        "fronts": [
+          {
+            "id": "west-return",
+            "next": 0,
+            "of": 6,
+            "held": 3,
+            "alive": 2,
+            "spawned": 2
+          },
+          {
+            "id": "east-fault",
+            "next": 0,
+            "of": 7,
+            "held": 2,
+            "alive": 1,
+            "spawned": 1
+          }
+        ],
+        "giant": null
+      }
+    },
+    {
+      "round": 6,
+      "actor": "p-occultist",
+      "before": {
+        "retreat": true,
+        "cliff": true,
+        "bridge": true,
+        "bell": true,
+        "soul": true,
+        "mage": false,
+        "activated": false,
+        "cleared": false,
+        "soulPending": false,
+        "breach": 0,
+        "breachLimit": 3,
+        "lost": null,
+        "fronts": [
+          {
+            "id": "west-return",
+            "next": 0,
+            "of": 6,
+            "held": 3,
+            "alive": 2,
+            "spawned": 2
+          },
+          {
+            "id": "east-fault",
+            "next": 0,
+            "of": 7,
+            "held": 2,
+            "alive": 1,
+            "spawned": 1
+          }
+        ],
+        "giant": null
+      }
+    },
+    {
+      "round": 6,
+      "actor": "p-mage",
+      "before": {
+        "retreat": true,
+        "cliff": true,
+        "bridge": true,
+        "bell": true,
+        "soul": true,
+        "mage": false,
+        "activated": false,
+        "cleared": false,
+        "soulPending": false,
+        "breach": 0,
+        "breachLimit": 3,
+        "lost": null,
+        "fronts": [
+          {
+            "id": "west-return",
+            "next": 0,
+            "of": 6,
+            "held": 3,
+            "alive": 2,
+            "spawned": 2
+          },
+          {
+            "id": "east-fault",
+            "next": 0,
+            "of": 7,
+            "held": 2,
+            "alive": 1,
+            "spawned": 1
+          }
+        ],
+        "giant": null
+      },
+      "shot": {
+        "id": "M01",
+        "angle": 14,
+        "power": 0.57
+      }
+    },
+    {
+      "round": 7,
+      "actor": "p-archer",
+      "before": {
+        "retreat": true,
+        "cliff": true,
+        "bridge": true,
+        "bell": true,
+        "soul": true,
+        "mage": true,
+        "activated": false,
+        "cleared": false,
+        "soulPending": false,
+        "breach": 0,
+        "breachLimit": 3,
+        "lost": null,
+        "fronts": [
+          {
+            "id": "west-return",
+            "next": 0,
+            "of": 6,
+            "held": 4,
+            "alive": 2,
+            "spawned": 2
+          },
+          {
+            "id": "east-fault",
+            "next": 0,
+            "of": 7,
+            "held": 3,
+            "alive": 1,
+            "spawned": 1
+          }
+        ],
+        "giant": null
+      }
+    },
+    {
+      "round": 7,
+      "actor": "p-knight",
+      "before": {
+        "retreat": true,
+        "cliff": true,
+        "bridge": true,
+        "bell": true,
+        "soul": true,
+        "mage": true,
+        "activated": false,
+        "cleared": false,
+        "soulPending": false,
+        "breach": 0,
+        "breachLimit": 3,
+        "lost": null,
+        "fronts": [
+          {
+            "id": "west-return",
+            "next": 0,
+            "of": 6,
+            "held": 4,
+            "alive": 2,
+            "spawned": 2
+          },
+          {
+            "id": "east-fault",
+            "next": 0,
+            "of": 7,
+            "held": 3,
+            "alive": 1,
+            "spawned": 1
+          }
+        ],
+        "giant": null
+      }
+    },
+    {
+      "round": 7,
+      "actor": "p-occultist",
+      "before": {
+        "retreat": true,
+        "cliff": true,
+        "bridge": true,
+        "bell": true,
+        "soul": true,
+        "mage": true,
+        "activated": false,
+        "cleared": false,
+        "soulPending": false,
+        "breach": 0,
+        "breachLimit": 3,
+        "lost": null,
+        "fronts": [
+          {
+            "id": "west-return",
+            "next": 0,
+            "of": 6,
+            "held": 4,
+            "alive": 2,
+            "spawned": 2
+          },
+          {
+            "id": "east-fault",
+            "next": 0,
+            "of": 7,
+            "held": 3,
+            "alive": 1,
+            "spawned": 1
+          }
+        ],
+        "giant": null
+      },
+      "interaction": "activateGarmjin"
+    },
+    {
+      "round": 7,
+      "actor": "p-mage",
+      "before": {
+        "retreat": true,
+        "cliff": true,
+        "bridge": true,
+        "bell": true,
+        "soul": true,
+        "mage": true,
+        "activated": true,
+        "cleared": false,
+        "soulPending": false,
+        "breach": 0,
+        "breachLimit": 3,
+        "lost": null,
+        "fronts": [
+          {
+            "id": "west-return",
+            "next": 0,
+            "of": 6,
+            "held": 4,
+            "alive": 2,
+            "spawned": 2
+          },
+          {
+            "id": "east-fault",
+            "next": 0,
+            "of": 7,
+            "held": 3,
+            "alive": 1,
+            "spawned": 1
+          }
+        ],
+        "giant": null
+      }
+    },
+    {
+      "round": 8,
+      "actor": "p-archer",
+      "before": {
+        "retreat": true,
+        "cliff": true,
+        "bridge": true,
+        "bell": true,
+        "soul": true,
+        "mage": true,
+        "activated": true,
+        "cleared": false,
+        "soulPending": false,
+        "breach": 0,
+        "breachLimit": 3,
+        "lost": null,
+        "fronts": [
+          {
+            "id": "west-return",
+            "next": 0,
+            "of": 6,
+            "held": 4,
+            "alive": 2,
+            "spawned": 2
+          },
+          {
+            "id": "east-fault",
+            "next": 0,
+            "of": 7,
+            "held": 3,
+            "alive": 1,
+            "spawned": 1
+          }
+        ],
+        "giant": null
+      }
+    },
+    {
+      "round": 8,
+      "actor": "p-knight",
+      "before": {
+        "retreat": true,
+        "cliff": true,
+        "bridge": true,
+        "bell": true,
+        "soul": true,
+        "mage": true,
+        "activated": true,
+        "cleared": false,
+        "soulPending": false,
+        "breach": 0,
+        "breachLimit": 3,
+        "lost": null,
+        "fronts": [
+          {
+            "id": "west-return",
+            "next": 0,
+            "of": 6,
+            "held": 4,
+            "alive": 2,
+            "spawned": 2
+          },
+          {
+            "id": "east-fault",
+            "next": 0,
+            "of": 7,
+            "held": 3,
+            "alive": 1,
+            "spawned": 1
+          }
+        ],
+        "giant": null
+      },
+      "shot": {
+        "id": "S03",
+        "angle": 41.18784026146962,
+        "power": 0.95
+      }
+    },
+    {
+      "round": 8,
+      "actor": "p-occultist",
+      "before": {
+        "retreat": true,
+        "cliff": true,
+        "bridge": true,
+        "bell": true,
+        "soul": true,
+        "mage": true,
+        "activated": true,
+        "cleared": false,
+        "soulPending": false,
+        "breach": 0,
+        "breachLimit": 3,
+        "lost": null,
+        "fronts": [
+          {
+            "id": "west-return",
+            "next": 0,
+            "of": 6,
+            "held": 4,
+            "alive": 2,
+            "spawned": 2
+          },
+          {
+            "id": "east-fault",
+            "next": 0,
+            "of": 7,
+            "held": 3,
+            "alive": 1,
+            "spawned": 1
+          }
+        ],
+        "giant": null
+      }
+    },
+    {
+      "round": 8,
+      "actor": "p-mage",
+      "before": {
+        "retreat": true,
+        "cliff": true,
+        "bridge": true,
+        "bell": true,
+        "soul": true,
+        "mage": true,
+        "activated": true,
+        "cleared": false,
+        "soulPending": false,
+        "breach": 0,
+        "breachLimit": 3,
+        "lost": null,
+        "fronts": [
+          {
+            "id": "west-return",
+            "next": 0,
+            "of": 6,
+            "held": 4,
+            "alive": 2,
+            "spawned": 2
+          },
+          {
+            "id": "east-fault",
+            "next": 0,
+            "of": 7,
+            "held": 3,
+            "alive": 1,
+            "spawned": 1
+          }
+        ],
+        "giant": null
+      }
+    }
+  ],
+  "finalCourtyard": {
+    "phase": "won",
+    "round": 8,
+    "waves": {
+      "epoch": 1,
+      "rounds": [
+        {
+          "round": 3,
+          "action": "spawn",
+          "front": "west-return",
+          "squad": 0,
+          "line": "서쪽 높은 단과 아래 퇴각 경로로 원혼이 맺힙니다.",
+          "id": "finale-west-return-s0-r3",
+          "cap": 900,
+          "squadActors": [
+            {
+              "id": "finale-west-return-s0-r3-lead",
+              "kind": "mourner",
+              "entry": [
+                1220.9944751381215,
+                1320.9776603411
+              ],
+              "deck": "finale-cutout-west-terrace"
+            },
+            {
+              "id": "finale-west-return-s0-r3-lower",
+              "kind": "shade",
+              "entry": [
+                1418.5082872928176,
+                2206.771902131018
+              ],
+              "deck": "finale-cutout-near-body"
+            }
+          ],
+          "emergence": {
+            "finale-west-return-s0-r3-lead": {
+              "actualMovement": 900.0640885294163,
+              "steps": 543
+            },
+            "finale-west-return-s0-r3-lower": {
+              "actualMovement": 941.7509970924436,
+              "steps": 441
+            }
+          }
+        },
+        {
+          "round": 4,
+          "action": "held",
+          "front": "west-return",
+          "squad": 0
+        },
+        {
+          "round": 4,
+          "action": "spawn",
+          "front": "east-fault",
+          "squad": 0,
+          "line": "동쪽 파열의 낮은 굽이와 암반 이음에서 원혼이 밀려 나옵니다.",
+          "id": "finale-east-fault-s0-r4",
+          "cap": 900,
+          "squadActors": [
+            {
+              "id": "finale-east-fault-s0-r4-lead",
+              "kind": "mourner",
+              "entry": [
+                6482.044198895028,
+                2122.430939226519
+              ],
+              "deck": "finale-cutout-near-body"
+            }
+          ],
+          "emergence": {
+            "finale-east-fault-s0-r4-lead": {
+              "actualMovement": 901.1009019917065,
+              "steps": 447
+            }
+          }
+        },
+        {
+          "round": 5,
+          "action": "held",
+          "front": "west-return",
+          "squad": 0
+        },
+        {
+          "round": 5,
+          "action": "held",
+          "front": "east-fault",
+          "squad": 0
+        },
+        {
+          "round": 6,
+          "action": "held",
+          "front": "west-return",
+          "squad": 0
+        },
+        {
+          "round": 6,
+          "action": "held",
+          "front": "east-fault",
+          "squad": 0
+        },
+        {
+          "round": 7,
+          "action": "held",
+          "front": "west-return",
+          "squad": 0
+        },
+        {
+          "round": 7,
+          "action": "held",
+          "front": "east-fault",
+          "squad": 0
+        }
+      ],
+      "closed": true
+    },
+    "progress": {
+      "retreat": true,
+      "cliff": true,
+      "bridge": true,
+      "bell": true,
+      "soul": true,
+      "mage": true,
+      "activated": true,
+      "cleared": true,
+      "soulPending": false,
+      "breach": 0,
+      "breachLimit": 3,
+      "lost": null,
+      "fronts": [
+        {
+          "id": "west-return",
+          "next": 0,
+          "of": 6,
+          "held": 4,
+          "alive": 2,
+          "spawned": 2
+        },
+        {
+          "id": "east-fault",
+          "next": 0,
+          "of": 7,
+          "held": 3,
+          "alive": 1,
+          "spawned": 1
+        }
+      ],
+      "giant": null
+    },
+    "threat": 2255
+  },
+  "precisionShots": [
+    {
+      "event": "fire",
+      "skill": "A01",
+      "angle": -43.28459999999997,
+      "power": 0.5915226022404765,
+      "actor": "p-archer",
+      "grounded": true,
+      "x": 1660.3346768138647,
+      "y": 1690.401731036652,
+      "prediction": {
+        "x": 1874.5945975854559,
+        "y": 1868.015721722559,
+        "unit": null,
+        "terrain": "finale-cutout-west-terrace"
+      },
+      "shot": 1,
+      "gravity": {
+        "x": -13.664674268550966,
+        "y": 307.1299949770157
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "A01",
+      "actor": "p-archer",
+      "target": null,
+      "terrain": "finale-cutout-west-terrace",
+      "x": 1874.5945975854559,
+      "y": 1868.015721722559,
+      "normal": {
+        "x": 0.6357072528610996,
+        "y": -0.7719302356170495
+      },
+      "radius": 3,
+      "shot": 1,
+      "before": null,
+      "after": null,
+      "shieldBefore": null,
+      "shieldAfter": null
+    },
+    {
+      "event": "fire",
+      "skill": "O06",
+      "angle": 4.440892098500626e-16,
+      "power": 0.5974776722870635,
+      "actor": "p-occultist",
+      "grounded": true,
+      "x": 5413.037621254306,
+      "y": 2518.746308138946,
+      "prediction": {
+        "x": 5501.686780559665,
+        "y": 2462.454053175686,
+        "unit": null,
+        "terrain": "finale-cutout-near-body"
+      },
+      "shot": 2,
+      "gravity": {
+        "x": -35.852400000013404,
+        "y": 320
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "O06",
+      "actor": "p-occultist",
+      "target": null,
+      "terrain": "finale-cutout-near-body",
+      "x": 5501.686780559665,
+      "y": 2462.454053175686,
+      "normal": {
+        "x": -0.4908437339407767,
+        "y": -0.8712476277448772
+      },
+      "radius": 6,
+      "shot": 2,
+      "before": null,
+      "after": null,
+      "shieldBefore": null,
+      "shieldAfter": null
+    },
+    {
+      "event": "fire",
+      "skill": "M01",
+      "angle": 7.970800000000076,
+      "power": 0.5877581182306453,
+      "actor": "p-mage",
+      "grounded": true,
+      "x": 5945.238259160143,
+      "y": 2364.318182003042,
+      "prediction": {
+        "x": 6123.266619401015,
+        "y": 2293.196214691423,
+        "unit": null,
+        "terrain": "finale-cutout-near-body"
+      },
+      "shot": 3,
+      "gravity": {
+        "x": -42.474604086632546,
+        "y": 325.9473437400919
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "M01",
+      "actor": "p-mage",
+      "target": null,
+      "terrain": "finale-cutout-near-body",
+      "x": 6123.266619401015,
+      "y": 2293.196214691423,
+      "normal": {
+        "x": -0.34174306308670455,
+        "y": -0.939793423488437
+      },
+      "radius": 6,
+      "shot": 3,
+      "before": null,
+      "after": null,
+      "shieldBefore": null,
+      "shieldAfter": null
+    },
+    {
+      "event": "fire",
+      "skill": "HSH01",
+      "angle": 223.4175164984518,
+      "power": 0.6312606639035023,
+      "actor": "qa-bell-shade",
+      "grounded": true,
+      "x": 5530.386740331492,
+      "y": 2453.171737607968,
+      "prediction": {
+        "x": 5441.037621254306,
+        "y": 2452.4611806452517,
+        "unit": "p-occultist",
+        "terrain": null
+      },
+      "shot": 4,
+      "gravity": {
+        "x": 25.029053715411823,
+        "y": 40.31670162097602
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HSH01",
+      "actor": "qa-bell-shade",
+      "target": "p-occultist",
+      "terrain": null,
+      "x": 5441.037621254306,
+      "y": 2452.4611806452517,
+      "normal": {
+        "x": 1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 4,
+      "before": 2047.1999999999998,
+      "after": 2004.1999999999998,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "HMO01",
+      "angle": -45.54000124858272,
+      "power": 0.7918181349726177,
+      "actor": "finale-first-west-ledge",
+      "grounded": true,
+      "x": 1394.3719544474893,
+      "y": 1444.982523971417,
+      "prediction": {
+        "x": 1632.3346768138647,
+        "y": 1604.0900315412148,
+        "unit": "p-archer",
+        "terrain": null
+      },
+      "shot": 5,
+      "gravity": {
+        "x": -21.37612682816628,
+        "y": 55.01709590353148
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HMO01",
+      "actor": "finale-first-west-ledge",
+      "target": "p-archer",
+      "terrain": null,
+      "x": 1632.3346768138647,
+      "y": 1604.0900315412148,
+      "normal": {
+        "x": -1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 5,
+      "before": 1407,
+      "after": 1362,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "HSH01",
+      "angle": 21.886438744826645,
+      "power": 0.8031173108351733,
+      "actor": "finale-first-west-talus",
+      "grounded": true,
+      "x": 964.0877015676149,
+      "y": 1958.6876886538184,
+      "prediction": {
+        "x": 1668.1955904097333,
+        "y": 1652.9642839353323,
+        "unit": "p-archer",
+        "terrain": null
+      },
+      "shot": 6,
+      "gravity": {
+        "x": -36.811843614734975,
+        "y": 78.78814624331959
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HSH01",
+      "actor": "finale-first-west-talus",
+      "target": "p-archer",
+      "terrain": null,
+      "x": 1668.1955904097333,
+      "y": 1652.9642839353323,
+      "normal": {
+        "x": -1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 6,
+      "before": 1362,
+      "after": 1331,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "HMO01",
+      "angle": 143.8321272243084,
+      "power": 0.5766249445280921,
+      "actor": "finale-first-west-turn",
+      "grounded": true,
+      "x": 1888.2297421731098,
+      "y": 1883.1310258910173,
+      "prediction": {
+        "x": 1730.8952549772757,
+        "y": 1697.5762977158251,
+        "unit": "p-archer",
+        "terrain": null
+      },
+      "shot": 7,
+      "gravity": {
+        "x": 20.548593243745437,
+        "y": 91.82160995229518
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HMO01",
+      "actor": "finale-first-west-turn",
+      "target": "p-archer",
+      "terrain": null,
+      "x": 1730.8952549772757,
+      "y": 1697.5762977158251,
+      "normal": {
+        "x": 1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 7,
+      "before": 1331,
+      "after": 1277,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "HSH01",
+      "angle": -71.96994050238601,
+      "power": 0.31630622825443977,
+      "actor": "finale-first-east-bell",
+      "grounded": true,
+      "x": 5360.273735229718,
+      "y": 2545.5220114947074,
+      "prediction": {
+        "x": 5378.020547119141,
+        "y": 2513.8216479843627,
+        "unit": "p-occultist",
+        "terrain": null
+      },
+      "shot": 8,
+      "gravity": {
+        "x": -7.708181560247662,
+        "y": 40.31893755006756
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HSH01",
+      "actor": "finale-first-east-bell",
+      "target": "p-occultist",
+      "terrain": null,
+      "x": 5378.020547119141,
+      "y": 2513.8216479843627,
+      "normal": {
+        "x": -1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 8,
+      "before": 2004.1999999999998,
+      "after": 1976.1999999999998,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "HMO01",
+      "angle": 212.85280599542048,
+      "power": 0.736595007299283,
+      "actor": "finale-first-east-bend",
+      "grounded": true,
+      "x": 6095.238687371278,
+      "y": 2309.7725717444473,
+      "prediction": {
+        "x": 5973.238259160143,
+        "y": 2294.681280039236,
+        "unit": "p-mage",
+        "terrain": null
+      },
+      "shot": 9,
+      "gravity": {
+        "x": 24.54629237214022,
+        "y": 60.94895640971029
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HMO01",
+      "actor": "finale-first-east-bend",
+      "target": "p-mage",
+      "terrain": null,
+      "x": 5973.238259160143,
+      "y": 2294.681280039236,
+      "normal": {
+        "x": 1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 9,
+      "before": 1264.9,
+      "after": 1218.9,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "HMO02",
+      "angle": 117.52127650081653,
+      "power": 0.8392859773993928,
+      "actor": "qa-upper-ridge-leaper",
+      "grounded": true,
+      "x": 2023.4854972375547,
+      "y": 1994.649289179343,
+      "prediction": {
+        "x": 1726.5588282017482,
+        "y": 1656.93427516423,
+        "unit": "p-archer",
+        "terrain": null
+      },
+      "shot": 10,
+      "gravity": {
+        "x": 12.791331465695658,
+        "y": 440.54965670159635
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HMO02",
+      "actor": "qa-upper-ridge-leaper",
+      "target": "p-archer",
+      "terrain": null,
+      "x": 1726.5588282017482,
+      "y": 1656.93427516423,
+      "normal": {
+        "x": 1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 10,
+      "before": 1277,
+      "after": 1194,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "A01",
+      "angle": 222.24920000000012,
+      "power": 0.5927054417341251,
+      "actor": "p-archer",
+      "grounded": true,
+      "x": 1930.828690477357,
+      "y": 1918.212512729809,
+      "prediction": {
+        "x": 1899.6057110239367,
+        "y": 1888.6131092601313,
+        "unit": null,
+        "terrain": "finale-cutout-west-terrace"
+      },
+      "shot": 11,
+      "gravity": {
+        "x": 13.922791292150807,
+        "y": 307.3537815899293
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "A01",
+      "actor": "p-archer",
+      "target": null,
+      "terrain": "finale-cutout-west-terrace",
+      "x": 1899.6057110239367,
+      "y": 1888.6131092601313,
+      "normal": {
+        "x": 0.6357072528610996,
+        "y": -0.7719302356170495
+      },
+      "radius": 3,
+      "shot": 11,
+      "before": null,
+      "after": null,
+      "shieldBefore": null,
+      "shieldAfter": null
+    },
+    {
+      "event": "fire",
+      "skill": "O06",
+      "angle": 5.16460000000018,
+      "power": 0.5943579977259164,
+      "actor": "p-occultist",
+      "grounded": true,
+      "x": 5406.94515545873,
+      "y": 2521.8380071993874,
+      "prediction": {
+        "x": 5500.386740331492,
+        "y": 2457.496252652136,
+        "unit": "qa-bell-shade",
+        "terrain": null
+      },
+      "shot": 12,
+      "gravity": {
+        "x": -35.520406619315395,
+        "y": 323.2104835525766
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "O06",
+      "actor": "p-occultist",
+      "target": "qa-bell-shade",
+      "terrain": null,
+      "x": 5500.386740331492,
+      "y": 2457.496252652136,
+      "normal": {
+        "x": -1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 12,
+      "before": 948,
+      "after": 0,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "HSH01",
+      "angle": 25.887923265492425,
+      "power": 0.6805488269735549,
+      "actor": "finale-first-east-bell",
+      "grounded": true,
+      "x": 5016.590594389277,
+      "y": 2713.8273705961415,
+      "prediction": {
+        "x": 5378.94515545873,
+        "y": 2470.712795456473,
+        "unit": "p-occultist",
+        "terrain": null
+      },
+      "shot": 13,
+      "gravity": {
+        "x": -32.345207763514715,
+        "y": 79.69756470824993
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HSH01",
+      "actor": "finale-first-east-bell",
+      "target": "p-occultist",
+      "terrain": null,
+      "x": 5378.94515545873,
+      "y": 2470.712795456473,
+      "normal": {
+        "x": -1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 13,
+      "before": 1976.1999999999998,
+      "after": 1948.1999999999998,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "HWD01",
+      "angle": 183.62600889984577,
+      "power": 0.7122545826665706,
+      "actor": "qa-immediate-bridge-threat",
+      "grounded": true,
+      "x": 3820.848996292985,
+      "y": 2908.6094280397497,
+      "prediction": {
+        "x": 3487.6415909323277,
+        "y": 2856.28161712747,
+        "unit": "p-knight",
+        "terrain": null
+      },
+      "shot": 14,
+      "gravity": {
+        "x": 29.303854297605575,
+        "y": 334.1430025026181
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HWD01",
+      "actor": "qa-immediate-bridge-threat",
+      "target": "p-knight",
+      "terrain": null,
+      "x": 3487.6415909323277,
+      "y": 2856.28161712747,
+      "normal": {
+        "x": 1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 14,
+      "before": 3846,
+      "after": 3846,
+      "shieldBefore": 462,
+      "shieldAfter": 431
+    },
+    {
+      "event": "fire",
+      "skill": "HMO01",
+      "angle": -6.692270401981659,
+      "power": 0.35356268150312825,
+      "actor": "finale-first-west-ledge",
+      "grounded": true,
+      "x": 1596.1692710022362,
+      "y": 1626.2315277902933,
+      "prediction": {
+        "x": 3426.76250038797,
+        "y": 2897.2388922206005,
+        "unit": "p-knight",
+        "terrain": null
+      },
+      "shot": 15,
+      "gravity": {
+        "x": -20.065210877885107,
+        "y": 74.44562370263375
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HMO01",
+      "actor": "finale-first-west-ledge",
+      "target": "p-knight",
+      "terrain": null,
+      "x": 3426.76250038797,
+      "y": 2897.2388922206005,
+      "normal": {
+        "x": -1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 15,
+      "before": 3846,
+      "after": 3846,
+      "shieldBefore": 431,
+      "shieldAfter": 402
+    },
+    {
+      "event": "fire",
+      "skill": "HSH01",
+      "angle": -7.710730537823805,
+      "power": 0.9128531292953539,
+      "actor": "finale-first-west-talus",
+      "grounded": true,
+      "x": 1166.794533012802,
+      "y": 2015.582391775316,
+      "prediction": {
+        "x": 3444.0546013240146,
+        "y": 2860.1743174341723,
+        "unit": "p-knight",
+        "terrain": null
+      },
+      "shot": 16,
+      "gravity": {
+        "x": -42.61114158952761,
+        "y": 58.230621177899394
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HSH01",
+      "actor": "finale-first-west-talus",
+      "target": "p-knight",
+      "terrain": null,
+      "x": 3444.0546013240146,
+      "y": 2860.1743174341723,
+      "normal": {
+        "x": -1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 16,
+      "before": 3846,
+      "after": 3846,
+      "shieldBefore": 402,
+      "shieldAfter": 386
+    },
+    {
+      "event": "fire",
+      "skill": "HMO01",
+      "angle": -10.04041101904884,
+      "power": 0.7140159179025698,
+      "actor": "finale-first-bridge-foot",
+      "grounded": true,
+      "x": 3140.5399995769376,
+      "y": 2905.0882181791612,
+      "prediction": {
+        "x": 3446.5366673257668,
+        "y": 2875.020262105896,
+        "unit": "p-knight",
+        "terrain": null
+      },
+      "shot": 17,
+      "gravity": {
+        "x": -28.248579936577602,
+        "y": 71.79846730048168
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HMO01",
+      "actor": "finale-first-bridge-foot",
+      "target": "p-knight",
+      "terrain": null,
+      "x": 3446.5366673257668,
+      "y": 2875.020262105896,
+      "normal": {
+        "x": -1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 17,
+      "before": 3846,
+      "after": 3846,
+      "shieldBefore": 386,
+      "shieldAfter": 358
+    },
+    {
+      "event": "fire",
+      "skill": "HMO01",
+      "angle": 209.12404595711465,
+      "power": 0.7364526122217615,
+      "actor": "finale-first-east-bend",
+      "grounded": true,
+      "x": 6095.238687371278,
+      "y": 2309.7725717444473,
+      "prediction": {
+        "x": 5940.617727228967,
+        "y": 2303.2113476963996,
+        "unit": "p-mage",
+        "terrain": null
+      },
+      "shot": 18,
+      "gravity": {
+        "x": 25.5222464107111,
+        "y": 62.58046711389916
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HMO01",
+      "actor": "finale-first-east-bend",
+      "target": "p-mage",
+      "terrain": null,
+      "x": 5940.617727228967,
+      "y": 2303.2113476963996,
+      "normal": {
+        "x": 1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 18,
+      "before": 1300.9,
+      "after": 1300.9,
+      "shieldBefore": 246,
+      "shieldAfter": 200
+    },
+    {
+      "event": "fire",
+      "skill": "HSH01",
+      "angle": 185,
+      "power": 0.35,
+      "actor": "finale-first-east-stone",
+      "grounded": true,
+      "x": 6679.558011049724,
+      "y": 2007.4496842936064,
+      "prediction": {
+        "x": 5441.7694510061,
+        "y": 2500.7302149403085,
+        "unit": "p-occultist",
+        "terrain": null
+      },
+      "shot": 19,
+      "gravity": {
+        "x": 25.82741845732895,
+        "y": 61.74039367684352
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HSH01",
+      "actor": "finale-first-east-stone",
+      "target": "p-occultist",
+      "terrain": null,
+      "x": 5441.7694510061,
+      "y": 2500.7302149403085,
+      "normal": {
+        "x": 1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 19,
+      "before": 1948.1999999999998,
+      "after": 1920.1999999999998,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "HMO02",
+      "angle": 154.3584043986587,
+      "power": 0.3069392072206668,
+      "actor": "qa-upper-ridge-leaper",
+      "grounded": true,
+      "x": 2023.4854972375547,
+      "y": 1994.649289179343,
+      "prediction": {
+        "x": 1958.828690477357,
+        "y": 1875.3327144900395,
+        "unit": "p-archer",
+        "terrain": null
+      },
+      "shot": 20,
+      "gravity": {
+        "x": 15.070849050197976,
+        "y": 423.2341984201342
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HMO02",
+      "actor": "qa-upper-ridge-leaper",
+      "target": "p-archer",
+      "terrain": null,
+      "x": 1958.828690477357,
+      "y": 1875.3327144900395,
+      "normal": {
+        "x": 1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 20,
+      "before": 1194,
+      "after": 1097,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "HMO02",
+      "angle": 153.45322693962385,
+      "power": 0.32003673725471765,
+      "actor": "qa-upper-ridge-leaper",
+      "grounded": true,
+      "x": 2023.4854972375547,
+      "y": 1994.649289179343,
+      "prediction": {
+        "x": 1955.2062205550872,
+        "y": 1873.0504857623887,
+        "unit": "p-archer",
+        "terrain": null
+      },
+      "shot": 21,
+      "gravity": {
+        "x": 15.196018667449133,
+        "y": 423.5919506345118
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HMO02",
+      "actor": "qa-upper-ridge-leaper",
+      "target": "p-archer",
+      "terrain": null,
+      "x": 1955.2062205550872,
+      "y": 1873.0504857623887,
+      "normal": {
+        "x": 1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 21,
+      "before": 1166,
+      "after": 1166,
+      "shieldBefore": 206,
+      "shieldAfter": 109
+    },
+    {
+      "event": "fire",
+      "skill": "HWD01",
+      "angle": 190.40392527897703,
+      "power": 0.6961943364939551,
+      "actor": "qa-immediate-bridge-threat",
+      "grounded": true,
+      "x": 3820.848996292985,
+      "y": 2908.6094280397497,
+      "prediction": {
+        "x": 3519.4233534264226,
+        "y": 2882.0432626679117,
+        "unit": "p-knight",
+        "terrain": null
+      },
+      "shot": 22,
+      "gravity": {
+        "x": 28.498747952690987,
+        "y": 330.7674827585857
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HWD01",
+      "actor": "qa-immediate-bridge-threat",
+      "target": "p-knight",
+      "terrain": null,
+      "x": 3519.4233534264226,
+      "y": 2882.0432626679117,
+      "normal": {
+        "x": 1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 22,
+      "before": 3846,
+      "after": 3846,
+      "shieldBefore": 462,
+      "shieldAfter": 424
+    },
+    {
+      "event": "fire",
+      "skill": "HMO01",
+      "angle": -5.33174583374057,
+      "power": 0.3575792286230717,
+      "actor": "finale-first-west-ledge",
+      "grounded": true,
+      "x": 1798.1530498731336,
+      "y": 1807.8025673463997,
+      "prediction": {
+        "x": 3499.7621160208464,
+        "y": 2831.9958002125986,
+        "unit": "p-knight",
+        "terrain": null
+      },
+      "shot": 23,
+      "gravity": {
+        "x": -20.2095955484122,
+        "y": 74.91391804309478
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HMO01",
+      "actor": "finale-first-west-ledge",
+      "target": "p-knight",
+      "terrain": null,
+      "x": 3499.7621160208464,
+      "y": 2831.9958002125986,
+      "normal": {
+        "x": 0,
+        "y": -1
+      },
+      "radius": 6,
+      "shot": 23,
+      "before": 3846,
+      "after": 3846,
+      "shieldBefore": 424,
+      "shieldAfter": 402
+    },
+    {
+      "event": "fire",
+      "skill": "HSH01",
+      "angle": 10.989424633560702,
+      "power": 1,
+      "actor": "finale-first-west-talus",
+      "grounded": true,
+      "x": 1249.0278772306306,
+      "y": 2086.745862733052,
+      "prediction": {
+        "x": 1895.581508997225,
+        "y": 1909.7313468282853,
+        "unit": "p-archer",
+        "terrain": null
+      },
+      "shot": 24,
+      "gravity": {
+        "x": -44.8065070829802,
+        "y": 72.70092036929691
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HSH01",
+      "actor": "finale-first-west-talus",
+      "target": "p-archer",
+      "terrain": null,
+      "x": 1895.581508997225,
+      "y": 1909.7313468282853,
+      "normal": {
+        "x": -1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 24,
+      "before": 1166,
+      "after": 1166,
+      "shieldBefore": 109,
+      "shieldAfter": 109
+    },
+    {
+      "event": "fire",
+      "skill": "HMO01",
+      "angle": -13.637521098254386,
+      "power": 0.6763134502261472,
+      "actor": "finale-first-bridge-foot",
+      "grounded": true,
+      "x": 3222.5517660873174,
+      "y": 2915.3396889929586,
+      "prediction": {
+        "x": 3442.654627610849,
+        "y": 2878.989444111235,
+        "unit": "p-knight",
+        "terrain": null
+      },
+      "shot": 25,
+      "gravity": {
+        "x": -27.016636007261077,
+        "y": 70.24525712135156
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HMO01",
+      "actor": "finale-first-bridge-foot",
+      "target": "p-knight",
+      "terrain": null,
+      "x": 3442.654627610849,
+      "y": 2878.989444111235,
+      "normal": {
+        "x": -1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 25,
+      "before": 3846,
+      "after": 3846,
+      "shieldBefore": 402,
+      "shieldAfter": 373
+    },
+    {
+      "event": "fire",
+      "skill": "HSH01",
+      "angle": 26.61473195445562,
+      "power": 0.7663601762471645,
+      "actor": "finale-first-east-bell",
+      "grounded": true,
+      "x": 4815.196018235193,
+      "y": 2822.8446418500416,
+      "prediction": {
+        "x": 5313.053899513629,
+        "y": 2521.1376330866533,
+        "unit": "p-occultist",
+        "terrain": null
+      },
+      "shot": 26,
+      "gravity": {
+        "x": -34.47070730786782,
+        "y": 81.27273151064819
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HSH01",
+      "actor": "finale-first-east-bell",
+      "target": "p-occultist",
+      "terrain": null,
+      "x": 5313.053899513629,
+      "y": 2521.1376330866533,
+      "normal": {
+        "x": -1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 26,
+      "before": 2012.1999999999998,
+      "after": 2012.1999999999998,
+      "shieldBefore": 276,
+      "shieldAfter": 248
+    },
+    {
+      "event": "fire",
+      "skill": "HMO01",
+      "angle": 207.88549835744251,
+      "power": 0.7513646827059531,
+      "actor": "finale-first-east-bend",
+      "grounded": true,
+      "x": 6095.238687371278,
+      "y": 2309.7725717444473,
+      "prediction": {
+        "x": 5911.552222135423,
+        "y": 2315.5605005866396,
+        "unit": "p-mage",
+        "terrain": null
+      },
+      "shot": 27,
+      "gravity": {
+        "x": 26.133909436175497,
+        "y": 62.97127494955372
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HMO01",
+      "actor": "finale-first-east-bend",
+      "target": "p-mage",
+      "terrain": null,
+      "x": 5911.552222135423,
+      "y": 2315.5605005866396,
+      "normal": {
+        "x": 1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 27,
+      "before": 1382.9,
+      "after": 1382.9,
+      "shieldBefore": 246,
+      "shieldAfter": 199
+    },
+    {
+      "event": "fire",
+      "skill": "HMO01",
+      "angle": -3.9569817206356674,
+      "power": 0.3477782487298827,
+      "actor": "finale-west-return-s0-r3-lead",
+      "grounded": true,
+      "x": 1597.6695432956492,
+      "y": 1627.8032416214878,
+      "prediction": {
+        "x": 3459.9990788558143,
+        "y": 2864.7661879749235,
+        "unit": "p-knight",
+        "terrain": null
+      },
+      "shot": 28,
+      "gravity": {
+        "x": -20.018863831579125,
+        "y": 75.41524775377354
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HMO01",
+      "actor": "finale-west-return-s0-r3-lead",
+      "target": "p-knight",
+      "terrain": null,
+      "x": 3459.9990788558143,
+      "y": 2864.7661879749235,
+      "normal": {
+        "x": -1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 28,
+      "before": 3846,
+      "after": 3846,
+      "shieldBefore": 373,
+      "shieldAfter": 342
+    },
+    {
+      "event": "fire",
+      "skill": "HMO01",
+      "angle": -22.64020342651639,
+      "power": 0.7642009246590796,
+      "actor": "qa-upper-ridge-leaper",
+      "grounded": true,
+      "x": 2023.4854972375547,
+      "y": 1994.649289179343,
+      "prediction": {
+        "x": 3475.0553305726457,
+        "y": 2854.913256819234,
+        "unit": "p-knight",
+        "terrain": null
+      },
+      "shot": 29,
+      "gravity": {
+        "x": -27.567572353667796,
+        "y": 65.30202514879582
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HMO01",
+      "actor": "qa-upper-ridge-leaper",
+      "target": "p-knight",
+      "terrain": null,
+      "x": 3475.0553305726457,
+      "y": 2854.913256819234,
+      "normal": {
+        "x": -1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 29,
+      "before": 3846,
+      "after": 3846,
+      "shieldBefore": 462,
+      "shieldAfter": 423
+    },
+    {
+      "event": "fire",
+      "skill": "HWD01",
+      "angle": 192.10840570050104,
+      "power": 0.7167314816541357,
+      "actor": "qa-immediate-bridge-threat",
+      "grounded": true,
+      "x": 3820.848996292985,
+      "y": 2908.6094280397497,
+      "prediction": {
+        "x": 3544.7793363525507,
+        "y": 2876.5853748650115,
+        "unit": "p-knight",
+        "terrain": null
+      },
+      "shot": 30,
+      "gravity": {
+        "x": 28.81500637038736,
+        "y": 329.81817610074506
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HWD01",
+      "actor": "qa-immediate-bridge-threat",
+      "target": "p-knight",
+      "terrain": null,
+      "x": 3544.7793363525507,
+      "y": 2876.5853748650115,
+      "normal": {
+        "x": 1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 30,
+      "before": 3846,
+      "after": 3846,
+      "shieldBefore": 423,
+      "shieldAfter": 386
+    },
+    {
+      "event": "fire",
+      "skill": "HMO01",
+      "angle": -7.247195667703636,
+      "power": 0.3508007846451364,
+      "actor": "finale-first-west-ledge",
+      "grounded": true,
+      "x": 1798.1530498731336,
+      "y": 1807.8025673463997,
+      "prediction": {
+        "x": 3478.2507194451505,
+        "y": 2884.0913760573903,
+        "unit": "p-knight",
+        "terrain": null
+      },
+      "shot": 31,
+      "gravity": {
+        "x": -19.97697170598346,
+        "y": 74.25960179648412
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HMO01",
+      "actor": "finale-first-west-ledge",
+      "target": "p-knight",
+      "terrain": null,
+      "x": 3478.2507194451505,
+      "y": 2884.0913760573903,
+      "normal": {
+        "x": -1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 31,
+      "before": 3846,
+      "after": 3846,
+      "shieldBefore": 386,
+      "shieldAfter": 357
+    },
+    {
+      "event": "fire",
+      "skill": "HMO01",
+      "angle": -11.909734762346163,
+      "power": 0.676310806946295,
+      "actor": "finale-first-bridge-foot",
+      "grounded": true,
+      "x": 3304.881486726037,
+      "y": 2921.870008269633,
+      "prediction": {
+        "x": 3495.2329327825855,
+        "y": 2870.4770047576962,
+        "unit": "p-knight",
+        "terrain": null
+      },
+      "shot": 32,
+      "gravity": {
+        "x": -27.20192414824202,
+        "y": 71.06282836660927
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HMO01",
+      "actor": "finale-first-bridge-foot",
+      "target": "p-knight",
+      "terrain": null,
+      "x": 3495.2329327825855,
+      "y": 2870.4770047576962,
+      "normal": {
+        "x": -1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 32,
+      "before": 3846,
+      "after": 3846,
+      "shieldBefore": 357,
+      "shieldAfter": 329
+    },
+    {
+      "event": "fire",
+      "skill": "HMO02",
+      "angle": -23.167019345885976,
+      "power": 0.5674808170733924,
+      "actor": "finale-first-east-bend",
+      "grounded": true,
+      "x": 5762.884536334839,
+      "y": 2376.0013488441264,
+      "prediction": {
+        "x": 5840.8182538601195,
+        "y": 2317.7707263105685,
+        "unit": "p-mage",
+        "terrain": null
+      },
+      "shot": 33,
+      "gravity": {
+        "x": -20.302900703768866,
+        "y": 407.31199585136807
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HMO02",
+      "actor": "finale-first-east-bend",
+      "target": "p-mage",
+      "terrain": null,
+      "x": 5840.8182538601195,
+      "y": 2317.7707263105685,
+      "normal": {
+        "x": -1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 33,
+      "before": 1464.9,
+      "after": 1464.9,
+      "shieldBefore": 246,
+      "shieldAfter": 196
+    },
+    {
+      "event": "fire",
+      "skill": "HSH01",
+      "angle": 11.892526246096729,
+      "power": 0.2655150981051862,
+      "actor": "finale-west-return-s0-r3-lower",
+      "grounded": true,
+      "x": 2360.2592843852613,
+      "y": 2657.7376563822663,
+      "prediction": {
+        "x": 3511.444635677328,
+        "y": 2853.0382415733875,
+        "unit": "p-knight",
+        "terrain": null
+      },
+      "shot": 34,
+      "gravity": {
+        "x": -22.86179562981631,
+        "y": 68.81462150471461
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HSH01",
+      "actor": "finale-west-return-s0-r3-lower",
+      "target": "p-knight",
+      "terrain": null,
+      "x": 3511.444635677328,
+      "y": 2853.0382415733875,
+      "normal": {
+        "x": -1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 34,
+      "before": 3846,
+      "after": 3846,
+      "shieldBefore": 329,
+      "shieldAfter": 310
+    },
+    {
+      "event": "fire",
+      "skill": "HMO01",
+      "angle": 211.18309926299636,
+      "power": 0.7250636110456697,
+      "actor": "finale-east-fault-s0-r4-lead",
+      "grounded": true,
+      "x": 6041.459561114989,
+      "y": 2329.328617655825,
+      "prediction": {
+        "x": 5907.990978504144,
+        "y": 2316.6388016784103,
+        "unit": "p-mage",
+        "terrain": null
+      },
+      "shot": 35,
+      "gravity": {
+        "x": 24.765504682171535,
+        "y": 61.811459993041254
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HMO01",
+      "actor": "finale-east-fault-s0-r4-lead",
+      "target": "p-mage",
+      "terrain": null,
+      "x": 5907.990978504144,
+      "y": 2316.6388016784103,
+      "normal": {
+        "x": 1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 35,
+      "before": 1464.9,
+      "after": 1464.9,
+      "shieldBefore": 196,
+      "shieldAfter": 142
+    },
+    {
+      "event": "fire",
+      "skill": "M01",
+      "angle": 67.9000000000004,
+      "power": 0.46117094360484945,
+      "actor": "p-mage",
+      "grounded": true,
+      "x": 5865.060149255383,
+      "y": 2382.9285090421295,
+      "prediction": {
+        "x": 6176.937341442151,
+        "y": 2266.9018870465206,
+        "unit": null,
+        "terrain": "finale-cutout-near-body"
+      },
+      "shot": 36,
+      "gravity": {
+        "x": -12.660638707295048,
+        "y": 351.1793932415464
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "M01",
+      "actor": "p-mage",
+      "target": null,
+      "terrain": "finale-cutout-near-body",
+      "x": 6176.937341442151,
+      "y": 2266.9018870465206,
+      "normal": {
+        "x": -0.4415076512193095,
+        "y": -0.8972574847360196
+      },
+      "radius": 6,
+      "shot": 36,
+      "before": null,
+      "after": null,
+      "shieldBefore": null,
+      "shieldAfter": null
+    },
+    {
+      "event": "fire",
+      "skill": "HMO01",
+      "angle": 212.55245418722757,
+      "power": 0.7698657441522083,
+      "actor": "finale-first-east-bend",
+      "grounded": true,
+      "x": 5679.832701764181,
+      "y": 2370.370715991878,
+      "prediction": {
+        "x": 5633.997969216431,
+        "y": 2303.9600420906377,
+        "unit": "finale-east-fault-s0-r4-lead",
+        "terrain": null
+      },
+      "shot": 37,
+      "gravity": {
+        "x": 25.289200798703888,
+        "y": 60.656434502533415
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HMO01",
+      "actor": "finale-first-east-bend",
+      "target": "finale-east-fault-s0-r4-lead",
+      "terrain": null,
+      "x": 5633.997969216431,
+      "y": 2303.9600420906377,
+      "normal": {
+        "x": 1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 37,
+      "before": 2384,
+      "after": 2288,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "HWD01",
+      "angle": 193.06134274868242,
+      "power": 0.7083715466536136,
+      "actor": "qa-immediate-bridge-threat",
+      "grounded": true,
+      "x": 3820.848996292985,
+      "y": 2908.6094280397497,
+      "prediction": {
+        "x": 3569.085244739231,
+        "y": 2869.254475478728,
+        "unit": "p-knight",
+        "terrain": null
+      },
+      "shot": 38,
+      "gravity": {
+        "x": 28.51171627805767,
+        "y": 329.3853910756288
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HWD01",
+      "actor": "qa-immediate-bridge-threat",
+      "target": "p-knight",
+      "terrain": null,
+      "x": 3569.085244739231,
+      "y": 2869.254475478728,
+      "normal": {
+        "x": 1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 38,
+      "before": 3846,
+      "after": 3846,
+      "shieldBefore": 462,
+      "shieldAfter": 428
+    },
+    {
+      "event": "fire",
+      "skill": "HMO02",
+      "angle": 140,
+      "power": 0.35,
+      "actor": "finale-first-west-ledge",
+      "grounded": true,
+      "x": 2000.7369202626712,
+      "y": 1975.7839960824208,
+      "prediction": {
+        "x": 1951.581508997225,
+        "y": 1841.4480822354803,
+        "unit": "p-archer",
+        "terrain": null
+      },
+      "shot": 39,
+      "gravity": {
+        "x": 13.485542132221877,
+        "y": 427.31571342937303
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HMO02",
+      "actor": "finale-first-west-ledge",
+      "target": "p-archer",
+      "terrain": null,
+      "x": 1951.581508997225,
+      "y": 1841.4480822354803,
+      "normal": {
+        "x": 1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 39,
+      "before": 1304,
+      "after": 1304,
+      "shieldBefore": 206,
+      "shieldAfter": 156
+    },
+    {
+      "event": "fire",
+      "skill": "HSH01",
+      "angle": 26.10960724146571,
+      "power": 0.3438065058139618,
+      "actor": "finale-first-west-talus",
+      "grounded": true,
+      "x": 1331.261221448459,
+      "y": 2157.9093336907886,
+      "prediction": {
+        "x": 1891.089518331347,
+        "y": 1898.4226658573727,
+        "unit": "p-archer",
+        "terrain": null
+      },
+      "shot": 40,
+      "gravity": {
+        "x": -23.11171297566361,
+        "y": 75.32711714487459
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HSH01",
+      "actor": "finale-first-west-talus",
+      "target": "p-archer",
+      "terrain": null,
+      "x": 1891.089518331347,
+      "y": 1898.4226658573727,
+      "normal": {
+        "x": -1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 40,
+      "before": 1304,
+      "after": 1304,
+      "shieldBefore": 156,
+      "shieldAfter": 125
+    },
+    {
+      "event": "fire",
+      "skill": "HMO01",
+      "angle": -13.43609729310554,
+      "power": 0.66611371704432,
+      "actor": "finale-first-bridge-foot",
+      "grounded": true,
+      "x": 3304.881486726037,
+      "y": 2921.870008269633,
+      "prediction": {
+        "x": 3503.379189016047,
+        "y": 2878.3352563209196,
+        "unit": "p-knight",
+        "terrain": null
+      },
+      "shot": 41,
+      "gravity": {
+        "x": -26.80598221001816,
+        "y": 70.39606485496591
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HMO01",
+      "actor": "finale-first-bridge-foot",
+      "target": "p-knight",
+      "terrain": null,
+      "x": 3503.379189016047,
+      "y": 2878.3352563209196,
+      "normal": {
+        "x": -1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 41,
+      "before": 3846,
+      "after": 3846,
+      "shieldBefore": 428,
+      "shieldAfter": 399
+    },
+    {
+      "event": "fire",
+      "skill": "HSH01",
+      "angle": 27.627122407858366,
+      "power": 0.7486414156974224,
+      "actor": "finale-first-east-bell",
+      "grounded": true,
+      "x": 4815.196018235193,
+      "y": 2822.8446418500416,
+      "prediction": {
+        "x": 5320.204490088655,
+        "y": 2509.142546749837,
+        "unit": "p-occultist",
+        "terrain": null
+      },
+      "shot": 42,
+      "gravity": {
+        "x": -33.6839334916843,
+        "y": 81.62984295722042
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HSH01",
+      "actor": "finale-first-east-bell",
+      "target": "p-occultist",
+      "terrain": null,
+      "x": 5320.204490088655,
+      "y": 2509.142546749837,
+      "normal": {
+        "x": -1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 42,
+      "before": 2196.2,
+      "after": 2196.2,
+      "shieldBefore": 276,
+      "shieldAfter": 248
+    },
+    {
+      "event": "fire",
+      "skill": "HMO01",
+      "angle": 6.045067901024595,
+      "power": 0.2754375185109675,
+      "actor": "qa-upper-ridge-leaper",
+      "grounded": true,
+      "x": 1816.860497237559,
+      "y": 1823.7385410272066,
+      "prediction": {
+        "x": 3541.539906116847,
+        "y": 2790.5824962174593,
+        "unit": null,
+        "terrain": null
+      },
+      "shot": 43,
+      "gravity": {
+        "x": -18.261684844885398,
+        "y": 78.73390464102246
+      }
+    },
+    {
+      "event": "fire",
+      "skill": "HMO01",
+      "angle": 216.3567044985459,
+      "power": 0.7758590412542681,
+      "actor": "finale-east-fault-s0-r4-lead",
+      "grounded": true,
+      "x": 5551.050514267495,
+      "y": 2441.5301748271213,
+      "prediction": {
+        "x": 5383.7971903239795,
+        "y": 2473.0630995072124,
+        "unit": "p-occultist",
+        "terrain": null
+      },
+      "shot": 44,
+      "gravity": {
+        "x": 24.276004742596168,
+        "y": 58.93048518930301
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HMO01",
+      "actor": "finale-east-fault-s0-r4-lead",
+      "target": "p-occultist",
+      "terrain": null,
+      "x": 5383.7971903239795,
+      "y": 2473.0630995072124,
+      "normal": {
+        "x": 1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 44,
+      "before": 2196.2,
+      "after": 2196.2,
+      "shieldBefore": 248,
+      "shieldAfter": 198
+    },
+    {
+      "event": "fire",
+      "skill": "M01",
+      "angle": 14.170800000000073,
+      "power": 0.5931816853420401,
+      "actor": "p-mage",
+      "grounded": true,
+      "x": 5865.060149255383,
+      "y": 2382.9285090421295,
+      "prediction": {
+        "x": 6127.492516470857,
+        "y": 2291.2318802863633,
+        "unit": null,
+        "terrain": "finale-cutout-near-body"
+      },
+      "shot": 45,
+      "gravity": {
+        "x": -41.96757642379739,
+        "y": 330.59667469503717
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "M01",
+      "actor": "p-mage",
+      "target": null,
+      "terrain": "finale-cutout-near-body",
+      "x": 6127.492516470857,
+      "y": 2291.2318802863633,
+      "normal": {
+        "x": -0.4415076512193095,
+        "y": -0.8972574847360196
+      },
+      "radius": 6,
+      "shot": 45,
+      "before": null,
+      "after": null,
+      "shieldBefore": null,
+      "shieldAfter": null
+    },
+    {
+      "event": "fire",
+      "skill": "HMO02",
+      "angle": 171.84177650301717,
+      "power": 0.34543421462248075,
+      "actor": "finale-first-west-ledge",
+      "grounded": true,
+      "x": 2000.7369202626712,
+      "y": 1975.7839960824208,
+      "prediction": {
+        "x": 1948.7387289302335,
+        "y": 1873.8107664821628,
+        "unit": "p-archer",
+        "terrain": null
+      },
+      "shot": 46,
+      "gravity": {
+        "x": 17.332878581530466,
+        "y": 418.4848068251405
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HMO02",
+      "actor": "finale-first-west-ledge",
+      "target": "p-archer",
+      "terrain": null,
+      "x": 1948.7387289302335,
+      "y": 1873.8107664821628,
+      "normal": {
+        "x": 1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 46,
+      "before": 1373,
+      "after": 1373,
+      "shieldBefore": 206,
+      "shieldAfter": 143
+    },
+    {
+      "event": "fire",
+      "skill": "HWD01",
+      "angle": 190.68551353480453,
+      "power": 0.701943460800876,
+      "actor": "qa-immediate-bridge-threat",
+      "grounded": true,
+      "x": 3820.848996292985,
+      "y": 2908.6094280397497,
+      "prediction": {
+        "x": 3576.255247479893,
+        "y": 2854.69947847693,
+        "unit": "p-knight",
+        "terrain": null
+      },
+      "shot": 47,
+      "gravity": {
+        "x": 28.609000271327947,
+        "y": 330.60176457487665
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HWD01",
+      "actor": "qa-immediate-bridge-threat",
+      "target": "p-knight",
+      "terrain": null,
+      "x": 3576.255247479893,
+      "y": 2854.69947847693,
+      "normal": {
+        "x": 1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 47,
+      "before": 3846,
+      "after": 3846,
+      "shieldBefore": 462,
+      "shieldAfter": 431
+    },
+    {
+      "event": "fire",
+      "skill": "HSH01",
+      "angle": 24.87189736322034,
+      "power": 0.3464492136684712,
+      "actor": "finale-first-west-talus",
+      "grounded": true,
+      "x": 1331.261221448459,
+      "y": 2157.9093336907886,
+      "prediction": {
+        "x": 1889.1524153923294,
+        "y": 1910.455629942205,
+        "unit": "p-archer",
+        "terrain": null
+      },
+      "shot": 48,
+      "gravity": {
+        "x": -23.423721189988683,
+        "y": 74.85896810542694
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HSH01",
+      "actor": "finale-first-west-talus",
+      "target": "p-archer",
+      "terrain": null,
+      "x": 1889.1524153923294,
+      "y": 1910.455629942205,
+      "normal": {
+        "x": -1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 48,
+      "before": 1373,
+      "after": 1373,
+      "shieldBefore": 143,
+      "shieldAfter": 143
+    },
+    {
+      "event": "fire",
+      "skill": "HMO01",
+      "angle": -9.95993994005419,
+      "power": 0.678352132051251,
+      "actor": "finale-first-bridge-foot",
+      "grounded": true,
+      "x": 3304.881486726037,
+      "y": 2921.870008269633,
+      "prediction": {
+        "x": 3514.191193169435,
+        "y": 2868.0349002304297,
+        "unit": "p-knight",
+        "terrain": null
+      },
+      "shot": 49,
+      "gravity": {
+        "x": -27.428703686340715,
+        "y": 71.98335091414205
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HMO01",
+      "actor": "finale-first-bridge-foot",
+      "target": "p-knight",
+      "terrain": null,
+      "x": 3514.191193169435,
+      "y": 2868.0349002304297,
+      "normal": {
+        "x": -1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 49,
+      "before": 3846,
+      "after": 3846,
+      "shieldBefore": 431,
+      "shieldAfter": 403
+    },
+    {
+      "event": "fire",
+      "skill": "HSH01",
+      "angle": 28.6586344971237,
+      "power": 0.7512746041230589,
+      "actor": "finale-first-east-bell",
+      "grounded": true,
+      "x": 4815.196018235193,
+      "y": 2822.8446418500416,
+      "prediction": {
+        "x": 5293.430020133357,
+        "y": 2508.448969227921,
+        "unit": "p-occultist",
+        "terrain": null
+      },
+      "shot": 50,
+      "gravity": {
+        "x": -33.43118795920443,
+        "y": 82.27168251836191
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HSH01",
+      "actor": "finale-first-east-bell",
+      "target": "p-occultist",
+      "terrain": null,
+      "x": 5293.430020133357,
+      "y": 2508.448969227921,
+      "normal": {
+        "x": -1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 50,
+      "before": 2288.2,
+      "after": 2288.2,
+      "shieldBefore": 276,
+      "shieldAfter": 248
+    },
+    {
+      "event": "fire",
+      "skill": "HMO01",
+      "angle": -19.846127431567226,
+      "power": 0.6406101409554066,
+      "actor": "finale-first-east-bend",
+      "grounded": true,
+      "x": 5694.160101286279,
+      "y": 2371.3420651120205,
+      "prediction": {
+        "x": 5837.060149255383,
+        "y": 2329.6371644859632,
+        "unit": "p-mage",
+        "terrain": null
+      },
+      "shot": 51,
+      "gravity": {
+        "x": -25.35874999231181,
+        "y": 67.64721962525903
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HMO01",
+      "actor": "finale-first-east-bend",
+      "target": "p-mage",
+      "terrain": null,
+      "x": 5837.060149255383,
+      "y": 2329.6371644859632,
+      "normal": {
+        "x": -1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 51,
+      "before": 1464.9,
+      "after": 1414.9,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "HMO01",
+      "angle": -21.269338086411747,
+      "power": 0.7723430133300211,
+      "actor": "finale-west-return-s0-r3-lead",
+      "grounded": true,
+      "x": 2121.058563667538,
+      "y": 2082.703032055181,
+      "prediction": {
+        "x": 3530.3683318114886,
+        "y": 2850.541789601288,
+        "unit": "p-knight",
+        "terrain": null
+      },
+      "shot": 52,
+      "gravity": {
+        "x": -28.013367301983305,
+        "y": 65.89531110546092
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HMO01",
+      "actor": "finale-west-return-s0-r3-lead",
+      "target": "p-knight",
+      "terrain": null,
+      "x": 3530.3683318114886,
+      "y": 2850.541789601288,
+      "normal": {
+        "x": -1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 52,
+      "before": 3846,
+      "after": 3846,
+      "shieldBefore": 403,
+      "shieldAfter": 373
+    },
+    {
+      "event": "fire",
+      "skill": "HMO01",
+      "angle": 215.37733402611954,
+      "power": 0.7607488497731905,
+      "actor": "finale-east-fault-s0-r4-lead",
+      "grounded": true,
+      "x": 5551.050514267495,
+      "y": 2441.5301748271213,
+      "prediction": {
+        "x": 5355.161229722909,
+        "y": 2490.849138724966,
+        "unit": "p-occultist",
+        "terrain": null
+      },
+      "shot": 53,
+      "gravity": {
+        "x": 24.28787390182946,
+        "y": 59.55396309555053
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HMO01",
+      "actor": "finale-east-fault-s0-r4-lead",
+      "target": "p-occultist",
+      "terrain": null,
+      "x": 5355.161229722909,
+      "y": 2490.849138724966,
+      "normal": {
+        "x": 1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 53,
+      "before": 2288.2,
+      "after": 2288.2,
+      "shieldBefore": 248,
+      "shieldAfter": 196
+    },
+    {
+      "event": "fire",
+      "skill": "HMO01",
+      "angle": -16.632264822522586,
+      "power": 0.6571205258890587,
+      "actor": "finale-first-east-bend",
+      "grounded": true,
+      "x": 5694.160101286279,
+      "y": 2371.3420651120205,
+      "prediction": {
+        "x": 5854.270531559139,
+        "y": 2326.4478526316016,
+        "unit": "p-mage",
+        "terrain": null
+      },
+      "shot": 54,
+      "gravity": {
+        "x": -26.204393251479793,
+        "y": 68.97206055537418
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HMO01",
+      "actor": "finale-first-east-bend",
+      "target": "p-mage",
+      "terrain": null,
+      "x": 5854.270531559139,
+      "y": 2326.4478526316016,
+      "normal": {
+        "x": -1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 54,
+      "before": 1496.9,
+      "after": 1496.9,
+      "shieldBefore": 246,
+      "shieldAfter": 197
+    },
+    {
+      "event": "fire",
+      "skill": "HWD01",
+      "angle": 195.41092199534077,
+      "power": 0.690247911321907,
+      "actor": "qa-immediate-bridge-threat",
+      "grounded": true,
+      "x": 3820.848996292985,
+      "y": 2908.6094280397497,
+      "prediction": {
+        "x": 3600.3773696614926,
+        "y": 2864.581171633643,
+        "unit": "p-knight",
+        "terrain": null
+      },
+      "shot": 55,
+      "gravity": {
+        "x": 27.79499809885613,
+        "y": 328.3382812795142
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HWD01",
+      "actor": "qa-immediate-bridge-threat",
+      "target": "p-knight",
+      "terrain": null,
+      "x": 3600.3773696614926,
+      "y": 2864.581171633643,
+      "normal": {
+        "x": 1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 55,
+      "before": 3846,
+      "after": 3846,
+      "shieldBefore": 462,
+      "shieldAfter": 428
+    },
+    {
+      "event": "fire",
+      "skill": "HMO01",
+      "angle": 110,
+      "power": 0.35,
+      "actor": "finale-first-west-turn",
+      "grounded": true,
+      "x": 1967.38014759787,
+      "y": 1948.3137127114082,
+      "prediction": {
+        "x": 1945.1524153923294,
+        "y": 1812.0380019367815,
+        "unit": "p-archer",
+        "terrain": null
+      },
+      "shot": 56,
+      "gravity": {
+        "x": 6.881103263569129,
+        "y": 95.70567583759168
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HMO01",
+      "actor": "finale-first-west-turn",
+      "target": "p-archer",
+      "terrain": null,
+      "x": 1945.1524153923294,
+      "y": 1812.0380019367815,
+      "normal": {
+        "x": 1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 56,
+      "before": 1442,
+      "after": 1442,
+      "shieldBefore": 206,
+      "shieldAfter": 164
+    },
+    {
+      "event": "fire",
+      "skill": "HMO01",
+      "angle": -9.99837463903938,
+      "power": 0.6664732911293945,
+      "actor": "finale-first-bridge-foot",
+      "grounded": true,
+      "x": 3304.881486726037,
+      "y": 2921.870008269633,
+      "prediction": {
+        "x": 3534.9423834262957,
+        "y": 2873.2295966517313,
+        "unit": "p-knight",
+        "terrain": null
+      },
+      "shot": 57,
+      "gravity": {
+        "x": -27.15008533276613,
+        "y": 72.01350156040077
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HMO01",
+      "actor": "finale-first-bridge-foot",
+      "target": "p-knight",
+      "terrain": null,
+      "x": 3534.9423834262957,
+      "y": 2873.2295966517313,
+      "normal": {
+        "x": -1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 57,
+      "before": 3846,
+      "after": 3846,
+      "shieldBefore": 428,
+      "shieldAfter": 399
+    },
+    {
+      "event": "fire",
+      "skill": "HSH01",
+      "angle": 209.8307644368576,
+      "power": 0.7445954932803602,
+      "actor": "finale-first-east-stone",
+      "grounded": true,
+      "x": 6766.558011049735,
+      "y": 1946.8603985793131,
+      "prediction": {
+        "x": 6332.120104016317,
+        "y": 2137.5585164155486,
+        "unit": "p-occultist",
+        "terrain": null
+      },
+      "shot": 58,
+      "gravity": {
+        "x": 32.87466350401171,
+        "y": 45.149054109729384
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HSH01",
+      "actor": "finale-first-east-stone",
+      "target": "p-occultist",
+      "terrain": null,
+      "x": 6332.120104016317,
+      "y": 2137.5585164155486,
+      "normal": {
+        "x": 1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 58,
+      "before": 2304,
+      "after": 2304,
+      "shieldBefore": 276,
+      "shieldAfter": 248
+    },
+    {
+      "event": "fire",
+      "skill": "HWD01",
+      "angle": 202.7034107084957,
+      "power": 0.6981935187549226,
+      "actor": "finale-first-east-ward",
+      "grounded": true,
+      "x": 6707.0915227081005,
+      "y": 1988.2745601029515,
+      "prediction": {
+        "x": 6330.85362072267,
+        "y": 2116.6577562732273,
+        "unit": "p-occultist",
+        "terrain": null
+      },
+      "shot": 59,
+      "gravity": {
+        "x": 26.77449044238006,
+        "y": 324.7981152589888
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HWD01",
+      "actor": "finale-first-east-ward",
+      "target": "p-occultist",
+      "terrain": null,
+      "x": 6330.85362072267,
+      "y": 2116.6577562732273,
+      "normal": {
+        "x": 1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 59,
+      "before": 2304,
+      "after": 2304,
+      "shieldBefore": 248,
+      "shieldAfter": 248
+    },
+    {
+      "event": "fire",
+      "skill": "HMO02",
+      "angle": 113.90272012363674,
+      "power": 0.5679892140184734,
+      "actor": "finale-west-return-s0-r3-lead",
+      "grounded": true,
+      "x": 2121.058563667538,
+      "y": 2082.703032055181,
+      "prediction": {
+        "x": 1940.7995412642865,
+        "y": 1813.1310617063023,
+        "unit": "p-archer",
+        "terrain": null
+      },
+      "shot": 60,
+      "gravity": {
+        "x": 8.952221135733552,
+        "y": 436.1992462039493
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HMO02",
+      "actor": "finale-west-return-s0-r3-lead",
+      "target": "p-archer",
+      "terrain": null,
+      "x": 1940.7995412642865,
+      "y": 1813.1310617063023,
+      "normal": {
+        "x": 1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 60,
+      "before": 1442,
+      "after": 1442,
+      "shieldBefore": 164,
+      "shieldAfter": 119
+    },
+    {
+      "event": "fire",
+      "skill": "HSH01",
+      "angle": 101.9099247353684,
+      "power": 0.7715344087243787,
+      "actor": "finale-west-return-s0-r3-lower",
+      "grounded": true,
+      "x": 2027.852388352025,
+      "y": 2532.097457039318,
+      "prediction": {
+        "x": 1905.846685736357,
+        "y": 1905.8878368699645,
+        "unit": "p-archer",
+        "terrain": null
+      },
+      "shot": 61,
+      "gravity": {
+        "x": 7.989367042026286,
+        "y": 101.87974314213022
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HSH01",
+      "actor": "finale-west-return-s0-r3-lower",
+      "target": "p-archer",
+      "terrain": null,
+      "x": 1905.846685736357,
+      "y": 1905.8878368699645,
+      "normal": {
+        "x": 0,
+        "y": 1
+      },
+      "radius": 6,
+      "shot": 61,
+      "before": 1442,
+      "after": 1442,
+      "shieldBefore": 119,
+      "shieldAfter": 119
+    },
+    {
+      "event": "fire",
+      "skill": "S03",
+      "angle": 41.922999999999995,
+      "power": 0.9692151326933935,
+      "actor": "p-knight",
+      "grounded": true,
+      "x": 3747.2635369291083,
+      "y": 2910.301047795241,
+      "prediction": {
+        "x": 3747.2635369291083,
+        "y": 2864.301047795241,
+        "unit": null,
+        "terrain": null
+      },
+      "shot": 62,
+      "gravity": null
+    }
+  ],
+  "seal60": {
+    "schema": "honro-act6-boundary/v2",
+    "slot": "honro-campaign-act6-boundary-v2:eq-mwuu06k6-y7h4w7qc",
+    "runId": "eq-mwuu06k6-y7h4w7qc",
+    "from": 59,
+    "to": 60,
+    "kind": "four-injured-with-actual-defeat-and-guard-closure",
+    "generation": 9,
+    "parent": "8148fbdb81af91d796ea586393c17ff75a5ed0cbb9e40650589a794b82b6f036",
+    "pin": {
+      "from": 59,
+      "to": 60,
+      "build": "fca0b75aabe8ea28519009572a5c1777f4423ab5304fcb71d842a01a9b80ebe6",
+      "fromPacket": "ee91acb454fea3fdcc0dfd231d70973f1e75111d859deae590e403ba18e95d8c",
+      "toPacket": "483701a278a8ccc609665025b73bdbdb9487b71c3eb45db6a226d07e003b6a7e",
+      "owner": "11c1dbf84fa80581ed9839728892724d84bf5fa2ae2f2e9a5d78ca585f6fee43",
+      "play": "2b26720eec311eaa800e92ce1c439b0721511b0aff3e27be0a69b52541d08f1e",
+      "world": "6594c55a365172c15a7a1eb5f80bfe56ab8d503c22ff50a269c09efa6e2764bf"
+    },
+    "profileSHA": "624977606fd1a5b7c23ca6ca492fec8aee57a04e9b2a0a25bd358bcc64a8747b",
+    "terminal": {
+      "stage": 59,
+      "won": true,
+      "flags": {
+        "act6.garmjinCompleted": true,
+        "act6.finalThreatResolved": true
+      },
+      "actors": [
+        {
+          "id": "p-archer",
+          "name": "설오",
+          "role": "archer",
+          "cls": "archer",
+          "side": 0,
+          "x": 1908.5772983618315,
+          "y": 1899.8878368699645,
+          "vx": 0,
+          "vy": 0,
+          "hp": 1511,
+          "maxHp": 1720,
+          "r": 22,
+          "h": 92,
+          "focus": 404,
+          "maxFocus": 404,
+          "regen": 28,
+          "level": 25,
+          "attack": 11.98825,
+          "armor": 0.42800000000000005,
+          "shield": 206,
+          "bound": 0,
+          "mark": 0,
+          "breaks": 0,
+          "acted": true,
+          "moveLeft": 2921,
+          "maxMove": 2921,
+          "walkSpeed": 425,
+          "angle": 222.24920000000012,
+          "lastPower": 0.5927054417341251,
+          "loadout": [
+            "A01",
+            "A14",
+            "A02",
+            "A05"
+          ],
+          "tune": 0.5,
+          "facing": -1,
+          "hurt": 0,
+          "anim": 0,
+          "airborne": false,
+          "fixed": false,
+          "spawnX": 1404.1436464088397,
+          "spawnY": 1452.259315857529,
+          "intent": "",
+          "dead": false,
+          "ranks": {
+            "A01": 1,
+            "A14": 4,
+            "A02": 4,
+            "A05": 4
+          },
+          "group": 0,
+          "awake": true,
+          "lastAct": 0,
+          "aggroUntil": 0,
+          "xpBudget": 0,
+          "xpGranted": 0,
+          "killRewarded": false,
+          "damageBy": {},
+          "honroAlly": false,
+          "honroCivilian": false,
+          "critChance": 0.28400000000000003,
+          "critMultiplier": 3.085,
+          "cooldowns": {},
+          "moving": 0,
+          "eaterSwallow": 0,
+          "landing": 0,
+          "impactCooldown": 0,
+          "salheunFlash": 0,
+          "walkPhase": 509.82353625049353,
+          "honroShieldSources": {
+            "": 0,
+            "p-archer": 206
+          },
+          "jumping": false,
+          "equipmentState": {
+            "version": 1
+          },
+          "jucheon": 0,
+          "jucheonReady": false,
+          "shieldUntil": 8
+        },
+        {
+          "id": "p-knight",
+          "name": "휘겸",
+          "role": "knight",
+          "cls": "knight",
+          "side": 0,
+          "x": 3747.2635369291083,
+          "y": 2910.301047795241,
+          "vx": 0,
+          "vy": 0,
+          "hp": 3846,
+          "maxHp": 3846,
+          "r": 22,
+          "h": 92,
+          "focus": 459,
+          "maxFocus": 477,
+          "regen": 28,
+          "level": 25,
+          "attack": 9.98515,
+          "armor": 0.7,
+          "shield": 0,
+          "bound": 0,
+          "mark": 0,
+          "breaks": 0,
+          "acted": true,
+          "moveLeft": 3913,
+          "maxMove": 4081,
+          "walkSpeed": 420,
+          "angle": 41.922999999999995,
+          "lastPower": 0.9692151326933935,
+          "loadout": [
+            "S00",
+            "S01",
+            "S03"
+          ],
+          "tune": 0.5,
+          "facing": 1,
+          "hurt": 0,
+          "anim": 0,
+          "airborne": false,
+          "fixed": false,
+          "spawnX": 3041.71270718232,
+          "spawnY": 2891.4450237335614,
+          "intent": "",
+          "dead": false,
+          "ranks": {
+            "S00": 1,
+            "S01": 4,
+            "S03": 4
+          },
+          "group": 0,
+          "awake": true,
+          "lastAct": 0,
+          "aggroUntil": 0,
+          "xpBudget": 0,
+          "xpGranted": 0,
+          "killRewarded": false,
+          "damageBy": {},
+          "honroAlly": false,
+          "honroCivilian": false,
+          "critChance": 0.1648,
+          "critMultiplier": 2.5330000000000004,
+          "cooldowns": {},
+          "equipmentState": {
+            "version": 1
+          },
+          "eaterSwallow": 0,
+          "moving": 0,
+          "landing": 0,
+          "impactCooldown": 0,
+          "salheunFlash": 0,
+          "honroShieldSources": {
+            "p-knight": 399
+          },
+          "walkPhase": 635.5495130550283,
+          "jumping": false,
+          "jucheon": 0,
+          "jucheonReady": false,
+          "harmony": false
+        },
+        {
+          "id": "p-occultist",
+          "name": "소단",
+          "role": "occultist",
+          "cls": "occultist",
+          "side": 0,
+          "x": 6302.85362072267,
+          "y": 2211.630126644313,
+          "vx": 0,
+          "vy": 0,
+          "hp": 2304,
+          "maxHp": 2304,
+          "r": 22,
+          "h": 92,
+          "focus": 751,
+          "maxFocus": 751,
+          "regen": 32,
+          "level": 25,
+          "attack": 11.170800000000002,
+          "armor": 0.487,
+          "shield": 276,
+          "bound": 0,
+          "mark": 0,
+          "breaks": 0,
+          "acted": true,
+          "moveLeft": 3132,
+          "maxMove": 3132,
+          "walkSpeed": 416,
+          "angle": 5.164600000000178,
+          "lastPower": 0.5943579977259164,
+          "loadout": [
+            "O01",
+            "O04",
+            "O03",
+            "O06"
+          ],
+          "tune": 0.5,
+          "facing": 1,
+          "hurt": 0,
+          "anim": 0,
+          "airborne": false,
+          "fixed": false,
+          "spawnX": 5458.563535911602,
+          "spawnY": 2493.635514745934,
+          "intent": "",
+          "dead": false,
+          "spiritSight": true,
+          "ranks": {
+            "O01": 1,
+            "O06": 5,
+            "O02": 4,
+            "O03": 3,
+            "O04": 2
+          },
+          "group": 0,
+          "awake": true,
+          "lastAct": 0,
+          "aggroUntil": 0,
+          "xpBudget": 0,
+          "xpGranted": 0,
+          "killRewarded": false,
+          "damageBy": {},
+          "honroAlly": false,
+          "honroCivilian": false,
+          "critChance": 0.20700000000000002,
+          "critMultiplier": 2.4855,
+          "cooldowns": {},
+          "eaterSwallow": 0,
+          "moving": 0,
+          "landing": 0,
+          "impactCooldown": 0,
+          "salheunFlash": 0,
+          "honroShieldSources": {
+            "p-occultist": 276
+          },
+          "walkPhase": 623.5499929767009,
+          "jumping": false,
+          "equipmentState": {
+            "version": 1
+          },
+          "jucheon": 0,
+          "jucheonReady": false,
+          "shieldUntil": 8
+        },
+        {
+          "id": "p-mage",
+          "name": "담허",
+          "role": "mage",
+          "cls": "mage",
+          "side": 0,
+          "x": 5897.559147704674,
+          "y": 2381.6560407141214,
+          "vx": 0,
+          "vy": 0,
+          "hp": 1578.9,
+          "maxHp": 2050,
+          "r": 22,
+          "h": 92,
+          "focus": 724,
+          "maxFocus": 724,
+          "regen": 28,
+          "level": 25,
+          "attack": 11.4116,
+          "armor": 0.472,
+          "shield": 246,
+          "bound": 0,
+          "mark": 0,
+          "breaks": 0,
+          "acted": true,
+          "moveLeft": 3075,
+          "maxMove": 3075,
+          "walkSpeed": 402,
+          "angle": 14.170800000000073,
+          "lastPower": 0.5931816853420401,
+          "loadout": [
+            "M01",
+            "M10",
+            "M07"
+          ],
+          "tune": 0.5,
+          "facing": 1,
+          "hurt": 0,
+          "anim": 0,
+          "airborne": false,
+          "fixed": false,
+          "spawnX": 5907.458563535912,
+          "spawnY": 2378.056253139126,
+          "intent": "",
+          "dead": false,
+          "ranks": {
+            "M01": 1,
+            "M07": 4,
+            "M10": 3
+          },
+          "group": 0,
+          "awake": true,
+          "lastAct": 0,
+          "aggroUntil": 0,
+          "xpBudget": 0,
+          "xpGranted": 0,
+          "killRewarded": false,
+          "damageBy": {},
+          "honroAlly": false,
+          "honroCivilian": false,
+          "critChance": 0.174,
+          "critMultiplier": 2.51,
+          "cooldowns": {},
+          "equipmentState": {
+            "version": 1
+          },
+          "jumping": false,
+          "moving": 0,
+          "walkPhase": 567.9698291920619,
+          "eaterSwallow": 0,
+          "landing": 0,
+          "impactCooldown": 0,
+          "salheunFlash": 0,
+          "jucheon": 0,
+          "jucheonReady": false,
+          "honroShieldSources": {
+            "p-mage": 246
+          },
+          "shieldUntil": 8
+        }
+      ],
+      "profile": {
+        "version": 2,
+        "revision": 13,
+        "cleared": {
+          "1": true,
+          "2": true,
+          "3": true,
+          "4": true,
+          "5": true,
+          "6": true,
+          "7": true,
+          "8": true,
+          "9": true,
+          "10": true,
+          "11": true,
+          "12": true,
+          "13": true,
+          "14": true,
+          "15": true,
+          "16": true,
+          "17": true,
+          "18": true,
+          "19": true,
+          "20": true,
+          "21": true,
+          "22": true,
+          "23": true,
+          "24": true,
+          "25": true,
+          "26": true,
+          "27": true,
+          "28": true,
+          "29": true,
+          "30": true,
+          "31": true,
+          "32": true,
+          "33": true,
+          "34": true,
+          "35": true,
+          "36": true,
+          "37": true,
+          "38": true,
+          "39": true,
+          "40": true,
+          "41": true,
+          "42": true,
+          "43": true,
+          "44": true,
+          "45": true,
+          "46": true,
+          "47": true,
+          "48": true,
+          "49": true,
+          "50": {
+            "visits": 1,
+            "rounds": 17
+          }
+        },
+        "party": [
+          "archer",
+          "mage",
+          "knight",
+          "occultist"
+        ],
+        "loadouts": {
+          "mage": [
+            "M01",
+            "M10",
+            "M07"
+          ],
+          "archer": [
+            "A01",
+            "A14",
+            "A02",
+            "A05"
+          ],
+          "knight": [
+            "S00",
+            "S01",
+            "S03"
+          ],
+          "occultist": [
+            "O01",
+            "O04",
+            "O03",
+            "O06"
+          ]
+        },
+        "tuning": {
+          "mage": 0.5,
+          "archer": 0.5,
+          "knight": 0.5,
+          "occultist": 0.5
+        },
+        "settings": {
+          "sound": true,
+          "music": true,
+          "volume": 0.55,
+          "assist": false,
+          "shake": true,
+          "quality": "high",
+          "difficulty": "normal",
+          "speed": 1.5,
+          "playerSpeed": 1.5,
+          "orientation": "auto",
+          "musicVolume": 0.65,
+          "minimapVisible": true,
+          "debugTerrainOutline": false,
+          "haptics": true
+        },
+        "saved": null,
+        "lastStage": 50,
+        "mapNode": 1,
+        "tutorial": false,
+        "heroes": {
+          "mage": {
+            "xp": 225393,
+            "ranks": {
+              "M01": 1,
+              "M07": 4,
+              "M10": 3
+            },
+            "statTraining": 44,
+            "kills": 1,
+            "damage": 3663,
+            "skillRevision": 1,
+            "martialRevision": 1
+          },
+          "archer": {
+            "xp": 225393,
+            "ranks": {
+              "A01": 1,
+              "A14": 4,
+              "A02": 4,
+              "A05": 4
+            },
+            "statTraining": 39,
+            "kills": 10,
+            "damage": 10394,
+            "skillRevision": 1,
+            "martialRevision": 1
+          },
+          "knight": {
+            "xp": 225393,
+            "ranks": {
+              "S00": 1,
+              "S01": 4,
+              "S03": 4
+            },
+            "statTraining": 43,
+            "kills": 2,
+            "damage": 7615,
+            "skillRevision": 1,
+            "martialRevision": 1
+          },
+          "occultist": {
+            "xp": 225393,
+            "ranks": {
+              "O01": 1,
+              "O06": 5,
+              "O02": 4,
+              "O03": 3,
+              "O04": 2
+            },
+            "statTraining": 37,
+            "kills": 4,
+            "damage": 11392,
+            "skillRevision": 1,
+            "martialRevision": 1,
+            "occultRevision": 1
+          }
+        },
+        "recruited": [
+          "archer",
+          "mage",
+          "knight",
+          "occultist"
+        ],
+        "schema": 5,
+        "game": "honro",
+        "seen": {
+          "act-ending-v1:50": true,
+          "rest-arrival-talk-v1-end-40": true
+        },
+        "record": [
+          {
+            "place": "산이 끊긴 곳",
+            "text": "설오 · 산문까지 왔습니다. 절 안에서는 더는 바람 소리도 안 들립니다.\n담허 · 날이 밝기 전에 암벽과 석교, 종터를 살피세."
+          }
+        ],
+        "honroFlags": {
+          "act5.mumyungsaSeen": true,
+          "cleared-50": true
+        },
+        "equipment": {
+          "schema": 1,
+          "definitionRevision": 1,
+          "runId": "eq-mwuu06k6-y7h4w7qc",
+          "ownedItemIds": [
+            "itm_se_01",
+            "itm_da_01",
+            "itm_hw_01",
+            "itm_so_01",
+            "itm_se_02",
+            "itm_da_02",
+            "itm_hw_02",
+            "itm_co_01",
+            "itm_co_02",
+            "itm_so_02",
+            "itm_se_05",
+            "itm_da_05",
+            "itm_hw_05",
+            "itm_so_05",
+            "itm_co_11"
+          ],
+          "eligibleEventIds": [
+            "eq_se_start",
+            "eq_da_join",
+            "eq_hw_join",
+            "eq_so_join"
+          ],
+          "equippedByClass": {
+            "archer": {
+              "personal": null,
+              "common": null
+            },
+            "mage": {
+              "personal": null,
+              "common": null
+            },
+            "knight": {
+              "personal": null,
+              "common": null
+            },
+            "occultist": {
+              "personal": null,
+              "common": null
+            }
+          },
+          "rewardLedger": {
+            "eq_se_start": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_se_01",
+              "notified": true
+            },
+            "eq_da_join": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_da_01",
+              "notified": true
+            },
+            "eq_hw_join": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_hw_01",
+              "notified": true
+            },
+            "eq_so_join": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_so_01",
+              "notified": true
+            },
+            "eq_se_ledger": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_se_02",
+              "notified": true
+            },
+            "eq_da_gate": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_da_02",
+              "notified": true
+            },
+            "eq_hw_bier": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_hw_02",
+              "notified": true
+            },
+            "eq_co_01": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_co_01",
+              "notified": true
+            },
+            "eq_co_02": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_co_02",
+              "notified": true
+            },
+            "eq_co_t1_choice": {
+              "state": "pending",
+              "choiceGroup": "cg_co_t1",
+              "selectedItemId": null,
+              "notified": false
+            },
+            "eq_so_resident": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_so_02",
+              "notified": true
+            },
+            "eq_se_t2_choice": {
+              "state": "pending",
+              "choiceGroup": "cg_se_t2",
+              "selectedItemId": null,
+              "notified": false
+            },
+            "eq_da_t2_choice": {
+              "state": "pending",
+              "choiceGroup": "cg_da_t2",
+              "selectedItemId": null,
+              "notified": false
+            },
+            "eq_hw_t2_choice": {
+              "state": "pending",
+              "choiceGroup": "cg_hw_t2",
+              "selectedItemId": null,
+              "notified": false
+            },
+            "eq_so_t2_choice": {
+              "state": "pending",
+              "choiceGroup": "cg_so_t2",
+              "selectedItemId": null,
+              "notified": false
+            },
+            "eq_se_t3a": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_se_05",
+              "notified": true
+            },
+            "eq_da_t3a": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_da_05",
+              "notified": true
+            },
+            "eq_hw_t3a": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_hw_05",
+              "notified": true
+            },
+            "eq_so_t3a": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_so_05",
+              "notified": true
+            },
+            "eq_co_t2_choice": {
+              "state": "pending",
+              "choiceGroup": "cg_co_t2",
+              "selectedItemId": null,
+              "notified": false
+            },
+            "eq_co_11": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_co_11",
+              "notified": true
+            }
+          },
+          "initialAutoEquip": true,
+          "basicPrepared": []
+        },
+        "honroClearReports": {},
+        "honroReportNotice": {
+          "stage": 50,
+          "attempt": "honro-map-stage-50-1795533027274-1795533953979-1"
+        },
+        "honroBattle": null,
+        "honroJourney": {
+          "version": 1,
+          "talked": {},
+          "growthObserved": {
+            "session": "honro-map-stage-50-1795533027274",
+            "earned": {
+              "archer": 51,
+              "mage": 51,
+              "knight": 51,
+              "occultist": 51
+            }
+          },
+          "newGrowth": {},
+          "story": null,
+          "stageId": null,
+          "restStageId": null
+        },
+        "honroAct23V4PresentationRevision": 1,
+        "honroReviewed11PresentationRevision": 1,
+        "honroReviewedPresentationRevisions": {
+          "12": 512,
+          "13": 513,
+          "14": 514,
+          "15": 515,
+          "16": 516,
+          "17": 517,
+          "18": 518,
+          "19": 519,
+          "20": 520
+        },
+        "honroReviewed21PresentationRevision": 1,
+        "honroReviewed22PresentationRevision": 1,
+        "honroReviewedAct3Presentation": {
+          "23": 1,
+          "24": 1,
+          "25": 1,
+          "26": 1,
+          "27": 1,
+          "28": 1,
+          "29": 1,
+          "30": 1
+        },
+        "honroReviewed30EndingPresentation": 1,
+        "honroNarrative": [
+          {
+            "id": "rest-arrival-talk-end-40",
+            "title": "모닥불 곁에서",
+            "lines": [
+              [
+                "담허",
+                "날이 밝기 전에는 산문 안에서 쉬세.",
+                {
+                  "kind": "character",
+                  "storyId": "rest-arrival-talk-end-40",
+                  "storyTitle": "모닥불 곁에서",
+                  "rowId": "rest-arrival-talk-end-40:0"
+                }
+              ],
+              [
+                "소단",
+                "밖에서 올라오는 소리가 들려요. 종소리는 아니에요.",
+                {
+                  "kind": "character",
+                  "storyId": "rest-arrival-talk-end-40",
+                  "storyTitle": "모닥불 곁에서",
+                  "rowId": "rest-arrival-talk-end-40:1"
+                }
+              ]
+            ]
+          }
+        ],
+        "honroMapStory": null
+      },
+      "round": 8,
+      "settlement": false,
+      "next": {
+        "stage": 60,
+        "identity": "live-four-same",
+        "noReward": true
+      }
+    },
+    "terminalSHA": "adf0addff2d147ab853529d0cb999585f426abea53f58a7301e4731306b07c7a",
+    "custody": {
+      "full": {
+        "archer": {
+          "id": "p-archer",
+          "name": "설오",
+          "role": "archer",
+          "cls": "archer",
+          "side": 0,
+          "x": 1908.5772983618315,
+          "y": 1899.8878368699645,
+          "vx": 0,
+          "vy": 0,
+          "hp": 1511,
+          "maxHp": 1720,
+          "r": 22,
+          "h": 92,
+          "focus": 404,
+          "maxFocus": 404,
+          "regen": 28,
+          "level": 25,
+          "attack": 11.98825,
+          "armor": 0.42800000000000005,
+          "shield": 206,
+          "bound": 0,
+          "mark": 0,
+          "breaks": 0,
+          "acted": true,
+          "moveLeft": 2921,
+          "maxMove": 2921,
+          "walkSpeed": 425,
+          "angle": 222.24920000000012,
+          "lastPower": 0.5927054417341251,
+          "loadout": [
+            "A01",
+            "A14",
+            "A02",
+            "A05"
+          ],
+          "tune": 0.5,
+          "facing": -1,
+          "hurt": 0,
+          "anim": 0,
+          "airborne": false,
+          "fixed": false,
+          "spawnX": 1404.1436464088397,
+          "spawnY": 1452.259315857529,
+          "intent": "",
+          "dead": false,
+          "ranks": {
+            "A01": 1,
+            "A14": 4,
+            "A02": 4,
+            "A05": 4
+          },
+          "group": 0,
+          "awake": true,
+          "lastAct": 0,
+          "aggroUntil": 0,
+          "xpBudget": 0,
+          "xpGranted": 0,
+          "killRewarded": false,
+          "damageBy": {},
+          "honroAlly": false,
+          "honroCivilian": false,
+          "critChance": 0.28400000000000003,
+          "critMultiplier": 3.085,
+          "cooldowns": {},
+          "moving": 0,
+          "eaterSwallow": 0,
+          "landing": 0,
+          "impactCooldown": 0,
+          "salheunFlash": 0,
+          "walkPhase": 509.82353625049353,
+          "honroShieldSources": {
+            "": 0,
+            "p-archer": 206
+          },
+          "jumping": false,
+          "equipmentState": {
+            "version": 1
+          },
+          "jucheon": 0,
+          "jucheonReady": false,
+          "shieldUntil": 8
+        },
+        "knight": {
+          "id": "p-knight",
+          "name": "휘겸",
+          "role": "knight",
+          "cls": "knight",
+          "side": 0,
+          "x": 3747.2635369291083,
+          "y": 2910.301047795241,
+          "vx": 0,
+          "vy": 0,
+          "hp": 3846,
+          "maxHp": 3846,
+          "r": 22,
+          "h": 92,
+          "focus": 459,
+          "maxFocus": 477,
+          "regen": 28,
+          "level": 25,
+          "attack": 9.98515,
+          "armor": 0.7,
+          "shield": 0,
+          "bound": 0,
+          "mark": 0,
+          "breaks": 0,
+          "acted": true,
+          "moveLeft": 3913,
+          "maxMove": 4081,
+          "walkSpeed": 420,
+          "angle": 41.922999999999995,
+          "lastPower": 0.9692151326933935,
+          "loadout": [
+            "S00",
+            "S01",
+            "S03"
+          ],
+          "tune": 0.5,
+          "facing": 1,
+          "hurt": 0,
+          "anim": 0,
+          "airborne": false,
+          "fixed": false,
+          "spawnX": 3041.71270718232,
+          "spawnY": 2891.4450237335614,
+          "intent": "",
+          "dead": false,
+          "ranks": {
+            "S00": 1,
+            "S01": 4,
+            "S03": 4
+          },
+          "group": 0,
+          "awake": true,
+          "lastAct": 0,
+          "aggroUntil": 0,
+          "xpBudget": 0,
+          "xpGranted": 0,
+          "killRewarded": false,
+          "damageBy": {},
+          "honroAlly": false,
+          "honroCivilian": false,
+          "critChance": 0.1648,
+          "critMultiplier": 2.5330000000000004,
+          "cooldowns": {},
+          "equipmentState": {
+            "version": 1
+          },
+          "eaterSwallow": 0,
+          "moving": 0,
+          "landing": 0,
+          "impactCooldown": 0,
+          "salheunFlash": 0,
+          "honroShieldSources": {
+            "p-knight": 399
+          },
+          "walkPhase": 635.5495130550283,
+          "jumping": false,
+          "jucheon": 0,
+          "jucheonReady": false,
+          "harmony": false
+        },
+        "occultist": {
+          "id": "p-occultist",
+          "name": "소단",
+          "role": "occultist",
+          "cls": "occultist",
+          "side": 0,
+          "x": 6302.85362072267,
+          "y": 2211.630126644313,
+          "vx": 0,
+          "vy": 0,
+          "hp": 2304,
+          "maxHp": 2304,
+          "r": 22,
+          "h": 92,
+          "focus": 751,
+          "maxFocus": 751,
+          "regen": 32,
+          "level": 25,
+          "attack": 11.170800000000002,
+          "armor": 0.487,
+          "shield": 276,
+          "bound": 0,
+          "mark": 0,
+          "breaks": 0,
+          "acted": true,
+          "moveLeft": 3132,
+          "maxMove": 3132,
+          "walkSpeed": 416,
+          "angle": 5.164600000000178,
+          "lastPower": 0.5943579977259164,
+          "loadout": [
+            "O01",
+            "O04",
+            "O03",
+            "O06"
+          ],
+          "tune": 0.5,
+          "facing": 1,
+          "hurt": 0,
+          "anim": 0,
+          "airborne": false,
+          "fixed": false,
+          "spawnX": 5458.563535911602,
+          "spawnY": 2493.635514745934,
+          "intent": "",
+          "dead": false,
+          "spiritSight": true,
+          "ranks": {
+            "O01": 1,
+            "O06": 5,
+            "O02": 4,
+            "O03": 3,
+            "O04": 2
+          },
+          "group": 0,
+          "awake": true,
+          "lastAct": 0,
+          "aggroUntil": 0,
+          "xpBudget": 0,
+          "xpGranted": 0,
+          "killRewarded": false,
+          "damageBy": {},
+          "honroAlly": false,
+          "honroCivilian": false,
+          "critChance": 0.20700000000000002,
+          "critMultiplier": 2.4855,
+          "cooldowns": {},
+          "eaterSwallow": 0,
+          "moving": 0,
+          "landing": 0,
+          "impactCooldown": 0,
+          "salheunFlash": 0,
+          "honroShieldSources": {
+            "p-occultist": 276
+          },
+          "walkPhase": 623.5499929767009,
+          "jumping": false,
+          "equipmentState": {
+            "version": 1
+          },
+          "jucheon": 0,
+          "jucheonReady": false,
+          "shieldUntil": 8
+        },
+        "mage": {
+          "id": "p-mage",
+          "name": "담허",
+          "role": "mage",
+          "cls": "mage",
+          "side": 0,
+          "x": 5897.559147704674,
+          "y": 2381.6560407141214,
+          "vx": 0,
+          "vy": 0,
+          "hp": 1578.9,
+          "maxHp": 2050,
+          "r": 22,
+          "h": 92,
+          "focus": 724,
+          "maxFocus": 724,
+          "regen": 28,
+          "level": 25,
+          "attack": 11.4116,
+          "armor": 0.472,
+          "shield": 246,
+          "bound": 0,
+          "mark": 0,
+          "breaks": 0,
+          "acted": true,
+          "moveLeft": 3075,
+          "maxMove": 3075,
+          "walkSpeed": 402,
+          "angle": 14.170800000000073,
+          "lastPower": 0.5931816853420401,
+          "loadout": [
+            "M01",
+            "M10",
+            "M07"
+          ],
+          "tune": 0.5,
+          "facing": 1,
+          "hurt": 0,
+          "anim": 0,
+          "airborne": false,
+          "fixed": false,
+          "spawnX": 5907.458563535912,
+          "spawnY": 2378.056253139126,
+          "intent": "",
+          "dead": false,
+          "ranks": {
+            "M01": 1,
+            "M07": 4,
+            "M10": 3
+          },
+          "group": 0,
+          "awake": true,
+          "lastAct": 0,
+          "aggroUntil": 0,
+          "xpBudget": 0,
+          "xpGranted": 0,
+          "killRewarded": false,
+          "damageBy": {},
+          "honroAlly": false,
+          "honroCivilian": false,
+          "critChance": 0.174,
+          "critMultiplier": 2.51,
+          "cooldowns": {},
+          "equipmentState": {
+            "version": 1
+          },
+          "jumping": false,
+          "moving": 0,
+          "walkPhase": 567.9698291920619,
+          "eaterSwallow": 0,
+          "landing": 0,
+          "impactCooldown": 0,
+          "salheunFlash": 0,
+          "jucheon": 0,
+          "jucheonReady": false,
+          "honroShieldSources": {
+            "p-mage": 246
+          },
+          "shieldUntil": 8
+        }
+      },
+      "physical": {
+        "witness": {
+          "id": "p-knight",
+          "x": 3138.7785572716252,
+          "y": 2904.868037890997,
+          "support": "finale-cutout-near-body",
+          "grounded": true
+        },
+        "guardAftermath": {
+          "anchor": "local-return-anchor-07",
+          "source": "3c9687ee936d1621d3f5e0f00ec627a6d264082961e4ed3bddedfd1c526ae001",
+          "seenBy": "p-knight",
+          "poses": [
+            {
+              "id": "local-07-gwakjin-return-keeper",
+              "x": 3149.4475138121543,
+              "y": 2906.201657458563,
+              "support": "finale-cutout-near-body",
+              "collides": false,
+              "damageable": false,
+              "targetable": false,
+              "awards": false,
+              "addUnit": false
+            },
+            {
+              "id": "local-07-return-guard-shield",
+              "x": 3271.5469613259665,
+              "y": 2920.3314917127072,
+              "support": "finale-cutout-near-body",
+              "collides": false,
+              "damageable": false,
+              "targetable": false,
+              "awards": false,
+              "addUnit": false
+            },
+            {
+              "id": "local-07-return-guard-relay",
+              "x": 3318.232044198895,
+              "y": 2922.486187845304,
+              "support": "finale-cutout-near-body",
+              "collides": false,
+              "damageable": false,
+              "targetable": false,
+              "awards": false,
+              "addUnit": false
+            }
+          ]
+        },
+        "finalThreat": {
+          "id": "qa-immediate-bridge-threat",
+          "hp": 2255,
+          "dead": false,
+          "distance": 240.26627585506913,
+          "grounded": true,
+          "retreat": {
+            "actor": "p-knight",
+            "shot": 62,
+            "from": 3820.848996292985,
+            "walked": 240.26627585506913,
+            "ticks": 117
+          }
+        },
+        "closed": true
+      }
+    },
+    "custodySHA": "14ae585f972e68fcfc63e5885a757e86738a55ea2fdb2408405b5ea89d0c0fc5",
+    "stageSeed": {
+      "id": 59,
+      "local": 59,
+      "region": 6,
+      "act": 6,
+      "actStage": 9,
+      "active": 4,
+      "requires": [
+        58
+      ],
+      "name": "마지막 마당",
+      "goal": "가름진을 연결하고 교각을 되찾기",
+      "objective": "act6-final-courtyard",
+      "w": 7800,
+      "h": 4700,
+      "story": [],
+      "outro": [],
+      "wind": [
+        0
+      ],
+      "victoryRule": {
+        "kind": "scripted",
+        "target": "act6-native-59"
+      }
+    },
+    "budget": {
+      "id": 59,
+      "act": 6,
+      "entryLevel": 25,
+      "exitLevel": 25,
+      "rewardCurve": "current",
+      "balanceStatus": "detached-zero-increment-horizon"
+    }
+  },
+  "trace": {
+    "shots": [
+      {
+        "id": "qa-bell-shade",
+        "skill": "HSH01",
+        "round": 1
+      },
+      {
+        "id": "finale-first-west-ledge",
+        "skill": "HMO01",
+        "round": 1
+      },
+      {
+        "id": "finale-first-west-talus",
+        "skill": "HSH01",
+        "round": 1
+      },
+      {
+        "id": "finale-first-west-turn",
+        "skill": "HMO01",
+        "round": 1
+      },
+      {
+        "id": "finale-first-east-bell",
+        "skill": "HSH01",
+        "round": 1
+      },
+      {
+        "id": "finale-first-east-bend",
+        "skill": "HMO01",
+        "round": 1
+      },
+      {
+        "id": "qa-upper-ridge-leaper",
+        "skill": "HMO02",
+        "round": 1
+      },
+      {
+        "id": "finale-first-east-bell",
+        "skill": "HSH01",
+        "round": 2
+      },
+      {
+        "id": "qa-immediate-bridge-threat",
+        "skill": "HWD01",
+        "round": 2
+      },
+      {
+        "id": "finale-first-west-ledge",
+        "skill": "HMO01",
+        "round": 2
+      },
+      {
+        "id": "finale-first-west-talus",
+        "skill": "HSH01",
+        "round": 2
+      },
+      {
+        "id": "finale-first-bridge-foot",
+        "skill": "HMO01",
+        "round": 2
+      },
+      {
+        "id": "finale-first-east-bend",
+        "skill": "HMO01",
+        "round": 2
+      },
+      {
+        "id": "finale-first-east-stone",
+        "skill": "HSH01",
+        "round": 2
+      },
+      {
+        "id": "qa-upper-ridge-leaper",
+        "skill": "HMO02",
+        "round": 2
+      },
+      {
+        "id": "qa-upper-ridge-leaper",
+        "skill": "HMO02",
+        "round": 3
+      },
+      {
+        "id": "qa-immediate-bridge-threat",
+        "skill": "HWD01",
+        "round": 3
+      },
+      {
+        "id": "finale-first-west-ledge",
+        "skill": "HMO01",
+        "round": 3
+      },
+      {
+        "id": "finale-first-west-talus",
+        "skill": "HSH01",
+        "round": 3
+      },
+      {
+        "id": "finale-first-bridge-foot",
+        "skill": "HMO01",
+        "round": 3
+      },
+      {
+        "id": "finale-first-east-bell",
+        "skill": "HSH01",
+        "round": 3
+      },
+      {
+        "id": "finale-first-east-bend",
+        "skill": "HMO01",
+        "round": 3
+      },
+      {
+        "id": "finale-west-return-s0-r3-lead",
+        "skill": "HMO01",
+        "round": 3
+      },
+      {
+        "id": "qa-upper-ridge-leaper",
+        "skill": "HMO01",
+        "round": 4
+      },
+      {
+        "id": "qa-immediate-bridge-threat",
+        "skill": "HWD01",
+        "round": 4
+      },
+      {
+        "id": "finale-first-west-ledge",
+        "skill": "HMO01",
+        "round": 4
+      },
+      {
+        "id": "finale-first-bridge-foot",
+        "skill": "HMO01",
+        "round": 4
+      },
+      {
+        "id": "finale-first-east-bend",
+        "skill": "HMO02",
+        "round": 4
+      },
+      {
+        "id": "finale-west-return-s0-r3-lower",
+        "skill": "HSH01",
+        "round": 4
+      },
+      {
+        "id": "finale-east-fault-s0-r4-lead",
+        "skill": "HMO01",
+        "round": 4
+      },
+      {
+        "id": "finale-first-east-bend",
+        "skill": "HMO01",
+        "round": 5
+      },
+      {
+        "id": "qa-immediate-bridge-threat",
+        "skill": "HWD01",
+        "round": 5
+      },
+      {
+        "id": "finale-first-west-ledge",
+        "skill": "HMO02",
+        "round": 5
+      },
+      {
+        "id": "finale-first-west-talus",
+        "skill": "HSH01",
+        "round": 5
+      },
+      {
+        "id": "finale-first-bridge-foot",
+        "skill": "HMO01",
+        "round": 5
+      },
+      {
+        "id": "finale-first-east-bell",
+        "skill": "HSH01",
+        "round": 5
+      },
+      {
+        "id": "qa-upper-ridge-leaper",
+        "skill": "HMO01",
+        "round": 5
+      },
+      {
+        "id": "finale-east-fault-s0-r4-lead",
+        "skill": "HMO01",
+        "round": 5
+      },
+      {
+        "id": "finale-first-west-ledge",
+        "skill": "HMO02",
+        "round": 6
+      },
+      {
+        "id": "qa-immediate-bridge-threat",
+        "skill": "HWD01",
+        "round": 6
+      },
+      {
+        "id": "finale-first-west-talus",
+        "skill": "HSH01",
+        "round": 6
+      },
+      {
+        "id": "finale-first-bridge-foot",
+        "skill": "HMO01",
+        "round": 6
+      },
+      {
+        "id": "finale-first-east-bell",
+        "skill": "HSH01",
+        "round": 6
+      },
+      {
+        "id": "finale-first-east-bend",
+        "skill": "HMO01",
+        "round": 6
+      },
+      {
+        "id": "finale-west-return-s0-r3-lead",
+        "skill": "HMO01",
+        "round": 6
+      },
+      {
+        "id": "finale-east-fault-s0-r4-lead",
+        "skill": "HMO01",
+        "round": 6
+      },
+      {
+        "id": "finale-first-east-bend",
+        "skill": "HMO01",
+        "round": 7
+      },
+      {
+        "id": "qa-immediate-bridge-threat",
+        "skill": "HWD01",
+        "round": 7
+      },
+      {
+        "id": "finale-first-west-turn",
+        "skill": "HMO01",
+        "round": 7
+      },
+      {
+        "id": "finale-first-bridge-foot",
+        "skill": "HMO01",
+        "round": 7
+      },
+      {
+        "id": "finale-first-east-stone",
+        "skill": "HSH01",
+        "round": 7
+      },
+      {
+        "id": "finale-first-east-ward",
+        "skill": "HWD01",
+        "round": 7
+      },
+      {
+        "id": "finale-west-return-s0-r3-lead",
+        "skill": "HMO02",
+        "round": 7
+      },
+      {
+        "id": "finale-west-return-s0-r3-lower",
+        "skill": "HSH01",
+        "round": 7
+      }
+    ],
+    "damage": [
+      {
+        "id": "qa-bell-shade",
+        "target": "p-occultist",
+        "skill": "HSH01",
+        "before": 2047.1999999999998,
+        "after": 2004.1999999999998,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 91.50106586886146,
+        "round": 1
+      },
+      {
+        "id": "finale-first-west-ledge",
+        "target": "p-archer",
+        "skill": "HMO01",
+        "before": 1407,
+        "after": 1362,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 86.13407932969703,
+        "round": 1
+      },
+      {
+        "id": "finale-first-west-talus",
+        "target": "p-archer",
+        "skill": "HSH01",
+        "before": 1362,
+        "after": 1331,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 59.47569281475995,
+        "round": 1
+      },
+      {
+        "id": "finale-first-west-turn",
+        "target": "p-archer",
+        "skill": "HMO01",
+        "before": 1331,
+        "after": 1277,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 104.33526732003071,
+        "round": 1
+      },
+      {
+        "id": "finale-first-east-bell",
+        "target": "p-occultist",
+        "skill": "HSH01",
+        "before": 2004.1999999999998,
+        "after": 1976.1999999999998,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 59.47569281475995,
+        "round": 1
+      },
+      {
+        "id": "finale-first-east-bend",
+        "target": "p-mage",
+        "skill": "HMO01",
+        "before": 1264.9,
+        "after": 1218.9,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 96.85784843091544,
+        "round": 1
+      },
+      {
+        "id": "qa-upper-ridge-leaper",
+        "target": "p-archer",
+        "skill": "HMO02",
+        "before": 1277,
+        "after": 1194,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 144.73240318732533,
+        "round": 1
+      },
+      {
+        "id": "finale-first-east-bell",
+        "target": "p-occultist",
+        "skill": "HSH01",
+        "before": 1976.1999999999998,
+        "after": 1948.1999999999998,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 59.47569281475995,
+        "round": 2
+      },
+      {
+        "id": "qa-immediate-bridge-threat",
+        "target": "p-knight",
+        "skill": "HWD01",
+        "before": 3846,
+        "after": 3846,
+        "shieldBefore": 462,
+        "shieldAfter": 431,
+        "amount": 103.86846781226518,
+        "round": 2
+      },
+      {
+        "id": "finale-first-west-ledge",
+        "target": "p-knight",
+        "skill": "HMO01",
+        "before": 3846,
+        "after": 3846,
+        "shieldBefore": 431,
+        "shieldAfter": 402,
+        "amount": 105.07506340396617,
+        "round": 2
+      },
+      {
+        "id": "finale-first-west-talus",
+        "target": "p-knight",
+        "skill": "HSH01",
+        "before": 3846,
+        "after": 3846,
+        "shieldBefore": 402,
+        "shieldAfter": 386,
+        "amount": 59.47569281475995,
+        "round": 2
+      },
+      {
+        "id": "finale-first-bridge-foot",
+        "target": "p-knight",
+        "skill": "HMO01",
+        "before": 3846,
+        "after": 3846,
+        "shieldBefore": 386,
+        "shieldAfter": 358,
+        "amount": 104.00980136045119,
+        "round": 2
+      },
+      {
+        "id": "finale-first-east-bend",
+        "target": "p-mage",
+        "skill": "HMO01",
+        "before": 1300.9,
+        "after": 1300.9,
+        "shieldBefore": 246,
+        "shieldAfter": 200,
+        "amount": 94.87658973735475,
+        "round": 2
+      },
+      {
+        "id": "finale-first-east-stone",
+        "target": "p-occultist",
+        "skill": "HSH01",
+        "before": 1948.1999999999998,
+        "after": 1920.1999999999998,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 59.47569281475995,
+        "round": 2
+      },
+      {
+        "id": "qa-upper-ridge-leaper",
+        "target": "p-archer",
+        "skill": "HMO02",
+        "before": 1194,
+        "after": 1097,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 170.30248929133472,
+        "round": 2
+      },
+      {
+        "id": "qa-upper-ridge-leaper",
+        "target": "p-archer",
+        "skill": "HMO02",
+        "before": 1166,
+        "after": 1166,
+        "shieldBefore": 206,
+        "shieldAfter": 109,
+        "amount": 170.3805622826625,
+        "round": 3
+      },
+      {
+        "id": "qa-immediate-bridge-threat",
+        "target": "p-knight",
+        "skill": "HWD01",
+        "before": 3846,
+        "after": 3846,
+        "shieldBefore": 462,
+        "shieldAfter": 424,
+        "amount": 125.63893924891832,
+        "round": 3
+      },
+      {
+        "id": "finale-first-west-ledge",
+        "target": "p-knight",
+        "skill": "HMO01",
+        "before": 3846,
+        "after": 3846,
+        "shieldBefore": 424,
+        "shieldAfter": 402,
+        "amount": 80.65580876053426,
+        "round": 3
+      },
+      {
+        "id": "finale-first-bridge-foot",
+        "target": "p-knight",
+        "skill": "HMO01",
+        "before": 3846,
+        "after": 3846,
+        "shieldBefore": 402,
+        "shieldAfter": 373,
+        "amount": 105.2633312232118,
+        "round": 3
+      },
+      {
+        "id": "finale-first-east-bell",
+        "target": "p-occultist",
+        "skill": "HSH01",
+        "before": 2012.1999999999998,
+        "after": 2012.1999999999998,
+        "shieldBefore": 276,
+        "shieldAfter": 248,
+        "amount": 59.47569281475995,
+        "round": 3
+      },
+      {
+        "id": "finale-first-east-bend",
+        "target": "p-mage",
+        "skill": "HMO01",
+        "before": 1382.9,
+        "after": 1382.9,
+        "shieldBefore": 246,
+        "shieldAfter": 199,
+        "amount": 97.43997024635799,
+        "round": 3
+      },
+      {
+        "id": "finale-west-return-s0-r3-lead",
+        "target": "p-knight",
+        "skill": "HMO01",
+        "before": 3846,
+        "after": 3846,
+        "shieldBefore": 373,
+        "shieldAfter": 342,
+        "amount": 114.37905493101474,
+        "round": 3
+      },
+      {
+        "id": "qa-upper-ridge-leaper",
+        "target": "p-knight",
+        "skill": "HMO01",
+        "before": 3846,
+        "after": 3846,
+        "shieldBefore": 462,
+        "shieldAfter": 423,
+        "amount": 144.85130955898737,
+        "round": 4
+      },
+      {
+        "id": "qa-immediate-bridge-threat",
+        "target": "p-knight",
+        "skill": "HWD01",
+        "before": 3846,
+        "after": 3846,
+        "shieldBefore": 423,
+        "shieldAfter": 386,
+        "amount": 122.50103552580767,
+        "round": 4
+      },
+      {
+        "id": "finale-first-west-ledge",
+        "target": "p-knight",
+        "skill": "HMO01",
+        "before": 3846,
+        "after": 3846,
+        "shieldBefore": 386,
+        "shieldAfter": 357,
+        "amount": 106.2964475789643,
+        "round": 4
+      },
+      {
+        "id": "finale-first-bridge-foot",
+        "target": "p-knight",
+        "skill": "HMO01",
+        "before": 3846,
+        "after": 3846,
+        "shieldBefore": 357,
+        "shieldAfter": 329,
+        "amount": 103.40120699680486,
+        "round": 4
+      },
+      {
+        "id": "finale-first-east-bend",
+        "target": "p-mage",
+        "skill": "HMO02",
+        "before": 1464.9,
+        "after": 1464.9,
+        "shieldBefore": 246,
+        "shieldAfter": 196,
+        "amount": 94.80200040273773,
+        "round": 4
+      },
+      {
+        "id": "finale-west-return-s0-r3-lower",
+        "target": "p-knight",
+        "skill": "HSH01",
+        "before": 3846,
+        "after": 3846,
+        "shieldBefore": 329,
+        "shieldAfter": 310,
+        "amount": 68.6257994016461,
+        "round": 4
+      },
+      {
+        "id": "finale-east-fault-s0-r4-lead",
+        "target": "p-mage",
+        "skill": "HMO01",
+        "before": 1464.9,
+        "after": 1464.9,
+        "shieldBefore": 196,
+        "shieldAfter": 142,
+        "amount": 113.2847283991535,
+        "round": 4
+      },
+      {
+        "id": "qa-immediate-bridge-threat",
+        "target": "p-knight",
+        "skill": "HWD01",
+        "before": 3846,
+        "after": 3846,
+        "shieldBefore": 462,
+        "shieldAfter": 428,
+        "amount": 114.8989451037674,
+        "round": 5
+      },
+      {
+        "id": "finale-first-west-ledge",
+        "target": "p-archer",
+        "skill": "HMO02",
+        "before": 1304,
+        "after": 1304,
+        "shieldBefore": 206,
+        "shieldAfter": 156,
+        "amount": 88.1352367692456,
+        "round": 5
+      },
+      {
+        "id": "finale-first-west-talus",
+        "target": "p-archer",
+        "skill": "HSH01",
+        "before": 1304,
+        "after": 1304,
+        "shieldBefore": 156,
+        "shieldAfter": 125,
+        "amount": 59.47569281475995,
+        "round": 5
+      },
+      {
+        "id": "finale-first-bridge-foot",
+        "target": "p-knight",
+        "skill": "HMO01",
+        "before": 3846,
+        "after": 3846,
+        "shieldBefore": 428,
+        "shieldAfter": 399,
+        "amount": 105.89756408436982,
+        "round": 5
+      },
+      {
+        "id": "finale-first-east-bell",
+        "target": "p-occultist",
+        "skill": "HSH01",
+        "before": 2196.2,
+        "after": 2196.2,
+        "shieldBefore": 276,
+        "shieldAfter": 248,
+        "amount": 59.47569281475995,
+        "round": 5
+      },
+      {
+        "id": "finale-east-fault-s0-r4-lead",
+        "target": "p-occultist",
+        "skill": "HMO01",
+        "before": 2196.2,
+        "after": 2196.2,
+        "shieldBefore": 248,
+        "shieldAfter": 198,
+        "amount": 108.21889989662667,
+        "round": 5
+      },
+      {
+        "id": "finale-first-west-ledge",
+        "target": "p-archer",
+        "skill": "HMO02",
+        "before": 1373,
+        "after": 1373,
+        "shieldBefore": 206,
+        "shieldAfter": 143,
+        "amount": 109.87103475692876,
+        "round": 6
+      },
+      {
+        "id": "qa-immediate-bridge-threat",
+        "target": "p-knight",
+        "skill": "HWD01",
+        "before": 3846,
+        "after": 3846,
+        "shieldBefore": 462,
+        "shieldAfter": 431,
+        "amount": 103.86846781226518,
+        "round": 6
+      },
+      {
+        "id": "finale-first-bridge-foot",
+        "target": "p-knight",
+        "skill": "HMO01",
+        "before": 3846,
+        "after": 3846,
+        "shieldBefore": 431,
+        "shieldAfter": 403,
+        "amount": 103.27132968232597,
+        "round": 6
+      },
+      {
+        "id": "finale-first-east-bell",
+        "target": "p-occultist",
+        "skill": "HSH01",
+        "before": 2288.2,
+        "after": 2288.2,
+        "shieldBefore": 276,
+        "shieldAfter": 248,
+        "amount": 59.47569281475995,
+        "round": 6
+      },
+      {
+        "id": "finale-first-east-bend",
+        "target": "p-mage",
+        "skill": "HMO01",
+        "before": 1464.9,
+        "after": 1414.9,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 104.47364776928767,
+        "round": 6
+      },
+      {
+        "id": "finale-west-return-s0-r3-lead",
+        "target": "p-knight",
+        "skill": "HMO01",
+        "before": 3846,
+        "after": 3846,
+        "shieldBefore": 403,
+        "shieldAfter": 373,
+        "amount": 109.89160924991485,
+        "round": 6
+      },
+      {
+        "id": "finale-east-fault-s0-r4-lead",
+        "target": "p-occultist",
+        "skill": "HMO01",
+        "before": 2288.2,
+        "after": 2288.2,
+        "shieldBefore": 248,
+        "shieldAfter": 196,
+        "amount": 110.5117632491571,
+        "round": 6
+      },
+      {
+        "id": "finale-first-east-bend",
+        "target": "p-mage",
+        "skill": "HMO01",
+        "before": 1496.9,
+        "after": 1496.9,
+        "shieldBefore": 246,
+        "shieldAfter": 197,
+        "amount": 102.88286039460753,
+        "round": 7
+      },
+      {
+        "id": "qa-immediate-bridge-threat",
+        "target": "p-knight",
+        "skill": "HWD01",
+        "before": 3846,
+        "after": 3846,
+        "shieldBefore": 462,
+        "shieldAfter": 428,
+        "amount": 112.54348102980416,
+        "round": 7
+      },
+      {
+        "id": "finale-first-west-turn",
+        "target": "p-archer",
+        "skill": "HMO01",
+        "before": 1442,
+        "after": 1442,
+        "shieldBefore": 206,
+        "shieldAfter": 164,
+        "amount": 80.04699200034875,
+        "round": 7
+      },
+      {
+        "id": "finale-first-bridge-foot",
+        "target": "p-knight",
+        "skill": "HMO01",
+        "before": 3846,
+        "after": 3846,
+        "shieldBefore": 428,
+        "shieldAfter": 399,
+        "amount": 105.58273398882277,
+        "round": 7
+      },
+      {
+        "id": "finale-first-east-stone",
+        "target": "p-occultist",
+        "skill": "HSH01",
+        "before": 2304,
+        "after": 2304,
+        "shieldBefore": 276,
+        "shieldAfter": 248,
+        "amount": 59.47569281475995,
+        "round": 7
+      },
+      {
+        "id": "finale-west-return-s0-r3-lead",
+        "target": "p-archer",
+        "skill": "HMO02",
+        "before": 1442,
+        "after": 1442,
+        "shieldBefore": 164,
+        "shieldAfter": 119,
+        "amount": 78.05715560050828,
+        "round": 7
+      }
+    ],
+    "impacts": [
+      {
+        "id": "qa-bell-shade",
+        "target": "p-occultist",
+        "skill": "HSH01",
+        "before": {
+          "hp": 2047.1999999999998,
+          "shield": 0
+        },
+        "after": {
+          "hp": 2004.1999999999998,
+          "shield": 0
+        },
+        "x": 5441.037621254306,
+        "y": 2452.4611806452517,
+        "shot": 4,
+        "round": 1
+      },
+      {
+        "id": "finale-first-west-ledge",
+        "target": "p-archer",
+        "skill": "HMO01",
+        "before": {
+          "hp": 1407,
+          "shield": 0
+        },
+        "after": {
+          "hp": 1362,
+          "shield": 0
+        },
+        "x": 1632.3346768138647,
+        "y": 1604.0900315412148,
+        "shot": 5,
+        "round": 1
+      },
+      {
+        "id": "finale-first-west-talus",
+        "target": "p-archer",
+        "skill": "HSH01",
+        "before": {
+          "hp": 1362,
+          "shield": 0
+        },
+        "after": {
+          "hp": 1331,
+          "shield": 0
+        },
+        "x": 1668.1955904097333,
+        "y": 1652.9642839353323,
+        "shot": 6,
+        "round": 1
+      },
+      {
+        "id": "finale-first-west-turn",
+        "target": "p-archer",
+        "skill": "HMO01",
+        "before": {
+          "hp": 1331,
+          "shield": 0
+        },
+        "after": {
+          "hp": 1277,
+          "shield": 0
+        },
+        "x": 1730.8952549772757,
+        "y": 1697.5762977158251,
+        "shot": 7,
+        "round": 1
+      },
+      {
+        "id": "finale-first-east-bell",
+        "target": "p-occultist",
+        "skill": "HSH01",
+        "before": {
+          "hp": 2004.1999999999998,
+          "shield": 0
+        },
+        "after": {
+          "hp": 1976.1999999999998,
+          "shield": 0
+        },
+        "x": 5378.020547119141,
+        "y": 2513.8216479843627,
+        "shot": 8,
+        "round": 1
+      },
+      {
+        "id": "finale-first-east-bend",
+        "target": "p-mage",
+        "skill": "HMO01",
+        "before": {
+          "hp": 1264.9,
+          "shield": 0
+        },
+        "after": {
+          "hp": 1218.9,
+          "shield": 0
+        },
+        "x": 5973.238259160143,
+        "y": 2294.681280039236,
+        "shot": 9,
+        "round": 1
+      },
+      {
+        "id": "qa-upper-ridge-leaper",
+        "target": "p-archer",
+        "skill": "HMO02",
+        "before": {
+          "hp": 1277,
+          "shield": 0
+        },
+        "after": {
+          "hp": 1194,
+          "shield": 0
+        },
+        "x": 1726.5588282017482,
+        "y": 1656.93427516423,
+        "shot": 10,
+        "round": 1
+      },
+      {
+        "id": "finale-first-east-bell",
+        "target": "p-occultist",
+        "skill": "HSH01",
+        "before": {
+          "hp": 1976.1999999999998,
+          "shield": 0
+        },
+        "after": {
+          "hp": 1948.1999999999998,
+          "shield": 0
+        },
+        "x": 5378.94515545873,
+        "y": 2470.712795456473,
+        "shot": 13,
+        "round": 2
+      },
+      {
+        "id": "qa-immediate-bridge-threat",
+        "target": "p-knight",
+        "skill": "HWD01",
+        "before": {
+          "hp": 3846,
+          "shield": 462
+        },
+        "after": {
+          "hp": 3846,
+          "shield": 431
+        },
+        "x": 3487.6415909323277,
+        "y": 2856.28161712747,
+        "shot": 14,
+        "round": 2
+      },
+      {
+        "id": "finale-first-west-ledge",
+        "target": "p-knight",
+        "skill": "HMO01",
+        "before": {
+          "hp": 3846,
+          "shield": 431
+        },
+        "after": {
+          "hp": 3846,
+          "shield": 402
+        },
+        "x": 3426.76250038797,
+        "y": 2897.2388922206005,
+        "shot": 15,
+        "round": 2
+      },
+      {
+        "id": "finale-first-west-talus",
+        "target": "p-knight",
+        "skill": "HSH01",
+        "before": {
+          "hp": 3846,
+          "shield": 402
+        },
+        "after": {
+          "hp": 3846,
+          "shield": 386
+        },
+        "x": 3444.0546013240146,
+        "y": 2860.1743174341723,
+        "shot": 16,
+        "round": 2
+      },
+      {
+        "id": "finale-first-bridge-foot",
+        "target": "p-knight",
+        "skill": "HMO01",
+        "before": {
+          "hp": 3846,
+          "shield": 386
+        },
+        "after": {
+          "hp": 3846,
+          "shield": 358
+        },
+        "x": 3446.5366673257668,
+        "y": 2875.020262105896,
+        "shot": 17,
+        "round": 2
+      },
+      {
+        "id": "finale-first-east-bend",
+        "target": "p-mage",
+        "skill": "HMO01",
+        "before": {
+          "hp": 1300.9,
+          "shield": 246
+        },
+        "after": {
+          "hp": 1300.9,
+          "shield": 200
+        },
+        "x": 5940.617727228967,
+        "y": 2303.2113476963996,
+        "shot": 18,
+        "round": 2
+      },
+      {
+        "id": "finale-first-east-stone",
+        "target": "p-occultist",
+        "skill": "HSH01",
+        "before": {
+          "hp": 1948.1999999999998,
+          "shield": 0
+        },
+        "after": {
+          "hp": 1920.1999999999998,
+          "shield": 0
+        },
+        "x": 5441.7694510061,
+        "y": 2500.7302149403085,
+        "shot": 19,
+        "round": 2
+      },
+      {
+        "id": "qa-upper-ridge-leaper",
+        "target": "p-archer",
+        "skill": "HMO02",
+        "before": {
+          "hp": 1194,
+          "shield": 0
+        },
+        "after": {
+          "hp": 1097,
+          "shield": 0
+        },
+        "x": 1958.828690477357,
+        "y": 1875.3327144900395,
+        "shot": 20,
+        "round": 2
+      },
+      {
+        "id": "qa-upper-ridge-leaper",
+        "target": "p-archer",
+        "skill": "HMO02",
+        "before": {
+          "hp": 1166,
+          "shield": 206
+        },
+        "after": {
+          "hp": 1166,
+          "shield": 109
+        },
+        "x": 1955.2062205550872,
+        "y": 1873.0504857623887,
+        "shot": 21,
+        "round": 3
+      },
+      {
+        "id": "qa-immediate-bridge-threat",
+        "target": "p-knight",
+        "skill": "HWD01",
+        "before": {
+          "hp": 3846,
+          "shield": 462
+        },
+        "after": {
+          "hp": 3846,
+          "shield": 424
+        },
+        "x": 3519.4233534264226,
+        "y": 2882.0432626679117,
+        "shot": 22,
+        "round": 3
+      },
+      {
+        "id": "finale-first-west-ledge",
+        "target": "p-knight",
+        "skill": "HMO01",
+        "before": {
+          "hp": 3846,
+          "shield": 424
+        },
+        "after": {
+          "hp": 3846,
+          "shield": 402
+        },
+        "x": 3499.7621160208464,
+        "y": 2831.9958002125986,
+        "shot": 23,
+        "round": 3
+      },
+      {
+        "id": "finale-first-west-talus",
+        "target": "p-archer",
+        "skill": "HSH01",
+        "before": {
+          "hp": 1166,
+          "shield": 109
+        },
+        "after": {
+          "hp": 1166,
+          "shield": 109
+        },
+        "x": 1895.581508997225,
+        "y": 1909.7313468282853,
+        "shot": 24,
+        "round": 3
+      },
+      {
+        "id": "finale-first-bridge-foot",
+        "target": "p-knight",
+        "skill": "HMO01",
+        "before": {
+          "hp": 3846,
+          "shield": 402
+        },
+        "after": {
+          "hp": 3846,
+          "shield": 373
+        },
+        "x": 3442.654627610849,
+        "y": 2878.989444111235,
+        "shot": 25,
+        "round": 3
+      },
+      {
+        "id": "finale-first-east-bell",
+        "target": "p-occultist",
+        "skill": "HSH01",
+        "before": {
+          "hp": 2012.1999999999998,
+          "shield": 276
+        },
+        "after": {
+          "hp": 2012.1999999999998,
+          "shield": 248
+        },
+        "x": 5313.053899513629,
+        "y": 2521.1376330866533,
+        "shot": 26,
+        "round": 3
+      },
+      {
+        "id": "finale-first-east-bend",
+        "target": "p-mage",
+        "skill": "HMO01",
+        "before": {
+          "hp": 1382.9,
+          "shield": 246
+        },
+        "after": {
+          "hp": 1382.9,
+          "shield": 199
+        },
+        "x": 5911.552222135423,
+        "y": 2315.5605005866396,
+        "shot": 27,
+        "round": 3
+      },
+      {
+        "id": "finale-west-return-s0-r3-lead",
+        "target": "p-knight",
+        "skill": "HMO01",
+        "before": {
+          "hp": 3846,
+          "shield": 373
+        },
+        "after": {
+          "hp": 3846,
+          "shield": 342
+        },
+        "x": 3459.9990788558143,
+        "y": 2864.7661879749235,
+        "shot": 28,
+        "round": 3
+      },
+      {
+        "id": "qa-upper-ridge-leaper",
+        "target": "p-knight",
+        "skill": "HMO01",
+        "before": {
+          "hp": 3846,
+          "shield": 462
+        },
+        "after": {
+          "hp": 3846,
+          "shield": 423
+        },
+        "x": 3475.0553305726457,
+        "y": 2854.913256819234,
+        "shot": 29,
+        "round": 4
+      },
+      {
+        "id": "qa-immediate-bridge-threat",
+        "target": "p-knight",
+        "skill": "HWD01",
+        "before": {
+          "hp": 3846,
+          "shield": 423
+        },
+        "after": {
+          "hp": 3846,
+          "shield": 386
+        },
+        "x": 3544.7793363525507,
+        "y": 2876.5853748650115,
+        "shot": 30,
+        "round": 4
+      },
+      {
+        "id": "finale-first-west-ledge",
+        "target": "p-knight",
+        "skill": "HMO01",
+        "before": {
+          "hp": 3846,
+          "shield": 386
+        },
+        "after": {
+          "hp": 3846,
+          "shield": 357
+        },
+        "x": 3478.2507194451505,
+        "y": 2884.0913760573903,
+        "shot": 31,
+        "round": 4
+      },
+      {
+        "id": "finale-first-bridge-foot",
+        "target": "p-knight",
+        "skill": "HMO01",
+        "before": {
+          "hp": 3846,
+          "shield": 357
+        },
+        "after": {
+          "hp": 3846,
+          "shield": 329
+        },
+        "x": 3495.2329327825855,
+        "y": 2870.4770047576962,
+        "shot": 32,
+        "round": 4
+      },
+      {
+        "id": "finale-first-east-bend",
+        "target": "p-mage",
+        "skill": "HMO02",
+        "before": {
+          "hp": 1464.9,
+          "shield": 246
+        },
+        "after": {
+          "hp": 1464.9,
+          "shield": 196
+        },
+        "x": 5840.8182538601195,
+        "y": 2317.7707263105685,
+        "shot": 33,
+        "round": 4
+      },
+      {
+        "id": "finale-west-return-s0-r3-lower",
+        "target": "p-knight",
+        "skill": "HSH01",
+        "before": {
+          "hp": 3846,
+          "shield": 329
+        },
+        "after": {
+          "hp": 3846,
+          "shield": 310
+        },
+        "x": 3511.444635677328,
+        "y": 2853.0382415733875,
+        "shot": 34,
+        "round": 4
+      },
+      {
+        "id": "finale-east-fault-s0-r4-lead",
+        "target": "p-mage",
+        "skill": "HMO01",
+        "before": {
+          "hp": 1464.9,
+          "shield": 196
+        },
+        "after": {
+          "hp": 1464.9,
+          "shield": 142
+        },
+        "x": 5907.990978504144,
+        "y": 2316.6388016784103,
+        "shot": 35,
+        "round": 4
+      },
+      {
+        "id": "qa-immediate-bridge-threat",
+        "target": "p-knight",
+        "skill": "HWD01",
+        "before": {
+          "hp": 3846,
+          "shield": 462
+        },
+        "after": {
+          "hp": 3846,
+          "shield": 428
+        },
+        "x": 3569.085244739231,
+        "y": 2869.254475478728,
+        "shot": 38,
+        "round": 5
+      },
+      {
+        "id": "finale-first-west-ledge",
+        "target": "p-archer",
+        "skill": "HMO02",
+        "before": {
+          "hp": 1304,
+          "shield": 206
+        },
+        "after": {
+          "hp": 1304,
+          "shield": 156
+        },
+        "x": 1951.581508997225,
+        "y": 1841.4480822354803,
+        "shot": 39,
+        "round": 5
+      },
+      {
+        "id": "finale-first-west-talus",
+        "target": "p-archer",
+        "skill": "HSH01",
+        "before": {
+          "hp": 1304,
+          "shield": 156
+        },
+        "after": {
+          "hp": 1304,
+          "shield": 125
+        },
+        "x": 1891.089518331347,
+        "y": 1898.4226658573727,
+        "shot": 40,
+        "round": 5
+      },
+      {
+        "id": "finale-first-bridge-foot",
+        "target": "p-knight",
+        "skill": "HMO01",
+        "before": {
+          "hp": 3846,
+          "shield": 428
+        },
+        "after": {
+          "hp": 3846,
+          "shield": 399
+        },
+        "x": 3503.379189016047,
+        "y": 2878.3352563209196,
+        "shot": 41,
+        "round": 5
+      },
+      {
+        "id": "finale-first-east-bell",
+        "target": "p-occultist",
+        "skill": "HSH01",
+        "before": {
+          "hp": 2196.2,
+          "shield": 276
+        },
+        "after": {
+          "hp": 2196.2,
+          "shield": 248
+        },
+        "x": 5320.204490088655,
+        "y": 2509.142546749837,
+        "shot": 42,
+        "round": 5
+      },
+      {
+        "id": "finale-east-fault-s0-r4-lead",
+        "target": "p-occultist",
+        "skill": "HMO01",
+        "before": {
+          "hp": 2196.2,
+          "shield": 248
+        },
+        "after": {
+          "hp": 2196.2,
+          "shield": 198
+        },
+        "x": 5383.7971903239795,
+        "y": 2473.0630995072124,
+        "shot": 44,
+        "round": 5
+      },
+      {
+        "id": "finale-first-west-ledge",
+        "target": "p-archer",
+        "skill": "HMO02",
+        "before": {
+          "hp": 1373,
+          "shield": 206
+        },
+        "after": {
+          "hp": 1373,
+          "shield": 143
+        },
+        "x": 1948.7387289302335,
+        "y": 1873.8107664821628,
+        "shot": 46,
+        "round": 6
+      },
+      {
+        "id": "qa-immediate-bridge-threat",
+        "target": "p-knight",
+        "skill": "HWD01",
+        "before": {
+          "hp": 3846,
+          "shield": 462
+        },
+        "after": {
+          "hp": 3846,
+          "shield": 431
+        },
+        "x": 3576.255247479893,
+        "y": 2854.69947847693,
+        "shot": 47,
+        "round": 6
+      },
+      {
+        "id": "finale-first-west-talus",
+        "target": "p-archer",
+        "skill": "HSH01",
+        "before": {
+          "hp": 1373,
+          "shield": 143
+        },
+        "after": {
+          "hp": 1373,
+          "shield": 143
+        },
+        "x": 1889.1524153923294,
+        "y": 1910.455629942205,
+        "shot": 48,
+        "round": 6
+      },
+      {
+        "id": "finale-first-bridge-foot",
+        "target": "p-knight",
+        "skill": "HMO01",
+        "before": {
+          "hp": 3846,
+          "shield": 431
+        },
+        "after": {
+          "hp": 3846,
+          "shield": 403
+        },
+        "x": 3514.191193169435,
+        "y": 2868.0349002304297,
+        "shot": 49,
+        "round": 6
+      },
+      {
+        "id": "finale-first-east-bell",
+        "target": "p-occultist",
+        "skill": "HSH01",
+        "before": {
+          "hp": 2288.2,
+          "shield": 276
+        },
+        "after": {
+          "hp": 2288.2,
+          "shield": 248
+        },
+        "x": 5293.430020133357,
+        "y": 2508.448969227921,
+        "shot": 50,
+        "round": 6
+      },
+      {
+        "id": "finale-first-east-bend",
+        "target": "p-mage",
+        "skill": "HMO01",
+        "before": {
+          "hp": 1464.9,
+          "shield": 0
+        },
+        "after": {
+          "hp": 1414.9,
+          "shield": 0
+        },
+        "x": 5837.060149255383,
+        "y": 2329.6371644859632,
+        "shot": 51,
+        "round": 6
+      },
+      {
+        "id": "finale-west-return-s0-r3-lead",
+        "target": "p-knight",
+        "skill": "HMO01",
+        "before": {
+          "hp": 3846,
+          "shield": 403
+        },
+        "after": {
+          "hp": 3846,
+          "shield": 373
+        },
+        "x": 3530.3683318114886,
+        "y": 2850.541789601288,
+        "shot": 52,
+        "round": 6
+      },
+      {
+        "id": "finale-east-fault-s0-r4-lead",
+        "target": "p-occultist",
+        "skill": "HMO01",
+        "before": {
+          "hp": 2288.2,
+          "shield": 248
+        },
+        "after": {
+          "hp": 2288.2,
+          "shield": 196
+        },
+        "x": 5355.161229722909,
+        "y": 2490.849138724966,
+        "shot": 53,
+        "round": 6
+      },
+      {
+        "id": "finale-first-east-bend",
+        "target": "p-mage",
+        "skill": "HMO01",
+        "before": {
+          "hp": 1496.9,
+          "shield": 246
+        },
+        "after": {
+          "hp": 1496.9,
+          "shield": 197
+        },
+        "x": 5854.270531559139,
+        "y": 2326.4478526316016,
+        "shot": 54,
+        "round": 7
+      },
+      {
+        "id": "qa-immediate-bridge-threat",
+        "target": "p-knight",
+        "skill": "HWD01",
+        "before": {
+          "hp": 3846,
+          "shield": 462
+        },
+        "after": {
+          "hp": 3846,
+          "shield": 428
+        },
+        "x": 3600.3773696614926,
+        "y": 2864.581171633643,
+        "shot": 55,
+        "round": 7
+      },
+      {
+        "id": "finale-first-west-turn",
+        "target": "p-archer",
+        "skill": "HMO01",
+        "before": {
+          "hp": 1442,
+          "shield": 206
+        },
+        "after": {
+          "hp": 1442,
+          "shield": 164
+        },
+        "x": 1945.1524153923294,
+        "y": 1812.0380019367815,
+        "shot": 56,
+        "round": 7
+      },
+      {
+        "id": "finale-first-bridge-foot",
+        "target": "p-knight",
+        "skill": "HMO01",
+        "before": {
+          "hp": 3846,
+          "shield": 428
+        },
+        "after": {
+          "hp": 3846,
+          "shield": 399
+        },
+        "x": 3534.9423834262957,
+        "y": 2873.2295966517313,
+        "shot": 57,
+        "round": 7
+      },
+      {
+        "id": "finale-first-east-stone",
+        "target": "p-occultist",
+        "skill": "HSH01",
+        "before": {
+          "hp": 2304,
+          "shield": 276
+        },
+        "after": {
+          "hp": 2304,
+          "shield": 248
+        },
+        "x": 6332.120104016317,
+        "y": 2137.5585164155486,
+        "shot": 58,
+        "round": 7
+      },
+      {
+        "id": "finale-first-east-ward",
+        "target": "p-occultist",
+        "skill": "HWD01",
+        "before": {
+          "hp": 2304,
+          "shield": 248
+        },
+        "after": {
+          "hp": 2304,
+          "shield": 248
+        },
+        "x": 6330.85362072267,
+        "y": 2116.6577562732273,
+        "shot": 59,
+        "round": 7
+      },
+      {
+        "id": "finale-west-return-s0-r3-lead",
+        "target": "p-archer",
+        "skill": "HMO02",
+        "before": {
+          "hp": 1442,
+          "shield": 164
+        },
+        "after": {
+          "hp": 1442,
+          "shield": 119
+        },
+        "x": 1940.7995412642865,
+        "y": 1813.1310617063023,
+        "shot": 60,
+        "round": 7
+      },
+      {
+        "id": "finale-west-return-s0-r3-lower",
+        "target": "p-archer",
+        "skill": "HSH01",
+        "before": {
+          "hp": 1442,
+          "shield": 119
+        },
+        "after": {
+          "hp": 1442,
+          "shield": 119
+        },
+        "x": 1905.846685736357,
+        "y": 1905.8878368699645,
+        "shot": 61,
+        "round": 7
+      }
+    ],
+    "enemyTurns": [
+      {
+        "id": "qa-bell-shade",
+        "round": 1,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 5530.386740331492,
+        "y": 2453.171737607968
+      },
+      {
+        "id": "qa-immediate-bridge-threat",
+        "round": 1,
+        "phase": "review",
+        "grounded": true,
+        "x": 4022.0994475138123,
+        "y": 2906.8159348647864
+      },
+      {
+        "id": "finale-first-west-ledge",
+        "round": 1,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1159.9447513812154,
+        "y": 1278.5082872928176
+      },
+      {
+        "id": "finale-first-west-talus",
+        "round": 1,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1296.4088397790056,
+        "y": 2127.7486187845307
+      },
+      {
+        "id": "finale-first-west-turn",
+        "round": 1,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 2093.646408839779,
+        "y": 2057.965233795984
+      },
+      {
+        "id": "finale-first-east-bell",
+        "round": 1,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 5691.988950276243,
+        "y": 2371.194868433374
+      },
+      {
+        "id": "finale-first-east-bend",
+        "round": 1,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 6426.231416439686,
+        "y": 2150.3373304541906
+      },
+      {
+        "id": "qa-upper-ridge-leaper",
+        "round": 1,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 2230.1104972375692,
+        "y": 2173.8718829326567
+      },
+      {
+        "id": "finale-first-east-bell",
+        "round": 2,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 5348.704766793076,
+        "y": 2551.3928312983767
+      },
+      {
+        "id": "qa-immediate-bridge-threat",
+        "round": 2,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 4022.0994475138123,
+        "y": 2906.8159348647864
+      },
+      {
+        "id": "finale-first-west-ledge",
+        "round": 2,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1394.3719544474893,
+        "y": 1444.982523971417
+      },
+      {
+        "id": "finale-first-west-talus",
+        "round": 2,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 964.0877015676149,
+        "y": 1958.6876886538184
+      },
+      {
+        "id": "finale-first-bridge-foot",
+        "round": 2,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 2657.4585635359117,
+        "y": 2816.830738322451
+      },
+      {
+        "id": "finale-first-east-bend",
+        "round": 2,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 6095.238687371278,
+        "y": 2309.7725717444473
+      },
+      {
+        "id": "finale-first-east-stone",
+        "round": 2,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 6679.558011049724,
+        "y": 2007.4496842936064
+      },
+      {
+        "id": "qa-upper-ridge-leaper",
+        "round": 2,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 2023.4854972375547,
+        "y": 1994.649289179343
+      },
+      {
+        "id": "qa-upper-ridge-leaper",
+        "round": 3,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 2023.4854972375547,
+        "y": 1994.649289179343
+      },
+      {
+        "id": "qa-immediate-bridge-threat",
+        "round": 3,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 3820.848996292985,
+        "y": 2908.6094280397497
+      },
+      {
+        "id": "finale-first-west-ledge",
+        "round": 3,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1596.1692710022362,
+        "y": 1626.2315277902933
+      },
+      {
+        "id": "finale-first-west-talus",
+        "round": 3,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1166.794533012802,
+        "y": 2015.582391775316
+      },
+      {
+        "id": "finale-first-bridge-foot",
+        "round": 3,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 3140.5399995769376,
+        "y": 2905.0882181791612
+      },
+      {
+        "id": "finale-first-east-bell",
+        "round": 3,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 5014.403949192291,
+        "y": 2714.8563801006053
+      },
+      {
+        "id": "finale-first-east-bend",
+        "round": 3,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 6095.238687371278,
+        "y": 2309.7725717444473
+      },
+      {
+        "id": "finale-west-return-s0-r3-lead",
+        "round": 3,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1597.6695432956492,
+        "y": 1627.8032416214878
+      },
+      {
+        "id": "qa-upper-ridge-leaper",
+        "round": 4,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 2023.4854972375547,
+        "y": 1994.649289179343
+      },
+      {
+        "id": "qa-immediate-bridge-threat",
+        "round": 4,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 3820.848996292985,
+        "y": 2908.6094280397497
+      },
+      {
+        "id": "finale-first-west-ledge",
+        "round": 4,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1798.1530498731336,
+        "y": 1807.8025673463997
+      },
+      {
+        "id": "finale-first-bridge-foot",
+        "round": 4,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 3224.7099704691695,
+        "y": 2915.60946454069
+      },
+      {
+        "id": "finale-first-east-bend",
+        "round": 4,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 6095.238687371278,
+        "y": 2309.7725717444473
+      },
+      {
+        "id": "finale-west-return-s0-r3-lead",
+        "round": 4,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1965.4773158729015,
+        "y": 1946.7466748202576
+      },
+      {
+        "id": "finale-west-return-s0-r3-lower",
+        "round": 4,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 2360.2592843852613,
+        "y": 2657.7376563822663
+      },
+      {
+        "id": "finale-east-fault-s0-r4-lead",
+        "round": 4,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 6041.459561114989,
+        "y": 2329.328617655825
+      },
+      {
+        "id": "finale-first-east-bend",
+        "round": 5,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 5762.293408644217,
+        "y": 2375.9612723905248
+      },
+      {
+        "id": "qa-immediate-bridge-threat",
+        "round": 5,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 3820.848996292985,
+        "y": 2908.6094280397497
+      },
+      {
+        "id": "finale-first-west-ledge",
+        "round": 5,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1798.1530498731336,
+        "y": 1807.8025673463997
+      },
+      {
+        "id": "finale-first-west-talus",
+        "round": 5,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1249.0278772306306,
+        "y": 2086.745862733052
+      },
+      {
+        "id": "finale-first-bridge-foot",
+        "round": 5,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 3304.881486726037,
+        "y": 2921.870008269633
+      },
+      {
+        "id": "finale-first-east-bell",
+        "round": 5,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 4815.196018235193,
+        "y": 2822.8446418500416
+      },
+      {
+        "id": "qa-upper-ridge-leaper",
+        "round": 5,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 2023.4854972375547,
+        "y": 1994.649289179343
+      },
+      {
+        "id": "finale-east-fault-s0-r4-lead",
+        "round": 5,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 5551.050514267495,
+        "y": 2441.5301748271213
+      },
+      {
+        "id": "finale-first-west-ledge",
+        "round": 6,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 2000.7369202626712,
+        "y": 1975.7839960824208
+      },
+      {
+        "id": "qa-immediate-bridge-threat",
+        "round": 6,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 3820.848996292985,
+        "y": 2908.6094280397497
+      },
+      {
+        "id": "finale-first-west-talus",
+        "round": 6,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1331.261221448459,
+        "y": 2157.9093336907886
+      },
+      {
+        "id": "finale-first-bridge-foot",
+        "round": 6,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 3304.881486726037,
+        "y": 2921.870008269633
+      },
+      {
+        "id": "finale-first-east-bell",
+        "round": 6,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 4815.196018235193,
+        "y": 2822.8446418500416
+      },
+      {
+        "id": "finale-first-east-bend",
+        "round": 6,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 5694.160101286279,
+        "y": 2371.3420651120205
+      },
+      {
+        "id": "finale-west-return-s0-r3-lead",
+        "round": 6,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 2121.058563667538,
+        "y": 2082.703032055181
+      },
+      {
+        "id": "finale-east-fault-s0-r4-lead",
+        "round": 6,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 5551.050514267495,
+        "y": 2441.5301748271213
+      },
+      {
+        "id": "finale-first-east-bend",
+        "round": 7,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 5694.160101286279,
+        "y": 2371.3420651120205
+      },
+      {
+        "id": "qa-immediate-bridge-threat",
+        "round": 7,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 3820.848996292985,
+        "y": 2908.6094280397497
+      },
+      {
+        "id": "finale-first-west-turn",
+        "round": 7,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1885.298232543919,
+        "y": 1880.7168414905072
+      },
+      {
+        "id": "finale-first-bridge-foot",
+        "round": 7,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 3304.881486726037,
+        "y": 2921.870008269633
+      },
+      {
+        "id": "finale-first-east-stone",
+        "round": 7,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 6679.558011049724,
+        "y": 2007.4496842936064
+      },
+      {
+        "id": "finale-first-east-ward",
+        "round": 7,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 7036.925863339545,
+        "y": 1864.3347999683474
+      },
+      {
+        "id": "finale-west-return-s0-r3-lead",
+        "round": 7,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 2121.058563667538,
+        "y": 2082.703032055181
+      },
+      {
+        "id": "finale-west-return-s0-r3-lower",
+        "round": 7,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 2360.2592843852613,
+        "y": 2657.7376563822663
+      },
+      {
+        "id": "finale-first-west-turn",
+        "round": 8,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1981.3093121175843,
+        "y": 1959.7847893747023
+      }
+    ],
+    "joins": [
+      {
+        "id": "qa-immediate-bridge-threat",
+        "role": "guard",
+        "source": "original",
+        "round": 1,
+        "x": 4022.0994475138123,
+        "y": 2906.8159348647864,
+        "grounded": true,
+        "surface": "finale-cutout-near-body"
+      },
+      {
+        "id": "finale-first-west-ledge",
+        "role": "leaper",
+        "source": "original",
+        "round": 1,
+        "x": 1159.9447513812154,
+        "y": 1278.5082872928176,
+        "grounded": true,
+        "surface": "finale-cutout-west-terrace"
+      },
+      {
+        "id": "finale-first-west-talus",
+        "role": "ice",
+        "source": "original",
+        "round": 1,
+        "x": 1296.4088397790056,
+        "y": 2127.7486187845307,
+        "grounded": true,
+        "surface": "finale-cutout-near-body"
+      },
+      {
+        "id": "finale-first-west-bank",
+        "role": "guard",
+        "source": "original",
+        "round": 1,
+        "x": 1741.7127071823204,
+        "y": 2313.1614487415595,
+        "grounded": true,
+        "surface": "finale-cutout-near-body"
+      },
+      {
+        "id": "finale-first-west-turn",
+        "role": "leaper",
+        "source": "original",
+        "round": 1,
+        "x": 2093.646408839779,
+        "y": 2057.965233795984,
+        "grounded": true,
+        "surface": "finale-cutout-west-terrace"
+      },
+      {
+        "id": "finale-first-bridge-foot",
+        "role": "leaper",
+        "source": "original",
+        "round": 1,
+        "x": 2657.4585635359117,
+        "y": 2816.830738322451,
+        "grounded": true,
+        "surface": "finale-cutout-near-body"
+      },
+      {
+        "id": "finale-first-east-bell",
+        "role": "ice",
+        "source": "original",
+        "round": 1,
+        "x": 5691.988950276243,
+        "y": 2371.194868433374,
+        "grounded": true,
+        "surface": "finale-cutout-near-body"
+      },
+      {
+        "id": "finale-first-east-bend",
+        "role": "leaper",
+        "source": "original",
+        "round": 1,
+        "x": 6428.176795580111,
+        "y": 2149.364640883978,
+        "grounded": true,
+        "surface": "finale-cutout-near-body"
+      },
+      {
+        "id": "finale-first-east-stone",
+        "role": "ice",
+        "source": "original",
+        "round": 1,
+        "x": 6679.558011049724,
+        "y": 2007.4496842936064,
+        "grounded": true,
+        "surface": "finale-cutout-near-body"
+      },
+      {
+        "id": "finale-first-east-ward",
+        "role": "guard",
+        "source": "original",
+        "round": 1,
+        "x": 7038.674033149171,
+        "y": 1863.2561420007055,
+        "grounded": true,
+        "surface": "finale-cutout-near-body"
+      },
+      {
+        "id": "qa-upper-ridge-leaper",
+        "role": "leaper",
+        "source": "original",
+        "round": 1,
+        "x": 2230.1104972375692,
+        "y": 2173.8718829326567,
+        "grounded": true,
+        "surface": "finale-cutout-west-terrace"
+      },
+      {
+        "id": "qa-bell-shade",
+        "role": "ice",
+        "source": "original",
+        "round": 1,
+        "x": 5530.386740331492,
+        "y": 2453.171737607968,
+        "grounded": true,
+        "surface": "finale-cutout-near-body"
+      },
+      {
+        "id": "finale-west-return-s0-r3-lead",
+        "role": "leaper",
+        "source": "original",
+        "round": 3,
+        "x": 1220.9944751381215,
+        "y": 1320.9776603411,
+        "grounded": true,
+        "surface": "finale-cutout-west-terrace"
+      },
+      {
+        "id": "finale-west-return-s0-r3-lower",
+        "role": "ice",
+        "source": "original",
+        "round": 3,
+        "x": 1418.5082872928176,
+        "y": 2206.771902131018,
+        "grounded": true,
+        "surface": "finale-cutout-near-body"
+      },
+      {
+        "id": "finale-east-fault-s0-r4-lead",
+        "role": "leaper",
+        "source": "original",
+        "round": 4,
+        "x": 6482.044198895028,
+        "y": 2122.430939226519,
+        "grounded": true,
+        "surface": "finale-cutout-near-body"
+      }
+    ],
+    "queues": [
+      {
+        "round": 1,
+        "queue": [
+          "qa-bell-shade",
+          "finale-first-east-bell",
+          "finale-first-east-bend",
+          "qa-immediate-bridge-threat",
+          "finale-first-west-turn",
+          "finale-first-west-talus",
+          "finale-first-west-ledge",
+          "qa-upper-ridge-leaper"
+        ],
+        "fronts": []
+      },
+      {
+        "round": 2,
+        "queue": [
+          "finale-first-east-bell",
+          "qa-upper-ridge-leaper",
+          "finale-first-east-bend",
+          "qa-immediate-bridge-threat",
+          "finale-first-west-ledge",
+          "finale-first-bridge-foot",
+          "finale-first-east-stone",
+          "finale-first-west-talus"
+        ],
+        "fronts": []
+      },
+      {
+        "round": 3,
+        "queue": [
+          "qa-upper-ridge-leaper",
+          "finale-first-east-bend",
+          "qa-immediate-bridge-threat",
+          "finale-first-bridge-foot",
+          "finale-first-east-bell",
+          "finale-first-west-ledge",
+          "finale-west-return-s0-r3-lead",
+          "finale-first-west-talus"
+        ],
+        "fronts": [
+          {
+            "id": "finale-west-return-s0-r3-lead",
+            "grounded": true,
+            "awake": true,
+            "dead": false,
+            "eligible": true,
+            "support": "finale-cutout-west-terrace",
+            "rangeTier": 2,
+            "distance": 922.9680618653689,
+            "queued": true
+          },
+          {
+            "id": "finale-west-return-s0-r3-lower",
+            "grounded": true,
+            "awake": true,
+            "dead": false,
+            "eligible": true,
+            "support": "finale-cutout-near-body",
+            "rangeTier": 1,
+            "distance": 586.3196013068167,
+            "queued": false
+          }
+        ]
+      },
+      {
+        "round": 4,
+        "queue": [
+          "qa-upper-ridge-leaper",
+          "finale-first-west-ledge",
+          "finale-first-east-bend",
+          "finale-first-bridge-foot",
+          "qa-immediate-bridge-threat",
+          "finale-west-return-s0-r3-lead",
+          "finale-west-return-s0-r3-lower",
+          "finale-east-fault-s0-r4-lead"
+        ],
+        "fronts": [
+          {
+            "id": "finale-west-return-s0-r3-lead",
+            "grounded": true,
+            "awake": true,
+            "dead": false,
+            "eligible": true,
+            "support": "finale-cutout-west-terrace",
+            "rangeTier": 2,
+            "distance": 432.57981246007756,
+            "queued": true
+          },
+          {
+            "id": "finale-west-return-s0-r3-lower",
+            "grounded": true,
+            "awake": true,
+            "dead": false,
+            "eligible": true,
+            "support": "finale-cutout-near-body",
+            "rangeTier": 2,
+            "distance": 543.6125276456622,
+            "queued": true
+          },
+          {
+            "id": "finale-east-fault-s0-r4-lead",
+            "grounded": true,
+            "awake": true,
+            "dead": false,
+            "eligible": true,
+            "support": "finale-cutout-near-body",
+            "rangeTier": 2,
+            "distance": 666.3616518978031,
+            "queued": true
+          }
+        ]
+      },
+      {
+        "round": 5,
+        "queue": [
+          "finale-first-east-bend",
+          "qa-upper-ridge-leaper",
+          "finale-first-west-ledge",
+          "finale-east-fault-s0-r4-lead",
+          "finale-first-bridge-foot",
+          "qa-immediate-bridge-threat",
+          "finale-first-east-bell",
+          "finale-first-west-talus"
+        ],
+        "fronts": [
+          {
+            "id": "finale-west-return-s0-r3-lead",
+            "grounded": true,
+            "awake": true,
+            "dead": false,
+            "eligible": true,
+            "support": "finale-cutout-west-terrace",
+            "rangeTier": 1,
+            "distance": 54.274084551418994,
+            "queued": false
+          },
+          {
+            "id": "finale-west-return-s0-r3-lower",
+            "grounded": true,
+            "awake": true,
+            "dead": false,
+            "eligible": true,
+            "support": "finale-cutout-near-body",
+            "rangeTier": 1,
+            "distance": 863.9721667942158,
+            "queued": false
+          },
+          {
+            "id": "finale-east-fault-s0-r4-lead",
+            "grounded": true,
+            "awake": true,
+            "dead": false,
+            "eligible": true,
+            "support": "finale-cutout-near-body",
+            "rangeTier": 2,
+            "distance": 184.3629595689937,
+            "queued": true
+          }
+        ]
+      },
+      {
+        "round": 6,
+        "queue": [
+          "finale-first-west-ledge",
+          "finale-first-east-bend",
+          "finale-west-return-s0-r3-lead",
+          "finale-first-bridge-foot",
+          "finale-east-fault-s0-r4-lead",
+          "qa-immediate-bridge-threat",
+          "finale-first-east-bell",
+          "finale-first-west-talus"
+        ],
+        "fronts": [
+          {
+            "id": "finale-west-return-s0-r3-lead",
+            "grounded": true,
+            "awake": true,
+            "dead": false,
+            "eligible": true,
+            "support": "finale-cutout-west-terrace",
+            "rangeTier": 2,
+            "distance": 264.552152570681,
+            "queued": true
+          },
+          {
+            "id": "finale-west-return-s0-r3-lower",
+            "grounded": true,
+            "awake": true,
+            "dead": false,
+            "eligible": true,
+            "support": "finale-cutout-near-body",
+            "rangeTier": 1,
+            "distance": 867.4299934749879,
+            "queued": false
+          },
+          {
+            "id": "finale-east-fault-s0-r4-lead",
+            "grounded": true,
+            "awake": true,
+            "dead": false,
+            "eligible": true,
+            "support": "finale-cutout-near-body",
+            "rangeTier": 2,
+            "distance": 260.82205662451753,
+            "queued": true
+          }
+        ]
+      },
+      {
+        "round": 7,
+        "queue": [
+          "finale-first-east-bend",
+          "finale-first-east-stone",
+          "qa-immediate-bridge-threat",
+          "finale-first-bridge-foot",
+          "finale-west-return-s0-r3-lead",
+          "finale-first-east-ward",
+          "finale-west-return-s0-r3-lower",
+          "finale-first-west-turn"
+        ],
+        "fronts": [
+          {
+            "id": "finale-west-return-s0-r3-lead",
+            "grounded": true,
+            "awake": true,
+            "dead": false,
+            "eligible": true,
+            "support": "finale-cutout-west-terrace",
+            "rangeTier": 2,
+            "distance": 269.1968643059321,
+            "queued": true
+          },
+          {
+            "id": "finale-west-return-s0-r3-lower",
+            "grounded": true,
+            "awake": true,
+            "dead": false,
+            "eligible": true,
+            "support": "finale-cutout-near-body",
+            "rangeTier": 2,
+            "distance": 871.7948473521437,
+            "queued": true
+          },
+          {
+            "id": "finale-east-fault-s0-r4-lead",
+            "grounded": true,
+            "awake": true,
+            "dead": false,
+            "eligible": true,
+            "support": "finale-cutout-near-body",
+            "rangeTier": 1,
+            "distance": 336.16285193556706,
+            "queued": false
+          }
+        ]
+      },
+      {
+        "round": 8,
+        "queue": [
+          "finale-first-west-turn",
+          "finale-first-east-bend",
+          "finale-first-bridge-foot",
+          "finale-first-east-ward",
+          "finale-west-return-s0-r3-lower",
+          "qa-immediate-bridge-threat",
+          "finale-east-fault-s0-r4-lead",
+          "finale-west-return-s0-r3-lead"
+        ],
+        "fronts": [
+          {
+            "id": "finale-west-return-s0-r3-lead",
+            "grounded": true,
+            "awake": true,
+            "dead": false,
+            "eligible": true,
+            "support": "finale-cutout-west-terrace",
+            "rangeTier": 1,
+            "distance": 280.302842826331,
+            "queued": true
+          },
+          {
+            "id": "finale-west-return-s0-r3-lower",
+            "grounded": true,
+            "awake": true,
+            "dead": false,
+            "eligible": true,
+            "support": "finale-cutout-near-body",
+            "rangeTier": 2,
+            "distance": 643.3626900332713,
+            "queued": true
+          },
+          {
+            "id": "finale-east-fault-s0-r4-lead",
+            "grounded": true,
+            "awake": true,
+            "dead": false,
+            "eligible": true,
+            "support": "finale-cutout-near-body",
+            "rangeTier": 1,
+            "distance": 351.64349131227044,
+            "queued": true
+          }
+        ]
+      }
+    ],
+    "peak": 14,
+    "initialRng": 19388,
+    "seed": 19388,
+    "initial": 10,
+    "limit": 8
+  },
+  "frameP95HostMs": 33.400000000001455,
+  "new60": {
+    "savedBytesBefore": "bca9b321be320816aedfeacd0708a0fd9067b9b8eb74a3006477ebe7e7e7f9e3",
+    "savedBytesAfter": "bca9b321be320816aedfeacd0708a0fd9067b9b8eb74a3006477ebe7e7e7f9e3",
+    "stage": 60
+  }
+}
