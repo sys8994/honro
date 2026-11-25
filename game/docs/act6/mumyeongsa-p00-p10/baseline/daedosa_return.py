@@ -143,13 +143,17 @@ def all_once_east(page,report,limit=100):
             lower_turn(page,report)
     raise AssertionError({'major':foes_moved(page),'actorsEast':sorted(marked),'turns':len(report['turns'])})
 
-def play(browser,out,turns):
-    ctx=seeded_context(browser,58)
-    page=ctx.new_page()
+def play(browser,out,turns,session=None):
+    ctx,page=session if session else (seeded_context(browser,58),None)
+    if page is None:
+        page=ctx.new_page()
     q={'status':'FAIL','turns':[],'errors':[]}
     page.on('pageerror',lambda err:q['errors'].append(str(err)))
     try:
-        resume(page,58,True)
+        if session is None:
+            resume(page,58,True)
+        else:
+            base.dismiss_dialogue(page)
         march(page,3496,cls='occultist',tolerance=45)
         mission_click(page,'column','threshold')
         march(page,3680,cls='mage',tolerance=40)
@@ -204,7 +208,8 @@ def play(browser,out,turns):
         page.screenshot(path=out/'r-live-failure.png')
     finally:
         q['projectileTrace']=page.evaluate('window.nativeWall??[]')
-        ctx.close()
+        if session is None:
+            ctx.close()
     if q['errors']:
         q['status']='FAIL'
     return q

@@ -63,14 +63,16 @@ CAPTURE = """camera=>{
  }
 }"""
 
-def open_stage(browser,stage,mobile):
+def open_stage(browser,stage,mobile,init_script=None):
     if stage!=51:
-        context=seeded_context(browser,stage,mobile=mobile)
+        context=seeded_context(browser,stage,mobile=mobile,init_script=init_script)
         page=context.new_page()
         resume(page,stage,True,mobile=mobile)
         return context,page
     fixture=json.loads((base.ROOT/'shared/act6-debug-stages/fixtures.json').read_text())['52']['profile']
     context=saved_context(browser,{'honro-first-act-profile-1':json.dumps(fixture,ensure_ascii=False)},mobile=mobile)
+    if init_script:
+        context.add_init_script(init_script)
     page=context.new_page()
     page.goto(base.BASE+'HONRO.html',wait_until='domcontentloaded')
     page.wait_for_function("window.HonroApp && !document.querySelector('[data-startup-title]')",timeout=13000)

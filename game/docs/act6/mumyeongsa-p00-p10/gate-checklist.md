@@ -20,3 +20,17 @@ P00 통과는 감독이 `aa40fb1`에서 확인했다. 아래의 다른 상태는
 | 57 해제 | 동일 소단 육신·담허 회수와 네 원본의 D 통과, 몸 이동 복귀, 실제 O06 명중. | 모든 해제 기예를 57→58 직후 여러 번 시전하는 조합은 미실측이다. |
 
 [허용표, 명령, 화면 및 원자료](sodan-thread/README.md)
+
+## 실제 캡처를 다시 본 다섯 항목
+
+| 항목 | 판정 |
+|---|---|
+| 53 시작·중층 덩어리 | 마루 윗선과 배우의 발점이 읽힌다. 상부의 큰 어두운 덩어리와 밝은 띠가 서로 다른 구조인지 한 화면에서 구별하기 어렵다. 좌·우 외곽 전체는 아직 확인하지 않았다. [산문](native-b/native-53-start.webp) · [중층](native-b/native-53-upper-rail.webp) |
+| B 양쪽 재질과 54 모바일 | 53 발점과 54 수문지기가 공통 돌줄눈 면에 놓인다. 390 화면에서는 월드에서 떨어져 보이는 더미의 모서리와 실제 문틀이 같은 명도로 보여, 주 이동면 구분은 화살표에 의존한다. [53 B](native-b/native-53-b-wall.webp) · [54 B](native-b/native-54-both-contact.webp) · [54 터치](native-b/native-54-touch.webp) |
+| 54 회랑과 C 양면 | 회랑의 얇은 받침선은 멀리 있는 폭포·기와와 구별된다. C의 꺾인 처마 윤곽, 밝은 밑면 띠와 거꾸로 붙은 발점이 54·56 캡처에 모두 보인다. 두 배경의 경계 범위와 모바일은 추가 검수 대상이다. [회랑](native-b/native-54-foothill.webp) · [C 출발](torn-eave/eave-send-exit.webp) · [C 도착](torn-eave/eave-receive-live-ceiling.webp) |
+| D와 58 법당 덩어리 | 57 경사와 D 문틀이 58 돌턱 위에서도 읽힌다. 58의 전경 기둥·마루는 원경 사찰과 분리되지만 천장 접촉면의 밝은 띠와 장식 목재가 비슷해 측면에서도 이어지는 지 가려내기 어렵다. [D 출발](hall-d/screens/d-live-57.webp) · [D 새 저장](hall-d/screens/d-new-checkpoint-58.webp) · [천장](hall-d/screens/body-ceiling-120.webp) |
+| R 귀환의 편집 경계 | 문 위 금속 고정쇠와 문기둥은 이어져 보인다. 59의 녹청색 발판과 양 끝 수직 절단은 58 석단과 다른 큰 면을 형성한다. R의 조형 소유권·접지는 검수됐고 이 화면에서 외곽 재질 연속성은 해결되지 않았다. [58 R](return-r/screens/source-58.webp) · [59 R](return-r/screens/new-checkpoint-receiving.webp) |
+
+위는 기존 실제 플레이 캡처를 다섯 위치와 조건으로 다시 본 결과다. 5회의 수정·재실행을 요구하는 본편 미술 게이트는 미완료다.
+
+[51부터 한 탭의 연속 검수](continuous/README.md)

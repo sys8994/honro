@@ -217,15 +217,19 @@ def finish_wall(page,report,spirit=False):
     report['ordinary54']=page.evaluate(POSE)
     assert report['ordinary54']['gravity']=={'x':0,'y':320}
 
-def run(browser,out,hz,forks=False,mobile=False,spirit=False,spirit53=False):
-    ctx=seeded_context(browser,53,init_script=FRAME_DRIVER.replace('HZ',str(hz)))
-    page=ctx.new_page()
+def run(browser,out,hz,forks=False,mobile=False,spirit=False,spirit53=False,session=None,on_54=None):
+    ctx,page=session if session else (seeded_context(browser,53,init_script=FRAME_DRIVER.replace('HZ',str(hz))),None)
+    if page is None:
+        page=ctx.new_page()
     errors=[]
     page.on('pageerror',lambda error:errors.append(str(error)))
     page.on('console',lambda line:errors.append(line.text) if line.type in ('warning','error') else None)
     report={'status':'FAIL','requestHz':hz,'errors':errors,'walk':[]}
     try:
-        resume(page,53,True)
+        if session is None:
+            resume(page,53,True)
+        else:
+            base.dismiss_dialogue(page)
         page.wait_for_function("HonroApp.canInput()")
         normal=base.saved_bytes(page)['honro-first-act-profile-1']
         report['start']=page.evaluate(POSE)
@@ -263,6 +267,8 @@ def run(browser,out,hz,forks=False,mobile=False,spirit=False,spirit53=False):
         assert all(q['exactPaint'] and q['exactCollision'] for q in report['dummies54'])
         assert page.evaluate("HonroApp.engine.active===originalDamheo"),'Found a replacement Damheo object'
         record=base.saved_bytes(page)
+        if on_54:
+            on_54(54)
         report['to54']=boundary_of(record)
         report['newContext54']=cold_new(browser,record,54)
         page.wait_for_function("HonroApp.engine.b.units.every(u=>HonroApp.engine.grounded(u))",timeout=6000)
@@ -318,7 +324,8 @@ def run(browser,out,hz,forks=False,mobile=False,spirit=False,spirit53=False):
           const delta=nativeFrames.slice(1).map((t,i)=>t-nativeFrames[i]).sort((a,b)=>a-b);
           return {medianMs:delta[Math.floor(delta.length/2)],solverSteps:[...window.nativeSolverSteps??[]]};
         }""")
-        ctx.close()
+        if session is None:
+            ctx.close()
     return report
 
 if __name__=='__main__':

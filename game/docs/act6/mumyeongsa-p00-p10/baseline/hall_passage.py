@@ -111,14 +111,18 @@ def march(page,target,cls=None,actor_id=None,tolerance=27,max_attempts=8):
                 pass
     raise AssertionError({'target':target,'actor':actor(page),'state':state(page)})
 
-def live_d(browser,out,sodan=False):
-    ctx=seeded_context(browser,57)
-    page=ctx.new_page()
+def live_d(browser,out,sodan=False,session=None):
+    ctx,page=session if session else (seeded_context(browser,57),None)
+    if page is None:
+        page=ctx.new_page()
     q={'status':'FAIL','steps':{},'errors':[]}
     steps=q['steps']
     page.on('pageerror',lambda err:q['errors'].append(str(err)))
     try:
-        resume(page,57,True)
+        if session is None:
+            resume(page,57,True)
+        else:
+            base.dismiss_dialogue(page)
         steps['initial']=state(page)
         if sodan:
             assert not page.evaluate("HonroApp.engine.skillAllowed(HONRO_CORE.SKILLS.O06,HonroApp.engine.unit('p-occultist'))")
@@ -221,7 +225,8 @@ def live_d(browser,out,sodan=False):
             q['last']=state(page)
         page.screenshot(path=out/'d-live-failure.png')
     finally:
-        ctx.close()
+        if session is None:
+            ctx.close()
     if q['errors']:
         q['status']='FAIL'
     return q

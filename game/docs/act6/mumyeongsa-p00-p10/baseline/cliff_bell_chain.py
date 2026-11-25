@@ -46,14 +46,18 @@ def bridge_fight(page,q):
 def e_round(page):
     return page.evaluate('HonroApp.engine.b.round')
 
-def finish(browser,args):
-    ctx=seeded_context(browser,52)
-    page=ctx.new_page()
+def finish(browser,args,session=None):
+    ctx,page=session if session else (seeded_context(browser,52),None)
+    if page is None:
+        page=ctx.new_page()
     r={'status':'FAIL','bridgeShots':[],'descent':[],'errors':[],'warnings':[]}
     page.on('pageerror',lambda exc:r['errors'].append(str(exc)))
     page.on('console',lambda msg:r['warnings'].append(msg.text) if msg.type=='warning' else None)
     try:
-        resume(page,52,True)
+        if session is None:
+            resume(page,52,True)
+        else:
+            base.dismiss_dialogue(page)
         original=base.saved_bytes(page)['honro-first-act-profile-1']
         page.evaluate(base.TRACE)
         r['cliffShots']=[]
@@ -120,7 +124,8 @@ def finish(browser,args):
         r['trace']=page.evaluate('window.act6BaselineEvents??[]')
         if page.evaluate('!!HonroApp.engine'):
             r['last']=page.evaluate(base.SNAPSHOT)
-        ctx.close()
+        if session is None:
+            ctx.close()
     return r
 
 def main():
