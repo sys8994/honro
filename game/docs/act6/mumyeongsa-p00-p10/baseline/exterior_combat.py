@@ -7,7 +7,8 @@ from playwright.sync_api import Error, sync_playwright
 
 import browser as base
 from exterior_audit import open_stage
-from relay_live_chain import ready
+from native_b import aim
+from relay_live_chain import boundary_of, cold_new, ready
 from second_pass import FOOT, sample_walk
 
 TRACE = """() => {
@@ -67,6 +68,57 @@ def walk(page,target):
         page.wait_for_timeout(500)
     return page.evaluate(FOOT)
 
+def complete_overlook(browser,page,out,args):
+    out['overlook']=[]
+    slot=page.locator('[data-act6-qa-lookout]')
+    for _ in range(60):
+        base.dismiss_dialogue(page)
+        ready(page,43000)
+        s=page.evaluate("""() => {const e=HonroApp.engine,u=e.active,crest=e.unit('crest-champion');
+          return {round:e.b.round,role:u.cls,id:u.id,x:u.x,grounded:e.grounded(u),move:u.moveLeft,
+            crest:crest.hp,allThere:e.b.units.filter(v=>v.side===0&&!v.summoned).every(v=>v.x>=6480&&e.grounded(v))};}""")
+        if s['round']>17:
+            break
+        target=6730 if s['role']=='mage' else 6550
+        progress=min(target,s['x']+max(0,s['move']*.63-70))
+        if progress>s['x']+65:
+            m=sample_walk(page,1,progress,6200)
+            out['overlook'].append({'walk':m['end'],'actor':s['id']})
+            if not m['reached'] and m['end']['x']-s['x']<70:
+                page.keyboard.press('Control')
+                sample_walk(page,1,progress,1800)
+            page.wait_for_timeout(420)
+            continue
+        if s['allThere'] and s['crest']<=0 and s['role']=='mage' and abs(s['x']-6740)<150:
+            slot.click(timeout=6500)
+            page.wait_for_function("HonroApp.engine.b.phase==='won'",timeout=7500)
+            page.screenshot(path=args.out/'overlook-won.png')
+            page.locator('[data-act6-qa-next="52"]').click(timeout=6500)
+            page.wait_for_function('HonroApp.engine?.b?.honroStage===52',timeout=12000)
+            records=base.saved_bytes(page)
+            out['warm52']=page.evaluate(base.SNAPSHOT)
+            out['cold52']=cold_new(browser,records,52)
+            out['seal']=boundary_of(records)
+            return
+        if s['crest']>0 and s['x']>6020 and s['role']!='knight':
+            spec=page.evaluate("""() => {const e=HonroApp.engine,u=e.active,t=e.unit('crest-champion');
+              const skill=({archer:'A02',mage:'M01',occultist:'O04'})[u.cls];
+              const sk=HONRO_CORE.SKILLS[skill];if(!sk||!u.loadout.includes(skill))return null;
+              const [start,end]=u.facing>0?[-83,88]:[92,265];
+              for(const power of [.70,.82,.58,.92,.48,.40])for(let angle=start;angle<=end;angle+=2){
+                if(!e.canAfford(sk,u,power))continue;
+                if([-.8,0,.8].every(delta=>[0,.028].every(dp=>e.predict(u,sk,angle+delta,power+dp,t,false).unit===t.id)))return {skill,angle,power};
+              }return null;}""")
+            if spec:
+                page.locator(f'[data-action="combat-skill"][data-skill="{spec["skill"]}"]').first.click(timeout=5000)
+                aim(page,spec)
+                out['overlook'].append({'shot':spec,'before':s})
+                continue
+        page.keyboard.press('f')
+        out['overlook'].append({'wait':s})
+        page.wait_for_timeout(200)
+    raise AssertionError('The live lookout was not secured within 17 rounds')
+
 def run(browser,args,stage):
     ctx,page=open_stage(browser,stage,False)
     out={'stage':stage,'status':'FAIL','route':[],'errors':[]}
@@ -86,6 +138,8 @@ def run(browser,args,stage):
             for _ in range(args.rounds_per_site):
                 wait_round(page)
                 ready(page,35000)
+        if stage==51 and args.finish_overlook:
+            complete_overlook(browser,page,out,args)
         out['status']='PARTIAL' if args.opening_only else 'PASS'
     except (Error,AssertionError) as error:
         out['error']=str(error)[:2200]
@@ -105,6 +159,7 @@ def main():
     p.add_argument('--stages',type=int,nargs='+',default=[51,52],choices=[51,52])
     p.add_argument('--opening-only',action='store_true')
     p.add_argument('--rounds-per-site',type=int,default=1)
+    p.add_argument('--finish-overlook',action='store_true')
     args=p.parse_args()
     base.ROOT=args.build.resolve()
     args.out.mkdir(parents=True,exist_ok=True)

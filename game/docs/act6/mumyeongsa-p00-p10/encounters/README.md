@@ -4,7 +4,7 @@
 
 | 장 | 실측 시작 / 누적 / 최대 활성 | 엔진 공격 큐 상한 | 교전 표본 |
 |---|---:|---:|---|
-| 51 | 8 / 17 / 8 | 5 | 원래 4명과 새 초기 4명, 아랫길·중턱·전망대에서 각 3명. 구간마다 두 라운드 진행한 판에서 20발 발사, 추격대가 설오에게 실제 2회 명중해 1720→1606. [추가 교전](pressure-51.json) · [중턱](screens/approach-51.webp) |
+| 51 | 8 / 17 / 8 | 5 | 아랫길·중턱·전망대에서 각 3명. 구간마다 두 라운드 진행한 판에서 20발 발사, 추격대가 설오에게 실제 2회 명중해 1720→1606. 별도 완주 판에서는 경계암귀를 처치하고 네 원본이 전망대에 닿아, 5라운드에 실제 전망대 영수증과 52 라이브·새 저장을 검수했다. 제안 라운드 8–16보다 짧았다. [추가 교전](pressure-51.json) · [완주 판](overlook-live-51.json) · [화면](screens/overlook-51.webp) |
 | 52 | 9 / 16 / 9 | 6 | 암벽 3명, 석교 1명, 종터 접근 3명. 암벽 증원의 HBM01로 설오 1720→1683. 설계 예산 19 중 이 판에서 석교 2명과 종터 1명은 대기했다. [로그](approach-52.json) · [석교](screens/approach-52.webp) |
 | 53 | 5 / 9 / 미실측 | 4 | 세 구간의 증원이 일부 입장했다. 실제 M09와 B를 거쳐 54, 차트와 C 뒤 새 55까지 진행했다. 이 판 누적 9는 목표 12보다 적다. [로그](interior-53.json) · [산문 안쪽](screens/approach-53.webp) |
 | 54 | 4 / 8 이상 / 미실측 | 4 | +X 같은 면에 원래 수문지기와 새 순라·매듭귀·잔향, 갤러리에 별도 예비대. 120Hz에서 원래 적이 담허에게 실제 명중했고 O06과 M01이 수문지기를 600→236→0으로 낮췄다. 원래 차트·M09·C 진입과 54·55 새 저장을 확인했다. 전체 증원·60Hz는 별도 검수한다. [로그](lateral-54.json) · [B 입구](screens/wall-roster-54.webp) |
@@ -15,12 +15,13 @@
 
 54는 담허와 원래 수문지기 객체를 유지하고 장 소유자가 검사한 적만 각 방에 들인다. 진행 중인 포격·진목·장 효과가 남으면 방을 바꾸지 않는다. 실제 발점과 원래 수문지기 제압이 확인된 뒤 이전 방의 증원만 남겨 두고, 관측과 발점이 맞으면 다시 다음 차트로 넘어간다.
 
-PC에서 51은 일반 쉼터, 52는 기존 정상 기록을 열어 실제 키로 세 구간을 이동했다. 기존 원본 발점과 신설 적의 실제 발판을 기록했다. PC 호스트의 수집 표본은 각각 16.8·33.3 ms p95였다. 59 터치 표본의 호스트 p95는 병렬 Chromium 실행 중 50.0 ms로 33 ms 목표를 넘었다. 저사양 실기기, 장 완료까지 연속 세 시드, 난이도 차이, 51·52 새 이어하기, 57 증량과 59 가름진 종료는 별도 검수한다.
+PC에서 51은 일반 쉼터, 52는 기존 정상 기록을 열어 실제 키로 세 구간을 이동했다. 기존 원본 발점과 신설 적의 실제 발판을 기록했다. PC 호스트의 수집 표본은 각각 16.8·33.3 ms p95였다. 59 터치 표본의 호스트 p95는 병렬 Chromium 실행 중 50.0 ms로 33 ms 목표를 넘었다. 저사양 실기기, 장 완료까지 연속 세 시드, 난이도 차이, 52→53 새 이어하기, 57 증량과 59 가름진 종료는 별도 검수한다.
 
 ```bash
 npm run build
 python game/docs/act6/mumyeongsa-p00-p10/baseline/exterior_combat.py --build "$PWD" --out /tmp/honro-act6-exterior-combat
 python game/docs/act6/mumyeongsa-p00-p10/baseline/exterior_combat.py --build "$PWD" --out /tmp/honro-act6-pressure51 --stages 51 --rounds-per-site 2
+python game/docs/act6/mumyeongsa-p00-p10/baseline/exterior_combat.py --build "$PWD" --out /tmp/honro-act6-overlook51 --stages 51 --finish-overlook --rounds-per-site 0
 python game/docs/act6/mumyeongsa-p00-p10/baseline/native_b.py --build "$PWD" --out /tmp/honro-act6-inner53 --hz 120 --spirit
 python game/docs/act6/mumyeongsa-p00-p10/baseline/relay_live_chain.py --build "$PWD" --out /tmp/honro-act6-repair55 --bell-only --bell-case repair
 python game/docs/act6/mumyeongsa-p00-p10/baseline/relay_live_chain.py --build "$PWD" --out /tmp/honro-act6-intact55 --bell-only --bell-case intact
