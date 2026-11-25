@@ -31,3 +31,9 @@ python game/docs/act6/mumyeongsa-p00-p10/baseline/hall_encounters.py --build "$P
 p=game/docs/act6/mumyeongsa-p00-p10
 python "$p/baseline/hall_encounters.py" --build "$PWD" --out /tmp/honro-54-no-mending --stage 54 --no-mending --b-proof "$p/visual-atlas/capture-input-b.json"
 ```
+
+## 53 서고와 법당 사이의 실제 교전 범위
+
+두 대조 RNG 값 31717·46183에서 담허가 법당을 지나며 사망했다. 31717에서는 서고 끝의 수의귀 `archive-balcony-3`가 체력 480, 옛 상주와 법당 안 두 수의귀가 709.4를 깎았다. 서고 적과 법당 적이 같은 라운드에 서로 다른 높이에서 공격했다. 역할은 원래 발판에 남기고, 실제로 접지한 배우가 서고를 지나 법당의 두 돌턱을 건너면 그 방의 역할이 교전하도록 범위를 정했다. 똑같은 HBM01과 배우 체력을 쓴다. [31717 이전 손실](53-before-handoff-31717.json) · [46183 이전 손실](53-before-handoff-46183.json)
+
+수정 후 기본 판은 실제 12명 출현·8라운드 및 활성·공격 6·4, 담허 체력 496.5로 M09·B와 새 54까지 통과했다. 31717은 체력 609.1로 B를 넘고 54 서명을 썼으며 별도 컨텍스트 앱의 시작 대기가 만료됐다. 46183은 체력 380.3으로 법당을 통과했으나 실제 M09가 상부 지지면에 남지 않았다. 세 판 모두 해당 서고 수의귀가 법당에서 깎은 체력은 0이다. [기본 판과 새 저장](53-ground-handoff-native.json) · [31717 라이브](53-ground-handoff-31717.json) · [46183 M09 시도](53-ground-handoff-46183.json)

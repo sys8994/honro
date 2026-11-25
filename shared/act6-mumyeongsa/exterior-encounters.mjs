@@ -20,6 +20,8 @@ function installExteriorEncounters(app,e,paused=()=>false,admit=()=>true){
     {id:'bell-approach',label:'낮은 종터 앞과 퇴로를 지키던 혼이 모입니다.',at:[4300,3890],units:[['shade','return',4480,3807],['hound','return',4620,3685],['shade','return',4710,3605],['stag','lowBridge',3740,4330]]},
    ]},
   53:{active:6,attacks:4,roomReach:690,sites:{floor:'south',library:'library-balcony',beam:'sanctuary-beam'},
+   groundFronts:{'a6-53-opening-3':[1560,2070],'a6-53-archive-balcony-3':[1510,2010],
+    'a6-53-lost-sanctuary-2':[2010,2230],'a6-53-lost-sanctuary-3':[2230,2800]},
    initial:[['hound','floor',740,2390],['shade','library',1320,1910],['stag','floor',1985,1590]],
    waves:[
     {id:'gate-timber',label:'산문 뒤에서 바닥을 긁는 소리가 납니다.',at:[670,2390],units:[['hound','floor',970,2200],['shade','floor',1140,2075],['shade','library',1005,2040]]},

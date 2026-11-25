@@ -97,6 +97,9 @@ def run(browser,args):
         page.on('pageerror',lambda error:q['errors'].append(str(error)))
         try:
             q['loadout']=page.evaluate('HonroApp.engine.active.loadout.slice()')
+            if args.rng is not None:
+                page.evaluate('seed=>{HonroApp.engine.b.rng=seed;}',args.rng)
+                q['controlledRng']=args.rng
             page.evaluate(TRACE)
             if stage==53:
                 fight_along(page,[(860,'gate-timber',None),(1375,'archive-balcony',None),(2140,'lost-sanctuary',None)],q)
@@ -150,6 +153,7 @@ if __name__=='__main__':
     parser.add_argument('--b-proof',type=Path)
     parser.add_argument('--sanctuary-defense',action='store_true')
     parser.add_argument('--no-mending',action='store_true')
+    parser.add_argument('--rng',type=int)
     args=parser.parse_args()
     assert args.stage!=54 or args.b_proof
     base.ROOT=args.build.resolve()

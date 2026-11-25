@@ -1,0 +1,2175 @@
+{
+  "stage": 53,
+  "status": "PASS_ROUTE",
+  "loadout": [
+    "M01",
+    "M10",
+    "M07"
+  ],
+  "regions": [
+    {
+      "site": 860,
+      "wave": "gate-timber",
+      "actions": [
+        {
+          "attack": {
+            "id": "M01",
+            "angle": 15,
+            "power": 0.97,
+            "score": 655,
+            "target": "a6-53-gate-timber-1",
+            "x": 940.3417501836989,
+            "y": 2214.0434782608695
+          }
+        }
+      ],
+      "foot": {
+        "id": "p-mage",
+        "x": 880.269393996022,
+        "y": 2288.020757525285,
+        "vx": 0,
+        "vy": 0,
+        "move": 2561.5529910846913,
+        "grounded": true,
+        "support": "south",
+        "phase": "aim",
+        "round": 1,
+        "chart": [
+          3540,
+          3000
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      }
+    },
+    {
+      "site": 1375,
+      "wave": "archive-balcony",
+      "actions": [
+        {
+          "attack": {
+            "id": "M01",
+            "angle": 66,
+            "power": 0.72,
+            "score": 660.1591245926398,
+            "target": "a6-53-opening-3",
+            "x": 1941,
+            "y": 1477.712204135524
+          }
+        }
+      ],
+      "foot": {
+        "id": "p-mage",
+        "x": 1383.00171333362,
+        "y": 1946.1654292590522,
+        "vx": 0,
+        "vy": 0,
+        "move": 2445.1558327103103,
+        "grounded": true,
+        "support": "south",
+        "phase": "aim",
+        "round": 2,
+        "chart": [
+          3540,
+          3000
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      }
+    },
+    {
+      "site": 2140,
+      "wave": "lost-sanctuary",
+      "actions": [
+        {
+          "attack": {
+            "id": "M01",
+            "angle": 84,
+            "power": 0.8,
+            "score": 672.4656861695998,
+            "target": "a6-53-lost-sanctuary-3",
+            "x": 2369.935587937712,
+            "y": 1082.1379310344828
+          }
+        }
+      ],
+      "foot": {
+        "id": "p-mage",
+        "x": 2143.8980230174684,
+        "y": 1435.8246143924166,
+        "vx": 0,
+        "vy": 0,
+        "move": 2092.9807575643936,
+        "grounded": true,
+        "support": "south",
+        "phase": "aim",
+        "round": 3,
+        "chart": [
+          3540,
+          3000
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      }
+    }
+  ],
+  "sanctuaryDefense": [
+    {
+      "round": 4,
+      "shot": {
+        "id": "M01",
+        "angle": 186,
+        "power": 0.97,
+        "score": 698.6171295206399,
+        "target": "a6-53-archive-balcony-2",
+        "x": 1719.1999519334784,
+        "y": 1504.0666666666655
+      }
+    },
+    {
+      "round": 5,
+      "shot": {
+        "id": "M01",
+        "angle": 21,
+        "power": 0.97,
+        "score": 698.6171295206399,
+        "target": "a6-53-lost-sanctuary-3",
+        "x": 2348.819866581028,
+        "y": 1210.1379310344828
+      }
+    },
+    {
+      "round": 6,
+      "shot": {
+        "id": "M01",
+        "angle": 189,
+        "power": 0.97,
+        "score": 684,
+        "target": "a6-53-lost-sanctuary-1",
+        "x": 1926.526787515625,
+        "y": 1391.3708083958843
+      }
+    },
+    {
+      "round": 7,
+      "shot": {
+        "id": "M01",
+        "angle": -33,
+        "power": 0.97,
+        "score": 509,
+        "target": "a6-53-lost-sanctuary-3",
+        "x": 2292.2870845887996,
+        "y": 1260.8205739373886
+      }
+    }
+  ],
+  "trace": {
+    "shots": [
+      {
+        "id": "a6-53-gate-timber-1",
+        "skill": "HBM01",
+        "round": 1
+      },
+      {
+        "id": "a6-53-opening-1",
+        "skill": "HBM01",
+        "round": 1
+      },
+      {
+        "id": "a6-53-opening-2",
+        "skill": "HSH01",
+        "round": 2
+      },
+      {
+        "id": "draft-lower-lane-guard",
+        "skill": "HGS02",
+        "round": 2
+      },
+      {
+        "id": "a6-53-archive-balcony-1",
+        "skill": "HBM01",
+        "round": 2
+      },
+      {
+        "id": "a6-53-archive-balcony-2",
+        "skill": "HSH01",
+        "round": 2
+      },
+      {
+        "id": "a6-53-lost-sanctuary-1",
+        "skill": "HSH01",
+        "round": 3
+      },
+      {
+        "id": "a6-53-lost-sanctuary-2",
+        "skill": "HBM01",
+        "round": 3
+      },
+      {
+        "id": "a6-53-lost-sanctuary-2",
+        "skill": "HBM01",
+        "round": 4
+      },
+      {
+        "id": "a6-53-lost-sanctuary-1",
+        "skill": "HSH01",
+        "round": 5
+      },
+      {
+        "id": "a6-53-archive-balcony-2",
+        "skill": "HSH02",
+        "round": 5
+      },
+      {
+        "id": "a6-53-lost-sanctuary-3",
+        "skill": "HBM03",
+        "round": 5
+      },
+      {
+        "id": "a6-53-lost-sanctuary-1",
+        "skill": "HSH01",
+        "round": 6
+      },
+      {
+        "id": "a6-53-archive-balcony-2",
+        "skill": "HSH02",
+        "round": 6
+      },
+      {
+        "id": "a6-53-lost-sanctuary-2",
+        "skill": "HBM01",
+        "round": 6
+      },
+      {
+        "id": "a6-53-lost-sanctuary-2",
+        "skill": "HBM01",
+        "round": 7
+      },
+      {
+        "id": "a6-53-archive-balcony-2",
+        "skill": "HSH02",
+        "round": 7
+      },
+      {
+        "id": "a6-53-lost-sanctuary-1",
+        "skill": "HSH02",
+        "round": 7
+      }
+    ],
+    "heroShots": [
+      {
+        "id": "p-mage",
+        "skill": "M01",
+        "round": 1,
+        "shot": 1
+      },
+      {
+        "id": "p-mage",
+        "skill": "M01",
+        "round": 2,
+        "shot": 4
+      },
+      {
+        "id": "p-mage",
+        "skill": "M01",
+        "round": 3,
+        "shot": 9
+      },
+      {
+        "id": "p-mage",
+        "skill": "M01",
+        "round": 4,
+        "shot": 12
+      },
+      {
+        "id": "p-mage",
+        "skill": "M01",
+        "round": 5,
+        "shot": 14
+      },
+      {
+        "id": "p-mage",
+        "skill": "M01",
+        "round": 6,
+        "shot": 18
+      },
+      {
+        "id": "p-mage",
+        "skill": "M01",
+        "round": 7,
+        "shot": 22
+      },
+      {
+        "id": "p-mage",
+        "skill": "M09",
+        "round": 8,
+        "shot": 26
+      }
+    ],
+    "damage": [
+      {
+        "id": "a6-53-gate-timber-1",
+        "target": "p-mage",
+        "skill": "HBM01",
+        "before": 1669.6000000000001,
+        "after": 1576.6000000000001,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 182.50335288197294,
+        "round": 1
+      },
+      {
+        "id": "a6-53-opening-1",
+        "target": "p-mage",
+        "skill": "HBM01",
+        "before": 1576.6000000000001,
+        "after": 1477.6000000000001,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 182.50335288197294,
+        "round": 1
+      },
+      {
+        "id": "a6-53-opening-2",
+        "target": "p-mage",
+        "skill": "HSH01",
+        "before": 1477.6000000000001,
+        "after": 1446.6000000000001,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 64.29693181042863,
+        "round": 2
+      },
+      {
+        "id": "draft-lower-lane-guard",
+        "target": "p-mage",
+        "skill": "HGS02",
+        "before": 1446.6000000000001,
+        "after": 1437.6000000000001,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 23.130496647418596,
+        "round": 2
+      },
+      {
+        "id": "a6-53-archive-balcony-1",
+        "target": "p-mage",
+        "skill": "HBM01",
+        "before": 1437.6000000000001,
+        "after": 1334.6000000000001,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 182.50335288197294,
+        "round": 2
+      },
+      {
+        "id": "a6-53-lost-sanctuary-1",
+        "target": "p-mage",
+        "skill": "HSH01",
+        "before": 1334.6000000000001,
+        "after": 1303.6000000000001,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 64.29693181042863,
+        "round": 3
+      },
+      {
+        "id": "a6-53-lost-sanctuary-2",
+        "target": "p-mage",
+        "skill": "HBM01",
+        "before": 1303.6000000000001,
+        "after": 1202.6000000000001,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 182.50335288197294,
+        "round": 3
+      },
+      {
+        "id": "a6-53-lost-sanctuary-2",
+        "target": "p-mage",
+        "skill": "HBM01",
+        "before": 1202.6000000000001,
+        "after": 1108.6000000000001,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 182.50335288197294,
+        "round": 4
+      },
+      {
+        "id": "a6-53-lost-sanctuary-1",
+        "target": "p-mage",
+        "skill": "HSH01",
+        "before": 1108.6000000000001,
+        "after": 1077.6000000000001,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 64.29693181042863,
+        "round": 5
+      },
+      {
+        "id": "a6-53-archive-balcony-2",
+        "target": "p-mage",
+        "skill": "HSH02",
+        "before": 1077.6000000000001,
+        "after": 1018.6000000000001,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 123.0140110111646,
+        "round": 5
+      },
+      {
+        "id": "a6-53-lost-sanctuary-3",
+        "target": "p-mage",
+        "skill": "HBM03",
+        "before": 1018.6000000000001,
+        "after": 933.6000000000001,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 177.36375803790185,
+        "round": 5
+      },
+      {
+        "id": "a6-53-lost-sanctuary-1",
+        "target": "p-mage",
+        "skill": "HSH01",
+        "before": 933.6000000000001,
+        "after": 902.6000000000001,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 64.29693181042863,
+        "round": 6
+      },
+      {
+        "id": "a6-53-archive-balcony-2",
+        "target": "p-mage",
+        "skill": "HSH02",
+        "before": 902.6000000000001,
+        "after": 863.6000000000001,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 82.27653816485889,
+        "round": 6
+      },
+      {
+        "id": "a6-53-lost-sanctuary-2",
+        "target": "p-mage",
+        "skill": "HBM01",
+        "before": 863.6000000000001,
+        "after": 769.6000000000001,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 182.50335288197294,
+        "round": 6
+      },
+      {
+        "id": "a6-53-lost-sanctuary-2",
+        "target": "p-mage",
+        "skill": "HBM01",
+        "before": 701.5000000000001,
+        "after": 603.5000000000001,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 182.50335288197294,
+        "round": 7
+      },
+      {
+        "id": "a6-53-archive-balcony-2",
+        "target": "p-mage",
+        "skill": "HSH02",
+        "before": 603.5000000000001,
+        "after": 552.5000000000001,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 106.93506269003804,
+        "round": 7
+      },
+      {
+        "id": "a6-53-lost-sanctuary-1",
+        "target": "p-mage",
+        "skill": "HSH02",
+        "before": 552.5000000000001,
+        "after": 496.5000000000001,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 117.4684610212575,
+        "round": 7
+      }
+    ],
+    "impacts": [
+      {
+        "id": "a6-53-opening-2",
+        "target": "p-mage",
+        "skill": "HSH01",
+        "before": {
+          "hp": 1477.6000000000001,
+          "shield": 0
+        },
+        "after": {
+          "hp": 1446.6000000000001,
+          "shield": 0
+        },
+        "x": 1355.00171333362,
+        "y": 1893.9338796188622,
+        "shot": 5,
+        "round": 2
+      },
+      {
+        "id": "draft-lower-lane-guard",
+        "target": "p-mage",
+        "skill": "HGS02",
+        "before": {
+          "hp": 1446.6000000000001,
+          "shield": 0
+        },
+        "after": {
+          "hp": 1437.6000000000001,
+          "shield": 0
+        },
+        "x": 1395.733997184439,
+        "y": 1844.1111329136284,
+        "shot": 6,
+        "round": 2
+      },
+      {
+        "id": "a6-53-archive-balcony-2",
+        "target": "p-mage",
+        "skill": "HSH01",
+        "before": {
+          "hp": 1334.6000000000001,
+          "shield": 0
+        },
+        "after": {
+          "hp": 1334.6000000000001,
+          "shield": 0
+        },
+        "x": 1393.3590412821156,
+        "y": 1876.079959178225,
+        "shot": 8,
+        "round": 2
+      },
+      {
+        "id": "a6-53-lost-sanctuary-1",
+        "target": "p-mage",
+        "skill": "HSH01",
+        "before": {
+          "hp": 1334.6000000000001,
+          "shield": 0
+        },
+        "after": {
+          "hp": 1303.6000000000001,
+          "shield": 0
+        },
+        "x": 2115.8980230174684,
+        "y": 1412.1478987193036,
+        "shot": 10,
+        "round": 3
+      },
+      {
+        "id": "a6-53-lost-sanctuary-1",
+        "target": "p-mage",
+        "skill": "HSH01",
+        "before": {
+          "hp": 1108.6000000000001,
+          "shield": 0
+        },
+        "after": {
+          "hp": 1077.6000000000001,
+          "shield": 0
+        },
+        "x": 2238.0994829397873,
+        "y": 1263.1353430641805,
+        "shot": 15,
+        "round": 5
+      },
+      {
+        "id": "a6-53-archive-balcony-2",
+        "target": "p-mage",
+        "skill": "HSH02",
+        "before": {
+          "hp": 1077.6000000000001,
+          "shield": 0
+        },
+        "after": {
+          "hp": 1018.6000000000001,
+          "shield": 0
+        },
+        "x": 2240.38519435934,
+        "y": 1244.7301484091956,
+        "shot": 16,
+        "round": 5
+      },
+      {
+        "id": "a6-53-lost-sanctuary-1",
+        "target": "p-mage",
+        "skill": "HSH01",
+        "before": {
+          "hp": 933.6000000000001,
+          "shield": 0
+        },
+        "after": {
+          "hp": 902.6000000000001,
+          "shield": 0
+        },
+        "x": 2071.1415101580205,
+        "y": 1382.3938921877002,
+        "shot": 19,
+        "round": 6
+      },
+      {
+        "id": "a6-53-archive-balcony-2",
+        "target": "p-mage",
+        "skill": "HSH02",
+        "before": {
+          "hp": 902.6000000000001,
+          "shield": 0
+        },
+        "after": {
+          "hp": 863.6000000000001,
+          "shield": 0
+        },
+        "x": 2132.529403420993,
+        "y": 1316.568769408922,
+        "shot": 20,
+        "round": 6
+      },
+      {
+        "id": "a6-53-archive-balcony-2",
+        "target": "p-mage",
+        "skill": "HSH02",
+        "before": {
+          "hp": 603.5000000000001,
+          "shield": 0
+        },
+        "after": {
+          "hp": 552.5000000000001,
+          "shield": 0
+        },
+        "x": 2176.672754820279,
+        "y": 1294.8163930781934,
+        "shot": 24,
+        "round": 7
+      },
+      {
+        "id": "a6-53-lost-sanctuary-1",
+        "target": "p-mage",
+        "skill": "HSH02",
+        "before": {
+          "hp": 552.5000000000001,
+          "shield": 0
+        },
+        "after": {
+          "hp": 496.5000000000001,
+          "shield": 0
+        },
+        "x": 2179.3381598726864,
+        "y": 1304.1612110766098,
+        "shot": 25,
+        "round": 7
+      }
+    ],
+    "knockbacks": [],
+    "enemyTurns": [
+      {
+        "id": "a6-53-gate-timber-1",
+        "round": 1,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 973.7250369360618,
+        "y": 2204.723336643945
+      },
+      {
+        "id": "draft-lower-lane-guard",
+        "round": 1,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1100,
+        "y": 1992.8
+      },
+      {
+        "id": "a6-53-opening-1",
+        "round": 1,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 740,
+        "y": 2386.28
+      },
+      {
+        "id": "a6-53-opening-2",
+        "round": 1,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1320,
+        "y": 1917.0666666666666
+      },
+      {
+        "id": "a6-53-opening-2",
+        "round": 2,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1238.9121721300671,
+        "y": 1939.70468087473
+      },
+      {
+        "id": "draft-lower-lane-guard",
+        "round": 2,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1121.2506057558098,
+        "y": 1984.677546244446
+      },
+      {
+        "id": "a6-53-archive-balcony-1",
+        "round": 2,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1483.7912117711185,
+        "y": 1873.3730137208588
+      },
+      {
+        "id": "a6-53-archive-balcony-2",
+        "round": 2,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1620,
+        "y": 1845.2941176470588
+      },
+      {
+        "id": "a6-53-lost-sanctuary-1",
+        "round": 3,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 2090,
+        "y": 1422.2826086956522
+      },
+      {
+        "id": "a6-53-archive-balcony-2",
+        "round": 3,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1825.416666666673,
+        "y": 1753.298611111104
+      },
+      {
+        "id": "a6-53-lost-sanctuary-2",
+        "round": 3,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 2200,
+        "y": 1373.75
+      },
+      {
+        "id": "a6-53-lost-sanctuary-2",
+        "round": 4,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 2156.650259516349,
+        "y": 1422.5184580441075
+      },
+      {
+        "id": "a6-53-archive-balcony-2",
+        "round": 4,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1707.0000000000027,
+        "y": 1647.0666666666655
+      },
+      {
+        "id": "a6-53-lost-sanctuary-1",
+        "round": 4,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 2090,
+        "y": 1422.2826086956522
+      },
+      {
+        "id": "a6-53-lost-sanctuary-1",
+        "round": 5,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 2179.6134112503773,
+        "y": 1380.39807952428
+      },
+      {
+        "id": "draft-upper-side-guard",
+        "round": 5,
+        "bossPhase": null,
+        "phase": "review",
+        "grounded": true,
+        "x": 2905,
+        "y": 1060
+      },
+      {
+        "id": "a6-53-archive-balcony-2",
+        "round": 5,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1623.8276768817,
+        "y": 1685.8804174552067
+      },
+      {
+        "id": "a6-53-lost-sanctuary-3",
+        "round": 5,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 2374.1014016585355,
+        "y": 1208.0025299478561
+      },
+      {
+        "id": "a6-53-lost-sanctuary-1",
+        "round": 6,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1906.1035571299553,
+        "y": 1537.25854207281
+      },
+      {
+        "id": "a6-53-archive-balcony-2",
+        "round": 6,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1623.8276768817,
+        "y": 1685.8804174552067
+      },
+      {
+        "id": "a6-53-lost-sanctuary-2",
+        "round": 6,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 2083.820176757179,
+        "y": 1493.1716494590564
+      },
+      {
+        "id": "a6-53-lost-sanctuary-2",
+        "round": 7,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 2030.4261776692733,
+        "y": 1450.126895219796
+      },
+      {
+        "id": "a6-53-archive-balcony-2",
+        "round": 7,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1623.8276768817,
+        "y": 1685.8804174552067
+      },
+      {
+        "id": "a6-53-lost-sanctuary-1",
+        "round": 7,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1824.1033910071524,
+        "y": 1592.4184175299956
+      },
+      {
+        "id": "a6-53-lost-sanctuary-3",
+        "round": 8,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 2306.7976928243575,
+        "y": 1253.602595572598
+      },
+      {
+        "id": "draft-upper-side-guard",
+        "round": 8,
+        "bossPhase": null,
+        "phase": "review",
+        "grounded": true,
+        "x": 2905,
+        "y": 1060
+      }
+    ],
+    "joins": [
+      {
+        "id": "draft-lower-lane-guard",
+        "role": "fire",
+        "source": "original",
+        "round": 1,
+        "bossPhase": null,
+        "x": 1100,
+        "y": 1992.8,
+        "grounded": true,
+        "surface": "library-balcony"
+      },
+      {
+        "id": "draft-upper-side-guard",
+        "role": "ice",
+        "source": "original",
+        "round": 1,
+        "bossPhase": null,
+        "x": 2905,
+        "y": 1060,
+        "grounded": true,
+        "surface": "south"
+      },
+      {
+        "id": "a6-53-opening-1",
+        "role": "leaper",
+        "source": "opening",
+        "round": 1,
+        "bossPhase": null,
+        "x": 740,
+        "y": 2386.28,
+        "grounded": true,
+        "surface": "south"
+      },
+      {
+        "id": "a6-53-opening-2",
+        "role": "ice",
+        "source": "opening",
+        "round": 1,
+        "bossPhase": null,
+        "x": 1320,
+        "y": 1917.0666666666666,
+        "grounded": true,
+        "surface": "library-balcony"
+      },
+      {
+        "id": "a6-53-opening-3",
+        "role": "leaper",
+        "source": "opening",
+        "round": 1,
+        "bossPhase": null,
+        "x": 1985,
+        "y": 1587.5,
+        "grounded": true,
+        "surface": "south"
+      },
+      {
+        "id": "a6-53-gate-timber-1",
+        "role": "leaper",
+        "source": "gate-timber",
+        "round": 1,
+        "bossPhase": null,
+        "x": 970,
+        "y": 2208.0434782608695,
+        "grounded": true,
+        "surface": "south"
+      },
+      {
+        "id": "a6-53-archive-balcony-1",
+        "role": "leaper",
+        "source": "archive-balcony",
+        "round": 1,
+        "bossPhase": null,
+        "x": 1480,
+        "y": 1876.111111111111,
+        "grounded": true,
+        "surface": "south"
+      },
+      {
+        "id": "a6-53-archive-balcony-2",
+        "role": "ice",
+        "source": "archive-balcony",
+        "round": 1,
+        "bossPhase": null,
+        "x": 1620,
+        "y": 1845.2941176470588,
+        "grounded": true,
+        "surface": "south"
+      },
+      {
+        "id": "a6-53-archive-balcony-3",
+        "role": "leaper",
+        "source": "archive-balcony",
+        "round": 3,
+        "bossPhase": null,
+        "x": 1700,
+        "y": 1650.3333333333333,
+        "grounded": true,
+        "surface": "sanctuary-beam"
+      },
+      {
+        "id": "a6-53-lost-sanctuary-1",
+        "role": "ice",
+        "source": "lost-sanctuary",
+        "round": 3,
+        "bossPhase": null,
+        "x": 2090,
+        "y": 1422.2826086956522,
+        "grounded": true,
+        "surface": "sanctuary-beam"
+      },
+      {
+        "id": "a6-53-lost-sanctuary-2",
+        "role": "leaper",
+        "source": "lost-sanctuary",
+        "round": 3,
+        "bossPhase": null,
+        "x": 2200,
+        "y": 1373.75,
+        "grounded": true,
+        "surface": "south"
+      },
+      {
+        "id": "a6-53-lost-sanctuary-3",
+        "role": "leaper",
+        "source": "lost-sanctuary",
+        "round": 3,
+        "bossPhase": null,
+        "x": 2380,
+        "y": 1204.1379310344828,
+        "grounded": true,
+        "surface": "south"
+      }
+    ],
+    "queues": [
+      {
+        "round": 1,
+        "queue": [
+          "a6-53-gate-timber-1",
+          "a6-53-opening-1",
+          "draft-lower-lane-guard",
+          "a6-53-opening-2"
+        ],
+        "fronts": []
+      },
+      {
+        "round": 2,
+        "queue": [
+          "a6-53-opening-2",
+          "a6-53-archive-balcony-1",
+          "a6-53-archive-balcony-2",
+          "draft-lower-lane-guard"
+        ],
+        "fronts": []
+      },
+      {
+        "round": 3,
+        "queue": [
+          "a6-53-lost-sanctuary-1",
+          "a6-53-lost-sanctuary-2",
+          "a6-53-archive-balcony-2"
+        ],
+        "fronts": []
+      },
+      {
+        "round": 4,
+        "queue": [
+          "a6-53-lost-sanctuary-2",
+          "a6-53-archive-balcony-2",
+          "a6-53-lost-sanctuary-1"
+        ],
+        "fronts": []
+      },
+      {
+        "round": 5,
+        "queue": [
+          "a6-53-lost-sanctuary-1",
+          "a6-53-lost-sanctuary-3",
+          "a6-53-archive-balcony-2",
+          "draft-upper-side-guard"
+        ],
+        "fronts": []
+      },
+      {
+        "round": 6,
+        "queue": [
+          "a6-53-lost-sanctuary-1",
+          "a6-53-lost-sanctuary-2",
+          "a6-53-archive-balcony-2"
+        ],
+        "fronts": []
+      },
+      {
+        "round": 7,
+        "queue": [
+          "a6-53-lost-sanctuary-2",
+          "a6-53-lost-sanctuary-1",
+          "a6-53-archive-balcony-2"
+        ],
+        "fronts": []
+      },
+      {
+        "round": 8,
+        "queue": [
+          "a6-53-lost-sanctuary-3",
+          "draft-upper-side-guard"
+        ],
+        "fronts": []
+      }
+    ],
+    "peak": 6,
+    "initialRng": 19388,
+    "seed": 19388,
+    "peakWitness": {
+      "round": 1,
+      "bossPhase": null,
+      "phase": "aim",
+      "ids": [
+        "draft-lower-lane-guard",
+        "a6-53-opening-1",
+        "a6-53-opening-2",
+        "a6-53-gate-timber-1",
+        "a6-53-archive-balcony-1",
+        "a6-53-archive-balcony-2"
+      ]
+    },
+    "initial": 6,
+    "limit": 4,
+    "hostP95": 133.39999999999418
+  },
+  "boundary": {
+    "schema": "honro-act6-boundary/v2",
+    "slot": "honro-campaign-act6-boundary-v2:eq-mwuu06k6-y7h4w7qc",
+    "runId": "eq-mwuu06k6-y7h4w7qc",
+    "from": 53,
+    "to": 54,
+    "kind": "mage-with-real-M09-plus-three-parked",
+    "generation": 3,
+    "parent": "871d99430ac50050008b5db1ba22d1dbbbc8603d6ac47344b74456d77a52a407",
+    "pin": {
+      "from": 53,
+      "to": 54,
+      "build": "7796876fbe159eecd63e223b5f44cf4913b3be4a301169964b9fd63fc7edb3f6",
+      "fromPacket": "8f046099facbcca3e715115256795f8252434d5cf42066606fea372cbe141830",
+      "toPacket": "db8378878dd4cbf81e8f2463d6f466c72c7bd8420331a12486919513c9a049b4",
+      "owner": "896a6a55ba2cbfc21f64478ede59e825c735b1a3d0bc1dca563771424dcc9799",
+      "play": "3913a4853a7acca4fb18851fad6ff5f36288ff36e0d86a8f0c03267176b59f57",
+      "world": "cb812ca24f46e3b1049ffbc621985dd40846e8acab1f8fedcf09bb325039e6d3"
+    },
+    "profileSHA": "624977606fd1a5b7c23ca6ca492fec8aee57a04e9b2a0a25bd358bcc64a8747b",
+    "terminal": {
+      "stage": 53,
+      "won": true,
+      "flags": {
+        "act6.innerStakeAReady": true
+      },
+      "mage": {
+        "id": "p-mage",
+        "cls": "mage",
+        "hp": 496.5000000000001,
+        "maxHp": 2050,
+        "focus": 708,
+        "maxFocus": 724,
+        "shield": 0,
+        "level": 25,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "tune": 0.5,
+        "ranks": {
+          "M01": 1,
+          "M07": 4,
+          "M10": 3
+        },
+        "h": 92,
+        "r": 22,
+        "equipmentState": {
+          "version": 1
+        },
+        "dead": false
+      },
+      "external": {
+        "archer": {
+          "id": "p-archer",
+          "name": "설오",
+          "role": "archer",
+          "cls": "archer",
+          "side": 0,
+          "x": 4398.557742659368,
+          "y": 3878.0372858887927,
+          "vx": 0,
+          "vy": 0,
+          "hp": 1651,
+          "maxHp": 1720,
+          "r": 22,
+          "h": 92,
+          "focus": 404,
+          "maxFocus": 404,
+          "regen": 28,
+          "level": 25,
+          "attack": 11.98825,
+          "armor": 0.42800000000000005,
+          "shield": 206,
+          "bound": 0,
+          "mark": 0,
+          "breaks": 0,
+          "acted": true,
+          "moveLeft": 1036.1013760212497,
+          "maxMove": 2921,
+          "walkSpeed": 425,
+          "angle": 52.91371749235654,
+          "lastPower": 0.54,
+          "loadout": [
+            "A01",
+            "A14",
+            "A02",
+            "A05"
+          ],
+          "tune": 0.5,
+          "facing": 1,
+          "hurt": 0,
+          "anim": 0,
+          "airborne": false,
+          "fixed": false,
+          "spawnX": 1200,
+          "spawnY": 1224.5833333333333,
+          "intent": "",
+          "dead": false,
+          "ranks": {
+            "A01": 1,
+            "A14": 4,
+            "A02": 4,
+            "A05": 4
+          },
+          "group": 0,
+          "awake": true,
+          "lastAct": 0,
+          "aggroUntil": 0,
+          "xpBudget": 0,
+          "xpGranted": 0,
+          "killRewarded": false,
+          "damageBy": {},
+          "honroAlly": false,
+          "honroCivilian": false,
+          "critChance": 0.28400000000000003,
+          "critMultiplier": 3.085,
+          "cooldowns": {},
+          "moving": 0,
+          "eaterSwallow": 0,
+          "landing": 0.26,
+          "impactCooldown": 0,
+          "salheunFlash": 0,
+          "walkPhase": 154.14725244717326,
+          "honroShieldSources": {
+            "": 0,
+            "p-archer": 206
+          },
+          "jumping": false,
+          "equipmentState": {
+            "version": 1,
+            "jumpCycle": 6
+          },
+          "shieldUntil": 6,
+          "jucheon": 0,
+          "jucheonReady": false
+        },
+        "knight": {
+          "id": "p-knight",
+          "name": "휘겸",
+          "role": "knight",
+          "cls": "knight",
+          "side": 0,
+          "x": 4400.808951849008,
+          "y": 3876.050924839111,
+          "vx": 0,
+          "vy": 0,
+          "hp": 3688.1,
+          "maxHp": 3846,
+          "r": 22,
+          "h": 92,
+          "focus": 477,
+          "maxFocus": 477,
+          "regen": 28,
+          "level": 25,
+          "attack": 9.98515,
+          "armor": 0.7,
+          "shield": 0,
+          "bound": 0,
+          "mark": 0,
+          "breaks": 0,
+          "acted": false,
+          "moveLeft": 4081,
+          "maxMove": 4081,
+          "walkSpeed": 420,
+          "angle": 44,
+          "lastPower": 0.55,
+          "loadout": [
+            "S00",
+            "S01",
+            "S03"
+          ],
+          "tune": 0.5,
+          "facing": 1,
+          "hurt": 0,
+          "anim": 0,
+          "airborne": false,
+          "fixed": false,
+          "spawnX": 1080,
+          "spawnY": 1166.111111111111,
+          "intent": "",
+          "dead": false,
+          "ranks": {
+            "S00": 1,
+            "S01": 4,
+            "S03": 4
+          },
+          "group": 0,
+          "awake": true,
+          "lastAct": 0,
+          "aggroUntil": 0,
+          "xpBudget": 0,
+          "xpGranted": 0,
+          "killRewarded": false,
+          "damageBy": {},
+          "honroAlly": false,
+          "honroCivilian": false,
+          "critChance": 0.1648,
+          "critMultiplier": 2.5330000000000004,
+          "cooldowns": {},
+          "equipmentState": {
+            "version": 1
+          },
+          "eaterSwallow": 0,
+          "moving": 0,
+          "landing": 0,
+          "impactCooldown": 0,
+          "salheunFlash": 0,
+          "honroShieldSources": {
+            "p-knight": 462
+          },
+          "walkPhase": 155.96559506897273,
+          "jumping": false,
+          "jucheon": 0,
+          "jucheonReady": false
+        },
+        "occultist": {
+          "id": "p-occultist",
+          "name": "소단",
+          "role": "occultist",
+          "cls": "occultist",
+          "side": 0,
+          "x": 4399.834064268077,
+          "y": 3876.9111197634616,
+          "vx": 0,
+          "vy": 0,
+          "hp": 2144.1,
+          "maxHp": 2304,
+          "r": 22,
+          "h": 92,
+          "focus": 751,
+          "maxFocus": 751,
+          "regen": 32,
+          "level": 25,
+          "attack": 11.170800000000002,
+          "armor": 0.487,
+          "shield": 0,
+          "bound": 0,
+          "mark": 0,
+          "breaks": 0,
+          "acted": false,
+          "moveLeft": 3132,
+          "maxMove": 3132,
+          "walkSpeed": 416,
+          "angle": 44,
+          "lastPower": 0.55,
+          "loadout": [
+            "O01",
+            "O04",
+            "O03",
+            "O06"
+          ],
+          "tune": 0.5,
+          "facing": 1,
+          "hurt": 0,
+          "anim": 0,
+          "airborne": false,
+          "fixed": false,
+          "spawnX": 1000,
+          "spawnY": 1151.888888888889,
+          "intent": "",
+          "dead": false,
+          "spiritSight": true,
+          "ranks": {
+            "O01": 1,
+            "O06": 5,
+            "O02": 4,
+            "O03": 3,
+            "O04": 2
+          },
+          "group": 0,
+          "awake": true,
+          "lastAct": 0,
+          "aggroUntil": 0,
+          "xpBudget": 0,
+          "xpGranted": 0,
+          "killRewarded": false,
+          "damageBy": {},
+          "honroAlly": false,
+          "honroCivilian": false,
+          "critChance": 0.20700000000000002,
+          "critMultiplier": 2.4855,
+          "cooldowns": {},
+          "eaterSwallow": 0,
+          "moving": 0,
+          "landing": 0,
+          "impactCooldown": 0,
+          "salheunFlash": 0,
+          "honroShieldSources": {
+            "p-occultist": 276
+          },
+          "walkPhase": 158.8154148591665,
+          "jumping": false,
+          "equipmentState": {
+            "version": 1
+          },
+          "jucheon": 0,
+          "jucheonReady": false
+        }
+      },
+      "stake": {
+        "shot": 26,
+        "x": 2499.696588320116,
+        "y": 574.0004157953158,
+        "round": 8
+      },
+      "frames": [],
+      "settlement": false,
+      "bridge": {
+        "id": "mumyeongsa-broken-rail",
+        "clearWidth": 224,
+        "gravity": 320,
+        "from": {
+          "id": "p-mage",
+          "x": 3240,
+          "y": 457.94999999999857,
+          "vx": 0,
+          "vy": 0,
+          "grounded": true,
+          "surface": "b-inner-jamb"
+        },
+        "to": {
+          "id": "p-mage",
+          "x": 3240,
+          "y": 454.59999999999854,
+          "vx": 0,
+          "vy": 0,
+          "grounded": true,
+          "surface": "b-inner-jamb"
+        }
+      },
+      "sodanThread": {
+        "version": 1,
+        "body": "p-occultist",
+        "casts": []
+      }
+    },
+    "terminalSHA": "f5c65cc239e614164c7aa2e6f387046d6c38eea433e7256284bd56430227beba",
+    "custody": {
+      "mage": {
+        "id": "p-mage",
+        "name": "담허",
+        "role": "mage",
+        "cls": "mage",
+        "side": 0,
+        "x": 3240,
+        "y": 454.59999999999854,
+        "vx": 0,
+        "vy": 0,
+        "hp": 496.5000000000001,
+        "maxHp": 2050,
+        "r": 22,
+        "h": 92,
+        "focus": 708,
+        "maxFocus": 724,
+        "regen": 28,
+        "level": 25,
+        "attack": 11.4116,
+        "armor": 0.472,
+        "shield": 0,
+        "bound": 0,
+        "mark": 0,
+        "breaks": 0,
+        "acted": false,
+        "moveLeft": 2515.400000757876,
+        "maxMove": 3075,
+        "walkSpeed": 402,
+        "angle": -25.036999999997363,
+        "lastPower": 0.6880519876015183,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "tune": 0.5,
+        "facing": 1,
+        "hurt": 0,
+        "anim": 0,
+        "airborne": false,
+        "fixed": false,
+        "spawnX": 425,
+        "spawnY": 2477,
+        "intent": "",
+        "dead": false,
+        "ranks": {
+          "M01": 1,
+          "M07": 4,
+          "M10": 3
+        },
+        "group": 0,
+        "awake": true,
+        "lastAct": 0,
+        "aggroUntil": 0,
+        "xpBudget": 0,
+        "xpGranted": 0,
+        "killRewarded": false,
+        "damageBy": {},
+        "honroAlly": false,
+        "honroCivilian": false,
+        "critChance": 0.174,
+        "critMultiplier": 2.51,
+        "cooldowns": {},
+        "equipmentState": {
+          "version": 1
+        },
+        "jumping": false,
+        "eaterSwallow": 0,
+        "moving": 0.07166666666666667,
+        "landing": 0,
+        "impactCooldown": 0,
+        "salheunFlash": 0,
+        "walkPhase": 148.32968033634882,
+        "honroShieldSources": {},
+        "gateTurn": "8:7",
+        "jucheon": 0,
+        "jucheonReady": false
+      },
+      "external": {
+        "archer": {
+          "id": "p-archer",
+          "name": "설오",
+          "role": "archer",
+          "cls": "archer",
+          "side": 0,
+          "x": 4398.557742659368,
+          "y": 3878.0372858887927,
+          "vx": 0,
+          "vy": 0,
+          "hp": 1651,
+          "maxHp": 1720,
+          "r": 22,
+          "h": 92,
+          "focus": 404,
+          "maxFocus": 404,
+          "regen": 28,
+          "level": 25,
+          "attack": 11.98825,
+          "armor": 0.42800000000000005,
+          "shield": 206,
+          "bound": 0,
+          "mark": 0,
+          "breaks": 0,
+          "acted": true,
+          "moveLeft": 1036.1013760212497,
+          "maxMove": 2921,
+          "walkSpeed": 425,
+          "angle": 52.91371749235654,
+          "lastPower": 0.54,
+          "loadout": [
+            "A01",
+            "A14",
+            "A02",
+            "A05"
+          ],
+          "tune": 0.5,
+          "facing": 1,
+          "hurt": 0,
+          "anim": 0,
+          "airborne": false,
+          "fixed": false,
+          "spawnX": 1200,
+          "spawnY": 1224.5833333333333,
+          "intent": "",
+          "dead": false,
+          "ranks": {
+            "A01": 1,
+            "A14": 4,
+            "A02": 4,
+            "A05": 4
+          },
+          "group": 0,
+          "awake": true,
+          "lastAct": 0,
+          "aggroUntil": 0,
+          "xpBudget": 0,
+          "xpGranted": 0,
+          "killRewarded": false,
+          "damageBy": {},
+          "honroAlly": false,
+          "honroCivilian": false,
+          "critChance": 0.28400000000000003,
+          "critMultiplier": 3.085,
+          "cooldowns": {},
+          "moving": 0,
+          "eaterSwallow": 0,
+          "landing": 0.26,
+          "impactCooldown": 0,
+          "salheunFlash": 0,
+          "walkPhase": 154.14725244717326,
+          "honroShieldSources": {
+            "": 0,
+            "p-archer": 206
+          },
+          "jumping": false,
+          "equipmentState": {
+            "version": 1,
+            "jumpCycle": 6
+          },
+          "shieldUntil": 6,
+          "jucheon": 0,
+          "jucheonReady": false
+        },
+        "knight": {
+          "id": "p-knight",
+          "name": "휘겸",
+          "role": "knight",
+          "cls": "knight",
+          "side": 0,
+          "x": 4400.808951849008,
+          "y": 3876.050924839111,
+          "vx": 0,
+          "vy": 0,
+          "hp": 3688.1,
+          "maxHp": 3846,
+          "r": 22,
+          "h": 92,
+          "focus": 477,
+          "maxFocus": 477,
+          "regen": 28,
+          "level": 25,
+          "attack": 9.98515,
+          "armor": 0.7,
+          "shield": 0,
+          "bound": 0,
+          "mark": 0,
+          "breaks": 0,
+          "acted": false,
+          "moveLeft": 4081,
+          "maxMove": 4081,
+          "walkSpeed": 420,
+          "angle": 44,
+          "lastPower": 0.55,
+          "loadout": [
+            "S00",
+            "S01",
+            "S03"
+          ],
+          "tune": 0.5,
+          "facing": 1,
+          "hurt": 0,
+          "anim": 0,
+          "airborne": false,
+          "fixed": false,
+          "spawnX": 1080,
+          "spawnY": 1166.111111111111,
+          "intent": "",
+          "dead": false,
+          "ranks": {
+            "S00": 1,
+            "S01": 4,
+            "S03": 4
+          },
+          "group": 0,
+          "awake": true,
+          "lastAct": 0,
+          "aggroUntil": 0,
+          "xpBudget": 0,
+          "xpGranted": 0,
+          "killRewarded": false,
+          "damageBy": {},
+          "honroAlly": false,
+          "honroCivilian": false,
+          "critChance": 0.1648,
+          "critMultiplier": 2.5330000000000004,
+          "cooldowns": {},
+          "equipmentState": {
+            "version": 1
+          },
+          "eaterSwallow": 0,
+          "moving": 0,
+          "landing": 0,
+          "impactCooldown": 0,
+          "salheunFlash": 0,
+          "honroShieldSources": {
+            "p-knight": 462
+          },
+          "walkPhase": 155.96559506897273,
+          "jumping": false,
+          "jucheon": 0,
+          "jucheonReady": false
+        },
+        "occultist": {
+          "id": "p-occultist",
+          "name": "소단",
+          "role": "occultist",
+          "cls": "occultist",
+          "side": 0,
+          "x": 4399.834064268077,
+          "y": 3876.9111197634616,
+          "vx": 0,
+          "vy": 0,
+          "hp": 2144.1,
+          "maxHp": 2304,
+          "r": 22,
+          "h": 92,
+          "focus": 751,
+          "maxFocus": 751,
+          "regen": 32,
+          "level": 25,
+          "attack": 11.170800000000002,
+          "armor": 0.487,
+          "shield": 0,
+          "bound": 0,
+          "mark": 0,
+          "breaks": 0,
+          "acted": false,
+          "moveLeft": 3132,
+          "maxMove": 3132,
+          "walkSpeed": 416,
+          "angle": 44,
+          "lastPower": 0.55,
+          "loadout": [
+            "O01",
+            "O04",
+            "O03",
+            "O06"
+          ],
+          "tune": 0.5,
+          "facing": 1,
+          "hurt": 0,
+          "anim": 0,
+          "airborne": false,
+          "fixed": false,
+          "spawnX": 1000,
+          "spawnY": 1151.888888888889,
+          "intent": "",
+          "dead": false,
+          "spiritSight": true,
+          "ranks": {
+            "O01": 1,
+            "O06": 5,
+            "O02": 4,
+            "O03": 3,
+            "O04": 2
+          },
+          "group": 0,
+          "awake": true,
+          "lastAct": 0,
+          "aggroUntil": 0,
+          "xpBudget": 0,
+          "xpGranted": 0,
+          "killRewarded": false,
+          "damageBy": {},
+          "honroAlly": false,
+          "honroCivilian": false,
+          "critChance": 0.20700000000000002,
+          "critMultiplier": 2.4855,
+          "cooldowns": {},
+          "eaterSwallow": 0,
+          "moving": 0,
+          "landing": 0,
+          "impactCooldown": 0,
+          "salheunFlash": 0,
+          "honroShieldSources": {
+            "p-occultist": 276
+          },
+          "walkPhase": 158.8154148591665,
+          "jumping": false,
+          "equipmentState": {
+            "version": 1
+          },
+          "jucheon": 0,
+          "jucheonReady": false
+        }
+      },
+      "witness": {
+        "attackSide": 0,
+        "damageRoll": 1,
+        "id": 19,
+        "skill": "M09",
+        "owner": "p-mage",
+        "side": 0,
+        "x": 2499.696588320116,
+        "y": 574.0004157953158,
+        "rank": 1,
+        "damage": 0,
+        "shot": 26,
+        "effectBoost": 0,
+        "expires": 14
+      }
+    },
+    "custodySHA": "9809efa0c93ff5cd5453b680c49b39426c1ff0b877ddd4e7880d9162d12a9e8e",
+    "stageSeed": {
+      "id": 53,
+      "local": 53,
+      "region": 6,
+      "act": 6,
+      "actStage": 3,
+      "active": 1,
+      "requires": [
+        52
+      ],
+      "name": "끝없이 이어지는 법당",
+      "goal": "담허의 진목을 지정 받침에 설치하세요.",
+      "objective": "act6-native",
+      "w": 3540,
+      "h": 3000,
+      "story": [],
+      "outro": [],
+      "wind": [
+        0
+      ],
+      "victoryRule": {
+        "kind": "scripted",
+        "target": "act6-native-53"
+      }
+    },
+    "budget": {
+      "id": 53,
+      "act": 6,
+      "entryLevel": 25,
+      "exitLevel": 25,
+      "rewardCurve": "current",
+      "balanceStatus": "detached-zero-increment-horizon"
+    }
+  },
+  "cold": {
+    "snapshot": {
+      "stageId": 54,
+      "honroStage": 54,
+      "mode": "campaign",
+      "authoredId": "stage-54",
+      "round": 1,
+      "phase": "aim",
+      "side": 0,
+      "shot": 0,
+      "rng": 19388,
+      "active": "p-mage",
+      "dialogue": false,
+      "isolatedStore": false,
+      "play": [
+        3540,
+        3000
+      ],
+      "terrainBounds": {
+        "left": -320,
+        "top": -320,
+        "right": 3860,
+        "bottom": 3320
+      },
+      "playBounds": {
+        "left": 0,
+        "top": 0,
+        "right": 3540,
+        "bottom": 3000
+      },
+      "camera": {
+        "x": 250,
+        "y": 2485.6363636363635,
+        "zoom": null
+      },
+      "gravity": {
+        "x": 0,
+        "y": 320
+      },
+      "fieldFlags": [
+        {
+          "id": "mumyeongsa-broken-rail",
+          "gravity": {
+            "x": 320,
+            "y": 0
+          },
+          "projectileOnly": false
+        }
+      ],
+      "terrain": [
+        {
+          "id": "b-entry-sill",
+          "vertices": 4,
+          "oneWay": false
+        },
+        {
+          "id": "b-inner-jamb",
+          "vertices": 4,
+          "oneWay": false
+        },
+        {
+          "id": "b-outer-jamb",
+          "vertices": 4,
+          "oneWay": false
+        },
+        {
+          "id": "b-shaft-cap",
+          "vertices": 4,
+          "oneWay": false
+        },
+        {
+          "id": "b-dummy-north",
+          "vertices": 4,
+          "oneWay": false
+        },
+        {
+          "id": "b-dummy-west",
+          "vertices": 5,
+          "oneWay": false
+        },
+        {
+          "id": "b-dummy-east",
+          "vertices": 4,
+          "oneWay": false
+        },
+        {
+          "id": "b-dummy-south",
+          "vertices": 5,
+          "oneWay": false
+        }
+      ],
+      "worldTerrain": [
+        {
+          "id": "b-entry-sill",
+          "vertices": 4
+        },
+        {
+          "id": "b-inner-jamb",
+          "vertices": 4
+        },
+        {
+          "id": "b-outer-jamb",
+          "vertices": 4
+        },
+        {
+          "id": "b-shaft-cap",
+          "vertices": 4
+        },
+        {
+          "id": "b-dummy-north",
+          "vertices": 4
+        },
+        {
+          "id": "b-dummy-west",
+          "vertices": 5
+        },
+        {
+          "id": "b-dummy-east",
+          "vertices": 4
+        },
+        {
+          "id": "b-dummy-south",
+          "vertices": 5
+        }
+      ],
+      "enemies": [
+        "mumyeongsa-b-wall-guard",
+        "mumyeongsa-b-aperture-ghost",
+        "mumyeongsa-b-rear-shade",
+        "mumyeongsa-b-rear-guard"
+      ],
+      "units": [
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "side": 0,
+          "level": 25,
+          "hp": 496.5000000000001,
+          "maxHp": 2050,
+          "loadout": [
+            "M01",
+            "M10",
+            "M07"
+          ],
+          "pos": [
+            3240,
+            454.6
+          ],
+          "h": 92,
+          "r": 22,
+          "awake": true,
+          "dead": false,
+          "airborne": false,
+          "grounded": true,
+          "validContact": false,
+          "support": null,
+          "fixed": false,
+          "objective": false,
+          "role": "mage",
+          "summoned": false,
+          "ally": false
+        },
+        {
+          "id": "mumyeongsa-b-wall-guard",
+          "cls": "archer",
+          "side": 1,
+          "level": 1,
+          "hp": 600,
+          "maxHp": 600,
+          "loadout": [
+            "LA01"
+          ],
+          "pos": [
+            3201.39,
+            240
+          ],
+          "h": 88,
+          "r": 23,
+          "awake": true,
+          "dead": false,
+          "airborne": true,
+          "grounded": false,
+          "validContact": false,
+          "support": null,
+          "fixed": false,
+          "objective": false,
+          "role": "bow",
+          "summoned": false,
+          "ally": false
+        },
+        {
+          "id": "mumyeongsa-b-aperture-ghost",
+          "cls": "occultist",
+          "side": 1,
+          "level": 1,
+          "hp": 325,
+          "maxHp": 325,
+          "loadout": [
+            "HGS01"
+          ],
+          "pos": [
+            3201.39,
+            128
+          ],
+          "h": 78,
+          "r": 19,
+          "awake": true,
+          "dead": false,
+          "airborne": true,
+          "grounded": false,
+          "validContact": false,
+          "support": null,
+          "fixed": false,
+          "objective": false,
+          "role": "fire",
+          "summoned": false,
+          "ally": false
+        },
+        {
+          "id": "mumyeongsa-b-rear-shade",
+          "cls": "occultist",
+          "side": 1,
+          "level": 1,
+          "hp": 325,
+          "maxHp": 325,
+          "loadout": [
+            "HSH01"
+          ],
+          "pos": [
+            3201.39,
+            548
+          ],
+          "h": 78,
+          "r": 19,
+          "awake": true,
+          "dead": false,
+          "airborne": true,
+          "grounded": false,
+          "validContact": false,
+          "support": null,
+          "fixed": false,
+          "objective": false,
+          "role": "fire",
+          "summoned": false,
+          "ally": false
+        },
+        {
+          "id": "mumyeongsa-b-rear-guard",
+          "cls": "archer",
+          "side": 1,
+          "level": 1,
+          "hp": 325,
+          "maxHp": 325,
+          "loadout": [
+            "LA01"
+          ],
+          "pos": [
+            3201.39,
+            661
+          ],
+          "h": 78,
+          "r": 19,
+          "awake": true,
+          "dead": false,
+          "airborne": true,
+          "grounded": false,
+          "validContact": false,
+          "support": null,
+          "fixed": false,
+          "objective": false,
+          "role": "bow",
+          "summoned": false,
+          "ally": false
+        }
+      ]
+    },
+    "savedBytesBefore": "c07a4cb515e29f4f730b9aa2768706c9610dcd3f6c0a330f813e7c1746c1d1aa",
+    "savedBytesAfter": "c07a4cb515e29f4f730b9aa2768706c9610dcd3f6c0a330f813e7c1746c1d1aa"
+  },
+  "m09": {
+    "input": {
+      "angle": 200,
+      "power": 0.62
+    },
+    "stakes": [
+      {
+        "id": 12,
+        "x": 2640,
+        "y": 569.6666666666666,
+        "side": 0,
+        "skill": "M09",
+        "rank": 1,
+        "owner": "p-mage",
+        "hp": 90,
+        "r": 13,
+        "h": 36,
+        "authoredPassage": true
+      },
+      {
+        "attackSide": 0,
+        "damageRoll": 1,
+        "id": 19,
+        "skill": "M09",
+        "owner": "p-mage",
+        "side": 0,
+        "x": 2499.696588320116,
+        "y": 574.0004157953158,
+        "rank": 1,
+        "damage": 0,
+        "shot": 26,
+        "effectBoost": 0,
+        "expires": 14
+      }
+    ]
+  }
+}
