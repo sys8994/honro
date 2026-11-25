@@ -1,0 +1,122 @@
+{
+  "stage": 53,
+  "before": {
+    "id": "p-mage",
+    "x": 425,
+    "y": 2476.9936305732485,
+    "vx": 0,
+    "vy": 0,
+    "move": 3075,
+    "grounded": true,
+    "support": "south",
+    "phase": "aim",
+    "round": 1,
+    "chart": [
+      3000,
+      3000
+    ],
+    "gravity": {
+      "x": 0,
+      "y": 320
+    }
+  },
+  "walked": {
+    "id": "p-mage",
+    "x": 621.3909452316265,
+    "y": 2465.287976192837,
+    "vx": 0,
+    "vy": 0,
+    "move": 2873.8395856582174,
+    "grounded": true,
+    "support": "south",
+    "phase": "aim",
+    "round": 1,
+    "chart": [
+      3000,
+      3000
+    ],
+    "gravity": {
+      "x": 0,
+      "y": 320
+    }
+  },
+  "rising": {
+    "id": "p-mage",
+    "x": 621.3909452316265,
+    "y": 2391.198902283839,
+    "vx": 0,
+    "vy": -533.8728980036155,
+    "move": 2798.8395856582174,
+    "grounded": false,
+    "support": null,
+    "phase": "aim",
+    "round": 1,
+    "chart": [
+      3000,
+      3000
+    ],
+    "gravity": {
+      "x": 0,
+      "y": 320
+    }
+  },
+  "landed": {
+    "id": "p-mage",
+    "x": 621.3909452316265,
+    "y": 2465.287976192837,
+    "vx": 0,
+    "vy": 0,
+    "move": 2798.8395856582174,
+    "grounded": true,
+    "support": "south",
+    "phase": "aim",
+    "round": 1,
+    "chart": [
+      3000,
+      3000
+    ],
+    "gravity": {
+      "x": 0,
+      "y": 320
+    }
+  },
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "pointerEvents": [
+    {
+      "type": "pointerdown",
+      "pointer": "touch",
+      "trusted": true,
+      "target": "joystick"
+    },
+    {
+      "type": "pointermove",
+      "pointer": "touch",
+      "trusted": true,
+      "target": "joystick"
+    },
+    {
+      "type": "pointerup",
+      "pointer": "touch",
+      "trusted": true,
+      "target": "joystick"
+    },
+    {
+      "type": "pointerdown",
+      "pointer": "touch",
+      "trusted": true,
+      "target": "jump"
+    },
+    {
+      "type": "pointerup",
+      "pointer": "touch",
+      "trusted": true,
+      "target": "jump"
+    }
+  ],
+  "normalSaveUnchanged": true,
+  "errors": [],
+  "chromium": "154.0.8037.57"
+}

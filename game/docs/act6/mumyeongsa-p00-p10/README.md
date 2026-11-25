@@ -1,6 +1,6 @@
 # 무명사 P00 기준선과 P10 시안·경계 설계
 
-[실행·검수 계약](../ACT6_MUMYEONGSA_REBUILD_20261125.md) · [추가 경계 검수 계약](../ACT6_MUMYEONGSA_SEAM_CHECKS_20261125.md) · [A→B→C→D 연결 설계](continuity.md)
+[P00 보강·선택안 보정](second-pass.md) · [실행·검수 계약](../ACT6_MUMYEONGSA_REBUILD_20261125.md) · [추가 경계 검수 계약](../ACT6_MUMYEONGSA_SEAM_CHECKS_20261125.md) · [A→B→C→D 연결 설계](continuity.md)
 
 기준 앱은 master `dd409de2e635c5c0b16877266c1bb233d5a00fd7`의 추적된 `HONRO.html`과 `web/`이다. 작업 브랜치의 고정본 `b51c9ad5757c6e6913daf2d3c0dcbdda87b9b863`과 추가 요구 `4eca508af2c8a44868e1c04669950b7baf341a53`은 각각 문서 한 개를 추가했다. 아래 브라우저 증거는 로컬에서 재생한 그 앱 파일을 사용했다.
 
