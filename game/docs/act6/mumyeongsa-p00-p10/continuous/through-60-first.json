@@ -1,0 +1,291 @@
+{
+  "status": "FAIL",
+  "boundaries": [
+    {
+      "from": 51,
+      "to": 52,
+      "storageHash": "36af663a841fa0aaab9d8bff99c4ad16e97d418ca7681f0a08c23620ba093a16"
+    },
+    {
+      "from": 52,
+      "to": 53,
+      "storageHash": "708f76e45db2572068ae3b9997a9b9c6b48178fc9840369820bd758a30a44411"
+    },
+    {
+      "from": 53,
+      "to": 54,
+      "storageHash": "030aea33beca5bb8c153cf293e55d9692c863349b0228193e8caa1f8767a1e46"
+    },
+    {
+      "from": 54,
+      "to": 55,
+      "storageHash": "8f45a6430739b3aaa043201b5d3a1ac9045a1caaad81e8f5d2ba24eeb6a7c8b3"
+    },
+    {
+      "from": 55,
+      "to": 56,
+      "storageHash": "63cc95a372d6cc1b90718f3fd389dfa7c328becc6af185305a61533c30257f4a"
+    },
+    {
+      "from": 56,
+      "to": 57,
+      "storageHash": "3c05b21b8793c9051619530762f1e85d39d313781f63b4086d9e3912518e0157"
+    },
+    {
+      "from": 57,
+      "to": 58,
+      "storageHash": "82622cd5a72d7a143a99f21036c2e2ea80ca1530c84b8b88cbdf2293b8375f84"
+    },
+    {
+      "from": 58,
+      "to": 59,
+      "storageHash": "86b7c44daa551abe15948951eb53d3e3a4a1e1761b58d6ad2aa4807a31ff69c5"
+    },
+    {
+      "from": 59,
+      "to": 60,
+      "storageHash": "dd45ec8f7681ec2b565f73da2924a7e9598b6f85a057b84f0b8e1e75bc11f5b4"
+    }
+  ],
+  "errors": [],
+  "error": "",
+  "last": {
+    "stageId": 60,
+    "honroStage": 60,
+    "mode": "campaign",
+    "authoredId": "stage-60",
+    "round": 3,
+    "phase": "won",
+    "side": 0,
+    "shot": 0,
+    "rng": 19388,
+    "active": "p-occultist",
+    "dialogue": false,
+    "isolatedStore": false,
+    "play": [
+      7200,
+      4100
+    ],
+    "terrainBounds": {
+      "left": -5000,
+      "top": -2100,
+      "right": 13000,
+      "bottom": 14700
+    },
+    "playBounds": {
+      "left": 0,
+      "top": 0,
+      "right": 7200,
+      "bottom": 4100
+    },
+    "camera": {
+      "x": 6748.708027762566,
+      "y": 1940.189337321371,
+      "zoom": null
+    },
+    "gravity": {
+      "x": 0,
+      "y": 320
+    },
+    "fieldFlags": [],
+    "terrain": [
+      {
+        "id": "return-cutout-near-body",
+        "vertices": 35,
+        "oneWay": false
+      },
+      {
+        "id": "return-cutout-upper-ledges",
+        "vertices": 55,
+        "oneWay": false
+      }
+    ],
+    "worldTerrain": [
+      {
+        "id": "return-cutout-near-body",
+        "vertices": 71
+      },
+      {
+        "id": "return-cutout-upper-ledges",
+        "vertices": 55
+      }
+    ],
+    "enemies": [],
+    "units": [
+      {
+        "id": "p-archer",
+        "cls": "archer",
+        "side": 0,
+        "level": 25,
+        "hp": 1720,
+        "maxHp": 1720,
+        "loadout": [
+          "A01",
+          "A14",
+          "A02",
+          "A05"
+        ],
+        "pos": [
+          6827.21,
+          2061.46
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "return-cutout-near-body",
+        "fixed": false,
+        "objective": false,
+        "role": "archer",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "p-knight",
+        "cls": "knight",
+        "side": 0,
+        "level": 25,
+        "hp": 3846,
+        "maxHp": 3846,
+        "loadout": [
+          "S00",
+          "S01",
+          "S03"
+        ],
+        "pos": [
+          6926.63,
+          1981.92
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "return-cutout-near-body",
+        "fixed": false,
+        "objective": false,
+        "role": "knight",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "p-occultist",
+        "cls": "occultist",
+        "side": 0,
+        "level": 25,
+        "hp": 2304,
+        "maxHp": 2304,
+        "loadout": [
+          "O01",
+          "O04",
+          "O03",
+          "O06"
+        ],
+        "pos": [
+          6748.87,
+          2124.13
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "return-cutout-near-body",
+        "fixed": false,
+        "objective": false,
+        "role": "occultist",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "p-mage",
+        "cls": "mage",
+        "side": 0,
+        "level": 25,
+        "hp": 2050,
+        "maxHp": 2050,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "pos": [
+          6894.09,
+          2007.96
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "return-cutout-near-body",
+        "fixed": false,
+        "objective": false,
+        "role": "mage",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "qa-last-traveling-soul",
+        "cls": "occultist",
+        "side": 2,
+        "level": 1,
+        "hp": 126,
+        "maxHp": 126,
+        "loadout": [],
+        "pos": [
+          5842.71,
+          2694.32
+        ],
+        "h": 105,
+        "r": 21,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "return-cutout-near-body",
+        "fixed": false,
+        "objective": false,
+        "role": "fire",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "quiet10-second-traveling-soul",
+        "cls": "occultist",
+        "side": 2,
+        "level": 1,
+        "hp": 126,
+        "maxHp": 126,
+        "loadout": [],
+        "pos": [
+          5816.67,
+          2701.92
+        ],
+        "h": 105,
+        "r": 21,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "return-cutout-near-body",
+        "fixed": false,
+        "objective": false,
+        "role": "fire",
+        "summoned": false,
+        "ally": false
+      }
+    ]
+  }
+}
