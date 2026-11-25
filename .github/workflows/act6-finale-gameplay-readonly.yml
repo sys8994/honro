@@ -1,4 +1,4 @@
-name: Capture live Act 6 combat in an isolated browser
+name: Capture boss combat and both Act 6 fronts in an isolated browser
 on:
   push:
     branches: ['qa/act6-finale-gameplay-readonly-20261125']
