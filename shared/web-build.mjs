@@ -223,7 +223,12 @@ export async function buildWeb({vector=true,destination=path.join(root,'HONRO.ht
       descriptors.journeyMap={...map,path:'/'+await emit('graphics','journey-map-act6','webp',plate)};
       journeyArt=await read('shared/act6-journey/journey.inc.js');
     }
-    mains[0].code=makeQaMain(mains[0].code,qaAct6.source,descriptors,terrainArt,journeyArt);
+    let endingReplan=null;
+    if(descriptors.releaseEnabled&&descriptors.boundary&&descriptors.normalEndingAssets){
+      const {prepareEndingReplan}=await import('./act6-ending-replan/build.mjs');
+      endingReplan=await prepareEndingReplan({root,emit,descriptor:descriptors});
+    }
+    mains[0].code=makeQaMain(mains[0].code,qaAct6.source,descriptors,terrainArt,journeyArt,endingReplan);
   }
   const appStart=entries.findIndex(e=>e.name==='game/vendor/ui/fa.js');
   assert(appStart>0,'Game application boundary required');

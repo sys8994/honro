@@ -1,3 +1,4 @@
+import {spliceEndingPresentation} from './act6-ending-replan/build.mjs';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {readFile,realpath,lstat} from 'node:fs/promises';
@@ -304,7 +305,7 @@ function replaceOne(src,old,next){
  assert.equal(src.split(old).length,2,'Unreviewed normal App callsite '+old);
  return src.replace(old,()=>next);
 }
-export function makeQaMain(main,source,descriptor,terrainArt=null,journeyArt=null){
+export function makeQaMain(main,source,descriptor,terrainArt=null,journeyArt=null,endingReplan=null){
  const bytes=Buffer.from(main);
  assert.equal(hash(Buffer.concat([Buffer.from('blob '+bytes.length+'\0'),bytes]),'sha1'),pinnedMain);
  let proto=source.replace('/* SIGNED_ASSET */',JSON.stringify(descriptor));
@@ -321,6 +322,7 @@ export function makeQaMain(main,source,descriptor,terrainArt=null,journeyArt=nul
   // Cartography is additive: keep the boundary build/proof bytes stable for existing saves.
   proto=replaceOne(proto,'      function eligible(app,id)',journeyArt+'\n      function eligible(app,id)');
  }
+ if(endingReplan)proto=spliceEndingPresentation(proto,endingReplan);
  assert.equal(source.split('/* SIGNED_ASSET */').length,2);
  const edits=[
  ['    class App {',proto+'\n    class App {'],
@@ -346,6 +348,9 @@ export function makeQaMain(main,source,descriptor,terrainArt=null,journeyArt=nul
  ['        async export() {','        async export() { if(qa51.active(this))return;'],
  ["else if (el.id === 'file-import' && el.files[0]) {","else if (el.id === 'file-import' && el.files[0]) {\n                if(qa51.active(this)){el.value='';return;}"]
  ];
+ if(endingReplan)edits.push(
+  ['qa51.offer(this); if(this.profileStore.locked','qa51.offer(this); act6EndingReplan.installDebug(this); if(this.profileStore.locked'],
+  ['this.audio?.update(inBattle&&!this.engine.noncombatWalk()', 'if(act6EndingReplan.silenceStock(this)){this.audio?.music?.setPaused(true);this.updateMusicLabel();return;}\n            this.audio?.update(inBattle&&!this.engine.noncombatWalk()']);
  if(source.includes('function enterNormal51('))edits.push(
   ['            G.HonroObjectives.updateSettlement(b,st,state.objectiveReady);','            if(!qa51.isNormal(this))G.HonroObjectives.updateSettlement(b,st,state.objectiveReady);']);
  if(source.includes('function enterNormal53('))edits.push(
