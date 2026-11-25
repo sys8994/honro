@@ -13,7 +13,7 @@ from second_pass import FOOT, sample_walk
 
 TRACE = """() => {
   const e=HonroApp.engine,b=e.b;
-  const data=window.a6Exterior={shots:[],damage:[],impacts:[],knockbacks:[],enemyTurns:[],joins:[],queues:[],frames:[],peak:0,
+  const data=window.a6Exterior={shots:[],heroShots:[],damage:[],impacts:[],knockbacks:[],enemyTurns:[],joins:[],queues:[],frames:[],peak:0,
     initialRng:b.rng,seed:b.seed};
   const seen=new Set(),rounds=new Set(),fire=e.fire,hurt=e.hurt,impact=e.impact,impulse=e.impulse;
   let previousActive=null;
@@ -21,6 +21,7 @@ TRACE = """() => {
   e.fire=function(skill,...rest){
     const u=e.active,accepted=fire.call(this,skill,...rest);
     if(accepted&&u?.side===1)data.shots.push({id:u.id,skill,round:b.round});
+    if(accepted&&u?.side===0)data.heroShots.push({id:u.id,skill,round:b.round,shot:b.shot});
     return accepted;
   };
   e.hurt=function(target,amount,id,...rest){

@@ -32,3 +32,4 @@ stage,scenario,input,initial_rng,reported_opening,reported_cumulative,peak_awake
 53,native three rooms and defended sanctuary,desktop,19388,5,12,6,4,,8,,0,,PASS_ROUTE,interior-pressure/53-sanctuary.json,"Real shots across rounds 4–7; fixed passage, M09, B, fresh 54."
 54,upper gallery and real reach-aware alternate landings,desktop,19388,4,14,6,4,,13,1351.3,0,,PASS_ROUTE,interior-pressure/54-local-pressure.json,"19 genuine knockbacks; M10 safely ended at N, M09 same face, C, fresh 55."
 55,reachable approach fronts after bell repair,desktop,19388,8,20,10,7,,7,,0,,FAIL_NUMERIC_FLOOR,bell-lane/approaching-fronts.json,"Three approach groups deal damage; native repair, three counterattacks and fresh 56. Below proposed totals."
+54,grounded handoff between three hound fronts without M10 cast,desktop,19388,4,14,6,4,,11,322.2,0,,PASS_ROUTE,interior-pressure/54-no-mending.json,"Same native loadout; M01 and M09 only, no revival, exact M09 and C, signed fresh 55."

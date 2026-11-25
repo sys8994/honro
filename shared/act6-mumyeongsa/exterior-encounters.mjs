@@ -27,6 +27,7 @@ function installExteriorEncounters(app,e,paused=()=>false,admit=()=>true){
     {id:'lost-sanctuary',label:'파손 난간 앞에서 마지막 그림자가 갈라집니다.',at:[2020,1480],units:[['shade','beam',2090,1420],['hound','floor',2200,1375],['stag','floor',2380,1205]]},
    ]},
   54:{active:6,attacks:4,roomReach:820,sites:{floor:'foothill',first:'gallery-outer-balcony',second:'gallery-observation-beam'},
+   groundFronts:{'a6-54-opening-1':[0,979],'a6-54-opening-3':[979,1148],'a6-54-observatory-beam-1':[1148,1770]},
    initial:[['hound','floor',680,2610],['shade','first',817,2484],['hound','floor',1060,2535],['shade','second',1280,2385]],
    waves:[
     {id:'pillar-base',label:'돌기둥 양쪽에서 적이 내려옵니다.',at:[665,2640],units:[['shade','first',730,2477],['hound','floor',900,2595]]},
@@ -101,14 +102,20 @@ function installExteriorEncounters(app,e,paused=()=>false,admit=()=>true){
   return true;
  };
  const refreshNormal=e.refreshActivation.bind(e),combatNormal=e.combatEnemies.bind(e),switchNormal=e.switchTeam.bind(e);
- let anchor=e.active,eligible=new Set();
+ let anchor=e.active,groundFrontX=anchor?.x,eligible=new Set();
  function refresh(){
   refreshNormal();
   if(e.active?.side===0&&!e.active.summoned)anchor=e.active;
+  if(plan.groundFronts&&anchor&&e.grounded(anchor)&&plan.sites&&
+     Object.values(plan.sites).includes(e.contactSurface(anchor.x,anchor.y-4,anchor.y+5)?.t.id))groundFrontX=anchor.x;
   const dist=u=>anchor?Math.hypot(u.x-anchor.x,(u.y-anchor.y)*.85):Infinity;
   const priority=e.unit(plan.priority),localBoss=priority&&e.heroesAlive().some(u=>Math.hypot(u.x-priority.x,(u.y-priority.y)*.8)<1250);
   const reach=plan.roomReach??1250,chase=plan.roomReach?reach+160:1600;
-  const near=paused()?[]:b.units.filter(alive).filter(u=>u===priority&&localBoss||dist(u)<reach||u.aggroUntil>=b.round&&dist(u)<chase);
+  const near=paused()?[]:b.units.filter(alive).filter(u=>{
+   const section=plan.groundFronts?.[u.id];
+   if(section&&(groundFrontX<section[0]||groundFrontX>=section[1]))return false;
+   return u===priority&&localBoss||dist(u)<reach||u.aggroUntil>=b.round&&dist(u)<chase;
+  });
   near.sort((a,z)=>Number(z===priority)-Number(a===priority)||dist(a)-dist(z)||a.id.localeCompare(z.id));
   eligible=new Set(near.slice(0,plan.active));
   for(const u of b.units.filter(alive))u.awake=eligible.has(u);

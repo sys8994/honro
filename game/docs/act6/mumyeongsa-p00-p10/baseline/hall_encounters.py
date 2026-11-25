@@ -15,9 +15,10 @@ from second_pass import FOOT, sample_walk
 from visual_edges import scene_context
 
 
-def fire_or_cover(page):
+def fire_or_cover(page,no_mending=False):
     ready(page, 36000)
-    spec=page.evaluate(MENDING) or page.evaluate(CANDIDATE)
+    mending=None if no_mending else page.evaluate(MENDING)
+    spec=mending or page.evaluate(CANDIDATE)
     if not spec:
         page.keyboard.press('f')
         return {'defend':True}
@@ -39,7 +40,7 @@ def fight_along(page, regions, report):
             step=sample_walk(page,1 if x>before['x'] else -1,x,6300)
             if step['reached']:
                 break
-            area['actions'].append(fire_or_cover(page))
+            area['actions'].append(fire_or_cover(page,report['omitMending']))
             ready(page, 36000)
         area['foot']=page.evaluate(FOOT)
         assert abs(area['foot']['x']-x)<120,area
@@ -53,7 +54,7 @@ def fight_along(page, regions, report):
             ready(page, 42000)
             if page.evaluate("id=>a6Exterior.joins.some(u=>u.source===id)&&a6Exterior.enemyTurns.some(u=>u.id.includes(id))",wave):
                 break
-            area['actions'].append(fire_or_cover(page))
+            area['actions'].append(fire_or_cover(page,report['omitMending']))
         print(area['site'],page.evaluate('a6Exterior.joins.length'),len(area['actions']),flush=True)
 
 
@@ -92,9 +93,10 @@ def run(browser,args):
     with scene_context(browser,stage,proof) as context:
         page=context.new_page()
         resume(page,stage,True)
-        q={'stage':stage,'status':'FAIL','errors':[]}
+        q={'stage':stage,'status':'FAIL','errors':[],'omitMending':args.no_mending}
         page.on('pageerror',lambda error:q['errors'].append(str(error)))
         try:
+            q['loadout']=page.evaluate('HonroApp.engine.active.loadout.slice()')
             page.evaluate(TRACE)
             if stage==53:
                 fight_along(page,[(860,'gate-timber',None),(1375,'archive-balcony',None),(2140,'lost-sanctuary',None)],q)
@@ -134,6 +136,9 @@ def run(browser,args):
             page.screenshot(path=args.out/f'{stage}-encounter-failure.png')
         finally:
             q['trace']=trace(page)
+            if args.no_mending and stage==54 and q['status']=='PASS_ROUTE':
+                assert q['loadout']==q['boundary']['terminal']['mage']['loadout']
+                assert not any(row['skill']=='M10' for row in q['trace']['heroShots'])
         return q
 
 
@@ -144,6 +149,7 @@ if __name__=='__main__':
     parser.add_argument('--stage',type=int,choices=(53,54),required=True)
     parser.add_argument('--b-proof',type=Path)
     parser.add_argument('--sanctuary-defense',action='store_true')
+    parser.add_argument('--no-mending',action='store_true')
     args=parser.parse_args()
     assert args.stage!=54 or args.b_proof
     base.ROOT=args.build.resolve()
