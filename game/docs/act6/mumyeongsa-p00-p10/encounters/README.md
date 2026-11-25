@@ -14,6 +14,8 @@
 | 58 | 4 / 7 이상 / 미실측 | 6 | D 수신 때 부하 4명이 실제 받침에 섰고 대도사는 두 의식 뒤 원래 제기혼과 함께 나타났다. 60·120Hz 실제 벽·천장 접지에서 담허 M01이 윗마루 부하를 595→367로 낮췄다. 별도 실전에서 10라운드에 대도사 3상과 유지점을 끝낸 뒤 네 원본이 R을 직접 걸었다. 동일 객체로 59를 받고 새 저장도 열었다. 계획 누적·두 전술은 별도 실측한다. [60Hz](hall-58-60.json) · [120Hz](hall-58-120.json) · [대도사·귀환](daedosa-return-58.json) · [화면](screens/after-daedosa-58.webp) |
 | 59 | 10 / 14 / 14 | 8 | R을 직접 벗어난 직후와 기존 기록의 첫 화면에서 각각 10명. 390×844 실제 터치 방어에서 서쪽 3라운드, 동쪽 4라운드에 각 첫 증원이 나왔다. 원래 서쪽이 남은 자리를 다 쓰던 현상을 수정하고, 자리 두 개를 두 전선에 한 자리씩 배정했다. 실제 발사 32회, 공격 큐 최고 8. 이 방어 표본은 HP 감소가 없었고 누적 목표는 미달이다. [R](courtyard-59.json) · [두 전선](courtyard-touch-59.json) · [터치](screens/courtyard-touch-59.webp) |
 
+59 교각 수비는 장 소유자가 `Engine.wait`만 보던 상태에서 실제 앱 방어가 관측되지 않았다. 일반 방어의 동일한 행동 소비를 장 소유자가 확인하도록 연결했다. 390×844 실제 터치로 휘겸을 `(3456.15, 2928.85)`에 놓고 방어한 뒤 적 턴을 넘겨 수비 완료를 확인했다. [로그](courtyard-defend-59.json) · [화면](screens/courtyard-defend-59.webp)
+
 54는 담허와 원래 수문지기 객체를 유지하고 장 소유자가 검사한 적만 각 방에 들인다. 진행 중인 포격·진목·장 효과가 남으면 방을 바꾸지 않는다. 실제 발점과 원래 수문지기 제압이 확인된 뒤 이전 방의 증원만 남겨 두고, 관측과 발점이 맞으면 다시 다음 차트로 넘어간다.
 
 [정량 표본 CSV](observed.csv)는 라운드마다 실제 발사한 적 수와 엔진 공격 큐 상한을 함께 기록했다. 빈 칸은 관측하지 못한 값이다. 라운드 표본은 전체 범위 승인을 뜻하지 않는다.
@@ -36,4 +38,5 @@ python game/docs/act6/mumyeongsa-p00-p10/baseline/hall_passage.py --build "$PWD"
 python game/docs/act6/mumyeongsa-p00-p10/baseline/daedosa_return.py --build "$PWD" --out /tmp/honro-act6-hall58-return --turns 100
 python game/docs/act6/mumyeongsa-p00-p10/baseline/return_gate.py --build "$PWD" --out /tmp/honro-act6-courtyard59
 python game/docs/act6/mumyeongsa-p00-p10/baseline/courtyard_combat.py --build "$PWD" --out /tmp/honro-act6-courtyard59-touch --rounds 5 --touch
+python game/docs/act6/mumyeongsa-p00-p10/baseline/courtyard_combat.py --build "$PWD" --out /tmp/honro-act6-courtyard59-defend --rounds 3 --touch --check-defend
 ```

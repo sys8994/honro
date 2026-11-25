@@ -193,6 +193,14 @@ export async function createStage59Owner({C,packet,authorize,verifyIncoming,crea
   const anchorRounds={cliff:[],fault:[]};
   function anchorHit(id){const r=anchorRounds[id];if(!r.includes(b.round))r.push(b.round);if(r.length<2){e.message(id==='cliff'?'설오: 한 번 더 맞혀야 지지석이 버팁니다.':'담허: 한 번 더 박아야 파열이 닫히겠네.');note(id+'-first-hit');return false;}return true;}
   let soulPending=null;
+  function proveDefend(u,base){
+   const end=b.teamEnds[1],turn=b.turn,answering=active()&&warning?.status==='armed'&&u?.side===0&&e.canAct();
+   const possible=active()&&state.retreat&&!state.bridge&&waited===null&&u===actor.knight&&isActor(u)&&local(u,958,near);
+   const res=base();
+   if(possible&&(b.turn!==turn||e.active!==u||!e.canAct()||u.acted)){waited=end;note('actual-guard-input',{actor:u.id});}
+   if(answering&&(b.teamEnds[1]!==end||b.turn!==turn||e.active!==u||!e.canAct()||u.acted))warning.responded=true;
+   return res;
+  }
   b.honroState.localFinaleEdgeWave=waves;
   const instance=mountNativeObservation({app,engine:e,packet:{id:59},hooks:{
    afterOwnerMounted:()=>true,
@@ -207,14 +215,7 @@ export async function createStage59Owner({C,packet,authorize,verifyIncoming,crea
    afterCurse(a,g,u,t,kind,p){if(active()&&state.retreat&&!state.bell&&u===actor.occultist&&t===bell&&kind==='weak'){state.bell=true;note('bell-weakness-applied',{shot:nativeFacts(g,p)?.shot});}},
    afterNeutralize(a,g,u,t,p){if(active()&&state.retreat&&!state.bell&&u===actor.occultist&&t===bell&&down(t)){state.bell=true;note('bell-pressure-neutralized',{shot:nativeFacts(g,p)?.shot});}},
    afterPosition:poll,afterTurn(){},
-   handleProvenWait(a,g,u,base){
-    const end=b.teamEnds[1],turn=b.turn, answering=warning?.status==='armed'&&u?.side===0&&e.canAct();
-    const possible=state.retreat&&!state.bridge&&waited===null&&u===actor.knight&&isActor(u)&&local(u,958,near);
-    const res=base();
-    if(possible&&(b.turn!==turn||e.active!==u||!e.canAct()||u.acted)){waited=end;note('actual-guard-input',{actor:u.id});}
-    if(answering&&(b.teamEnds[1]!==end||b.turn!==turn||e.active!==u||!e.canAct()||u.acted))warning.responded=true;
-    return res;
-   },
+   handleProvenWait:(a,g,u,base)=>proveDefend(u,base),
    acceptedInteract(a,g,key,u){
     if(!active()||u!==actor.occultist||!isActor(u)||!state.retreat||b.projectiles.length)return false;
     if(key==='markSoulPath'&&!state.soul&&!soulPending&&state.bell&&local(u,1490,near)){soulPending={end:b.teamEnds[1]};note('soul-route-marking',{actor:u.id});e.message('소단: 길을 그었어요. 이 자리를 한 번만 버티면 혼길이 남아요.');return true;}
@@ -264,7 +265,7 @@ export async function createStage59Owner({C,packet,authorize,verifyIncoming,crea
   };
   mounted.add(e);
   const flags=()=>Object.fromEntries(auth.map(k=>[k,true]));
-  return Object.freeze({poll,interact:instance.interact,project(){
+  return Object.freeze({poll,interact:instance.interact,defend:base=>proveDefend(e.active,base),project(){
    if(!current()||everDisposed)return null;
    return {complete:state.cleared,objectiveReady:state.cleared,failed:!units.some(alive)||!!lostReason,breach,breachLimit:FRONTS59.breachLimit,
     summary:(lostReason?'거점이 모두 밀렸습니다.':state.cleared?'가름진을 세웠습니다. 산문 길이 열렸습니다.':state.activated?'교각을 막는 마지막 위협을 물리치십시오.':'서쪽 지지석, 종터 혼길, 동쪽 파열을 복구하십시오.')+(state.retreat&&!state.cleared?` · 거점 붕괴 ${breach}/${FRONTS59.breachLimit}`:''),

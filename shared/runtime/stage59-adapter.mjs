@@ -80,7 +80,7 @@ export function stage59Adapter(G,{verifyPrevious,verifyNormal,paint=false}={}){
    const ok=owner.interact(target.id);return {ok,reason:ok?undefined:'자세와 연결 순서를 확인하십시오.'};
   }
   let issued=null, closed=null;
-  return Object.freeze({project,interact,tick:owner.poll,inspect:owner.inspect,renderRole:owner.renderRole,
+  return Object.freeze({project,interact,defend:owner.defend,tick:owner.poll,inspect:owner.inspect,renderRole:owner.renderRole,
    terminal:()=>{
     if(issued)return null;
     const r=owner.terminal();

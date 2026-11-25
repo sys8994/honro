@@ -85,6 +85,10 @@
         const item=option59(s,e);if(!item)return;
         const q=s.owner59.interact(item.id);if(!q.ok)a.notify(q.reason);e.checkEnd();tick59(a);a.updateHUD(true);
       }
+      function defend59(a,act){
+        const s=active.get(a);
+        return s?.owner59&&scope59(a,a.engine,s)?s.owner59.defend(act):act();
+      }
       function tick59(a){
         const s=active.get(a),e=a.engine;if(e?.b?.honroStage!==59||!scope59(a,e,s)||!s.owner59)return;
         if(s.return59){

@@ -320,6 +320,7 @@ export async function createAct6WebQa(project,repoRoot,env=process.env,release=n
   source=replaceOne(source,'offerRest:app=>fiftyUI.offer(app)','offerRest:app=>offerBoundaryRest(app)||fiftyUI.offer(app)');
  }
  if(source.includes('function mountB53('))source=replaceOne(source,'release,context53,release53,','release,context53,release53,tick53,adjustNativeWallAngle,');
+ if(source.includes('function defend59('))source=replaceOne(source,'tickExterior:(a,dt)=>active.get(a)?.exterior?.tick(dt),bind','tickExterior:(a,dt)=>active.get(a)?.exterior?.tick(dt),defend59,bind');
  return {source:replaceOne(replaceOne(source,'/* FIRST_OWNER */',first.replace('export function createFirstMissionOwner','function createFirstMissionOwner')),'/* FIFTY_OWNER */','const {createFiftyRestAdmission,buildPartyFromNormalRest,bindOrdinaryFiftyRestUI}=(()=>{'+rest.replaceAll('export function ','function ')+'\nreturn {createFiftyRestAdmission,buildPartyFromNormalRest,bindOrdinaryFiftyRestUI};})();'),packets};
 }
 function replaceOne(src,old,next){
@@ -396,6 +397,8 @@ export function makeQaMain(main,source,descriptor,terrainArt=null,journeyArt=nul
   ['G.HonroStakeCrossing.skills(b,u).includes(this.selected)','qa51.context53(this,u,G.HonroStakeCrossing.skills(b,u)).includes(this.selected)'],
   ['}else this.engine.fire(this.selected, u.angle, this.power);','}else if(!qa51.release53(this,u))this.engine.fire(this.selected, u.angle, this.power);']);
  if(source.includes('function enterNormal54('))edits.push(['missionTick(dt){if(qa51.active(this))return;', 'missionTick(dt){if(qa51.active(this)){qa51.tickExterior(this,dt);qa51.tick53(this);qa51.tick54(this);qa51.tick55(this);qa51.tick56(this);qa51.tick57(this);qa51.tick58(this);qa51.tick59(this);qa51.tick60(this,dt);return;}']);
+ if(source.includes('function defend59('))edits.push(['this.engine.finishAction();this.updateHUD(true); }\n        displayAngle(u)',
+  'qa51.defend59(this,()=>this.engine.finishAction());this.updateHUD(true); }\n        displayAngle(u)']);
  if(source.includes('function enterNormal58('))edits.push(
   ['if (!heroes.length || objective?.dead || rescuedResidentLost || channelerLost || act2Failure)', 'if (!heroes.length || objective?.dead || rescuedResidentLost || channelerLost || act2Failure || ([55,58,59].includes(b.honroStage)&&qa51.goalState(this,e)?.failed===true))'],
   ['b.winnerReason = (act2Failure===', "b.winnerReason = (b.honroStage===55&&qa51.goalState(this,e)?.failed?qa51.goalState(this,e).summary:null) || (act2Failure==="]);
