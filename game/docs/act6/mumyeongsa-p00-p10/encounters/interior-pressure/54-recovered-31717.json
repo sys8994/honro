@@ -1,0 +1,5373 @@
+{
+  "stage": 54,
+  "status": "PASS_ROUTE",
+  "errors": [],
+  "omitMending": true,
+  "loadout": [
+    "M01",
+    "M10",
+    "M07"
+  ],
+  "controlledRng": 31717,
+  "jump": {
+    "stage": 54,
+    "round": 1,
+    "phase": "aim",
+    "active": "p-mage",
+    "gravity": {
+      "x": 320,
+      "y": 0
+    },
+    "enemyLimit": 4,
+    "queue": [],
+    "actionReason": "공중 이동 중 · 착지 후 발사·도약 가능",
+    "actors": [
+      {
+        "id": "p-mage",
+        "x": 3152.352858759672,
+        "y": 454.59999999999854,
+        "vx": -508.68529288139564,
+        "vy": 0,
+        "hp": 1701.9,
+        "dead": false,
+        "embedded": false,
+        "grounded": false,
+        "support": null
+      },
+      {
+        "id": "mumyeongsa-b-wall-guard",
+        "x": 3221.6669275098416,
+        "y": 240,
+        "vx": 204.34832942068638,
+        "vy": 0,
+        "hp": 600,
+        "dead": false,
+        "embedded": false,
+        "grounded": false,
+        "support": null
+      },
+      {
+        "id": "mumyeongsa-b-aperture-ghost",
+        "x": 3221.6669275098416,
+        "y": 128,
+        "vx": 204.34832942068638,
+        "vy": 0,
+        "hp": 325,
+        "dead": false,
+        "embedded": false,
+        "grounded": false,
+        "support": null
+      },
+      {
+        "id": "mumyeongsa-b-rear-shade",
+        "x": 3221.6669275098416,
+        "y": 548,
+        "vx": 204.34832942068638,
+        "vy": 0,
+        "hp": 325,
+        "dead": false,
+        "embedded": false,
+        "grounded": false,
+        "support": null
+      },
+      {
+        "id": "mumyeongsa-b-rear-guard",
+        "x": 3221.6669275098416,
+        "y": 661,
+        "vx": 204.34832942068638,
+        "vy": 0,
+        "hp": 325,
+        "dead": false,
+        "embedded": false,
+        "grounded": false,
+        "support": null
+      }
+    ]
+  },
+  "reland": {
+    "stage": 54,
+    "round": 1,
+    "phase": "aim",
+    "active": "p-mage",
+    "gravity": {
+      "x": 320,
+      "y": 0
+    },
+    "enemyLimit": 4,
+    "queue": [],
+    "actionReason": "공중 이동 중 · 착지 후 발사·도약 가능",
+    "actors": [
+      {
+        "id": "p-mage",
+        "x": 3240,
+        "y": 454.59999999999854,
+        "vx": 0,
+        "vy": 0,
+        "hp": 1701.9,
+        "dead": false,
+        "embedded": false,
+        "grounded": true,
+        "support": "b-inner-jamb"
+      },
+      {
+        "id": "mumyeongsa-b-wall-guard",
+        "x": 3240,
+        "y": 240,
+        "vx": 0,
+        "vy": 0,
+        "hp": 600,
+        "dead": false,
+        "embedded": false,
+        "grounded": true,
+        "support": "b-inner-jamb"
+      },
+      {
+        "id": "mumyeongsa-b-aperture-ghost",
+        "x": 3240,
+        "y": 128,
+        "vx": 0,
+        "vy": 0,
+        "hp": 325,
+        "dead": false,
+        "embedded": false,
+        "grounded": true,
+        "support": "b-inner-jamb"
+      },
+      {
+        "id": "mumyeongsa-b-rear-shade",
+        "x": 3240,
+        "y": 548,
+        "vx": 0,
+        "vy": 0,
+        "hp": 325,
+        "dead": false,
+        "embedded": false,
+        "grounded": true,
+        "support": "b-inner-jamb"
+      },
+      {
+        "id": "mumyeongsa-b-rear-guard",
+        "x": 3240,
+        "y": 661,
+        "vx": 0,
+        "vy": 0,
+        "hp": 325,
+        "dead": false,
+        "embedded": false,
+        "grounded": true,
+        "support": "b-inner-jamb"
+      }
+    ]
+  },
+  "spirit54": [
+    {
+      "event": "impact",
+      "skill": "O06",
+      "actor": "p-occultist",
+      "target": "mumyeongsa-b-wall-guard",
+      "terrain": null,
+      "x": 3219.871349753935,
+      "y": 298.00000000000006,
+      "normal": {
+        "x": 0,
+        "y": 1
+      },
+      "radius": 6,
+      "shot": 3,
+      "before": 600,
+      "after": 236,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    }
+  ],
+  "attacks": [
+    {
+      "angle": 64,
+      "power": 0.78
+    }
+  ],
+  "bypass": {
+    "stage": 54,
+    "round": 4,
+    "phase": "aim",
+    "active": "p-mage",
+    "gravity": {
+      "x": 320,
+      "y": 0
+    },
+    "enemyLimit": 4,
+    "queue": [
+      "mumyeongsa-b-rear-shade",
+      "mumyeongsa-b-aperture-ghost",
+      "mumyeongsa-b-rear-guard"
+    ],
+    "actionReason": "공중 이동 중 · 착지 후 발사·도약 가능",
+    "actors": [
+      {
+        "id": "p-mage",
+        "x": 3152.352858759672,
+        "y": 229.3333333333336,
+        "vx": -508.68529288139564,
+        "vy": 0,
+        "hp": 1702.6000000000001,
+        "dead": false,
+        "embedded": false,
+        "grounded": false,
+        "support": null
+      },
+      {
+        "id": "mumyeongsa-b-wall-guard",
+        "x": 3240,
+        "y": 298.0000000000003,
+        "vx": 0,
+        "vy": 0,
+        "hp": 0,
+        "dead": true,
+        "embedded": false,
+        "grounded": false,
+        "support": null
+      },
+      {
+        "id": "mumyeongsa-b-aperture-ghost",
+        "x": 3240,
+        "y": 186.3333333333336,
+        "vx": 0,
+        "vy": 0,
+        "hp": 325,
+        "dead": false,
+        "embedded": false,
+        "grounded": true,
+        "support": "b-inner-jamb"
+      },
+      {
+        "id": "mumyeongsa-b-rear-shade",
+        "x": 3240,
+        "y": 460.49999999999983,
+        "vx": 0,
+        "vy": 0,
+        "hp": 325,
+        "dead": false,
+        "embedded": false,
+        "grounded": true,
+        "support": "b-inner-jamb"
+      },
+      {
+        "id": "mumyeongsa-b-rear-guard",
+        "x": 3240,
+        "y": 573.4999999999984,
+        "vx": 0,
+        "vy": 0,
+        "hp": 325,
+        "dead": false,
+        "embedded": false,
+        "grounded": true,
+        "support": "b-inner-jamb"
+      }
+    ]
+  },
+  "ordinary54": {
+    "stage": 54,
+    "round": 4,
+    "phase": "aim",
+    "active": "p-mage",
+    "gravity": {
+      "x": 0,
+      "y": 320
+    },
+    "enemyLimit": 4,
+    "queue": [],
+    "actionReason": "이동·발사 가능",
+    "actors": [
+      {
+        "id": "p-mage",
+        "x": 341.8258350529479,
+        "y": 2641.166838112869,
+        "vx": 0,
+        "vy": 0,
+        "hp": 1702.6000000000001,
+        "dead": false,
+        "embedded": false,
+        "grounded": true,
+        "support": "foothill"
+      },
+      {
+        "id": "mumyeongsa-b-wall-guard",
+        "x": 3240,
+        "y": 298.0000000000003,
+        "vx": 0,
+        "vy": 0,
+        "hp": 0,
+        "dead": true,
+        "embedded": false,
+        "grounded": false,
+        "support": null
+      },
+      {
+        "id": "a6-54-opening-1",
+        "x": 680,
+        "y": 2608.4701492537315,
+        "vx": 0,
+        "vy": 0,
+        "hp": 655,
+        "dead": false,
+        "embedded": false,
+        "grounded": true,
+        "support": "foothill"
+      },
+      {
+        "id": "a6-54-opening-2",
+        "x": 817,
+        "y": 2481.574468085106,
+        "vx": 0,
+        "vy": 0,
+        "hp": 595,
+        "dead": false,
+        "embedded": false,
+        "grounded": true,
+        "support": "gallery-outer-balcony"
+      },
+      {
+        "id": "a6-54-opening-3",
+        "x": 1060,
+        "y": 2535.743902439024,
+        "vx": 0,
+        "vy": 0,
+        "hp": 655,
+        "dead": false,
+        "embedded": false,
+        "grounded": true,
+        "support": "foothill"
+      },
+      {
+        "id": "a6-54-opening-4",
+        "x": 1280,
+        "y": 2387.2972972972975,
+        "vx": 0,
+        "vy": 0,
+        "hp": 595,
+        "dead": false,
+        "embedded": false,
+        "grounded": true,
+        "support": "gallery-observation-beam"
+      }
+    ]
+  },
+  "regions": [
+    {
+      "site": 760,
+      "wave": "pillar-base",
+      "actions": [
+        {
+          "attack": {
+            "id": "M01",
+            "angle": -66,
+            "power": 0.97,
+            "score": 595,
+            "target": "a6-54-opening-2",
+            "x": 789,
+            "y": 2463.637199024921
+          }
+        }
+      ],
+      "foot": {
+        "id": "p-mage",
+        "x": 769.6990255668463,
+        "y": 2602.9071278594497,
+        "vx": 0,
+        "vy": 0,
+        "move": 2289.6121469737404,
+        "grounded": true,
+        "support": "foothill",
+        "phase": "aim",
+        "round": 4,
+        "chart": [
+          3200,
+          3000
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      },
+      "upperFoot": {
+        "id": "p-mage",
+        "x": 769.6990255668463,
+        "y": 2478.2409707670054,
+        "vx": 0,
+        "vy": 0,
+        "move": 2214.6121469737404,
+        "grounded": true,
+        "support": "gallery-outer-balcony",
+        "phase": "aim",
+        "round": 4,
+        "chart": [
+          3200,
+          3000
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      }
+    },
+    {
+      "site": 1110,
+      "wave": "observatory-beam",
+      "actions": [
+        {
+          "attack": {
+            "id": "M01",
+            "angle": -66,
+            "power": 0.97,
+            "score": 655,
+            "target": "a6-54-observatory-beam-1",
+            "x": 1132.1063576754088,
+            "y": 2375.672463820513
+          }
+        },
+        {
+          "attack": {
+            "id": "M01",
+            "angle": -81,
+            "power": 0.97,
+            "score": 655,
+            "target": "a6-54-opening-3",
+            "x": 1084.3398443965068,
+            "y": 2402.561819028141
+          }
+        }
+      ],
+      "foot": {
+        "id": "p-mage",
+        "x": 1114.2045628295455,
+        "y": 2511.6162616673364,
+        "vx": 0,
+        "vy": 0,
+        "move": 2665.69843533491,
+        "grounded": true,
+        "support": "foothill",
+        "phase": "aim",
+        "round": 5,
+        "chart": [
+          3200,
+          3000
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      },
+      "upperFoot": {
+        "id": "p-mage",
+        "x": 1114.2099453800736,
+        "y": 2393.4364636842383,
+        "vx": 0,
+        "vy": 0,
+        "move": 2590.69843533491,
+        "grounded": true,
+        "support": "gallery-observation-beam",
+        "phase": "aim",
+        "round": 5,
+        "chart": [
+          3200,
+          3000
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      }
+    },
+    {
+      "site": 1396,
+      "wave": "return-corner",
+      "actions": [
+        {
+          "attack": {
+            "id": "M01",
+            "angle": 72,
+            "power": 0.52,
+            "score": 629.3927206502399,
+            "target": "a6-54-opening-4",
+            "x": 1690.648462849052,
+            "y": 2202.1600411583063
+          }
+        },
+        {
+          "attack": {
+            "id": "M01",
+            "angle": 66,
+            "power": 0.62,
+            "score": 597,
+            "target": "a6-54-opening-4",
+            "x": 1920.0696181000271,
+            "y": 2206.0400937117406
+          }
+        },
+        {
+          "attack": {
+            "id": "M01",
+            "angle": 6,
+            "power": 0.97,
+            "score": 655,
+            "target": "a6-54-return-corner-1",
+            "x": 1472,
+            "y": 2391.581624178877
+          }
+        }
+      ],
+      "foot": {
+        "id": "p-mage",
+        "x": 1408.0027117473392,
+        "y": 2444.4617918752147,
+        "vx": 0,
+        "vy": 0,
+        "move": 2618.901056349917,
+        "grounded": true,
+        "support": "foothill",
+        "phase": "aim",
+        "round": 7,
+        "chart": [
+          3200,
+          3000
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      }
+    }
+  ],
+  "stakesBeforeChart": [],
+  "traces": {
+    "L_fall": {
+      "direction": -1,
+      "goal": 2387,
+      "reached": true,
+      "end": {
+        "id": "p-mage",
+        "x": 2386.794206176161,
+        "y": 2599.767595887273,
+        "vx": 0,
+        "vy": 242.85842249750337,
+        "move": 1825.6845981045308,
+        "grounded": false,
+        "support": null,
+        "phase": "aim",
+        "round": 10,
+        "chart": [
+          3000,
+          3200
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      },
+      "points": [
+        [
+          2638.044206176154,
+          2766.726032135145,
+          false
+        ],
+        [
+          2627.9942061761544,
+          2751.277739577782,
+          false
+        ],
+        [
+          2617.9442061761547,
+          2736.4601612842744,
+          false
+        ],
+        [
+          2607.894206176155,
+          2722.273060766337,
+          false
+        ],
+        [
+          2597.8442061761552,
+          2708.7162016243565,
+          false
+        ],
+        [
+          2587.7942061761555,
+          2695.789347547358,
+          false
+        ],
+        [
+          2577.744206176156,
+          2683.4922623129723,
+          false
+        ],
+        [
+          2567.694206176156,
+          2671.8247097874028,
+          false
+        ],
+        [
+          2557.6442061761563,
+          2660.786453925392,
+          false
+        ],
+        [
+          2547.5942061761566,
+          2650.3772587701883,
+          false
+        ],
+        [
+          2537.544206176157,
+          2640.5968884535123,
+          false
+        ],
+        [
+          2527.494206176157,
+          2631.4451071955245,
+          false
+        ],
+        [
+          2517.4442061761574,
+          2622.9216793047917,
+          false
+        ],
+        [
+          2507.3942061761577,
+          2615.0263691782543,
+          false
+        ],
+        [
+          2497.344206176158,
+          2607.758941301192,
+          false
+        ],
+        [
+          2487.2942061761582,
+          2601.119160247192,
+          false
+        ],
+        [
+          2477.2442061761585,
+          2595.1067906781163,
+          false
+        ],
+        [
+          2467.194206176159,
+          2589.7215973440657,
+          false
+        ],
+        [
+          2457.144206176159,
+          2584.9633450833503,
+          false
+        ],
+        [
+          2447.0942061761593,
+          2580.8317988224544,
+          false
+        ],
+        [
+          2437.0442061761596,
+          2577.3267235760027,
+          false
+        ],
+        [
+          2426.99420617616,
+          2574.4478844467303,
+          false
+        ],
+        [
+          2416.94420617616,
+          2572.195046625447,
+          false
+        ],
+        [
+          2406.8942061761604,
+          2570.5679753910044,
+          false
+        ],
+        [
+          2396.8442061761607,
+          2569.566436110264,
+          false
+        ],
+        [
+          2386.794206176161,
+          2569.190194238064,
+          false
+        ],
+        [
+          2386.794206176161,
+          2569.4390153171857,
+          false
+        ],
+        [
+          2386.794206176161,
+          2570.3126649783208,
+          false
+        ],
+        [
+          2386.794206176161,
+          2571.810908940039,
+          false
+        ],
+        [
+          2386.794206176161,
+          2576.6802430786915,
+          false
+        ],
+        [
+          2386.794206176161,
+          2580.0508651318555,
+          false
+        ],
+        [
+          2386.794206176161,
+          2584.045145237996,
+          false
+        ],
+        [
+          2386.794206176161,
+          2588.662849554576,
+          false
+        ]
+      ],
+      "landed": {
+        "id": "p-mage",
+        "x": 2386.794206176161,
+        "y": 2944.550353168641,
+        "vx": 0,
+        "vy": 0,
+        "move": 1825.6845981045308,
+        "grounded": true,
+        "support": "mid-contact",
+        "phase": "aim",
+        "round": 10,
+        "chart": [
+          3000,
+          3200
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      }
+    },
+    "L_exit": {
+      "direction": -1,
+      "goal": 2330,
+      "reached": true,
+      "end": {
+        "id": "p-mage",
+        "x": 380,
+        "y": 900,
+        "vx": 0,
+        "vy": 0,
+        "move": 3075,
+        "grounded": true,
+        "support": null,
+        "phase": "aim",
+        "round": 11,
+        "chart": [
+          1400,
+          1440
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      },
+      "points": [
+        [
+          2337.04,
+          2930,
+          true
+        ],
+        [
+          2337.04,
+          2930,
+          true
+        ],
+        [
+          2337.04,
+          2930,
+          true
+        ],
+        [
+          2337.04,
+          2930,
+          true
+        ],
+        [
+          2337.04,
+          2930,
+          true
+        ],
+        [
+          2337.04,
+          2930,
+          true
+        ],
+        [
+          2337.04,
+          2930,
+          true
+        ],
+        [
+          2337.04,
+          2930,
+          true
+        ],
+        [
+          2337.04,
+          2930,
+          true
+        ],
+        [
+          380,
+          968.9888893518374,
+          false
+        ],
+        [
+          380,
+          967.4007997000905,
+          false
+        ],
+        [
+          380,
+          965.4026984819338,
+          false
+        ],
+        [
+          380,
+          960.9091048165161,
+          false
+        ],
+        [
+          380,
+          956.9166203567246,
+          false
+        ],
+        [
+          380,
+          954.621575721855,
+          false
+        ],
+        [
+          380,
+          949.4342550284799,
+          false
+        ],
+        [
+          380,
+          946.5421282405092,
+          false
+        ],
+        [
+          380,
+          934.2367171767418,
+          false
+        ],
+        [
+          380,
+          919.261173301291,
+          false
+        ],
+        [
+          380,
+          901.6191655238198,
+          false
+        ],
+        [
+          380,
+          900,
+          true
+        ],
+        [
+          380,
+          900,
+          true
+        ],
+        [
+          380,
+          900,
+          true
+        ],
+        [
+          380,
+          900,
+          true
+        ],
+        [
+          380,
+          900,
+          true
+        ],
+        [
+          380,
+          900,
+          true
+        ],
+        [
+          380,
+          900,
+          true
+        ],
+        [
+          380,
+          900,
+          true
+        ],
+        [
+          380,
+          900,
+          true
+        ],
+        [
+          380,
+          900,
+          true
+        ],
+        [
+          380,
+          900,
+          true
+        ],
+        [
+          380,
+          900,
+          true
+        ],
+        [
+          380,
+          900,
+          true
+        ],
+        [
+          380,
+          900,
+          true
+        ],
+        [
+          380,
+          900,
+          true
+        ],
+        [
+          380,
+          900,
+          true
+        ],
+        [
+          380,
+          900,
+          true
+        ],
+        [
+          380,
+          900,
+          true
+        ],
+        [
+          380,
+          900,
+          true
+        ],
+        [
+          380,
+          900,
+          true
+        ],
+        [
+          380,
+          900,
+          true
+        ],
+        [
+          380,
+          900,
+          true
+        ],
+        [
+          380,
+          900,
+          true
+        ],
+        [
+          380,
+          900,
+          true
+        ],
+        [
+          380,
+          900,
+          true
+        ],
+        [
+          380,
+          900,
+          true
+        ],
+        [
+          380,
+          900,
+          true
+        ],
+        [
+          380,
+          900,
+          true
+        ],
+        [
+          380,
+          900,
+          true
+        ],
+        [
+          380,
+          900,
+          true
+        ],
+        [
+          380,
+          900,
+          true
+        ],
+        [
+          380,
+          900,
+          true
+        ],
+        [
+          380,
+          900,
+          true
+        ],
+        [
+          380,
+          900,
+          true
+        ],
+        [
+          380,
+          900,
+          true
+        ],
+        [
+          380,
+          900,
+          true
+        ],
+        [
+          380,
+          900,
+          true
+        ],
+        [
+          380,
+          900,
+          true
+        ],
+        [
+          380,
+          900,
+          true
+        ],
+        [
+          380,
+          900,
+          true
+        ],
+        [
+          380,
+          900,
+          true
+        ],
+        [
+          380,
+          900,
+          true
+        ]
+      ]
+    }
+  },
+  "N_nudge": {
+    "id": "p-mage",
+    "x": 548.0567934321623,
+    "y": 2684.044206176154,
+    "vx": 0,
+    "vy": 0,
+    "move": 2151.934598104524,
+    "grounded": true,
+    "support": "foothill",
+    "phase": "aim",
+    "round": 10,
+    "chart": [
+      3200,
+      3000
+    ],
+    "gravity": {
+      "x": 0,
+      "y": 320
+    }
+  },
+  "N_L": {
+    "before": {
+      "id": "p-mage",
+      "x": 548.0567934321623,
+      "y": 2684.044206176154,
+      "vx": 0,
+      "vy": 0,
+      "move": 2151.934598104524,
+      "grounded": true,
+      "support": "foothill",
+      "phase": "aim",
+      "round": 10,
+      "chart": [
+        3200,
+        3000
+      ],
+      "gravity": {
+        "x": 0,
+        "y": 320
+      }
+    },
+    "after": {
+      "id": "p-mage",
+      "x": 2638.044206176154,
+      "y": 2782.8052755333547,
+      "vx": 0,
+      "vy": 0,
+      "move": 2151.934598104524,
+      "grounded": true,
+      "support": "foothill",
+      "phase": "aim",
+      "round": 10,
+      "chart": [
+        3000,
+        3200
+      ],
+      "gravity": {
+        "x": 0,
+        "y": 320
+      }
+    },
+    "notice": "되돌아가는 돌턱에 뒤처진 혼이 모입니다.",
+    "changed": true
+  },
+  "L_nudge": {
+    "before": {
+      "id": "p-mage",
+      "x": 2386.794206176161,
+      "y": 2944.550353168641,
+      "vx": 0,
+      "vy": 0,
+      "move": 1825.6845981045308,
+      "grounded": true,
+      "support": "mid-contact",
+      "phase": "aim",
+      "round": 10,
+      "chart": [
+        3000,
+        3200
+      ],
+      "gravity": {
+        "x": 0,
+        "y": 320
+      }
+    },
+    "after": {
+      "id": "p-mage",
+      "x": 2356.9902990722526,
+      "y": 2930,
+      "vx": 0,
+      "vy": 0,
+      "move": 1790.9065366291097,
+      "grounded": true,
+      "support": "mid-contact",
+      "phase": "aim",
+      "round": 10,
+      "chart": [
+        3000,
+        3200
+      ],
+      "gravity": {
+        "x": 0,
+        "y": 320
+      }
+    }
+  },
+  "L_C": {
+    "before": {
+      "id": "p-mage",
+      "x": 2356.9902990722526,
+      "y": 2930,
+      "vx": 0,
+      "vy": 0,
+      "move": 1790.9065366291097,
+      "grounded": true,
+      "support": "mid-contact",
+      "phase": "aim",
+      "round": 10,
+      "chart": [
+        3000,
+        3200
+      ],
+      "gravity": {
+        "x": 0,
+        "y": 320
+      }
+    },
+    "after": {
+      "id": "p-mage",
+      "x": 2884,
+      "y": 708.96,
+      "vx": 0,
+      "vy": 0,
+      "move": 1790.9065366291097,
+      "grounded": true,
+      "support": "mid-contact",
+      "phase": "aim",
+      "round": 10,
+      "chart": [
+        3200,
+        3000
+      ],
+      "gravity": {
+        "x": 0,
+        "y": 320
+      }
+    },
+    "notice": "되돌아가는 돌턱에 뒤처진 혼이 모입니다.",
+    "changed": true
+  },
+  "C_L": {
+    "before": {
+      "id": "p-mage",
+      "x": 2884,
+      "y": 708.96,
+      "vx": 0,
+      "vy": 0,
+      "move": 1790.9065366291097,
+      "grounded": true,
+      "support": "mid-contact",
+      "phase": "aim",
+      "round": 10,
+      "chart": [
+        3200,
+        3000
+      ],
+      "gravity": {
+        "x": 0,
+        "y": 320
+      }
+    },
+    "after": {
+      "id": "p-mage",
+      "x": 2337.04,
+      "y": 2930,
+      "vx": 0,
+      "vy": 0,
+      "move": 1790.9065366291097,
+      "grounded": true,
+      "support": "mid-contact",
+      "phase": "aim",
+      "round": 10,
+      "chart": [
+        3000,
+        3200
+      ],
+      "gravity": {
+        "x": 0,
+        "y": 320
+      }
+    },
+    "notice": "되돌아가는 돌턱에 뒤처진 혼이 모입니다.",
+    "changed": true
+  },
+  "previousRelayAttempts": [
+    {
+      "target": {
+        "aim": 90.875,
+        "power": 0.78,
+        "x": 2309.80078372946,
+        "y": 2924,
+        "score": 7.924804067635023
+      },
+      "chargePlan": {
+        "angle": 90.78716534998277,
+        "power": 0.79
+      },
+      "chargeObserved": [
+        {
+          "charging": true,
+          "power": 0,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.0159889169381682,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.027022591023936105,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.038056265109704,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.04908993919548152,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.060057543376540366,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.07109121746230826,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.08205882164337673,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.09309249572914463,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.10406009991021307,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.11509377399598099,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.12606137817704943,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.13716112216751677,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.14812872634858523,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.15916240043435312,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.17019607452012103,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.1811636787011895,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.1921973527869574,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.20316495696802586,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.21419863105379375,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.22523230513956166,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.23619990932063012,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.24723358340639803,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.26923486167323435,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.2803346056637113,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.2913022098447702,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.30226981402583863,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.3133034881116065,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.32433716219737446,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.3353047663784429,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.3463384404642108,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.35737211454997864,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.36833971873104715,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.3793733928168151,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.3904070669025829,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.40137467108365144,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.41240834516941927,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.4234420192551872,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.4344096234362557,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.44544329752202355,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.45647697160779144,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.4674445757888599,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.48944585405569624,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.5004795281414642,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.5115132022272321,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.5224808064083005,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.5335144804940685,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.5445481545798364,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.5555818286656042,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.5665494328466727,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.5775831069324405,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.5885507111135091,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.599584385199277,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.6106180592850449,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.6216517333708127,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.6326854074565806,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.6436530116376492,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.654686685723417,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.6657203598091849,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.6766879639902534,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.6877216380760213,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.6986892422570897,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.7097229163428576,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.7206905205239261,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.731724194609694,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.7427578686954619,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.7537915427812297,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.7647591469622983,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.7757928210480661,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.7868264951338341,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.8088277734006705,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.8308290516675068,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.8418627257532747,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.8528303299343432,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.863864004020111,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.8748976781058789,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.8858652822869474,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.8968989563727153,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.9079326304584832,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.9189002346395517,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.9299339087253196,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.9409015129063785,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.9520012568968553,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.9629688610779239,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.9740025351636917,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.9849701393447602,
+          "angle": 90.78716534998277
+        },
+        {
+          "charging": true,
+          "power": 0.9960698833352275,
+          "angle": 90.78716534998277
+        }
+      ],
+      "canceled": true,
+      "error": "Page.wait_for_function: Timeout 3500ms exceeded.",
+      "pose": {
+        "id": "p-mage",
+        "x": 2337.04,
+        "y": 2930,
+        "vx": 0,
+        "vy": 0,
+        "move": 1790.9065366291097,
+        "grounded": true,
+        "support": "mid-contact",
+        "phase": "aim",
+        "round": 10,
+        "chart": [
+          3000,
+          3200
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      }
+    }
+  ],
+  "relayAttempt": {
+    "target": {
+      "aim": 90.875,
+      "power": 0.78,
+      "x": 2309.80078372946,
+      "y": 2924,
+      "score": 7.924804067635023
+    },
+    "chargePlan": {
+      "angle": 90.78716534998277,
+      "power": 0.79
+    },
+    "input": {
+      "angle": 90.78716534998277,
+      "power": 0.8125937579683751,
+      "shot": 29
+    },
+    "released": true
+  },
+  "relay": {
+    "target": {
+      "aim": 90.875,
+      "power": 0.78,
+      "x": 2309.80078372946,
+      "y": 2924,
+      "score": 7.924804067635023
+    },
+    "shot": 29,
+    "stakes": [
+      {
+        "attackSide": 0,
+        "damageRoll": 1,
+        "id": 22,
+        "skill": "M09",
+        "owner": "p-mage",
+        "side": 0,
+        "x": 2337.04,
+        "y": 2930,
+        "rank": 1,
+        "damage": 0,
+        "shot": 29,
+        "effectBoost": 0,
+        "expires": 16
+      },
+      {
+        "attackSide": 0,
+        "damageRoll": 1,
+        "id": 23,
+        "skill": "M09",
+        "owner": "p-mage",
+        "side": 0,
+        "x": 2310.7671632751726,
+        "y": 2924,
+        "rank": 1,
+        "damage": 0,
+        "shot": 29,
+        "effectBoost": 0,
+        "expires": 16
+      }
+    ]
+  },
+  "eave54": {
+    "entry": {
+      "stage": 54,
+      "id": "p-mage",
+      "x": 380,
+      "y": 900,
+      "vx": 0,
+      "vy": 0,
+      "gravity": {
+        "x": 0,
+        "y": -320
+      },
+      "grounded": true,
+      "support": "c-eave-soffit",
+      "normal": {
+        "x": 0,
+        "y": 1
+      },
+      "play": [
+        1400,
+        1440
+      ],
+      "health": 457.20000000000016,
+      "focus": 708,
+      "loadout": [
+        "M01",
+        "M10",
+        "M07"
+      ],
+      "equipment": {
+        "version": 1
+      },
+      "others": []
+    },
+    "ceiling": {
+      "stage": 54,
+      "id": "p-mage",
+      "x": 380,
+      "y": 900,
+      "vx": 0,
+      "vy": 0,
+      "gravity": {
+        "x": 0,
+        "y": -320
+      },
+      "grounded": true,
+      "support": "c-eave-soffit",
+      "normal": {
+        "x": 0,
+        "y": 1
+      },
+      "play": [
+        1400,
+        1440
+      ],
+      "health": 457.20000000000016,
+      "focus": 708,
+      "loadout": [
+        "M01",
+        "M10",
+        "M07"
+      ],
+      "equipment": {
+        "version": 1
+      },
+      "others": []
+    },
+    "exit": {
+      "stage": 54,
+      "id": "p-mage",
+      "x": 736,
+      "y": 900,
+      "vx": 0,
+      "vy": 0,
+      "gravity": {
+        "x": 0,
+        "y": -320
+      },
+      "grounded": true,
+      "support": "c-eave-soffit",
+      "normal": {
+        "x": 0,
+        "y": 1
+      },
+      "play": [
+        1400,
+        1440
+      ],
+      "health": 457.20000000000016,
+      "focus": 708,
+      "loadout": [
+        "M01",
+        "M10",
+        "M07"
+      ],
+      "equipment": {
+        "version": 1
+      },
+      "others": []
+    },
+    "moving": [
+      {
+        "x": 380,
+        "y": 968.9888893518374,
+        "vy": -2.6665000069442275,
+        "gravity": {
+          "x": 0,
+          "y": -320
+        },
+        "grounded": false
+      },
+      {
+        "x": 380,
+        "y": 967.4007997000905,
+        "vy": -31.976011995501366,
+        "gravity": {
+          "x": 0,
+          "y": -320
+        },
+        "grounded": false
+      },
+      {
+        "x": 380,
+        "y": 965.4026984819338,
+        "vy": -47.94604047722901,
+        "gravity": {
+          "x": 0,
+          "y": -320
+        },
+        "grounded": false
+      },
+      {
+        "x": 380,
+        "y": 960.9091048165161,
+        "vy": -71.87863657224776,
+        "gravity": {
+          "x": 0,
+          "y": -320
+        },
+        "grounded": false
+      },
+      {
+        "x": 380,
+        "y": 956.9166203567246,
+        "vy": -87.81874930535093,
+        "gravity": {
+          "x": 0,
+          "y": -320
+        },
+        "grounded": false
+      },
+      {
+        "x": 380,
+        "y": 954.621575721855,
+        "vy": -95.78432363582792,
+        "gravity": {
+          "x": 0,
+          "y": -320
+        },
+        "grounded": false
+      },
+      {
+        "x": 380,
+        "y": 949.4342550284799,
+        "vy": -111.70651382542734,
+        "gravity": {
+          "x": 0,
+          "y": -320
+        },
+        "grounded": false
+      },
+      {
+        "x": 380,
+        "y": 946.5421282405092,
+        "vy": -119.6631319236078,
+        "gravity": {
+          "x": 0,
+          "y": -320
+        },
+        "grounded": false
+      },
+      {
+        "x": 380,
+        "y": 934.2367171767418,
+        "vy": -148.81188409098473,
+        "gravity": {
+          "x": 0,
+          "y": -320
+        },
+        "grounded": false
+      },
+      {
+        "x": 380,
+        "y": 919.261173301291,
+        "vy": -177.92058426618644,
+        "gravity": {
+          "x": 0,
+          "y": -320
+        },
+        "grounded": false
+      },
+      {
+        "x": 380,
+        "y": 901.6191655238198,
+        "vy": -206.98928748285783,
+        "gravity": {
+          "x": 0,
+          "y": -320
+        },
+        "grounded": false
+      }
+    ]
+  },
+  "won": {
+    "stageId": 54,
+    "honroStage": 54,
+    "mode": "campaign",
+    "authoredId": "stage-54",
+    "round": 11,
+    "phase": "won",
+    "side": 0,
+    "shot": 29,
+    "rng": 91578322367,
+    "active": "p-mage",
+    "dialogue": false,
+    "isolatedStore": false,
+    "play": [
+      1400,
+      1440
+    ],
+    "terrainBounds": {
+      "left": -260,
+      "top": -280,
+      "right": 1660,
+      "bottom": 1720
+    },
+    "playBounds": {
+      "left": 0,
+      "top": 0,
+      "right": 1400,
+      "bottom": 1440
+    },
+    "camera": {
+      "x": 736.5291563734854,
+      "y": 716,
+      "zoom": null
+    },
+    "gravity": {
+      "x": 0,
+      "y": 320
+    },
+    "fieldFlags": [
+      {
+        "id": "mumyeongsa-torn-eave",
+        "gravity": {
+          "x": 0,
+          "y": -320
+        },
+        "projectileOnly": false
+      }
+    ],
+    "terrain": [
+      {
+        "id": "c-eave-soffit",
+        "vertices": 9,
+        "oneWay": false
+      },
+      {
+        "id": "c-eave-veranda",
+        "vertices": 9,
+        "oneWay": false
+      }
+    ],
+    "worldTerrain": [
+      {
+        "id": "c-eave-soffit",
+        "vertices": 9
+      },
+      {
+        "id": "c-eave-veranda",
+        "vertices": 9
+      }
+    ],
+    "enemies": [],
+    "units": [
+      {
+        "id": "p-mage",
+        "cls": "mage",
+        "side": 0,
+        "level": 25,
+        "hp": 457.20000000000016,
+        "maxHp": 2050,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "pos": [
+          736,
+          900
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": false,
+        "support": null,
+        "fixed": false,
+        "objective": false,
+        "role": "mage",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "mumyeongsa-b-wall-guard",
+        "cls": "archer",
+        "side": 1,
+        "level": 1,
+        "hp": 0,
+        "maxHp": 600,
+        "loadout": [
+          "LA01"
+        ],
+        "pos": [
+          3240,
+          298
+        ],
+        "h": 88,
+        "r": 23,
+        "awake": true,
+        "dead": true,
+        "airborne": false,
+        "grounded": false,
+        "validContact": false,
+        "support": null,
+        "fixed": false,
+        "objective": false,
+        "role": "bow",
+        "summoned": false,
+        "ally": false
+      }
+    ]
+  },
+  "live55": {
+    "stageId": 55,
+    "honroStage": 55,
+    "mode": "campaign",
+    "authoredId": "stage-55",
+    "round": 1,
+    "phase": "aim",
+    "side": 0,
+    "shot": 0,
+    "rng": 19388,
+    "active": "p-knight",
+    "dialogue": false,
+    "isolatedStore": false,
+    "play": [
+      6800,
+      3200
+    ],
+    "terrainBounds": {
+      "left": -4496,
+      "top": -1992,
+      "right": 11536,
+      "bottom": 11768
+    },
+    "playBounds": {
+      "left": 0,
+      "top": 0,
+      "right": 6800,
+      "bottom": 3200
+    },
+    "camera": {
+      "x": 1605,
+      "y": 1294.4473562700312,
+      "zoom": null
+    },
+    "gravity": {
+      "x": 0,
+      "y": 320
+    },
+    "fieldFlags": [],
+    "terrain": [
+      {
+        "id": "west-ring-descent",
+        "vertices": 4,
+        "oneWay": false
+      },
+      {
+        "id": "arrival-core-terrace",
+        "vertices": 4,
+        "oneWay": false
+      },
+      {
+        "id": "right-return-rise",
+        "vertices": 4,
+        "oneWay": false
+      },
+      {
+        "id": "east-upper-end",
+        "vertices": 4,
+        "oneWay": false
+      },
+      {
+        "id": "west-lower-branch",
+        "vertices": 4,
+        "oneWay": false
+      },
+      {
+        "id": "east-lower-branch",
+        "vertices": 4,
+        "oneWay": false
+      }
+    ],
+    "worldTerrain": [
+      {
+        "id": "west-ring-descent",
+        "vertices": 4
+      },
+      {
+        "id": "arrival-core-terrace",
+        "vertices": 4
+      },
+      {
+        "id": "right-return-rise",
+        "vertices": 4
+      },
+      {
+        "id": "east-upper-end",
+        "vertices": 4
+      },
+      {
+        "id": "west-lower-branch",
+        "vertices": 4
+      },
+      {
+        "id": "east-lower-branch",
+        "vertices": 4
+      }
+    ],
+    "enemies": [
+      "draft-pressure-0",
+      "a6-55-opening-1",
+      "a6-55-opening-2",
+      "a6-55-opening-3",
+      "a6-55-opening-4"
+    ],
+    "units": [
+      {
+        "id": "p-knight",
+        "cls": "knight",
+        "side": 0,
+        "level": 25,
+        "hp": 3688.1,
+        "maxHp": 3846,
+        "loadout": [
+          "S00",
+          "S01",
+          "S03"
+        ],
+        "pos": [
+          176,
+          586.91
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "west-ring-descent",
+        "fixed": false,
+        "objective": false,
+        "role": "knight",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "p-archer",
+        "cls": "archer",
+        "side": 0,
+        "level": 25,
+        "hp": 1651,
+        "maxHp": 1720,
+        "loadout": [
+          "A01",
+          "A14",
+          "A02",
+          "A05"
+        ],
+        "pos": [
+          1232,
+          1162.91
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "west-ring-descent",
+        "fixed": false,
+        "objective": false,
+        "role": "archer",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "p-occultist",
+        "cls": "occultist",
+        "side": 0,
+        "level": 25,
+        "hp": 2144.1,
+        "maxHp": 2304,
+        "loadout": [
+          "O01",
+          "O04",
+          "O03",
+          "O06"
+        ],
+        "pos": [
+          2688,
+          1700.31
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "arrival-core-terrace",
+        "fixed": true,
+        "objective": false,
+        "role": "occultist",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "draft-pressure-0",
+        "cls": "occultist",
+        "side": 1,
+        "level": 12,
+        "hp": 480,
+        "maxHp": 480,
+        "loadout": [
+          "HLN01",
+          "HLN02"
+        ],
+        "pos": [
+          2112,
+          1523.08
+        ],
+        "h": 92,
+        "r": 25,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "arrival-core-terrace",
+        "fixed": true,
+        "objective": false,
+        "role": "fire",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "draft-pressure-1",
+        "cls": "occultist",
+        "side": 1,
+        "level": 8,
+        "hp": 409,
+        "maxHp": 409,
+        "loadout": [
+          "HGS01",
+          "HGS02"
+        ],
+        "pos": [
+          912,
+          2590.33
+        ],
+        "h": 88,
+        "r": 32,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "west-lower-branch",
+        "fixed": false,
+        "objective": false,
+        "role": "fire",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "draft-pressure-2",
+        "cls": "knight",
+        "side": 1,
+        "level": 8,
+        "hp": 409,
+        "maxHp": 409,
+        "loadout": [
+          "HBM01"
+        ],
+        "pos": [
+          1624,
+          1372.92
+        ],
+        "h": 88,
+        "r": 32,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "arrival-core-terrace",
+        "fixed": false,
+        "objective": false,
+        "role": "leaper",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "draft-pressure-3",
+        "cls": "archer",
+        "side": 1,
+        "level": 12,
+        "hp": 796,
+        "maxHp": 796,
+        "loadout": [
+          "LA01",
+          "LA02"
+        ],
+        "pos": [
+          1264,
+          1180.36
+        ],
+        "h": 91,
+        "r": 21,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "west-ring-descent",
+        "fixed": false,
+        "objective": false,
+        "role": "bow",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-55-opening-1",
+        "cls": "knight",
+        "side": 1,
+        "level": 25,
+        "hp": 655,
+        "maxHp": 655,
+        "loadout": [
+          "HBM01"
+        ],
+        "pos": [
+          410,
+          714.55
+        ],
+        "h": 88,
+        "r": 32,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "west-ring-descent",
+        "fixed": false,
+        "objective": false,
+        "role": "leaper",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-55-opening-2",
+        "cls": "knight",
+        "side": 1,
+        "level": 25,
+        "hp": 655,
+        "maxHp": 655,
+        "loadout": [
+          "HBM01"
+        ],
+        "pos": [
+          640,
+          840
+        ],
+        "h": 88,
+        "r": 32,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "west-ring-descent",
+        "fixed": false,
+        "objective": false,
+        "role": "leaper",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-55-opening-3",
+        "cls": "occultist",
+        "side": 1,
+        "level": 25,
+        "hp": 595,
+        "maxHp": 595,
+        "loadout": [
+          "HSH01",
+          "HSH02"
+        ],
+        "pos": [
+          920,
+          992.73
+        ],
+        "h": 115,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "west-ring-descent",
+        "fixed": false,
+        "objective": false,
+        "role": "ice",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-55-opening-4",
+        "cls": "occultist",
+        "side": 1,
+        "level": 25,
+        "hp": 595,
+        "maxHp": 595,
+        "loadout": [
+          "HSH01",
+          "HSH02"
+        ],
+        "pos": [
+          1180,
+          1134.55
+        ],
+        "h": 115,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "west-ring-descent",
+        "fixed": false,
+        "objective": false,
+        "role": "ice",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-55-opening-5",
+        "cls": "occultist",
+        "side": 1,
+        "level": 25,
+        "hp": 595,
+        "maxHp": 595,
+        "loadout": [
+          "HSH01",
+          "HSH02"
+        ],
+        "pos": [
+          1470,
+          1325.54
+        ],
+        "h": 115,
+        "r": 22,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "arrival-core-terrace",
+        "fixed": false,
+        "objective": false,
+        "role": "ice",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-55-opening-6",
+        "cls": "knight",
+        "side": 1,
+        "level": 25,
+        "hp": 755,
+        "maxHp": 755,
+        "loadout": [
+          "HBM03"
+        ],
+        "pos": [
+          2794,
+          1732.92
+        ],
+        "h": 116,
+        "r": 38,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "arrival-core-terrace",
+        "fixed": false,
+        "objective": false,
+        "role": "leaper",
+        "summoned": false,
+        "ally": false
+      }
+    ]
+  },
+  "boundary": {
+    "schema": "honro-act6-boundary/v2",
+    "slot": "honro-campaign-act6-boundary-v2:eq-mwuu06k6-y7h4w7qc",
+    "runId": "eq-mwuu06k6-y7h4w7qc",
+    "from": 54,
+    "to": 55,
+    "kind": "three-exterior-plus-mage-with-complete-native-chart-relay",
+    "generation": 4,
+    "parent": "b4831537ef490094fb4b1093ee74fb73a41d9274c40cef0d8f40eb9be080d2be",
+    "pin": {
+      "from": 54,
+      "to": 55,
+      "build": "764a084e4e59b9ce283702ab570f90e9416ed072b2172334b17c70022927006e",
+      "fromPacket": "db8378878dd4cbf81e8f2463d6f466c72c7bd8420331a12486919513c9a049b4",
+      "toPacket": "a512361224885cc60579d53ae09566877761f522a7c494101624883ac97dec43",
+      "owner": "cac03fd59c7da04d1d41a6cee4a4279553330ba1509cbfd9ea42cf7cbd8cf954",
+      "play": "3bed6724fbe77d55adef1022c937a0c6943830434217a9a087ff7eb1b7be865b",
+      "world": "3bed6724fbe77d55adef1022c937a0c6943830434217a9a087ff7eb1b7be865b"
+    },
+    "profileSHA": "624977606fd1a5b7c23ca6ca492fec8aee57a04e9b2a0a25bd358bcc64a8747b",
+    "terminal": {
+      "stage": 54,
+      "won": true,
+      "flags": {
+        "act6.invertedGalleryCrossed": true
+      },
+      "mage": {
+        "id": "p-mage",
+        "name": "담허",
+        "role": "mage",
+        "cls": "mage",
+        "side": 0,
+        "x": 736,
+        "y": 900,
+        "vx": 0,
+        "vy": 0,
+        "hp": 457.20000000000016,
+        "maxHp": 2050,
+        "r": 22,
+        "h": 92,
+        "focus": 708,
+        "maxFocus": 724,
+        "regen": 28,
+        "level": 25,
+        "attack": 11.4116,
+        "armor": 0.472,
+        "shield": 0,
+        "bound": 0,
+        "mark": 0,
+        "breaks": 0,
+        "acted": false,
+        "moveLeft": 3075,
+        "maxMove": 3075,
+        "walkSpeed": 402,
+        "angle": 90.78716534998277,
+        "lastPower": 0.8125937579683751,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "tune": 0.5,
+        "facing": 1,
+        "hurt": 0,
+        "anim": 0,
+        "airborne": false,
+        "fixed": false,
+        "spawnX": 2641.688282828283,
+        "spawnY": 2861.483333333334,
+        "intent": "",
+        "dead": false,
+        "ranks": {
+          "M01": 1,
+          "M07": 4,
+          "M10": 3
+        },
+        "group": 0,
+        "awake": true,
+        "lastAct": 0,
+        "aggroUntil": 0,
+        "xpBudget": 0,
+        "xpGranted": 0,
+        "killRewarded": false,
+        "damageBy": {},
+        "honroAlly": false,
+        "honroCivilian": false,
+        "critChance": 0.174,
+        "critMultiplier": 2.51,
+        "cooldowns": {},
+        "equipmentState": {
+          "version": 1
+        },
+        "jumping": false,
+        "eaterSwallow": 0,
+        "moving": 0.07166666666666667,
+        "landing": 0,
+        "salheunFlash": 0,
+        "honroShieldSources": {
+          "p-mage": 0
+        },
+        "walkPhase": 99.76753655339013,
+        "impactCooldown": 0,
+        "jucheon": 0,
+        "jucheonReady": false
+      },
+      "external": {
+        "archer": {
+          "id": "p-archer",
+          "name": "설오",
+          "role": "archer",
+          "cls": "archer",
+          "side": 0,
+          "x": 4398.557742659368,
+          "y": 3878.0372858887927,
+          "vx": 0,
+          "vy": 0,
+          "hp": 1651,
+          "maxHp": 1720,
+          "r": 22,
+          "h": 92,
+          "focus": 404,
+          "maxFocus": 404,
+          "regen": 28,
+          "level": 25,
+          "attack": 11.98825,
+          "armor": 0.42800000000000005,
+          "shield": 206,
+          "bound": 0,
+          "mark": 0,
+          "breaks": 0,
+          "acted": true,
+          "moveLeft": 1036.1013760212497,
+          "maxMove": 2921,
+          "walkSpeed": 425,
+          "angle": 52.91371749235654,
+          "lastPower": 0.54,
+          "loadout": [
+            "A01",
+            "A14",
+            "A02",
+            "A05"
+          ],
+          "tune": 0.5,
+          "facing": 1,
+          "hurt": 0,
+          "anim": 0,
+          "airborne": false,
+          "fixed": false,
+          "spawnX": 1200,
+          "spawnY": 1224.5833333333333,
+          "intent": "",
+          "dead": false,
+          "ranks": {
+            "A01": 1,
+            "A14": 4,
+            "A02": 4,
+            "A05": 4
+          },
+          "group": 0,
+          "awake": true,
+          "lastAct": 0,
+          "aggroUntil": 0,
+          "xpBudget": 0,
+          "xpGranted": 0,
+          "killRewarded": false,
+          "damageBy": {},
+          "honroAlly": false,
+          "honroCivilian": false,
+          "critChance": 0.28400000000000003,
+          "critMultiplier": 3.085,
+          "cooldowns": {},
+          "moving": 0,
+          "eaterSwallow": 0,
+          "landing": 0.26,
+          "impactCooldown": 0,
+          "salheunFlash": 0,
+          "walkPhase": 154.14725244717326,
+          "honroShieldSources": {
+            "": 0,
+            "p-archer": 206
+          },
+          "jumping": false,
+          "equipmentState": {
+            "version": 1,
+            "jumpCycle": 6
+          },
+          "shieldUntil": 6,
+          "jucheon": 0,
+          "jucheonReady": false
+        },
+        "knight": {
+          "id": "p-knight",
+          "name": "휘겸",
+          "role": "knight",
+          "cls": "knight",
+          "side": 0,
+          "x": 4400.808951849008,
+          "y": 3876.050924839111,
+          "vx": 0,
+          "vy": 0,
+          "hp": 3688.1,
+          "maxHp": 3846,
+          "r": 22,
+          "h": 92,
+          "focus": 477,
+          "maxFocus": 477,
+          "regen": 28,
+          "level": 25,
+          "attack": 9.98515,
+          "armor": 0.7,
+          "shield": 0,
+          "bound": 0,
+          "mark": 0,
+          "breaks": 0,
+          "acted": false,
+          "moveLeft": 4081,
+          "maxMove": 4081,
+          "walkSpeed": 420,
+          "angle": 44,
+          "lastPower": 0.55,
+          "loadout": [
+            "S00",
+            "S01",
+            "S03"
+          ],
+          "tune": 0.5,
+          "facing": 1,
+          "hurt": 0,
+          "anim": 0,
+          "airborne": false,
+          "fixed": false,
+          "spawnX": 1080,
+          "spawnY": 1166.111111111111,
+          "intent": "",
+          "dead": false,
+          "ranks": {
+            "S00": 1,
+            "S01": 4,
+            "S03": 4
+          },
+          "group": 0,
+          "awake": true,
+          "lastAct": 0,
+          "aggroUntil": 0,
+          "xpBudget": 0,
+          "xpGranted": 0,
+          "killRewarded": false,
+          "damageBy": {},
+          "honroAlly": false,
+          "honroCivilian": false,
+          "critChance": 0.1648,
+          "critMultiplier": 2.5330000000000004,
+          "cooldowns": {},
+          "equipmentState": {
+            "version": 1
+          },
+          "eaterSwallow": 0,
+          "moving": 0,
+          "landing": 0,
+          "impactCooldown": 0,
+          "salheunFlash": 0,
+          "honroShieldSources": {
+            "p-knight": 462
+          },
+          "walkPhase": 155.96559506897273,
+          "jumping": false,
+          "jucheon": 0,
+          "jucheonReady": false
+        },
+        "occultist": {
+          "id": "p-occultist",
+          "name": "소단",
+          "role": "occultist",
+          "cls": "occultist",
+          "side": 0,
+          "x": 4399.834064268077,
+          "y": 3876.9111197634616,
+          "vx": 0,
+          "vy": 0,
+          "hp": 2144.1,
+          "maxHp": 2304,
+          "r": 22,
+          "h": 92,
+          "focus": 751,
+          "maxFocus": 751,
+          "regen": 32,
+          "level": 25,
+          "attack": 11.170800000000002,
+          "armor": 0.487,
+          "shield": 0,
+          "bound": 0,
+          "mark": 0,
+          "breaks": 0,
+          "acted": false,
+          "moveLeft": 3132,
+          "maxMove": 3132,
+          "walkSpeed": 416,
+          "angle": 44,
+          "lastPower": 0.55,
+          "loadout": [
+            "O01",
+            "O04",
+            "O03",
+            "O06"
+          ],
+          "tune": 0.5,
+          "facing": 1,
+          "hurt": 0,
+          "anim": 0,
+          "airborne": false,
+          "fixed": false,
+          "spawnX": 1000,
+          "spawnY": 1151.888888888889,
+          "intent": "",
+          "dead": false,
+          "spiritSight": true,
+          "ranks": {
+            "O01": 1,
+            "O06": 5,
+            "O02": 4,
+            "O03": 3,
+            "O04": 2
+          },
+          "group": 0,
+          "awake": true,
+          "lastAct": 0,
+          "aggroUntil": 0,
+          "xpBudget": 0,
+          "xpGranted": 0,
+          "killRewarded": false,
+          "damageBy": {},
+          "honroAlly": false,
+          "honroCivilian": false,
+          "critChance": 0.20700000000000002,
+          "critMultiplier": 2.4855,
+          "cooldowns": {},
+          "eaterSwallow": 0,
+          "moving": 0,
+          "landing": 0,
+          "impactCooldown": 0,
+          "salheunFlash": 0,
+          "honroShieldSources": {
+            "p-occultist": 276
+          },
+          "walkPhase": 158.8154148591665,
+          "jumping": false,
+          "equipmentState": {
+            "version": 1
+          },
+          "jucheon": 0,
+          "jucheonReady": false
+        }
+      },
+      "chart": [
+        {
+          "id": "N>L",
+          "frame": "L",
+          "drop": 84.86206896551721,
+          "expected": "foothill",
+          "actor": "p-mage",
+          "round": 10,
+          "grounded": true,
+          "x": 2638.044206176154,
+          "y": 2782.8052755333547
+        },
+        {
+          "id": "L>C",
+          "frame": "C",
+          "drop": 19.95029907225262,
+          "expected": "mid-contact",
+          "actor": "p-mage",
+          "round": 10,
+          "grounded": true,
+          "x": 2884,
+          "y": 708.96
+        },
+        {
+          "id": "C>L",
+          "frame": "L",
+          "drop": 0,
+          "expected": "mid-contact",
+          "actor": "p-mage",
+          "round": 10,
+          "grounded": true,
+          "x": 2337.04,
+          "y": 2930
+        }
+      ],
+      "relay": {
+        "id": 23,
+        "shot": 29,
+        "x": 2310.7671632751726,
+        "y": 2924,
+        "round": 10,
+        "impact": {
+          "x": 2310.7671632751726,
+          "y": 2924,
+          "radius": 6,
+          "normal": {
+            "x": 0,
+            "y": -1
+          }
+        },
+        "support": {
+          "terrain": "mid-contact",
+          "edge": 49,
+          "x": 2310.7671632751726,
+          "y": 2930
+        }
+      },
+      "eave": {
+        "edge": "mumyeongsa-torn-eave",
+        "clearWidth": 236,
+        "gravity": {
+          "x": 0,
+          "y": -320
+        },
+        "landed": {
+          "id": "p-mage",
+          "x": 380,
+          "y": 900,
+          "vx": 0,
+          "vy": 0,
+          "grounded": true,
+          "support": "c-eave-soffit",
+          "normal": {
+            "x": 0,
+            "y": 1
+          }
+        },
+        "approach": {
+          "id": "p-mage",
+          "x": 718.3500000000023,
+          "y": 900,
+          "vx": 0,
+          "vy": 0,
+          "grounded": true,
+          "support": "c-eave-soffit",
+          "normal": {
+            "x": 0,
+            "y": 1
+          }
+        },
+        "exit": {
+          "id": "p-mage",
+          "x": 736,
+          "y": 900,
+          "vx": 0,
+          "vy": 0,
+          "grounded": true,
+          "support": "c-eave-soffit",
+          "normal": {
+            "x": 0,
+            "y": 1
+          }
+        }
+      },
+      "gallery": {
+        "observed": {
+          "x": 1371.0155971501856,
+          "y": 2478.4767276208113,
+          "support": "foothill",
+          "actor": "p-mage",
+          "grounded": true,
+          "round": 7
+        },
+        "guard": "mumyeongsa-b-wall-guard"
+      },
+      "settlement": false,
+      "sodanThread": {
+        "version": 1,
+        "body": "p-occultist",
+        "casts": [
+          {
+            "stage": 54,
+            "skill": "O06",
+            "shot": 3,
+            "cost": 36
+          }
+        ]
+      }
+    },
+    "terminalSHA": "bae11457e192da3f1328fef96cd40315b7b8e0f97cfe8b5231ec838cd5ab1cb1",
+    "custody": {
+      "mage": {
+        "id": "p-mage",
+        "name": "담허",
+        "role": "mage",
+        "cls": "mage",
+        "side": 0,
+        "x": 736,
+        "y": 900,
+        "vx": 0,
+        "vy": 0,
+        "hp": 457.20000000000016,
+        "maxHp": 2050,
+        "r": 22,
+        "h": 92,
+        "focus": 708,
+        "maxFocus": 724,
+        "regen": 28,
+        "level": 25,
+        "attack": 11.4116,
+        "armor": 0.472,
+        "shield": 0,
+        "bound": 0,
+        "mark": 0,
+        "breaks": 0,
+        "acted": false,
+        "moveLeft": 3075,
+        "maxMove": 3075,
+        "walkSpeed": 402,
+        "angle": 90.78716534998277,
+        "lastPower": 0.8125937579683751,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "tune": 0.5,
+        "facing": 1,
+        "hurt": 0,
+        "anim": 0,
+        "airborne": false,
+        "fixed": false,
+        "spawnX": 2641.688282828283,
+        "spawnY": 2861.483333333334,
+        "intent": "",
+        "dead": false,
+        "ranks": {
+          "M01": 1,
+          "M07": 4,
+          "M10": 3
+        },
+        "group": 0,
+        "awake": true,
+        "lastAct": 0,
+        "aggroUntil": 0,
+        "xpBudget": 0,
+        "xpGranted": 0,
+        "killRewarded": false,
+        "damageBy": {},
+        "honroAlly": false,
+        "honroCivilian": false,
+        "critChance": 0.174,
+        "critMultiplier": 2.51,
+        "cooldowns": {},
+        "equipmentState": {
+          "version": 1
+        },
+        "jumping": false,
+        "eaterSwallow": 0,
+        "moving": 0.07166666666666667,
+        "landing": 0,
+        "salheunFlash": 0,
+        "honroShieldSources": {
+          "p-mage": 0
+        },
+        "walkPhase": 99.76753655339013,
+        "impactCooldown": 0,
+        "jucheon": 0,
+        "jucheonReady": false
+      },
+      "external": {
+        "archer": {
+          "id": "p-archer",
+          "name": "설오",
+          "role": "archer",
+          "cls": "archer",
+          "side": 0,
+          "x": 4398.557742659368,
+          "y": 3878.0372858887927,
+          "vx": 0,
+          "vy": 0,
+          "hp": 1651,
+          "maxHp": 1720,
+          "r": 22,
+          "h": 92,
+          "focus": 404,
+          "maxFocus": 404,
+          "regen": 28,
+          "level": 25,
+          "attack": 11.98825,
+          "armor": 0.42800000000000005,
+          "shield": 206,
+          "bound": 0,
+          "mark": 0,
+          "breaks": 0,
+          "acted": true,
+          "moveLeft": 1036.1013760212497,
+          "maxMove": 2921,
+          "walkSpeed": 425,
+          "angle": 52.91371749235654,
+          "lastPower": 0.54,
+          "loadout": [
+            "A01",
+            "A14",
+            "A02",
+            "A05"
+          ],
+          "tune": 0.5,
+          "facing": 1,
+          "hurt": 0,
+          "anim": 0,
+          "airborne": false,
+          "fixed": false,
+          "spawnX": 1200,
+          "spawnY": 1224.5833333333333,
+          "intent": "",
+          "dead": false,
+          "ranks": {
+            "A01": 1,
+            "A14": 4,
+            "A02": 4,
+            "A05": 4
+          },
+          "group": 0,
+          "awake": true,
+          "lastAct": 0,
+          "aggroUntil": 0,
+          "xpBudget": 0,
+          "xpGranted": 0,
+          "killRewarded": false,
+          "damageBy": {},
+          "honroAlly": false,
+          "honroCivilian": false,
+          "critChance": 0.28400000000000003,
+          "critMultiplier": 3.085,
+          "cooldowns": {},
+          "moving": 0,
+          "eaterSwallow": 0,
+          "landing": 0.26,
+          "impactCooldown": 0,
+          "salheunFlash": 0,
+          "walkPhase": 154.14725244717326,
+          "honroShieldSources": {
+            "": 0,
+            "p-archer": 206
+          },
+          "jumping": false,
+          "equipmentState": {
+            "version": 1,
+            "jumpCycle": 6
+          },
+          "shieldUntil": 6,
+          "jucheon": 0,
+          "jucheonReady": false
+        },
+        "knight": {
+          "id": "p-knight",
+          "name": "휘겸",
+          "role": "knight",
+          "cls": "knight",
+          "side": 0,
+          "x": 4400.808951849008,
+          "y": 3876.050924839111,
+          "vx": 0,
+          "vy": 0,
+          "hp": 3688.1,
+          "maxHp": 3846,
+          "r": 22,
+          "h": 92,
+          "focus": 477,
+          "maxFocus": 477,
+          "regen": 28,
+          "level": 25,
+          "attack": 9.98515,
+          "armor": 0.7,
+          "shield": 0,
+          "bound": 0,
+          "mark": 0,
+          "breaks": 0,
+          "acted": false,
+          "moveLeft": 4081,
+          "maxMove": 4081,
+          "walkSpeed": 420,
+          "angle": 44,
+          "lastPower": 0.55,
+          "loadout": [
+            "S00",
+            "S01",
+            "S03"
+          ],
+          "tune": 0.5,
+          "facing": 1,
+          "hurt": 0,
+          "anim": 0,
+          "airborne": false,
+          "fixed": false,
+          "spawnX": 1080,
+          "spawnY": 1166.111111111111,
+          "intent": "",
+          "dead": false,
+          "ranks": {
+            "S00": 1,
+            "S01": 4,
+            "S03": 4
+          },
+          "group": 0,
+          "awake": true,
+          "lastAct": 0,
+          "aggroUntil": 0,
+          "xpBudget": 0,
+          "xpGranted": 0,
+          "killRewarded": false,
+          "damageBy": {},
+          "honroAlly": false,
+          "honroCivilian": false,
+          "critChance": 0.1648,
+          "critMultiplier": 2.5330000000000004,
+          "cooldowns": {},
+          "equipmentState": {
+            "version": 1
+          },
+          "eaterSwallow": 0,
+          "moving": 0,
+          "landing": 0,
+          "impactCooldown": 0,
+          "salheunFlash": 0,
+          "honroShieldSources": {
+            "p-knight": 462
+          },
+          "walkPhase": 155.96559506897273,
+          "jumping": false,
+          "jucheon": 0,
+          "jucheonReady": false
+        },
+        "occultist": {
+          "id": "p-occultist",
+          "name": "소단",
+          "role": "occultist",
+          "cls": "occultist",
+          "side": 0,
+          "x": 4399.834064268077,
+          "y": 3876.9111197634616,
+          "vx": 0,
+          "vy": 0,
+          "hp": 2144.1,
+          "maxHp": 2304,
+          "r": 22,
+          "h": 92,
+          "focus": 751,
+          "maxFocus": 751,
+          "regen": 32,
+          "level": 25,
+          "attack": 11.170800000000002,
+          "armor": 0.487,
+          "shield": 0,
+          "bound": 0,
+          "mark": 0,
+          "breaks": 0,
+          "acted": false,
+          "moveLeft": 3132,
+          "maxMove": 3132,
+          "walkSpeed": 416,
+          "angle": 44,
+          "lastPower": 0.55,
+          "loadout": [
+            "O01",
+            "O04",
+            "O03",
+            "O06"
+          ],
+          "tune": 0.5,
+          "facing": 1,
+          "hurt": 0,
+          "anim": 0,
+          "airborne": false,
+          "fixed": false,
+          "spawnX": 1000,
+          "spawnY": 1151.888888888889,
+          "intent": "",
+          "dead": false,
+          "spiritSight": true,
+          "ranks": {
+            "O01": 1,
+            "O06": 5,
+            "O02": 4,
+            "O03": 3,
+            "O04": 2
+          },
+          "group": 0,
+          "awake": true,
+          "lastAct": 0,
+          "aggroUntil": 0,
+          "xpBudget": 0,
+          "xpGranted": 0,
+          "killRewarded": false,
+          "damageBy": {},
+          "honroAlly": false,
+          "honroCivilian": false,
+          "critChance": 0.20700000000000002,
+          "critMultiplier": 2.4855,
+          "cooldowns": {},
+          "eaterSwallow": 0,
+          "moving": 0,
+          "landing": 0,
+          "impactCooldown": 0,
+          "salheunFlash": 0,
+          "honroShieldSources": {
+            "p-occultist": 276
+          },
+          "walkPhase": 158.8154148591665,
+          "jumping": false,
+          "equipmentState": {
+            "version": 1
+          },
+          "jucheon": 0,
+          "jucheonReady": false
+        }
+      },
+      "witness": {
+        "attackSide": 0,
+        "damageRoll": 1,
+        "id": 23,
+        "skill": "M09",
+        "owner": "p-mage",
+        "side": 0,
+        "x": 2310.7671632751726,
+        "y": 2924,
+        "rank": 1,
+        "damage": 0,
+        "shot": 29,
+        "effectBoost": 0,
+        "expires": 16
+      }
+    },
+    "custodySHA": "37673b7291e7f3e6a8c6665cb50eb9404eb225e32a38496003214ac185c33619",
+    "stageSeed": {
+      "id": 54,
+      "local": 54,
+      "region": 6,
+      "act": 6,
+      "actStage": 4,
+      "active": 1,
+      "requires": [
+        53
+      ],
+      "name": "거꾸로 선 처마",
+      "goal": "처마의 세 방향 확인",
+      "objective": "act6-gallery-charts",
+      "w": 3200,
+      "h": 3000,
+      "story": [],
+      "outro": [],
+      "wind": [
+        0
+      ],
+      "victoryRule": {
+        "kind": "scripted",
+        "target": "act6-native-54"
+      }
+    },
+    "budget": {
+      "id": 54,
+      "act": 6,
+      "entryLevel": 25,
+      "exitLevel": 25,
+      "rewardCurve": "current",
+      "balanceStatus": "detached-zero-increment-horizon"
+    }
+  },
+  "settledAtChart": [],
+  "cold": {
+    "snapshot": {
+      "stageId": 55,
+      "honroStage": 55,
+      "mode": "campaign",
+      "authoredId": "stage-55",
+      "round": 1,
+      "phase": "aim",
+      "side": 0,
+      "shot": 0,
+      "rng": 19388,
+      "active": "p-knight",
+      "dialogue": false,
+      "isolatedStore": false,
+      "play": [
+        6800,
+        3200
+      ],
+      "terrainBounds": {
+        "left": -4496,
+        "top": -1992,
+        "right": 11536,
+        "bottom": 11768
+      },
+      "playBounds": {
+        "left": 0,
+        "top": 0,
+        "right": 6800,
+        "bottom": 3200
+      },
+      "camera": {
+        "x": 1605,
+        "y": 1294.4473562700312,
+        "zoom": null
+      },
+      "gravity": {
+        "x": 0,
+        "y": 320
+      },
+      "fieldFlags": [],
+      "terrain": [
+        {
+          "id": "west-ring-descent",
+          "vertices": 4,
+          "oneWay": false
+        },
+        {
+          "id": "arrival-core-terrace",
+          "vertices": 4,
+          "oneWay": false
+        },
+        {
+          "id": "right-return-rise",
+          "vertices": 4,
+          "oneWay": false
+        },
+        {
+          "id": "east-upper-end",
+          "vertices": 4,
+          "oneWay": false
+        },
+        {
+          "id": "west-lower-branch",
+          "vertices": 4,
+          "oneWay": false
+        },
+        {
+          "id": "east-lower-branch",
+          "vertices": 4,
+          "oneWay": false
+        }
+      ],
+      "worldTerrain": [
+        {
+          "id": "west-ring-descent",
+          "vertices": 4
+        },
+        {
+          "id": "arrival-core-terrace",
+          "vertices": 4
+        },
+        {
+          "id": "right-return-rise",
+          "vertices": 4
+        },
+        {
+          "id": "east-upper-end",
+          "vertices": 4
+        },
+        {
+          "id": "west-lower-branch",
+          "vertices": 4
+        },
+        {
+          "id": "east-lower-branch",
+          "vertices": 4
+        }
+      ],
+      "enemies": [
+        "draft-pressure-0",
+        "a6-55-opening-1",
+        "a6-55-opening-2",
+        "a6-55-opening-3",
+        "a6-55-opening-4"
+      ],
+      "units": [
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "side": 0,
+          "level": 25,
+          "hp": 3688.1,
+          "maxHp": 3846,
+          "loadout": [
+            "S00",
+            "S01",
+            "S03"
+          ],
+          "pos": [
+            176,
+            586.91
+          ],
+          "h": 92,
+          "r": 22,
+          "awake": true,
+          "dead": false,
+          "airborne": false,
+          "grounded": true,
+          "validContact": true,
+          "support": "west-ring-descent",
+          "fixed": false,
+          "objective": false,
+          "role": "knight",
+          "summoned": false,
+          "ally": false
+        },
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "side": 0,
+          "level": 25,
+          "hp": 1651,
+          "maxHp": 1720,
+          "loadout": [
+            "A01",
+            "A14",
+            "A02",
+            "A05"
+          ],
+          "pos": [
+            1232,
+            1162.91
+          ],
+          "h": 92,
+          "r": 22,
+          "awake": true,
+          "dead": false,
+          "airborne": false,
+          "grounded": true,
+          "validContact": true,
+          "support": "west-ring-descent",
+          "fixed": false,
+          "objective": false,
+          "role": "archer",
+          "summoned": false,
+          "ally": false
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "side": 0,
+          "level": 25,
+          "hp": 2144.1,
+          "maxHp": 2304,
+          "loadout": [
+            "O01",
+            "O04",
+            "O03",
+            "O06"
+          ],
+          "pos": [
+            2688,
+            1700.31
+          ],
+          "h": 92,
+          "r": 22,
+          "awake": true,
+          "dead": false,
+          "airborne": false,
+          "grounded": true,
+          "validContact": true,
+          "support": "arrival-core-terrace",
+          "fixed": true,
+          "objective": false,
+          "role": "occultist",
+          "summoned": false,
+          "ally": false
+        },
+        {
+          "id": "draft-pressure-0",
+          "cls": "occultist",
+          "side": 1,
+          "level": 12,
+          "hp": 480,
+          "maxHp": 480,
+          "loadout": [
+            "HLN01",
+            "HLN02"
+          ],
+          "pos": [
+            2112,
+            1523.08
+          ],
+          "h": 92,
+          "r": 25,
+          "awake": true,
+          "dead": false,
+          "airborne": false,
+          "grounded": true,
+          "validContact": true,
+          "support": "arrival-core-terrace",
+          "fixed": true,
+          "objective": false,
+          "role": "fire",
+          "summoned": false,
+          "ally": false
+        },
+        {
+          "id": "draft-pressure-1",
+          "cls": "occultist",
+          "side": 1,
+          "level": 8,
+          "hp": 409,
+          "maxHp": 409,
+          "loadout": [
+            "HGS01",
+            "HGS02"
+          ],
+          "pos": [
+            912,
+            2590.33
+          ],
+          "h": 88,
+          "r": 32,
+          "awake": false,
+          "dead": false,
+          "airborne": false,
+          "grounded": true,
+          "validContact": true,
+          "support": "west-lower-branch",
+          "fixed": false,
+          "objective": false,
+          "role": "fire",
+          "summoned": false,
+          "ally": false
+        },
+        {
+          "id": "draft-pressure-2",
+          "cls": "knight",
+          "side": 1,
+          "level": 8,
+          "hp": 409,
+          "maxHp": 409,
+          "loadout": [
+            "HBM01"
+          ],
+          "pos": [
+            1624,
+            1372.92
+          ],
+          "h": 88,
+          "r": 32,
+          "awake": false,
+          "dead": false,
+          "airborne": false,
+          "grounded": true,
+          "validContact": true,
+          "support": "arrival-core-terrace",
+          "fixed": false,
+          "objective": false,
+          "role": "leaper",
+          "summoned": false,
+          "ally": false
+        },
+        {
+          "id": "draft-pressure-3",
+          "cls": "archer",
+          "side": 1,
+          "level": 12,
+          "hp": 796,
+          "maxHp": 796,
+          "loadout": [
+            "LA01",
+            "LA02"
+          ],
+          "pos": [
+            1264,
+            1180.36
+          ],
+          "h": 91,
+          "r": 21,
+          "awake": false,
+          "dead": false,
+          "airborne": false,
+          "grounded": true,
+          "validContact": true,
+          "support": "west-ring-descent",
+          "fixed": false,
+          "objective": false,
+          "role": "bow",
+          "summoned": false,
+          "ally": false
+        },
+        {
+          "id": "a6-55-opening-1",
+          "cls": "knight",
+          "side": 1,
+          "level": 25,
+          "hp": 655,
+          "maxHp": 655,
+          "loadout": [
+            "HBM01"
+          ],
+          "pos": [
+            410,
+            714.55
+          ],
+          "h": 88,
+          "r": 32,
+          "awake": true,
+          "dead": false,
+          "airborne": false,
+          "grounded": true,
+          "validContact": true,
+          "support": "west-ring-descent",
+          "fixed": false,
+          "objective": false,
+          "role": "leaper",
+          "summoned": false,
+          "ally": false
+        },
+        {
+          "id": "a6-55-opening-2",
+          "cls": "knight",
+          "side": 1,
+          "level": 25,
+          "hp": 655,
+          "maxHp": 655,
+          "loadout": [
+            "HBM01"
+          ],
+          "pos": [
+            640,
+            840
+          ],
+          "h": 88,
+          "r": 32,
+          "awake": true,
+          "dead": false,
+          "airborne": false,
+          "grounded": true,
+          "validContact": true,
+          "support": "west-ring-descent",
+          "fixed": false,
+          "objective": false,
+          "role": "leaper",
+          "summoned": false,
+          "ally": false
+        },
+        {
+          "id": "a6-55-opening-3",
+          "cls": "occultist",
+          "side": 1,
+          "level": 25,
+          "hp": 595,
+          "maxHp": 595,
+          "loadout": [
+            "HSH01",
+            "HSH02"
+          ],
+          "pos": [
+            920,
+            992.73
+          ],
+          "h": 115,
+          "r": 22,
+          "awake": true,
+          "dead": false,
+          "airborne": false,
+          "grounded": true,
+          "validContact": true,
+          "support": "west-ring-descent",
+          "fixed": false,
+          "objective": false,
+          "role": "ice",
+          "summoned": false,
+          "ally": false
+        },
+        {
+          "id": "a6-55-opening-4",
+          "cls": "occultist",
+          "side": 1,
+          "level": 25,
+          "hp": 595,
+          "maxHp": 595,
+          "loadout": [
+            "HSH01",
+            "HSH02"
+          ],
+          "pos": [
+            1180,
+            1134.55
+          ],
+          "h": 115,
+          "r": 22,
+          "awake": true,
+          "dead": false,
+          "airborne": false,
+          "grounded": true,
+          "validContact": true,
+          "support": "west-ring-descent",
+          "fixed": false,
+          "objective": false,
+          "role": "ice",
+          "summoned": false,
+          "ally": false
+        },
+        {
+          "id": "a6-55-opening-5",
+          "cls": "occultist",
+          "side": 1,
+          "level": 25,
+          "hp": 595,
+          "maxHp": 595,
+          "loadout": [
+            "HSH01",
+            "HSH02"
+          ],
+          "pos": [
+            1470,
+            1325.54
+          ],
+          "h": 115,
+          "r": 22,
+          "awake": false,
+          "dead": false,
+          "airborne": false,
+          "grounded": true,
+          "validContact": true,
+          "support": "arrival-core-terrace",
+          "fixed": false,
+          "objective": false,
+          "role": "ice",
+          "summoned": false,
+          "ally": false
+        },
+        {
+          "id": "a6-55-opening-6",
+          "cls": "knight",
+          "side": 1,
+          "level": 25,
+          "hp": 755,
+          "maxHp": 755,
+          "loadout": [
+            "HBM03"
+          ],
+          "pos": [
+            2794,
+            1732.92
+          ],
+          "h": 116,
+          "r": 38,
+          "awake": false,
+          "dead": false,
+          "airborne": false,
+          "grounded": true,
+          "validContact": true,
+          "support": "arrival-core-terrace",
+          "fixed": false,
+          "objective": false,
+          "role": "leaper",
+          "summoned": false,
+          "ally": false
+        }
+      ]
+    },
+    "savedBytesBefore": "0450236e47a668868c26ac0fba872b97f3641d2eedca1557e5763842b8c07802",
+    "savedBytesAfter": "0450236e47a668868c26ac0fba872b97f3641d2eedca1557e5763842b8c07802"
+  },
+  "trace": {
+    "shots": [
+      {
+        "id": "mumyeongsa-b-rear-shade",
+        "skill": "HSH01",
+        "round": 1
+      },
+      {
+        "id": "mumyeongsa-b-wall-guard",
+        "skill": "LA01",
+        "round": 1
+      },
+      {
+        "id": "mumyeongsa-b-rear-shade",
+        "skill": "HSH01",
+        "round": 2
+      },
+      {
+        "id": "mumyeongsa-b-wall-guard",
+        "skill": "LA01",
+        "round": 2
+      },
+      {
+        "id": "mumyeongsa-b-rear-shade",
+        "skill": "HSH01",
+        "round": 3
+      },
+      {
+        "id": "mumyeongsa-b-aperture-ghost",
+        "skill": "HGS01",
+        "round": 3
+      },
+      {
+        "id": "a6-54-opening-2",
+        "skill": "HSH01",
+        "round": 4
+      },
+      {
+        "id": "a6-54-opening-1",
+        "skill": "HBM01",
+        "round": 4
+      },
+      {
+        "id": "a6-54-opening-2",
+        "skill": "HSH01",
+        "round": 5
+      },
+      {
+        "id": "a6-54-opening-3",
+        "skill": "HBM01",
+        "round": 5
+      },
+      {
+        "id": "a6-54-observatory-beam-2",
+        "skill": "HSH01",
+        "round": 6
+      },
+      {
+        "id": "a6-54-opening-3",
+        "skill": "HBM01",
+        "round": 6
+      },
+      {
+        "id": "a6-54-pillar-base-1",
+        "skill": "HSH01",
+        "round": 7
+      },
+      {
+        "id": "a6-54-observatory-beam-2",
+        "skill": "HSH01",
+        "round": 7
+      },
+      {
+        "id": "a6-54-observatory-beam-1",
+        "skill": "HBM01",
+        "round": 8
+      },
+      {
+        "id": "a6-54-pillar-base-1",
+        "skill": "HSH01",
+        "round": 8
+      },
+      {
+        "id": "a6-54-pillar-base-2",
+        "skill": "HBM01",
+        "round": 8
+      },
+      {
+        "id": "a6-54-pillar-base-2",
+        "skill": "HBM01",
+        "round": 9
+      },
+      {
+        "id": "a6-54-observatory-beam-1",
+        "skill": "HBM01",
+        "round": 9
+      },
+      {
+        "id": "a6-54-return-corner-1",
+        "skill": "HBM01",
+        "round": 9
+      }
+    ],
+    "heroShots": [
+      {
+        "id": "p-mage",
+        "skill": "M01",
+        "round": 3,
+        "shot": 6
+      },
+      {
+        "id": "p-mage",
+        "skill": "M01",
+        "round": 4,
+        "shot": 9
+      },
+      {
+        "id": "p-mage",
+        "skill": "M01",
+        "round": 5,
+        "shot": 12
+      },
+      {
+        "id": "p-mage",
+        "skill": "M01",
+        "round": 6,
+        "shot": 15
+      },
+      {
+        "id": "p-mage",
+        "skill": "M01",
+        "round": 7,
+        "shot": 18
+      },
+      {
+        "id": "p-mage",
+        "skill": "M01",
+        "round": 8,
+        "shot": 21
+      },
+      {
+        "id": "p-mage",
+        "skill": "M01",
+        "round": 9,
+        "shot": 25
+      },
+      {
+        "id": "p-mage",
+        "skill": "M09",
+        "round": 10,
+        "shot": 29
+      }
+    ],
+    "damage": [
+      {
+        "id": "mumyeongsa-b-wall-guard",
+        "target": "p-mage",
+        "skill": "LA01",
+        "before": 1783.9,
+        "after": 1783.9,
+        "shieldBefore": 246,
+        "shieldAfter": 219,
+        "amount": 60.34005,
+        "round": 1
+      },
+      {
+        "id": "mumyeongsa-b-wall-guard",
+        "target": "p-mage",
+        "skill": "LA01",
+        "before": 1783.9,
+        "after": 1759.9,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 53.099244,
+        "round": 2
+      },
+      {
+        "id": "mumyeongsa-b-aperture-ghost",
+        "target": "p-mage",
+        "skill": "HGS01",
+        "before": 1711.6000000000001,
+        "after": 1702.6000000000001,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 21.704468158285156,
+        "round": 3
+      },
+      {
+        "id": "a6-54-opening-2",
+        "target": "p-mage",
+        "skill": "HSH01",
+        "before": 1635.7,
+        "after": 1604.7,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 64.29693181042863,
+        "round": 4
+      },
+      {
+        "id": "a6-54-opening-1",
+        "target": "p-mage",
+        "skill": "HBM01",
+        "before": 1604.7,
+        "after": 1504.7,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 182.50335288197294,
+        "round": 4
+      },
+      {
+        "id": "a6-54-opening-2",
+        "target": "p-mage",
+        "skill": "HSH01",
+        "before": 1436.9,
+        "after": 1405.9,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 64.29693181042863,
+        "round": 5
+      },
+      {
+        "id": "a6-54-opening-3",
+        "target": "p-mage",
+        "skill": "HBM01",
+        "before": 1405.9,
+        "after": 1308.9,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 182.50335288197294,
+        "round": 5
+      },
+      {
+        "id": "a6-54-observatory-beam-2",
+        "target": "p-mage",
+        "skill": "HSH01",
+        "before": 1243.8000000000002,
+        "after": 1212.8000000000002,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 64.29693181042863,
+        "round": 6
+      },
+      {
+        "id": "a6-54-opening-3",
+        "target": "p-mage",
+        "skill": "HBM01",
+        "before": 1212.8000000000002,
+        "after": 1109.8000000000002,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 182.50335288197294,
+        "round": 6
+      },
+      {
+        "id": "a6-54-pillar-base-1",
+        "target": "p-mage",
+        "skill": "HSH01",
+        "before": 1109.8000000000002,
+        "after": 1078.8000000000002,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 64.29693181042863,
+        "round": 7
+      },
+      {
+        "id": "a6-54-observatory-beam-2",
+        "target": "p-mage",
+        "skill": "HSH01",
+        "before": 1078.8000000000002,
+        "after": 1047.8000000000002,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 64.29693181042863,
+        "round": 7
+      },
+      {
+        "id": "a6-54-observatory-beam-1",
+        "target": "p-mage",
+        "skill": "HBM01",
+        "before": 1047.8000000000002,
+        "after": 953.8000000000002,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 182.50335288197294,
+        "round": 8
+      },
+      {
+        "id": "a6-54-pillar-base-1",
+        "target": "p-mage",
+        "skill": "HSH01",
+        "before": 953.8000000000002,
+        "after": 922.8000000000002,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 64.29693181042863,
+        "round": 8
+      },
+      {
+        "id": "a6-54-pillar-base-2",
+        "target": "p-mage",
+        "skill": "HBM01",
+        "before": 922.8000000000002,
+        "after": 823.8000000000002,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 182.50335288197294,
+        "round": 8
+      },
+      {
+        "id": "a6-54-pillar-base-2",
+        "target": "p-mage",
+        "skill": "HBM01",
+        "before": 730.2000000000002,
+        "after": 637.2000000000002,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 182.50335288197294,
+        "round": 9
+      },
+      {
+        "id": "a6-54-observatory-beam-1",
+        "target": "p-mage",
+        "skill": "HBM01",
+        "before": 637.2000000000002,
+        "after": 546.2000000000002,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 182.50335288197294,
+        "round": 9
+      },
+      {
+        "id": "a6-54-return-corner-1",
+        "target": "p-mage",
+        "skill": "HBM01",
+        "before": 546.2000000000002,
+        "after": 457.20000000000016,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 182.50335288197294,
+        "round": 9
+      }
+    ],
+    "objectiveDamage": [],
+    "impacts": [
+      {
+        "id": "mumyeongsa-b-rear-shade",
+        "target": "p-mage",
+        "skill": "HSH01",
+        "before": {
+          "hp": 1783.9,
+          "shield": 246
+        },
+        "after": {
+          "hp": 1783.9,
+          "shield": 246
+        },
+        "x": 3186.046149418057,
+        "y": 452.44999999999834,
+        "shot": 1,
+        "round": 1
+      },
+      {
+        "id": "mumyeongsa-b-wall-guard",
+        "target": "p-mage",
+        "skill": "LA01",
+        "before": {
+          "hp": 1783.9,
+          "shield": 246
+        },
+        "after": {
+          "hp": 1783.9,
+          "shield": 219
+        },
+        "x": 3175.4673046398725,
+        "y": 399.44999999999834,
+        "shot": 2,
+        "round": 1
+      },
+      {
+        "id": "mumyeongsa-b-rear-shade",
+        "target": "p-mage",
+        "skill": "HSH01",
+        "before": {
+          "hp": 1783.9,
+          "shield": 0
+        },
+        "after": {
+          "hp": 1783.9,
+          "shield": 0
+        },
+        "x": 3186.5911386798753,
+        "y": 449.89510870083416,
+        "shot": 4,
+        "round": 2
+      },
+      {
+        "id": "mumyeongsa-b-wall-guard",
+        "target": "p-mage",
+        "skill": "LA01",
+        "before": {
+          "hp": 1783.9,
+          "shield": 0
+        },
+        "after": {
+          "hp": 1759.9,
+          "shield": 0
+        },
+        "x": 3176.7343736566854,
+        "y": 399.44999999999834,
+        "shot": 5,
+        "round": 2
+      },
+      {
+        "id": "mumyeongsa-b-rear-shade",
+        "target": "p-mage",
+        "skill": "HSH01",
+        "before": {
+          "hp": 1711.6000000000001,
+          "shield": 0
+        },
+        "after": {
+          "hp": 1711.6000000000001,
+          "shield": 0
+        },
+        "x": 3188.9058385038684,
+        "y": 257.3333333333336,
+        "shot": 7,
+        "round": 3
+      },
+      {
+        "id": "mumyeongsa-b-aperture-ghost",
+        "target": "p-mage",
+        "skill": "HGS01",
+        "before": {
+          "hp": 1711.6000000000001,
+          "shield": 0
+        },
+        "after": {
+          "hp": 1702.6000000000001,
+          "shield": 0
+        },
+        "x": 3184.4329759167317,
+        "y": 225.81362413055405,
+        "shot": 8,
+        "round": 3
+      },
+      {
+        "id": "a6-54-opening-2",
+        "target": "p-mage",
+        "skill": "HSH01",
+        "before": {
+          "hp": 1635.7,
+          "shield": 0
+        },
+        "after": {
+          "hp": 1604.7,
+          "shield": 0
+        },
+        "x": 783.5259844299113,
+        "y": 2437.4278512152882,
+        "shot": 10,
+        "round": 4
+      },
+      {
+        "id": "a6-54-opening-2",
+        "target": "p-mage",
+        "skill": "HSH01",
+        "before": {
+          "hp": 1436.9,
+          "shield": 0
+        },
+        "after": {
+          "hp": 1405.9,
+          "shield": 0
+        },
+        "x": 1043.1600172530573,
+        "y": 2369.892779964821,
+        "shot": 13,
+        "round": 5
+      },
+      {
+        "id": "a6-54-observatory-beam-2",
+        "target": "p-mage",
+        "skill": "HSH01",
+        "before": {
+          "hp": 1243.8000000000002,
+          "shield": 0
+        },
+        "after": {
+          "hp": 1212.8000000000002,
+          "shield": 0
+        },
+        "x": 1060.419928745189,
+        "y": 2397.5167062405462,
+        "shot": 16,
+        "round": 6
+      },
+      {
+        "id": "a6-54-pillar-base-1",
+        "target": "p-mage",
+        "skill": "HSH01",
+        "before": {
+          "hp": 1109.8000000000002,
+          "shield": 0
+        },
+        "after": {
+          "hp": 1078.8000000000002,
+          "shield": 0
+        },
+        "x": 1436.0027117473392,
+        "y": 2377.0446831126455,
+        "shot": 19,
+        "round": 7
+      },
+      {
+        "id": "a6-54-observatory-beam-2",
+        "target": "p-mage",
+        "skill": "HSH01",
+        "before": {
+          "hp": 1078.8000000000002,
+          "shield": 0
+        },
+        "after": {
+          "hp": 1047.8000000000002,
+          "shield": 0
+        },
+        "x": 1372.7244913392944,
+        "y": 2411.7744902413697,
+        "shot": 20,
+        "round": 7
+      },
+      {
+        "id": "a6-54-pillar-base-1",
+        "target": "p-mage",
+        "skill": "HSH01",
+        "before": {
+          "hp": 953.8000000000002,
+          "shield": 0
+        },
+        "after": {
+          "hp": 922.8000000000002,
+          "shield": 0
+        },
+        "x": 1432.694110444956,
+        "y": 2384.1707131811654,
+        "shot": 23,
+        "round": 8
+      }
+    ],
+    "knockbacks": [
+      {
+        "id": "p-mage",
+        "round": 3,
+        "chart": [
+          3540,
+          3000
+        ],
+        "position": [
+          3240,
+          424.44999999999834
+        ],
+        "before": [
+          0,
+          0
+        ],
+        "after": [
+          35.20103012597497,
+          -45
+        ]
+      },
+      {
+        "id": "p-mage",
+        "round": 3,
+        "chart": [
+          3540,
+          3000
+        ],
+        "position": [
+          3240,
+          229.3333333333336
+        ],
+        "before": [
+          0,
+          0
+        ],
+        "after": [
+          13.09251318831953,
+          -45
+        ]
+      },
+      {
+        "id": "p-mage",
+        "round": 4,
+        "chart": [
+          3200,
+          3000
+        ],
+        "position": [
+          769.6990255668463,
+          2478.2409707670054
+        ],
+        "before": [
+          0,
+          0
+        ],
+        "after": [
+          -59.89009491409888,
+          -45
+        ]
+      },
+      {
+        "id": "p-mage",
+        "round": 4,
+        "chart": [
+          3200,
+          3000
+        ],
+        "position": [
+          755.5259844299113,
+          2477.8157795328975
+        ],
+        "before": [
+          0,
+          0
+        ],
+        "after": [
+          -37.136150737000236,
+          -45
+        ]
+      },
+      {
+        "id": "p-mage",
+        "round": 5,
+        "chart": [
+          3200,
+          3000
+        ],
+        "position": [
+          1114.2099453800736,
+          2393.4364636842383
+        ],
+        "before": [
+          0,
+          0
+        ],
+        "after": [
+          -63.73226217933415,
+          -45
+        ]
+      },
+      {
+        "id": "p-mage",
+        "round": 5,
+        "chart": [
+          3200,
+          3000
+        ],
+        "position": [
+          1071.1600172530573,
+          2421.1114174801774
+        ],
+        "before": [
+          0,
+          0
+        ],
+        "after": [
+          33.72163314575599,
+          -45
+        ]
+      },
+      {
+        "id": "p-mage",
+        "round": 6,
+        "chart": [
+          3200,
+          3000
+        ],
+        "position": [
+          1077.4567279347366,
+          2417.063532041955
+        ],
+        "before": [
+          0,
+          0
+        ],
+        "after": [
+          -65.73944684626113,
+          -45
+        ]
+      },
+      {
+        "id": "p-mage",
+        "round": 6,
+        "chart": [
+          3200,
+          3000
+        ],
+        "position": [
+          1032.419928745189,
+          2446.0157600923785
+        ],
+        "before": [
+          0,
+          0
+        ],
+        "after": [
+          -35.344288812014184,
+          -45
+        ]
+      },
+      {
+        "id": "p-mage",
+        "round": 7,
+        "chart": [
+          3200,
+          3000
+        ],
+        "position": [
+          1408.0027117473392,
+          2444.4617918752147
+        ],
+        "before": [
+          0,
+          0
+        ],
+        "after": [
+          -16.064107440241933,
+          -45
+        ]
+      },
+      {
+        "id": "p-mage",
+        "round": 7,
+        "chart": [
+          3200,
+          3000
+        ],
+        "position": [
+          1400.7244913392944,
+          2451.1551552861847
+        ],
+        "before": [
+          0,
+          0
+        ],
+        "after": [
+          37.02372655550642,
+          -45
+        ]
+      },
+      {
+        "id": "p-mage",
+        "round": 8,
+        "chart": [
+          3200,
+          3000
+        ],
+        "position": [
+          1404.694110444956,
+          2447.504523430085
+        ],
+        "before": [
+          0,
+          0
+        ],
+        "after": [
+          -21.544074692896487,
+          -45
+        ]
+      },
+      {
+        "id": "p-mage",
+        "round": 9,
+        "chart": [
+          3200,
+          3000
+        ],
+        "position": [
+          1393.848033898868,
+          2457.4790402537196
+        ],
+        "before": [
+          0,
+          0
+        ],
+        "after": [
+          -8.640121965108388,
+          -45
+        ]
+      }
+    ],
+    "enemyTurns": [
+      {
+        "id": "mumyeongsa-b-rear-shade",
+        "round": 1,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 3240,
+        "y": 548
+      },
+      {
+        "id": "mumyeongsa-b-wall-guard",
+        "round": 1,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 3240,
+        "y": 242.41666666666666
+      },
+      {
+        "id": "mumyeongsa-b-aperture-ghost",
+        "round": 1,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 3240,
+        "y": 130.08333333333334
+      },
+      {
+        "id": "mumyeongsa-b-rear-guard",
+        "round": 1,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 3240,
+        "y": 661
+      },
+      {
+        "id": "mumyeongsa-b-rear-shade",
+        "round": 2,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 3240,
+        "y": 518.8333333333328
+      },
+      {
+        "id": "mumyeongsa-b-wall-guard",
+        "round": 2,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 3240,
+        "y": 271.41666666666674
+      },
+      {
+        "id": "mumyeongsa-b-aperture-ghost",
+        "round": 2,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 3240,
+        "y": 159.25000000000014
+      },
+      {
+        "id": "mumyeongsa-b-rear-guard",
+        "round": 2,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 3240,
+        "y": 631.8333333333328
+      },
+      {
+        "id": "mumyeongsa-b-rear-shade",
+        "round": 3,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 3240,
+        "y": 489.66666666666623
+      },
+      {
+        "id": "mumyeongsa-b-aperture-ghost",
+        "round": 3,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 3240,
+        "y": 186.3333333333336
+      },
+      {
+        "id": "mumyeongsa-b-rear-guard",
+        "round": 3,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 3240,
+        "y": 600.5833333333322
+      },
+      {
+        "id": "a6-54-opening-2",
+        "round": 4,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 828.5191228700619,
+        "y": 2482.922450548624
+      },
+      {
+        "id": "a6-54-opening-1",
+        "round": 4,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 680,
+        "y": 2608.4701492537315
+      },
+      {
+        "id": "a6-54-pillar-base-1",
+        "round": 4,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 725.8703458612841,
+        "y": 2476.9261103758386
+      },
+      {
+        "id": "a6-54-pillar-base-2",
+        "round": 4,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 900,
+        "y": 2595.3584905660377
+      },
+      {
+        "id": "a6-54-opening-2",
+        "round": 5,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 828.5735558724806,
+        "y": 2482.928820368056
+      },
+      {
+        "id": "a6-54-opening-3",
+        "round": 5,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1060,
+        "y": 2535.743902439024
+      },
+      {
+        "id": "a6-54-opening-4",
+        "round": 5,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1280,
+        "y": 2387.2972972972975
+      },
+      {
+        "id": "a6-54-pillar-base-1",
+        "round": 5,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1218.8847624499276,
+        "y": 2490.9485829752916
+      },
+      {
+        "id": "a6-54-observatory-beam-2",
+        "round": 6,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1330,
+        "y": 2505.6746987951806
+      },
+      {
+        "id": "a6-54-opening-3",
+        "round": 6,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 970.7807807633013,
+        "y": 2563.602702686971
+      },
+      {
+        "id": "a6-54-opening-4",
+        "round": 6,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1451.6330997891469,
+        "y": 2404.3374171581954
+      },
+      {
+        "id": "a6-54-pillar-base-2",
+        "round": 6,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 755.9249308858343,
+        "y": 2601.3666041122315
+      },
+      {
+        "id": "a6-54-pillar-base-1",
+        "round": 7,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1506.5359414745437,
+        "y": 2401.0320576068275
+      },
+      {
+        "id": "a6-54-opening-4",
+        "round": 7,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1700.0597226524292,
+        "y": 2346.213224869759
+      },
+      {
+        "id": "a6-54-observatory-beam-1",
+        "round": 7,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1181.3098669846847,
+        "y": 2385.4729481203844
+      },
+      {
+        "id": "a6-54-observatory-beam-2",
+        "round": 7,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1330,
+        "y": 2505.6746987951806
+      },
+      {
+        "id": "a6-54-observatory-beam-1",
+        "round": 8,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1327.1301932713022,
+        "y": 2402.688583807412
+      },
+      {
+        "id": "a6-54-pillar-base-1",
+        "round": 8,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1506.5359414745437,
+        "y": 2401.0320576068275
+      },
+      {
+        "id": "a6-54-pillar-base-2",
+        "round": 8,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 920.6415410968672,
+        "y": 2588.3481558538942
+      },
+      {
+        "id": "a6-54-observatory-beam-2",
+        "round": 8,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1330,
+        "y": 2505.6746987951806
+      },
+      {
+        "id": "a6-54-pillar-base-2",
+        "round": 9,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1358.747229218252,
+        "y": 2429.313456183791
+      },
+      {
+        "id": "a6-54-observatory-beam-1",
+        "round": 9,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1328.9787286667517,
+        "y": 2404.245245193054
+      },
+      {
+        "id": "a6-54-observatory-beam-2",
+        "round": 9,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1047.9351840702489,
+        "y": 2436.0416673834115
+      },
+      {
+        "id": "a6-54-return-corner-1",
+        "round": 9,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1521.1379711492193,
+        "y": 2400.2373893252125
+      }
+    ],
+    "joins": [
+      {
+        "id": "mumyeongsa-b-wall-guard",
+        "role": "bow",
+        "source": "original",
+        "round": 1,
+        "bossPhase": null,
+        "x": 3183.7199977169553,
+        "y": 240,
+        "grounded": false,
+        "surface": null
+      },
+      {
+        "id": "mumyeongsa-b-aperture-ghost",
+        "role": "fire",
+        "source": "original",
+        "round": 1,
+        "bossPhase": null,
+        "x": 3183.7199977169553,
+        "y": 128,
+        "grounded": false,
+        "surface": null
+      },
+      {
+        "id": "mumyeongsa-b-rear-shade",
+        "role": "fire",
+        "source": "original",
+        "round": 1,
+        "bossPhase": null,
+        "x": 3183.7199977169553,
+        "y": 548,
+        "grounded": false,
+        "surface": null
+      },
+      {
+        "id": "mumyeongsa-b-rear-guard",
+        "role": "bow",
+        "source": "original",
+        "round": 1,
+        "bossPhase": null,
+        "x": 3183.7199977169553,
+        "y": 661,
+        "grounded": false,
+        "surface": null
+      },
+      {
+        "id": "a6-54-opening-1",
+        "role": "leaper",
+        "source": "opening",
+        "round": 4,
+        "bossPhase": null,
+        "x": 680,
+        "y": 2608.4701492537315,
+        "grounded": true,
+        "surface": "foothill"
+      },
+      {
+        "id": "a6-54-opening-2",
+        "role": "ice",
+        "source": "opening",
+        "round": 4,
+        "bossPhase": null,
+        "x": 817,
+        "y": 2481.574468085106,
+        "grounded": true,
+        "surface": "gallery-outer-balcony"
+      },
+      {
+        "id": "a6-54-opening-3",
+        "role": "leaper",
+        "source": "opening",
+        "round": 4,
+        "bossPhase": null,
+        "x": 1060,
+        "y": 2535.743902439024,
+        "grounded": true,
+        "surface": "foothill"
+      },
+      {
+        "id": "a6-54-opening-4",
+        "role": "ice",
+        "source": "opening",
+        "round": 4,
+        "bossPhase": null,
+        "x": 1280,
+        "y": 2387.2972972972975,
+        "grounded": true,
+        "surface": "gallery-observation-beam"
+      },
+      {
+        "id": "a6-54-pillar-base-1",
+        "role": "ice",
+        "source": "pillar-base",
+        "round": 4,
+        "bossPhase": null,
+        "x": 730,
+        "y": 2477.05,
+        "grounded": true,
+        "surface": "gallery-outer-balcony"
+      },
+      {
+        "id": "a6-54-pillar-base-2",
+        "role": "leaper",
+        "source": "pillar-base",
+        "round": 4,
+        "bossPhase": null,
+        "x": 900,
+        "y": 2595.3584905660377,
+        "grounded": true,
+        "surface": "foothill"
+      },
+      {
+        "id": "a6-54-observatory-beam-1",
+        "role": "leaper",
+        "source": "observatory-beam",
+        "round": 4,
+        "bossPhase": null,
+        "x": 1170,
+        "y": 2386.4603174603176,
+        "grounded": true,
+        "surface": "gallery-observation-beam"
+      },
+      {
+        "id": "a6-54-observatory-beam-2",
+        "role": "ice",
+        "source": "observatory-beam",
+        "round": 4,
+        "bossPhase": null,
+        "x": 1330,
+        "y": 2505.6746987951806,
+        "grounded": true,
+        "surface": "foothill"
+      },
+      {
+        "id": "a6-54-return-corner-1",
+        "role": "leaper",
+        "source": "return-corner",
+        "round": 9,
+        "bossPhase": null,
+        "x": 1510,
+        "y": 2400.843537414966,
+        "grounded": true,
+        "surface": "foothill"
+      }
+    ],
+    "queues": [
+      {
+        "round": 1,
+        "queue": [
+          "mumyeongsa-b-rear-shade",
+          "mumyeongsa-b-wall-guard",
+          "mumyeongsa-b-rear-guard",
+          "mumyeongsa-b-aperture-ghost"
+        ],
+        "fronts": []
+      },
+      {
+        "round": 2,
+        "queue": [
+          "mumyeongsa-b-rear-shade",
+          "mumyeongsa-b-wall-guard",
+          "mumyeongsa-b-rear-guard",
+          "mumyeongsa-b-aperture-ghost"
+        ],
+        "fronts": []
+      },
+      {
+        "round": 3,
+        "queue": [
+          "mumyeongsa-b-rear-shade",
+          "mumyeongsa-b-aperture-ghost",
+          "mumyeongsa-b-rear-guard"
+        ],
+        "fronts": []
+      },
+      {
+        "round": 4,
+        "queue": [
+          "a6-54-opening-2",
+          "a6-54-pillar-base-1",
+          "a6-54-opening-1",
+          "a6-54-pillar-base-2"
+        ],
+        "fronts": []
+      },
+      {
+        "round": 5,
+        "queue": [
+          "a6-54-opening-2",
+          "a6-54-opening-3",
+          "a6-54-opening-4",
+          "a6-54-pillar-base-1"
+        ],
+        "fronts": []
+      },
+      {
+        "round": 6,
+        "queue": [
+          "a6-54-observatory-beam-2",
+          "a6-54-opening-3",
+          "a6-54-pillar-base-2",
+          "a6-54-opening-4"
+        ],
+        "fronts": []
+      },
+      {
+        "round": 7,
+        "queue": [
+          "a6-54-pillar-base-1",
+          "a6-54-observatory-beam-2",
+          "a6-54-observatory-beam-1",
+          "a6-54-opening-4"
+        ],
+        "fronts": []
+      },
+      {
+        "round": 8,
+        "queue": [
+          "a6-54-observatory-beam-1",
+          "a6-54-observatory-beam-2",
+          "a6-54-pillar-base-1",
+          "a6-54-pillar-base-2"
+        ],
+        "fronts": []
+      },
+      {
+        "round": 9,
+        "queue": [
+          "a6-54-pillar-base-2",
+          "a6-54-return-corner-1",
+          "a6-54-observatory-beam-1",
+          "a6-54-observatory-beam-2"
+        ],
+        "fronts": []
+      },
+      {
+        "round": 10,
+        "queue": [],
+        "fronts": []
+      }
+    ],
+    "peak": 6,
+    "initialRng": 31717,
+    "seed": 19388,
+    "peakWitness": {
+      "round": 4,
+      "bossPhase": null,
+      "phase": "aim",
+      "ids": [
+        "a6-54-opening-1",
+        "a6-54-opening-2",
+        "a6-54-opening-4",
+        "a6-54-pillar-base-1",
+        "a6-54-pillar-base-2",
+        "a6-54-observatory-beam-2"
+      ]
+    },
+    "initial": 4,
+    "limit": 4,
+    "hostP95": 33.400000000001455
+  }
+}

@@ -51,3 +51,5 @@ for rng in 31717 46183; do
   python "$p/baseline/hall_encounters.py" --build "$PWD" --out "/tmp/honro-54-recovered-$rng" --stage 54 --no-mending --rng "$rng" --b-proof "$p/visual-atlas/capture-input-b.json"
 done
 ```
+
+31717을 다시 실행한 판은 최초 4·누적 13·최대 활성 6·공격 순서 4, 11라운드로 실제 B→N/L/C/L→55를 통과했다. M10 시전 없이 담허 체력 457.2를 남겼다. 실제 M09가 (2310.767,2924)에 떨어져 C로 이어졌고, 새 55를 연 독립 문맥의 저장은 전후 바이트가 같았다. 위의 잘못된 투사체 접점 기록은 그대로 남겨 둔다. [31717 완주](54-recovered-31717.json)
