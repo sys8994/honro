@@ -60,3 +60,4 @@ stage,scenario,input,initial_rng,reported_opening,reported_cumulative,peak_awake
 52,controlled cliff break and five ledges,desktop,46183,9,18,9,6,,7,,0,,FAIL_NUMERIC_FLOOR,cliff-recovered-46183.json,Native 53 and fresh reload. The sampled last battle round was below eight.
 56,controlled real forward-flow and reverse counter,desktop,31717,5,16,7,5,,9,,0,,PASS_ROUTE,56-control-31717.json,26 enemy releases and 23 damage events. D accepted and ordinary E held the save.
 56,controlled real forward-flow and reverse counter,desktop,46183,5,16,7,5,,9,,0,,PASS_ROUTE,56-control-46183.json,28 enemy releases and 23 damage events. D accepted and ordinary E held the save.
+58,controlled actual ceiling and touch R,390 mixed keyboard and touch,31717,4,19,9,6,,9,,0,50.0,FAIL_NUMERIC_FLOOR,hall-pressure/ceiling-touch-31717.json,Native live R touch and fresh 59 passed. Concurrent host frame time.

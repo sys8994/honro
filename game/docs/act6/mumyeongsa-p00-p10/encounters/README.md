@@ -132,3 +132,9 @@ python game/docs/act6/mumyeongsa-p00-p10/baseline/interior_join.py --build "$PWD
 ```
 
 56은 같은 일반 입력으로 대조 RNG 31717과 46183에서 각각 시작 5, 누적 16, 9라운드, 활성 7 및 공격 순서 5를 기록했다. 적의 실제 포격은 26·28회, 피해 처리는 23·23건이다. 두 판 모두 전진류 교전, 역류 대피, 기존 E에서 저장 차단, D에서 새 57과 독립 재로드가 나왔다. 위 명령에 `--rng 31717` 또는 `--rng 46183`을 붙여 재현한다. [31717](56-control-31717.json) · [46183](56-control-46183.json)
+
+58의 상층 판에서 반박 기예를 마친 담허가 나무 마루 위에 있으면서 아랫단 전용 진목 입력을 먼저 눌러 거부됐었다. 재현기는 닿은 지형을 검사하고, 필요할 경우 일반 아래로 내려가기 조작으로 실제 `local-lower-08-body`에 닿은 뒤 진목을 눌렀다. RNG 31717의 모바일 뷰포트 혼합 입력은 실제 천장 M01 피해, 4명 시작·19명 누적·9/6 한도, 네 배우의 신뢰된 R 터치 16개, 59 동객체와 새 저장을 통과했다. 전투 종료는 9라운드로 목표 11에 못 미쳤다. 50ms p95는 다른 검수와 함께 실행한 호스트 측정이다. [실제 원자료](hall-pressure/ceiling-touch-31717.json) · [천장](hall-pressure/ceiling-31717-contact.webp) · [R 송신](hall-pressure/ceiling-31717-r-source.webp) · [59 라이브](hall-pressure/ceiling-31717-r-live.webp)
+
+```bash
+python game/docs/act6/mumyeongsa-p00-p10/baseline/daedosa_return.py --build "$PWD" --out /tmp/honro-58-31717-ceiling-mobile --pressure --tactic ceiling --rng 31717 --touch-return
+```

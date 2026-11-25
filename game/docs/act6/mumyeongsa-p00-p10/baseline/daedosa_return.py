@@ -109,14 +109,17 @@ def lower_turn(page,report,guard_fronts=False):
         return False
     prime=next((u for key in ('a6-c08-expansion-node','a6-c08-boss') for u in cfg['major'] if u['id']==key and not u['dead']),None)
     boss=next(u for u in cfg['major'] if u['id']=='a6-c08-boss')
-    fronts=page.evaluate("""()=>{
+    covered=[turn['plan']['target'] for turn in report['turns']
+             if turn.get('bossPhase')==cfg['state'] and turn.get('plan') and
+             turn['plan'].get('target') in turn.get('recentGroundThreats',[])] if guard_fronts=='ceiling' else []
+    fronts=page.evaluate("""covered=>{
         const e=HonroApp.engine,c=e.active;
         const rows=a6Exterior.damage.filter(d=>d.round>=e.b.round-1&&d.id&&
           !['a6-c08-boss','a6-c08-expansion-node'].includes(d.id));
-        const units=[...new Set(rows.map(d=>d.id))].map(id=>e.unit(id)).filter(u=>u&&!u.dead&&
+        const units=[...new Set(rows.map(d=>d.id))].filter(id=>!covered.includes(id)).map(id=>e.unit(id)).filter(u=>u&&!u.dead&&
           Math.hypot(u.x-c.x,u.y-c.y)<1050);
         return units.sort((a,b)=>Math.abs(a.x-c.x)-Math.abs(b.x-c.x)).map(u=>({id:u.id,x:u.x,y:u.y}));
-    }""") if guard_fronts and not cfg['exposed'] and (not prime or 'node' not in prime['id']) else []
+    }""",covered) if guard_fronts and not cfg['exposed'] and (not prime or 'node' not in prime['id']) else []
     ledger=page.locator('[data-act6-qa-lookout][data-act6-mission="ledger"]')
     if ledger.count() and (cfg.get('mark') or {}).get('kind')!='great' and abs(before['x']-4464)<=before['move']*.87:
         sample_walk(page,1 if before['x']<4464 else -1,4464,4200)
@@ -157,6 +160,7 @@ def lower_turn(page,report,guard_fronts=False):
           'feet':[current['x'],current['y']],'targets':cfg['major'],'plan':options}
     if guard_fronts:
         plan['recentGroundThreats']=threats
+        plan['bossPhase']=cfg['state']
     if options:
         s=options['id']
         page.locator(f'[data-action="combat-skill"][data-skill="{s}"]').first.click(timeout=5200)
@@ -239,15 +243,31 @@ def touch_send_r(context,page,report):
         assert who['id']==identity,who
         if who['x']<=3260:
             touch_move(context,page,1,'HonroApp.engine.active.x>=3340')
-        if cls=='mage':
-            touch_move(context,page,-1,"HonroApp.done&&HonroApp.engine.b.phase==='won'",timeout=10000)
-        else:
-            touch_move(context,page,-1,'x=>HonroApp.engine.active.x<=x',target,timeout=10000)
+        touch_move(context,page,-1,'x=>HonroApp.done||HonroApp.engine.active.x<=x',target,timeout=13000)
         landed=actor(page)
         assert landed['grounded'] and landed['contact']=='local-lower-08-body',landed
         report['returnRoute'].append(landed)
     report['returnTouches']=page.evaluate('seamTouches')
     assert len(report['returnTouches'])>=8 and all(v['trusted'] and v['type']=='touch' for v in report['returnTouches'])
+    page.wait_for_function("HonroApp.done&&HonroApp.engine.b.phase==='won'",timeout=8000)
+
+
+def place_return_stake(page,mobile):
+    foot=march(page,3680,cls='mage',tolerance=30)
+    if foot['contact']!='local-lower-08-body':
+        assert page.evaluate('HonroApp.engine.canDrop()'),foot
+        if mobile:
+            page.locator('[data-action="drop"]:visible').first.tap(timeout=5500)
+        else:
+            page.keyboard.press('Alt')
+        page.wait_for_function("""()=>{const e=HonroApp.engine,u=e.active;
+            return e.grounded(u)&&e.contactSurface(u.x,u.y-4,u.y+5)?.t.id==='local-lower-08-body';
+        }""",timeout=8000)
+    foot=actor(page)
+    assert foot['grounded'] and foot['contact']=='local-lower-08-body',foot
+    mission_click(page,'stake')
+    page.wait_for_function("HonroApp.engine.b.honroState.flags['place(correctedInnerStake)']",timeout=5000)
+    return foot
 
 
 def play(browser,out,turns,session=None,pressure=False,tactic='ground',rng=None,touch_return=False):
@@ -264,20 +284,19 @@ def play(browser,out,turns,session=None,pressure=False,tactic='ground',rng=None,
         if rng is not None:
             page.evaluate('seed=>{HonroApp.engine.b.rng=seed;}',rng)
             q['controlledRng']=rng
-        if pressure or tactic=='ground-guard':
+        if pressure or tactic in ('ground-guard','ceiling-counter'):
             page.evaluate(TRACE)
         march(page,3496,cls='occultist',tolerance=45)
         mission_click(page,'column','threshold')
         march(page,3680,cls='mage',tolerance=40)
         mission_click(page,'threshold')
         wall_trace(page)
-        if tactic=='ceiling':
+        if tactic in ('ceiling','ceiling-counter'):
             open_from_ceiling(page,out,q)
-        all_once_east(page,q,turns,guard_fronts=tactic=='ground-guard')
+        all_once_east(page,q,turns,guard_fronts='ceiling' if tactic=='ceiling-counter' else tactic=='ground-guard')
         q['winTargets']=foes_moved(page)
         q['signatureHistory']=page.evaluate("HonroApp.engine.b.honroDaedosa?.history??[]")
-        march(page,3680,cls='mage',tolerance=40)
-        mission_click(page,'stake')
+        q['correctedStakeFoot']=place_return_stake(page,touch_return)
         q['returnRoute']=[]
         page.evaluate("window.rOriginals=new Map(HonroApp.engine.b.units.filter(u=>u.side===0&&!u.summoned).map(u=>[u.id,u]))")
         if touch_return:
@@ -333,7 +352,7 @@ def play(browser,out,turns,session=None,pressure=False,tactic='ground',rng=None,
         page.screenshot(path=out/'r-live-failure.png')
     finally:
         q['projectileTrace']=page.evaluate('window.nativeWall??[]')
-        if pressure or tactic=='ground-guard':
+        if pressure or tactic in ('ground-guard','ceiling-counter'):
             q['encounters']=page.evaluate('window.a6Exterior??null')
             if q['encounters']:
                 frames=q['encounters'].pop('frames')
@@ -348,7 +367,7 @@ def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--build',type=Path,required=True)
     p.add_argument('--pressure',action='store_true')
-    p.add_argument('--tactic',choices=('ground','ground-guard','ceiling'),default='ground')
+    p.add_argument('--tactic',choices=('ground','ground-guard','ceiling','ceiling-counter'),default='ground')
     p.add_argument('--rng',type=int)
     p.add_argument('--touch-return',action='store_true')
     p.add_argument('--out',type=Path,required=True)

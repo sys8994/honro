@@ -1,0 +1,8294 @@
+{
+  "status": "PASS",
+  "turns": [
+    {
+      "round": 1,
+      "actor": "p-archer",
+      "from": [
+        2645.071904787871,
+        3480.5154081688297
+      ],
+      "feet": [
+        4796.085330384983,
+        3183.2170660769966
+      ],
+      "targets": [
+        {
+          "id": "a6-c08-boss",
+          "x": 4480,
+          "y": 3194.769230769231,
+          "hp": 10500,
+          "dead": false
+        }
+      ],
+      "plan": {
+        "id": "A14",
+        "angle": 141,
+        "power": 0.97,
+        "score": 684,
+        "target": "a6-58-opening-4",
+        "x": 4652,
+        "y": 3022.6075466153384
+      }
+    },
+    {
+      "round": 1,
+      "actor": "p-knight",
+      "from": [
+        2876.9935676570512,
+        3430.808319067308
+      ],
+      "feet": [
+        4558.926965729257,
+        3161.377052960699
+      ],
+      "targets": [
+        {
+          "id": "a6-c08-boss",
+          "x": 4480,
+          "y": 3194.769230769231,
+          "hp": 10500,
+          "dead": false
+        }
+      ],
+      "plan": {
+        "id": "S03",
+        "angle": 161.62734417959416,
+        "power": 0.9,
+        "target": "a6-c08-boss",
+        "score": 5906.216225
+      }
+    },
+    {
+      "round": 1,
+      "actor": "p-occultist",
+      "from": [
+        3505.1924259134908,
+        3250.0596296216067
+      ],
+      "feet": [
+        5021.497743091356,
+        2972.300580347937
+      ],
+      "targets": [
+        {
+          "id": "a6-c08-boss",
+          "x": 4480,
+          "y": 3194.769230769231,
+          "hp": 9463,
+          "dead": false
+        }
+      ],
+      "plan": {
+        "id": "O03",
+        "angle": 189,
+        "power": 0.89,
+        "score": 3430.2689014651214,
+        "target": "a6-c08-boss",
+        "x": 4512.757732147915,
+        "y": 3006.769230769231
+      }
+    },
+    {
+      "round": 2,
+      "actor": "p-mage",
+      "from": [
+        3952.099999999978,
+        3072.803157894736
+      ],
+      "feet": [
+        4358,
+        2570
+      ],
+      "targets": [
+        {
+          "id": "a6-c08-boss",
+          "x": 4480,
+          "y": 3194.769230769231,
+          "hp": 9243,
+          "dead": false
+        }
+      ],
+      "plan": {
+        "id": "M10",
+        "angle": 86,
+        "power": 0.27
+      }
+    },
+    {
+      "round": 2,
+      "actor": "p-archer",
+      "from": [
+        4775.247991026553,
+        3179.0495982053108
+      ],
+      "feet": [
+        5041.421710426365,
+        2967.177274461792
+      ],
+      "targets": [
+        {
+          "id": "a6-c08-boss",
+          "x": 4480,
+          "y": 3194.769230769231,
+          "hp": 9243,
+          "dead": false
+        }
+      ],
+      "plan": {
+        "id": "A02",
+        "angle": 96,
+        "power": 0.42,
+        "score": 655,
+        "target": "a6-58-opening-1",
+        "x": 3163.037404026822,
+        "y": 3345.7264088969305
+      }
+    },
+    {
+      "round": 2,
+      "actor": "p-knight",
+      "from": [
+        4540.502431466727,
+        3169.1720482256155
+      ],
+      "feet": [
+        4540.502431466727,
+        3169.1720482256155
+      ],
+      "targets": [
+        {
+          "id": "a6-c08-boss",
+          "x": 4480,
+          "y": 3194.769230769231,
+          "hp": 9243,
+          "dead": false
+        }
+      ],
+      "plan": {
+        "id": "S03",
+        "angle": 162.21922237883743,
+        "power": 0.9,
+        "target": "a6-c08-boss",
+        "score": 5906.216225
+      }
+    },
+    {
+      "round": 2,
+      "actor": "p-occultist",
+      "from": [
+        4955.412098247671,
+        3007.395342900374
+      ],
+      "feet": [
+        5046.54101338021,
+        2965.8608822736605
+      ],
+      "targets": [
+        {
+          "id": "a6-c08-boss",
+          "x": 4480,
+          "y": 3194.769230769231,
+          "hp": 7637,
+          "dead": false
+        }
+      ],
+      "plan": {
+        "id": "O06",
+        "angle": 96,
+        "power": 0.62,
+        "score": 422,
+        "target": "a6-58-opening-2",
+        "x": 3594.7900384247605,
+        "y": 2929.414376324826
+      }
+    },
+    {
+      "round": 3,
+      "actor": "p-mage",
+      "from": [
+        4358,
+        2570
+      ],
+      "feet": [
+        4358,
+        2570
+      ],
+      "targets": [
+        {
+          "id": "a6-c08-boss",
+          "x": 4480,
+          "y": 3194.769230769231,
+          "hp": 7637,
+          "dead": false
+        }
+      ],
+      "plan": null
+    },
+    {
+      "round": 3,
+      "actor": "p-archer",
+      "from": [
+        4985.164611350131,
+        2981.6433856528233
+      ],
+      "feet": [
+        4778.795891987923,
+        3179.7591783975845
+      ],
+      "targets": [
+        {
+          "id": "a6-c08-boss",
+          "x": 4480,
+          "y": 3194.769230769231,
+          "hp": 7637,
+          "dead": false
+        }
+      ],
+      "plan": {
+        "id": "A02",
+        "angle": 159,
+        "power": 0.97,
+        "score": 5335.4905450000015,
+        "target": "a6-c08-boss",
+        "x": 4299.589351227454,
+        "y": 2984.4137931034484
+      }
+    },
+    {
+      "round": 3,
+      "actor": "p-knight",
+      "from": [
+        4540.502431466727,
+        3169.1720482256155
+      ],
+      "feet": [
+        4540.502431466727,
+        3169.1720482256155
+      ],
+      "targets": [
+        {
+          "id": "a6-c08-boss",
+          "x": 4480,
+          "y": 3194.769230769231,
+          "hp": 7600,
+          "dead": false
+        }
+      ],
+      "plan": {
+        "id": "S03",
+        "angle": 162.21922237883743,
+        "power": 0.9,
+        "target": "a6-c08-boss",
+        "score": 5906.216225
+      }
+    },
+    {
+      "round": 3,
+      "actor": "p-occultist",
+      "from": [
+        4990.27785478403,
+        2980.328551626964
+      ],
+      "feet": [
+        4990.27785478403,
+        2980.328551626964
+      ],
+      "targets": [
+        {
+          "id": "a6-c08-boss",
+          "x": 4480,
+          "y": 3194.769230769231,
+          "hp": 7600,
+          "dead": false
+        }
+      ],
+      "plan": {
+        "id": "O04",
+        "angle": 192,
+        "power": 0.97,
+        "score": 5234.640423184665,
+        "target": "a6-c08-boss",
+        "x": 4520,
+        "y": 3025.311704166822
+      }
+    },
+    {
+      "round": 4,
+      "actor": "p-mage",
+      "from": [
+        4358,
+        2570
+      ],
+      "feet": [
+        4358,
+        2570
+      ],
+      "targets": [
+        {
+          "id": "a6-c08-boss",
+          "x": 5060,
+          "y": 2742.4,
+          "hp": 6057,
+          "dead": false
+        }
+      ],
+      "plan": null
+    },
+    {
+      "round": 4,
+      "actor": "p-archer",
+      "from": [
+        4778.795891987923,
+        3179.7591783975845
+      ],
+      "feet": [
+        4445.012031573068,
+        3209.5718327960094
+      ],
+      "targets": [
+        {
+          "id": "a6-c08-boss",
+          "x": 5060,
+          "y": 2742.4,
+          "hp": 6057,
+          "dead": false
+        }
+      ],
+      "plan": {
+        "id": "A02",
+        "angle": 57,
+        "power": 0.52,
+        "score": 4806.80872,
+        "target": "a6-c08-boss",
+        "x": 5501.9405889973805,
+        "y": 2515.246709558943
+      }
+    },
+    {
+      "round": 4,
+      "actor": "p-knight",
+      "from": [
+        4540.502431466727,
+        3169.1720482256155
+      ],
+      "feet": [
+        4472.811338513183,
+        3197.810587552115
+      ],
+      "targets": [
+        {
+          "id": "a6-c08-boss",
+          "x": 5060,
+          "y": 2742.4,
+          "hp": 4650,
+          "dead": false
+        }
+      ],
+      "plan": null
+    },
+    {
+      "round": 4,
+      "actor": "p-occultist",
+      "from": [
+        4962.604838025233,
+        2999.221774971326
+      ],
+      "feet": [
+        5087.302684820219,
+        2955.379309617658
+      ],
+      "targets": [
+        {
+          "id": "a6-c08-boss",
+          "x": 5060,
+          "y": 2742.4,
+          "hp": 4650,
+          "dead": false
+        }
+      ],
+      "plan": {
+        "id": "O04",
+        "angle": 93,
+        "power": 0.97,
+        "score": 5234.640423184665,
+        "target": "a6-c08-boss",
+        "x": 5059.182012334833,
+        "y": 2748.4
+      }
+    },
+    {
+      "round": 5,
+      "actor": "p-mage",
+      "from": [
+        4358,
+        2570
+      ],
+      "feet": [
+        4358,
+        2570
+      ],
+      "targets": [
+        {
+          "id": "a6-c08-boss",
+          "x": 5012.151650785624,
+          "y": 2654.7038612265537,
+          "hp": 4431,
+          "dead": false
+        },
+        {
+          "id": "a6-c08-expansion-node",
+          "x": 4896,
+          "y": 3074.909090909091,
+          "hp": 1800,
+          "dead": false
+        }
+      ],
+      "plan": null
+    },
+    {
+      "round": 5,
+      "actor": "p-archer",
+      "from": [
+        4464.582585658273,
+        3201.2919829907305
+      ],
+      "feet": [
+        4612.097177120485,
+        3146.419435424097
+      ],
+      "targets": [
+        {
+          "id": "a6-c08-boss",
+          "x": 5012.151650785624,
+          "y": 2654.7038612265537,
+          "hp": 4431,
+          "dead": false
+        },
+        {
+          "id": "a6-c08-expansion-node",
+          "x": 4896,
+          "y": 3074.909090909091,
+          "hp": 1800,
+          "dead": false
+        }
+      ],
+      "plan": {
+        "id": "A02",
+        "angle": 24,
+        "power": 0.97,
+        "score": 6402.588654000001,
+        "target": "a6-c08-expansion-node",
+        "x": 5316.48556385415,
+        "y": 2773.6824450564054
+      }
+    },
+    {
+      "round": 5,
+      "actor": "p-knight",
+      "from": [
+        4492.151650785624,
+        3189.6281477445436
+      ],
+      "feet": [
+        4608.723884267325,
+        3145.744776853465
+      ],
+      "targets": [
+        {
+          "id": "a6-c08-boss",
+          "x": 5012.151650785624,
+          "y": 2654.7038612265537,
+          "hp": 4431,
+          "dead": false
+        },
+        {
+          "id": "a6-c08-expansion-node",
+          "x": 4896,
+          "y": 3074.909090909091,
+          "hp": 1198,
+          "dead": false
+        }
+      ],
+      "plan": {
+        "id": "S03",
+        "angle": -0.17443233982049133,
+        "power": 0.9,
+        "target": "a6-c08-grot-1",
+        "score": 1181.2432450000001
+      }
+    },
+    {
+      "round": 5,
+      "actor": "p-occultist",
+      "from": [
+        5046.319127006362,
+        2965.9179387697927
+      ],
+      "feet": [
+        5416.171349628138,
+        2778.7237832093792
+      ],
+      "targets": [
+        {
+          "id": "a6-c08-boss",
+          "x": 5012.151650785624,
+          "y": 2654.7038612265537,
+          "hp": 4431,
+          "dead": false
+        },
+        {
+          "id": "a6-c08-expansion-node",
+          "x": 4896,
+          "y": 3074.909090909091,
+          "hp": 1198,
+          "dead": false
+        }
+      ],
+      "plan": {
+        "id": "O04",
+        "angle": 144,
+        "power": 0.97,
+        "score": 5234.640423184665,
+        "target": "a6-c08-boss",
+        "x": 5052.151650785624,
+        "y": 2480.4278219463436
+      }
+    },
+    {
+      "round": 6,
+      "actor": "p-mage",
+      "from": [
+        4358,
+        2570
+      ],
+      "feet": [
+        4358,
+        2570
+      ],
+      "targets": [
+        {
+          "id": "a6-c08-boss",
+          "x": 5012.151650785624,
+          "y": 2974.7038612265537,
+          "hp": 3466,
+          "dead": false
+        },
+        {
+          "id": "a6-c08-expansion-node",
+          "x": 4896,
+          "y": 3074.909090909091,
+          "hp": 1198,
+          "dead": false
+        }
+      ],
+      "plan": null
+    },
+    {
+      "round": 6,
+      "actor": "p-archer",
+      "from": [
+        4612.097177120485,
+        3146.419435424097
+      ],
+      "feet": [
+        5202.745397470015,
+        2925.694040650568
+      ],
+      "targets": [
+        {
+          "id": "a6-c08-boss",
+          "x": 5012.151650785624,
+          "y": 2974.7038612265537,
+          "hp": 3466,
+          "dead": false
+        },
+        {
+          "id": "a6-c08-expansion-node",
+          "x": 4896,
+          "y": 3074.909090909091,
+          "hp": 1198,
+          "dead": false
+        }
+      ],
+      "plan": {
+        "id": "A02",
+        "angle": 144,
+        "power": 0.97,
+        "score": 5335.4905450000015,
+        "target": "a6-c08-boss",
+        "x": 4443,
+        "y": 2473.656432632461
+      }
+    },
+    {
+      "round": 6,
+      "actor": "p-knight",
+      "from": [
+        4608.723884267325,
+        3145.744776853465
+      ],
+      "feet": [
+        4962.7715309512605,
+        2999.0323511917495
+      ],
+      "targets": [
+        {
+          "id": "a6-c08-boss",
+          "x": 5012.151650785624,
+          "y": 2974.7038612265537,
+          "hp": 2538,
+          "dead": false
+        },
+        {
+          "id": "a6-c08-expansion-node",
+          "x": 4896,
+          "y": 3074.909090909091,
+          "hp": 1198,
+          "dead": false
+        }
+      ],
+      "plan": {
+        "id": "S03",
+        "angle": 222.16849533703038,
+        "power": 0.9,
+        "target": "a6-c08-expansion-node",
+        "score": 7087.459470000001
+      }
+    },
+    {
+      "round": 6,
+      "actor": "p-occultist",
+      "from": [
+        5362.058921962641,
+        2792.683712792029
+      ],
+      "feet": [
+        5415.155680559191,
+        2778.3852268530636
+      ],
+      "targets": [
+        {
+          "id": "a6-c08-boss",
+          "x": 5012.151650785624,
+          "y": 2974.7038612265537,
+          "hp": 2538,
+          "dead": false
+        },
+        {
+          "id": "a6-c08-expansion-node",
+          "x": 4896,
+          "y": 3074.909090909091,
+          "hp": 961,
+          "dead": false
+        }
+      ],
+      "plan": {
+        "id": "O06",
+        "angle": 108,
+        "power": 0.52,
+        "score": 2610.011958445956,
+        "target": "a6-c08-boss",
+        "x": 5052.151650785624,
+        "y": 2800.458593407351
+      }
+    },
+    {
+      "round": 7,
+      "actor": "p-mage",
+      "from": [
+        4358,
+        2570
+      ],
+      "feet": [
+        3215.6499999999955,
+        3331.7793103448303
+      ],
+      "targets": [
+        {
+          "id": "a6-c08-boss",
+          "x": 4752.151650785624,
+          "y": 2854.430330157125,
+          "hp": 2105,
+          "dead": false
+        },
+        {
+          "id": "a6-c08-expansion-node",
+          "x": 4896,
+          "y": 3074.909090909091,
+          "hp": 961,
+          "dead": false
+        }
+      ],
+      "plan": {
+        "id": "M01",
+        "angle": 0,
+        "power": 0.97,
+        "score": 684,
+        "target": "a6-58-entrance-columns-1",
+        "x": 3310,
+        "y": 3264.3597065187478
+      }
+    },
+    {
+      "round": 7,
+      "actor": "p-archer",
+      "from": [
+        5161.584447834652,
+        2936.278284842518
+      ],
+      "feet": [
+        5161.584447834652,
+        2936.278284842518
+      ],
+      "targets": [
+        {
+          "id": "a6-c08-boss",
+          "x": 4752.151650785624,
+          "y": 2854.430330157125,
+          "hp": 2105,
+          "dead": false
+        },
+        {
+          "id": "a6-c08-expansion-node",
+          "x": 4896,
+          "y": 3074.909090909091,
+          "hp": 961,
+          "dead": false
+        }
+      ],
+      "plan": {
+        "id": "A02",
+        "angle": 150,
+        "power": 0.97,
+        "score": 5335.4905450000015,
+        "target": "a6-c08-boss",
+        "x": 4443,
+        "y": 2563.4200315519206
+      }
+    },
+    {
+      "round": 7,
+      "actor": "p-knight",
+      "from": [
+        4935.0251593657995,
+        3030.5623189025005
+      ],
+      "feet": [
+        4935.0251593657995,
+        3030.5623189025005
+      ],
+      "targets": [
+        {
+          "id": "a6-c08-boss",
+          "x": 4752.151650785624,
+          "y": 2854.430330157125,
+          "hp": 437,
+          "dead": false
+        },
+        {
+          "id": "a6-c08-expansion-node",
+          "x": 4896,
+          "y": 3074.909090909091,
+          "hp": 961,
+          "dead": false
+        }
+      ],
+      "plan": {
+        "id": "S03",
+        "angle": 222.16849533703038,
+        "power": 0.9,
+        "target": "a6-c08-expansion-node",
+        "score": 5766
+      }
+    },
+    {
+      "round": 7,
+      "actor": "p-occultist",
+      "from": [
+        5381.45677500472,
+        2770.86112811969
+      ],
+      "feet": [
+        5381.45677500472,
+        2770.86112811969
+      ],
+      "targets": [
+        {
+          "id": "a6-c08-boss",
+          "x": 4752.151650785624,
+          "y": 2854.430330157125,
+          "hp": 437,
+          "dead": false
+        },
+        {
+          "id": "a6-c08-expansion-node",
+          "x": 4896,
+          "y": 3074.909090909091,
+          "hp": 239,
+          "dead": false
+        }
+      ],
+      "plan": {
+        "id": "O01",
+        "angle": 177,
+        "power": 0.97,
+        "score": 2185,
+        "target": "a6-c08-boss",
+        "x": 4792.151650785624,
+        "y": 2697.879191116127
+      }
+    },
+    {
+      "round": 8,
+      "actor": "p-mage",
+      "from": [
+        3230.8206399236506,
+        3323.4093021110893
+      ],
+      "feet": [
+        3318.816197168345,
+        3274.8600291484995
+      ],
+      "targets": [
+        {
+          "id": "a6-c08-boss",
+          "x": 4641.584447834652,
+          "y": 2832.3168895669305,
+          "hp": 437,
+          "dead": false
+        },
+        {
+          "id": "a6-c08-expansion-node",
+          "x": 4896,
+          "y": 3074.909090909091,
+          "hp": 239,
+          "dead": false
+        }
+      ],
+      "plan": {
+        "id": "M01",
+        "angle": -81,
+        "power": 0.97,
+        "score": 468,
+        "target": "a6-58-entrance-columns-1",
+        "x": 3325.699313630115,
+        "y": 3260.3583161346855
+      }
+    },
+    {
+      "round": 8,
+      "actor": "p-archer",
+      "from": [
+        5144.628909795706,
+        2940.638280338247
+      ],
+      "feet": [
+        5415.497461250756,
+        2778.499153750252
+      ],
+      "targets": [
+        {
+          "id": "a6-c08-boss",
+          "x": 4641.584447834652,
+          "y": 2832.3168895669305,
+          "hp": 437,
+          "dead": false
+        },
+        {
+          "id": "a6-c08-expansion-node",
+          "x": 4896,
+          "y": 3074.909090909091,
+          "hp": 239,
+          "dead": false
+        }
+      ],
+      "plan": {
+        "id": "A01",
+        "angle": 168,
+        "power": 0.89,
+        "score": 2185,
+        "target": "a6-c08-boss",
+        "x": 4678.584447834652,
+        "y": 2674.242177635335
+      }
+    },
+    {
+      "round": 8,
+      "actor": "p-knight",
+      "from": [
+        4935.0251593657995,
+        3030.5623189025005
+      ],
+      "feet": [
+        4935.0251593657995,
+        3030.5623189025005
+      ],
+      "targets": [
+        {
+          "id": "a6-c08-boss",
+          "x": 4641.584447834652,
+          "y": 2832.3168895669305,
+          "hp": 0,
+          "dead": true
+        },
+        {
+          "id": "a6-c08-expansion-node",
+          "x": 4896,
+          "y": 3074.909090909091,
+          "hp": 239,
+          "dead": false
+        }
+      ],
+      "plan": {
+        "id": "S00",
+        "angle": 222.16849533703038,
+        "power": 0.9,
+        "target": "a6-c08-expansion-node",
+        "score": 1434
+      }
+    },
+    {
+      "round": 8,
+      "actor": "p-occultist",
+      "from": [
+        5386.377923809602,
+        2768.7926412698675
+      ],
+      "feet": [
+        4588.446497575258,
+        3148.8880202566215
+      ],
+      "targets": [
+        {
+          "id": "a6-c08-boss",
+          "x": 4641.584447834652,
+          "y": 2832.3168895669305,
+          "hp": 0,
+          "dead": true
+        },
+        {
+          "id": "a6-c08-expansion-node",
+          "x": 4896,
+          "y": 3074.909090909091,
+          "hp": 100,
+          "dead": false
+        }
+      ],
+      "plan": {
+        "id": "O01",
+        "angle": 6,
+        "power": 0.97,
+        "score": 600,
+        "target": "a6-c08-expansion-node",
+        "x": 4842,
+        "y": 3070.895650613181
+      }
+    }
+  ],
+  "errors": [],
+  "controlledRng": 31717,
+  "upperOpening": {
+    "wall": {
+      "id": "p-mage",
+      "cls": "mage",
+      "side": 0,
+      "x": 4380,
+      "y": 3034,
+      "vx": 0,
+      "vy": 0,
+      "hp": 1314.9,
+      "maxHp": 2050,
+      "shield": 0,
+      "r": 22,
+      "h": 92,
+      "ammo": null,
+      "loadout": [
+        "M01",
+        "M10",
+        "M07"
+      ],
+      "dead": false,
+      "actorsMoved": false,
+      "move": 785.4819526442031,
+      "grounded": true,
+      "family": {
+        "x": 320,
+        "y": 0
+      },
+      "contact": "m58-apse-pier",
+      "normal": {
+        "x": -1,
+        "y": -0.0
+      }
+    },
+    "ceiling": {
+      "id": "p-mage",
+      "cls": "mage",
+      "side": 0,
+      "x": 4334,
+      "y": 2570,
+      "vx": 0,
+      "vy": 0,
+      "hp": 1314.9,
+      "maxHp": 2050,
+      "shield": 0,
+      "r": 22,
+      "h": 92,
+      "ammo": null,
+      "loadout": [
+        "M01",
+        "M10",
+        "M07"
+      ],
+      "dead": false,
+      "actorsMoved": false,
+      "move": 467.48195264420315,
+      "grounded": true,
+      "family": {
+        "x": 0,
+        "y": -320
+      },
+      "contact": "m58-timber-soffit",
+      "normal": {
+        "x": 0,
+        "y": 1
+      }
+    },
+    "combat": {
+      "candidate": {
+        "id": "M01",
+        "angle": 206,
+        "power": 0.74,
+        "x": 3584.8508899031494,
+        "y": 2951.4666666666667,
+        "target": "a6-58-opening-2",
+        "terrain": null,
+        "weight": 1000
+      },
+      "trace": [
+        {
+          "event": "fire",
+          "skill": "M01",
+          "angle": 206.51839999999999,
+          "power": 0.7658971369419201,
+          "actor": "p-mage",
+          "grounded": true,
+          "x": 4233.499999999989,
+          "y": 2570,
+          "prediction": {
+            "x": 3608,
+            "y": 2951.504641843534,
+            "unit": "a6-58-opening-2",
+            "terrain": null
+          },
+          "shot": 1,
+          "gravity": {
+            "x": 50.00793753980181,
+            "y": -344.95309285207503
+          }
+        },
+        {
+          "event": "impact",
+          "skill": "M01",
+          "actor": "p-mage",
+          "target": "a6-58-opening-2",
+          "terrain": null,
+          "x": 3608,
+          "y": 2951.504641843534,
+          "normal": {
+            "x": 1,
+            "y": 0
+          },
+          "radius": 6,
+          "shot": 1,
+          "before": 595,
+          "after": 367,
+          "shieldBefore": 0,
+          "shieldAfter": 0
+        }
+      ]
+    },
+    "dismount": {
+      "id": "p-mage",
+      "cls": "mage",
+      "side": 0,
+      "x": 3952.099999999978,
+      "y": 3072.803157894736,
+      "vx": 0,
+      "vy": 0,
+      "hp": 1314.9,
+      "maxHp": 2050,
+      "shield": 0,
+      "r": 22,
+      "h": 92,
+      "ammo": null,
+      "loadout": [
+        "M01",
+        "M10",
+        "M07"
+      ],
+      "dead": false,
+      "actorsMoved": false,
+      "move": 2793.599999999989,
+      "grounded": true,
+      "family": {
+        "x": 0,
+        "y": 320
+      },
+      "contact": "m58-rising-gallery",
+      "normal": null
+    }
+  },
+  "ledgerUse": [
+    {
+      "round": 5,
+      "foot": {
+        "id": "p-occultist",
+        "cls": "occultist",
+        "side": 0,
+        "x": 4448.759445340028,
+        "y": 3207.986388509988,
+        "vx": 0,
+        "vy": 0,
+        "hp": 1442,
+        "maxHp": 2304,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "O01",
+          "O04",
+          "O03",
+          "O06"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 2424.800000000025,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "local-lower-08-body",
+        "normal": null
+      },
+      "flags": {
+        "localColumnSealAligned": true,
+        "localThresholdGravityNormalized": true,
+        "localBossManifested": true,
+        "localLedgerCounterSpent": true
+      }
+    }
+  ],
+  "allFourEast": [
+    "p-archer",
+    "p-knight",
+    "p-mage",
+    "p-occultist"
+  ],
+  "winTargets": {
+    "round": 9,
+    "phase": "aim",
+    "side": 0,
+    "shot": 44,
+    "major": [
+      {
+        "id": "a6-c08-boss",
+        "x": 4641.584447834652,
+        "y": 2832.3168895669305,
+        "hp": 0,
+        "dead": true
+      },
+      {
+        "id": "a6-c08-expansion-node",
+        "x": 4896,
+        "y": 3074.909090909091,
+        "hp": 0,
+        "dead": true
+      }
+    ],
+    "state": 3,
+    "mark": null,
+    "exposed": true,
+    "flags": {
+      "localColumnSealAligned": true,
+      "localThresholdGravityNormalized": true,
+      "localBossManifested": true,
+      "localLedgerCounterSpent": true,
+      "localDaedosaDefeated": true
+    }
+  },
+  "signatureHistory": [
+    {
+      "kind": "column",
+      "round": 1
+    },
+    {
+      "kind": "threshold",
+      "round": 1
+    },
+    {
+      "kind": "announce",
+      "round": 1,
+      "phase": 1
+    },
+    {
+      "kind": "grotesque",
+      "round": 2
+    },
+    {
+      "kind": "resolve",
+      "round": 2,
+      "phase": 1,
+      "mark": "band",
+      "avoided": true,
+      "affected": []
+    },
+    {
+      "kind": "floor-reached",
+      "round": 3
+    },
+    {
+      "kind": "bossPhase",
+      "round": 3
+    },
+    {
+      "kind": "announce",
+      "round": 3,
+      "phase": 2
+    },
+    {
+      "kind": "floor-reached",
+      "round": 4
+    },
+    {
+      "kind": "grotesque",
+      "round": 4
+    },
+    {
+      "kind": "resolve",
+      "round": 4,
+      "phase": 2,
+      "mark": "zone",
+      "avoided": true,
+      "affected": []
+    },
+    {
+      "kind": "field-active",
+      "round": 4
+    },
+    {
+      "kind": "bossPhase",
+      "round": 4
+    },
+    {
+      "kind": "announce",
+      "round": 4,
+      "phase": 3
+    },
+    {
+      "kind": "suppression",
+      "round": 5
+    },
+    {
+      "kind": "suppression-ended",
+      "round": 5
+    },
+    {
+      "kind": "resolve",
+      "round": 5,
+      "phase": 3,
+      "mark": "circle",
+      "avoided": false,
+      "affected": [
+        "p-mage"
+      ]
+    },
+    {
+      "kind": "charge",
+      "round": 6
+    },
+    {
+      "kind": "announce",
+      "round": 6,
+      "phase": 3
+    },
+    {
+      "kind": "charge",
+      "round": 7
+    },
+    {
+      "kind": "resolve",
+      "round": 7,
+      "phase": 3,
+      "mark": "tether",
+      "avoided": true,
+      "affected": []
+    },
+    {
+      "kind": "announce",
+      "round": 7,
+      "phase": 3
+    },
+    {
+      "kind": "localDaedosaNativeDefeat",
+      "round": 8
+    },
+    {
+      "kind": "actual-expansion-node-disabled",
+      "round": 8
+    }
+  ],
+  "correctedStakeFoot": {
+    "id": "p-mage",
+    "cls": "mage",
+    "side": 0,
+    "x": 3692.632713592167,
+    "y": 3367.8676367545095,
+    "vx": 0,
+    "vy": 0,
+    "hp": 1408.7,
+    "maxHp": 2050,
+    "shield": 0,
+    "r": 22,
+    "h": 92,
+    "ammo": null,
+    "loadout": [
+      "M01",
+      "M10",
+      "M07"
+    ],
+    "dead": false,
+    "actorsMoved": false,
+    "move": 2589.1847843474507,
+    "grounded": true,
+    "family": {
+      "x": 0,
+      "y": 320
+    },
+    "contact": "local-lower-08-body",
+    "normal": null
+  },
+  "returnRoute": [
+    {
+      "id": "p-archer",
+      "cls": "archer",
+      "side": 0,
+      "x": 3033.413721724697,
+      "y": 3385.881793792944,
+      "vx": 0,
+      "vy": 0,
+      "hp": 977,
+      "maxHp": 1720,
+      "shield": 0,
+      "r": 22,
+      "h": 92,
+      "ammo": null,
+      "loadout": [
+        "A01",
+        "A14",
+        "A02",
+        "A05"
+      ],
+      "dead": false,
+      "actorsMoved": false,
+      "move": 257.6666666667551,
+      "grounded": true,
+      "family": {
+        "x": 0,
+        "y": 320
+      },
+      "contact": "local-lower-08-body",
+      "normal": null
+    },
+    {
+      "id": "p-occultist",
+      "cls": "occultist",
+      "side": 0,
+      "x": 2985.230454572691,
+      "y": 3399.6484415506598,
+      "vx": 0,
+      "vy": 0,
+      "hp": 983,
+      "maxHp": 2304,
+      "shield": 0,
+      "r": 22,
+      "h": 92,
+      "ammo": null,
+      "loadout": [
+        "O01",
+        "O04",
+        "O03",
+        "O06"
+      ],
+      "dead": false,
+      "actorsMoved": false,
+      "move": 1353.5999999999933,
+      "grounded": true,
+      "family": {
+        "x": 0,
+        "y": 320
+      },
+      "contact": "local-lower-08-body",
+      "normal": null
+    },
+    {
+      "id": "p-knight",
+      "cls": "knight",
+      "side": 0,
+      "x": 3097.9161325361247,
+      "y": 3367.4525335611074,
+      "vx": 0,
+      "vy": 0,
+      "hp": 3244.7999999999997,
+      "maxHp": 3846,
+      "shield": 0,
+      "r": 22,
+      "h": 92,
+      "ammo": null,
+      "loadout": [
+        "S00",
+        "S01",
+        "S03"
+      ],
+      "dead": false,
+      "actorsMoved": false,
+      "move": 2040.500000000045,
+      "grounded": true,
+      "family": {
+        "x": 0,
+        "y": 320
+      },
+      "contact": "local-lower-08-body",
+      "normal": null
+    },
+    {
+      "id": "p-mage",
+      "cls": "mage",
+      "side": 0,
+      "x": 3247.826872063071,
+      "y": 3314.0265533445126,
+      "vx": 0,
+      "vy": 0,
+      "hp": 1408.7,
+      "maxHp": 2050,
+      "shield": 0,
+      "r": 22,
+      "h": 92,
+      "ammo": null,
+      "loadout": [
+        "M01",
+        "M10",
+        "M07"
+      ],
+      "dead": false,
+      "actorsMoved": false,
+      "move": 2069.9347843474575,
+      "grounded": true,
+      "family": {
+        "x": 0,
+        "y": 320
+      },
+      "contact": "local-lower-08-body",
+      "normal": null
+    }
+  ],
+  "returnTouches": [
+    {
+      "name": "pointerdown",
+      "trusted": true,
+      "type": "touch",
+      "control": "select-hero"
+    },
+    {
+      "name": "pointerup",
+      "trusted": true,
+      "type": "touch",
+      "control": "select-hero"
+    },
+    {
+      "name": "pointerdown",
+      "trusted": true,
+      "type": "touch",
+      "control": "joystick"
+    },
+    {
+      "name": "pointerup",
+      "trusted": true,
+      "type": "touch",
+      "control": "joystick"
+    },
+    {
+      "name": "pointerdown",
+      "trusted": true,
+      "type": "touch",
+      "control": "select-hero"
+    },
+    {
+      "name": "pointerup",
+      "trusted": true,
+      "type": "touch",
+      "control": "select-hero"
+    },
+    {
+      "name": "pointerdown",
+      "trusted": true,
+      "type": "touch",
+      "control": "joystick"
+    },
+    {
+      "name": "pointerup",
+      "trusted": true,
+      "type": "touch",
+      "control": "joystick"
+    },
+    {
+      "name": "pointerdown",
+      "trusted": true,
+      "type": "touch",
+      "control": "select-hero"
+    },
+    {
+      "name": "pointerup",
+      "trusted": true,
+      "type": "touch",
+      "control": "select-hero"
+    },
+    {
+      "name": "pointerdown",
+      "trusted": true,
+      "type": "touch",
+      "control": "joystick"
+    },
+    {
+      "name": "pointerup",
+      "trusted": true,
+      "type": "touch",
+      "control": "joystick"
+    },
+    {
+      "name": "pointerdown",
+      "trusted": true,
+      "type": "touch",
+      "control": "select-hero"
+    },
+    {
+      "name": "pointerup",
+      "trusted": true,
+      "type": "touch",
+      "control": "select-hero"
+    },
+    {
+      "name": "pointerdown",
+      "trusted": true,
+      "type": "touch",
+      "control": "joystick"
+    },
+    {
+      "name": "pointerup",
+      "trusted": true,
+      "type": "touch",
+      "control": "joystick"
+    }
+  ],
+  "outgoing": {
+    "stage": 58,
+    "quiet": false,
+    "pending": false,
+    "round": 9,
+    "active": "p-mage",
+    "enemies": [
+      "a6-58-opening-1",
+      "a6-58-opening-3",
+      "a6-58-entrance-columns-1",
+      "a6-58-entrance-columns-2",
+      "a6-58-entrance-columns-3",
+      "a6-58-apse-lower-1",
+      "a6-58-apse-lower-2"
+    ],
+    "landmark": [
+      {
+        "fill": "#514c40",
+        "points": [
+          {
+            "x": 3078,
+            "y": 3387.1428571428573
+          },
+          {
+            "x": 3132,
+            "y": 3367.714285714286
+          },
+          {
+            "x": 3208,
+            "y": 3348
+          },
+          {
+            "x": 3350,
+            "y": 3270.655172413793
+          },
+          {
+            "x": 3400,
+            "y": 3239.0689655172414
+          },
+          {
+            "x": 3410,
+            "y": 3271.551724137931
+          },
+          {
+            "x": 3314,
+            "y": 3341.5172413793102
+          },
+          {
+            "x": 3240,
+            "y": 3370.344827586207
+          },
+          {
+            "x": 3120,
+            "y": 3429.1428571428573
+          }
+        ]
+      },
+      {
+        "fill": "#82775f",
+        "points": [
+          {
+            "x": 3100,
+            "y": 3391.8571428571427
+          },
+          {
+            "x": 3190,
+            "y": 3367.1428571428573
+          },
+          {
+            "x": 3249,
+            "y": 3345.3793103448274
+          },
+          {
+            "x": 3217,
+            "y": 3384.0344827586205
+          },
+          {
+            "x": 3145,
+            "y": 3400
+          }
+        ]
+      },
+      {
+        "fill": "#978865",
+        "points": [
+          {
+            "x": 3108,
+            "y": 3364.5714285714284
+          },
+          {
+            "x": 3208,
+            "y": 3336
+          },
+          {
+            "x": 3260,
+            "y": 3307.310344827586
+          },
+          {
+            "x": 3350,
+            "y": 3257.655172413793
+          },
+          {
+            "x": 3400,
+            "y": 3230.0689655172414
+          },
+          {
+            "x": 3400,
+            "y": 3252.0689655172414
+          },
+          {
+            "x": 3350,
+            "y": 3279.655172413793
+          },
+          {
+            "x": 3260,
+            "y": 3329.310344827586
+          },
+          {
+            "x": 3208,
+            "y": 3358
+          },
+          {
+            "x": 3108,
+            "y": 3386.5714285714284
+          }
+        ]
+      },
+      {
+        "fill": "#675848",
+        "points": [
+          {
+            "x": 3129,
+            "y": 3052.310344827586
+          },
+          {
+            "x": 3181,
+            "y": 3044.310344827586
+          },
+          {
+            "x": 3181,
+            "y": 3333.714285714286
+          },
+          {
+            "x": 3131,
+            "y": 3341
+          }
+        ]
+      },
+      {
+        "fill": "#75604c",
+        "points": [
+          {
+            "x": 3331,
+            "y": 2954.310344827586
+          },
+          {
+            "x": 3375,
+            "y": 2948.310344827586
+          },
+          {
+            "x": 3376,
+            "y": 3230.310344827586
+          },
+          {
+            "x": 3327,
+            "y": 3262.344827586207
+          }
+        ]
+      },
+      {
+        "fill": "#857058",
+        "points": [
+          {
+            "x": 3134,
+            "y": 3054.310344827586
+          },
+          {
+            "x": 3147,
+            "y": 3051.310344827586
+          },
+          {
+            "x": 3146,
+            "y": 3341
+          },
+          {
+            "x": 3134,
+            "y": 3341
+          }
+        ]
+      },
+      {
+        "fill": "#5b4d41",
+        "points": [
+          {
+            "x": 3333,
+            "y": 2959.310344827586
+          },
+          {
+            "x": 3345,
+            "y": 2955.310344827586
+          },
+          {
+            "x": 3342,
+            "y": 3262.344827586207
+          },
+          {
+            "x": 3330,
+            "y": 3262.344827586207
+          }
+        ]
+      },
+      {
+        "fill": "#4d3d36",
+        "points": [
+          {
+            "x": 3097,
+            "y": 3029.310344827586
+          },
+          {
+            "x": 3264,
+            "y": 2962.310344827586
+          },
+          {
+            "x": 3403,
+            "y": 2923.310344827586
+          },
+          {
+            "x": 3450,
+            "y": 2930.310344827586
+          },
+          {
+            "x": 3427,
+            "y": 2962.310344827586
+          },
+          {
+            "x": 3268,
+            "y": 3005.310344827586
+          },
+          {
+            "x": 3110,
+            "y": 3075.310344827586
+          }
+        ]
+      },
+      {
+        "fill": "#686054",
+        "points": [
+          {
+            "x": 3078,
+            "y": 3018.310344827586
+          },
+          {
+            "x": 3240,
+            "y": 2953.310344827586
+          },
+          {
+            "x": 3404,
+            "y": 2908.310344827586
+          },
+          {
+            "x": 3458,
+            "y": 2910.310344827586
+          },
+          {
+            "x": 3441,
+            "y": 2933.310344827586
+          },
+          {
+            "x": 3252,
+            "y": 2975.310344827586
+          },
+          {
+            "x": 3097,
+            "y": 3041.310344827586
+          }
+        ]
+      },
+      {
+        "fill": "#a08861",
+        "points": [
+          {
+            "x": 3238,
+            "y": 2968.310344827586
+          },
+          {
+            "x": 3263,
+            "y": 2959.310344827586
+          },
+          {
+            "x": 3265,
+            "y": 3003.310344827586
+          },
+          {
+            "x": 3243,
+            "y": 3008.310344827586
+          }
+        ]
+      },
+      {
+        "fill": "#a08861",
+        "points": [
+          {
+            "x": 3253,
+            "y": 3296.310344827586
+          },
+          {
+            "x": 3260,
+            "y": 3307.310344827586
+          },
+          {
+            "x": 3280,
+            "y": 3296.2758620689656
+          },
+          {
+            "x": 3271,
+            "y": 3285.2758620689656
+          }
+        ]
+      }
+    ],
+    "actors": [
+      {
+        "id": "p-mage",
+        "cls": "mage",
+        "x": 3247.826872063071,
+        "y": 3314.0265533445126,
+        "hp": 1408.7,
+        "focus": 724,
+        "shield": 0,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "equipment": {
+          "version": 1
+        },
+        "grounded": true,
+        "valid": true,
+        "gravity": {
+          "x": 0,
+          "y": 320
+        },
+        "support": "local-lower-08-body"
+      },
+      {
+        "id": "p-archer",
+        "cls": "archer",
+        "x": 3033.413721724697,
+        "y": 3385.881793792944,
+        "hp": 977,
+        "focus": 404,
+        "shield": 0,
+        "loadout": [
+          "A01",
+          "A14",
+          "A02",
+          "A05"
+        ],
+        "equipment": {
+          "version": 1
+        },
+        "grounded": true,
+        "valid": true,
+        "gravity": {
+          "x": 0,
+          "y": 320
+        },
+        "support": "local-lower-08-body"
+      },
+      {
+        "id": "p-knight",
+        "cls": "knight",
+        "x": 3097.9161325361247,
+        "y": 3367.4525335611074,
+        "hp": 3244.7999999999997,
+        "focus": 477,
+        "shield": 0,
+        "loadout": [
+          "S00",
+          "S01",
+          "S03"
+        ],
+        "equipment": {
+          "version": 1
+        },
+        "grounded": true,
+        "valid": true,
+        "gravity": {
+          "x": 0,
+          "y": 320
+        },
+        "support": "local-lower-08-body"
+      },
+      {
+        "id": "p-occultist",
+        "cls": "occultist",
+        "x": 2985.230454572691,
+        "y": 3399.6484415506598,
+        "hp": 983,
+        "focus": 727,
+        "shield": 0,
+        "loadout": [
+          "O01",
+          "O04",
+          "O03",
+          "O06"
+        ],
+        "equipment": {
+          "version": 1
+        },
+        "grounded": true,
+        "valid": true,
+        "gravity": {
+          "x": 0,
+          "y": 320
+        },
+        "support": "local-lower-08-body"
+      }
+    ]
+  },
+  "liveSameObjects": true,
+  "live": {
+    "stage": 59,
+    "quiet": true,
+    "pending": true,
+    "round": 1,
+    "active": "p-archer",
+    "enemies": [],
+    "landmark": [
+      {
+        "fill": "#514c40",
+        "points": [
+          {
+            "x": 3078,
+            "y": 3387.1428571428573
+          },
+          {
+            "x": 3132,
+            "y": 3367.714285714286
+          },
+          {
+            "x": 3208,
+            "y": 3348
+          },
+          {
+            "x": 3350,
+            "y": 3270.655172413793
+          },
+          {
+            "x": 3400,
+            "y": 3239.0689655172414
+          },
+          {
+            "x": 3410,
+            "y": 3271.551724137931
+          },
+          {
+            "x": 3314,
+            "y": 3341.5172413793102
+          },
+          {
+            "x": 3240,
+            "y": 3370.344827586207
+          },
+          {
+            "x": 3120,
+            "y": 3429.1428571428573
+          }
+        ]
+      },
+      {
+        "fill": "#82775f",
+        "points": [
+          {
+            "x": 3100,
+            "y": 3391.8571428571427
+          },
+          {
+            "x": 3190,
+            "y": 3367.1428571428573
+          },
+          {
+            "x": 3249,
+            "y": 3345.3793103448274
+          },
+          {
+            "x": 3217,
+            "y": 3384.0344827586205
+          },
+          {
+            "x": 3145,
+            "y": 3400
+          }
+        ]
+      },
+      {
+        "fill": "#978865",
+        "points": [
+          {
+            "x": 3108,
+            "y": 3364.5714285714284
+          },
+          {
+            "x": 3208,
+            "y": 3336
+          },
+          {
+            "x": 3260,
+            "y": 3307.310344827586
+          },
+          {
+            "x": 3350,
+            "y": 3257.655172413793
+          },
+          {
+            "x": 3400,
+            "y": 3230.0689655172414
+          },
+          {
+            "x": 3400,
+            "y": 3252.0689655172414
+          },
+          {
+            "x": 3350,
+            "y": 3279.655172413793
+          },
+          {
+            "x": 3260,
+            "y": 3329.310344827586
+          },
+          {
+            "x": 3208,
+            "y": 3358
+          },
+          {
+            "x": 3108,
+            "y": 3386.5714285714284
+          }
+        ]
+      },
+      {
+        "fill": "#675848",
+        "points": [
+          {
+            "x": 3129,
+            "y": 3052.310344827586
+          },
+          {
+            "x": 3181,
+            "y": 3044.310344827586
+          },
+          {
+            "x": 3181,
+            "y": 3333.714285714286
+          },
+          {
+            "x": 3131,
+            "y": 3341
+          }
+        ]
+      },
+      {
+        "fill": "#75604c",
+        "points": [
+          {
+            "x": 3331,
+            "y": 2954.310344827586
+          },
+          {
+            "x": 3375,
+            "y": 2948.310344827586
+          },
+          {
+            "x": 3376,
+            "y": 3230.310344827586
+          },
+          {
+            "x": 3327,
+            "y": 3262.344827586207
+          }
+        ]
+      },
+      {
+        "fill": "#857058",
+        "points": [
+          {
+            "x": 3134,
+            "y": 3054.310344827586
+          },
+          {
+            "x": 3147,
+            "y": 3051.310344827586
+          },
+          {
+            "x": 3146,
+            "y": 3341
+          },
+          {
+            "x": 3134,
+            "y": 3341
+          }
+        ]
+      },
+      {
+        "fill": "#5b4d41",
+        "points": [
+          {
+            "x": 3333,
+            "y": 2959.310344827586
+          },
+          {
+            "x": 3345,
+            "y": 2955.310344827586
+          },
+          {
+            "x": 3342,
+            "y": 3262.344827586207
+          },
+          {
+            "x": 3330,
+            "y": 3262.344827586207
+          }
+        ]
+      },
+      {
+        "fill": "#4d3d36",
+        "points": [
+          {
+            "x": 3097,
+            "y": 3029.310344827586
+          },
+          {
+            "x": 3264,
+            "y": 2962.310344827586
+          },
+          {
+            "x": 3403,
+            "y": 2923.310344827586
+          },
+          {
+            "x": 3450,
+            "y": 2930.310344827586
+          },
+          {
+            "x": 3427,
+            "y": 2962.310344827586
+          },
+          {
+            "x": 3268,
+            "y": 3005.310344827586
+          },
+          {
+            "x": 3110,
+            "y": 3075.310344827586
+          }
+        ]
+      },
+      {
+        "fill": "#686054",
+        "points": [
+          {
+            "x": 3078,
+            "y": 3018.310344827586
+          },
+          {
+            "x": 3240,
+            "y": 2953.310344827586
+          },
+          {
+            "x": 3404,
+            "y": 2908.310344827586
+          },
+          {
+            "x": 3458,
+            "y": 2910.310344827586
+          },
+          {
+            "x": 3441,
+            "y": 2933.310344827586
+          },
+          {
+            "x": 3252,
+            "y": 2975.310344827586
+          },
+          {
+            "x": 3097,
+            "y": 3041.310344827586
+          }
+        ]
+      },
+      {
+        "fill": "#a08861",
+        "points": [
+          {
+            "x": 3238,
+            "y": 2968.310344827586
+          },
+          {
+            "x": 3263,
+            "y": 2959.310344827586
+          },
+          {
+            "x": 3265,
+            "y": 3003.310344827586
+          },
+          {
+            "x": 3243,
+            "y": 3008.310344827586
+          }
+        ]
+      },
+      {
+        "fill": "#a08861",
+        "points": [
+          {
+            "x": 3253,
+            "y": 3296.310344827586
+          },
+          {
+            "x": 3260,
+            "y": 3307.310344827586
+          },
+          {
+            "x": 3280,
+            "y": 3296.2758620689656
+          },
+          {
+            "x": 3271,
+            "y": 3285.2758620689656
+          }
+        ]
+      }
+    ],
+    "actors": [
+      {
+        "id": "p-archer",
+        "cls": "archer",
+        "x": 3033.413721724697,
+        "y": 3385.881793792944,
+        "hp": 977,
+        "focus": 404,
+        "shield": 0,
+        "loadout": [
+          "A01",
+          "A14",
+          "A02",
+          "A05"
+        ],
+        "equipment": {
+          "version": 1
+        },
+        "grounded": true,
+        "valid": true,
+        "gravity": {
+          "x": 0,
+          "y": 320
+        },
+        "support": "m59-return-gate-stone"
+      },
+      {
+        "id": "p-knight",
+        "cls": "knight",
+        "x": 3097.9161325361247,
+        "y": 3367.4525335611074,
+        "hp": 3244.7999999999997,
+        "focus": 477,
+        "shield": 0,
+        "loadout": [
+          "S00",
+          "S01",
+          "S03"
+        ],
+        "equipment": {
+          "version": 1
+        },
+        "grounded": true,
+        "valid": true,
+        "gravity": {
+          "x": 0,
+          "y": 320
+        },
+        "support": "m59-return-gate-stone"
+      },
+      {
+        "id": "p-occultist",
+        "cls": "occultist",
+        "x": 2985.230454572691,
+        "y": 3399.6484415506598,
+        "hp": 983,
+        "focus": 727,
+        "shield": 0,
+        "loadout": [
+          "O01",
+          "O04",
+          "O03",
+          "O06"
+        ],
+        "equipment": {
+          "version": 1
+        },
+        "grounded": true,
+        "valid": true,
+        "gravity": {
+          "x": 0,
+          "y": 320
+        },
+        "support": "m59-return-gate-stone"
+      },
+      {
+        "id": "p-mage",
+        "cls": "mage",
+        "x": 3247.826872063071,
+        "y": 3314.0265533445126,
+        "hp": 1408.7,
+        "focus": 724,
+        "shield": 0,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "equipment": {
+          "version": 1
+        },
+        "grounded": true,
+        "valid": true,
+        "gravity": {
+          "x": 0,
+          "y": 320
+        },
+        "support": "m59-return-gate-stone"
+      }
+    ]
+  },
+  "storageHash": "aab18bb59a3f085da876799b442a4f91c783674ba3973521aa5593e46560533b",
+  "checkpoint59": {
+    "schema": "honro-act6-boundary/v2",
+    "slot": "honro-campaign-act6-boundary-v2:eq-mwuu06k6-y7h4w7qc",
+    "runId": "eq-mwuu06k6-y7h4w7qc",
+    "from": 58,
+    "to": 59,
+    "kind": "four-injured-exterior-with-real-defeat-and-node-stop",
+    "generation": 8,
+    "parent": "e400975fb91a89bfcff315039d6cd48c3cb8e374f391199aca7e505821cc0c2b",
+    "pin": {
+      "from": 58,
+      "to": 59,
+      "build": "46ed9d24b524bce00df37c2b73b4c9fd57ea834f414310fdef2a55a4cdbbfa87",
+      "fromPacket": "3443ecd2d1680d0e7805046ce4ef16e23c15fb118e49b754d127890dfe9549ee",
+      "toPacket": "ee91acb454fea3fdcc0dfd231d70973f1e75111d859deae590e403ba18e95d8c",
+      "owner": "a5b2c6f9e7446ee38c09b012dbbb48582a06d8d906abc719ebb4059751a92847",
+      "play": "a2f2d75d9cfbd3611c22097f6b9c5ada5c2e6c2f903a844f4c0624327510d75d",
+      "world": "3d5ddd7dbe0b5d2087ca868b391bbaaf368f390e0c2cb77c5d3d015a81f112e3"
+    },
+    "profileSHA": "624977606fd1a5b7c23ca6ca492fec8aee57a04e9b2a0a25bd358bcc64a8747b",
+    "terminal": {
+      "stage": 58,
+      "won": true,
+      "flags": {
+        "act6.daedosaStopped": true,
+        "act6.innerRevisionReady": true,
+        "act6.fourCorporealReturned": true
+      },
+      "actors": [
+        {
+          "id": "p-mage",
+          "name": "담허",
+          "role": "mage",
+          "cls": "mage",
+          "side": 0,
+          "x": 3247.826872063071,
+          "y": 3314.0265533445126,
+          "vx": 0,
+          "vy": 0,
+          "hp": 1408.7,
+          "maxHp": 2050,
+          "r": 22,
+          "h": 92,
+          "focus": 724,
+          "maxFocus": 724,
+          "regen": 28,
+          "level": 25,
+          "attack": 11.4116,
+          "armor": 0.472,
+          "shield": 0,
+          "bound": 0,
+          "mark": 0,
+          "breaks": 0,
+          "acted": false,
+          "moveLeft": 2069.9347843474575,
+          "maxMove": 3075,
+          "walkSpeed": 402,
+          "angle": 261.07220000000217,
+          "lastPower": 1,
+          "loadout": [
+            "M01",
+            "M10",
+            "M07"
+          ],
+          "tune": 0.5,
+          "facing": -1,
+          "hurt": 0,
+          "anim": 0,
+          "airborne": false,
+          "fixed": false,
+          "spawnX": 2780.0411461911017,
+          "spawnY": 3458.9557962670997,
+          "intent": "",
+          "dead": false,
+          "ranks": {
+            "M01": 1,
+            "M07": 4,
+            "M10": 3
+          },
+          "group": 0,
+          "awake": true,
+          "lastAct": 0,
+          "aggroUntil": 0,
+          "xpBudget": 0,
+          "xpGranted": 0,
+          "killRewarded": false,
+          "damageBy": {},
+          "honroAlly": false,
+          "honroCivilian": false,
+          "critChance": 0.174,
+          "critMultiplier": 2.51,
+          "cooldowns": {},
+          "equipmentState": {
+            "version": 1
+          },
+          "jumping": false,
+          "moving": 0.11166666666666666,
+          "walkPhase": 683.175165907927,
+          "eaterSwallow": 0,
+          "landing": 0,
+          "impactCooldown": 0,
+          "salheunFlash": 0,
+          "jucheon": 0,
+          "jucheonReady": false,
+          "honroShieldSources": {
+            "p-mage": 0
+          }
+        },
+        {
+          "id": "p-archer",
+          "name": "설오",
+          "role": "archer",
+          "cls": "archer",
+          "side": 0,
+          "x": 3033.413721724697,
+          "y": 3385.881793792944,
+          "vx": 0,
+          "vy": 0,
+          "hp": 977,
+          "maxHp": 1720,
+          "r": 22,
+          "h": 92,
+          "focus": 404,
+          "maxFocus": 404,
+          "regen": 28,
+          "level": 25,
+          "attack": 11.98825,
+          "armor": 0.42800000000000005,
+          "shield": 0,
+          "bound": 0,
+          "mark": 0,
+          "breaks": 0,
+          "acted": false,
+          "moveLeft": 257.6666666667551,
+          "maxMove": 2921,
+          "walkSpeed": 425,
+          "angle": 167.95860000000786,
+          "lastPower": 0.9374260123153187,
+          "loadout": [
+            "A01",
+            "A14",
+            "A02",
+            "A05"
+          ],
+          "tune": 0.5,
+          "facing": -1,
+          "hurt": 0,
+          "anim": 0,
+          "airborne": false,
+          "fixed": false,
+          "spawnX": 2645.071904787871,
+          "spawnY": 3480.5154081688293,
+          "intent": "",
+          "dead": false,
+          "ranks": {
+            "A01": 1,
+            "A14": 4,
+            "A02": 4,
+            "A05": 4
+          },
+          "group": 0,
+          "awake": true,
+          "lastAct": 0,
+          "aggroUntil": 0,
+          "xpBudget": 0,
+          "xpGranted": 0,
+          "killRewarded": false,
+          "damageBy": {},
+          "honroAlly": false,
+          "honroCivilian": false,
+          "critChance": 0.28400000000000003,
+          "critMultiplier": 3.085,
+          "cooldowns": {},
+          "moving": 0,
+          "eaterSwallow": 0,
+          "landing": 0,
+          "impactCooldown": 0,
+          "salheunFlash": 0,
+          "walkPhase": 675.7835562793292,
+          "honroShieldSources": {
+            "": 0,
+            "p-archer": 0
+          },
+          "jumping": false,
+          "equipmentState": {
+            "version": 1
+          },
+          "jucheon": 0,
+          "jucheonReady": false
+        },
+        {
+          "id": "p-knight",
+          "name": "휘겸",
+          "role": "knight",
+          "cls": "knight",
+          "side": 0,
+          "x": 3097.9161325361247,
+          "y": 3367.4525335611074,
+          "vx": 0,
+          "vy": 0,
+          "hp": 3244.7999999999997,
+          "maxHp": 3846,
+          "r": 22,
+          "h": 92,
+          "focus": 477,
+          "maxFocus": 477,
+          "regen": 28,
+          "level": 25,
+          "attack": 9.98515,
+          "armor": 0.7,
+          "shield": 0,
+          "bound": 0,
+          "mark": 0,
+          "breaks": 0,
+          "acted": false,
+          "moveLeft": 2040.500000000045,
+          "maxMove": 4081,
+          "walkSpeed": 420,
+          "angle": 222.7999999999976,
+          "lastPower": 0.9210254093740432,
+          "loadout": [
+            "S00",
+            "S01",
+            "S03"
+          ],
+          "tune": 0.5,
+          "facing": -1,
+          "hurt": 0,
+          "anim": 0,
+          "airborne": false,
+          "fixed": false,
+          "spawnX": 2876.9935676570512,
+          "spawnY": 3430.808319067308,
+          "intent": "",
+          "dead": false,
+          "ranks": {
+            "S00": 1,
+            "S01": 4,
+            "S03": 4
+          },
+          "group": 0,
+          "awake": true,
+          "lastAct": 0,
+          "aggroUntil": 0,
+          "xpBudget": 0,
+          "xpGranted": 0,
+          "killRewarded": false,
+          "damageBy": {},
+          "honroAlly": false,
+          "honroCivilian": false,
+          "critChance": 0.1648,
+          "critMultiplier": 2.5330000000000004,
+          "cooldowns": {},
+          "equipmentState": {
+            "version": 1
+          },
+          "eaterSwallow": 0,
+          "moving": 0,
+          "landing": 0,
+          "impactCooldown": 0,
+          "salheunFlash": 0,
+          "honroShieldSources": {
+            "p-knight": 0
+          },
+          "walkPhase": 694.094487212046,
+          "jumping": false,
+          "jucheon": 0,
+          "jucheonReady": false,
+          "harmony": false
+        },
+        {
+          "id": "p-occultist",
+          "name": "소단",
+          "role": "occultist",
+          "cls": "occultist",
+          "side": 0,
+          "x": 2985.230454572691,
+          "y": 3399.6484415506598,
+          "vx": 0,
+          "vy": 0,
+          "hp": 983,
+          "maxHp": 2304,
+          "r": 22,
+          "h": 92,
+          "focus": 727,
+          "maxFocus": 751,
+          "regen": 32,
+          "level": 25,
+          "attack": 11.170800000000002,
+          "armor": 0.487,
+          "shield": 0,
+          "bound": 0,
+          "mark": 0,
+          "breaks": 0,
+          "acted": false,
+          "moveLeft": 1353.5999999999933,
+          "maxMove": 3132,
+          "walkSpeed": 416,
+          "angle": 173.61540000000352,
+          "lastPower": 0.9913828048381823,
+          "loadout": [
+            "O01",
+            "O04",
+            "O03",
+            "O06"
+          ],
+          "tune": 0.5,
+          "facing": -1,
+          "hurt": 0,
+          "anim": 0,
+          "airborne": false,
+          "fixed": false,
+          "spawnX": 2987.090305485276,
+          "spawnY": 3399.1170555756353,
+          "intent": "",
+          "dead": false,
+          "spiritSight": true,
+          "ranks": {
+            "O01": 1,
+            "O06": 5,
+            "O02": 4,
+            "O03": 3,
+            "O04": 2
+          },
+          "group": 0,
+          "awake": true,
+          "lastAct": 0,
+          "aggroUntil": 0,
+          "xpBudget": 0,
+          "xpGranted": 0,
+          "killRewarded": false,
+          "damageBy": {},
+          "honroAlly": false,
+          "honroCivilian": false,
+          "critChance": 0.20700000000000002,
+          "critMultiplier": 2.4855,
+          "cooldowns": {},
+          "eaterSwallow": 0,
+          "moving": 0,
+          "landing": 0,
+          "impactCooldown": 0,
+          "salheunFlash": 0,
+          "honroShieldSources": {
+            "p-occultist": 0
+          },
+          "walkPhase": 755.9259310974994,
+          "jumping": false,
+          "equipmentState": {
+            "version": 1
+          },
+          "jucheon": 0,
+          "jucheonReady": false
+        }
+      ],
+      "profile": {
+        "version": 2,
+        "revision": 13,
+        "cleared": {
+          "1": true,
+          "2": true,
+          "3": true,
+          "4": true,
+          "5": true,
+          "6": true,
+          "7": true,
+          "8": true,
+          "9": true,
+          "10": true,
+          "11": true,
+          "12": true,
+          "13": true,
+          "14": true,
+          "15": true,
+          "16": true,
+          "17": true,
+          "18": true,
+          "19": true,
+          "20": true,
+          "21": true,
+          "22": true,
+          "23": true,
+          "24": true,
+          "25": true,
+          "26": true,
+          "27": true,
+          "28": true,
+          "29": true,
+          "30": true,
+          "31": true,
+          "32": true,
+          "33": true,
+          "34": true,
+          "35": true,
+          "36": true,
+          "37": true,
+          "38": true,
+          "39": true,
+          "40": true,
+          "41": true,
+          "42": true,
+          "43": true,
+          "44": true,
+          "45": true,
+          "46": true,
+          "47": true,
+          "48": true,
+          "49": true,
+          "50": {
+            "visits": 1,
+            "rounds": 17
+          }
+        },
+        "party": [
+          "archer",
+          "mage",
+          "knight",
+          "occultist"
+        ],
+        "loadouts": {
+          "mage": [
+            "M01",
+            "M10",
+            "M07"
+          ],
+          "archer": [
+            "A01",
+            "A14",
+            "A02",
+            "A05"
+          ],
+          "knight": [
+            "S00",
+            "S01",
+            "S03"
+          ],
+          "occultist": [
+            "O01",
+            "O04",
+            "O03",
+            "O06"
+          ]
+        },
+        "tuning": {
+          "mage": 0.5,
+          "archer": 0.5,
+          "knight": 0.5,
+          "occultist": 0.5
+        },
+        "settings": {
+          "sound": true,
+          "music": true,
+          "volume": 0.55,
+          "assist": false,
+          "shake": true,
+          "quality": "high",
+          "difficulty": "normal",
+          "speed": 1.5,
+          "playerSpeed": 1.5,
+          "orientation": "auto",
+          "musicVolume": 0.65,
+          "minimapVisible": true,
+          "debugTerrainOutline": false,
+          "haptics": true
+        },
+        "saved": null,
+        "lastStage": 50,
+        "mapNode": 1,
+        "tutorial": false,
+        "heroes": {
+          "mage": {
+            "xp": 225393,
+            "ranks": {
+              "M01": 1,
+              "M07": 4,
+              "M10": 3
+            },
+            "statTraining": 44,
+            "kills": 1,
+            "damage": 3663,
+            "skillRevision": 1,
+            "martialRevision": 1
+          },
+          "archer": {
+            "xp": 225393,
+            "ranks": {
+              "A01": 1,
+              "A14": 4,
+              "A02": 4,
+              "A05": 4
+            },
+            "statTraining": 39,
+            "kills": 10,
+            "damage": 10394,
+            "skillRevision": 1,
+            "martialRevision": 1
+          },
+          "knight": {
+            "xp": 225393,
+            "ranks": {
+              "S00": 1,
+              "S01": 4,
+              "S03": 4
+            },
+            "statTraining": 43,
+            "kills": 2,
+            "damage": 7615,
+            "skillRevision": 1,
+            "martialRevision": 1
+          },
+          "occultist": {
+            "xp": 225393,
+            "ranks": {
+              "O01": 1,
+              "O06": 5,
+              "O02": 4,
+              "O03": 3,
+              "O04": 2
+            },
+            "statTraining": 37,
+            "kills": 4,
+            "damage": 11392,
+            "skillRevision": 1,
+            "martialRevision": 1,
+            "occultRevision": 1
+          }
+        },
+        "recruited": [
+          "archer",
+          "mage",
+          "knight",
+          "occultist"
+        ],
+        "schema": 5,
+        "game": "honro",
+        "seen": {
+          "act-ending-v1:50": true,
+          "rest-arrival-talk-v1-end-40": true
+        },
+        "record": [
+          {
+            "place": "산이 끊긴 곳",
+            "text": "설오 · 산문까지 왔습니다. 절 안에서는 더는 바람 소리도 안 들립니다.\n담허 · 날이 밝기 전에 암벽과 석교, 종터를 살피세."
+          }
+        ],
+        "honroFlags": {
+          "act5.mumyungsaSeen": true,
+          "cleared-50": true
+        },
+        "equipment": {
+          "schema": 1,
+          "definitionRevision": 1,
+          "runId": "eq-mwuu06k6-y7h4w7qc",
+          "ownedItemIds": [
+            "itm_se_01",
+            "itm_da_01",
+            "itm_hw_01",
+            "itm_so_01",
+            "itm_se_02",
+            "itm_da_02",
+            "itm_hw_02",
+            "itm_co_01",
+            "itm_co_02",
+            "itm_so_02",
+            "itm_se_05",
+            "itm_da_05",
+            "itm_hw_05",
+            "itm_so_05",
+            "itm_co_11"
+          ],
+          "eligibleEventIds": [
+            "eq_se_start",
+            "eq_da_join",
+            "eq_hw_join",
+            "eq_so_join"
+          ],
+          "equippedByClass": {
+            "archer": {
+              "personal": null,
+              "common": null
+            },
+            "mage": {
+              "personal": null,
+              "common": null
+            },
+            "knight": {
+              "personal": null,
+              "common": null
+            },
+            "occultist": {
+              "personal": null,
+              "common": null
+            }
+          },
+          "rewardLedger": {
+            "eq_se_start": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_se_01",
+              "notified": true
+            },
+            "eq_da_join": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_da_01",
+              "notified": true
+            },
+            "eq_hw_join": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_hw_01",
+              "notified": true
+            },
+            "eq_so_join": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_so_01",
+              "notified": true
+            },
+            "eq_se_ledger": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_se_02",
+              "notified": true
+            },
+            "eq_da_gate": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_da_02",
+              "notified": true
+            },
+            "eq_hw_bier": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_hw_02",
+              "notified": true
+            },
+            "eq_co_01": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_co_01",
+              "notified": true
+            },
+            "eq_co_02": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_co_02",
+              "notified": true
+            },
+            "eq_co_t1_choice": {
+              "state": "pending",
+              "choiceGroup": "cg_co_t1",
+              "selectedItemId": null,
+              "notified": false
+            },
+            "eq_so_resident": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_so_02",
+              "notified": true
+            },
+            "eq_se_t2_choice": {
+              "state": "pending",
+              "choiceGroup": "cg_se_t2",
+              "selectedItemId": null,
+              "notified": false
+            },
+            "eq_da_t2_choice": {
+              "state": "pending",
+              "choiceGroup": "cg_da_t2",
+              "selectedItemId": null,
+              "notified": false
+            },
+            "eq_hw_t2_choice": {
+              "state": "pending",
+              "choiceGroup": "cg_hw_t2",
+              "selectedItemId": null,
+              "notified": false
+            },
+            "eq_so_t2_choice": {
+              "state": "pending",
+              "choiceGroup": "cg_so_t2",
+              "selectedItemId": null,
+              "notified": false
+            },
+            "eq_se_t3a": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_se_05",
+              "notified": true
+            },
+            "eq_da_t3a": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_da_05",
+              "notified": true
+            },
+            "eq_hw_t3a": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_hw_05",
+              "notified": true
+            },
+            "eq_so_t3a": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_so_05",
+              "notified": true
+            },
+            "eq_co_t2_choice": {
+              "state": "pending",
+              "choiceGroup": "cg_co_t2",
+              "selectedItemId": null,
+              "notified": false
+            },
+            "eq_co_11": {
+              "state": "committed",
+              "choiceGroup": null,
+              "selectedItemId": "itm_co_11",
+              "notified": true
+            }
+          },
+          "initialAutoEquip": true,
+          "basicPrepared": []
+        },
+        "honroClearReports": {},
+        "honroReportNotice": {
+          "stage": 50,
+          "attempt": "honro-map-stage-50-1795533027274-1795533953979-1"
+        },
+        "honroBattle": null,
+        "honroJourney": {
+          "version": 1,
+          "talked": {},
+          "growthObserved": {
+            "session": "honro-map-stage-50-1795533027274",
+            "earned": {
+              "archer": 51,
+              "mage": 51,
+              "knight": 51,
+              "occultist": 51
+            }
+          },
+          "newGrowth": {},
+          "story": null,
+          "stageId": null,
+          "restStageId": null
+        },
+        "honroAct23V4PresentationRevision": 1,
+        "honroReviewed11PresentationRevision": 1,
+        "honroReviewedPresentationRevisions": {
+          "12": 512,
+          "13": 513,
+          "14": 514,
+          "15": 515,
+          "16": 516,
+          "17": 517,
+          "18": 518,
+          "19": 519,
+          "20": 520
+        },
+        "honroReviewed21PresentationRevision": 1,
+        "honroReviewed22PresentationRevision": 1,
+        "honroReviewedAct3Presentation": {
+          "23": 1,
+          "24": 1,
+          "25": 1,
+          "26": 1,
+          "27": 1,
+          "28": 1,
+          "29": 1,
+          "30": 1
+        },
+        "honroReviewed30EndingPresentation": 1,
+        "honroNarrative": [
+          {
+            "id": "rest-arrival-talk-end-40",
+            "title": "모닥불 곁에서",
+            "lines": [
+              [
+                "담허",
+                "날이 밝기 전에는 산문 안에서 쉬세.",
+                {
+                  "kind": "character",
+                  "storyId": "rest-arrival-talk-end-40",
+                  "storyTitle": "모닥불 곁에서",
+                  "rowId": "rest-arrival-talk-end-40:0"
+                }
+              ],
+              [
+                "소단",
+                "밖에서 올라오는 소리가 들려요. 종소리는 아니에요.",
+                {
+                  "kind": "character",
+                  "storyId": "rest-arrival-talk-end-40",
+                  "storyTitle": "모닥불 곁에서",
+                  "rowId": "rest-arrival-talk-end-40:1"
+                }
+              ]
+            ]
+          }
+        ],
+        "honroMapStory": null
+      },
+      "settlement": false,
+      "guard": {
+        "anchor": {
+          "id": "local-return-anchor-07",
+          "x": 2028,
+          "host": "local-lower-07-west",
+          "r": 52
+        },
+        "ref": "local-07-gwakjin-return-keeper",
+        "spawn": {
+          "id": "local-07-gwakjin-return-keeper",
+          "x": 1712,
+          "y": 3091.310344827586,
+          "ground": true,
+          "support": "local-lower-07-west"
+        },
+        "end": {
+          "id": "local-07-gwakjin-return-keeper",
+          "x": 2013.502665530459,
+          "y": 3193.57219015156,
+          "ground": true,
+          "support": "local-lower-07-west"
+        },
+        "afterSide": 2,
+        "syntheticCombatRole": false
+      },
+      "association": {
+        "id": "p-mage",
+        "world": [
+          5384,
+          2976
+        ],
+        "guard": {
+          "anchor": {
+            "id": "local-return-anchor-07",
+            "x": 2028,
+            "host": "local-lower-07-west",
+            "r": 52
+          },
+          "ref": "local-07-gwakjin-return-keeper",
+          "spawn": {
+            "id": "local-07-gwakjin-return-keeper",
+            "x": 1712,
+            "y": 3091.310344827586,
+            "ground": true,
+            "support": "local-lower-07-west"
+          },
+          "end": {
+            "id": "local-07-gwakjin-return-keeper",
+            "x": 2013.502665530459,
+            "y": 3193.57219015156,
+            "ground": true,
+            "support": "local-lower-07-west"
+          },
+          "afterSide": 2,
+          "syntheticCombatRole": false
+        },
+        "colliders": [
+          "local-07-08-folded-ward-bridge",
+          "local-07-08-exact-receiving-slice"
+        ],
+        "seamReady": true
+      },
+      "returnGate": {
+        "id": "mumyeongsa-return-gate",
+        "floor": "local-lower-08-body",
+        "sill": 3260,
+        "gravity": {
+          "x": 0,
+          "y": 320
+        },
+        "actors": [
+          {
+            "role": "archer",
+            "id": "p-archer",
+            "enter": {
+              "x": 3262.9884936427625,
+              "y": 3305.6615207488207
+            },
+            "step": {
+              "x": 3259.8874893451675,
+              "y": 3307.3724196716316
+            },
+            "exit": {
+              "x": 3033.413721724697,
+              "y": 3385.881793792944
+            }
+          },
+          {
+            "role": "knight",
+            "id": "p-knight",
+            "enter": {
+              "x": 3260.9821247450936,
+              "y": 3306.7684828992587
+            },
+            "step": {
+              "x": 3257.917602851,
+              "y": 3308.4592535994484
+            },
+            "exit": {
+              "x": 3097.9161325361247,
+              "y": 3367.4525335611074
+            }
+          },
+          {
+            "role": "mage",
+            "id": "p-mage",
+            "enter": {
+              "x": 3262.49279827052,
+              "y": 3305.9350078507478
+            },
+            "step": {
+              "x": 3259.55961302903,
+              "y": 3307.5533169495006
+            },
+            "exit": {
+              "x": 3247.826872063071,
+              "y": 3314.0265533445126
+            }
+          },
+          {
+            "role": "occultist",
+            "id": "p-occultist",
+            "enter": {
+              "x": 3260.1110352070045,
+              "y": 3307.2490840237215
+            },
+            "step": {
+              "x": 3257.0756992357115,
+              "y": 3308.9237521458144
+            },
+            "exit": {
+              "x": 2985.230454572691,
+              "y": 3399.6484415506598
+            }
+          }
+        ]
+      }
+    },
+    "terminalSHA": "e8821540f870b5157336f4e51a830ea54f3b5c15e958bfdeca50c556b1fb8ebb",
+    "custody": {
+      "full": {
+        "mage": {
+          "id": "p-mage",
+          "name": "담허",
+          "role": "mage",
+          "cls": "mage",
+          "side": 0,
+          "x": 3247.826872063071,
+          "y": 3314.0265533445126,
+          "vx": 0,
+          "vy": 0,
+          "hp": 1408.7,
+          "maxHp": 2050,
+          "r": 22,
+          "h": 92,
+          "focus": 724,
+          "maxFocus": 724,
+          "regen": 28,
+          "level": 25,
+          "attack": 11.4116,
+          "armor": 0.472,
+          "shield": 0,
+          "bound": 0,
+          "mark": 0,
+          "breaks": 0,
+          "acted": false,
+          "moveLeft": 2069.9347843474575,
+          "maxMove": 3075,
+          "walkSpeed": 402,
+          "angle": 261.07220000000217,
+          "lastPower": 1,
+          "loadout": [
+            "M01",
+            "M10",
+            "M07"
+          ],
+          "tune": 0.5,
+          "facing": -1,
+          "hurt": 0,
+          "anim": 0,
+          "airborne": false,
+          "fixed": false,
+          "spawnX": 2780.0411461911017,
+          "spawnY": 3458.9557962670997,
+          "intent": "",
+          "dead": false,
+          "ranks": {
+            "M01": 1,
+            "M07": 4,
+            "M10": 3
+          },
+          "group": 0,
+          "awake": true,
+          "lastAct": 0,
+          "aggroUntil": 0,
+          "xpBudget": 0,
+          "xpGranted": 0,
+          "killRewarded": false,
+          "damageBy": {},
+          "honroAlly": false,
+          "honroCivilian": false,
+          "critChance": 0.174,
+          "critMultiplier": 2.51,
+          "cooldowns": {},
+          "equipmentState": {
+            "version": 1
+          },
+          "jumping": false,
+          "moving": 0.11166666666666666,
+          "walkPhase": 683.175165907927,
+          "eaterSwallow": 0,
+          "landing": 0,
+          "impactCooldown": 0,
+          "salheunFlash": 0,
+          "jucheon": 0,
+          "jucheonReady": false,
+          "honroShieldSources": {
+            "p-mage": 0
+          }
+        },
+        "archer": {
+          "id": "p-archer",
+          "name": "설오",
+          "role": "archer",
+          "cls": "archer",
+          "side": 0,
+          "x": 3033.413721724697,
+          "y": 3385.881793792944,
+          "vx": 0,
+          "vy": 0,
+          "hp": 977,
+          "maxHp": 1720,
+          "r": 22,
+          "h": 92,
+          "focus": 404,
+          "maxFocus": 404,
+          "regen": 28,
+          "level": 25,
+          "attack": 11.98825,
+          "armor": 0.42800000000000005,
+          "shield": 0,
+          "bound": 0,
+          "mark": 0,
+          "breaks": 0,
+          "acted": false,
+          "moveLeft": 257.6666666667551,
+          "maxMove": 2921,
+          "walkSpeed": 425,
+          "angle": 167.95860000000786,
+          "lastPower": 0.9374260123153187,
+          "loadout": [
+            "A01",
+            "A14",
+            "A02",
+            "A05"
+          ],
+          "tune": 0.5,
+          "facing": -1,
+          "hurt": 0,
+          "anim": 0,
+          "airborne": false,
+          "fixed": false,
+          "spawnX": 2645.071904787871,
+          "spawnY": 3480.5154081688293,
+          "intent": "",
+          "dead": false,
+          "ranks": {
+            "A01": 1,
+            "A14": 4,
+            "A02": 4,
+            "A05": 4
+          },
+          "group": 0,
+          "awake": true,
+          "lastAct": 0,
+          "aggroUntil": 0,
+          "xpBudget": 0,
+          "xpGranted": 0,
+          "killRewarded": false,
+          "damageBy": {},
+          "honroAlly": false,
+          "honroCivilian": false,
+          "critChance": 0.28400000000000003,
+          "critMultiplier": 3.085,
+          "cooldowns": {},
+          "moving": 0,
+          "eaterSwallow": 0,
+          "landing": 0,
+          "impactCooldown": 0,
+          "salheunFlash": 0,
+          "walkPhase": 675.7835562793292,
+          "honroShieldSources": {
+            "": 0,
+            "p-archer": 0
+          },
+          "jumping": false,
+          "equipmentState": {
+            "version": 1
+          },
+          "jucheon": 0,
+          "jucheonReady": false
+        },
+        "knight": {
+          "id": "p-knight",
+          "name": "휘겸",
+          "role": "knight",
+          "cls": "knight",
+          "side": 0,
+          "x": 3097.9161325361247,
+          "y": 3367.4525335611074,
+          "vx": 0,
+          "vy": 0,
+          "hp": 3244.7999999999997,
+          "maxHp": 3846,
+          "r": 22,
+          "h": 92,
+          "focus": 477,
+          "maxFocus": 477,
+          "regen": 28,
+          "level": 25,
+          "attack": 9.98515,
+          "armor": 0.7,
+          "shield": 0,
+          "bound": 0,
+          "mark": 0,
+          "breaks": 0,
+          "acted": false,
+          "moveLeft": 2040.500000000045,
+          "maxMove": 4081,
+          "walkSpeed": 420,
+          "angle": 222.7999999999976,
+          "lastPower": 0.9210254093740432,
+          "loadout": [
+            "S00",
+            "S01",
+            "S03"
+          ],
+          "tune": 0.5,
+          "facing": -1,
+          "hurt": 0,
+          "anim": 0,
+          "airborne": false,
+          "fixed": false,
+          "spawnX": 2876.9935676570512,
+          "spawnY": 3430.808319067308,
+          "intent": "",
+          "dead": false,
+          "ranks": {
+            "S00": 1,
+            "S01": 4,
+            "S03": 4
+          },
+          "group": 0,
+          "awake": true,
+          "lastAct": 0,
+          "aggroUntil": 0,
+          "xpBudget": 0,
+          "xpGranted": 0,
+          "killRewarded": false,
+          "damageBy": {},
+          "honroAlly": false,
+          "honroCivilian": false,
+          "critChance": 0.1648,
+          "critMultiplier": 2.5330000000000004,
+          "cooldowns": {},
+          "equipmentState": {
+            "version": 1
+          },
+          "eaterSwallow": 0,
+          "moving": 0,
+          "landing": 0,
+          "impactCooldown": 0,
+          "salheunFlash": 0,
+          "honroShieldSources": {
+            "p-knight": 0
+          },
+          "walkPhase": 694.094487212046,
+          "jumping": false,
+          "jucheon": 0,
+          "jucheonReady": false,
+          "harmony": false
+        },
+        "occultist": {
+          "id": "p-occultist",
+          "name": "소단",
+          "role": "occultist",
+          "cls": "occultist",
+          "side": 0,
+          "x": 2985.230454572691,
+          "y": 3399.6484415506598,
+          "vx": 0,
+          "vy": 0,
+          "hp": 983,
+          "maxHp": 2304,
+          "r": 22,
+          "h": 92,
+          "focus": 727,
+          "maxFocus": 751,
+          "regen": 32,
+          "level": 25,
+          "attack": 11.170800000000002,
+          "armor": 0.487,
+          "shield": 0,
+          "bound": 0,
+          "mark": 0,
+          "breaks": 0,
+          "acted": false,
+          "moveLeft": 1353.5999999999933,
+          "maxMove": 3132,
+          "walkSpeed": 416,
+          "angle": 173.61540000000352,
+          "lastPower": 0.9913828048381823,
+          "loadout": [
+            "O01",
+            "O04",
+            "O03",
+            "O06"
+          ],
+          "tune": 0.5,
+          "facing": -1,
+          "hurt": 0,
+          "anim": 0,
+          "airborne": false,
+          "fixed": false,
+          "spawnX": 2987.090305485276,
+          "spawnY": 3399.1170555756353,
+          "intent": "",
+          "dead": false,
+          "spiritSight": true,
+          "ranks": {
+            "O01": 1,
+            "O06": 5,
+            "O02": 4,
+            "O03": 3,
+            "O04": 2
+          },
+          "group": 0,
+          "awake": true,
+          "lastAct": 0,
+          "aggroUntil": 0,
+          "xpBudget": 0,
+          "xpGranted": 0,
+          "killRewarded": false,
+          "damageBy": {},
+          "honroAlly": false,
+          "honroCivilian": false,
+          "critChance": 0.20700000000000002,
+          "critMultiplier": 2.4855,
+          "cooldowns": {},
+          "eaterSwallow": 0,
+          "moving": 0,
+          "landing": 0,
+          "impactCooldown": 0,
+          "salheunFlash": 0,
+          "honroShieldSources": {
+            "p-occultist": 0
+          },
+          "walkPhase": 755.9259310974994,
+          "jumping": false,
+          "equipmentState": {
+            "version": 1
+          },
+          "jucheon": 0,
+          "jucheonReady": false
+        }
+      },
+      "guard": {
+        "anchor": {
+          "id": "local-return-anchor-07",
+          "x": 2028,
+          "host": "local-lower-07-west",
+          "r": 52
+        },
+        "ref": "local-07-gwakjin-return-keeper",
+        "spawn": {
+          "id": "local-07-gwakjin-return-keeper",
+          "x": 1712,
+          "y": 3091.310344827586,
+          "ground": true,
+          "support": "local-lower-07-west"
+        },
+        "end": {
+          "id": "local-07-gwakjin-return-keeper",
+          "x": 2013.502665530459,
+          "y": 3193.57219015156,
+          "ground": true,
+          "support": "local-lower-07-west"
+        },
+        "afterSide": 2,
+        "syntheticCombatRole": false
+      },
+      "association": {
+        "id": "p-mage",
+        "world": [
+          5384,
+          2976
+        ],
+        "guard": {
+          "anchor": {
+            "id": "local-return-anchor-07",
+            "x": 2028,
+            "host": "local-lower-07-west",
+            "r": 52
+          },
+          "ref": "local-07-gwakjin-return-keeper",
+          "spawn": {
+            "id": "local-07-gwakjin-return-keeper",
+            "x": 1712,
+            "y": 3091.310344827586,
+            "ground": true,
+            "support": "local-lower-07-west"
+          },
+          "end": {
+            "id": "local-07-gwakjin-return-keeper",
+            "x": 2013.502665530459,
+            "y": 3193.57219015156,
+            "ground": true,
+            "support": "local-lower-07-west"
+          },
+          "afterSide": 2,
+          "syntheticCombatRole": false
+        },
+        "colliders": [
+          "local-07-08-folded-ward-bridge",
+          "local-07-08-exact-receiving-slice"
+        ],
+        "seamReady": true
+      },
+      "boss": {
+        "id": "a6-c08-boss",
+        "hp": 0,
+        "dead": true
+      },
+      "expansion": {
+        "id": "a6-c08-expansion-node",
+        "hp": 0,
+        "dead": true
+      },
+      "stakeId": true,
+      "returned": true,
+      "returnGate": {
+        "id": "mumyeongsa-return-gate",
+        "floor": "local-lower-08-body",
+        "sill": 3260,
+        "gravity": {
+          "x": 0,
+          "y": 320
+        },
+        "actors": [
+          {
+            "role": "archer",
+            "id": "p-archer",
+            "enter": {
+              "x": 3262.9884936427625,
+              "y": 3305.6615207488207
+            },
+            "step": {
+              "x": 3259.8874893451675,
+              "y": 3307.3724196716316
+            },
+            "exit": {
+              "x": 3033.413721724697,
+              "y": 3385.881793792944
+            }
+          },
+          {
+            "role": "knight",
+            "id": "p-knight",
+            "enter": {
+              "x": 3260.9821247450936,
+              "y": 3306.7684828992587
+            },
+            "step": {
+              "x": 3257.917602851,
+              "y": 3308.4592535994484
+            },
+            "exit": {
+              "x": 3097.9161325361247,
+              "y": 3367.4525335611074
+            }
+          },
+          {
+            "role": "mage",
+            "id": "p-mage",
+            "enter": {
+              "x": 3262.49279827052,
+              "y": 3305.9350078507478
+            },
+            "step": {
+              "x": 3259.55961302903,
+              "y": 3307.5533169495006
+            },
+            "exit": {
+              "x": 3247.826872063071,
+              "y": 3314.0265533445126
+            }
+          },
+          {
+            "role": "occultist",
+            "id": "p-occultist",
+            "enter": {
+              "x": 3260.1110352070045,
+              "y": 3307.2490840237215
+            },
+            "step": {
+              "x": 3257.0756992357115,
+              "y": 3308.9237521458144
+            },
+            "exit": {
+              "x": 2985.230454572691,
+              "y": 3399.6484415506598
+            }
+          }
+        ]
+      }
+    },
+    "custodySHA": "f7395604c21702f225317fef2c189bf326de034d5c6977202a64991e82c25999",
+    "stageSeed": {
+      "id": 58,
+      "local": 58,
+      "region": 6,
+      "act": 6,
+      "actStage": 8,
+      "active": 4,
+      "requires": [
+        57
+      ],
+      "name": "문턱에 걸린 사람",
+      "goal": "대도사와 술법 유지점을 막고 네 사람이 돌아오기",
+      "objective": "act6-daedosa-revision",
+      "w": 7200,
+      "h": 3600,
+      "story": [],
+      "outro": [],
+      "wind": [
+        0
+      ],
+      "victoryRule": {
+        "kind": "scripted",
+        "target": "act6-native-58"
+      }
+    },
+    "budget": {
+      "id": 58,
+      "act": 6,
+      "entryLevel": 25,
+      "exitLevel": 25,
+      "rewardCurve": "current",
+      "balanceStatus": "detached-zero-increment-horizon"
+    }
+  },
+  "routeReceipt": {
+    "id": "mumyeongsa-return-gate",
+    "floor": "local-lower-08-body",
+    "sill": 3260,
+    "gravity": {
+      "x": 0,
+      "y": 320
+    },
+    "actors": [
+      {
+        "role": "archer",
+        "id": "p-archer",
+        "enter": {
+          "x": 3262.9884936427625,
+          "y": 3305.6615207488207
+        },
+        "step": {
+          "x": 3259.8874893451675,
+          "y": 3307.3724196716316
+        },
+        "exit": {
+          "x": 3033.413721724697,
+          "y": 3385.881793792944
+        }
+      },
+      {
+        "role": "knight",
+        "id": "p-knight",
+        "enter": {
+          "x": 3260.9821247450936,
+          "y": 3306.7684828992587
+        },
+        "step": {
+          "x": 3257.917602851,
+          "y": 3308.4592535994484
+        },
+        "exit": {
+          "x": 3097.9161325361247,
+          "y": 3367.4525335611074
+        }
+      },
+      {
+        "role": "mage",
+        "id": "p-mage",
+        "enter": {
+          "x": 3262.49279827052,
+          "y": 3305.9350078507478
+        },
+        "step": {
+          "x": 3259.55961302903,
+          "y": 3307.5533169495006
+        },
+        "exit": {
+          "x": 3247.826872063071,
+          "y": 3314.0265533445126
+        }
+      },
+      {
+        "role": "occultist",
+        "id": "p-occultist",
+        "enter": {
+          "x": 3260.1110352070045,
+          "y": 3307.2490840237215
+        },
+        "step": {
+          "x": 3257.0756992357115,
+          "y": 3308.9237521458144
+        },
+        "exit": {
+          "x": 2985.230454572691,
+          "y": 3399.6484415506598
+        }
+      }
+    ]
+  },
+  "cold": {
+    "stage": 59,
+    "quiet": true,
+    "pending": true,
+    "round": 1,
+    "active": "p-archer",
+    "enemies": [],
+    "landmark": [
+      {
+        "fill": "#514c40",
+        "points": [
+          {
+            "x": 3078,
+            "y": 3387.1428571428573
+          },
+          {
+            "x": 3132,
+            "y": 3367.714285714286
+          },
+          {
+            "x": 3208,
+            "y": 3348
+          },
+          {
+            "x": 3350,
+            "y": 3270.655172413793
+          },
+          {
+            "x": 3400,
+            "y": 3239.0689655172414
+          },
+          {
+            "x": 3410,
+            "y": 3271.551724137931
+          },
+          {
+            "x": 3314,
+            "y": 3341.5172413793102
+          },
+          {
+            "x": 3240,
+            "y": 3370.344827586207
+          },
+          {
+            "x": 3120,
+            "y": 3429.1428571428573
+          }
+        ]
+      },
+      {
+        "fill": "#82775f",
+        "points": [
+          {
+            "x": 3100,
+            "y": 3391.8571428571427
+          },
+          {
+            "x": 3190,
+            "y": 3367.1428571428573
+          },
+          {
+            "x": 3249,
+            "y": 3345.3793103448274
+          },
+          {
+            "x": 3217,
+            "y": 3384.0344827586205
+          },
+          {
+            "x": 3145,
+            "y": 3400
+          }
+        ]
+      },
+      {
+        "fill": "#978865",
+        "points": [
+          {
+            "x": 3108,
+            "y": 3364.5714285714284
+          },
+          {
+            "x": 3208,
+            "y": 3336
+          },
+          {
+            "x": 3260,
+            "y": 3307.310344827586
+          },
+          {
+            "x": 3350,
+            "y": 3257.655172413793
+          },
+          {
+            "x": 3400,
+            "y": 3230.0689655172414
+          },
+          {
+            "x": 3400,
+            "y": 3252.0689655172414
+          },
+          {
+            "x": 3350,
+            "y": 3279.655172413793
+          },
+          {
+            "x": 3260,
+            "y": 3329.310344827586
+          },
+          {
+            "x": 3208,
+            "y": 3358
+          },
+          {
+            "x": 3108,
+            "y": 3386.5714285714284
+          }
+        ]
+      },
+      {
+        "fill": "#675848",
+        "points": [
+          {
+            "x": 3129,
+            "y": 3052.310344827586
+          },
+          {
+            "x": 3181,
+            "y": 3044.310344827586
+          },
+          {
+            "x": 3181,
+            "y": 3333.714285714286
+          },
+          {
+            "x": 3131,
+            "y": 3341
+          }
+        ]
+      },
+      {
+        "fill": "#75604c",
+        "points": [
+          {
+            "x": 3331,
+            "y": 2954.310344827586
+          },
+          {
+            "x": 3375,
+            "y": 2948.310344827586
+          },
+          {
+            "x": 3376,
+            "y": 3230.310344827586
+          },
+          {
+            "x": 3327,
+            "y": 3262.344827586207
+          }
+        ]
+      },
+      {
+        "fill": "#857058",
+        "points": [
+          {
+            "x": 3134,
+            "y": 3054.310344827586
+          },
+          {
+            "x": 3147,
+            "y": 3051.310344827586
+          },
+          {
+            "x": 3146,
+            "y": 3341
+          },
+          {
+            "x": 3134,
+            "y": 3341
+          }
+        ]
+      },
+      {
+        "fill": "#5b4d41",
+        "points": [
+          {
+            "x": 3333,
+            "y": 2959.310344827586
+          },
+          {
+            "x": 3345,
+            "y": 2955.310344827586
+          },
+          {
+            "x": 3342,
+            "y": 3262.344827586207
+          },
+          {
+            "x": 3330,
+            "y": 3262.344827586207
+          }
+        ]
+      },
+      {
+        "fill": "#4d3d36",
+        "points": [
+          {
+            "x": 3097,
+            "y": 3029.310344827586
+          },
+          {
+            "x": 3264,
+            "y": 2962.310344827586
+          },
+          {
+            "x": 3403,
+            "y": 2923.310344827586
+          },
+          {
+            "x": 3450,
+            "y": 2930.310344827586
+          },
+          {
+            "x": 3427,
+            "y": 2962.310344827586
+          },
+          {
+            "x": 3268,
+            "y": 3005.310344827586
+          },
+          {
+            "x": 3110,
+            "y": 3075.310344827586
+          }
+        ]
+      },
+      {
+        "fill": "#686054",
+        "points": [
+          {
+            "x": 3078,
+            "y": 3018.310344827586
+          },
+          {
+            "x": 3240,
+            "y": 2953.310344827586
+          },
+          {
+            "x": 3404,
+            "y": 2908.310344827586
+          },
+          {
+            "x": 3458,
+            "y": 2910.310344827586
+          },
+          {
+            "x": 3441,
+            "y": 2933.310344827586
+          },
+          {
+            "x": 3252,
+            "y": 2975.310344827586
+          },
+          {
+            "x": 3097,
+            "y": 3041.310344827586
+          }
+        ]
+      },
+      {
+        "fill": "#a08861",
+        "points": [
+          {
+            "x": 3238,
+            "y": 2968.310344827586
+          },
+          {
+            "x": 3263,
+            "y": 2959.310344827586
+          },
+          {
+            "x": 3265,
+            "y": 3003.310344827586
+          },
+          {
+            "x": 3243,
+            "y": 3008.310344827586
+          }
+        ]
+      },
+      {
+        "fill": "#a08861",
+        "points": [
+          {
+            "x": 3253,
+            "y": 3296.310344827586
+          },
+          {
+            "x": 3260,
+            "y": 3307.310344827586
+          },
+          {
+            "x": 3280,
+            "y": 3296.2758620689656
+          },
+          {
+            "x": 3271,
+            "y": 3285.2758620689656
+          }
+        ]
+      }
+    ],
+    "actors": [
+      {
+        "id": "p-archer",
+        "cls": "archer",
+        "x": 3033.413721724697,
+        "y": 3385.881793792944,
+        "hp": 977,
+        "focus": 404,
+        "shield": 0,
+        "loadout": [
+          "A01",
+          "A14",
+          "A02",
+          "A05"
+        ],
+        "equipment": {
+          "version": 1
+        },
+        "grounded": true,
+        "valid": true,
+        "gravity": {
+          "x": 0,
+          "y": 320
+        },
+        "support": "m59-return-gate-stone"
+      },
+      {
+        "id": "p-knight",
+        "cls": "knight",
+        "x": 3097.9161325361247,
+        "y": 3367.4525335611074,
+        "hp": 3244.7999999999997,
+        "focus": 477,
+        "shield": 0,
+        "loadout": [
+          "S00",
+          "S01",
+          "S03"
+        ],
+        "equipment": {
+          "version": 1
+        },
+        "grounded": true,
+        "valid": true,
+        "gravity": {
+          "x": 0,
+          "y": 320
+        },
+        "support": "m59-return-gate-stone"
+      },
+      {
+        "id": "p-occultist",
+        "cls": "occultist",
+        "x": 2985.230454572691,
+        "y": 3399.6484415506598,
+        "hp": 983,
+        "focus": 727,
+        "shield": 0,
+        "loadout": [
+          "O01",
+          "O04",
+          "O03",
+          "O06"
+        ],
+        "equipment": {
+          "version": 1
+        },
+        "grounded": true,
+        "valid": true,
+        "gravity": {
+          "x": 0,
+          "y": 320
+        },
+        "support": "m59-return-gate-stone"
+      },
+      {
+        "id": "p-mage",
+        "cls": "mage",
+        "x": 3247.826872063071,
+        "y": 3314.0265533445126,
+        "hp": 1408.7,
+        "focus": 724,
+        "shield": 0,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "equipment": {
+          "version": 1
+        },
+        "grounded": true,
+        "valid": true,
+        "gravity": {
+          "x": 0,
+          "y": 320
+        },
+        "support": "m59-return-gate-stone"
+      }
+    ]
+  },
+  "receiving": {
+    "stage": 59,
+    "quiet": true,
+    "pending": true,
+    "round": 1,
+    "active": "p-archer",
+    "enemies": [],
+    "landmark": [
+      {
+        "fill": "#514c40",
+        "points": [
+          {
+            "x": 3078,
+            "y": 3387.1428571428573
+          },
+          {
+            "x": 3132,
+            "y": 3367.714285714286
+          },
+          {
+            "x": 3208,
+            "y": 3348
+          },
+          {
+            "x": 3350,
+            "y": 3270.655172413793
+          },
+          {
+            "x": 3400,
+            "y": 3239.0689655172414
+          },
+          {
+            "x": 3410,
+            "y": 3271.551724137931
+          },
+          {
+            "x": 3314,
+            "y": 3341.5172413793102
+          },
+          {
+            "x": 3240,
+            "y": 3370.344827586207
+          },
+          {
+            "x": 3120,
+            "y": 3429.1428571428573
+          }
+        ]
+      },
+      {
+        "fill": "#82775f",
+        "points": [
+          {
+            "x": 3100,
+            "y": 3391.8571428571427
+          },
+          {
+            "x": 3190,
+            "y": 3367.1428571428573
+          },
+          {
+            "x": 3249,
+            "y": 3345.3793103448274
+          },
+          {
+            "x": 3217,
+            "y": 3384.0344827586205
+          },
+          {
+            "x": 3145,
+            "y": 3400
+          }
+        ]
+      },
+      {
+        "fill": "#978865",
+        "points": [
+          {
+            "x": 3108,
+            "y": 3364.5714285714284
+          },
+          {
+            "x": 3208,
+            "y": 3336
+          },
+          {
+            "x": 3260,
+            "y": 3307.310344827586
+          },
+          {
+            "x": 3350,
+            "y": 3257.655172413793
+          },
+          {
+            "x": 3400,
+            "y": 3230.0689655172414
+          },
+          {
+            "x": 3400,
+            "y": 3252.0689655172414
+          },
+          {
+            "x": 3350,
+            "y": 3279.655172413793
+          },
+          {
+            "x": 3260,
+            "y": 3329.310344827586
+          },
+          {
+            "x": 3208,
+            "y": 3358
+          },
+          {
+            "x": 3108,
+            "y": 3386.5714285714284
+          }
+        ]
+      },
+      {
+        "fill": "#675848",
+        "points": [
+          {
+            "x": 3129,
+            "y": 3052.310344827586
+          },
+          {
+            "x": 3181,
+            "y": 3044.310344827586
+          },
+          {
+            "x": 3181,
+            "y": 3333.714285714286
+          },
+          {
+            "x": 3131,
+            "y": 3341
+          }
+        ]
+      },
+      {
+        "fill": "#75604c",
+        "points": [
+          {
+            "x": 3331,
+            "y": 2954.310344827586
+          },
+          {
+            "x": 3375,
+            "y": 2948.310344827586
+          },
+          {
+            "x": 3376,
+            "y": 3230.310344827586
+          },
+          {
+            "x": 3327,
+            "y": 3262.344827586207
+          }
+        ]
+      },
+      {
+        "fill": "#857058",
+        "points": [
+          {
+            "x": 3134,
+            "y": 3054.310344827586
+          },
+          {
+            "x": 3147,
+            "y": 3051.310344827586
+          },
+          {
+            "x": 3146,
+            "y": 3341
+          },
+          {
+            "x": 3134,
+            "y": 3341
+          }
+        ]
+      },
+      {
+        "fill": "#5b4d41",
+        "points": [
+          {
+            "x": 3333,
+            "y": 2959.310344827586
+          },
+          {
+            "x": 3345,
+            "y": 2955.310344827586
+          },
+          {
+            "x": 3342,
+            "y": 3262.344827586207
+          },
+          {
+            "x": 3330,
+            "y": 3262.344827586207
+          }
+        ]
+      },
+      {
+        "fill": "#4d3d36",
+        "points": [
+          {
+            "x": 3097,
+            "y": 3029.310344827586
+          },
+          {
+            "x": 3264,
+            "y": 2962.310344827586
+          },
+          {
+            "x": 3403,
+            "y": 2923.310344827586
+          },
+          {
+            "x": 3450,
+            "y": 2930.310344827586
+          },
+          {
+            "x": 3427,
+            "y": 2962.310344827586
+          },
+          {
+            "x": 3268,
+            "y": 3005.310344827586
+          },
+          {
+            "x": 3110,
+            "y": 3075.310344827586
+          }
+        ]
+      },
+      {
+        "fill": "#686054",
+        "points": [
+          {
+            "x": 3078,
+            "y": 3018.310344827586
+          },
+          {
+            "x": 3240,
+            "y": 2953.310344827586
+          },
+          {
+            "x": 3404,
+            "y": 2908.310344827586
+          },
+          {
+            "x": 3458,
+            "y": 2910.310344827586
+          },
+          {
+            "x": 3441,
+            "y": 2933.310344827586
+          },
+          {
+            "x": 3252,
+            "y": 2975.310344827586
+          },
+          {
+            "x": 3097,
+            "y": 3041.310344827586
+          }
+        ]
+      },
+      {
+        "fill": "#a08861",
+        "points": [
+          {
+            "x": 3238,
+            "y": 2968.310344827586
+          },
+          {
+            "x": 3263,
+            "y": 2959.310344827586
+          },
+          {
+            "x": 3265,
+            "y": 3003.310344827586
+          },
+          {
+            "x": 3243,
+            "y": 3008.310344827586
+          }
+        ]
+      },
+      {
+        "fill": "#a08861",
+        "points": [
+          {
+            "x": 3253,
+            "y": 3296.310344827586
+          },
+          {
+            "x": 3260,
+            "y": 3307.310344827586
+          },
+          {
+            "x": 3280,
+            "y": 3296.2758620689656
+          },
+          {
+            "x": 3271,
+            "y": 3285.2758620689656
+          }
+        ]
+      }
+    ],
+    "actors": [
+      {
+        "id": "p-archer",
+        "cls": "archer",
+        "x": 3033.413721724697,
+        "y": 3385.881793792944,
+        "hp": 977,
+        "focus": 404,
+        "shield": 0,
+        "loadout": [
+          "A01",
+          "A14",
+          "A02",
+          "A05"
+        ],
+        "equipment": {
+          "version": 1
+        },
+        "grounded": true,
+        "valid": true,
+        "gravity": {
+          "x": 0,
+          "y": 320
+        },
+        "support": "m59-return-gate-stone"
+      },
+      {
+        "id": "p-knight",
+        "cls": "knight",
+        "x": 3097.9161325361247,
+        "y": 3367.4525335611074,
+        "hp": 3244.7999999999997,
+        "focus": 477,
+        "shield": 0,
+        "loadout": [
+          "S00",
+          "S01",
+          "S03"
+        ],
+        "equipment": {
+          "version": 1
+        },
+        "grounded": true,
+        "valid": true,
+        "gravity": {
+          "x": 0,
+          "y": 320
+        },
+        "support": "m59-return-gate-stone"
+      },
+      {
+        "id": "p-occultist",
+        "cls": "occultist",
+        "x": 2985.230454572691,
+        "y": 3399.6484415506598,
+        "hp": 983,
+        "focus": 727,
+        "shield": 0,
+        "loadout": [
+          "O01",
+          "O04",
+          "O03",
+          "O06"
+        ],
+        "equipment": {
+          "version": 1
+        },
+        "grounded": true,
+        "valid": true,
+        "gravity": {
+          "x": 0,
+          "y": 320
+        },
+        "support": "m59-return-gate-stone"
+      },
+      {
+        "id": "p-mage",
+        "cls": "mage",
+        "x": 3247.826872063071,
+        "y": 3314.0265533445126,
+        "hp": 1408.7,
+        "focus": 724,
+        "shield": 0,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "equipment": {
+          "version": 1
+        },
+        "grounded": true,
+        "valid": true,
+        "gravity": {
+          "x": 0,
+          "y": 320
+        },
+        "support": "m59-return-gate-stone"
+      }
+    ]
+  },
+  "walking": [
+    {
+      "from": {
+        "id": "p-occultist",
+        "cls": "occultist",
+        "side": 0,
+        "x": 2985.230454572691,
+        "y": 3399.6484415506598,
+        "vx": 0,
+        "vy": 0,
+        "hp": 983,
+        "maxHp": 2304,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "O01",
+          "O04",
+          "O03",
+          "O06"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 3132,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "m59-return-gate-stone",
+        "normal": null
+      },
+      "to": {
+        "id": "p-occultist",
+        "cls": "occultist",
+        "side": 0,
+        "x": 2888.613548623156,
+        "y": 3427.4347762061807,
+        "vx": 0,
+        "vy": 0,
+        "hp": 983,
+        "maxHp": 2304,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "O01",
+          "O04",
+          "O03",
+          "O06"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 3132,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "m59-return-gate-stone",
+        "normal": null
+      },
+      "reached": true
+    },
+    {
+      "from": {
+        "id": "p-archer",
+        "cls": "archer",
+        "side": 0,
+        "x": 3033.413721724697,
+        "y": 3385.881793792944,
+        "vx": 0,
+        "vy": 0,
+        "hp": 977,
+        "maxHp": 1720,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "A01",
+          "A14",
+          "A02",
+          "A05"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 2921,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "m59-return-gate-stone",
+        "normal": null
+      },
+      "to": {
+        "id": "p-archer",
+        "cls": "archer",
+        "side": 0,
+        "x": 2887.0318784668552,
+        "y": 3427.8939707676873,
+        "vx": 0,
+        "vy": 0,
+        "hp": 977,
+        "maxHp": 1720,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "A01",
+          "A14",
+          "A02",
+          "A05"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 2921,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "m59-return-gate-stone",
+        "normal": null
+      },
+      "reached": true
+    },
+    {
+      "from": {
+        "id": "p-knight",
+        "cls": "knight",
+        "side": 0,
+        "x": 3097.9161325361247,
+        "y": 3367.4525335611074,
+        "vx": 0,
+        "vy": 0,
+        "hp": 3244.7999999999997,
+        "maxHp": 3846,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "S00",
+          "S01",
+          "S03"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 4081,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "m59-return-gate-stone",
+        "normal": null
+      },
+      "to": {
+        "id": "p-knight",
+        "cls": "knight",
+        "side": 0,
+        "x": 2889.3128798596176,
+        "y": 3427.231744556885,
+        "vx": 0,
+        "vy": 0,
+        "hp": 3244.7999999999997,
+        "maxHp": 3846,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "S00",
+          "S01",
+          "S03"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 4081,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "m59-return-gate-stone",
+        "normal": null
+      },
+      "reached": true
+    },
+    {
+      "from": {
+        "id": "p-mage",
+        "cls": "mage",
+        "side": 0,
+        "x": 3247.826872063071,
+        "y": 3314.0265533445126,
+        "vx": 0,
+        "vy": 0,
+        "hp": 1408.7,
+        "maxHp": 2050,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 3075,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "m59-return-gate-stone",
+        "normal": null
+      },
+      "to": {
+        "id": "p-mage",
+        "cls": "mage",
+        "side": 0,
+        "x": 5855.087878574847,
+        "y": 2382.252422894296,
+        "vx": 0,
+        "vy": 0,
+        "hp": 1408.7,
+        "maxHp": 2050,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 3021.400000000003,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "finale-cutout-near-body",
+        "normal": null
+      },
+      "reached": true
+    }
+  ],
+  "courtyard": {
+    "stage": 59,
+    "quiet": false,
+    "pending": false,
+    "round": 1,
+    "active": "p-mage",
+    "enemies": [
+      "qa-immediate-bridge-threat",
+      "finale-first-west-ledge",
+      "finale-first-west-talus",
+      "finale-first-west-bank",
+      "finale-first-west-turn",
+      "finale-first-bridge-foot",
+      "finale-first-east-bell",
+      "finale-first-east-bend",
+      "finale-first-east-stone",
+      "finale-first-east-ward"
+    ],
+    "landmark": null,
+    "actors": [
+      {
+        "id": "p-archer",
+        "cls": "archer",
+        "x": 1404.1436464088397,
+        "y": 1452.259315857529,
+        "hp": 977,
+        "focus": 404,
+        "shield": 0,
+        "loadout": [
+          "A01",
+          "A14",
+          "A02",
+          "A05"
+        ],
+        "equipment": {
+          "version": 1
+        },
+        "grounded": true,
+        "valid": true,
+        "gravity": {
+          "x": 0,
+          "y": 320
+        },
+        "support": "finale-cutout-west-terrace"
+      },
+      {
+        "id": "p-knight",
+        "cls": "knight",
+        "x": 3041.71270718232,
+        "y": 2891.4450237335614,
+        "hp": 3244.7999999999997,
+        "focus": 477,
+        "shield": 0,
+        "loadout": [
+          "S00",
+          "S01",
+          "S03"
+        ],
+        "equipment": {
+          "version": 1
+        },
+        "grounded": true,
+        "valid": true,
+        "gravity": {
+          "x": 0,
+          "y": 320
+        },
+        "support": "finale-cutout-near-body"
+      },
+      {
+        "id": "p-occultist",
+        "cls": "occultist",
+        "x": 5458.563535911602,
+        "y": 2493.635514745934,
+        "hp": 983,
+        "focus": 727,
+        "shield": 0,
+        "loadout": [
+          "O01",
+          "O04",
+          "O03",
+          "O06"
+        ],
+        "equipment": {
+          "version": 1
+        },
+        "grounded": true,
+        "valid": true,
+        "gravity": {
+          "x": 0,
+          "y": 320
+        },
+        "support": "finale-cutout-near-body"
+      },
+      {
+        "id": "p-mage",
+        "cls": "mage",
+        "x": 5855.087878574847,
+        "y": 2382.252422894296,
+        "hp": 1408.7,
+        "focus": 724,
+        "shield": 0,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "equipment": {
+          "version": 1
+        },
+        "grounded": true,
+        "valid": true,
+        "gravity": {
+          "x": 0,
+          "y": 320
+        },
+        "support": "finale-cutout-near-body"
+      }
+    ]
+  },
+  "projectileTrace": [
+    {
+      "event": "fire",
+      "skill": "M01",
+      "angle": 206.51839999999999,
+      "power": 0.7658971369419201,
+      "actor": "p-mage",
+      "grounded": true,
+      "x": 4233.499999999989,
+      "y": 2570,
+      "prediction": {
+        "x": 3608,
+        "y": 2951.504641843534,
+        "unit": "a6-58-opening-2",
+        "terrain": null
+      },
+      "shot": 1,
+      "gravity": {
+        "x": 50.00793753980181,
+        "y": -344.95309285207503
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "M01",
+      "actor": "p-mage",
+      "target": "a6-58-opening-2",
+      "terrain": null,
+      "x": 3608,
+      "y": 2951.504641843534,
+      "normal": {
+        "x": 1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 1,
+      "before": 595,
+      "after": 367,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "A14",
+      "angle": 140.23840000000035,
+      "power": 0.9923114052546325,
+      "actor": "p-archer",
+      "grounded": true,
+      "x": 4775.247991026553,
+      "y": 3179.0495982053108,
+      "prediction": {
+        "x": 4652,
+        "y": 3019.8810515520204,
+        "unit": "a6-58-opening-4",
+        "terrain": null
+      },
+      "shot": 2,
+      "gravity": {
+        "x": -245.5198206850129,
+        "y": 12.047998318557886
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "A14",
+      "actor": "p-archer",
+      "target": "a6-58-opening-4",
+      "terrain": null,
+      "x": 4652,
+      "y": 3019.8810515520204,
+      "normal": {
+        "x": 1,
+        "y": 0
+      },
+      "radius": 3,
+      "shot": 2,
+      "before": 684,
+      "after": 29,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "S03",
+      "angle": 161.82919999999984,
+      "power": 0.9158757763963039,
+      "actor": "p-knight",
+      "grounded": true,
+      "x": 4539.586653456816,
+      "y": 3169.55949276827,
+      "prediction": {
+        "x": 4539.586653456816,
+        "y": 3123.55949276827,
+        "unit": null,
+        "terrain": null
+      },
+      "shot": 3,
+      "gravity": null
+    },
+    {
+      "event": "fire",
+      "skill": "O03",
+      "angle": 188.69999999999993,
+      "power": 0.9135048802118969,
+      "actor": "p-occultist",
+      "grounded": true,
+      "x": 4991.280763594331,
+      "y": 2980.0706607900293,
+      "prediction": {
+        "x": 4495.17974834042,
+        "y": 3006.769230769231,
+        "unit": "a6-c08-boss",
+        "terrain": null
+      },
+      "shot": 4,
+      "gravity": {
+        "x": 163.03181360742298,
+        "y": -0.2803068713893242
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "O03",
+      "actor": "p-occultist",
+      "target": "a6-c08-boss",
+      "terrain": null,
+      "x": 4495.17974834042,
+      "y": 3006.769230769231,
+      "normal": {
+        "x": 0,
+        "y": -1
+      },
+      "radius": 6,
+      "shot": 4,
+      "before": 9463,
+      "after": 9243,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "HSH01",
+      "angle": 23.031248561455868,
+      "power": 0.3526629114137031,
+      "actor": "a6-58-opening-4",
+      "grounded": true,
+      "x": 4956.728358205921,
+      "y": 3005.8995929478174,
+      "prediction": {
+        "x": 4993.540022829903,
+        "y": 2903.940268757571,
+        "unit": "p-occultist",
+        "terrain": null
+      },
+      "shot": 5,
+      "gravity": {
+        "x": -75.93388884343217,
+        "y": 10.174741877882273
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HSH01",
+      "actor": "a6-58-opening-4",
+      "target": "p-occultist",
+      "terrain": null,
+      "x": 4993.540022829903,
+      "y": 2903.940268757571,
+      "normal": {
+        "x": 0,
+        "y": -1
+      },
+      "radius": 6,
+      "shot": 5,
+      "before": 2144.1,
+      "after": 2114.1,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "HGS01",
+      "angle": 71.25222618621774,
+      "power": 0.362539532411145,
+      "actor": "a6-c08-vessel-a",
+      "grounded": true,
+      "x": 4098.886671307354,
+      "y": 3078.7342031003195,
+      "prediction": {
+        "x": 4218.822001095161,
+        "y": 2668,
+        "unit": "p-mage",
+        "terrain": null
+      },
+      "shot": 6,
+      "gravity": {
+        "x": -66.37072933205067,
+        "y": 27.019546441433317
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HGS01",
+      "actor": "a6-c08-vessel-a",
+      "target": "p-mage",
+      "terrain": null,
+      "x": 4218.822001095161,
+      "y": 2668,
+      "normal": {
+        "x": 0,
+        "y": 1
+      },
+      "radius": 6,
+      "shot": 6,
+      "before": 1314.9,
+      "after": 1314.9,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "HGS01",
+      "angle": 204.73862522882743,
+      "power": 0.7015090722607454,
+      "actor": "a6-c08-vessel-b",
+      "grounded": true,
+      "x": 5340.48556385415,
+      "y": 2816.953740664081,
+      "prediction": {
+        "x": 5014.265901856918,
+        "y": 2912.6415371419234,
+        "unit": "p-occultist",
+        "terrain": null
+      },
+      "shot": 7,
+      "gravity": {
+        "x": 36.04423313598008,
+        "y": 53.79205668384499
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HGS01",
+      "actor": "a6-c08-vessel-b",
+      "target": "p-occultist",
+      "terrain": null,
+      "x": 5014.265901856918,
+      "y": 2912.6415371419234,
+      "normal": {
+        "x": 1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 7,
+      "before": 2114.1,
+      "after": 2077.1,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "M10",
+      "angle": 86.11699999999983,
+      "power": 0.3362480800364066,
+      "actor": "p-mage",
+      "grounded": true,
+      "x": 4358,
+      "y": 2570,
+      "prediction": {
+        "x": 4361.516027609878,
+        "y": 2576,
+        "unit": null,
+        "terrain": "m58-timber-soffit"
+      },
+      "shot": 8,
+      "gravity": {
+        "x": -1.4591118706286035,
+        "y": -298.5029817662539
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "M10",
+      "actor": "p-mage",
+      "target": null,
+      "terrain": "m58-timber-soffit",
+      "x": 4361.516027609878,
+      "y": 2576,
+      "normal": {
+        "x": 0,
+        "y": 1
+      },
+      "radius": 6,
+      "shot": 8,
+      "before": null,
+      "after": null,
+      "shieldBefore": null,
+      "shieldAfter": null
+    },
+    {
+      "event": "fire",
+      "skill": "A02",
+      "angle": 95.61699999999965,
+      "power": 0.46363997703943244,
+      "actor": "p-archer",
+      "grounded": true,
+      "x": 5000.260760791002,
+      "y": 2977.7615186537423,
+      "prediction": {
+        "x": 3355.626413332346,
+        "y": 3113.6554254907346,
+        "unit": null,
+        "terrain": "m58-west-stone-step"
+      },
+      "shot": 9,
+      "gravity": {
+        "x": -258.41492777899185,
+        "y": 16.116577320742703
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "A02",
+      "actor": "p-archer",
+      "target": null,
+      "terrain": "m58-west-stone-step",
+      "x": 3355.626413332346,
+      "y": 3113.6554254907346,
+      "normal": {
+        "x": -0.6463445693131511,
+        "y": -0.7630456721058034
+      },
+      "radius": 3,
+      "shot": 9,
+      "before": null,
+      "after": null,
+      "shieldBefore": null,
+      "shieldAfter": null
+    },
+    {
+      "event": "fire",
+      "skill": "S03",
+      "angle": 161.82919999999984,
+      "power": 0.9407024280079873,
+      "actor": "p-knight",
+      "grounded": true,
+      "x": 4540.502431466727,
+      "y": 3169.1720482256155,
+      "prediction": {
+        "x": 4540.502431466727,
+        "y": 3123.1720482256155,
+        "unit": null,
+        "terrain": null
+      },
+      "shot": 10,
+      "gravity": null
+    },
+    {
+      "event": "fire",
+      "skill": "O06",
+      "angle": 95.92319999999953,
+      "power": 0.6663504876077397,
+      "actor": "p-occultist",
+      "grounded": true,
+      "x": 5016.324033883185,
+      "y": 2973.6309627157525,
+      "prediction": {
+        "x": 3606.862579489581,
+        "y": 3039.095016957551,
+        "unit": "a6-58-opening-2",
+        "terrain": null
+      },
+      "shot": 11,
+      "gravity": {
+        "x": -255.87371529765005,
+        "y": 39.771723543153215
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "O06",
+      "actor": "p-occultist",
+      "target": "a6-58-opening-2",
+      "terrain": null,
+      "x": 3606.862579489581,
+      "y": 3039.095016957551,
+      "normal": {
+        "x": 1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 11,
+      "before": 422,
+      "after": 0,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "HGS01",
+      "angle": 70.77803621755447,
+      "power": 0.3484076042480301,
+      "actor": "a6-c08-vessel-a",
+      "grounded": true,
+      "x": 4147.192500308907,
+      "y": 3080,
+      "prediction": {
+        "x": 4330,
+        "y": 2594.253249109343,
+        "unit": "p-mage",
+        "terrain": null
+      },
+      "shot": 12,
+      "gravity": {
+        "x": 61.15905210508466,
+        "y": 26.503669912093496
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HGS01",
+      "actor": "a6-c08-vessel-a",
+      "target": "p-mage",
+      "terrain": null,
+      "x": 4330,
+      "y": 2594.253249109343,
+      "normal": {
+        "x": -1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 12,
+      "before": 1314.9,
+      "after": 1287.9,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "HGS01",
+      "angle": 207.59006267794754,
+      "power": 0.6977334154305952,
+      "actor": "a6-c08-vessel-b",
+      "grounded": true,
+      "x": 5340.48556385415,
+      "y": 2816.953740664081,
+      "prediction": {
+        "x": 5044.324033883185,
+        "y": 2916.830031079344,
+        "unit": "p-occultist",
+        "terrain": null
+      },
+      "shot": 13,
+      "gravity": {
+        "x": 35.06331837174919,
+        "y": 52.07708285436829
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HGS01",
+      "actor": "a6-c08-vessel-b",
+      "target": "p-occultist",
+      "terrain": null,
+      "x": 5044.324033883185,
+      "y": 2916.830031079344,
+      "normal": {
+        "x": 1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 13,
+      "before": 2077.1,
+      "after": 2035.1,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "A02",
+      "angle": 159.68160000000066,
+      "power": 0.9890020552235054,
+      "actor": "p-archer",
+      "grounded": true,
+      "x": 4778.795891987923,
+      "y": 3179.7591783975845,
+      "prediction": {
+        "x": 4280.571666874786,
+        "y": 2984.4137931034484,
+        "unit": "a6-c08-boss",
+        "terrain": null
+      },
+      "shot": 14,
+      "gravity": {
+        "x": 32.395095113778424,
+        "y": 331.9951378790052
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "A02",
+      "actor": "p-archer",
+      "target": "a6-c08-boss",
+      "terrain": null,
+      "x": 4517,
+      "y": 3033.6281144288596,
+      "normal": {
+        "x": 1,
+        "y": 0
+      },
+      "radius": 3,
+      "shot": 14,
+      "before": 7637,
+      "after": 7600,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "impact",
+      "skill": "A02",
+      "actor": "p-archer",
+      "target": null,
+      "terrain": "m58-apse-pier",
+      "x": 4417.079506713371,
+      "y": 3006.5687255977855,
+      "normal": {
+        "x": 0.9993190393883691,
+        "y": 0.036897933762032084
+      },
+      "radius": 3,
+      "shot": 14,
+      "before": null,
+      "after": null,
+      "shieldBefore": null,
+      "shieldAfter": null
+    },
+    {
+      "event": "impact",
+      "skill": "A02",
+      "actor": "p-archer",
+      "target": "a6-c08-grot-0",
+      "terrain": null,
+      "x": 4280.571666874786,
+      "y": 2984.4137931034484,
+      "normal": {
+        "x": 0,
+        "y": 1
+      },
+      "radius": 3,
+      "shot": 14,
+      "before": 1700,
+      "after": 1542,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "S03",
+      "angle": 161.82919999999984,
+      "power": 0.9120813099951611,
+      "actor": "p-knight",
+      "grounded": true,
+      "x": 4540.502431466727,
+      "y": 3169.1720482256155,
+      "prediction": {
+        "x": 4540.502431466727,
+        "y": 3123.1720482256155,
+        "unit": null,
+        "terrain": null
+      },
+      "shot": 15,
+      "gravity": null
+    },
+    {
+      "event": "fire",
+      "skill": "O04",
+      "angle": 192.01699999999937,
+      "power": 0.9824239528602544,
+      "actor": "p-occultist",
+      "grounded": true,
+      "x": 4990.27785478403,
+      "y": 2980.328551626964,
+      "prediction": {
+        "x": 4520,
+        "y": 3025.3830560632623,
+        "unit": "a6-c08-boss",
+        "terrain": null
+      },
+      "shot": 16,
+      "gravity": {
+        "x": 2.7150568268388224,
+        "y": 25.022054833393575
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "O04",
+      "actor": "p-occultist",
+      "target": "a6-c08-boss",
+      "terrain": null,
+      "x": 4520,
+      "y": 3025.3830560632623,
+      "normal": {
+        "x": 1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 16,
+      "before": 7600,
+      "after": 7600,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "HGS01",
+      "angle": 71.1770725378301,
+      "power": 0.3543829741834197,
+      "actor": "a6-c08-vessel-a",
+      "grounded": true,
+      "x": 4147.192500308907,
+      "y": 3080,
+      "prediction": {
+        "x": 4330,
+        "y": 2585.58730164146,
+        "unit": "p-mage",
+        "terrain": null
+      },
+      "shot": 17,
+      "gravity": {
+        "x": 61.28042607864324,
+        "y": 26.75347542339999
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HGS01",
+      "actor": "a6-c08-vessel-a",
+      "target": "p-mage",
+      "terrain": null,
+      "x": 4330,
+      "y": 2585.58730164146,
+      "normal": {
+        "x": -1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 17,
+      "before": 1369.9,
+      "after": 1369.9,
+      "shieldBefore": 246,
+      "shieldAfter": 219
+    },
+    {
+      "event": "fire",
+      "skill": "HGS01",
+      "angle": 205.01401795614615,
+      "power": 0.6874370417042056,
+      "actor": "a6-c08-vessel-b",
+      "grounded": true,
+      "x": 5340.48556385415,
+      "y": 2816.953740664081,
+      "prediction": {
+        "x": 5018.27785478403,
+        "y": 2911.795473851709,
+        "unit": "p-occultist",
+        "terrain": null
+      },
+      "shot": 18,
+      "gravity": {
+        "x": 35.54441370722364,
+        "y": 53.81477925404489
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HGS01",
+      "actor": "a6-c08-vessel-b",
+      "target": "p-occultist",
+      "terrain": null,
+      "x": 5018.27785478403,
+      "y": 2911.795473851709,
+      "normal": {
+        "x": 1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 18,
+      "before": 2035.1,
+      "after": 1998.1,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "A02",
+      "angle": 56.482999999998576,
+      "power": 0.5340994233135827,
+      "actor": "p-archer",
+      "grounded": true,
+      "x": 4464.582585658273,
+      "y": 3201.2919829907305,
+      "prediction": {
+        "x": 5507.589724294606,
+        "y": 2499.4291307267113,
+        "unit": "a6-c08-boss",
+        "terrain": "local-lower-08-east-buttress"
+      },
+      "shot": 19,
+      "gravity": {
+        "x": 164.69878393634323,
+        "y": 160.5534111462544
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "A02",
+      "actor": "p-archer",
+      "target": "a6-c08-boss",
+      "terrain": null,
+      "x": 5023,
+      "y": 2645.2425448856025,
+      "normal": {
+        "x": -1,
+        "y": 0
+      },
+      "radius": 3,
+      "shot": 19,
+      "before": 6057,
+      "after": 4650,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "impact",
+      "skill": "A02",
+      "actor": "p-archer",
+      "target": null,
+      "terrain": "local-lower-08-east-buttress",
+      "x": 5507.589724294606,
+      "y": 2499.4291307267113,
+      "normal": {
+        "x": -0.9417419115948374,
+        "y": -0.3363363969981562
+      },
+      "radius": 3,
+      "shot": 19,
+      "before": null,
+      "after": null,
+      "shieldBefore": null,
+      "shieldAfter": null
+    },
+    {
+      "event": "fire",
+      "skill": "O04",
+      "angle": 92.81699999999933,
+      "power": 1,
+      "actor": "p-occultist",
+      "grounded": true,
+      "x": 5067.158031822202,
+      "y": 2960.5593632457194,
+      "prediction": {
+        "x": 5059.669886840603,
+        "y": 2748.4,
+        "unit": "a6-c08-boss",
+        "terrain": null
+      },
+      "shot": 20,
+      "gravity": {
+        "x": 14.13886481763586,
+        "y": 14.42213560356744
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "O04",
+      "actor": "p-occultist",
+      "target": "a6-c08-boss",
+      "terrain": null,
+      "x": 5059.669886840603,
+      "y": 2748.4,
+      "normal": {
+        "x": 0,
+        "y": 1
+      },
+      "radius": 6,
+      "shot": 20,
+      "before": 4650,
+      "after": 4600,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "HGS01",
+      "angle": 68.7044108088594,
+      "power": 0.3613817590880207,
+      "actor": "a6-c08-vessel-a",
+      "grounded": true,
+      "x": 4147.192500308907,
+      "y": 3080,
+      "prediction": {
+        "x": 4330,
+        "y": 2627.598543405313,
+        "unit": "p-mage",
+        "terrain": null
+      },
+      "shot": 21,
+      "gravity": {
+        "x": 60.051068054933,
+        "y": 26.549676811847075
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HGS01",
+      "actor": "a6-c08-vessel-a",
+      "target": "p-mage",
+      "terrain": null,
+      "x": 4330,
+      "y": 2627.598543405313,
+      "normal": {
+        "x": -1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 21,
+      "before": 1451.9,
+      "after": 1451.9,
+      "shieldBefore": 246,
+      "shieldAfter": 246
+    },
+    {
+      "event": "fire",
+      "skill": "HGS01",
+      "angle": 208.57953424869163,
+      "power": 0.6516288851426215,
+      "actor": "a6-c08-vessel-b",
+      "grounded": true,
+      "x": 5340.48556385415,
+      "y": 2816.953740664081,
+      "prediction": {
+        "x": 5095.158031822202,
+        "y": 2891.4584647783995,
+        "unit": "p-occultist",
+        "terrain": null
+      },
+      "shot": 22,
+      "gravity": {
+        "x": 33.40955800086974,
+        "y": 52.19999580003213
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HGS01",
+      "actor": "a6-c08-vessel-b",
+      "target": "p-occultist",
+      "terrain": null,
+      "x": 5095.158031822202,
+      "y": 2891.4584647783995,
+      "normal": {
+        "x": 1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 22,
+      "before": 1853.1,
+      "after": 1816.1,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "A02",
+      "angle": 24.44759999999789,
+      "power": 1,
+      "actor": "p-archer",
+      "grounded": true,
+      "x": 4612.097177120485,
+      "y": 3146.419435424097,
+      "prediction": {
+        "x": 5316.48556385415,
+        "y": 2767.407566493502,
+        "unit": "a6-c08-expansion-node",
+        "terrain": null
+      },
+      "shot": 23,
+      "gravity": {
+        "x": -291.7969868383768,
+        "y": 104.4556168316649
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "A02",
+      "actor": "p-archer",
+      "target": "a6-c08-expansion-node",
+      "terrain": null,
+      "x": 4845,
+      "y": 2981.8272982440244,
+      "normal": {
+        "x": -1,
+        "y": 0
+      },
+      "radius": 3,
+      "shot": 23,
+      "before": 1800,
+      "after": 1198,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "impact",
+      "skill": "A02",
+      "actor": "p-archer",
+      "target": "p-occultist",
+      "terrain": null,
+      "x": 5021.319127006362,
+      "y": 2898.828639935825,
+      "normal": {
+        "x": -1,
+        "y": 0
+      },
+      "radius": 3,
+      "shot": 23,
+      "before": 1816.1,
+      "after": 1442,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "impact",
+      "skill": "A02",
+      "actor": "p-archer",
+      "target": "a6-c08-vessel-b",
+      "terrain": null,
+      "x": 5316.48556385415,
+      "y": 2767.407566493502,
+      "normal": {
+        "x": -1,
+        "y": 0
+      },
+      "radius": 3,
+      "shot": 23,
+      "before": 1025,
+      "after": 848,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "S03",
+      "angle": -0.4291999999998477,
+      "power": 0.9546335403714591,
+      "actor": "p-knight",
+      "grounded": true,
+      "x": 4608.723884267325,
+      "y": 3145.744776853465,
+      "prediction": {
+        "x": 4608.723884267325,
+        "y": 3099.744776853465,
+        "unit": null,
+        "terrain": null
+      },
+      "shot": 24,
+      "gravity": null
+    },
+    {
+      "event": "fire",
+      "skill": "O04",
+      "angle": 144.0662000000014,
+      "power": 0.9813537187457826,
+      "actor": "p-occultist",
+      "grounded": true,
+      "x": 5378.8920918244285,
+      "y": 2773.746396697518,
+      "prediction": {
+        "x": 5052.151650785624,
+        "y": 2480.953700481793,
+        "unit": "a6-c08-boss",
+        "terrain": null
+      },
+      "shot": 25,
+      "gravity": {
+        "x": 2.2451757413254096,
+        "y": 27.22725555862372
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "O04",
+      "actor": "p-occultist",
+      "target": "a6-c08-boss",
+      "terrain": null,
+      "x": 5052.151650785624,
+      "y": 2480.953700481793,
+      "normal": {
+        "x": 1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 25,
+      "before": 4431,
+      "after": 3466,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "HGS01",
+      "angle": 155,
+      "power": 0.35,
+      "actor": "a6-c08-vessel-b",
+      "grounded": true,
+      "x": 5340.48556385415,
+      "y": 2816.953740664081,
+      "prediction": {
+        "x": 4423.566362775989,
+        "y": 2595.5854753483845,
+        "unit": null,
+        "terrain": "m58-apse-pier"
+      },
+      "shot": 26,
+      "gravity": {
+        "x": 25.486167990784253,
+        "y": 82.2843953111275
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HGS01",
+      "actor": "a6-c08-vessel-b",
+      "target": null,
+      "terrain": "m58-apse-pier",
+      "x": 4423.566362775989,
+      "y": 2595.5854753483845,
+      "normal": {
+        "x": 0.9997451546843654,
+        "y": -0.02257489058964696
+      },
+      "radius": 6,
+      "shot": 26,
+      "before": null,
+      "after": null,
+      "shieldBefore": null,
+      "shieldAfter": null
+    },
+    {
+      "event": "fire",
+      "skill": "HGS01",
+      "angle": 139.89152311906219,
+      "power": 0.3504059452181682,
+      "actor": "a6-c08-ink-echo-a",
+      "grounded": true,
+      "x": 5420,
+      "y": 2770.5,
+      "prediction": {
+        "x": 5389.406956208429,
+        "y": 2678.5805283025243,
+        "unit": "p-occultist",
+        "terrain": null
+      },
+      "shot": 27,
+      "gravity": {
+        "x": 21.51779449411676,
+        "y": 88.52510713173987
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HGS01",
+      "actor": "a6-c08-ink-echo-a",
+      "target": "p-occultist",
+      "terrain": null,
+      "x": 5389.406956208429,
+      "y": 2678.5805283025243,
+      "normal": {
+        "x": 0,
+        "y": -1
+      },
+      "radius": 6,
+      "shot": 27,
+      "before": 1297,
+      "after": 1270,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "HGS01",
+      "angle": 185,
+      "power": 0.68,
+      "actor": "a6-c08-ink-echo-b",
+      "grounded": true,
+      "x": 5647.000000000011,
+      "y": 2400.5999999999935,
+      "prediction": {
+        "x": 4424.773676210661,
+        "y": 2649.052213169602,
+        "unit": null,
+        "terrain": "m58-apse-pier"
+      },
+      "shot": 28,
+      "gravity": {
+        "x": 38.830374278508714,
+        "y": 67.00278245016187
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HGS01",
+      "actor": "a6-c08-ink-echo-b",
+      "target": null,
+      "terrain": "m58-apse-pier",
+      "x": 4424.773676210661,
+      "y": 2649.052213169602,
+      "normal": {
+        "x": 0.9997451546843654,
+        "y": -0.02257489058964696
+      },
+      "radius": 6,
+      "shot": 28,
+      "before": null,
+      "after": null,
+      "shieldBefore": null,
+      "shieldAfter": null
+    },
+    {
+      "event": "fire",
+      "skill": "A02",
+      "angle": 145.2170000000014,
+      "power": 0.9989542183911743,
+      "actor": "p-archer",
+      "grounded": true,
+      "x": 5161.584447834652,
+      "y": 2936.278284842518,
+      "prediction": {
+        "x": 4443,
+        "y": 2487.498449885032,
+        "unit": "a6-c08-boss",
+        "terrain": "m58-timber-soffit"
+      },
+      "shot": 29,
+      "gravity": {
+        "x": -231.34242323892732,
+        "y": 109.90492711990746
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "A02",
+      "actor": "p-archer",
+      "target": "a6-c08-boss",
+      "terrain": null,
+      "x": 5049.151650785624,
+      "y": 2801.5537014138617,
+      "normal": {
+        "x": 1,
+        "y": 0
+      },
+      "radius": 3,
+      "shot": 29,
+      "before": 3466,
+      "after": 2538,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "impact",
+      "skill": "A02",
+      "actor": "p-archer",
+      "target": null,
+      "terrain": "m58-timber-soffit",
+      "x": 4443,
+      "y": 2487.498449885032,
+      "normal": {
+        "x": 1,
+        "y": -0.0
+      },
+      "radius": 3,
+      "shot": 29,
+      "before": null,
+      "after": null,
+      "shieldBefore": null,
+      "shieldAfter": null
+    },
+    {
+      "event": "fire",
+      "skill": "S03",
+      "angle": 222.7999999999976,
+      "power": 0.918315076226908,
+      "actor": "p-knight",
+      "grounded": true,
+      "x": 4935.0251593657995,
+      "y": 3030.5623189025005,
+      "prediction": {
+        "x": 4935.0251593657995,
+        "y": 2984.5623189025005,
+        "unit": null,
+        "terrain": null
+      },
+      "shot": 30,
+      "gravity": null
+    },
+    {
+      "event": "fire",
+      "skill": "O06",
+      "angle": 109.96620000000146,
+      "power": 0.5582417653006373,
+      "actor": "p-occultist",
+      "grounded": true,
+      "x": 5378.180817784912,
+      "y": 2774.5465799919743,
+      "prediction": {
+        "x": 4980.165403459342,
+        "y": 2786.7038612265537,
+        "unit": "a6-c08-boss",
+        "terrain": null
+      },
+      "shot": 31,
+      "gravity": {
+        "x": 11.43841933053985,
+        "y": 351.48457665617775
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "O06",
+      "actor": "p-occultist",
+      "target": "a6-c08-boss",
+      "terrain": null,
+      "x": 4980.165403459342,
+      "y": 2786.7038612265537,
+      "normal": {
+        "x": 0,
+        "y": -1
+      },
+      "radius": 6,
+      "shot": 31,
+      "before": 2538,
+      "after": 2105,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "HGS02",
+      "angle": 109.89948577724863,
+      "power": 0.34928422294044864,
+      "actor": "a6-c08-vessel-b",
+      "grounded": true,
+      "x": 5009.358050129453,
+      "y": 2975.422215680998,
+      "prediction": {
+        "x": 4425.451451289022,
+        "y": 2679.0679666398655,
+        "unit": null,
+        "terrain": "m58-apse-pier"
+      },
+      "shot": 32,
+      "gravity": {
+        "x": -69.13625212709715,
+        "y": 51.48651982509241
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HGS02",
+      "actor": "a6-c08-vessel-b",
+      "target": null,
+      "terrain": "m58-apse-pier",
+      "x": 4425.451451289022,
+      "y": 2679.0679666398655,
+      "normal": {
+        "x": 0.9997451546843654,
+        "y": -0.02257489058964696
+      },
+      "radius": 6,
+      "shot": 32,
+      "before": null,
+      "after": null,
+      "shieldBefore": null,
+      "shieldAfter": null
+    },
+    {
+      "event": "fire",
+      "skill": "HGS01",
+      "angle": 225.49404166315804,
+      "power": 0.26606365017820505,
+      "actor": "a6-c08-ink-echo-b",
+      "grounded": true,
+      "x": 5647.000000000011,
+      "y": 2400.5999999999935,
+      "prediction": {
+        "x": 5355.896299558009,
+        "y": 2676.5465799919743,
+        "unit": "p-occultist",
+        "terrain": null
+      },
+      "shot": 33,
+      "gravity": {
+        "x": 17.776350516035183,
+        "y": 52.31441678581177
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HGS01",
+      "actor": "a6-c08-ink-echo-b",
+      "target": "p-occultist",
+      "terrain": null,
+      "x": 5355.896299558009,
+      "y": 2676.5465799919743,
+      "normal": {
+        "x": 0,
+        "y": -1
+      },
+      "radius": 6,
+      "shot": 33,
+      "before": 1270,
+      "after": 1244,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "M01",
+      "angle": 0.7615999999991894,
+      "power": 0.991394520011769,
+      "actor": "p-mage",
+      "grounded": true,
+      "x": 3233.2491114489344,
+      "y": 3322.069455752312,
+      "prediction": {
+        "x": 3310,
+        "y": 3263.3293353873223,
+        "unit": "a6-58-entrance-columns-1",
+        "terrain": null
+      },
+      "shot": 34,
+      "gravity": {
+        "x": -72.33608904728324,
+        "y": 320.96157885932894
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "M01",
+      "actor": "p-mage",
+      "target": "a6-58-entrance-columns-1",
+      "terrain": null,
+      "x": 3310,
+      "y": 3263.3293353873223,
+      "normal": {
+        "x": -1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 34,
+      "before": 684,
+      "after": 468,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "A02",
+      "angle": 150.39400000000862,
+      "power": 1,
+      "actor": "p-archer",
+      "grounded": true,
+      "x": 5161.584447834652,
+      "y": 2936.278284842518,
+      "prediction": {
+        "x": 4443,
+        "y": 2563.8528535735936,
+        "unit": "a6-c08-boss",
+        "terrain": "m58-timber-soffit"
+      },
+      "shot": 35,
+      "gravity": {
+        "x": -229.63148995098342,
+        "y": 107.25592151658674
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "A02",
+      "actor": "p-archer",
+      "target": "a6-c08-boss",
+      "terrain": null,
+      "x": 4789.151650785624,
+      "y": 2688.8045316624166,
+      "normal": {
+        "x": 1,
+        "y": 0
+      },
+      "radius": 3,
+      "shot": 35,
+      "before": 2105,
+      "after": 437,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "impact",
+      "skill": "A02",
+      "actor": "p-archer",
+      "target": null,
+      "terrain": "m58-timber-soffit",
+      "x": 4443,
+      "y": 2563.8528535735936,
+      "normal": {
+        "x": 1,
+        "y": -0.0
+      },
+      "radius": 3,
+      "shot": 35,
+      "before": null,
+      "after": null,
+      "shieldBefore": null,
+      "shieldAfter": null
+    },
+    {
+      "event": "fire",
+      "skill": "S03",
+      "angle": 222.7999999999976,
+      "power": 0.9133280632402989,
+      "actor": "p-knight",
+      "grounded": true,
+      "x": 4935.0251593657995,
+      "y": 3030.5623189025005,
+      "prediction": {
+        "x": 4935.0251593657995,
+        "y": 2984.5623189025005,
+        "unit": null,
+        "terrain": null
+      },
+      "shot": 36,
+      "gravity": null
+    },
+    {
+      "event": "fire",
+      "skill": "O01",
+      "angle": 175.6800000000028,
+      "power": 0.9893743053266681,
+      "actor": "p-occultist",
+      "grounded": true,
+      "x": 5381.45677500472,
+      "y": 2770.86112811969,
+      "prediction": {
+        "x": 4792.151650785624,
+        "y": 2683.679470669574,
+        "unit": "a6-c08-boss",
+        "terrain": null
+      },
+      "shot": 37,
+      "gravity": {
+        "x": 2.2634230672480893,
+        "y": 57.77098220671686
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "O01",
+      "actor": "p-occultist",
+      "target": "a6-c08-boss",
+      "terrain": null,
+      "x": 4792.151650785624,
+      "y": 2683.679470669574,
+      "normal": {
+        "x": 1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 37,
+      "before": 437,
+      "after": 437,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "HGS01",
+      "angle": 217.08212615659139,
+      "power": 0.612510804400624,
+      "actor": "a6-c08-vessel-b",
+      "grounded": true,
+      "x": 5341.963451897588,
+      "y": 2815.2911166152135,
+      "prediction": {
+        "x": 5189.584447834652,
+        "y": 2867.6383992339906,
+        "unit": "p-archer",
+        "terrain": null
+      },
+      "shot": 38,
+      "gravity": {
+        "x": 29.324614662094806,
+        "y": 48.236345255172864
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HGS01",
+      "actor": "a6-c08-vessel-b",
+      "target": "p-archer",
+      "terrain": null,
+      "x": 5189.584447834652,
+      "y": 2867.6383992339906,
+      "normal": {
+        "x": 1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 38,
+      "before": 1051,
+      "after": 1010,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "HGS01",
+      "angle": 225.98652771737454,
+      "power": 0.26888214019572715,
+      "actor": "a6-c08-ink-echo-b",
+      "grounded": true,
+      "x": 5647.000000000011,
+      "y": 2400.5999999999935,
+      "prediction": {
+        "x": 5362.643311658221,
+        "y": 2672.86112811969,
+        "unit": "p-occultist",
+        "terrain": null
+      },
+      "shot": 39,
+      "gravity": {
+        "x": 17.684676147552267,
+        "y": 52.09559699986698
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HGS01",
+      "actor": "a6-c08-ink-echo-b",
+      "target": "p-occultist",
+      "terrain": null,
+      "x": 5362.643311658221,
+      "y": 2672.86112811969,
+      "normal": {
+        "x": 0,
+        "y": -1
+      },
+      "radius": 6,
+      "shot": 39,
+      "before": 1009,
+      "after": 983,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "HSH01",
+      "angle": 9.547869636211544,
+      "power": 0.6699931763543282,
+      "actor": "a6-58-apse-lower-1",
+      "grounded": true,
+      "x": 4335,
+      "y": 3080,
+      "prediction": {
+        "x": 5112.532352635015,
+        "y": 2922.6640758586327,
+        "unit": "p-archer",
+        "terrain": null
+      },
+      "shot": 40,
+      "gravity": {
+        "x": 28.860701735539173,
+        "y": 5.910486494056914
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HSH01",
+      "actor": "a6-58-apse-lower-1",
+      "target": "p-archer",
+      "terrain": null,
+      "x": 5112.532352635015,
+      "y": 2922.6640758586327,
+      "normal": {
+        "x": -1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 40,
+      "before": 1010,
+      "after": 977,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "M01",
+      "angle": -81.07220000000218,
+      "power": 1,
+      "actor": "p-mage",
+      "grounded": true,
+      "x": 3318.816197168345,
+      "y": 3274.8600291484995,
+      "prediction": {
+        "x": 3325.6445451875893,
+        "y": 3260.3669552340657,
+        "unit": "a6-58-entrance-columns-1",
+        "terrain": null
+      },
+      "shot": 41,
+      "gravity": {
+        "x": -11.324260469938483,
+        "y": 247.9136342445857
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "M01",
+      "actor": "p-mage",
+      "target": "a6-58-entrance-columns-1",
+      "terrain": null,
+      "x": 3325.6445451875893,
+      "y": 3260.3669552340657,
+      "normal": {
+        "x": 0,
+        "y": -1
+      },
+      "radius": 6,
+      "shot": 41,
+      "before": 468,
+      "after": 251,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "A01",
+      "angle": 167.95860000000786,
+      "power": 0.9374260123153187,
+      "actor": "p-archer",
+      "grounded": true,
+      "x": 5395.337941167183,
+      "y": 2771.7793137223944,
+      "prediction": {
+        "x": 4678.584447834652,
+        "y": 2662.5116933162476,
+        "unit": "a6-c08-boss",
+        "terrain": null
+      },
+      "shot": 42,
+      "gravity": {
+        "x": 29.0935520771648,
+        "y": 326.20600057679974
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "A01",
+      "actor": "p-archer",
+      "target": "a6-c08-boss",
+      "terrain": null,
+      "x": 4678.584447834652,
+      "y": 2662.5116933162476,
+      "normal": {
+        "x": 1,
+        "y": 0
+      },
+      "radius": 3,
+      "shot": 42,
+      "before": 437,
+      "after": 0,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "S00",
+      "angle": 222.7999999999976,
+      "power": 0.9210254093740432,
+      "actor": "p-knight",
+      "grounded": true,
+      "x": 4935.0251593657995,
+      "y": 3030.5623189025005,
+      "prediction": {
+        "x": 4935.0251593657995,
+        "y": 2984.5623189025005,
+        "unit": null,
+        "terrain": null
+      },
+      "shot": 43,
+      "gravity": null
+    },
+    {
+      "event": "fire",
+      "skill": "O01",
+      "angle": 6.384599999996486,
+      "power": 0.9913828048381823,
+      "actor": "p-occultist",
+      "grounded": true,
+      "x": 4628.490805326608,
+      "y": 3149.6981610653215,
+      "prediction": {
+        "x": 4842,
+        "y": 3069.3801688403364,
+        "unit": "a6-c08-expansion-node",
+        "terrain": null
+      },
+      "shot": 44,
+      "gravity": {
+        "x": -2.260373320134653,
+        "y": 57.85292632133379
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "O01",
+      "actor": "p-occultist",
+      "target": "a6-c08-expansion-node",
+      "terrain": null,
+      "x": 4842,
+      "y": 3069.3801688403364,
+      "normal": {
+        "x": -1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 44,
+      "before": 100,
+      "after": 0,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    }
+  ],
+  "encounters": {
+    "shots": [
+      {
+        "id": "a6-58-opening-4",
+        "skill": "HSH01",
+        "round": 1
+      },
+      {
+        "id": "a6-c08-vessel-a",
+        "skill": "HGS01",
+        "round": 1
+      },
+      {
+        "id": "a6-c08-vessel-b",
+        "skill": "HGS01",
+        "round": 1
+      },
+      {
+        "id": "a6-c08-vessel-a",
+        "skill": "HGS01",
+        "round": 2
+      },
+      {
+        "id": "a6-c08-vessel-b",
+        "skill": "HGS01",
+        "round": 2
+      },
+      {
+        "id": "a6-c08-vessel-a",
+        "skill": "HGS01",
+        "round": 3
+      },
+      {
+        "id": "a6-c08-vessel-b",
+        "skill": "HGS01",
+        "round": 3
+      },
+      {
+        "id": "a6-c08-vessel-a",
+        "skill": "HGS01",
+        "round": 4
+      },
+      {
+        "id": "a6-c08-vessel-b",
+        "skill": "HGS01",
+        "round": 4
+      },
+      {
+        "id": "a6-c08-vessel-b",
+        "skill": "HGS01",
+        "round": 5
+      },
+      {
+        "id": "a6-c08-ink-echo-a",
+        "skill": "HGS01",
+        "round": 5
+      },
+      {
+        "id": "a6-c08-ink-echo-b",
+        "skill": "HGS01",
+        "round": 5
+      },
+      {
+        "id": "a6-c08-vessel-b",
+        "skill": "HGS02",
+        "round": 6
+      },
+      {
+        "id": "a6-c08-ink-echo-b",
+        "skill": "HGS01",
+        "round": 6
+      },
+      {
+        "id": "a6-c08-vessel-b",
+        "skill": "HGS01",
+        "round": 7
+      },
+      {
+        "id": "a6-c08-ink-echo-b",
+        "skill": "HGS01",
+        "round": 7
+      },
+      {
+        "id": "a6-58-apse-lower-1",
+        "skill": "HSH01",
+        "round": 7
+      }
+    ],
+    "heroShots": [
+      {
+        "id": "p-mage",
+        "skill": "M01",
+        "round": 1,
+        "shot": 1
+      },
+      {
+        "id": "p-archer",
+        "skill": "A14",
+        "round": 1,
+        "shot": 2
+      },
+      {
+        "id": "p-knight",
+        "skill": "S03",
+        "round": 1,
+        "shot": 3
+      },
+      {
+        "id": "p-occultist",
+        "skill": "O03",
+        "round": 1,
+        "shot": 4
+      },
+      {
+        "id": "p-mage",
+        "skill": "M10",
+        "round": 2,
+        "shot": 8
+      },
+      {
+        "id": "p-archer",
+        "skill": "A02",
+        "round": 2,
+        "shot": 9
+      },
+      {
+        "id": "p-knight",
+        "skill": "S03",
+        "round": 2,
+        "shot": 10
+      },
+      {
+        "id": "p-occultist",
+        "skill": "O06",
+        "round": 2,
+        "shot": 11
+      },
+      {
+        "id": "p-archer",
+        "skill": "A02",
+        "round": 3,
+        "shot": 14
+      },
+      {
+        "id": "p-knight",
+        "skill": "S03",
+        "round": 3,
+        "shot": 15
+      },
+      {
+        "id": "p-occultist",
+        "skill": "O04",
+        "round": 3,
+        "shot": 16
+      },
+      {
+        "id": "p-archer",
+        "skill": "A02",
+        "round": 4,
+        "shot": 19
+      },
+      {
+        "id": "p-occultist",
+        "skill": "O04",
+        "round": 4,
+        "shot": 20
+      },
+      {
+        "id": "p-archer",
+        "skill": "A02",
+        "round": 5,
+        "shot": 23
+      },
+      {
+        "id": "p-knight",
+        "skill": "S03",
+        "round": 5,
+        "shot": 24
+      },
+      {
+        "id": "p-occultist",
+        "skill": "O04",
+        "round": 5,
+        "shot": 25
+      },
+      {
+        "id": "p-archer",
+        "skill": "A02",
+        "round": 6,
+        "shot": 29
+      },
+      {
+        "id": "p-knight",
+        "skill": "S03",
+        "round": 6,
+        "shot": 30
+      },
+      {
+        "id": "p-occultist",
+        "skill": "O06",
+        "round": 6,
+        "shot": 31
+      },
+      {
+        "id": "p-mage",
+        "skill": "M01",
+        "round": 7,
+        "shot": 34
+      },
+      {
+        "id": "p-archer",
+        "skill": "A02",
+        "round": 7,
+        "shot": 35
+      },
+      {
+        "id": "p-knight",
+        "skill": "S03",
+        "round": 7,
+        "shot": 36
+      },
+      {
+        "id": "p-occultist",
+        "skill": "O01",
+        "round": 7,
+        "shot": 37
+      },
+      {
+        "id": "p-mage",
+        "skill": "M01",
+        "round": 8,
+        "shot": 41
+      },
+      {
+        "id": "p-archer",
+        "skill": "A01",
+        "round": 8,
+        "shot": 42
+      },
+      {
+        "id": "p-knight",
+        "skill": "S00",
+        "round": 8,
+        "shot": 43
+      },
+      {
+        "id": "p-occultist",
+        "skill": "O01",
+        "round": 8,
+        "shot": 44
+      }
+    ],
+    "damage": [
+      {
+        "id": "a6-58-opening-4",
+        "target": "p-occultist",
+        "skill": "HSH01",
+        "before": 2144.1,
+        "after": 2114.1,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 64.29693181042863,
+        "round": 1
+      },
+      {
+        "id": "a6-c08-vessel-b",
+        "target": "p-occultist",
+        "skill": "HGS01",
+        "before": 2114.1,
+        "after": 2077.1,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 79.56127599285388,
+        "round": 1
+      },
+      {
+        "id": "a6-c08-boss",
+        "target": "p-knight",
+        "skill": null,
+        "before": 3666.7999999999997,
+        "after": 3524.7999999999997,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 576.9,
+        "round": 2
+      },
+      {
+        "id": "a6-c08-vessel-a",
+        "target": "p-mage",
+        "skill": "HGS01",
+        "before": 1314.9,
+        "after": 1287.9,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 56.17627052732629,
+        "round": 2
+      },
+      {
+        "id": "a6-c08-vessel-b",
+        "target": "p-archer",
+        "skill": "HGS01",
+        "before": 1407,
+        "after": 1372,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 66.98431963120683,
+        "round": 2
+      },
+      {
+        "id": "a6-c08-vessel-b",
+        "target": "p-occultist",
+        "skill": "HGS01",
+        "before": 2077.1,
+        "after": 2035.1,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 89.48434440037185,
+        "round": 2
+      },
+      {
+        "id": "a6-c08-vessel-a",
+        "target": "p-mage",
+        "skill": "HGS01",
+        "before": 1369.9,
+        "after": 1369.9,
+        "shieldBefore": 246,
+        "shieldAfter": 219,
+        "amount": 56.17627052732629,
+        "round": 3
+      },
+      {
+        "id": "a6-c08-vessel-b",
+        "target": "p-occultist",
+        "skill": "HGS01",
+        "before": 2035.1,
+        "after": 1998.1,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 79.74049733891073,
+        "round": 3
+      },
+      {
+        "id": "a6-c08-boss",
+        "target": "p-occultist",
+        "skill": null,
+        "before": 1998.1,
+        "after": 1853.1,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 345.59999999999997,
+        "round": 4
+      },
+      {
+        "id": "a6-c08-vessel-b",
+        "target": "p-occultist",
+        "skill": "HGS01",
+        "before": 1853.1,
+        "after": 1816.1,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 79.19017547625415,
+        "round": 4
+      },
+      {
+        "id": "a6-c08-grot-0",
+        "target": "p-mage",
+        "skill": null,
+        "before": 1451.9,
+        "after": 1451.9,
+        "shieldBefore": 246,
+        "shieldAfter": 31,
+        "amount": 451,
+        "round": 4
+      },
+      {
+        "id": "a6-c08-grot-0",
+        "target": "p-archer",
+        "skill": null,
+        "before": 1372,
+        "after": 1176,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 378.4,
+        "round": 4
+      },
+      {
+        "id": "a6-c08-grot-0",
+        "target": "p-knight",
+        "skill": null,
+        "before": 3678.7999999999997,
+        "after": 3678.7999999999997,
+        "shieldBefore": 462,
+        "shieldAfter": 233,
+        "amount": 846.12,
+        "round": 4
+      },
+      {
+        "id": "a6-c08-boss",
+        "target": "p-mage",
+        "skill": null,
+        "before": 1533.9,
+        "after": 1530.9,
+        "shieldBefore": 246,
+        "shieldAfter": 0,
+        "amount": 574,
+        "round": 5
+      },
+      {
+        "id": "a6-c08-boss",
+        "target": "p-occultist",
+        "skill": null,
+        "before": 1442,
+        "after": 1297,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 345.59999999999997,
+        "round": 5
+      },
+      {
+        "id": "a6-c08-grot-1",
+        "target": "p-archer",
+        "skill": null,
+        "before": 1176,
+        "after": 1051,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 240.8,
+        "round": 5
+      },
+      {
+        "id": "a6-c08-ink-echo-a",
+        "target": "p-occultist",
+        "skill": "HGS01",
+        "before": 1297,
+        "after": 1270,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 57.86023397572493,
+        "round": 5
+      },
+      {
+        "id": "a6-c08-grot-1",
+        "target": "p-knight",
+        "skill": null,
+        "before": 3678.7999999999997,
+        "after": 3532.7999999999997,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 538.44,
+        "round": 6
+      },
+      {
+        "id": "a6-c08-ink-echo-b",
+        "target": "p-occultist",
+        "skill": "HGS01",
+        "before": 1270,
+        "after": 1244,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 56.17627052732629,
+        "round": 6
+      },
+      {
+        "id": "a6-c08-boss",
+        "target": "p-knight",
+        "skill": null,
+        "before": 3532.7999999999997,
+        "after": 3390.7999999999997,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 576.9,
+        "round": 7
+      },
+      {
+        "id": "a6-c08-vessel-b",
+        "target": "p-archer",
+        "skill": "HGS01",
+        "before": 1051,
+        "after": 1010,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 79.6374267894218,
+        "round": 7
+      },
+      {
+        "id": "a6-c08-grot-0",
+        "target": "p-occultist",
+        "skill": null,
+        "before": 1244,
+        "after": 1009,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 506.88,
+        "round": 7
+      },
+      {
+        "id": "a6-c08-grot-1",
+        "target": "p-knight",
+        "skill": null,
+        "before": 3390.7999999999997,
+        "after": 3244.7999999999997,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 538.44,
+        "round": 7
+      },
+      {
+        "id": "a6-c08-ink-echo-b",
+        "target": "p-occultist",
+        "skill": "HGS01",
+        "before": 1009,
+        "after": 983,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 56.17627052732629,
+        "round": 7
+      },
+      {
+        "id": "a6-58-apse-lower-1",
+        "target": "p-archer",
+        "skill": "HSH01",
+        "before": 1010,
+        "after": 977,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 64.29693181042863,
+        "round": 7
+      }
+    ],
+    "objectiveDamage": [],
+    "deviceDamage": [],
+    "impacts": [
+      {
+        "id": "a6-58-opening-4",
+        "target": "p-occultist",
+        "skill": "HSH01",
+        "before": {
+          "hp": 2144.1,
+          "shield": 0
+        },
+        "after": {
+          "hp": 2114.1,
+          "shield": 0
+        },
+        "x": 4993.540022829903,
+        "y": 2903.940268757571,
+        "shot": 5,
+        "round": 1
+      },
+      {
+        "id": "a6-c08-vessel-a",
+        "target": "p-mage",
+        "skill": "HGS01",
+        "before": {
+          "hp": 1314.9,
+          "shield": 0
+        },
+        "after": {
+          "hp": 1314.9,
+          "shield": 0
+        },
+        "x": 4218.822001095161,
+        "y": 2668,
+        "shot": 6,
+        "round": 1
+      },
+      {
+        "id": "a6-c08-vessel-b",
+        "target": "p-occultist",
+        "skill": "HGS01",
+        "before": {
+          "hp": 2114.1,
+          "shield": 0
+        },
+        "after": {
+          "hp": 2077.1,
+          "shield": 0
+        },
+        "x": 5014.265901856918,
+        "y": 2912.6415371419234,
+        "shot": 7,
+        "round": 1
+      },
+      {
+        "id": "a6-c08-vessel-a",
+        "target": "p-mage",
+        "skill": "HGS01",
+        "before": {
+          "hp": 1314.9,
+          "shield": 0
+        },
+        "after": {
+          "hp": 1287.9,
+          "shield": 0
+        },
+        "x": 4330,
+        "y": 2594.253249109343,
+        "shot": 12,
+        "round": 2
+      },
+      {
+        "id": "a6-c08-vessel-b",
+        "target": "p-occultist",
+        "skill": "HGS01",
+        "before": {
+          "hp": 2077.1,
+          "shield": 0
+        },
+        "after": {
+          "hp": 2035.1,
+          "shield": 0
+        },
+        "x": 5044.324033883185,
+        "y": 2916.830031079344,
+        "shot": 13,
+        "round": 2
+      },
+      {
+        "id": "a6-c08-vessel-a",
+        "target": "p-mage",
+        "skill": "HGS01",
+        "before": {
+          "hp": 1369.9,
+          "shield": 246
+        },
+        "after": {
+          "hp": 1369.9,
+          "shield": 219
+        },
+        "x": 4330,
+        "y": 2585.58730164146,
+        "shot": 17,
+        "round": 3
+      },
+      {
+        "id": "a6-c08-vessel-b",
+        "target": "p-occultist",
+        "skill": "HGS01",
+        "before": {
+          "hp": 2035.1,
+          "shield": 0
+        },
+        "after": {
+          "hp": 1998.1,
+          "shield": 0
+        },
+        "x": 5018.27785478403,
+        "y": 2911.795473851709,
+        "shot": 18,
+        "round": 3
+      },
+      {
+        "id": "a6-c08-vessel-a",
+        "target": "p-mage",
+        "skill": "HGS01",
+        "before": {
+          "hp": 1451.9,
+          "shield": 246
+        },
+        "after": {
+          "hp": 1451.9,
+          "shield": 246
+        },
+        "x": 4330,
+        "y": 2627.598543405313,
+        "shot": 21,
+        "round": 4
+      },
+      {
+        "id": "a6-c08-vessel-b",
+        "target": "p-occultist",
+        "skill": "HGS01",
+        "before": {
+          "hp": 1853.1,
+          "shield": 0
+        },
+        "after": {
+          "hp": 1816.1,
+          "shield": 0
+        },
+        "x": 5095.158031822202,
+        "y": 2891.4584647783995,
+        "shot": 22,
+        "round": 4
+      },
+      {
+        "id": "a6-c08-ink-echo-a",
+        "target": "p-occultist",
+        "skill": "HGS01",
+        "before": {
+          "hp": 1297,
+          "shield": 0
+        },
+        "after": {
+          "hp": 1270,
+          "shield": 0
+        },
+        "x": 5389.406956208429,
+        "y": 2678.5805283025243,
+        "shot": 27,
+        "round": 5
+      },
+      {
+        "id": "a6-c08-ink-echo-b",
+        "target": "p-occultist",
+        "skill": "HGS01",
+        "before": {
+          "hp": 1270,
+          "shield": 0
+        },
+        "after": {
+          "hp": 1244,
+          "shield": 0
+        },
+        "x": 5355.896299558009,
+        "y": 2676.5465799919743,
+        "shot": 33,
+        "round": 6
+      },
+      {
+        "id": "a6-c08-vessel-b",
+        "target": "p-archer",
+        "skill": "HGS01",
+        "before": {
+          "hp": 1051,
+          "shield": 0
+        },
+        "after": {
+          "hp": 1010,
+          "shield": 0
+        },
+        "x": 5189.584447834652,
+        "y": 2867.6383992339906,
+        "shot": 38,
+        "round": 7
+      },
+      {
+        "id": "a6-c08-ink-echo-b",
+        "target": "p-occultist",
+        "skill": "HGS01",
+        "before": {
+          "hp": 1009,
+          "shield": 0
+        },
+        "after": {
+          "hp": 983,
+          "shield": 0
+        },
+        "x": 5362.643311658221,
+        "y": 2672.86112811969,
+        "shot": 39,
+        "round": 7
+      },
+      {
+        "id": "a6-58-apse-lower-1",
+        "target": "p-archer",
+        "skill": "HSH01",
+        "before": {
+          "hp": 1010,
+          "shield": 0
+        },
+        "after": {
+          "hp": 977,
+          "shield": 0
+        },
+        "x": 5112.532352635015,
+        "y": 2922.6640758586327,
+        "shot": 40,
+        "round": 7
+      }
+    ],
+    "knockbacks": [],
+    "enemyTurns": [
+      {
+        "id": "a6-c08-boss",
+        "round": 1,
+        "bossPhase": 1,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 4480,
+        "y": 3194.769230769231
+      },
+      {
+        "id": "a6-58-opening-4",
+        "round": 1,
+        "bossPhase": 1,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 4625,
+        "y": 3149
+      },
+      {
+        "id": "a6-c08-vessel-a",
+        "round": 1,
+        "bossPhase": 1,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 4300,
+        "y": 3241.5172413793102
+      },
+      {
+        "id": "a6-c08-vessel-b",
+        "round": 1,
+        "bossPhase": 1,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 5007.880162086015,
+        "y": 2975.8022440350246
+      },
+      {
+        "id": "a6-c08-boss",
+        "round": 2,
+        "bossPhase": 1,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 4480,
+        "y": 3194.769230769231
+      },
+      {
+        "id": "a6-c08-vessel-a",
+        "round": 2,
+        "bossPhase": 1,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 4098.886671307354,
+        "y": 3078.7342031003195
+      },
+      {
+        "id": "a6-c08-vessel-b",
+        "round": 2,
+        "bossPhase": 1,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 5340.48556385415,
+        "y": 2816.953740664081
+      },
+      {
+        "id": "a6-c08-boss",
+        "round": 3,
+        "bossPhase": 1,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 4480,
+        "y": 3194.769230769231
+      },
+      {
+        "id": "a6-c08-vessel-a",
+        "round": 3,
+        "bossPhase": 2,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 4147.192500308907,
+        "y": 3080
+      },
+      {
+        "id": "a6-c08-vessel-b",
+        "round": 3,
+        "bossPhase": 2,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 5340.48556385415,
+        "y": 2816.953740664081
+      },
+      {
+        "id": "a6-c08-grot-0",
+        "round": 3,
+        "bossPhase": 2,
+        "phase": "review",
+        "grounded": false,
+        "x": 4358,
+        "y": 2975.5172413793102
+      },
+      {
+        "id": "a6-c08-boss",
+        "round": 4,
+        "bossPhase": 2,
+        "phase": "enemy",
+        "grounded": false,
+        "x": 5060,
+        "y": 2742.4
+      },
+      {
+        "id": "a6-c08-vessel-a",
+        "round": 4,
+        "bossPhase": 3,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 4147.192500308907,
+        "y": 3080
+      },
+      {
+        "id": "a6-c08-vessel-b",
+        "round": 4,
+        "bossPhase": 3,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 5340.48556385415,
+        "y": 2816.953740664081
+      },
+      {
+        "id": "a6-c08-grot-0",
+        "round": 4,
+        "bossPhase": 3,
+        "phase": "review",
+        "grounded": false,
+        "x": 4358,
+        "y": 2975.5172413793102
+      },
+      {
+        "id": "a6-c08-boss",
+        "round": 5,
+        "bossPhase": 3,
+        "phase": "enemy",
+        "grounded": false,
+        "x": 5012.151650785624,
+        "y": 2654.7038612265537
+      },
+      {
+        "id": "a6-c08-vessel-b",
+        "round": 5,
+        "bossPhase": 3,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 5340.48556385415,
+        "y": 2816.953740664081
+      },
+      {
+        "id": "a6-c08-grot-1",
+        "round": 5,
+        "bossPhase": 3,
+        "phase": "review",
+        "grounded": true,
+        "x": 4812,
+        "y": 3170.3636363636365
+      },
+      {
+        "id": "a6-c08-expansion-node",
+        "round": 5,
+        "bossPhase": 3,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 4896,
+        "y": 3074.909090909091
+      },
+      {
+        "id": "a6-c08-ink-echo-a",
+        "round": 5,
+        "bossPhase": 3,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 5420,
+        "y": 2770.5
+      },
+      {
+        "id": "a6-c08-ink-echo-b",
+        "round": 5,
+        "bossPhase": 3,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 5560,
+        "y": 2452.8
+      },
+      {
+        "id": "a6-c08-boss",
+        "round": 6,
+        "bossPhase": 3,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 5012.151650785624,
+        "y": 2974.7038612265537
+      },
+      {
+        "id": "a6-c08-vessel-b",
+        "round": 6,
+        "bossPhase": 3,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 5340.48556385415,
+        "y": 2816.953740664081
+      },
+      {
+        "id": "a6-c08-grot-0",
+        "round": 6,
+        "bossPhase": 3,
+        "phase": "review",
+        "grounded": false,
+        "x": 5378.180817784912,
+        "y": 2514.5465799919743
+      },
+      {
+        "id": "a6-c08-grot-1",
+        "round": 6,
+        "bossPhase": 3,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 4812,
+        "y": 3170.3636363636365
+      },
+      {
+        "id": "a6-c08-ink-echo-a",
+        "round": 6,
+        "bossPhase": 3,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 5421.018266402274,
+        "y": 2767.3179174928937
+      },
+      {
+        "id": "a6-c08-ink-echo-b",
+        "round": 6,
+        "bossPhase": 3,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 5647.000000000011,
+        "y": 2400.5999999999935
+      },
+      {
+        "id": "a6-c08-boss",
+        "round": 7,
+        "bossPhase": 3,
+        "phase": "enemy",
+        "grounded": false,
+        "x": 4752.151650785624,
+        "y": 2854.430330157125
+      },
+      {
+        "id": "a6-c08-vessel-b",
+        "round": 7,
+        "bossPhase": 3,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 5009.358050129453,
+        "y": 2975.422215680998
+      },
+      {
+        "id": "a6-c08-grot-0",
+        "round": 7,
+        "bossPhase": 3,
+        "phase": "enemy",
+        "grounded": false,
+        "x": 5378.180817784912,
+        "y": 2514.5465799919743
+      },
+      {
+        "id": "a6-c08-grot-1",
+        "round": 7,
+        "bossPhase": 3,
+        "phase": "review",
+        "grounded": true,
+        "x": 4812,
+        "y": 3170.3636363636365
+      },
+      {
+        "id": "a6-c08-ink-echo-b",
+        "round": 7,
+        "bossPhase": 3,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 5647.000000000011,
+        "y": 2400.5999999999935
+      },
+      {
+        "id": "a6-58-apse-lower-1",
+        "round": 7,
+        "bossPhase": 3,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 4335,
+        "y": 3080
+      }
+    ],
+    "joins": [
+      {
+        "id": "a6-58-opening-1",
+        "role": "leaper",
+        "source": "opening",
+        "round": 1,
+        "bossPhase": 0,
+        "x": 3220,
+        "y": 3329.3793103448274,
+        "grounded": true,
+        "surface": "local-lower-08-body"
+      },
+      {
+        "id": "a6-58-opening-2",
+        "role": "ice",
+        "source": "opening",
+        "round": 1,
+        "bossPhase": 0,
+        "x": 3580,
+        "y": 3072.4666666666667,
+        "grounded": true,
+        "surface": "m58-west-stone-step"
+      },
+      {
+        "id": "a6-58-opening-3",
+        "role": "leaper",
+        "source": "opening",
+        "round": 1,
+        "bossPhase": 0,
+        "x": 3910,
+        "y": 3361.657142857143,
+        "grounded": true,
+        "surface": "local-lower-08-body"
+      },
+      {
+        "id": "a6-58-opening-4",
+        "role": "ice",
+        "source": "opening",
+        "round": 1,
+        "bossPhase": 0,
+        "x": 4625,
+        "y": 3149,
+        "grounded": true,
+        "surface": "local-lower-08-body"
+      },
+      {
+        "id": "a6-58-entrance-columns-1",
+        "role": "ice",
+        "source": "entrance-columns",
+        "round": 1,
+        "bossPhase": 0,
+        "x": 3340,
+        "y": 3263.1724137931033,
+        "grounded": true,
+        "surface": "local-lower-08-body"
+      },
+      {
+        "id": "a6-58-entrance-columns-2",
+        "role": "leaper",
+        "source": "entrance-columns",
+        "round": 1,
+        "bossPhase": 0,
+        "x": 3475,
+        "y": 3230.5806451612902,
+        "grounded": true,
+        "surface": "local-lower-08-body"
+      },
+      {
+        "id": "a6-58-entrance-columns-3",
+        "role": "ice",
+        "source": "entrance-columns",
+        "round": 1,
+        "bossPhase": 0,
+        "x": 3730,
+        "y": 3071.28125,
+        "grounded": true,
+        "surface": "m58-rising-gallery"
+      },
+      {
+        "id": "a6-c08-boss",
+        "role": "boss",
+        "source": "original",
+        "round": 1,
+        "bossPhase": 1,
+        "x": 4480,
+        "y": 3194.769230769231,
+        "grounded": true,
+        "surface": "local-lower-08-body"
+      },
+      {
+        "id": "a6-c08-vessel-a",
+        "role": "fire",
+        "source": "original",
+        "round": 1,
+        "bossPhase": 1,
+        "x": 4300,
+        "y": 3241.5172413793102,
+        "grounded": true,
+        "surface": "local-lower-08-body"
+      },
+      {
+        "id": "a6-c08-vessel-b",
+        "role": "fire",
+        "source": "original",
+        "round": 1,
+        "bossPhase": 1,
+        "x": 5000,
+        "y": 2977.8285714285716,
+        "grounded": true,
+        "surface": "local-lower-08-body"
+      },
+      {
+        "id": "a6-c08-grot-0",
+        "role": "fire",
+        "source": "original",
+        "round": 2,
+        "bossPhase": 1,
+        "x": 4301,
+        "y": 2981.4137931034484,
+        "grounded": false,
+        "surface": null
+      },
+      {
+        "id": "a6-c08-grot-1",
+        "role": "fire",
+        "source": "original",
+        "round": 4,
+        "bossPhase": 3,
+        "x": 4812,
+        "y": 3170.3636363636365,
+        "grounded": true,
+        "surface": "local-lower-08-body"
+      },
+      {
+        "id": "a6-c08-ink-echo-a",
+        "role": "fire",
+        "source": "original",
+        "round": 4,
+        "bossPhase": 3,
+        "x": 5420,
+        "y": 2770.5,
+        "grounded": true,
+        "surface": "local-lower-08-east-buttress"
+      },
+      {
+        "id": "a6-c08-ink-echo-b",
+        "role": "fire",
+        "source": "original",
+        "round": 4,
+        "bossPhase": 3,
+        "x": 5560,
+        "y": 2452.8,
+        "grounded": true,
+        "surface": "local-lower-08-east-buttress"
+      },
+      {
+        "id": "a6-58-apse-lower-1",
+        "role": "ice",
+        "source": "apse-lower",
+        "round": 7,
+        "bossPhase": 3,
+        "x": 4335,
+        "y": 3080,
+        "grounded": true,
+        "surface": "m58-east-deck"
+      },
+      {
+        "id": "a6-58-apse-lower-2",
+        "role": "leaper",
+        "source": "apse-lower",
+        "round": 8,
+        "bossPhase": 3,
+        "x": 3975,
+        "y": 3073.5263157894738,
+        "grounded": true,
+        "surface": "m58-rising-gallery"
+      },
+      {
+        "id": "a6-58-folded-rear-1",
+        "role": "leaper",
+        "source": "folded-rear",
+        "round": 8,
+        "bossPhase": 3,
+        "x": 4770,
+        "y": 3178,
+        "grounded": true,
+        "surface": "local-lower-08-body"
+      },
+      {
+        "id": "a6-58-apse-lower-3",
+        "role": "leaper",
+        "source": "apse-lower",
+        "round": 8,
+        "bossPhase": 3,
+        "x": 4500,
+        "y": 3186.3076923076924,
+        "grounded": true,
+        "surface": "local-lower-08-body"
+      },
+      {
+        "id": "a6-58-folded-rear-2",
+        "role": "ice",
+        "source": "folded-rear",
+        "round": 8,
+        "bossPhase": 3,
+        "x": 5150,
+        "y": 2939.2571428571428,
+        "grounded": true,
+        "surface": "local-lower-08-body"
+      }
+    ],
+    "queues": [
+      {
+        "round": 1,
+        "queue": [
+          "a6-c08-boss",
+          "a6-58-opening-4",
+          "a6-c08-vessel-a",
+          "a6-c08-vessel-b"
+        ],
+        "fronts": []
+      },
+      {
+        "round": 2,
+        "queue": [
+          "a6-c08-boss",
+          "a6-c08-vessel-b",
+          "a6-c08-vessel-a"
+        ],
+        "fronts": []
+      },
+      {
+        "round": 3,
+        "queue": [
+          "a6-c08-boss",
+          "a6-c08-grot-0",
+          "a6-c08-vessel-b",
+          "a6-c08-vessel-a"
+        ],
+        "fronts": []
+      },
+      {
+        "round": 4,
+        "queue": [
+          "a6-c08-boss",
+          "a6-c08-vessel-b",
+          "a6-c08-vessel-a",
+          "a6-c08-grot-0"
+        ],
+        "fronts": []
+      },
+      {
+        "round": 5,
+        "queue": [
+          "a6-c08-boss",
+          "a6-c08-grot-1",
+          "a6-c08-vessel-b",
+          "a6-c08-ink-echo-b",
+          "a6-c08-ink-echo-a",
+          "a6-c08-expansion-node"
+        ],
+        "fronts": []
+      },
+      {
+        "round": 6,
+        "queue": [
+          "a6-c08-boss",
+          "a6-c08-vessel-b",
+          "a6-c08-grot-0",
+          "a6-c08-ink-echo-b",
+          "a6-c08-grot-1",
+          "a6-c08-ink-echo-a"
+        ],
+        "fronts": []
+      },
+      {
+        "round": 7,
+        "queue": [
+          "a6-c08-boss",
+          "a6-c08-vessel-b",
+          "a6-c08-grot-0",
+          "a6-c08-ink-echo-b",
+          "a6-58-apse-lower-1",
+          "a6-c08-grot-1"
+        ],
+        "fronts": []
+      },
+      {
+        "round": 8,
+        "queue": [],
+        "fronts": []
+      }
+    ],
+    "peak": 9,
+    "initialRng": 31717,
+    "seed": 19388,
+    "peakWitness": {
+      "round": 1,
+      "bossPhase": 1,
+      "phase": "aim",
+      "ids": [
+        "a6-58-opening-1",
+        "a6-58-opening-2",
+        "a6-58-opening-3",
+        "a6-58-opening-4",
+        "a6-58-entrance-columns-1",
+        "a6-58-entrance-columns-2",
+        "a6-58-entrance-columns-3",
+        "a6-c08-boss",
+        "a6-c08-vessel-a"
+      ]
+    },
+    "initial": 4,
+    "limit": 6
+  },
+  "hostP95": 50
+}
