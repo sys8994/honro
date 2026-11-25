@@ -16,3 +16,9 @@ python game/docs/act6/mumyeongsa-p00-p10/baseline/relay_live_chain.py --build "$
 온전한 결속 판에서는 1라운드에 화살이 빗나갔으나 휘겸이 빈종각귀의 발사 방향을 받아낸 뒤 살아 있는 원본을 실제 검격으로 처치했다. 첫 HLN01이 x2143.248의 휘겸에게 체력 피해를 줬으며 좌정 결속 판정 범위 밖이었다. 2라운드 정렬과 56 라이브·새 컨텍스트를 확인했다. 방치 판은 초반 방어 후 실제 연속 결속 명중으로 3라운드에 패배했다. 56 저장이 생성되지 않았다. [온전한 결속](intact.json) · [정렬 화면](intact.webp) · [방치 패배](collapse.json) · [패배 화면](collapse.webp)
 
 실제 접근을 다시 싸운 판은 서쪽 비탈과 종터 내리막, 낮은 돌단에서 각각 네 명이 들어왔다. 시작 8, 누적 20, 활성 최대 10, 공격 순서 최대 7명이었다. 수리 후 세 번의 실제 공격을 선택했고 다음 발점에 법에 맞는 사선이 없을 때 대응을 끝내고 7라운드에 정렬했다. 56 라이브와 새 컨텍스트를 확인했다. 요구한 누적 24명과 10라운드에는 미달이다. [출현·공격 원자료](approaching-fronts.json) · [종터](approaching-fronts.webp)
+
+서쪽 감시대가 내리막부터 실제로 접근하도록 배치하고 휘겸과 설오로 서쪽·낮은 받침·종터 뒤를 오가며 방어했다. 초반 서쪽 HSH01·HBM01이 실제 발사됐고, 수리 이후 다른 받침에서 여섯 차례 대응했다. 10라운드에 정렬해 56 라이브와 새 쉼터를 열었다. 시작 10명, 누적 21명, 활성·공격 순서 10·7, 실제 적 발사 60회와 피해 54건이었다. 전방 `bell-descent`는 이 판에서 첫 슬롯이 막힌 채 끝났고 누적 24명에 미달했다. 별도 빠른 온전한 결속과 방치 붕괴도 확인했다. [복구와 네 방면](front-counter.json) · [복구 화면](front-counter.webp) · [온전한 결속](front-intact.json) · [붕괴](front-collapse.json)
+
+```bash
+python game/docs/act6/mumyeongsa-p00-p10/baseline/relay_live_chain.py --build "$PWD" --out /tmp/honro-bell-front-shots --bell-only --bell-case repair --pressure
+```

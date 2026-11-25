@@ -222,11 +222,13 @@ def finish_bell(page,out,report,route='repair',pressure=False):
             actions.append({"rebind":sodan})
             fray_or_turn(page)
         elif binding in ('secured','stable') and foe["hp"]<=0 and can_choose(page,"p-knight"):
-            if pressure and not report.get('frontBlocked') and len(report.get('frontActions',[]))<6:
-                lanes=(1495,1850,2175,1615,1810,2280)
-                if alternate_bell_fronts(page,report,lanes[len(report.get('frontActions',[]))]):
-                    continue
-                report['frontBlocked']=True
+            if pressure and not report.get('frontBlocked'):
+                lanes=(1495,1850,2175,1198,1005,1660,2065,2742)
+                attempted=len(report.get('frontActions',[]))
+                if attempted<len(lanes):
+                    if any(alternate_bell_fronts(page,report,side) for side in lanes[attempted:attempted+3]):
+                        continue
+                    report['frontBlocked']=True
             knight=move(page,"p-knight",2660)
             page.locator(BELL).click(timeout=3500)
             actions.append({"align":knight})
