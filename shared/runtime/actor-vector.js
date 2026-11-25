@@ -7,7 +7,7 @@ function kind(u){
  // Summons share occultist class with Sodan, but must never resolve to her portrait.
  if(u.summoned)return V.assets['summon_'+(u.summonKind||'stalker')]?'summon_'+(u.summonKind||'stalker'):null;
  // Act 6-8 boss: a dedicated human daoist rig, never the archer/party body.
- if(u.honroRigAsset==='boss_daedosa'&&V.assets.boss_daedosa)return'boss_daedosa';
+ if(u.honroRigAsset&&V.assets[u.honroRigAsset])return u.honroRigAsset;
  if(G.resolveRebuildCharacter?.(u))return null;
  if(u.honroType==='bier')return u.side===1||u.id==='boss'?'bier_boss':'bier';
  if(u.honroType==='gate')return'gate';

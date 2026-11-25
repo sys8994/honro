@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "baseHeight": 124,
+  "viewBox": [
+    -70,
+    -134,
+    140,
+    138
+  ],
+  "parts": [
+    {
+      "id": "root",
+      "pivot": [
+        0,
+        -46
+      ],
+      "parent": null
+    },
+    {
+      "id": "trail",
+      "pivot": [
+        0,
+        -24
+      ],
+      "parent": "root"
+    },
+    {
+      "id": "body",
+      "pivot": [
+        0,
+        -78
+      ],
+      "parent": "root"
+    },
+    {
+      "id": "head",
+      "pivot": [
+        -2,
+        -90
+      ],
+      "parent": "body"
+    },
+    {
+      "id": "l-arm",
+      "pivot": [
+        -18,
+        -92
+      ],
+      "parent": "body"
+    },
+    {
+      "id": "r-arm",
+      "pivot": [
+        18,
+        -92
+      ],
+      "parent": "body"
+    }
+  ]
+}

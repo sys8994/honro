@@ -12,20 +12,24 @@ const auth=['act6.garmjinCompleted','act6.finalThreatResolved'];
 // round ahead on its own entry, holds (never drops) a squad when its own cap is full, and puts a
 // new squad on a rear line while the front line still stands.
 export const FRONTS59=Object.freeze({
- perFrontCap:4,totalCap:10,soften:{hp:.85,attack:.75},warn:1,period:1,forward:900,rear:420,breachLimit:3,guard:260,
+ perFrontCap:5,totalCap:12,soften:{hp:.85,attack:.75},warn:1,period:1,forward:900,rear:420,breachLimit:3,guard:260,
  posts:[{id:'west-cleat',x:522*7800/2172,label:'서쪽 지지석',radius:170},{id:'bell-path',x:1490*7800/2172,label:'종터 혼길',radius:170}],
  fronts:[
   {id:'west-return',dir:1,offset:2,line:'서쪽 높은 단과 아래 퇴각 경로로 원혼이 맺힙니다.',squads:[
    [['lead','mourner',340,'high'],['lower','shade',395,'near'],['rear','mourner',242,'high']],
    [['lead','mourner',330,'near'],['knot','shade',300,'high'],['rear','mourner',260,'near']],
    [['lead','mourner',345,'high'],['lower','mourner',380,'near']],
-   [['heavy','warden',300,'near']]]},
+   [['lead','shade',320,'high'],['lower','mourner',370,'near'],['rear','mourner',250,'near']],
+   [['heavy','warden',300,'near'],['lead','mourner',340,'high']],
+   [['lead','mourner',330,'near'],['knot','shade',290,'high'],['rear','mourner',260,'near']]]},
   {id:'east-fault',dir:-1,offset:3,line:'동쪽 파열의 낮은 굽이와 암반 이음에서 원혼이 밀려 나옵니다.',squads:[
    [['lead','mourner',1805,'near'],['knot','shade',1854,'near'],['rear','mourner',2015,'near']],
    [['lead','mourner',1830,'near'],['knot','shade',1880,'near'],['rear','shade',1990,'near']],
    [['lead','mourner',1810,'near'],['rear','mourner',1960,'near']],
    [['lead','shade',1840,'near'],['rear','mourner',2000,'near']],
-   [['heavy','warden',1900,'near']]]}
+   [['heavy','warden',1900,'near'],['lead','mourner',1820,'near']],
+   [['lead','mourner',1800,'near'],['knot','shade',1870,'near'],['rear','mourner',1990,'near']],
+   [['lead','shade',1830,'near'],['rear','mourner',2010,'near']]]}
  ]});
 const eq=(a,b)=>JSON.stringify(a)===JSON.stringify(b), copy=structuredClone;
 const alive=u=>u&&Number.isFinite(u.hp)&&u.hp>0&&!u.dead;
@@ -69,6 +73,7 @@ export async function createStage59Owner({C,packet,authorize,verifyIncoming,crea
   }
   const threat=reserve(special.bridge);
   if(!threat||threat.fixed||!threat.loadout?.includes('HWD01'))return (console.log('native59 deny 56'),null);
+  threat.honroRigAsset='gate_armor';threat.name='교각의 문턱 갑주';
   const origin=threat.x; const add=v=>b.units.push(v);add(threat);
   const repelled=()=>retreatOrder!==null&&retreatOrder.walked>0&&grounded(threat,near)&&threat.x-retreatOrder.from>=240&&threat.x-witness.x>=500;
   const resolved=()=>down(threat)||repelled();
@@ -95,7 +100,7 @@ export async function createStage59Owner({C,packet,authorize,verifyIncoming,crea
     const cap=frontAlive(f)>=2?FRONTS59.rear:FRONTS59.forward,id='finale-'+f.id+'-s'+f.next+'-r'+round,picked=[];
     for(const [suffix,kind,x,t] of bodies){const v=reserve([id+'-'+suffix,kind,x,t==='high'?high:near]);if(!v)return;
      // Courtyard bodies are knotted fragments of the dead, lighter than a whole possessed body.
-     if(kind!=='warden'){v.maxHp=v.hp=Math.round(v.maxHp*FRONTS59.soften.hp);v.attack*=FRONTS59.soften.attack;}else{v.name='문턱 갑주';v.armor=Math.max(v.armor,.2);}
+     if(kind!=='warden'){v.maxHp=v.hp=Math.round(v.maxHp*FRONTS59.soften.hp);v.attack*=FRONTS59.soften.attack;v.honroRigAsset='wonhon';v.name=kind==='shade'?'맺힌 원혼':'넘쳐온 원혼';}else{v.name='문턱 갑주';v.armor=Math.max(v.armor,.2);v.honroRigAsset='gate_armor';}
      picked.push({v,t:t==='high'?high:near});}
     const want={round,action:'spawn',front:f.id,squad:f.next,line:f.line,id,cap,squadActors:picked.map(({v,t})=>({id:v.id,kind:v.honroType,entry:[v.x,v.y],deck:t}))};
     for(const [i,{v,t}] of picked.entries()){add(v);walks.push({unit:v,cap:cap+i*40,front:f.id,dir:f.dir,t,delay:i*7,ticks:0,walked:0,steps:0,wave:want});}
@@ -105,7 +110,7 @@ export async function createStage59Owner({C,packet,authorize,verifyIncoming,crea
    // The giant forepaw body joins once both fronts have pushed (a bent line, not a timer).
    if(!giant&&fronts.every(f=>f.next>=1)){
     const v=reserve(['finale-giant-forepaw','warden',1180,near]);
-    if(v){Object.assign(v,{name:'혼류의 앞발',honroMonsterVariant:'giant',maxHp:Math.round(v.maxHp*2.6),hp:Math.round(v.maxHp*2.6),armor:Math.max(v.armor,.18),h:Math.round(v.h*1.9),r:Math.round(v.r*1.8)});giant=v;add(v);e.message('교각 아래에서 거대한 앞발이 몸째로 올라옵니다.');note('giant-arrived',{id:v.id,hp:v.hp});}
+    if(v){Object.assign(v,{name:'혼류의 앞발',honroRigAsset:'forepaw',maxHp:Math.round(v.maxHp*2.6),hp:Math.round(v.maxHp*2.6),armor:Math.max(v.armor,.18),h:Math.round(v.h*1.9),r:Math.round(v.r*1.8)});giant=v;add(v);e.message('교각 아래에서 거대한 앞발이 몸째로 올라옵니다.');note('giant-arrived',{id:v.id,hp:v.hp});}
    }
   }
   // Posts: enemies standing on a post at the end of their side's turn break it; a cleared

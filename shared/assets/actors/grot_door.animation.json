@@ -1,0 +1,287 @@
+{
+  "idle": {
+    "duration": 3,
+    "loop": true,
+    "tracks": [
+      {
+        "part": "l-leaf",
+        "channel": "rotate",
+        "keys": [
+          [
+            0,
+            0
+          ],
+          [
+            0.5,
+            -2.2
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      },
+      {
+        "part": "r-leaf",
+        "channel": "rotate",
+        "keys": [
+          [
+            0,
+            0
+          ],
+          [
+            0.5,
+            2.2
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      },
+      {
+        "part": "chain",
+        "channel": "rotate",
+        "keys": [
+          [
+            0,
+            0
+          ],
+          [
+            0.25,
+            5
+          ],
+          [
+            0.75,
+            -5
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      },
+      {
+        "part": "talisman",
+        "channel": "rotate",
+        "keys": [
+          [
+            0,
+            0
+          ],
+          [
+            0.25,
+            6
+          ],
+          [
+            0.75,
+            -6
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      }
+    ]
+  },
+  "move": {
+    "duration": 0.8,
+    "loop": true,
+    "tracks": [
+      {
+        "part": "leg-10",
+        "channel": "rotate",
+        "keys": [
+          [
+            0,
+            0
+          ],
+          [
+            0.25,
+            10
+          ],
+          [
+            0.75,
+            -10
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      },
+      {
+        "part": "leg-11",
+        "channel": "rotate",
+        "keys": [
+          [
+            0,
+            0
+          ],
+          [
+            0.25,
+            -10
+          ],
+          [
+            0.75,
+            10
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      },
+      {
+        "part": "leg10",
+        "channel": "rotate",
+        "keys": [
+          [
+            0,
+            0
+          ],
+          [
+            0.25,
+            -10
+          ],
+          [
+            0.75,
+            10
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      },
+      {
+        "part": "leg11",
+        "channel": "rotate",
+        "keys": [
+          [
+            0,
+            0
+          ],
+          [
+            0.25,
+            10
+          ],
+          [
+            0.75,
+            -10
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      }
+    ]
+  },
+  "attack": {
+    "duration": 0.6,
+    "loop": false,
+    "tracks": [
+      {
+        "part": "l-leaf",
+        "channel": "rotate",
+        "keys": [
+          [
+            0,
+            0
+          ],
+          [
+            0.3,
+            -16
+          ],
+          [
+            0.6,
+            3
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      },
+      {
+        "part": "r-leaf",
+        "channel": "rotate",
+        "keys": [
+          [
+            0,
+            0
+          ],
+          [
+            0.3,
+            16
+          ],
+          [
+            0.6,
+            -3
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      },
+      {
+        "part": "eye",
+        "channel": "rotate",
+        "keys": [
+          [
+            0,
+            0
+          ],
+          [
+            0.22,
+            -4.8
+          ],
+          [
+            0.48,
+            8
+          ],
+          [
+            0.72,
+            2.4
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      }
+    ]
+  },
+  "hit": {
+    "duration": 0.35,
+    "loop": false,
+    "tracks": [
+      {
+        "part": "eye",
+        "channel": "rotate",
+        "keys": [
+          [
+            0,
+            -4.8
+          ],
+          [
+            0.4,
+            2
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      }
+    ]
+  },
+  "jump_fall": {
+    "duration": 0.8,
+    "loop": false,
+    "tracks": []
+  }
+}

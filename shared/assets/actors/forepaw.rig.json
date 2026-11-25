@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "baseHeight": 180,
+  "viewBox": [
+    -120,
+    -204,
+    240,
+    208
+  ],
+  "parts": [
+    {
+      "id": "root",
+      "pivot": [
+        0,
+        -24
+      ],
+      "parent": null
+    },
+    {
+      "id": "mass",
+      "pivot": [
+        -36,
+        -46
+      ],
+      "parent": "root"
+    },
+    {
+      "id": "arm",
+      "pivot": [
+        -24,
+        -82
+      ],
+      "parent": "mass"
+    },
+    {
+      "id": "paw",
+      "pivot": [
+        74,
+        -180
+      ],
+      "parent": "arm"
+    }
+  ]
+}

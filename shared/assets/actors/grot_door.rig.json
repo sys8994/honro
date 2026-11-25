@@ -1,0 +1,92 @@
+{
+  "version": 1,
+  "baseHeight": 160,
+  "viewBox": [
+    -62,
+    -176,
+    124,
+    180
+  ],
+  "parts": [
+    {
+      "id": "root",
+      "pivot": [
+        0,
+        -50
+      ],
+      "parent": null
+    },
+    {
+      "id": "leg-10",
+      "pivot": [
+        -10,
+        -40
+      ],
+      "parent": "root"
+    },
+    {
+      "id": "leg-11",
+      "pivot": [
+        -10,
+        -40
+      ],
+      "parent": "root"
+    },
+    {
+      "id": "leg10",
+      "pivot": [
+        10,
+        -40
+      ],
+      "parent": "root"
+    },
+    {
+      "id": "leg11",
+      "pivot": [
+        10,
+        -40
+      ],
+      "parent": "root"
+    },
+    {
+      "id": "l-leaf",
+      "pivot": [
+        -2,
+        -104
+      ],
+      "parent": "root"
+    },
+    {
+      "id": "r-leaf",
+      "pivot": [
+        2,
+        -104
+      ],
+      "parent": "root"
+    },
+    {
+      "id": "eye",
+      "pivot": [
+        -20,
+        -150
+      ],
+      "parent": "l-leaf"
+    },
+    {
+      "id": "chain",
+      "pivot": [
+        24,
+        -70
+      ],
+      "parent": "r-leaf"
+    },
+    {
+      "id": "talisman",
+      "pivot": [
+        -14,
+        -60
+      ],
+      "parent": "l-leaf"
+    }
+  ]
+}

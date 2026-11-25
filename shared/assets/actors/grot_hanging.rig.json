@@ -1,0 +1,84 @@
+{
+  "version": 1,
+  "baseHeight": 170,
+  "viewBox": [
+    -74,
+    -196,
+    148,
+    202
+  ],
+  "parts": [
+    {
+      "id": "root",
+      "pivot": [
+        0,
+        -100
+      ],
+      "parent": null
+    },
+    {
+      "id": "rope",
+      "pivot": [
+        0,
+        -190
+      ],
+      "parent": "root"
+    },
+    {
+      "id": "legs",
+      "pivot": [
+        0,
+        -142
+      ],
+      "parent": "root"
+    },
+    {
+      "id": "robe",
+      "pivot": [
+        0,
+        -118
+      ],
+      "parent": "root"
+    },
+    {
+      "id": "torso",
+      "pivot": [
+        0,
+        -84
+      ],
+      "parent": "robe"
+    },
+    {
+      "id": "neck",
+      "pivot": [
+        0,
+        -60
+      ],
+      "parent": "torso"
+    },
+    {
+      "id": "head",
+      "pivot": [
+        0,
+        -32
+      ],
+      "parent": "neck"
+    },
+    {
+      "id": "l-arm",
+      "pivot": [
+        -10,
+        -96
+      ],
+      "parent": "torso"
+    },
+    {
+      "id": "r-arm",
+      "pivot": [
+        10,
+        -96
+      ],
+      "parent": "torso"
+    }
+  ]
+}

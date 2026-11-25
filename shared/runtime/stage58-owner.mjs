@@ -9,7 +9,8 @@ const points=Object.freeze({column:{x:3496,r:88,cls:'occultist'},threshold:{x:36
 const exits=Object.freeze({mage:3580,archer:3440,knight:3390,occultist:3500});
 const ids=['a6-c08-boss','a6-c08-expansion-node','a6-c08-unsettled-ledger','a6-c08-margin-echo','a6-c08-vessel-a','a6-c08-vessel-b','a6-c08-ink-echo-a','a6-c08-ink-echo-b'];
 export const BOSS58=Object.freeze({hp:10500,armor:.15,floors:[7600,4600],carry:.5,exposed:1.3,guarded:.6,
- stand:[4480,4800,5150],band:{w:340,dmg:.24,push:110},zone:{w:420,dmg:.16,pull:200},drop:{r:150,dmg:.28},great:{dmg:.40},lash:{reach:650,dmg:.15},
+ stand:[4480,4800,5150],band:{w:340,dmg:.24,push:110},zone:{w:420,dmg:.16,pull:200},drop:{r:150,dmg:.28},great:{dmg:.40},lash:{reach:650,dmg:.15},rain:{r:110,dmg:.15},tether:{reach:750,pull:260,dmg:.16},swap:{r:170,dmg:.22,push:120},lift:[0,220,320],
+ grot:{every:2,maxAlive:2,total:6,kinds:[['grot_hanging','거꾸로 매달린 상주',1700,.12],['grot_hands','천수귀',2400,.15],['grot_door','입 벌린 문짝',3200,.25]]},
  shelters:[{x0:2600,x1:3360,y0:3120,y1:3560,label:'법당 그늘'},{x0:5650,x1:6150,y0:2700,y1:3080,label:'움푹한 바위 아래'}],column:{x0:3410,x1:3500}});
 const used=new WeakSet();
 const fields=Object.freeze({
@@ -65,6 +66,8 @@ export function createStage58Owner({C,authorize,isolate=()=>false,preview=()=>fa
   if(Object.values(sites).some(v=>!v)||Object.values(sites).some(v=>v.support!==hull))return no('grounded rites not present');
   if(['localColumnSealAligned','localThresholdGravityNormalized','localBossManifested','localLedgerCounterSpent','localDaedosaDefeated','place(correctedInnerStake)','localFourBodyExit'].some(k=>flags[k]))return no('stale episode flags');
   const place=(u,x)=>{const s=ground(x);if(!s)return false;Object.assign(u,{x,y:s.y,spawnX:x,spawnY:s.y,vx:0,vy:0,airborne:false,jumping:false});return e.grounded(u)&&C.validTerrainContactPose(b.terrain,u);};
+  // Flight: past the first phase he floats; when exposed he sinks to the floor (a melee window).
+  const hover=(u,x,lift)=>{const g=ground(x);if(!g)return false;Object.assign(u,{x,y:g.y-lift,spawnX:x,spawnY:g.y-lift,vx:0,vy:0,airborne:lift>0,jumping:false,fixed:u.fixed||lift>0});return true;};
   for(const [u,x] of [[boss,BOSS58.stand[0]],[node,4896],[vesselA,4300],[vesselB,5000],[inkA,5420],[inkB,5560]])if(!place(u,x))return no('reserved pose unsupported '+u.id);
   const originalUnits=new Set(four), east=new Set(), log=[], ritual=[], dead=[], fieldEvents=[], said=new Set();
   let phase=1,pendingPhase=0,carryOver=0,presented=false,quiet=false,quietFire=false,terminal=null,tick=0,lostSpoken=false,firstBand=false,nearWarned=false;
@@ -114,20 +117,25 @@ export function createStage58Owner({C,authorize,isolate=()=>false,preview=()=>fa
   function announce(){
    if(!heroes().length)return null;
    let m=null;
-   if(phase===1){const t=densest();m={kind:'band',...rect(t.x,BOSS58.band.w),label:'접히는 사선'};if(!firstBand){firstBand=true;say('firstBand');}}
+   const n=rec.history.filter(x=>x.kind==='announce'&&x.phase===phase).length;
+   const rain=()=>({kind:'rain',circles:heroes().slice().sort((a,c)=>c.hp/c.maxHp-a.hp/a.maxHp).slice(0,3).map(t=>({x:Math.round(t.x+(t.vx||0)),y:Math.round(t.y-t.h*.5),r:BOSS58.rain.r})),label:'거꾸로 내리는 기와비'});
+   const tether=()=>{const h=heroes(),t=h.sort((a,c)=>h.filter(v=>Math.abs(v.x-a.x)<300).length-h.filter(v=>Math.abs(v.x-c.x)<300).length||Math.abs(a.x-boss.x)-Math.abs(c.x-boss.x))[0];return {kind:'tether',target:t.id,x:Math.round(t.x),y:Math.round(t.y-t.h*.5),reach:BOSS58.tether.reach,label:'먹줄 올가미 · '+t.name+' 붙잡힘 (750 밖으로 벗어나면 끊김)'};};
+   const swap=()=>{const t=farthest(),x=Math.round(t.x+(t.x<boss.x?-60:60)),g=ground(x)?.y??t.y;return {kind:'swap',x,y:Math.round(g-40),r:BOSS58.swap.r,label:'그림자 바꿔치기 · 이 자리에 내려앉음'};};
+   if(phase===1){const pick=n%3;if(pick===0){const t=densest();m={kind:'band',...rect(t.x,BOSS58.band.w),label:'접히는 사선'};if(!firstBand){firstBand=true;say('firstBand');}}else m=pick===1?tether():rain();}
    else if(phase===2){
-    const tilt=rec.history.filter(x=>x.kind==='announce'&&x.phase===2).length%2===0;
-    if(tilt){const t=densest();m={kind:'zone',...rect(t.x,BOSS58.zone.w),pull:Math.sign(boss.x-t.x)||1,label:'기울어진 바닥'};}
-    else m=drop(farthest());
+    const pick=n%4;
+    if(pick===0){const t=densest();m={kind:'zone',...rect(t.x,BOSS58.zone.w),pull:Math.sign(boss.x-t.x)||1,label:'기울어진 바닥'};}
+    else m=pick===1?swap():pick===2?rain():drop(farthest());
    }else{
     if(!rec.nodeDead){
      if(rec.charge>=3){m={kind:'great',x0:2600,x1:7000,y0:2350,y1:3560,label:'저편이 덮친다 · 그늘로'};rec.shelters=BOSS58.shelters.map(s=>({...s}));}
      else if(rec.charge===2&&!nearWarned){nearWarned=true;say('nearGreat');rec.shelters=BOSS58.shelters.map(s=>({...s}));}
     }
-    if(!m)m=drop(farthest());
+    if(!m)m=[drop(farthest()),tether(),rain(),swap()][n%4];
    }
    if(phase===1&&flags.localColumnSealAligned)rec.shelters=[{x0:BOSS58.column.x0,x1:BOSS58.column.x1,y0:3080,y1:3420,label:'기둥 그늘'}];
-   m.phase=phase;m.round=b.round;rec.mark=m;rec.guarded=true;rec.exposed=false;boss.anim=.4;boss.intent=m.label;
+   m.phase=phase;m.round=b.round;rec.mark=m;rec.guarded=true;rec.exposed=false;
+   if(phase>1){const t=densest(),dx=Math.max(-260,Math.min(260,(t?.x??boss.x)+(boss.x>(t?.x??0)?520:-520)-boss.x));hover(boss,Math.max(4200,Math.min(5400,boss.x+dx)),BOSS58.lift[phase-1]);}boss.anim=.4;boss.intent=m.label;
    boss.facing=Math.sign((densest()?.x??boss.x-1)-boss.x)||-1;note('announce',{mark:m.kind,phase});rec.history[rec.history.length-1].phase=phase;
    e.message('대도사 · '+m.label);sync();
    return m;
@@ -140,6 +148,9 @@ export function createStage58Owner({C,authorize,isolate=()=>false,preview=()=>fa
     else if(m.kind==='zone'&&inRect(u,m)&&!m.neutralized){take=BOSS58.zone.dmg;dir=m.pull;amount=BOSS58.zone.pull;}
     else if(m.kind==='circle'&&Math.hypot(u.x-m.x,(u.y-u.h*.5)-m.y)<=m.r+u.r){take=BOSS58.drop.dmg;}
     else if(m.kind==='great'&&!sheltered(u)){take=BOSS58.great.dmg;}
+    else if(m.kind==='rain'&&m.circles.some(c=>Math.hypot(u.x-c.x,(u.y-u.h*.5)-c.y)<=c.r+u.r)){take=BOSS58.rain.dmg;}
+    else if(m.kind==='tether'&&u.id===m.target&&Math.abs(u.x-boss.x)<=m.reach){take=BOSS58.tether.dmg;dir=Math.sign(boss.x-u.x)||1;amount=BOSS58.tether.pull;}
+    else if(m.kind==='swap'&&Math.abs(u.x-m.x)<=m.r+u.r){take=BOSS58.swap.dmg;dir=Math.sign(u.x-m.x)||1;amount=BOSS58.swap.push;}
     if(!take)continue;
     const before=u.hp;e.hurt(u,u.maxHp*take,boss.id,false,undefined,{x:boss.x,y:boss.y-boss.h*.6},'normal',undefined,{attackSide:1});
     if(amount&&alive(u))shift(u,dir,amount);
@@ -149,10 +160,11 @@ export function createStage58Owner({C,authorize,isolate=()=>false,preview=()=>fa
    const near=heroes().filter(u=>!hits.some(h=>h.id===u.id)&&Math.abs(u.x-boss.x)<=BOSS58.lash.reach).sort((a,c)=>Math.abs(a.x-boss.x)-Math.abs(c.x-boss.x))[0];
    if(near){const before=near.hp;e.hurt(near,near.maxHp*BOSS58.lash.dmg,boss.id,false,undefined,{x:boss.x,y:boss.y-boss.h*.6},'normal',undefined,{attackSide:1});hits.push({id:near.id,from:before,to:near.hp,lash:true});}
    if(m.kind==='great'){rec.charge=0;rec.shelters=[];nearWarned=false;}
+   if(m.kind==='swap'){hover(boss,m.x,BOSS58.lift[phase-1]);rec.shadowOffset=-rec.shadowOffset;}
    if(m.kind==='band')rec.shelters=[];
    e.fx('ring',m.kind==='circle'?m.x:(m.x0+m.x1)/2,m.kind==='circle'?m.y:m.y1-60,'#2a2f33',m.kind==='circle'?m.r:180);e.emit('sound',{name:'hit'});
    boss.anim=1;if(m.phase===phase)presented=true;note('resolve',{mark:m.kind,hits,neutralized:!!m.neutralized});
-   rec.mark=null;rec.guarded=false;rec.exposed=true;sync();
+   rec.mark=null;rec.guarded=false;rec.exposed=true;hover(boss,boss.x,0);sync();
    e.message('대도사 · '+m.label+(hits.length?` · ${hits.length}명 적중`:' · 비껴감')+' · 지금 드러났습니다');
    return hits;
   }
@@ -162,7 +174,7 @@ export function createStage58Owner({C,authorize,isolate=()=>false,preview=()=>fa
    phase=to;rec.phase=to;pendingPhase=0;presented=false;rec.mark=null;rec.shelters=[];rec.exposed=false;rec.guarded=false;rec.exposedRounds=0;
    const carry=Math.round(carryOver*BOSS58.carry);carryOver=0;
    if(carry>0){const floor=to<3?BOSS58.floors[to-1]:1;boss.hp=Math.max(floor+1,boss.hp-carry);}
-   const x=BOSS58.stand[to-1];rec.shadowOffset=x>boss.x?90:-90;place(boss,x);boss.facing=-1;
+   const x=BOSS58.stand[to-1];rec.shadowOffset=x>boss.x?90:-90;hover(boss,x,BOSS58.lift[to-1]);boss.facing=-1;
    if(to===2)say('phase2');
    if(to===3){say('phase3');rec.charge=1;for(const u of [node,inkA,inkB])if(!b.units.includes(u))b.units.push(u);
     mark('local-08-ledger-seam',{type:'interaction',action:'authored',authoredAction:'localLedgerCounter',label:'먹선을 끊어 충전 늦추기',x:sites.ledger.x,y:sites.ledger.y,radius:82});
@@ -171,8 +183,37 @@ export function createStage58Owner({C,authorize,isolate=()=>false,preview=()=>fa
    announce();
   }
   // Enemy-side boss action; returns true when it consumed the boss's action.
+  // Mid-boss grotesques: every second turn of his, one body comes through the warped hall.
+  const grots=[];let grotSpawned=0,bossTurns=0;const gid=new Set();
+  const grotLines={grot_hanging:'천장도 없는 허공에서 거꾸로 매달린 상주가 내려옵니다.',grot_hands:'바닥 틈에서 손 무더기가 일어섭니다. 가까이 서면 끌려갑니다.',grot_door:'법당 문짝 하나가 걸어 나와 길을 막습니다. 문틈이 입처럼 벌어집니다.'};
+  function spawnGrot(){
+   const [rig,name,hp,armor]=BOSS58.grot.kinds[grotSpawned%BOSS58.grot.kinds.length],t=densest();if(!t)return;
+   const x=Math.round(rig==='grot_hanging'?t.x+(t.x<boss.x?240:-240):rig==='grot_hands'?t.x+(boss.x>t.x?320:-320):(t.x+boss.x)/2),id='a6-c08-grot-'+grotSpawned;
+   const tpl=structuredClone(vesselA);delete tpl.id;
+   const u=C.makeUnit(tpl.cls,1,x,0,{...tpl,id,name,hp,maxHp:hp,armor,honroRigAsset:rig,honroGrotesque:rig,h:rig==='grot_hands'?140:150,r:rig==='grot_door'?36:30,fixed:rig!=='grot_hands',dead:false,acted:false,attack:(tpl.attack||1)*1.2,elite:true});
+   if(!hover(u,x,rig==='grot_hanging'?260:0))return;
+   b.units.push(u);grots.push(u);gid.add(u.id);grotSpawned++;note('grotesque',{id,rig});e.message(grotLines[rig]);e.fx('ring',u.x,u.y-60,'#1b2124',120);
+  }
+  function grotTurn(){
+   const u=e.active;if(!u||!gid.has(u.id)||!alive(u))return false;const h=heroes();if(!h.length)return false;
+   if(u.honroGrotesque==='grot_hanging'){
+    if(u.honroDrop){const d=u.honroDrop;rec.extra=(rec.extra||[]).filter(x=>x.owner!==u.id);
+     for(const v of h)if(Math.abs(v.x-d.x)<=d.r+v.r)e.hurt(v,v.maxHp*.22,u.id,false,undefined,{x:u.x,y:u.y},'normal',undefined,{attackSide:1});
+     e.fx('ring',d.x,d.y,'#2a2f33',d.r);delete u.honroDrop;e.message('매달린 상주가 떨어졌다가 다시 허공에 걸립니다.');}
+    else{const t=h.sort((a,c)=>Math.abs(c.x-boss.x)-Math.abs(a.x-boss.x))[0],g=ground(t.x);hover(u,t.x,260);u.honroDrop={x:Math.round(t.x),y:Math.round((g?.y??t.y)-40),r:130};
+     rec.extra=[...(rec.extra||[]).filter(x=>x.owner!==u.id),{owner:u.id,kind:'circle',...u.honroDrop,label:'매달린 것이 떨어짐'}];e.message('매달린 상주 · '+t.name+' 위로 옮겨 갑니다');}
+    e.finishAction();return true;}
+   if(u.honroGrotesque==='grot_hands'){const t=h.filter(v=>Math.abs(v.x-u.x)<=520).sort((a,c)=>Math.abs(a.x-u.x)-Math.abs(c.x-u.x))[0];if(!t)return false;
+    e.hurt(t,t.maxHp*.14,u.id,false,undefined,{x:u.x,y:u.y-60},'normal',undefined,{attackSide:1});shift(t,Math.sign(u.x-t.x)||1,160);u.anim=1;e.message('천수귀 · '+t.name+'을 움켜쥐어 끌어갑니다');e.finishAction();return true;}
+   if(u.honroGrotesque==='grot_door'){u.honroInhale=(u.honroInhale||0)+1;if(u.honroInhale%2)return false;
+    for(const v of h)if(Math.abs(v.x-u.x)<=600){e.hurt(v,v.maxHp*.1,u.id,false,undefined,{x:u.x,y:u.y-70},'normal',undefined,{attackSide:1});shift(v,Math.sign(u.x-v.x)||1,120);}
+    u.anim=1;e.message('입 벌린 문짝 · 숨을 들이마십니다');e.finishAction();return true;}
+   return false;
+  }
   function bossTurn(){
+   if(grotTurn())return true;
    if(e.active!==boss||!alive(boss))return false;
+   bossTurns++;if(bossTurns%BOSS58.grot.every===0&&grotSpawned<BOSS58.grot.total&&grots.filter(alive).length<BOSS58.grot.maxAlive)spawnGrot();
    // A phase ends only after its signature shape has been announced AND resolved once,
    // so a heavy opening volley cannot erase the pattern the player is meant to read.
    // P3: the node draws the far side closer on every turn he takes (a cut ledger seam delays one).
@@ -241,7 +282,7 @@ export function createStage58Owner({C,authorize,isolate=()=>false,preview=()=>fa
     flags.localDaedosaDefeated=true;rec.dead=true;rec.mark=null;rec.shelters=[];rec.charge=0;rec.shadowOffset=0;rec.exposed=false;rec.guarded=false;
     dead.push(note('localDaedosaNativeDefeat',{id:t.id,from:hpBefore,to:t.hp,dead:true,source,expansionStillPending:!death(node)}));
     // Bodies he bound lose their binding with him; the node is a working of the threshold and stays.
-    for(const v of [vesselA,vesselB,inkA,inkB])if(alive(v)&&b.units.includes(v)){v.hp=0;v.dead=true;e.fx('ring',v.x,v.y-40,'#2a2f33',60);}
+    rec.extra=[];for(const v of [vesselA,vesselB,inkA,inkB,...grots])if(alive(v)&&b.units.includes(v)){v.hp=0;v.dead=true;e.fx('ring',v.x,v.y-40,'#2a2f33',60);}
     say('defeat');sync();
    }
    if(t===node&&b.units.includes(node)&&death(t)&&hpBefore>0&&!rec.nodeDead){
