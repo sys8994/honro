@@ -1,0 +1,521 @@
+{
+  "status": "PASS",
+  "source59": "1afcdf4fbbd89faf58455a9e46667b2725a6cafe4f8d265e58af3ea82f046572",
+  "errors": [],
+  "startupChanges": [
+    "honro-first-act-profile-1"
+  ],
+  "mountedSave": "c6e64b272b824a729be8012b0056395a72d3d423277a58a228143b909b011461",
+  "ending": {
+    "walk": {
+      "initial": {
+        "stage": 60,
+        "round": 1,
+        "phase": "aim",
+        "shot": 0,
+        "active": "p-archer",
+        "hostile": 0,
+        "heroes": [
+          {
+            "id": "p-archer",
+            "cls": "archer",
+            "x": 4988.950276243094,
+            "y": 2846.84605047036,
+            "hp": 1720,
+            "shield": 206,
+            "focus": 404,
+            "loadout": [
+              "A01",
+              "A14",
+              "A02",
+              "A05"
+            ],
+            "equipment": {
+              "version": 1
+            },
+            "grounded": true,
+            "support": "return-cutout-near-body",
+            "move": 2921
+          },
+          {
+            "id": "p-knight",
+            "cls": "knight",
+            "x": 5104.972375690608,
+            "y": 2860.162732295329,
+            "hp": 3846,
+            "shield": 0,
+            "focus": 459,
+            "loadout": [
+              "S00",
+              "S01",
+              "S03"
+            ],
+            "equipment": {
+              "version": 1
+            },
+            "grounded": true,
+            "support": "return-cutout-near-body",
+            "move": 4081
+          },
+          {
+            "id": "p-occultist",
+            "cls": "occultist",
+            "x": 5237.5690607734805,
+            "y": 2880.3535911602207,
+            "hp": 2304,
+            "shield": 276,
+            "focus": 751,
+            "loadout": [
+              "O01",
+              "O04",
+              "O03",
+              "O06"
+            ],
+            "equipment": {
+              "version": 1
+            },
+            "grounded": true,
+            "support": "return-cutout-near-body",
+            "move": 3132
+          },
+          {
+            "id": "p-mage",
+            "cls": "mage",
+            "x": 5303.867403314917,
+            "y": 2167.646408839779,
+            "hp": 1847.9,
+            "shield": 246,
+            "focus": 724,
+            "loadout": [
+              "M01",
+              "M10",
+              "M07"
+            ],
+            "equipment": {
+              "version": 1
+            },
+            "grounded": true,
+            "support": "return-cutout-upper-ledges",
+            "move": 3075
+          }
+        ],
+        "souls": [
+          {
+            "id": "qa-last-traveling-soul",
+            "cls": "occultist",
+            "x": 5469.613259668508,
+            "y": 2820.0823706680058,
+            "hp": 126,
+            "shield": 0,
+            "focus": 114,
+            "loadout": [],
+            "equipment": null,
+            "grounded": true,
+            "support": "return-cutout-near-body",
+            "move": 550
+          },
+          {
+            "id": "quiet10-second-traveling-soul",
+            "cls": "occultist",
+            "x": 5429.834254143646,
+            "y": 2832.2872928176794,
+            "hp": 126,
+            "shield": 0,
+            "focus": 114,
+            "loadout": [],
+            "equipment": null,
+            "grounded": true,
+            "support": "return-cutout-near-body",
+            "move": 550
+          }
+        ]
+      },
+      "final": {
+        "stage": 60,
+        "round": 1,
+        "phase": "won",
+        "shot": 0,
+        "active": "p-mage",
+        "hostile": 0,
+        "heroes": [
+          {
+            "id": "p-archer",
+            "cls": "archer",
+            "x": 6843.8019553873355,
+            "y": 2048.184955027148,
+            "hp": 1720,
+            "shield": 206,
+            "focus": 404,
+            "loadout": [
+              "A01",
+              "A14",
+              "A02",
+              "A05"
+            ],
+            "equipment": {
+              "version": 1
+            },
+            "grounded": true,
+            "support": "return-cutout-near-body",
+            "move": 823.5317381466394
+          },
+          {
+            "id": "p-knight",
+            "cls": "knight",
+            "x": 6863.774784522699,
+            "y": 2032.2066917188574,
+            "hp": 3846,
+            "shield": 0,
+            "focus": 459,
+            "loadout": [
+              "S00",
+              "S01",
+              "S03"
+            ],
+            "equipment": {
+              "version": 1
+            },
+            "grounded": true,
+            "support": "return-cutout-near-body",
+            "move": 2077.0337335634663
+          },
+          {
+            "id": "p-occultist",
+            "cls": "occultist",
+            "x": 7017.603812998784,
+            "y": 1937.0875182560183,
+            "hp": 2304,
+            "shield": 276,
+            "focus": 751,
+            "loadout": [
+              "O01",
+              "O04",
+              "O03",
+              "O06"
+            ],
+            "equipment": {
+              "version": 1
+            },
+            "grounded": true,
+            "support": "return-cutout-near-body",
+            "move": 1081.1424970877054
+          },
+          {
+            "id": "p-mage",
+            "cls": "mage",
+            "x": 6747.596997055662,
+            "y": 2125.148921692487,
+            "hp": 1847.9,
+            "shield": 246,
+            "focus": 724,
+            "loadout": [
+              "M01",
+              "M10",
+              "M07"
+            ],
+            "equipment": {
+              "version": 1
+            },
+            "grounded": true,
+            "support": "return-cutout-near-body",
+            "move": 1475.500901165361
+          }
+        ],
+        "souls": [
+          {
+            "id": "qa-last-traveling-soul",
+            "cls": "occultist",
+            "x": 5842.712783752478,
+            "y": 2694.3229518843486,
+            "hp": 126,
+            "shield": 0,
+            "focus": 114,
+            "loadout": [],
+            "equipment": null,
+            "grounded": true,
+            "support": "return-cutout-near-body",
+            "move": 156.08333333334753
+          },
+          {
+            "id": "quiet10-second-traveling-soul",
+            "cls": "occultist",
+            "x": 5816.67277164272,
+            "y": 2701.917955416361,
+            "hp": 126,
+            "shield": 0,
+            "focus": 114,
+            "loadout": [],
+            "equipment": null,
+            "grounded": true,
+            "support": "return-cutout-near-body",
+            "move": 141.54301929162244
+          }
+        ]
+      },
+      "guide": {
+        "id": "p-occultist",
+        "cls": "occultist",
+        "side": 0,
+        "x": 5375.458648127476,
+        "y": 2845.881194321722,
+        "vx": 0,
+        "vy": 0,
+        "hp": 2304,
+        "maxHp": 2304,
+        "shield": 276,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "O01",
+          "O04",
+          "O03",
+          "O06"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 2989.8666666666654,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "return-cutout-near-body",
+        "normal": null
+      },
+      "movement": [
+        {
+          "id": "p-archer",
+          "start": [
+            4988.950276243094,
+            2846.84605047036
+          ],
+          "goal": 6830.176795580111,
+          "foot": {
+            "id": "p-archer",
+            "x": 6843.8019553873355,
+            "y": 2048.184955027148,
+            "vx": 0,
+            "vy": 0,
+            "move": 823.5317381466394,
+            "grounded": true,
+            "support": "return-cutout-near-body",
+            "phase": "aim",
+            "round": 1,
+            "chart": [
+              7200,
+              4100
+            ],
+            "gravity": {
+              "x": 0,
+              "y": 320
+            }
+          }
+        },
+        {
+          "id": "p-knight",
+          "start": [
+            5104.972375690608,
+            2860.162732295329
+          ],
+          "goal": 6862.176795580111,
+          "foot": {
+            "id": "p-knight",
+            "x": 6863.774784522699,
+            "y": 2032.2066917188574,
+            "vx": 0,
+            "vy": 0,
+            "move": 2077.0337335634663,
+            "grounded": true,
+            "support": "return-cutout-near-body",
+            "phase": "aim",
+            "round": 1,
+            "chart": [
+              7200,
+              4100
+            ],
+            "gravity": {
+              "x": 0,
+              "y": 320
+            }
+          }
+        },
+        {
+          "id": "p-occultist",
+          "start": [
+            5237.5690607734805,
+            2880.3535911602207
+          ],
+          "goal": 5366.613259668508,
+          "foot": {
+            "id": "p-occultist",
+            "x": 5375.458648127476,
+            "y": 2845.881194321722,
+            "vx": 0,
+            "vy": 0,
+            "move": 2989.8666666666654,
+            "grounded": true,
+            "support": "return-cutout-near-body",
+            "phase": "aim",
+            "round": 1,
+            "chart": [
+              7200,
+              4100
+            ],
+            "gravity": {
+              "x": 0,
+              "y": 320
+            }
+          }
+        },
+        {
+          "id": "p-occultist",
+          "start": [
+            5375.458648127476,
+            2845.881194321722
+          ],
+          "goal": 5636.1212782308385,
+          "foot": {
+            "id": "p-occultist",
+            "x": 5638.514523953739,
+            "y": 2758.6637291097404,
+            "vx": 0,
+            "vy": 0,
+            "move": 2712.4305561543115,
+            "grounded": true,
+            "support": "return-cutout-near-body",
+            "phase": "aim",
+            "round": 1,
+            "chart": [
+              7200,
+              4100
+            ],
+            "gravity": {
+              "x": 0,
+              "y": 320
+            }
+          }
+        },
+        {
+          "id": "p-occultist",
+          "start": [
+            5638.514523953739,
+            2758.6637291097404
+          ],
+          "goal": 6996.176795580111,
+          "foot": {
+            "id": "p-occultist",
+            "x": 7017.603812998784,
+            "y": 1937.0875182560183,
+            "vx": 0,
+            "vy": 0,
+            "move": 1081.1424970877054,
+            "grounded": true,
+            "support": "return-cutout-near-body",
+            "phase": "aim",
+            "round": 1,
+            "chart": [
+              7200,
+              4100
+            ],
+            "gravity": {
+              "x": 0,
+              "y": 320
+            }
+          }
+        },
+        {
+          "id": "p-mage",
+          "start": [
+            5303.867403314917,
+            2167.646408839779
+          ],
+          "goal": 6898.176795580111,
+          "foot": {
+            "id": "p-mage",
+            "x": 6747.596997055662,
+            "y": 2125.148921692487,
+            "vx": 0,
+            "vy": 0,
+            "move": 1475.500901165361,
+            "grounded": true,
+            "support": "return-cutout-near-body",
+            "phase": "won",
+            "round": 1,
+            "chart": [
+              7200,
+              4100
+            ],
+            "gravity": {
+              "x": 0,
+              "y": 320
+            }
+          }
+        }
+      ],
+      "inputs": [
+        {
+          "key": "ArrowRight",
+          "trusted": true
+        },
+        {
+          "guide": false,
+          "trusted": true
+        },
+        {
+          "key": "ArrowRight",
+          "trusted": true
+        },
+        {
+          "guide": false,
+          "trusted": true
+        },
+        {
+          "key": "ArrowRight",
+          "trusted": true
+        },
+        {
+          "guide": true,
+          "trusted": true
+        },
+        {
+          "key": "ArrowRight",
+          "trusted": true
+        },
+        {
+          "key": "ArrowRight",
+          "trusted": true
+        },
+        {
+          "guide": false,
+          "trusted": true
+        },
+        {
+          "key": "ArrowRight",
+          "trusted": true
+        }
+      ],
+      "shot": 0
+    },
+    "memorial": [
+      "곽진",
+      "박문돌",
+      "이만복"
+    ],
+    "receipt": {
+      "revision": "act6-reunion-v1",
+      "winner": "p-knight",
+      "key": "act6-ending:eq-mwuu06k6-y7h4w7qc:66ebd1c47e4fef6c1e0ece240b3bea6868123c70eae00d108f7cf6dfb2c96242",
+      "terminalSha": "66ebd1c47e4fef6c1e0ece240b3bea6868123c70eae00d108f7cf6dfb2c96242",
+      "recordedGuardIds": [
+        "local-07-gwakjin-return-keeper",
+        "local-07-return-guard-shield",
+        "local-07-return-guard-relay"
+      ]
+    },
+    "returnedToTitle": true
+  },
+  "endingChanges": [],
+  "finishedSave": "c6e64b272b824a729be8012b0056395a72d3d423277a58a228143b909b011461",
+  "originalAndBoundaryUnchanged": true
+}

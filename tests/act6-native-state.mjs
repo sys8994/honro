@@ -17,6 +17,7 @@ import {validTornEave} from '../shared/act6-mumyeongsa/torn-eave.mjs';
 import {validSodanThread} from '../shared/act6-mumyeongsa/sodan-thread.mjs';
 import {verifyStage54Relay} from '../shared/runtime/stage54-pilot-owner.mjs';
 import {createChapterBoundary} from '../shared/act6-boundary/chapter-boundary.mjs';
+import {createFirstMissionOwner} from '../shared/runtime/act6-first-missions.mjs';
 import {prepareEnding} from '../shared/runtime/stage60-ending.mjs';
 import {endingCardFor} from '../shared/runtime/stage60-card.mjs';
 import {attachStage59Forepaw} from '../shared/act6-late-qa/normal-stage59-forepaw-cue.mjs';
@@ -126,7 +127,7 @@ function at58(e,cls,x){return actor(e,cls,x,'local-lower-08-body');}
 function hurt(e,u,amount,owner='p-mage'){return e.hurt(u,amount,owner,true,undefined,{x:u.x,y:u.y-u.h/2},'normal');}
 
 async function test58(){
- const {e,b,owner,exterior}=await make58();
+ const {e,b,app,owner,exterior}=await make58();
  assert.equal(players(b).length,4);assert.equal(enemies(b).length,4);assert(!e.unit('a6-c08-boss'));
  at58(e,'mage',3680);assert(!owner.interact('threshold').ok);assert(!e.unit('a6-c08-boss'));
  at58(e,'occultist',3496);assert(owner.interact('column').ok);
@@ -200,14 +201,24 @@ async function test58(){
  }
  owner.tick();
  assert(owner.project().complete,JSON.stringify(owner.project()));
- b.phase='won';
+ b.phase='won';app.done=true;
  const terminal=owner.terminal();assert(terminal&&verifyReturnGate(terminal.returnGate,Object.fromEntries(party.map(u=>[u.cls,u]))));
  assert(owner.terminal()===null,'58 terminal cannot be issued twice');
- stateChecks[58]={starts:4,counts,waves,geometry,marks,greatContrast:{sheltered,open,openAfter:[knight.hp,knight.shield]},events:owner.inspect().log.map(x=>x.kind),outgoing:terminal.flags,
-  receivedIdentities:party.map(u=>u.id),conditional:'Native state contacts and damage events. No play or timing.'};
- const lost=await make58();
+ const entered=previous(58),signed=sealPort(app,58,{terminal});
+ const next=await signed.port.checkpoint({app,engine:e,store:signed.store,terminal,upstream:entered,to:59,
+  pin:fixtures[59].body.pin,expectedRaw:signed.raw(),stageSeed:app.stage,budget:{id:58}});
+ assert(next.ok&&signed.writes()===1,JSON.stringify(next));
+ assert.deepEqual(signed.port.inspect(app),{kind:'restorable',to:59});
+ const lost=await make58(),saved=sealPort(lost.app,58),held=saved.raw();
  hurt(lost.e,players(lost.b)[0],100000,'');
  assert(lost.owner.project().failed&&!lost.owner.project().complete&&lost.owner.terminal()===null);
+ lost.b.phase='lost';lost.app.done=true;
+ const denied=await saved.port.checkpoint({app:lost.app,engine:lost.e,store:saved.store,terminal:null,upstream:entered,to:59,
+  pin:fixtures[59].body.pin,expectedRaw:held,stageSeed:lost.app.stage,budget:{id:58}});
+ assert(!denied.ok&&saved.writes()===0&&saved.raw()===held);
+ stateChecks[58]={starts:4,counts,waves,geometry,marks,greatContrast:{sheltered,open,openAfter:[knight.hp,knight.shield]},events:owner.inspect().log.map(x=>x.kind),outgoing:terminal.flags,
+  receivedIdentities:party.map(u=>u.id),next59SHA256:shaText(signed.raw()),loss:{blocked59:denied.reason,originalSHA256:shaText(held)},
+  conditional:'Native state contacts and damage events. No play or timing.'};
  return terminal;
 }
 
@@ -292,6 +303,52 @@ async function testBoundaryRecipes(){
    readOnlySHA:shaText(held),verifiedFlags:flags,deniedMissingFlags:flags.length,originalBytesPreserved:true};
  }
  stateChecks.boundaryRecipes=results;
+}
+
+async function testFirstMissions(){
+ const profile=rawProfile(52),results={};
+ let previous;
+ for(const id of [51,52]){
+  const packet=intake.rows[id],p=await pack(id),c=compiled(p),rules={...packet.mission,runtimeReleaseEnabled:true};
+  const units=clone(packet.owner.actors);
+  if(previous)for(const u of units.filter(row=>row.side===0))Object.assign(u,previous.actors.find(row=>row.cls===u.cls));
+  const {app,e,b}=carrier(id,p,c,profile,units,rules.objective);
+  Object.assign(app.stage,{act:6,actStage:rules.actStage});
+  const source={kind:'normal-owned-release',incoming:previous};
+  const mission=createFirstMissionOwner({C,manifest:{rows:{[id]:rules}},verifyMounted:(a,E,s)=>a===app&&E===e&&s===source,fingerprint:sha});
+  assert(mission.mount(app,e,source),`${id} native mission mount`);
+  const interact=id=>mission.interact(app,e,id);
+  const [first,bridge,bell,threshold]=rules.marks;
+  const at=m=>actor(e,m.cls,m.x,m.support);
+  const allAt=(m)=>players(b).forEach((u,i)=>foot(e,u,m.x+i*22,m.support));
+  const r={};
+  at(first);assert(!interact('threshold').ok);assert(!interact(first.id).ok);
+  if(id===51){
+   const champion=e.unit('crest-champion');hurt(e,champion,1000000);
+   assert(champion.dead&&!interact(first.id).ok,'still need the four grounded originals');
+   allAt(first);at(first);assert(interact(first.id).ok);
+  }else{
+   const stone=e.unit('cliff-stone'),start=stone.hp;
+   for(let i=0;i<7&&!stone.dead;i++)shot59(e,'archer','A01',stone.x,stone.y-stone.h*.65,first.x,first.support);
+   r.cliffHP=[start,stone.hp];assert(stone.dead,'archer shot must kill the real stone');
+   at(first);assert(interact(first.id).ok);
+   at(bridge);assert(!interact(bridge.id).ok);
+   const keeper=e.unit(bridge.afterEnemy);hurt(e,keeper,1000000);assert(keeper.dead);
+   at(bridge);assert(interact(bridge.id).ok);
+   at(threshold);assert(!interact(threshold.id).ok);
+   at(bell);assert(interact(bell.id).ok);
+   at(threshold);assert(!interact(threshold.id).ok);
+   allAt(bell);at(threshold);assert(interact(threshold.id).ok);
+  }
+  assert.equal(mission.project(app,e).complete,true);
+  b.phase='lost';assert.equal(mission.terminal(app,e),null);
+  b.phase='won';previous=mission.terminal(app,e);
+  assert.equal(previous.stage,id);assert.equal(mission.terminal(app,e),null);
+  assert.deepEqual(Object.keys(previous.flags),rules.terminalFlags);
+  r.events=previous.events.map(v=>v.key);r.flags=previous.flags;r.noLossTerminal=true;
+  results[id]=r;
+ }
+ Object.assign(stateChecks,results);
 }
 async function test57(){
  const h=await make57(),{e,b,app,owner}=h;
@@ -441,8 +498,12 @@ async function test59(which){
  assert(owner.inspect().state.forepaw===which,'wrong forepaw response '+JSON.stringify(owner.inspect().state));
  assert(joined?.length>=28,'the legal closing formation admitted only '+joined?.length);
  assert.deepEqual(new Set(owner.inspect().waves.rounds.filter(v=>v.action==='spawn').map(v=>v.front)),new Set(['west-return','east-fault']));
- const n=owner.inspect().waves.rounds.length;
- volley59(h,b.round+14);assert.equal(owner.inspect().waves.rounds.length,n,'garmjin closes inflow immediately');
+ const beforeClosed=owner.inspect().waves.rounds.filter(v=>v.action==='spawn').length;
+ assert(owner.inspect().waves.closed,'garmjin must close both wings immediately');
+ const closedRound=b.round;
+ for(let future=1;future<=14;future++)volley59(h,closedRound+future);
+ const afterClosed=owner.inspect().waves.rounds.filter(v=>v.action==='spawn').length;
+ assert.equal(afterClosed,beforeClosed,'garmjin closes inflow immediately');
  assert(!owner.project().complete);
  const bridge=e.unit('qa-immediate-bridge-threat');assert(bridge&&enemies(b).length>=1);
  if(which==='guard')hurt(e,bridge,100000,'p-archer');
@@ -476,7 +537,8 @@ async function test59(which){
  const modeledTotal=sentries59.length+1+3+joined.length;
  stateChecks['59-'+which]={opening:sentries59.length+1,conditionalEnemies:modeledTotal,
    west:joined.filter(x=>x.id.includes('west-return')).length,east:joined.filter(x=>x.id.includes('east-fault')).length,
-   maxAlive,peakAttackQueue:Math.max(0,...actualCaps),forepaw:nativeSweeps,cues,events:owner.inspect().log.map(r=>r.kind),next:terminal.next,
+   maxAlive,peakAttackQueue:Math.max(0,...actualCaps),reinforcementsAfterSeal:afterClosed-beforeClosed,closedScheduleProbes:14,
+   forepaw:nativeSweeps,cues,events:owner.inspect().log.map(r=>r.kind),next:terminal.next,
    signed60:shaText(state.raw())};
  const lost=await make59(),sodan=lost.e.unit('p-occultist');
  lost.owner.tick();hurt(lost.e,sodan,100000,'qa-immediate-bridge-threat');
@@ -487,6 +549,7 @@ async function test59(which){
  const denied=await protectedSave.port.checkpoint({app:lost.app,engine:lost.e,store:protectedSave.store,terminal:null,to:60,
   pin:fixtures[60].body.pin,expectedRaw:content,stageSeed:lost.app.stage,budget:{id:59}});
  assert(!denied.ok&&protectedSave.writes()===0&&protectedSave.raw()===content);
+ stateChecks['59-'+which].loss={blocked60:denied.reason,originalSHA256:shaText(content),reason:lost.owner.project().summary};
  return {terminal,physical};
 }
 
@@ -661,4 +724,5 @@ await run('57 parked body defeat, signed retry, real reunion and signed 58',test
 if(winner59)await run('60 true guides, no combat, signed memorial and normal title handoff',()=>test60(winner59));
 await run('51–60 authored slots, actual supporting faces, roles and caps',auditRosters);
 await run('51→52 through 59→60 exact saved-state conditions and missing-flag negatives',testBoundaryRecipes);
+await run('51 and 52 native objective order, grounded four, and the Archer cliff projectile',testFirstMissions);
 if(process.argv[2])await writeFile(process.argv[2],JSON.stringify({stateChecks,ledger},null,2)+'\n');
