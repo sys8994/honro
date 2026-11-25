@@ -1,0 +1,80 @@
+{
+  "status": "FAIL",
+  "boundaries": [
+    {
+      "from": 51,
+      "to": 52,
+      "storageHash": "bebf6df2891e12ba2e777ba5c5363ac0bd7ba054b451a1325d7a03fb58b38cae"
+    },
+    {
+      "from": 52,
+      "to": 53,
+      "storageHash": "e661d451cddae625743a54122c54145c6b5e0fa206e9d55d8dcb40305d4b52ab"
+    },
+    {
+      "from": 53,
+      "to": 54,
+      "storageHash": "4bc76ab8df025d61e854a3aafcaa546c1c83c127192fb26e37ae1999359533c6"
+    },
+    {
+      "from": 54,
+      "to": 55,
+      "storageHash": "9d8571baac8327924c994d88e328eaf70777d206c666c507f1509dc05ce7478f"
+    },
+    {
+      "from": 55,
+      "to": 56,
+      "storageHash": "ed1bc2b43f77963c740a563b9ac2cfb1d14d6503c9d7f8c27180aaeac86953e0"
+    },
+    {
+      "from": 56,
+      "to": 57,
+      "storageHash": "78ca79617ee079e87b38a48b1f9a361d56569926fd819b432945a6efa72cbd7a"
+    }
+  ],
+  "failure": {
+    "stage": 57,
+    "mission": "openRetreat",
+    "forbiddenGateX": [
+      3194,
+      3350
+    ],
+    "actor": {
+      "id": "p-knight",
+      "cls": "knight",
+      "side": 0,
+      "x": 3342.8967874809578,
+      "y": 3328.9147749939866,
+      "vx": 0,
+      "vy": 0,
+      "hp": 3384,
+      "maxHp": 3846,
+      "shield": 0,
+      "r": 22,
+      "h": 92,
+      "ammo": null,
+      "loadout": [
+        "S00",
+        "S01",
+        "S03"
+      ],
+      "dead": false,
+      "actorsMoved": false,
+      "move": 3811.5,
+      "grounded": true,
+      "family": {
+        "x": 0,
+        "y": 320
+      },
+      "contact": "local-lower-07-west",
+      "normal": null
+    },
+    "phase": "aim",
+    "round": 3,
+    "flags": {
+      "act6.firstGarmjinFailed": true,
+      "bellSiteEmergencyStabilized": true
+    }
+  },
+  "errors": []
+}

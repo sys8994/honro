@@ -23,7 +23,7 @@ python game/docs/act6/mumyeongsa-p00-p10/baseline/relay_live_chain.py --build "$
 python game/docs/act6/mumyeongsa-p00-p10/baseline/relay_live_chain.py --build "$PWD" --out /tmp/honro-bell-front-shots --bell-only --bell-case repair --pressure
 ```
 
-15·21명에서 정체되던 종터 내리막 첫 행을 조사해, 기존 서쪽 발판의 실제 빈 자리 x844와 이어지는 돌단의 정상을 대체 진입점으로 지정했다. 같은 시드 `19388`의 복구 판에서 네 분대 각각 4명, 원래 인원과 시작 적 합계 10명, 장 전체 26명, 최대 활성·공격 순서 10·7명을 확인했다. 내리막은 실제 HBM01과 HSH01/02로 교전했다. 원래 빈종각귀가 실제로 결속을 손상시켰고 좌정한 소단이 복구했으며, 설오·휘겸이 접근 분대에 실제 반격한 뒤 12라운드에 정렬해 56 라이브·새 저장을 열었다. 적 실제 발사 74회와 체력·실드 피해 71건을 기록했다. [대체 발점·교전·새 저장](alternate-descent.json) · [55 종터](alternate-descent.webp) · [56 라이브](alternate-live56.webp)
+누적 21명에서 정체되던 종터 내리막 첫 행을 조사해, 기존 서쪽 발판의 실제 빈 자리 x844와 이어지는 돌단의 정상을 대체 진입점으로 지정했다. 같은 시드 `19388`의 복구 판에서 네 분대 각각 4명, 원래 인원과 시작 적 합계 10명, 장 전체 26명, 최대 활성·공격 순서 10·7명을 확인했다. 내리막은 실제 HBM01과 HSH01/02로 교전했다. 원래 빈종각귀가 실제로 결속을 손상시켰고 좌정한 소단이 복구했으며, 설오·휘겸이 접근 분대에 실제 반격한 뒤 12라운드에 정렬해 56 라이브·새 저장을 열었다. 적 실제 발사 74회와 체력·실드 피해 71건을 기록했다. [대체 발점·교전·새 저장](alternate-descent.json) · [55 종터](alternate-descent.webp) · [56 라이브](alternate-live56.webp)
 
 ```bash
 python game/docs/act6/mumyeongsa-p00-p10/baseline/relay_live_chain.py --build "$PWD" --out /tmp/honro-bell-alternate-slots --bell-only --bell-case repair --pressure

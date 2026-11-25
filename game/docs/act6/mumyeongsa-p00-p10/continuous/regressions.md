@@ -5,6 +5,8 @@
 | 명령 또는 검사 | 관측 |
 |---|---|
 | `npm run test:campaign-continuity` | 통과. 31개 fixture 생명주기 검사다. |
+| `npm run test:release-guard` | 현재 작업 소스에서 19건 통과. |
+| `npm run test:terrain-domain` | 별도 빌드 두 작업본 모두 `terrain-domain.mjs:13`의 기존 `playProjection` 기대값에서 실패했다. 이후 두 하위 명령은 이 실행에서 시작되지 않았다. |
 | `node tests/act5-terrain-contact.mjs` 및 `node tests/act5-journey-atlas.mjs` | 통과. Act 5 열 장의 접지·지도 등록 및 연결을 검증한다. |
 | `npm run test:ground-contact` | 두 작업본 모두 `ground-contact.mjs:23`의 실제 경사 절댓값 `>1.35` 검사가 실패했다. |
 | `npm run test:rest-hub-journey-flow` | 두 작업본 모두 먼저 11건을 통과한 뒤 `G.HonroPortraits.markup is not a function`에서 멈췄다. |
