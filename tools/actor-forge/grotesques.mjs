@@ -9,7 +9,7 @@ const n=v=>Math.round(v*10)/10;
 function torn(x0,y0,x1,y1,steps,amp){let d='';for(let i=1;i<=steps;i++){const t=i/steps,x=x0+(x1-x0)*t,y=y0+(y1-y0)*t,o=(i%2?1:-.4)*amp*(.4+rnd()*.9);d+=` L${n(x+(y1-y0?o*.3:0))} ${n(y+o)}`;}return d;}
 // Long jointed finger: three bones with knuckle bulges and a dark nail.
 function finger(p,x,y,ang,len,fill='flesh',w=1.6){let cx=x,cy=y,a=ang;const pts=[];for(let j=0;j<3;j++){const l=len*[.42,.33,.25][j];a+=(j?.28:.05);const nx=cx+Math.cos(a)*l,ny=cy+Math.sin(a)*l;pts.push([cx,cy,nx,ny]);cx=nx;cy=ny;}
- for(const [ax,ay,bx,by] of pts)line(p,`M${n(ax)} ${n(ay)} L${n(bx)} ${n(by)}`,fill,w,0);if(w>=1.3)for(const [ax,ay] of pts.slice(1))oval(p,n(ax),n(ay),w*.7,w*.7,fill);
+ for(const [ax,ay,bx,by] of pts)line(p,`M${n(ax)} ${n(ay)} L${n(bx)} ${n(by)}`,fill,w,0);for(const [ax,ay] of pts.slice(1))oval(p,n(ax),n(ay),w*.7,w*.7,fill);
  line(p,`M${n(cx)} ${n(cy)} L${n(cx+Math.cos(a)*3)} ${n(cy+Math.sin(a)*3)}`,'void',w*.9,0);}
 function hand(p,x,y,ang,len,fill){for(let f=-2;f<=2;f++)finger(p,x+Math.cos(ang+Math.PI/2)*f*1.6,y+Math.sin(ang+Math.PI/2)*f*1.6,ang+f*.16,len*(f===-2?.6:1-Math.abs(f)*.08),fill,1.2);}
 function strands(p,x,y,count,len,spread,color='void',w=.9,drift=0){for(let i=0;i<count;i++){const sx=x+(i/(count-1||1)-.5)*spread,l=len*(.7+rnd()*.45),c1=sx+(rnd()-.5)*8+drift*.5;line(p,`M${n(sx)} ${n(y)} Q${n(c1)} ${n(y+l*.5)} ${n(sx+drift+(rnd()-.5)*6)} ${n(y+l)}`,color,w,0);}}
