@@ -12,6 +12,10 @@ import sharp from 'sharp';
 import {minify} from 'terser';
 import {planWebAssetRetention,selectPublishedGenerations,publishedRetention} from './web-retention.mjs';
 import {emitJsonParts,webJsonPartBytes} from './web-json-parts.mjs';
+import {STAGE55} from './runtime/stage55-pilot-owner.mjs';
+import {owner56} from './runtime/stage56-owner.mjs';
+import {STAGE59} from './runtime/stage59-owner.mjs';
+import {layout57,layout58,layout60} from './act6-boundary/late-layouts.mjs';
 
 const read=async p=>(await readFile(path.join(root,p),'utf8')).replace(/\r\n/g,'\n');
 const hash=body=>createHash('sha256').update(body).digest('hex');
@@ -189,9 +193,16 @@ export async function buildWeb({vector=true,destination=path.join(root,'HONRO.ht
       const digest=o=>hash(JSON.stringify(o));
       const layout={52:{playSHA:trusted[52].mission.shape.playSHA,worldSHA:trusted[52].mission.shape.worldSHA},
         53:{playSHA:trusted[53].mission.playSHA,worldSHA:trusted[53].mission.worldSHA},
-        54:{playSHA:digest(trusted[54].charts.N.terrain),worldSHA:digest(trusted[54].charts.N.world)}};
-      assert(Object.values(layout).flatMap(Object.values).every(key=>/^[a-f0-9]{64}$/.test(key)));
-      descriptors.boundary={build:hash(qaAct6.source),owner,layout};
+        54:{playSHA:digest(trusted[54].charts.N.terrain),worldSHA:digest(trusted[54].charts.N.world)},
+        55:STAGE55.shape,56:owner56,57:layout57,58:layout58,59:STAGE59,60:layout60};
+      const build=hash(qaAct6.source),pins={};
+      for(const [key,{playSHA:play,worldSHA:world}] of Object.entries(layout)){
+        const to=Number(key),from=to-1;
+        assert([play,world].every(value=>/^[a-f0-9]{64}$/.test(value)));
+        pins[to]={from,to,build,fromPacket:descriptors.rows[from].sha256,toPacket:descriptors.rows[to].sha256,
+          owner:owner[to],play,world};
+      }
+      descriptors.boundary={build,owner,pins};
     }
     const {makeQaMain}=await import('./act6-app-qa.mjs');
     const mains=entries.filter(entry=>entry.name==='shared/runtime/main.js');
@@ -230,15 +241,21 @@ export async function buildWeb({vector=true,destination=path.join(root,'HONRO.ht
     }
     let debugStages=null;
     if(descriptors.releaseEnabled&&descriptors.boundary){
-      const rows=JSON.parse(await read('shared/act6-debug-stages/fixtures.json'));
-      assert.deepEqual(Object.keys(rows),Array.from({length:9},(_,i)=>String(52+i)));
-      for(const [id,record] of Object.entries(rows)){
-        assert.equal(record.body.to,Number(id));
-        assert.equal(record.body.from,Number(id)-1);
-        assert.equal(record.body.pin.fromPacket,descriptors.rows[Number(id)-1].sha256);
-        assert.equal(record.body.pin.toPacket,descriptors.rows[id].sha256);
-        assert.equal(record.body.runId,record.profile.equipment.runId);
-        assert(record.profile.cleared[50]);
+      const fixtures=JSON.parse(await read('shared/act6-debug-stages/fixtures.json'));
+      assert.deepEqual(Object.keys(fixtures),Object.keys(descriptors.boundary.pins));
+      const rows={};
+      for(const [id,{body,profile}] of Object.entries(fixtures)){
+        const pin=descriptors.boundary.pins[id],label='Act6 debug chapter '+id;
+        assert.equal(body.to,pin.to,label);
+        assert.equal(body.from,pin.from,label);
+        for(const key of ['fromPacket','toPacket','play','world'])assert.equal(body.pin[key],pin[key],label+' '+key);
+        assert.equal(body.runId,profile.equipment.runId,label);
+        assert(profile.cleared[50],label);
+        for(const [key,value] of Object.entries({profile,custody:body.custody,terminal:body.terminal})){
+          assert.equal(hash(JSON.stringify(value)),body[key+'SHA'],label+' '+key);
+        }
+        const current={...body,pin};
+        rows[id]={profile,body:current,bodySHA:hash(JSON.stringify(current))};
       }
       const bytes=Buffer.from(JSON.stringify({schema:1,rows})+'\n');
       assert(bytes.length<400000);

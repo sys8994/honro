@@ -3,8 +3,6 @@
         a.profile===a.normalProfile&&normal51Provider.content(e.b)===e.stage&&inNormalStage(a,e,57)&&runtime(a);
       const eligible57=(a,s)=>a.screen==='battle'&&scope56(a,a.engine,s)&&s.b.phase==='won'&&a.done&&s.terminal?.stage===56&&
         s.terminal.won===true&&s.terminal.flags?.['act6.firstGarmjinFailed']===true&&s.terminal.flags?.['act6.temporaryPassageEscaped']===true&&s.terminal.settlement===false;
-      const descriptor57=Object.freeze({id:57,authoredId:'a6-local-playable-07',
-        playSHA:'7cc7d894a8d4457db0aae331bf3eb2904d8af96c682f9a1c4393246a1bf30f72',worldSHA:'aeeeaa1f19a136072193545e5a668c97a57fea941c18ddb65968f474c6c57f99'});
       const port57=createNormalWarmPort({
         verifyPacket:q=>signed57.get(q.packet)===q.compiled&&q.descriptor===descriptor57,
         authorizeCold:(key,a,p,id)=>{const m=cold57.get(key);return id===57&&m?.a===a&&m.p===p&&m.stays()&&runtime(a);},

@@ -3,13 +3,7 @@
       const boundarySessions=new WeakMap(), boundaryButton=new WeakMap();
       const boundaryAllowed=id=>Number.isInteger(id)&&id>=52&&id<=60;
       const nativeKey='honro-first-act-profile-1', markerKey='honroAct6ChapterBoundary';
-      const routePins=id=>{
-        const layout=id<=54?descriptor.boundary?.layout?.[id]:
-          ({55:D55.shape,56:owner56,57:descriptor57,58:descriptor58,59:D59,60:D60})[id];
-        if(!boundaryAllowed(id)||!layout)return null;
-        return {from:id-1,to:id,build:descriptor.boundary.build,fromPacket:descriptor.rows[id-1].sha256,toPacket:descriptor.rows[id].sha256,
-          owner:descriptor.boundary.owner[id],play:layout.playSHA,world:layout.worldSHA};
-      };
+      const routePins=id=>boundaryAllowed(id)?descriptor.boundary?.pins?.[id]??null:null;
       function boundarySession(app){
         if(!descriptor.boundary||!runtime(app)||app.profile!==app.normalProfile||app.profileStore.locked||!G.navigator?.locks||!app.normalProfile.cleared?.[50])return null;
         const run=app.normalProfile.equipment?.runId;

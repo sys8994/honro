@@ -35,9 +35,11 @@
           const selected=fixture.rows[id===51?52:id];
           const profile=structuredClone(selected.profile), body=structuredClone(selected.body);
           check(profile?.cleared?.[50]&&profile?.equipment?.runId===body.runId,'Wrong debug practice roster');
+          check(await sha(new TextEncoder().encode(JSON.stringify(body)))===selected.bodySHA,'Debug checkpoint integrity mismatch');
+          if(!still()||!debugJourneyAllowed(a))return false;
           if(id!==51){
             const pin=routePins(id);
-            check(pin&&body.to===id&&body.from===id-1&&['fromPacket','toPacket','play','world','owner'].every(k=>pin[k]===body.pin[k])&&
+            check(pin&&body.to===id&&body.from===id-1&&same(pin,body.pin)&&
               grant.known[0]?.[1]===pin.play&&grant.known[1]?.[1]===pin.world,'Stale debug checkpoint');
           }
           const keys=['normalProfile','profile','profileStore','debugMode','debugRestStage','stageId','stage','training','done','selectedByUnit'];

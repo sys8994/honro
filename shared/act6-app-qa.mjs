@@ -1,4 +1,5 @@
 import {spliceEndingPresentation} from './act6-ending-replan/build.mjs';
+import {layout57,layout58,layout60} from './act6-boundary/late-layouts.mjs';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {readFile,realpath,lstat} from 'node:fs/promises';
@@ -199,6 +200,7 @@ export async function createAct6WebQa(project,repoRoot,env=process.env,release=n
   const wrap57=(name,i)=>'const {'+name+'}='+mod(code57[i],name);
   source=replaceOne(source,'      const declared53=',
     'const {'+hallExports+'}='+mod(hallCode,hallExports)+'const {'+returnExports+'}='+mod(returnCode,returnExports)+['bindOwnedBridge','createStage57Owner','mountEmergency57','createStage57Mission','stage57Adapter'].map(wrap57).join('')+
+    'const descriptor57=Object.freeze('+JSON.stringify(layout57)+');\n'+
     (await readFile(new URL('./runtime/stage57-entry.inc.js',import.meta.url),'utf8'))+'\n      const declared53=');
   source=replaceOne(source,'const stages=new Set([51,52,53,54,55,56])','const stages=new Set([51,52,53,54,55,56,57])');
   source=replaceOne(source,'        if(id===56)return eligible56(app,s);','        if(id===57)return eligible57(app,s);\n        if(id===56)return eligible56(app,s);');
@@ -223,6 +225,7 @@ export async function createAct6WebQa(project,repoRoot,env=process.env,release=n
   const slice57=seventh.bridge.additions.terrain.find(t=>t.id==='local-07-08-exact-receiving-slice');
   assert(slice57?.vertices.length);
   source=replaceOne(source,'      const declared53=','const capturedHallSlice='+JSON.stringify(slice57)+';\nconst {createStage58Owner}='+mod(core58,'createStage58Owner')+'const {stage58Adapter}='+mod(normal58,'stage58Adapter')+
+    'const descriptor58=Object.freeze('+JSON.stringify(layout58)+');\n'+
     (await readFile(new URL('./runtime/stage58-normal-entry.inc.js',import.meta.url),'utf8'))+'\n      const declared53=');
   source=replaceOne(source,'const stages=new Set([51,52,53,54,55,56,57])','const stages=new Set([51,52,53,54,55,56,57,58])');
   source=replaceOne(source,'        if(id===57)return eligible57(app,s);','        if(id===58)return eligible58(app,s);\n        if(id===57)return eligible57(app,s);');
@@ -269,6 +272,7 @@ export async function createAct6WebQa(project,repoRoot,env=process.env,release=n
   const finalEndingSource=endingStock?await (await import('./act6-normal-ending-qa/emit.mjs')).normal60EndingSource():'';
   source=replaceOne(source,'      const declared53=',
     (endingStock?'const normal60Stock=true;\n'+finalEndingSource:'')+'const {prepareEnding}='+mod(prep,'prepareEnding')+'const {endingCardFor}='+mod(code60[1],'endingCardFor')+'const {createStage60Owner}='+mod(code60[2],'createStage60Owner')+
+    'const D60=Object.freeze('+JSON.stringify(layout60)+');\n'+
     (await readFile(new URL(endingStock?'./act6-normal-ending-qa/stage60-entry-stock.inc.js':'./runtime/stage60-normal-entry.inc.js',import.meta.url),'utf8'))+'\n      const declared53=');
   source=replaceOne(source,'const stages=new Set([51,52,53,54,55,56,57,58,59])','const stages=new Set([51,52,53,54,55,56,57,58,59,60])');
   source=replaceOne(source,'        if(id===59)return eligible59(app,s);','        if(id===60)return eligible60(app,s);\n        if(id===59)return eligible59(app,s);');

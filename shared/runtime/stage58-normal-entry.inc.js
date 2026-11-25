@@ -1,6 +1,4 @@
       const signed58=new WeakMap(),mounting58=new WeakMap(),mounted58=new WeakMap(),cold58=new WeakSet();
-      const descriptor58=Object.freeze({id:58,scope:'normal-private-pilot',authoredId:'stage-58',
-        playSHA:'901721de1ae340238e5b0a081861fb8fee3650d93e1496c519c50073439f7aec',worldSHA:'858974a56d2e448bde0149f9b3c4bad487b1fdf0ba459981144d71784f495f54'});
       const scope58=(a,e,s)=>s===active.get(a)&&s?.normal51===true&&mounted58.get(e)===s&&s.engine===e&&a.engine===e&&
         a.profile===a.normalProfile&&normal51Provider.content(e.b)===e.stage&&inNormalStage(a,e,58)&&runtime(a)&&e.b.honroGrowth?.limit.total===0&&e.b.honroGrowth?.limit.combat===0;
       const eligible58=(a,s)=>a.screen==='battle'&&scope57(a,a.engine,s)&&s.b.phase==='won'&&a.done&&s.terminal?.stage===57&&

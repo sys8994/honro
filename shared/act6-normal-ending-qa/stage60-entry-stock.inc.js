@@ -1,6 +1,4 @@
       const signed60=new WeakMap(),mounted60=new WeakMap(),cold60=new WeakSet();
-      const D60=Object.freeze({id:60,authoredId:'a6-10-playable-draft-noncampaign',playSHA:'2b26720eec311eaa800e92ce1c439b0721511b0aff3e27be0a69b52541d08f1e',
-        worldSHA:'6594c55a365172c15a7a1eb5f80bfe56ab8d503c22ff50a269c09efa6e2764bf'});
       const scope60=(a,e,s)=>s===active.get(a)&&s?.normal51===true&&mounted60.get(e)===s&&s.engine===e&&a.engine===e&&
         a.profile===a.normalProfile&&normal51Provider.content(e.b)===e.stage&&inNormalStage(a,e,60)&&runtime(a)&&e.b.honroGrowth?.limit.total===0&&e.b.honroGrowth?.limit.combat===0;
       const eligible60=(a,s)=>a.screen==='battle'&&scope59(a,a.engine,s)&&s.b.phase==='won'&&a.done&&s.terminal?.stage===59&&s.terminal.won===true&&
