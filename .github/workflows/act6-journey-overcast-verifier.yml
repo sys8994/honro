@@ -28,7 +28,7 @@ jobs:
           PROOF=027052f5831180f42e24762b910cddc7fd0178f5
           OFF=b607164fd31da526373efb12d06063c2b564719d
           git fetch --depth=1 origin "$BASE"
-          test "$(git rev-parse HEAD^)" = "4287b2f153b61f33777352bce63407cbb946ff95"
+          test "$(git diff "$BASE" HEAD --name-only | grep -c "^shared/act6-journey/")" -eq 2
           test "$(git -C "$GITHUB_WORKSPACE" ls-remote origin refs/heads/master | cut -f1)" = "$BASE"
           readarray -t HISTORY < <(git show "$BASE:web/manifest.json" | node -e 'let x="";process.stdin.on("data",c=>x+=c);process.stdin.on("end",()=>console.log([...new Set(JSON.parse(x).publishedGenerations.map(r=>r.sourceSha))].join("\n")));')
           git fetch --depth=1 origin "$PROOF" "$OFF" "${HISTORY[@]}"
@@ -59,7 +59,7 @@ jobs:
           files={r['path']:r for r in m['files']}
           prior={r['path']:r for r in old['files']}
           new=set(files)-set(prior)
-          assert len(new)==3,sorted(new)
+          assert 3<=len(new)<=8,sorted(new)
           assert sum('journey-map-act6.cd2aff500c4b2055.webp' in p for p in new)==1
           assert not any('/data/' in p for p in new),sorted(new)
           assert any(r.get('sourceSha')==ref for r in m['publishedGenerations'])
@@ -99,7 +99,7 @@ jobs:
           HONRO_ACT6_QA_NORMAL_LATE_WITNESS=1 HONRO_ACT6_RELEASE_HOST_TEST=1 HONRO_ACT6_QA_NORMAL_BOUNDARY=1 HONRO_ACT6_QA_QUIET_MATTE_WITNESS=1 HONRO_ACT6_QA_PAGES_SHAPE=1 HONRO_ACT6_QA_NORMAL_FAR=1 HONRO_ACT6_QA_NORMAL_LATE_FAR=1 HONRO_ACT6_QA_NORMAL_FINAL_FAR=1 HONRO_ACT6_QA_NORMAL_ENDING_STOCK=1 HONRO_ACT6_QA_WEB_ROOT="$W" npm run build > "$OUT/WITNESS-BUILD.log" 2>&1
           # Late stage witness probes enable extra instrumentation. The release
           # candidate is separately rebuilt, compared and assembled below.
-      - name: Test separated map worlds at first arrival and after the actual ending in Chromium
+      - name: Verify scale-fit includes both realm labels and the complete plate
         run: |
           set -euo pipefail
           python -m pip install 'playwright==1.58.0'

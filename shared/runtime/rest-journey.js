@@ -246,7 +246,11 @@ function zoomBook(app,zoom,clientX,clientY,fromX=clientX,fromY=clientY){
  app.journeyZoom=zoom;layoutBook(app);const nextRect=map.getBoundingClientRect();
  viewport.scrollLeft+=nextRect.left+fx*map.clientWidth-clientX;viewport.scrollTop+=nextRect.top+fy*map.clientHeight-clientY;layoutLabels();
 }
-function fitBook(app){const viewport=document.querySelector('.journey-map-scroll'),map=document.querySelector('.journey-map'),def=mapDefinition(app.journeyAct);if(!viewport||!map||!def)return;const base=Number(map.dataset.baseWidth);zoomBook(app,Math.min(viewport.clientWidth/base,viewport.clientHeight*def.width/def.height/base),0,0);revealBook(app);}
+function fitBook(app){const viewport=document.querySelector('.journey-map-scroll'),map=document.querySelector('.journey-map'),def=mapDefinition(app.journeyAct);if(!viewport||!map||!def)return;const base=Number(map.dataset.baseWidth);zoomBook(app,Math.min(viewport.clientWidth/base,viewport.clientHeight*def.width/def.height/base),0,0);
+ // Fitting the 6막 atlas means showing the full plate, not panning toward
+ // the selected pin. Pin-label overflow can make a fitting atlas scrollable.
+ if(app.journeyAct===6){viewport.scrollLeft=0;viewport.scrollTop=0;layoutLabels();return;}
+ revealBook(app);}
 function mountBook(app){
  const viewport=document.querySelector('.journey-map-scroll');if(!viewport||typeof viewport.addEventListener!=='function')return;
  layoutBook(app);G.HonroJourneyImages.mount(app);let labelFrame=0;viewport.addEventListener('scroll',()=>{if(!labelFrame)labelFrame=requestAnimationFrame(()=>{labelFrame=0;if(viewport.isConnected)layoutLabels();});});viewport._journeyResize=()=>{viewport._journeyCancel?.();layoutBook(app);revealBook(app);};

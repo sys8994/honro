@@ -31,6 +31,14 @@ def witness(page,state,mobile,tap,out,case,stage):
         assert page.get_by_text('쉼터에서 이어가기',exact=True).count()==1
     pos=page.locator('[data-action="journey-fit"]')
     pos.tap() if mobile else pos.click()
+    # A fitting plate should be wholly in the scroll viewport, even when the
+    # final selected node or its invisible label extends past the image edge.
+    bounds=page.evaluate('''()=>{
+        const m=document.querySelector('.journey-act-6 .journey-map').getBoundingClientRect();
+        const v=document.querySelector('.journey-act-6 .journey-map-scroll').getBoundingClientRect();
+        return {left:m.left-v.left, top:m.top-v.top,right:v.right-m.right,bottom:v.bottom-m.bottom};
+    }''')
+    assert all(x>=-2.0 for x in bounds.values()),(case,stage,bounds)
     page.screenshot(path=out/f'{case}-journey6-{stage}.png')
     if stage=='done':
         row=page.locator('[data-action="journey-select"][data-id="59"]')
