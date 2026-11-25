@@ -29,3 +29,12 @@ python "$p/baseline/native_b.py" --build "$PWD" --out /tmp/honro-54-touch-eave -
 ```bash
 python game/docs/act6/mumyeongsa-p00-p10/baseline/daedosa_return.py --build "$PWD" --out /tmp/honro-58-touch-r --pressure --tactic ceiling --touch-return
 ```
+
+## 두 화면 폭과 픽셀 비율
+
+360×800 DPR 2와 430×932 DPR 3에서 실제로 작성한 B·C·D·R의 모든 수신 저장을 각각 독립 일반 쉼터에서 열었다. B에서 담허가 벽을 따라 이동하고 뛰어 같은 벽에 착지했다. C에서 같은 천장부터 정상축 (928,1136)으로 돌아왔다. D에서 네 발점과 실제 석단 보행을, R에서 실제 네 명의 조이스틱 귀환을 확인했다. 두 실행에서 각각 네 저장의 바이트가 같았다. 이 결과는 브라우저 화면·입력 검수다. [360 기록](contacts-360.json) · [360 화면](contacts-360.webp) · [430 기록](contacts-430.json) · [430 화면](contacts-430.webp)
+
+```bash
+p=game/docs/act6/mumyeongsa-p00-p10
+python "$p/baseline/mobile_seams.py" --build "$PWD" --out /tmp/honro-mobile-scale-360 --size 360 800 --device-scale 2 --b-proof "$p/visual-atlas/capture-input-b.json" --c-proof "$p/mobile-seams/captured-c-source.json" --d-proof "$p/visual-atlas/capture-input-d.json" --r-proof "$p/mobile-seams/captured-r-source.json"
+```

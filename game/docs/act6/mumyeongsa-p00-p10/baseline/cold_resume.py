@@ -27,18 +27,18 @@ console.log(JSON.stringify({
 def storage_hash(records):
     return hashlib.sha256(json.dumps(records,sort_keys=True).encode()).hexdigest()
 
-def seeded_context(browser,stage,negative=False,init_script=None,mobile=False):
+def seeded_context(browser,stage,negative=False,init_script=None,mobile=False,viewport=None,device_scale=1):
     fixture=base.ROOT/"shared/act6-debug-stages/fixtures.json"
     seed=json.loads(subprocess.check_output(["node","-e",NODE,str(fixture),str(stage),
                                              "bad-m09" if negative else "exact"],text=True))
-    context=saved_context(browser,seed,mobile)
+    context=saved_context(browser,seed,mobile,viewport,device_scale)
     if init_script:
         context.add_init_script(init_script)
     return context
 
-def saved_context(browser,seed,mobile=False):
-    viewport={'width':390,'height':844} if mobile else {'width':1280,'height':900}
-    context=browser.new_context(viewport=viewport,has_touch=mobile,is_mobile=mobile,device_scale_factor=1)
+def saved_context(browser,seed,mobile=False,viewport=None,device_scale=1):
+    viewport=viewport or ({'width':390,'height':844} if mobile else {'width':1280,'height':900})
+    context=browser.new_context(viewport=viewport,has_touch=mobile,is_mobile=mobile,device_scale_factor=device_scale)
     context.route("**/*",lambda r:base.local_route(r) if r.request.url.startswith(base.BASE) else r.abort())
     context.add_init_script("""(() => {
         if(sessionStorage.getItem('honro-test-seeded'))return;

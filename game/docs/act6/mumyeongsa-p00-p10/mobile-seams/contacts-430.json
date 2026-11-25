@@ -1,0 +1,2127 @@
+[
+  {
+    "stage": 54,
+    "source": "captured live boundary",
+    "viewport": {
+      "width": 430,
+      "height": 932
+    },
+    "deviceScale": 3.0,
+    "status": "PASS",
+    "pageErrors": [],
+    "movement": {
+      "before": {
+        "id": "p-mage",
+        "x": 3240,
+        "y": 454.59999999999854,
+        "vx": 0,
+        "vy": 0,
+        "hp": 1701.9,
+        "dead": false,
+        "embedded": false,
+        "grounded": true,
+        "support": "b-inner-jamb"
+      },
+      "stepped": {
+        "id": "p-mage",
+        "x": 3240,
+        "y": 394.29999999999814,
+        "vx": 0,
+        "vy": 0,
+        "hp": 1701.9,
+        "dead": false,
+        "embedded": false,
+        "grounded": true,
+        "support": "b-inner-jamb"
+      },
+      "jump": {
+        "id": "p-mage",
+        "x": 3152.352858759672,
+        "y": 394.29999999999814,
+        "vx": -508.68529288139564,
+        "vy": 0,
+        "hp": 1701.9,
+        "dead": false,
+        "embedded": false,
+        "grounded": false,
+        "support": null
+      },
+      "landed": {
+        "id": "p-mage",
+        "x": 3240,
+        "y": 394.29999999999814,
+        "vx": 0,
+        "vy": 0,
+        "hp": 1701.9,
+        "dead": false,
+        "embedded": false,
+        "grounded": true,
+        "support": "b-inner-jamb"
+      }
+    },
+    "events": [
+      {
+        "name": "pointerdown",
+        "trusted": true,
+        "type": "touch",
+        "control": "joystick"
+      },
+      {
+        "name": "pointerup",
+        "trusted": true,
+        "type": "touch",
+        "control": "joystick"
+      }
+    ],
+    "saveHash": "54f7c884306e187b183693b3ce101c00f8e443ab1d01680d51d81bf465456b9e"
+  },
+  {
+    "stage": 56,
+    "source": "captured live boundary",
+    "viewport": {
+      "width": 430,
+      "height": 932
+    },
+    "deviceScale": 3.0,
+    "status": "PASS",
+    "pageErrors": [],
+    "movement": {
+      "ceiling": {
+        "stage": 56,
+        "id": "p-mage",
+        "x": 736,
+        "y": 900,
+        "vx": 0,
+        "vy": 0,
+        "gravity": {
+          "x": 0,
+          "y": -320
+        },
+        "grounded": true,
+        "support": "c-eave-soffit",
+        "normal": {
+          "x": 0,
+          "y": 1
+        },
+        "play": [
+          1400,
+          1440
+        ],
+        "health": 1708.9,
+        "focus": 692,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "equipment": {
+          "version": 1
+        },
+        "others": []
+      },
+      "landed": {
+        "stage": 56,
+        "id": "p-mage",
+        "x": 928,
+        "y": 1136,
+        "vx": 0,
+        "vy": 0,
+        "gravity": {
+          "x": 0,
+          "y": 320
+        },
+        "grounded": true,
+        "support": "A-upper-veranda",
+        "normal": {
+          "x": 0,
+          "y": -1
+        },
+        "play": [
+          6720,
+          5040
+        ],
+        "health": 1708.9,
+        "focus": 692,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "equipment": {
+          "version": 1
+        },
+        "others": [
+          {
+            "id": "draft-pressure-0",
+            "x": 1936,
+            "y": 3784.0650406504064
+          },
+          {
+            "id": "draft-pressure-1",
+            "x": 3456,
+            "y": 2247.2
+          },
+          {
+            "id": "draft-pressure-2",
+            "x": 5872,
+            "y": 3694.8321167883214
+          },
+          {
+            "id": "a6-56-opening-1",
+            "x": 1512,
+            "y": 1136
+          },
+          {
+            "id": "a6-56-opening-2",
+            "x": 2545,
+            "y": 1136
+          }
+        ]
+      },
+      "flight": [
+        {
+          "x": 736,
+          "y": 900,
+          "vy": 0,
+          "gravity": {
+            "x": 0,
+            "y": -320
+          },
+          "grounded": true
+        },
+        {
+          "x": 736,
+          "y": 900,
+          "vy": 0,
+          "gravity": {
+            "x": 0,
+            "y": -320
+          },
+          "grounded": true
+        },
+        {
+          "x": 736,
+          "y": 900,
+          "vy": 0,
+          "gravity": {
+            "x": 0,
+            "y": -320
+          },
+          "grounded": true
+        },
+        {
+          "x": 736,
+          "y": 900,
+          "vy": 0,
+          "gravity": {
+            "x": 0,
+            "y": -320
+          },
+          "grounded": true
+        },
+        {
+          "x": 736,
+          "y": 900,
+          "vy": 0,
+          "gravity": {
+            "x": 0,
+            "y": -320
+          },
+          "grounded": true
+        },
+        {
+          "x": 736,
+          "y": 900,
+          "vy": 0,
+          "gravity": {
+            "x": 0,
+            "y": -320
+          },
+          "grounded": true
+        },
+        {
+          "x": 736,
+          "y": 900,
+          "vy": 0,
+          "gravity": {
+            "x": 0,
+            "y": -320
+          },
+          "grounded": true
+        },
+        {
+          "x": 736,
+          "y": 900,
+          "vy": 0,
+          "gravity": {
+            "x": 0,
+            "y": -320
+          },
+          "grounded": true
+        },
+        {
+          "x": 736,
+          "y": 900,
+          "vy": 0,
+          "gravity": {
+            "x": 0,
+            "y": -320
+          },
+          "grounded": true
+        },
+        {
+          "x": 736,
+          "y": 900,
+          "vy": 0,
+          "gravity": {
+            "x": 0,
+            "y": -320
+          },
+          "grounded": true
+        },
+        {
+          "x": 736,
+          "y": 900,
+          "vy": 0,
+          "gravity": {
+            "x": 0,
+            "y": -320
+          },
+          "grounded": true
+        },
+        {
+          "x": 736,
+          "y": 900,
+          "vy": 0,
+          "gravity": {
+            "x": 0,
+            "y": -320
+          },
+          "grounded": true
+        },
+        {
+          "x": 746.0500000000001,
+          "y": 900,
+          "vy": 0,
+          "gravity": {
+            "x": 0,
+            "y": -320
+          },
+          "grounded": true
+        },
+        {
+          "x": 756.1000000000001,
+          "y": 900,
+          "vy": 0,
+          "gravity": {
+            "x": 0,
+            "y": -320
+          },
+          "grounded": true
+        },
+        {
+          "x": 766.1500000000002,
+          "y": 900,
+          "vy": 0,
+          "gravity": {
+            "x": 0,
+            "y": -320
+          },
+          "grounded": true
+        },
+        {
+          "x": 776.2000000000003,
+          "y": 900,
+          "vy": 0,
+          "gravity": {
+            "x": 0,
+            "y": -320
+          },
+          "grounded": true
+        },
+        {
+          "x": 786.2500000000003,
+          "y": 900,
+          "vy": 0,
+          "gravity": {
+            "x": 0,
+            "y": -320
+          },
+          "grounded": true
+        },
+        {
+          "x": 796.3000000000004,
+          "y": 900,
+          "vy": 0,
+          "gravity": {
+            "x": 0,
+            "y": -320
+          },
+          "grounded": true
+        },
+        {
+          "x": 806.3500000000005,
+          "y": 900,
+          "vy": 0,
+          "gravity": {
+            "x": 0,
+            "y": -320
+          },
+          "grounded": true
+        },
+        {
+          "x": 816.4000000000005,
+          "y": 900,
+          "vy": 0,
+          "gravity": {
+            "x": 0,
+            "y": -320
+          },
+          "grounded": true
+        },
+        {
+          "x": 826.4500000000006,
+          "y": 900,
+          "vy": 0,
+          "gravity": {
+            "x": 0,
+            "y": -320
+          },
+          "grounded": true
+        },
+        {
+          "x": 836.5000000000007,
+          "y": 900,
+          "vy": 0,
+          "gravity": {
+            "x": 0,
+            "y": -320
+          },
+          "grounded": true
+        },
+        {
+          "x": 846.5500000000008,
+          "y": 900,
+          "vy": 0,
+          "gravity": {
+            "x": 0,
+            "y": -320
+          },
+          "grounded": true
+        },
+        {
+          "x": 856.6000000000008,
+          "y": 900,
+          "vy": 0,
+          "gravity": {
+            "x": 0,
+            "y": -320
+          },
+          "grounded": true
+        },
+        {
+          "x": 866.6500000000009,
+          "y": 900,
+          "vy": 0,
+          "gravity": {
+            "x": 0,
+            "y": -320
+          },
+          "grounded": true
+        },
+        {
+          "x": 876.700000000001,
+          "y": 900,
+          "vy": 0,
+          "gravity": {
+            "x": 0,
+            "y": -320
+          },
+          "grounded": true
+        },
+        {
+          "x": 886.750000000001,
+          "y": 900,
+          "vy": 0,
+          "gravity": {
+            "x": 0,
+            "y": -320
+          },
+          "grounded": true
+        },
+        {
+          "x": 896.8000000000011,
+          "y": 900,
+          "vy": 0,
+          "gravity": {
+            "x": 0,
+            "y": -320
+          },
+          "grounded": true
+        },
+        {
+          "x": 906.8500000000012,
+          "y": 900,
+          "vy": 0,
+          "gravity": {
+            "x": 0,
+            "y": -320
+          },
+          "grounded": true
+        },
+        {
+          "x": 916.9000000000012,
+          "y": 900,
+          "vy": 0,
+          "gravity": {
+            "x": 0,
+            "y": -320
+          },
+          "grounded": true
+        },
+        {
+          "x": 926.9500000000013,
+          "y": 900,
+          "vy": 0,
+          "gravity": {
+            "x": 0,
+            "y": -320
+          },
+          "grounded": true
+        },
+        {
+          "x": 928,
+          "y": 992.0666638888889,
+          "vy": 5.333,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 992.3332777829859,
+          "vy": 13.330000416640626,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 992.7997667104112,
+          "vy": 21.32400233296879,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 993.4660557273961,
+          "vy": 29.315006873281554,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 994.3320699182724,
+          "vy": 37.30301516145443,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 995.3977343954615,
+          "vy": 45.28802832094153,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 996.6629742994642,
+          "vy": 53.27004747477572,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 998.1277147988502,
+          "vy": 61.24907374556878,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 999.7918810902474,
+          "vy": 69.22510825551157,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 1001.6553983983317,
+          "vy": 77.19815212637417,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 1003.7181919758159,
+          "vy": 85.16820647950604,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 1005.9801871034396,
+          "vy": 93.13527243583621,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 1008.4413090899587,
+          "vy": 101.09935111587342,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 1011.1014832721348,
+          "vy": 109.06044363970625,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 1013.9606350147247,
+          "vy": 117.01855112700332,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 1017.01868971047,
+          "vy": 124.9736746970134,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 1020.2755727800863,
+          "vy": 132.9258154685656,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 1023.7312096722533,
+          "vy": 140.87497456006952,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 1027.3855258636036,
+          "vy": 148.82115308951546,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 1031.2384468587127,
+          "vy": 156.76435217447445,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 1035.2898981900885,
+          "vy": 164.7045729320985,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 1039.5398054181605,
+          "vy": 172.64181647912076,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 1043.9880941312697,
+          "vy": 180.57608393185572,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 1048.6346899456582,
+          "vy": 188.50737640619917,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 1053.479518505458,
+          "vy": 196.4356950176286,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 1058.5225054826813,
+          "vy": 204.36104088120322,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 1063.7635765772097,
+          "vy": 212.2834151115641,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 1069.2026575167845,
+          "vy": 220.2028188229344,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 1074.839674056995,
+          "vy": 228.11925312911953,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 1080.6745519812687,
+          "vy": 236.03271914350722,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 1086.707217100861,
+          "vy": 243.94321797906778,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 1092.9375952548446,
+          "vy": 251.8507507483542,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 1099.3656123100986,
+          "vy": 259.75531856350227,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 1105.9911941612997,
+          "vy": 267.65692253623087,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 1112.8142667309094,
+          "vy": 275.55556377784194,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 1119.8347559691651,
+          "vy": 283.45124339922074,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 1127.0525878540702,
+          "vy": 291.3439625108361,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 1134.4676883913817,
+          "vy": 299.2337222227404,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        }
+      ]
+    },
+    "events": [
+      {
+        "name": "pointerdown",
+        "trusted": true,
+        "type": "touch",
+        "control": "joystick"
+      },
+      {
+        "name": "pointerup",
+        "trusted": true,
+        "type": "touch",
+        "control": "joystick"
+      }
+    ],
+    "saveHash": "d9aec9856620de826d6704ac8aebbb92330a1159e99c33efe46899c1fba8ca01"
+  },
+  {
+    "stage": 58,
+    "source": "captured live boundary",
+    "viewport": {
+      "width": 430,
+      "height": 932
+    },
+    "deviceScale": 3.0,
+    "status": "PASS",
+    "pageErrors": [],
+    "movement": {
+      "enter": {
+        "stage": 58,
+        "active": "p-mage",
+        "phase": "aim",
+        "round": 1,
+        "side": 0,
+        "shot": 0,
+        "flags": {},
+        "notice": "",
+        "actors": [
+          {
+            "id": "p-mage",
+            "cls": "mage",
+            "side": 0,
+            "x": 2796.1269454892226,
+            "y": 3454.285725503129,
+            "vx": 0,
+            "vy": 0,
+            "hp": 1653.9,
+            "maxHp": 2050,
+            "shield": 0,
+            "r": 22,
+            "h": 92,
+            "ammo": null,
+            "loadout": [
+              "M01",
+              "M10",
+              "M07"
+            ],
+            "dead": false,
+            "actorsMoved": false,
+            "move": 3075,
+            "grounded": true,
+            "family": {
+              "x": 0,
+              "y": 320
+            },
+            "contact": "local-lower-08-body",
+            "normal": null
+          },
+          {
+            "id": "p-archer",
+            "cls": "archer",
+            "side": 0,
+            "x": 2642.4873589353174,
+            "y": 3479.961576914711,
+            "vx": 0,
+            "vy": 0,
+            "hp": 1720,
+            "maxHp": 1720,
+            "shield": 0,
+            "r": 22,
+            "h": 92,
+            "ammo": null,
+            "loadout": [
+              "A01",
+              "A14",
+              "A02",
+              "A05"
+            ],
+            "dead": false,
+            "actorsMoved": false,
+            "move": 2921,
+            "grounded": true,
+            "family": {
+              "x": 0,
+              "y": 320
+            },
+            "contact": "local-lower-08-body",
+            "normal": null
+          },
+          {
+            "id": "p-knight",
+            "cls": "knight",
+            "side": 0,
+            "x": 2896.5416349131865,
+            "y": 3425.1330737348812,
+            "vx": 0,
+            "vy": 0,
+            "hp": 3846,
+            "maxHp": 3846,
+            "shield": 0,
+            "r": 22,
+            "h": 92,
+            "ammo": null,
+            "loadout": [
+              "S00",
+              "S01",
+              "S03"
+            ],
+            "dead": false,
+            "actorsMoved": false,
+            "move": 4081,
+            "grounded": true,
+            "family": {
+              "x": 0,
+              "y": 320
+            },
+            "contact": "local-lower-08-body",
+            "normal": null
+          },
+          {
+            "id": "p-occultist",
+            "cls": "occultist",
+            "side": 0,
+            "x": 2984.966891671321,
+            "y": 3399.7237452367654,
+            "vx": 0,
+            "vy": 0,
+            "hp": 2304,
+            "maxHp": 2304,
+            "shield": 0,
+            "r": 22,
+            "h": 92,
+            "ammo": null,
+            "loadout": [
+              "O01",
+              "O04",
+              "O03",
+              "O06"
+            ],
+            "dead": false,
+            "actorsMoved": false,
+            "move": 3132,
+            "grounded": true,
+            "family": {
+              "x": 0,
+              "y": 320
+            },
+            "contact": "local-lower-08-body",
+            "normal": null
+          },
+          {
+            "id": "a6-58-opening-1",
+            "cls": "knight",
+            "side": 1,
+            "x": 3220,
+            "y": 3329.3793103448274,
+            "vx": 0,
+            "vy": 0,
+            "hp": 655,
+            "maxHp": 655,
+            "shield": 0,
+            "r": 32,
+            "h": 88,
+            "ammo": null,
+            "loadout": [
+              "HBM01"
+            ],
+            "dead": false,
+            "actorsMoved": false,
+            "move": 550,
+            "grounded": true,
+            "family": {
+              "x": 0,
+              "y": 320
+            },
+            "contact": "local-lower-08-body",
+            "normal": null
+          },
+          {
+            "id": "a6-58-opening-2",
+            "cls": "occultist",
+            "side": 1,
+            "x": 3580,
+            "y": 3072.4666666666667,
+            "vx": 0,
+            "vy": 0,
+            "hp": 595,
+            "maxHp": 595,
+            "shield": 0,
+            "r": 22,
+            "h": 115,
+            "ammo": null,
+            "loadout": [
+              "HSH01",
+              "HSH02"
+            ],
+            "dead": false,
+            "actorsMoved": false,
+            "move": 550,
+            "grounded": true,
+            "family": {
+              "x": 0,
+              "y": 320
+            },
+            "contact": "m58-west-stone-step",
+            "normal": null
+          },
+          {
+            "id": "a6-58-opening-3",
+            "cls": "knight",
+            "side": 1,
+            "x": 3910,
+            "y": 3361.657142857143,
+            "vx": 0,
+            "vy": 0,
+            "hp": 755,
+            "maxHp": 755,
+            "shield": 0,
+            "r": 38,
+            "h": 116,
+            "ammo": null,
+            "loadout": [
+              "HBM03"
+            ],
+            "dead": false,
+            "actorsMoved": false,
+            "move": 550,
+            "grounded": true,
+            "family": {
+              "x": 0,
+              "y": 320
+            },
+            "contact": "local-lower-08-body",
+            "normal": null
+          },
+          {
+            "id": "a6-58-opening-4",
+            "cls": "occultist",
+            "side": 1,
+            "x": 4625,
+            "y": 3149,
+            "vx": 0,
+            "vy": 0,
+            "hp": 595,
+            "maxHp": 595,
+            "shield": 0,
+            "r": 22,
+            "h": 115,
+            "ammo": null,
+            "loadout": [
+              "HSH01",
+              "HSH02"
+            ],
+            "dead": false,
+            "actorsMoved": false,
+            "move": 550,
+            "grounded": true,
+            "family": {
+              "x": 0,
+              "y": 320
+            },
+            "contact": "local-lower-08-body",
+            "normal": null
+          }
+        ],
+        "landmarks": [
+          {
+            "id": "art-mumyeongsa-hall-sill",
+            "x": 0,
+            "y": 0,
+            "visual": 7
+          },
+          {
+            "id": "art-m58-timber-hall-rear",
+            "x": 0,
+            "y": 0,
+            "visual": 40
+          },
+          {
+            "id": "art-m58-suspended-hall",
+            "x": 0,
+            "y": 0,
+            "visual": 15
+          },
+          {
+            "id": "art-m58-tile-eaves",
+            "x": 0,
+            "y": 0,
+            "visual": 10
+          }
+        ]
+      },
+      "before": {
+        "id": "p-mage",
+        "cls": "mage",
+        "side": 0,
+        "x": 2796.1269454892226,
+        "y": 3454.285725503129,
+        "vx": 0,
+        "vy": 0,
+        "hp": 1653.9,
+        "maxHp": 2050,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 3075,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "local-lower-08-body",
+        "normal": null
+      },
+      "after": {
+        "id": "p-mage",
+        "cls": "mage",
+        "side": 0,
+        "x": 2699.6121497004833,
+        "y": 3482.3061500869567,
+        "vx": 0,
+        "vy": 0,
+        "hp": 1653.9,
+        "maxHp": 2050,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 2974.5000000000027,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "local-lower-08-body",
+        "normal": null
+      }
+    },
+    "events": [
+      {
+        "name": "pointerdown",
+        "trusted": true,
+        "type": "touch",
+        "control": "joystick"
+      },
+      {
+        "name": "pointerup",
+        "trusted": true,
+        "type": "touch",
+        "control": "joystick"
+      }
+    ],
+    "saveHash": "cd9320fa2d15a43f53096f1b91d392941ca64fa89df80174a94f8832095c234d"
+  },
+  {
+    "stage": 59,
+    "source": "captured live boundary",
+    "viewport": {
+      "width": 430,
+      "height": 932
+    },
+    "deviceScale": 3.0,
+    "status": "PASS",
+    "pageErrors": [],
+    "movement": {
+      "enter": {
+        "stage": 59,
+        "quiet": true,
+        "pending": true,
+        "round": 1,
+        "active": "p-archer",
+        "enemies": [],
+        "landmark": [
+          {
+            "fill": "#514c40",
+            "points": [
+              {
+                "x": 3078,
+                "y": 3387.1428571428573
+              },
+              {
+                "x": 3132,
+                "y": 3367.714285714286
+              },
+              {
+                "x": 3208,
+                "y": 3348
+              },
+              {
+                "x": 3350,
+                "y": 3270.655172413793
+              },
+              {
+                "x": 3400,
+                "y": 3239.0689655172414
+              },
+              {
+                "x": 3410,
+                "y": 3271.551724137931
+              },
+              {
+                "x": 3314,
+                "y": 3341.5172413793102
+              },
+              {
+                "x": 3240,
+                "y": 3370.344827586207
+              },
+              {
+                "x": 3120,
+                "y": 3429.1428571428573
+              }
+            ]
+          },
+          {
+            "fill": "#82775f",
+            "points": [
+              {
+                "x": 3100,
+                "y": 3391.8571428571427
+              },
+              {
+                "x": 3190,
+                "y": 3367.1428571428573
+              },
+              {
+                "x": 3249,
+                "y": 3345.3793103448274
+              },
+              {
+                "x": 3217,
+                "y": 3384.0344827586205
+              },
+              {
+                "x": 3145,
+                "y": 3400
+              }
+            ]
+          },
+          {
+            "fill": "#978865",
+            "points": [
+              {
+                "x": 3108,
+                "y": 3364.5714285714284
+              },
+              {
+                "x": 3208,
+                "y": 3336
+              },
+              {
+                "x": 3260,
+                "y": 3307.310344827586
+              },
+              {
+                "x": 3350,
+                "y": 3257.655172413793
+              },
+              {
+                "x": 3400,
+                "y": 3230.0689655172414
+              },
+              {
+                "x": 3400,
+                "y": 3252.0689655172414
+              },
+              {
+                "x": 3350,
+                "y": 3279.655172413793
+              },
+              {
+                "x": 3260,
+                "y": 3329.310344827586
+              },
+              {
+                "x": 3208,
+                "y": 3358
+              },
+              {
+                "x": 3108,
+                "y": 3386.5714285714284
+              }
+            ]
+          },
+          {
+            "fill": "#675848",
+            "points": [
+              {
+                "x": 3129,
+                "y": 3052.310344827586
+              },
+              {
+                "x": 3181,
+                "y": 3044.310344827586
+              },
+              {
+                "x": 3181,
+                "y": 3333.714285714286
+              },
+              {
+                "x": 3131,
+                "y": 3341
+              }
+            ]
+          },
+          {
+            "fill": "#75604c",
+            "points": [
+              {
+                "x": 3331,
+                "y": 2954.310344827586
+              },
+              {
+                "x": 3375,
+                "y": 2948.310344827586
+              },
+              {
+                "x": 3376,
+                "y": 3230.310344827586
+              },
+              {
+                "x": 3327,
+                "y": 3262.344827586207
+              }
+            ]
+          },
+          {
+            "fill": "#857058",
+            "points": [
+              {
+                "x": 3134,
+                "y": 3054.310344827586
+              },
+              {
+                "x": 3147,
+                "y": 3051.310344827586
+              },
+              {
+                "x": 3146,
+                "y": 3341
+              },
+              {
+                "x": 3134,
+                "y": 3341
+              }
+            ]
+          },
+          {
+            "fill": "#5b4d41",
+            "points": [
+              {
+                "x": 3333,
+                "y": 2959.310344827586
+              },
+              {
+                "x": 3345,
+                "y": 2955.310344827586
+              },
+              {
+                "x": 3342,
+                "y": 3262.344827586207
+              },
+              {
+                "x": 3330,
+                "y": 3262.344827586207
+              }
+            ]
+          },
+          {
+            "fill": "#4d3d36",
+            "points": [
+              {
+                "x": 3097,
+                "y": 3029.310344827586
+              },
+              {
+                "x": 3264,
+                "y": 2962.310344827586
+              },
+              {
+                "x": 3403,
+                "y": 2923.310344827586
+              },
+              {
+                "x": 3450,
+                "y": 2930.310344827586
+              },
+              {
+                "x": 3427,
+                "y": 2962.310344827586
+              },
+              {
+                "x": 3268,
+                "y": 3005.310344827586
+              },
+              {
+                "x": 3110,
+                "y": 3075.310344827586
+              }
+            ]
+          },
+          {
+            "fill": "#686054",
+            "points": [
+              {
+                "x": 3078,
+                "y": 3018.310344827586
+              },
+              {
+                "x": 3240,
+                "y": 2953.310344827586
+              },
+              {
+                "x": 3404,
+                "y": 2908.310344827586
+              },
+              {
+                "x": 3458,
+                "y": 2910.310344827586
+              },
+              {
+                "x": 3441,
+                "y": 2933.310344827586
+              },
+              {
+                "x": 3252,
+                "y": 2975.310344827586
+              },
+              {
+                "x": 3097,
+                "y": 3041.310344827586
+              }
+            ]
+          },
+          {
+            "fill": "#a08861",
+            "points": [
+              {
+                "x": 3238,
+                "y": 2968.310344827586
+              },
+              {
+                "x": 3263,
+                "y": 2959.310344827586
+              },
+              {
+                "x": 3265,
+                "y": 3003.310344827586
+              },
+              {
+                "x": 3243,
+                "y": 3008.310344827586
+              }
+            ]
+          },
+          {
+            "fill": "#a08861",
+            "points": [
+              {
+                "x": 3253,
+                "y": 3296.310344827586
+              },
+              {
+                "x": 3260,
+                "y": 3307.310344827586
+              },
+              {
+                "x": 3280,
+                "y": 3296.2758620689656
+              },
+              {
+                "x": 3271,
+                "y": 3285.2758620689656
+              }
+            ]
+          }
+        ],
+        "actors": [
+          {
+            "id": "p-archer",
+            "cls": "archer",
+            "x": 3067.0610148194514,
+            "y": 3376.268281480157,
+            "hp": 591.9000000000001,
+            "focus": 404,
+            "shield": 0,
+            "loadout": [
+              "A01",
+              "A14",
+              "A02",
+              "A05"
+            ],
+            "equipment": {
+              "version": 1
+            },
+            "grounded": true,
+            "valid": true,
+            "gravity": {
+              "x": 0,
+              "y": 320
+            },
+            "support": "m59-return-gate-stone"
+          },
+          {
+            "id": "p-knight",
+            "cls": "knight",
+            "x": 3138.783530834313,
+            "y": 3355.7761340473394,
+            "hp": 2798.1,
+            "focus": 477,
+            "shield": 0,
+            "loadout": [
+              "S00",
+              "S01",
+              "S03"
+            ],
+            "equipment": {
+              "version": 1
+            },
+            "grounded": true,
+            "valid": true,
+            "gravity": {
+              "x": 0,
+              "y": 320
+            },
+            "support": "m59-return-gate-stone"
+          },
+          {
+            "id": "p-occultist",
+            "cls": "occultist",
+            "x": 3007.762399782332,
+            "y": 3393.210742919334,
+            "hp": 886.3999999999999,
+            "focus": 751,
+            "shield": 0,
+            "loadout": [
+              "O01",
+              "O04",
+              "O03",
+              "O06"
+            ],
+            "equipment": {
+              "version": 1
+            },
+            "grounded": true,
+            "valid": true,
+            "gravity": {
+              "x": 0,
+              "y": 320
+            },
+            "support": "m59-return-gate-stone"
+          },
+          {
+            "id": "p-mage",
+            "cls": "mage",
+            "x": 3247.105966034877,
+            "y": 3314.4242946014474,
+            "hp": 734.0000000000002,
+            "focus": 724,
+            "shield": 0,
+            "loadout": [
+              "M01",
+              "M10",
+              "M07"
+            ],
+            "equipment": {
+              "version": 1
+            },
+            "grounded": true,
+            "valid": true,
+            "gravity": {
+              "x": 0,
+              "y": 320
+            },
+            "support": "m59-return-gate-stone"
+          }
+        ]
+      },
+      "crossed": [
+        {
+          "from": {
+            "id": "p-occultist",
+            "cls": "occultist",
+            "x": 3007.762399782332,
+            "y": 3393.210742919334,
+            "hp": 886.3999999999999,
+            "focus": 751,
+            "shield": 0,
+            "loadout": [
+              "O01",
+              "O04",
+              "O03",
+              "O06"
+            ],
+            "equipment": {
+              "version": 1
+            },
+            "grounded": true,
+            "valid": true,
+            "gravity": {
+              "x": 0,
+              "y": 320
+            },
+            "support": "m59-return-gate-stone"
+          },
+          "to": {
+            "id": "p-occultist",
+            "cls": "occultist",
+            "side": 0,
+            "x": 2887.8134938507933,
+            "y": 3427.66705017235,
+            "vx": 0,
+            "vy": 0,
+            "hp": 886.3999999999999,
+            "maxHp": 2304,
+            "shield": 0,
+            "r": 22,
+            "h": 92,
+            "ammo": null,
+            "loadout": [
+              "O01",
+              "O04",
+              "O03",
+              "O06"
+            ],
+            "dead": false,
+            "actorsMoved": false,
+            "move": 3132,
+            "grounded": true,
+            "family": {
+              "x": 0,
+              "y": 320
+            },
+            "contact": "m59-return-gate-stone",
+            "normal": null
+          }
+        },
+        {
+          "from": {
+            "id": "p-archer",
+            "cls": "archer",
+            "x": 3067.0610148194514,
+            "y": 3376.268281480157,
+            "hp": 591.9000000000001,
+            "focus": 404,
+            "shield": 0,
+            "loadout": [
+              "A01",
+              "A14",
+              "A02",
+              "A05"
+            ],
+            "equipment": {
+              "version": 1
+            },
+            "grounded": true,
+            "valid": true,
+            "gravity": {
+              "x": 0,
+              "y": 320
+            },
+            "support": "m59-return-gate-stone"
+          },
+          "to": {
+            "id": "p-archer",
+            "cls": "archer",
+            "side": 0,
+            "x": 2886.6256965373277,
+            "y": 3428.011894553679,
+            "vx": 0,
+            "vy": 0,
+            "hp": 591.9000000000001,
+            "maxHp": 1720,
+            "shield": 0,
+            "r": 22,
+            "h": 92,
+            "ammo": null,
+            "loadout": [
+              "A01",
+              "A14",
+              "A02",
+              "A05"
+            ],
+            "dead": false,
+            "actorsMoved": false,
+            "move": 2921,
+            "grounded": true,
+            "family": {
+              "x": 0,
+              "y": 320
+            },
+            "contact": "m59-return-gate-stone",
+            "normal": null
+          }
+        },
+        {
+          "from": {
+            "id": "p-knight",
+            "cls": "knight",
+            "x": 3138.783530834313,
+            "y": 3355.7761340473394,
+            "hp": 2798.1,
+            "focus": 477,
+            "shield": 0,
+            "loadout": [
+              "S00",
+              "S01",
+              "S03"
+            ],
+            "equipment": {
+              "version": 1
+            },
+            "grounded": true,
+            "valid": true,
+            "gravity": {
+              "x": 0,
+              "y": 320
+            },
+            "support": "m59-return-gate-stone"
+          },
+          "to": {
+            "id": "p-knight",
+            "cls": "knight",
+            "side": 0,
+            "x": 2889.7956802744566,
+            "y": 3427.0915766945127,
+            "vx": 0,
+            "vy": 0,
+            "hp": 2798.1,
+            "maxHp": 3846,
+            "shield": 0,
+            "r": 22,
+            "h": 92,
+            "ammo": null,
+            "loadout": [
+              "S00",
+              "S01",
+              "S03"
+            ],
+            "dead": false,
+            "actorsMoved": false,
+            "move": 4081,
+            "grounded": true,
+            "family": {
+              "x": 0,
+              "y": 320
+            },
+            "contact": "m59-return-gate-stone",
+            "normal": null
+          }
+        },
+        {
+          "from": {
+            "id": "p-mage",
+            "cls": "mage",
+            "x": 3247.105966034877,
+            "y": 3314.4242946014474,
+            "hp": 734.0000000000002,
+            "focus": 724,
+            "shield": 0,
+            "loadout": [
+              "M01",
+              "M10",
+              "M07"
+            ],
+            "equipment": {
+              "version": 1
+            },
+            "grounded": true,
+            "valid": true,
+            "gravity": {
+              "x": 0,
+              "y": 320
+            },
+            "support": "m59-return-gate-stone"
+          },
+          "to": {
+            "id": "p-mage",
+            "cls": "mage",
+            "side": 0,
+            "x": 5868.457188583224,
+            "y": 2383.1588167931695,
+            "vx": 0,
+            "vy": 0,
+            "hp": 734.0000000000002,
+            "maxHp": 2050,
+            "shield": 0,
+            "r": 22,
+            "h": 92,
+            "ammo": null,
+            "loadout": [
+              "M01",
+              "M10",
+              "M07"
+            ],
+            "dead": false,
+            "actorsMoved": false,
+            "move": 3034.8000000000025,
+            "grounded": true,
+            "family": {
+              "x": 0,
+              "y": 320
+            },
+            "contact": "finale-cutout-near-body",
+            "normal": null
+          }
+        }
+      ],
+      "after": {
+        "stage": 59,
+        "quiet": false,
+        "pending": false,
+        "round": 1,
+        "active": "p-mage",
+        "enemies": [
+          "qa-immediate-bridge-threat",
+          "finale-first-west-ledge",
+          "finale-first-west-talus",
+          "finale-first-west-bank",
+          "finale-first-west-turn",
+          "finale-first-bridge-foot",
+          "finale-first-east-bell",
+          "finale-first-east-bend",
+          "finale-first-east-stone",
+          "finale-first-east-ward"
+        ],
+        "landmark": null,
+        "actors": [
+          {
+            "id": "p-archer",
+            "cls": "archer",
+            "x": 1404.1436464088397,
+            "y": 1452.259315857529,
+            "hp": 591.9000000000001,
+            "focus": 404,
+            "shield": 0,
+            "loadout": [
+              "A01",
+              "A14",
+              "A02",
+              "A05"
+            ],
+            "equipment": {
+              "version": 1
+            },
+            "grounded": true,
+            "valid": true,
+            "gravity": {
+              "x": 0,
+              "y": 320
+            },
+            "support": "finale-cutout-west-terrace"
+          },
+          {
+            "id": "p-knight",
+            "cls": "knight",
+            "x": 3041.71270718232,
+            "y": 2891.4450237335614,
+            "hp": 2798.1,
+            "focus": 477,
+            "shield": 0,
+            "loadout": [
+              "S00",
+              "S01",
+              "S03"
+            ],
+            "equipment": {
+              "version": 1
+            },
+            "grounded": true,
+            "valid": true,
+            "gravity": {
+              "x": 0,
+              "y": 320
+            },
+            "support": "finale-cutout-near-body"
+          },
+          {
+            "id": "p-occultist",
+            "cls": "occultist",
+            "x": 5458.563535911602,
+            "y": 2493.635514745934,
+            "hp": 886.3999999999999,
+            "focus": 751,
+            "shield": 0,
+            "loadout": [
+              "O01",
+              "O04",
+              "O03",
+              "O06"
+            ],
+            "equipment": {
+              "version": 1
+            },
+            "grounded": true,
+            "valid": true,
+            "gravity": {
+              "x": 0,
+              "y": 320
+            },
+            "support": "finale-cutout-near-body"
+          },
+          {
+            "id": "p-mage",
+            "cls": "mage",
+            "x": 5868.457188583224,
+            "y": 2383.1588167931695,
+            "hp": 734.0000000000002,
+            "focus": 724,
+            "shield": 0,
+            "loadout": [
+              "M01",
+              "M10",
+              "M07"
+            ],
+            "equipment": {
+              "version": 1
+            },
+            "grounded": true,
+            "valid": true,
+            "gravity": {
+              "x": 0,
+              "y": 320
+            },
+            "support": "finale-cutout-near-body"
+          }
+        ]
+      }
+    },
+    "events": [
+      {
+        "name": "pointerdown",
+        "trusted": true,
+        "type": "touch",
+        "control": "select-hero"
+      },
+      {
+        "name": "pointerup",
+        "trusted": true,
+        "type": "touch",
+        "control": "select-hero"
+      },
+      {
+        "name": "pointerdown",
+        "trusted": true,
+        "type": "touch",
+        "control": "joystick"
+      },
+      {
+        "name": "pointerup",
+        "trusted": true,
+        "type": "touch",
+        "control": "joystick"
+      },
+      {
+        "name": "pointerdown",
+        "trusted": true,
+        "type": "touch",
+        "control": "select-hero"
+      },
+      {
+        "name": "pointerup",
+        "trusted": true,
+        "type": "touch",
+        "control": "select-hero"
+      },
+      {
+        "name": "pointerdown",
+        "trusted": true,
+        "type": "touch",
+        "control": "joystick"
+      },
+      {
+        "name": "pointerup",
+        "trusted": true,
+        "type": "touch",
+        "control": "joystick"
+      },
+      {
+        "name": "pointerdown",
+        "trusted": true,
+        "type": "touch",
+        "control": "select-hero"
+      },
+      {
+        "name": "pointerup",
+        "trusted": true,
+        "type": "touch",
+        "control": "select-hero"
+      },
+      {
+        "name": "pointerdown",
+        "trusted": true,
+        "type": "touch",
+        "control": "joystick"
+      },
+      {
+        "name": "pointerup",
+        "trusted": true,
+        "type": "touch",
+        "control": "joystick"
+      },
+      {
+        "name": "pointerdown",
+        "trusted": true,
+        "type": "touch",
+        "control": "select-hero"
+      },
+      {
+        "name": "pointerup",
+        "trusted": true,
+        "type": "touch",
+        "control": "select-hero"
+      },
+      {
+        "name": "pointerdown",
+        "trusted": true,
+        "type": "touch",
+        "control": "joystick"
+      },
+      {
+        "name": "pointerup",
+        "trusted": true,
+        "type": "touch",
+        "control": "joystick"
+      }
+    ],
+    "saveHash": "eaeb1fcbdfe385cedeebc3f4e8804ae25e89e5c2b1ba4c8796c9a5c34a5bbec7"
+  }
+]

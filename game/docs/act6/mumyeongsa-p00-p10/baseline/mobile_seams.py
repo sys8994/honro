@@ -34,25 +34,25 @@ POINTER_EVENTS="""() => {
 }"""
 
 
-def build_context(browser, stage, source, key):
+def build_context(browser, stage, source, key, viewport, device_scale):
     if source:
         fixture=base.ROOT/'shared/act6-debug-stages/fixtures.json'
         records=json.loads(subprocess.check_output(['node','-e',REPLAY,str(fixture),str(source),key,str(stage)],text=True))
-        return saved_context(browser,records,mobile=True), 'captured live boundary'
-    return seeded_context(browser,stage,mobile=True), 'previous compatible checkpoint'
+        return saved_context(browser,records,mobile=True,viewport=viewport,device_scale=device_scale), 'captured live boundary'
+    return seeded_context(browser,stage,mobile=True,viewport=viewport,device_scale=device_scale), 'previous compatible checkpoint'
 
 
-def move(context,page,direction,condition,argument=None,timeout=6200):
+def move(context,page,direction,condition,argument=None,timeout=6200,displacement=33):
     session=context.new_cdp_session(page)
     pad=page.locator('#joystick').bounding_box()
     x=pad['x']+pad['width']/2
     y=pad['y']+pad['height']/2
     touch(page,session,x,y,'touchStart')
     try:
-        touch(page,session,x+direction*33,y,'touchMove')
+        touch(page,session,x+direction*displacement,y,'touchMove')
         page.wait_for_function(condition,arg=argument,timeout=timeout)
     finally:
-        touch(page,session,x+direction*33,y,'touchEnd')
+        touch(page,session,x+direction*displacement,y,'touchEnd')
         session.detach()
 
 
@@ -69,6 +69,24 @@ def touch_c(context,page,out):
     assert exit_pose['grounded'] and exit_pose['gravity']=={'x':0,'y':320}
     page.screenshot(path=out/'c-veranda-mobile.png')
     return {'ceiling':ceiling,'landed':exit_pose,'flight':page.evaluate('eaveFlight')}
+
+
+def touch_b(context,page,out):
+    from native_b import POSE
+    before=page.evaluate(POSE)['actors'][0]
+    assert before['id']=='p-mage' and before['support']=='b-inner-jamb' and before['grounded'],before
+    y=before['y']-40
+    move(context,page,1,'y=>HonroApp.engine.active.y<=y',y)
+    stepped=page.evaluate(POSE)['actors'][0]
+    assert stepped['grounded'] and stepped['support']=='b-inner-jamb' and abs(stepped['x']-before['x'])<1e-6,stepped
+    page.locator('#jump').tap(timeout=4500)
+    page.wait_for_function('HonroApp.engine.active.vx<0',timeout=4200)
+    jump=page.evaluate(POSE)['actors'][0]
+    page.wait_for_function('HonroApp.engine.grounded(HonroApp.engine.active)',timeout=5500)
+    landed=page.evaluate(POSE)['actors'][0]
+    assert landed['support']=='b-inner-jamb' and landed['grounded'],landed
+    page.screenshot(path=out/'b-wall-mobile.png')
+    return {'before':before,'stepped':stepped,'jump':jump,'landed':landed}
 
 
 def touch_d(context,page,out):
@@ -106,10 +124,10 @@ def touch_r(context,page,out):
     return {'enter':first,'crossed':crossed,'after':after}
 
 
-def check(browser,out,stage,source,key,task):
-    ctx,provenance=build_context(browser,stage,source,key)
+def check(browser,out,stage,source,key,task,viewport=None,device_scale=1):
+    ctx,provenance=build_context(browser,stage,source,key,viewport,device_scale)
     page=ctx.new_page()
-    result={'stage':stage,'source':provenance,'viewport':page.viewport_size,'status':'FAIL','pageErrors':[]}
+    result={'stage':stage,'source':provenance,'viewport':page.viewport_size,'deviceScale':device_scale,'status':'FAIL','pageErrors':[]}
     page.on('pageerror',lambda exc:result['pageErrors'].append(str(exc)))
     try:
         resume(page,stage,True,mobile=True)
@@ -138,15 +156,21 @@ if __name__=='__main__':
     parser.add_argument('--c-proof',required=True,type=Path)
     parser.add_argument('--d-proof',type=Path)
     parser.add_argument('--r-proof',type=Path)
+    parser.add_argument('--b-proof',type=Path)
+    parser.add_argument('--size',type=int,nargs=2,metavar=('WIDTH','HEIGHT'),default=(390,844))
+    parser.add_argument('--device-scale',type=float,default=1)
     args=parser.parse_args()
     base.ROOT=args.build.resolve()
     args.out.mkdir(parents=True,exist_ok=True)
     tasks=[(56,args.c_proof,'checkpoint56',touch_c),(58,args.d_proof,'checkpoint58',touch_d)]
+    if args.b_proof:
+        tasks.insert(0,(54,args.b_proof,'checkpoint54',touch_b))
     if args.r_proof:
         tasks.append((59,args.r_proof,'checkpoint59',touch_r))
     with sync_playwright() as playwright:
         with playwright.chromium.launch(executable_path='/usr/bin/chromium',args=['--no-sandbox','--disable-dev-shm-usage']) as browser:
-            results=[check(browser,args.out,*task) for task in tasks]
+            viewport=dict(zip(('width','height'),args.size))
+            results=[check(browser,args.out,*task,viewport=viewport,device_scale=args.device_scale) for task in tasks]
     (args.out/'mobile-seams.json').write_text(json.dumps(results,ensure_ascii=False,indent=2)+'\n')
     for item in results:
         print(item['stage'],item['status'],item.get('error',''))
