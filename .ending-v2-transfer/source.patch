@@ -1,0 +1,1349 @@
+diff --git a/game/docs/BUG_LOG.md b/game/docs/BUG_LOG.md
+index af02f30..5893540 100644
+--- a/game/docs/BUG_LOG.md
++++ b/game/docs/BUG_LOG.md
+@@ -6070,3 +6070,9 @@ Title `여정 이어가기` could choose an older hub before honoring a saved di
+ - **9장 승리 화면 매 프레임 오류(기존 결함)**
+   - 원인: `normal-stage59-visual-owner`가 존재하지 않는 `v.cleared()`를 호출했다. 함수가 없으면 승리 상태로 판단하게 고쳤다.
+ - **한계:** 1~7장은 이번 범위에서 전투를 바꾸지 않았다. 9장 원혼·문턱 갑주·거대 앞발은 기존 종(상두꾼·수의귀·장승의 거대 변형)의 역할·수치·행동만 바꿨고, 전용 실루엣 미술은 남은 과제다.
++
++### 2026-11-25 | 6막 엔딩 교체
++- 사용자 승인 기획으로 마지막 두 혼을 인도한 뒤 돌단의 장부 기록과 산문 이동을 이어 붙인다. 이후 담허·소단을 나눈 가로/세로 스틸컷 9장, 3인칭 내레이션과 크레딧을 3분으로 재생한다.
++- 6막 10장 원본 전투는 수정하지 않는다. 산문 이동은 복제한 네 캐릭터와 기존 이동 포즈를 렌더링하며, 기록은 기존 6막 완료 전용 저장 슬롯에서만 갱신한다. 진입용 저장 서명과 디버그 여정첩은 유지한다. 설정의 기존 엔딩 미리보기는 무기록이다.
++- 임시곡은 기존 「혼로」 메인 트랙. 최종곡·크레딧 표기는 확정 후 별도로 교체한다.
++- 재현: `node --test tools/act6-ending-v2/cues.test.mjs`, `npm run build`, `python tools/act6-ending-v2/preview.py --chromium <chromium>`, `python tools/act6-ending-v2/normal.py --chromium <chromium>`. `--live`는 같은 테스트를 GitHub Pages에서 실행한다.
+diff --git a/shared/act6-ending-replan/build.mjs b/shared/act6-ending-replan/build.mjs
+index 24ddfd6..6a3f491 100644
+--- a/shared/act6-ending-replan/build.mjs
++++ b/shared/act6-ending-replan/build.mjs
+@@ -2,77 +2,110 @@ import assert from 'node:assert/strict';
+ import {readFile} from 'node:fs/promises';
+ import {createHash} from 'node:crypto';
+ import path from 'node:path';
++import sharp from 'sharp';
++import {cuts,intro,names,selectEndingCue} from './cues.mjs';
+ const dir='shared/act6-ending-replan';
+-const TEMP_TRACK_FILE='assets/bgm/main.mp3'; // Replace this with the owner's final registered audio asset.
++const TEMP_TRACK_FILE='assets/bgm/main.mp3';
+ const TEMP_TRACK_SHA1='12fa25bef170b60de432272743efe44b16bdd50d';
+-const scenes=['last-souls','bridge-record','later-return'];
+-const officialActors={
+- seol:['shared/assets/portraits/variants-v2-20261024/seoro-action-lower-bow.webp','portrait-seoro-action-lower_bow','349c5a541a01528ecbefd39b9e7d96cc309a6c69d0c1214c1aa30c8fd05e0843'],
+- hwi:['shared/assets/portraits/variants-v2-20261024/hwigyeom-action-inspect-record.webp','portrait-hwigyeom-action-inspect_record','c719ee39c460ba5e2ef42096ea2c9fc8abbf259e074e8d24bf5c11e9c6af40d8'],
+- yeonsil:['shared/assets/portraits/npc-game-tone-v3/yeonsil.webp','npc-portrait-yeonsil','6a79ba32cc70096d4726ca1bf184e5f626e414c6f40cf27b6f70403a839ba68c']
+-};
+-const envPins={
+- 'dossier-room-m':'77ed2839388cb318b5a4ef4b885b3f783860481f7c9963d89ec4945f312d093f',
+- 'dossier-room':'e08159f4c3344f180494d8a03f34489ee004937a3662da9238464bdf2e59a2bc',
+- 'shore-dawn-m':'d0603378f1150f0ced4cb5f2f2cd7f9508408b40bde6a81bd40e8bed1ee4ebe7',
+- 'shore-dawn':'e6f8994d4b1c76b5c7daadcd2da6090640ddffc1176a271e0d02ca60338b3f71'
+-};
+-function splice(src,anchor,addition){
++function splice(src,anchor,replacement){
+  assert.equal(src.split(anchor).length,2,'Unreviewed Stage60 presentation anchor: '+anchor);
+- return src.replace(anchor,()=>addition);
++ return src.replace(anchor,()=>replacement);
+ }
+ export async function prepareEndingReplan({root,emit,descriptor}){
+  assert(descriptor.releaseEnabled&&descriptor.boundary&&descriptor.normalEndingAssets);
+- const raw=path.join(root,TEMP_TRACK_FILE), bytes=await readFile(raw);
++ const read=(name,encoding)=>readFile(path.join(root,dir,name),encoding);
++ const base=descriptor.basePath;assert.equal(base,'/honro/');
++ const bytes=await readFile(path.join(root,TEMP_TRACK_FILE));
+  const blob=createHash('sha1').update('blob '+bytes.length+'\0').update(bytes).digest('hex');
+  assert.equal(blob,TEMP_TRACK_SHA1,'Temporary ending track must be the registered title track');
+- const base=descriptor.basePath;
+- assert.equal(base,'/honro/');
+- const actor={}, places={};
+- for(const [id,[file,stem,digest]] of Object.entries(officialActors)){
+-  const art=await readFile(path.join(root,file));
+-  assert.equal(createHash('sha256').update(art).digest('hex'),digest,'Approved Act6 actor derivative changed: '+id);
+-  actor[id]=base+await emit('graphics',stem,'webp',art);
+- }
+- for(const scene of ['shore-dawn','dossier-room']){
+-  places[scene]={};
+-  for(const [v,s] of [['wide',''],['portrait','-m']]){
+-   const plate=scene+s, art=await readFile(path.join(root,dir,plate+'.webp'));
+-   assert(art.length>10000&&art.length<450000&&art.subarray(8,12).toString()==='WEBP','Act6 ending scene env drift: '+plate);
+-   assert.equal(createHash('sha256').update(art).digest('hex'),envPins[plate],'Act6 ending environment edition drift: '+plate);
+-   places[scene][v]=base+await emit('graphics','act6-ending-'+plate,'webp',art);
+-  }
+- }
+- const viewAssets={};
+- for(const [size,suffix,dawn] of [['Wide','pc','dawn-pc.webp'],['Portrait','m','dawn-mobile.webp']]){
+-  const shots=viewAssets[size]={'daybreak':base+descriptor.normalEndingAssets[dawn]};
+-  for(const scene of scenes){
+-   const name=scene+'-'+suffix;
+-   const media=await readFile(path.join(root,dir,name+'.webp'));
+-   assert(media.length>1000&&media.length<50000&&media.subarray(8,12).toString()==='WEBP');
+-   shots[scene]=base+await emit('graphics','act6-ending-preview-'+name,'webp',media);
++ const done=await Promise.all(cuts.map(async ({id})=>{
++  const media={};
++  for(const [side,w,h] of [['land',1920,1080],['port',1080,1920]]){
++   const stem='ending_'+id+'_'+side, art=await read('stills/'+stem+'.webp');
++   const q=await sharp(art).metadata();
++   assert(q.format==='webp'&&q.width===w&&q.height===h&&art.length<(id==='still_06b'?600000:450000),'Invalid '+stem);
++   media[side]=base+await emit('graphics','act6-'+stem,'webp',art);
+   }
++  return [id,media];
++ }));
++ const preview={};
++ for(const [side,key] of [['land','pc'],['port','m']]){
++  const stem='bridge-record-'+key, art=await read(stem+'.webp');
++  preview[side]=base+await emit('graphics','act6-ending-native-preview-'+key,'webp',art);
+  }
+- const css=await readFile(path.join(root,'shared/act6-normal-ending-qa/ending-dom.css'),'utf8')+
+-    '\n'+await readFile(path.join(root,dir,'presentation.css'),'utf8');
+- return Object.freeze({code:await readFile(path.join(root,dir,'presentation.inc.js'),'utf8'),css,
+-  assets:{preview:viewAssets,actor,places,track:base+TEMP_TRACK_FILE}});
++ const credit=JSON.parse(await read('credits.json','utf8'));
++ return Object.freeze({
++  code:await read('presentation.inc.js','utf8'),css:await read('presentation.css','utf8'),
++  walk:await read('walk.inc.js','utf8'),nativeHost:await read('native-host.inc.js','utf8'),
++  assets:{stills:Object.fromEntries(done),preview,track:base+TEMP_TRACK_FILE,credit},
++  timeline:{intro,names,cuts}
++ });
+ }
+ export function spliceEndingPresentation(proto,end){
+  assert(proto.includes('const normal60Stock=true;')&&proto.includes('function createEndingDOM('));
+- proto=splice(proto,'  const previousActive=doc.activeElement;',
+-  '  const end6=act6EndingReplan.normal(app,{root,media,heading,script,controls,status});\n  const previousActive=doc.activeElement;');
+- proto=splice(proto,"   if(copy[v.scene])script.append(el('p','',copy[v.scene]));",
+-  "   const beatCopy=act6EndingReplan.lines[v.scene]?.[1]??copy[v.scene];if(beatCopy&&!v.line)script.append(el('p','',beatCopy));");
+- proto=splice(proto,'      const result=await pending;',
+-  '      const result=await pending;\n      if(current(s))end6.audioAfter(v,result);');
+- proto=splice(proto,"s.result=true;controls.replaceChildren();status.textContent='여정의 끝을 기록했습니다.';onDone(app,engine,proof,result);return;",
+-  "s.result=true;end6.done();onDone(app,engine,proof,result);return;");
+- proto=splice(proto,'   controls.replaceChildren(b);b.focus({preventScroll:true});',
+-  '   controls.replaceChildren(b);end6.controls();b.focus({preventScroll:true});');
+- proto=splice(proto,"   s.renderSize=size;s.displayed=v.scene;root.dataset.cut=v.scene;",
+-  "   s.renderSize=size;\n   if(end6.shouldHold(v)){s.displayed=null;clearMedia();end6.paint(show);return;}\n   s.displayed=v.scene;root.dataset.cut=v.scene;");
+- proto=splice(proto,'s.load?.abort();clearMedia();root.remove();refs.delete(app);',
+-  's.load?.abort();end6.close();clearMedia();root.remove();refs.delete(app);');
+- return 'const act6EndingReplan=('+end.code+')(G,'+JSON.stringify(end.assets)+','+JSON.stringify(end.css)+');\n'+proto;
++ // The released chapter boundary fingerprints the base module before this splice.
++ // The new presentation consumes the same authorized outcome and storage port.
++ proto=splice(proto,'const dom=createEndingDOM({','const dom=createEndingDOMV2({');
++ proto=splice(proto,'async function renderNative(app,e,proof,scene,size,{signal}={}){',
++  'async function renderNative(app,e,proof,scene,size,{signal,endingV2=false}={}){');
++ proto=splice(proto,"  const portrait=size.w/size.h<.95,node=doc.createElement('canvas');",
++  "  if(endingV2){const gate=gateShadow(b,cfg,C.topAt);if(gate?.collisionIds.length===0){b.honroLandmarks=b.honroLandmarks.filter(i=>i.id!=='act6-10-main-gate-footings-r1');b.honroLandmarks.push(warmGate(gate));}}\n"+
++  "  const portrait=size.w/size.h<.95,node=doc.createElement('canvas');");
++ proto=splice(proto,'  const snap=witnesses(b), geom=terrainSeal(b);',
++  '  const paint=()=>{sc.render(fork,0,"",.5,false,0);applyQuietPigment(node,sc,{...frame,core:C},scene,portrait);};\n'+
++  '  const walked=endingV2?endingV2Walk({frame,b,node,sc,fork,size,stage:e.stage,paint,sample}):null;\n'+
++  '  if(endingV2&&!walked){sc._releaseDomainTiles?.();return null;}\n  let keep=false;\n  const snap=witnesses(b), geom=terrainSeal(b);');
++ proto=splice(proto,"   try {sc.render(fork,0,'',.5,false,0);applyQuietPigment(node,sc,{...frame,core:C},scene,portrait);}",
++  '   try {paint();}');
++ proto=splice(proto,'   const result=Object.freeze({node,native:Object.freeze({})});',
++  '   const result=Object.freeze({node,native:Object.freeze({}),...(walked?{walk:walked.walk,walked:walked.walked,dispose:()=>sc._releaseDomainTiles?.()}:{} )});');
++ proto=splice(proto,'tickets.set(result.native,{app,e,proof,scene,node,world:canvas,size:{...size},pixels,nativePixels,counts,cert:',
++  'tickets.set(result.native,{app,e,proof,scene,node,world:canvas,size:{...size},pixels,walked,nativePixels,counts,cert:');
++ proto=splice(proto,'   return result;\n  }finally{sc._releaseDomainTiles?.();}',
++  '   keep=!!walked;return result;\n  }finally{if(!keep)sc._releaseDomainTiles?.();}');
++ proto=splice(proto,'try{return ticket.pixels===sample(node);}',
++  'try{return (ticket.walked?.signature()??ticket.pixels)===sample(node);}');
++ const mountStart=proto.indexOf('      function mountEndingNormal60(a,s,terminal){'), prior=proto.slice(0,mountStart);
++ assert(mountStart>-1);
++ let mount=proto.slice(mountStart);
++ mount=splice(mount,'        const panel=new WeakMap();',
++  "        const panel=new WeakMap();\n        if(s.owner60.endingView(1440,900)?.scene==='last-souls')void s.owner60.advanceScene('last-souls');");
++ mount=splice(mount,`          const v=s.owner60.endingView(w,h);
++          if(v?.scene!=='daybreak')return v;
++          const card=w/h<.95?normal60Cards.Portrait:normal60Cards.Wide;
++          return {...v,asset:card};`,
++  "          const v=s.owner60.endingView(w,h);return v?{...v,scene:'bridge-record'}:null;");
++ const from="            if(kind==='record'){", until="            finally{s.writing60=null;}";
++ const i=mount.indexOf(from),j=mount.indexOf(until,i);
++ assert(i>-1&&j>i);
++ mount=mount.slice(0,i)+`            if(kind==='record'){
++              const ok=s.owner60.nativeInteraction('name-the-bridge-guard',e.unit(p.guard.actor));
++              return {ok};
++            }
++            if(kind!=='depart'||f.raw.walked()!==1||s.writing60)return {ok:false,reason:'normal-60-departure-not-ready'};
++            s.writing60=f.raw;
++            try{
++              let q=s.owner60.endingView(f.viewport.w,f.viewport.h);
++              if(q?.scene==='bridge-record'){
++                if(!(await s.owner60.advanceScene('bridge-record')).ok)return {ok:false};
++                q=s.owner60.endingView(f.viewport.w,f.viewport.h);
++              }
++              if(q?.scene==='daybreak'){
++                if(!(await s.owner60.advanceScene('daybreak')).ok)return {ok:false};
++                q=s.owner60.endingView(f.viewport.w,f.viewport.h);
++              }
++              if(q?.scene!=='later-return')return {ok:false};
++              if(!s.final60Seal){
++                s.final60Seal=Object.freeze({});
++                if(!s.owner60.acceptFinalFrame(s.final60Seal)){s.final60Seal=null;return {ok:false,reason:'normal-60-final-frame-closed'};}
++              }
++              const result=await s.owner60.advanceScene('later-return');if(result.ok)panel.delete(frame);return result;
++            }
++`+mount.slice(j);
++ proto=prior+mount;
++ proto=splice(proto,"next.honroFlags={...(next.honroFlags??{}),[flag]:true};",
++  "next.honroFlags={...(next.honroFlags??{}),[flag]:true,game_completed:true,ending_act6_seen:true};");
++ return 'const endingTimeline='+JSON.stringify(end.timeline)+';endingTimeline.cueAt=ms=>('+selectEndingCue.toString()+')(endingTimeline.cuts,ms);\n'+
++  'const act6EndingReplan=('+end.code+')(G,'+JSON.stringify(end.assets)+','+JSON.stringify(end.css)+',endingTimeline);\n'+
++  end.walk+'\n'+end.nativeHost+'\n'+proto;
+ }
+diff --git a/shared/act6-ending-replan/credits.json b/shared/act6-ending-replan/credits.json
+new file mode 100644
+index 0000000..4482b6a
+--- /dev/null
++++ b/shared/act6-ending-replan/credits.json
+@@ -0,0 +1,4 @@
++{
++  "developer": "",
++  "song": ""
++}
+diff --git a/shared/act6-ending-replan/cues.mjs b/shared/act6-ending-replan/cues.mjs
+new file mode 100644
+index 0000000..83fe8f0
+--- /dev/null
++++ b/shared/act6-ending-replan/cues.mjs
+@@ -0,0 +1,125 @@
++export const intro=[
++ ['소단','마지막 혼까지 다 건넜어. 이제 붙잡히는 건 없어.'],
++ ['휘겸','돌아가서 남길 이름들이 있소.']
++];
++export const names=['곽진','박문돌','이만복'];
++export const cuts=[
++  {
++    "id": "still_01",
++    "alt": "마른 진목 뿌리와 돌문 앞에 놓인 진패와 붓대",
++    "motion": "dust",
++    "duration": 20,
++    "beats": [
++      "법당 뒤 돌문에는 마른 진목 뿌리가 얽혀 있었다.",
++      "현묵은 스승이 울린 종의 여파를 막으러 무명사에 들었다.",
++      "그는 제 몸을 진의 쐐기로 삼았고, 오래전에 기운을 다했다.",
++      "담허는 뿌리 아래 남은 낡은 진패와 끝이 닳은 붓을 거두었다."
++    ]
++  },
++  {
++    "id": "still_02",
++    "alt": "붉은 천이 묶인 부러진 창대와 장부 앞 군패 세 개",
++    "motion": "cloth",
++    "duration": 20,
++    "beats": [
++      "네 사람이 절 안에 있는 동안, 방어대는 산문을 지켰다.",
++      "휘겸이 돌아왔을 때, 그를 맞으러 나온 사람은 없었다.",
++      "그는 부러진 창대 곁에서 군패 세 개를 주웠다.",
++      "장부에는 곽진, 박문돌, 이만복의 이름이 차례로 적혔다."
++    ]
++  },
++  {
++    "id": "still_03",
++    "alt": "무명사 쪽 능선의 풀린 실과 작은 짚신 한 짝",
++    "motion": "soul",
++    "duration": 20,
++    "beats": [
++      "도식이 큰아이를 놓친 것은 무명사로 오르는 능선에서였다.",
++      "설오는 바위 틈에서 작은 짚신 한 짝을 찾았다.",
++      "막내에 이어 큰아이도 살아 돌아오지 못했다.",
++      "다만 아이의 혼은, 마지막으로 길을 건넌 무리 속에 있었다.",
++      "설오는 짚신을 품에 넣고 포구로 내려갔다."
++    ]
++  },
++  {
++    "id": "still_04",
++    "alt": "아침의 포구 돌계단에 앉은 도식과 설오",
++    "motion": "water",
++    "duration": 20,
++    "beats": [
++      "사라졌던 열셋 중 일곱은 몸을 피했고, 넷은 구조되었다.",
++      "포구에 돌아온 이들은 다시 배를 고치고 그물을 손질하고 있었다.",
++      "설오는 도식에게 짚신을 건네고, 아이가 길을 잃지 않았다고 전했다.",
++      "도식은 한동안 짚신을 두 손에 쥔 채 놓지 못했다."
++    ]
++  },
++  {
++    "id": "still_05",
++    "alt": "읍성 기록처 창가의 휘겸과 푸른 표지의 기록서",
++    "motion": "window",
++    "duration": 20,
++    "beats": [
++      "휘겸은 읍성으로 돌아가 저문골의 호적과 운송 장부를 펼쳤다.",
++      "저문골은 반란군의 마을이 아니었다.",
++      "그는 마을을 닫으라 한 왕실 고관들과 학살을 지휘한 대도사를 구분해 적었다.",
++      "그 뒤에 시신을 옮기고 기록을 지운 이들도 따로 적었다.",
++      "휘겸은 선조의 작위를 돌려달라는 글은 쓰지 않았다."
++    ]
++  },
++  {
++    "id": "still_06a",
++    "alt": "산사 마루에서 진을 그리는 담허",
++    "motion": "dust",
++    "duration": 10,
++    "beats": [
++      "담허는 산사 마루에 앉아 현묵의 붓으로 새 진을 그렸다.",
++      "위험한 혼은 막되, 떠나는 혼이 지나갈 자리만은 비워 두었다."
++    ]
++  },
++  {
++    "id": "still_06b",
++    "alt": "마을 어귀 장승에 등불을 거는 소단",
++    "motion": "lamp",
++    "duration": 10,
++    "beats": [
++      "소단은 해가 지기 전 마을 어귀의 장승에 작은 등불을 걸었다.",
++      "밤길에 헤매는 혼이 불빛을 지나가도, 매듭은 조여들지 않았다."
++    ]
++  },
++  {
++    "id": "still_07",
++    "alt": "아침 언덕에서 각자의 길을 걷는 네 동행",
++    "motion": "wind",
++    "duration": 20,
++    "beats": [
++      "수십 년 뒤 이승에 닿은 응답이 누구의 것이었는지는 끝내 밝혀지지 않았다.",
++      "그것이 대도사의 물음에 건넨 대답이었는지도 알 수 없었다.",
++      "네 사람은 그 답을 들으러 다시 무명사에 오르지 않았다.",
++      "언덕을 넘자 길이 갈라졌고, 네 사람은 저마다 갈 곳으로 걸어갔다."
++    ]
++  },
++  {
++    "id": "final",
++    "alt": "등불과 풀린 끈만 남은 무명사 석교",
++    "motion": "still",
++    "duration": 40,
++    "beats": [
++      "그날 이후 무명사의 산문은 닫히지 않았다. 날이 저물면 돌다리 난간에 등불 하나가 켜졌다. 이름 없이 건너가는 이들의 발밑에도, 그 불빛은 닿았다.",
++      "끝까지 함께 걸어주셔서 감사합니다."
++    ]
++  }
++];
++export const selectEndingCue=(cuts,ms)=>{
++ const sec=Math.max(ms,0)/1000;
++ let start=0;
++ for(const [index,cut] of cuts.entries()){
++  const time=sec-start;
++  if(time<cut.duration){
++   const final=cut.id==='final', beat=final?(time<14?0:time<34?1:2):Math.min(cut.beats.length-1,Math.floor(time/(cut.duration/cut.beats.length)));
++   return {index,beat,time,cut,final};
++  }
++  start+=cut.duration;
++ }
++ return null;
++};
++export const cueAt=ms=>selectEndingCue(cuts,ms);
+diff --git a/shared/act6-ending-replan/native-host.inc.js b/shared/act6-ending-replan/native-host.inc.js
+new file mode 100644
+index 0000000..6fa1ea6
+--- /dev/null
++++ b/shared/act6-ending-replan/native-host.inc.js
+@@ -0,0 +1,66 @@
++// Uses the verified Stage 60 battle frame and its private same-slot writer.
++function createEndingDOMV2({authorize,container,renderNative,verifyNative,writeFinal}){
++ const surfaces=new WeakMap();
++ const current=s=>!s.inactive&&surfaces.get(s.app)===s&&s.app.engine===s.engine&&authorize(s.app,s.engine,s.proof)&&s.view.root.isConnected;
++ function readPanelFrame(app,e,proof,v,display,size){
++  const s=surfaces.get(app),f=s?.frame;
++  if(!s||!f||!current(s)||s.engine!==e||s.proof!==proof||s.display!==display||
++     v.scene!=='bridge-record'||!s.view.backdrop.contains(f.node)||
++     size.w!==s.size.w||size.h!==s.size.h||!verifyNative(app,e,proof,'bridge-record',f.native,f.node,size))return null;
++  return f;
++ }
++ function trustedUIAction(app,e,event,control,kind){
++  const s=surfaces.get(app);
++  if(!s||!current(s)||s.engine!==e||!event.isTrusted||s.action?.event!==event||s.action?.control!==control||s.action?.kind!==kind||
++     !['record','depart'].includes(kind)||!s.view.root.contains(control))return false;
++  s.action=null;return true;
++ }
++ async function writeEnding(app,e,p,req){
++  const s=surfaces.get(app),f=s?.frame;
++  const still=()=>s&&current(s)&&s.engine===e&&s.proof===p&&s.frame===f&&f?.walked()===1&&
++    !!readPanelFrame(app,e,p,{scene:'bridge-record'},s.display,s.size);
++  if(!still()||req?.frameProof!==f||req.key!==p.endingKey||req.terminalSha!==p.rawSHA||
++     req.flag!=='act6.endingCompleted'||req.finalScene!=='later-return')return {ok:false,reason:'stage60-unowned-departure'};
++  return writeFinal(app,e,p,req,still);
++ }
++ function mountEnding(app,engine,proof,ui){
++  const parent=container(app);
++  if(!parent?.isConnected||!authorize(app,engine,proof)||surfaces.has(app))throw Error('Stage 60 ending owner inactive');
++  const view=act6EndingReplan.open(app,'completion',()=>{app.showTitle();app.updateAudio();});
++  if(!view)throw Error('Stage 60 ending surface already mounted');
++  const outer=view.root.getBoundingClientRect(),size={w:Math.min(4096,Math.floor(outer.width)),h:Math.min(4096,Math.floor(outer.height))};
++  const s={app,engine,proof,size,view,frame:null,display:null,ticket:null,action:null,inactive:false};
++  surfaces.set(app,s);
++  const dispose=()=>{s.inactive=true;surfaces.delete(app);view.close();};
++  let pending=false;
++  async function start(){
++   if(pending||s.frame||!current(s))return;pending=true;view.controls.replaceChildren();
++   try{
++    const f=await renderNative(app,engine,proof,'bridge-record',size,{signal:view.lifecycle.signal,endingV2:true});
++    if(!current(s))return;
++    if(!f?.walk||!verifyNative(app,engine,proof,'bridge-record',f.native,f.node,size))throw Error('Native post-battle frame missing');
++    s.frame=f;s.display=Object.freeze({});view.backdrop.replaceChildren(f.node);view.cleanupNative=f.dispose;
++    await new Promise(done=>view.frame(()=>view.frame(done)));
++    if(!current(s))return;
++    s.ticket=await ui.confirmPanel(s.display,size);
++    if(!s.ticket)throw Error('Native Stage 60 frame not confirmed');
++    const invoke=async(kind,event)=>{
++     if(!current(s)||!event.isTrusted||!s.ticket)return {ok:false};
++     const control=event.currentTarget instanceof G.HTMLElement&&view.root.contains(event.currentTarget)?event.currentTarget:view.root;
++     s.action={event,control,kind};
++     try{return await ui.input(kind,{event,control,frame:s.ticket});}finally{s.action=null;}
++    };
++    view.status.textContent='';
++    act6EndingReplan.intro(view,{surface:f.walk,record:event=>invoke('record',event),depart:event=>invoke('depart',event)});
++   }catch(error){
++    if(!current(s))return;
++    view.cleanupNative?.();view.cleanupNative=null;s.frame=null;s.display=null;s.ticket=null;
++    view.status.textContent='엔딩 장면을 불러오지 못했습니다.';
++    const retry=G.document.createElement('button');retry.type='button';retry.className='he-button';retry.textContent='다시 불러오기';
++    retry.addEventListener('click',e=>{if(e.isTrusted)void start();});view.controls.replaceChildren(retry);
++   }finally{pending=false;}
++  }
++  void start();return dispose;
++ }
++ return Object.freeze({mountEnding,readPanelFrame,trustedUIAction,writeEnding});
++}
+diff --git a/shared/act6-ending-replan/presentation.css b/shared/act6-ending-replan/presentation.css
+index 04ed2ea..fef2409 100644
+--- a/shared/act6-ending-replan/presentation.css
++++ b/shared/act6-ending-replan/presentation.css
+@@ -1,48 +1,58 @@
+-.honro-ending-60-controls{display:flex;align-items:center;justify-content:center;gap:.5rem;flex-wrap:wrap}
+-.honro-ending-60-controls button[hidden]{display:none}
+-.honro-ending-60 .h6ending-naru,.honro-ending-60 .h6ending-ledger{position:relative;isolation:isolate;overflow:hidden;box-sizing:border-box;border:1px solid #4d4a41;max-width:62rem}
+-.h6ending-naru{background:linear-gradient(164deg,#a9946e 0%,#746853 26%,#35414a 27%,#232f32 58%,#101821 100%)}
+-.h6ending-backdrop{position:absolute;inset:0;z-index:0}
+-.h6ending-backdrop img{height:100%;width:100%;display:block;object-fit:cover;object-position:50% 56%}
+-.h6ending-backdrop::after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,#13202955,transparent 58%);pointer-events:none}
+-.h6ending-home-foreground{position:absolute;inset:0;z-index:1;background:linear-gradient(10deg,#202a2e61,transparent 45%);pointer-events:none}
+-.h6ending-yeonsil{position:absolute;height:min(73%,45rem);max-width:60%;object-fit:contain;object-position:bottom;bottom:0;right:7%;filter:drop-shadow(0 0 13px #23170c85)}
+-.h6ending-ledger{display:grid!important;place-items:center;background:radial-gradient(ellipse at 50% 43%,#645043,#2d2a28 60%,#1a2026);padding:clamp(12px,4vw,34px)}
+-.h6ending-paper{box-sizing:border-box;width:clamp(220px,56%,392px);max-width:100%;padding:clamp(10px,3vw,28px);background:#a39579;color:#261f1b;box-shadow:0 3px 16px #100d0b8c,2px 3px 0 #766549,3px 5px 0 #45372d;border:1px solid #574839;text-align:left}
+-.h6ending-paper h2{margin:0 0 .25rem;color:inherit;font-size:clamp(16px,2.3vw,27px)}
+-.h6ending-paper dl{margin:0;font-size:clamp(12px,1.7vw,16px)}
+-.h6ending-paper dt{border-top:1px solid #5f5141;padding-top:.28rem;font-weight:650}
+-.h6ending-paper dd{margin:0 0 .28rem;color:inherit}
+-.h6ending-credit-plate{display:grid!important;place-content:center;text-align:center;gap:.35rem;background:radial-gradient(ellipse at 50% 60%,#272c32,#131b25 65%);letter-spacing:.19em}
+-.h6ending-credit-plate b{font-size:clamp(27px,6vw,65px);color:#e4d7bc}
+-.h6ending-credit-plate span{font-size:clamp(18px,3vw,30px);color:#cfbd9e}
+-.h6ending-credit-plate small{font-size:.88rem;color:#cec2ad;letter-spacing:.27em}
+-.honro-ending-60[data-mode="debug"]{z-index:50}
+-@media(prefers-reduced-motion:reduce){.honro-ending-60 *{animation:none!important;transition:none!important}}
+-/* The small action is a separate foreground pass; no damage or live actor state is rendered. */
+-.h6ending-ferry-arrival{position:absolute;inset:auto 0 11% 21%;height:31%;animation:h6naru-arrive 3.1s cubic-bezier(.15,.66,.14,1) both}
+-.h6ending-ferry{width:min(60%,34rem);height:66%;position:absolute;right:10%;bottom:0;filter:drop-shadow(0 7px 6px #18252196)}
+-.h6ending-ferry-arrival .h6ending-yeonsil{height:88%;bottom:25%;right:25%;max-width:39%}
+-.h6ending-seol{position:absolute;opacity:1;left:24%;bottom:10%;height:32%;max-width:35%;object-fit:contain;object-position:bottom;filter:drop-shadow(0 0 12px #201c18a6);animation:h6naru-step 2.7s .45s both}
+-.h6ending-sack{position:absolute;width:clamp(19px,5.2%,44px);height:auto;bottom:13%;left:39%;filter:drop-shadow(2px 4px 3px #1b2119aa);animation:h6naru-hand 3.3s .25s both}
+-@keyframes h6naru-arrive{from{transform:translate(14%,1.5%)}to{transform:translate(0,0)}}
+-@keyframes h6naru-step{from{transform:translateX(-9%)}to{transform:translateX(0)}}
+-@keyframes h6naru-hand{0%,30%{transform:translate(92%,-22%) rotate(11deg)}75%{transform:translate(-7%,-8%) rotate(-7deg)}100%{transform:translate(0,0) rotate(0)}}
+-.h6ending-paper{position:absolute;left:26%;top:39%;z-index:2;transform-origin:50% 72%;animation:h6open-records 1.6s ease-out both}
+-.h6ending-evidence-slip{background:#c1ab83;margin-block:.35rem;padding:0 .4rem .1rem;border:1px solid #a18a67;box-shadow:2px 2px 1px #45372d55;animation:h6fold-proof 1.05s both}
+-.h6ending-evidence-slip:nth-of-type(1){animation-delay:.55s;--proof-from:-23%;--proof-rot:-4deg}
+-.h6ending-evidence-slip:nth-of-type(2){animation-delay:1.26s;--proof-from:17%;--proof-rot:4deg}
+-.h6ending-evidence-slip:nth-of-type(3){animation-delay:1.97s;--proof-from:-15%;--proof-rot:-3deg}
+-.h6ending-evidence-slip dt{border:0}
+-.h6ending-hwi{position:absolute;right:20%;bottom:43%;height:41%;width:auto;max-width:36%;object-fit:contain;object-position:bottom;opacity:.92;filter:saturate(.72) brightness(.92) drop-shadow(0 6px 10px #1a1513bf);z-index:1;pointer-events:none;mask-image:linear-gradient(#000 0 85%,transparent 100%)}
+-@keyframes h6open-records{from{transform:translateY(7%) rotate(-2deg)}to{transform:none}}
+-@keyframes h6fold-proof{from{transform:translateX(var(--proof-from)) rotate(var(--proof-rot));opacity:.08}to{transform:none;opacity:1}}
+-@media(max-width:590px){
+- .h6ending-ferry-arrival{height:25%;bottom:28%;inset-inline:16% 1%}.h6ending-ferry-arrival .h6ending-yeonsil{right:17%}
+- .h6ending-ferry{width:83%;right:0}.h6ending-seol{height:24%;bottom:15%;left:17%}.h6ending-sack{bottom:19%;left:37%}
+- .h6ending-ledger .h6ending-hwi{right:12%;bottom:55%;height:32%;max-width:43%}.h6ending-paper{left:8%;top:43%;width:min(84%,25rem)}
++.he-root{position:fixed;inset:0;z-index:4000;overflow:hidden;isolation:isolate;background:#100f0e;color:#f5eddf;font-family:"Noto Serif KR",Batang,serif;outline:none}
++.he-media,.he-veil,.he-fx{position:absolute;inset:0;pointer-events:none}
++.he-root canvas,.he-native-preview,.he-still{position:absolute;inset:0;width:100%!important;height:100%!important;max-width:none!important;max-height:none!important;object-fit:cover;display:block}
++.he-veil{z-index:1;background:linear-gradient(180deg,rgba(9,10,11,.13),transparent 25%,transparent 65%,rgba(14,12,11,.60))}
++.he-root[data-ending-phase="departure"] .he-veil{background:#100e0e;animation:he-vanish .85s ease both}
++.he-root[data-ending-phase="stills"]::after{content:"";position:absolute;inset:0;background:#100e0e;opacity:var(--he-outro,0);pointer-events:none;z-index:6}
++.he-root[data-ending-phase="stills"] .he-veil{background:linear-gradient(0deg,rgba(16,12,9,.89),rgba(16,12,9,.55) 13%,transparent 31%)}
++.he-root[data-ending-still="final"] .he-veil{background:linear-gradient(90deg,rgba(21,25,30,.22),transparent 72%)}
++.he-copy{position:absolute;z-index:3;left:50%;bottom:max(9%,env(safe-area-inset-bottom));width:min(86%,980px);transform:translateX(-50%);text-align:center;pointer-events:none}
++.he-dialog,.he-line{margin:0 auto;max-inline-size:38em;font-size:clamp(19px,2vw,30px);line-height:1.68;text-wrap:balance;word-break:keep-all;overflow-wrap:anywhere;text-shadow:0 2px 3px #111,0 0 16px #110e0a}
++.he-dialog strong{display:block;margin-bottom:.45em;font-size:.66em;letter-spacing:.13em;color:#f0cf9d}
++.he-root[data-ending-phase="ledger"] .he-copy,.he-root[data-ending-phase="ink"] .he-copy{top:47%;bottom:auto;transform:translate(-50%,-50%);max-width:580px}
++.he-ledger{background:linear-gradient(93deg,#c4a87b,#f1ddb0 12%,#ead5a9 48%,#cbb085 50%,#f0dbac 54%,#e4c99a 91%,#bf9e75);border:1px solid #553a24;color:#302317;padding:clamp(35px,9vh,94px) 18px;box-shadow:0 12px 65px #0009,inset 0 0 24px #7d563d55}
++.he-ledger h2{margin:0;font-size:clamp(20px,3vw,32px);font-weight:500;letter-spacing:.12em}
++.he-names{font-size:clamp(20px,4vw,42px);margin:34px 0 0;display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(13px,3vw,38px);font-weight:800}
++.he-names span{animation:he-ink 1s ease both}.he-names span:nth-child(2){animation-delay:.5s}.he-names span:nth-child(3){animation-delay:1s}
++.he-controls{position:absolute;z-index:4;left:5%;right:5%;bottom:max(11%,env(safe-area-inset-bottom));display:flex;justify-content:center;gap:12px;pointer-events:none}
++.he-root[data-ending-phase="ledger"] .he-controls{bottom:max(14%,env(safe-area-inset-bottom))}
++.he-root[data-ending-phase="stills"] .he-controls{top:max(3%,env(safe-area-inset-top));right:max(3%,env(safe-area-inset-right));left:auto;bottom:auto;flex-direction:row-reverse}
++.he-button{position:relative;overflow:hidden;pointer-events:auto;touch-action:manipulation;cursor:pointer;padding:.7em 1.15em;border:1px solid rgba(228,208,168,.42);border-radius:3px;min-height:44px;color:#f8eddb;background:#231d17d9;font:inherit;box-shadow:none;text-shadow:none}
++.he-button:focus-visible{outline:2px solid #edcc95;outline-offset:4px}
++.he-button[data-ending-action="skip"]{font-size:14px;opacity:.69}
++.he-button.he-held::after{position:absolute;inset:auto 0 0;height:3px;background:#e7bc70;content:"";transform-origin:left;animation:he-hold 2s linear both}
++.he-status{position:absolute;z-index:4;bottom:max(4%,env(safe-area-inset-bottom));margin:0;left:7%;right:7%;font-size:14px;text-align:center;text-shadow:0 2px 4px #000}
++.he-root[data-ending-still="final"] .he-copy{left:33%;width:min(48%,720px);top:19%;bottom:auto}
++.he-root[data-ending-still="final"] .he-line,.he-credit{color:#242932;text-shadow:0 0 15px #f8eddfb0,0 1px 4px #f2e2d4aa}
++.he-credit h1{font-size:clamp(34px,6vw,82px);line-height:1;margin:.18em 0}
++.he-credit p{margin:.5em 0;font-size:clamp(15px,1.35vw,23px);line-height:1.4}
++.he-credit .he-roman{letter-spacing:.4em;font-size:12px;margin:0 0 1.8em}
++.he-credit .he-thanks{margin-top:1.6em}
++.he-still.he-drift{animation:he-drift 20s ease-out both}
++.he-root[data-ending-motion="cloth"] .he-drift,.he-root[data-ending-motion="window"] .he-drift{animation-name:he-pan}
++.he-root[data-ending-motion="soul"] .he-drift,.he-root[data-ending-motion="wind"] .he-drift{animation-direction:reverse}
++.he-root[data-ending-motion="still"] .he-drift{animation:none}
++.he-fx i{position:absolute;top:calc(41% + var(--i) * 3%);left:calc(27% + var(--i) * 4%);width:3px;height:3px;border-radius:50%;background:#f6e0b4;box-shadow:0 0 7px #eab874;animation:he-dust calc(6s + var(--i) * 1s) ease-in-out infinite;animation-delay:calc(var(--i) * -.84s)}
++.he-root[data-ending-motion="soul"] .he-fx i{background:#fff;box-shadow:0 0 11px #ddefff}
++.he-root[data-ending-motion="cloth"] .he-fx,.he-root[data-ending-motion="window"] .he-fx,.he-root[data-ending-motion="wind"] .he-fx{display:none}
++.he-root[data-ending-motion="water"] .he-fx i{top:60%;left:calc(7% + var(--i) * 5%);width:12px;height:1px;animation-name:he-light}
++.he-root[data-ending-motion="lamp"] .he-fx i{top:58%;left:83%;width:43px;height:43px;filter:blur(20px);opacity:.26;animation-name:he-light}
++@keyframes he-vanish{from{opacity:0}to{opacity:1}}
++@keyframes he-ink{from{opacity:0;filter:blur(3px);transform:translateY(3px)}to{opacity:1;filter:none;transform:none}}
++@keyframes he-hold{from{transform:scaleX(0)}to{transform:scaleX(1)}}
++@keyframes he-drift{from{transform:scale(1)}to{transform:scale(1.035)}}
++@keyframes he-pan{from{transform:scale(1.035) translateX(-1%)}to{transform:scale(1.035) translateX(1%)}}
++@keyframes he-dust{0%{opacity:0;transform:translate(0,12px)}30%{opacity:.56}90%,100%{opacity:0;transform:translate(19px,-37px)}}
++@keyframes he-light{0%,100%{opacity:.08}50%{opacity:.45}}
++@media(orientation:portrait){
++ .he-root[data-ending-phase="stills"] .he-veil{background:linear-gradient(0deg,rgba(16,12,9,.93),rgba(16,12,9,.64) 16%,transparent 36%)}
++ .he-copy{width:88%;bottom:max(12%,env(safe-area-inset-bottom))}
++ .he-line,.he-dialog{font-size:clamp(18px,4.7vw,26px);line-height:1.64}
++ .he-root[data-ending-still="final"] .he-veil{background:linear-gradient(180deg,#b4bdd859,transparent 50%)}
++ .he-root[data-ending-still="final"] .he-copy{left:50%;width:85%;top:max(12%,calc(env(safe-area-inset-top) + 57px))}
++ .he-root[data-ending-motion="lamp"] .he-fx i{top:61%;left:82%}
+ }
+-@media(prefers-reduced-motion:reduce){.honro-ending-60 *{animation:none!important;transition:none!important}}
+-
+-.h6ending-preparing{visibility:hidden!important}
+-.h6ending-preparing *{animation-play-state:paused!important}
++@media(prefers-reduced-motion:reduce){.he-still.he-drift,.he-names span,.he-fx i{animation:none!important}}
++/* Sodan's road is part of the shot. Keep the ground visible, not vignetted. */
++.he-root[data-ending-still="still_06b"] .he-veil{background:none}
++.he-root[data-ending-still="still_06b"] .he-line{display:table;margin-inline:auto;padding:.32em .65em;background:#1b1713d6;border-radius:4px}
+diff --git a/shared/act6-ending-replan/presentation.inc.js b/shared/act6-ending-replan/presentation.inc.js
+index 9c88124..99c3124 100644
+--- a/shared/act6-ending-replan/presentation.inc.js
++++ b/shared/act6-ending-replan/presentation.inc.js
+@@ -1,219 +1,269 @@
+-(G, assets, css) => {
++(G, assets, css, timeline) => {
+  'use strict';
+- const doc=G.document, sessions=new WeakMap(), installed=new WeakSet(), mediaCache=new Map();
+- const order=['last-souls','bridge-record','daybreak','homecoming','jeomungol-record','later-return'];
+- const lines={
+-  'last-souls':['다시 흐르는 길','마지막 두 혼이 산문을 건넙니다. 소단이 길에서 한 발 물러납니다.'],
+-  'bridge-record':['길을 지킨 사람들','휘겸은 방패선이 마지막까지 지킨 곳을 돌아봅니다.'],
+-  'daybreak':['돌아온 새벽','07:10. 호롱불이 꺼지고 빛이 산문에 닿았습니다. 도식은 무너진 산길에서 돌아갈 길을 살핍니다.'],
+-  'homecoming':['돌아와서 하는 일','연실이 나루에 배를 댑니다. 물가에서 설오는 돌아온 이들의 짐을 받아 듭니다.','장부의 열세 명 중 일곱은 피했고 넷은 구조됐습니다. 막내는 첫겨울을 넘기지 못했고, 큰애는 아직 찾고 있습니다.'],
+-  'jeomungol-record':['덮지 않을 기록','휘겸은 저문골을 닫으라 한 일, 사람을 죽인 일, 그 일을 감춘 기록을 한데 뭉뚱그리지 않습니다.'],
+-  'later-return':['그리고 어느 날','내 발로 가네. 해 지기 전 돌아오리다.']
+- };
++ const doc=G.document, sessions=new WeakMap(), installed=new WeakSet(), images=new Map();
+  const node=(tag,cls,text)=>{const n=doc.createElement(tag);if(cls)n.className=cls;if(text)n.textContent=text;return n;};
+- const image=(src,alt='')=>{if(!src)return null;const i=node('img');i.alt=alt;i.decoding='sync';i.addEventListener('error',()=>{i.remove();});i.src=src;return i;};
+- const frames=()=>new Promise(done=>G.requestAnimationFrame(()=>G.requestAnimationFrame(done)));
+- function prewarm(){
+-  const format=G.matchMedia('(max-aspect-ratio: 19/20)').matches?'portrait':'wide';
+-  for(const src of [...Object.values(assets.actor),...Object.values(assets.places).map(x=>x[format])]){
+-   if(mediaCache.has(src))continue;
+-   const art=new G.Image();art.decoding='sync';art.src=src;
+-   const ready=art.decode().catch(()=>null);mediaCache.set(src,{art,ready});
++ const button=(label,key)=>{const n=node('button','he-button',label);n.type='button';n.dataset.endingAction=key;return n;};
++ const orient=()=>G.matchMedia('(orientation: portrait)').matches?'port':'land';
++ const clamp=(x,l,h)=>Math.max(l,Math.min(h,x));
++ function load(src){
++  if(!images.has(src)){
++   const img=new G.Image();img.src=src;
++   images.set(src,img.decode().then(()=>src,()=>{images.delete(src);return null;}));
+   }
++  return images.get(src);
+  }
+- async function decoded(art){
+-  let deadline;
+-  try{
+-   const real=Promise.allSettled([...art.querySelectorAll('img')].map(i=>i.decode()));
+-   await Promise.race([real,new Promise(done=>{deadline=G.setTimeout(done,3500);})]);
+-  }finally{G.clearTimeout(deadline);}
+- }
+- function track(s){
+-  if(s.audio||!assets.track)return s.audio;
+-  try {
+-   const a=new G.Audio(assets.track);a.dataset.honroEndingTrack='provisional';a.preload='metadata';a.loop=false;s.audio=a;
+-   a.addEventListener('ended',()=>{s.ended=true;s.sync?.();});a.addEventListener('error',()=>{s.missing=true;s.sync?.();});
+-   a.addEventListener('play',()=>s.sync?.());a.addEventListener('pause',()=>s.sync?.());
+-   return a;
+-  }catch{s.missing=true;return null;}
+- }
+- const settings=s=>s.app.profile?.settings??{};
+- const muted=s=>settings(s).music===false||!(Number(settings(s).musicVolume??.5)>0);
+- function syncAudio(s){
+-  const a=s.audio;if(!a||s.closed)return;
+-  a.volume=Math.min(1,Math.max(0,Number(settings(s).musicVolume??.5)||0));
+-  if(doc.hidden||muted(s)||s.ended||s.missing){if(!a.paused){s.visibilityPaused=!s.ended&&!s.missing;a.pause();}} 
+-  else if(s.visibilityPaused&&s.started&&a.paused){s.visibilityPaused=false;let p=a.play();p?.catch(()=>{s.blocked=true;s.sync?.();});}
+- }
+- function start(s){
+-  if(s.closed||s.ended||s.missing||muted(s)||doc.hidden)return;
+-  const a=track(s);if(!a)return;
+-  s.started=true;s.blocked=false;s.visibilityPaused=false;syncAudio(s);
+-  try{const pending=a.play();pending?.catch(()=>{if(!s.closed){s.blocked=true;s.sync?.();}});}catch{s.blocked=true;}
+-  s.sync?.();
++ function prewarm(){
++  const side=orient();
++  for(const cut of timeline.cuts)void load(assets.stills[cut.id][side]);
+  }
+- function open(app,mode){
++ function open(app,mode,leave){
++  if(sessions.has(app))return null;
+   const style=node('style');style.textContent=css;doc.head.append(style);
+-  const s={app,mode,style,closed:false,armed:false};
+-  style.dataset.honroEndingReplan='';
+-  const refresh=()=>{syncAudio(s);s.sync?.();};
+-  doc.addEventListener('visibilitychange',refresh);
+-  s.close=()=>{if(s.closed)return;s.closed=true;doc.removeEventListener('visibilitychange',refresh);s.sync=null;if(s.audio){s.audio.pause();s.audio.removeAttribute('src');s.audio.load();}if(sessions.get(app)===s)sessions.delete(app);s.style.remove();};
+-  sessions.set(app,s);prewarm();app.updateAudio();return s;
+- }
+- function arm(s){if(s.armed)return;s.armed=true;s.app.updateAudio();start(s);}
+- function silenceStock(app){const s=sessions.get(app);if(!s||s.closed)return false;syncAudio(s);return true;}
+- function button(text,key,fn){
+-  const b=node('button','honro-ending-60-button',text);b.type='button';b.dataset.endingAction=key;
+-  b.addEventListener('click',e=>{if(e.isTrusted&&e.currentTarget===b&&!b.disabled)fn(e);});
+-  return b;
++  const root=node('section','he-root');root.dataset.endingMode=mode;root.dataset.endingPhase='intro';root.tabIndex=-1;
++  root.setAttribute('role','dialog');root.setAttribute('aria-modal','true');root.setAttribute('aria-label','혼로 엔딩');
++  const backdrop=node('div','he-media'),veil=node('div','he-veil'),fx=node('div','he-fx'),words=node('div','he-copy'),
++    controls=node('div','he-controls'),status=node('p','he-status');
++  words.setAttribute('aria-live','polite');status.setAttribute('role','status');
++  root.append(backdrop,veil,fx,words,controls,status);
++  const held=[...app.root.children].map(n=>[n,n.inert]);
++  for(const [n] of held)n.inert=true;
++  app.root.append(root);
++  const s={app,mode,root,backdrop,fx,words,controls,status,closed:false,rafs:new Set(),timers:new Set(),hold:null};
++  sessions.set(app,s);
++  const stop=e=>e.stopPropagation();
++  root.addEventListener('pointerdown',stop);root.addEventListener('pointerup',stop);root.addEventListener('click',stop);
++  s.delay=(fn,ms)=>{const timer=G.setTimeout(()=>{s.timers.delete(timer);if(!s.closed)fn();},ms);s.timers.add(timer);return timer;};
++  s.frame=fn=>{const id=G.requestAnimationFrame(now=>{s.rafs.delete(id);if(!s.closed)fn(now);});s.rafs.add(id);};
++  function afterVisibility(){
++   if(s.closed)return;
++   if(doc.hidden){
++    s.resetInputs?.();
++    if(s.playing){s.playing.hiddenAt=G.performance.now();s.audio?.pause();}
++   }else if(s.playing?.hiddenAt!=null){
++    s.playing.origin+=G.performance.now()-s.playing.hiddenAt;s.playing.hiddenAt=null;resumeAudio(s);
++   }
++  }
++  const previous=doc.activeElement;
++  function keyboardCapture(event){
++   if(G.document.activeElement!==root&&!root.contains(G.document.activeElement))root.focus({preventScroll:true});
++   const allowed=s.onKeys?.(event);
++   if(allowed){event.preventDefault();event.stopImmediatePropagation();}
++  }
++  doc.addEventListener('visibilitychange',afterVisibility);G.addEventListener('blur',()=>s.resetInputs?.(),{signal:(s.lifecycle=new G.AbortController()).signal});
++  G.addEventListener('keydown',keyboardCapture,{capture:true,signal:s.lifecycle.signal});
++  G.addEventListener('keyup',keyboardCapture,{capture:true,signal:s.lifecycle.signal});
++  s.close=()=>{
++   if(s.closed)return;s.closed=true;s.lifecycle.abort();doc.removeEventListener('visibilitychange',afterVisibility);
++   for(const t of s.timers)G.clearTimeout(t);
++   for(const r of s.rafs)G.cancelAnimationFrame(r);
++   if(s.audio){s.audio.pause();s.audio.removeAttribute('src');s.audio.load();}
++   s.sound?.close().catch(()=>{});s.cleanupNative?.();
++   root.remove();style.remove();for(const [n,v] of held)n.inert=v;
++   if(sessions.get(app)===s)sessions.delete(app);
++   if(previous?.isConnected)previous.focus?.({preventScroll:true});
++  };
++  s.leave=()=>{if(!s.closed){s.close();leave();}};
++  root.focus({preventScroll:true});app.updateAudio();return s;
+  }
+- function audioButton(s){
+-  const b=button('곡 재생','listen',()=>start(s));
+-  const old=s.sync;
+-  s.sync=()=>{old?.();b.hidden=!s.armed||s.ended||s.missing||muted(s)||(!s.blocked&&!!s.audio&&!s.audio.paused);};
+-  s.sync();return b;
++ function track(s){
++  if(!assets.track||s.audio)return s.audio;
++  const a=new G.Audio(assets.track);a.preload='auto';a.loop=false;s.audio=a;return a;
+  }
+- function credits(s,{root,media,heading,script,controls,status,leave}){
+-  root.dataset.cut='credits';media.replaceChildren();
+-  const emblem=node('div','h6ending-credit-plate');emblem.append(node('b','','혼로'),node('span','','魂路'),node('small','','무명사'));media.append(emblem);
+-  heading.textContent='여정은 여기까지';
+-  script.replaceChildren(node('p','','배경음: 혼로 (임시곡)'));
+-  s.sync=null;
+-  const exit=button(s.mode==='debug'?'디버그 화면으로 돌아가기':'타이틀로 돌아가기','return',leave);
+-  const music=audioButton(s);
+-  const left=node('span','h6ending-listen-status');
+-  const controlsUpdate=s.sync;s.sync=()=>{controlsUpdate?.();left.textContent=!s.ended&&s.audio&&!s.audio.paused?' 곡은 계속 재생됩니다. 바로 나갈 수도 있습니다.':'';};
+-  status.replaceChildren(node('span','',s.mode==='completion'?'여정의 끝을 기록했습니다.':''),left);controls.replaceChildren(exit,music);s.sync();exit.focus({preventScroll:true});
++ const volume=s=>s.app.profile?.settings?.music===false?0:clamp(Number(s.app.profile?.settings?.musicVolume??.5)||0,0,1);
++ function prime(s){
++  if(!volume(s))return;
++  const a=track(s);if(!a||s.priming)return;
++  a.volume=0;
++  try{s.priming=Promise.resolve(a.play()).then(()=>{
++   if(!s.playing){a.pause();a.currentTime=0;}
++  }).catch(()=>{}).finally(()=>{s.priming=null;});}catch{}
+  }
+- function framed(name,scene,cssClass,alt){
+-  const box=node('div',cssClass);box.dataset.art=name;
+-  const place=assets.places[scene],pic=node('picture','h6ending-backdrop');
+-  const portrait=node('source');portrait.media='(max-aspect-ratio: 19/20)';portrait.srcset=place.portrait;
+-  const i=image(place.wide,alt);if(i)pic.append(portrait,i);box.append(pic);return box;
++ function resumeAudio(s){
++  const a=track(s),v=volume(s);if(!a||!v||doc.hidden||s.closed||!s.playing)return;
++  a.volume=v;
++  const elapsed=Math.max(0,(G.performance.now()-s.playing.origin)/1000);
++  if(Number.isFinite(a.duration)&&elapsed>=a.duration)return;
++  if(a.readyState>0&&Math.abs(a.currentTime-elapsed)>.22){a.currentTime=elapsed;}
++  try{a.play()?.catch(()=>{if(!s.closed&&s.playing){s.audioPlay.hidden=false;}});}catch{s.audioPlay.hidden=false;}
+  }
+- function svg(tag,attrs={}){
+-  const el=doc.createElementNS('http://www.w3.org/2000/svg',tag);
+-  for(const [k,v] of Object.entries(attrs))el.setAttribute(k,v);return el;
++ function mark(s){
++  prewarm();prime(s);
++  try{
++   const Ctx=G.AudioContext??G.webkitAudioContext;if(!Ctx||s.app.profile?.settings?.sound===false)return;
++   const cx=s.sound??=new Ctx();void cx.resume();
++   const sec=.26, buffer=cx.createBuffer(1,Math.ceil(cx.sampleRate*sec),cx.sampleRate), v=buffer.getChannelData(0);
++   for(let i=0;i<v.length;i++){const f=i/v.length;v[i]=(Math.random()*2-1)*Math.sin(Math.PI*f)**2*.07;}
++   const b=cx.createBufferSource(), fil=cx.createBiquadFilter();fil.type='bandpass';fil.frequency.value=1100;fil.Q.value=.7;
++   b.buffer=buffer;b.connect(fil);fil.connect(cx.destination);b.start();
++  }catch{}
+  }
+- function wakeAndFerry(){
+-  const prop=svg('svg',{viewBox:'0 0 460 150',class:'h6ending-ferry','aria-hidden':'true'});
+-  const parts=[
+-   ['M3 130 Q116 142 260 130 M15 141 Q84 149 177 139','#94a5a1','none',2],
+-   ['M137 75 Q245 84 426 53 L400 100 Q301 123 187 114 Q153 105 137 75Z','#2c312a','#4b503e',2],
+-   ['M146 79 Q234 91 395 69 L355 51 Q269 71 160 64Z','#35352d','#9c8156',2.4],
+-   ['M165 81 Q267 91 420 56 M184 108 Q280 114 395 88','#9b8058','none',2.8],
+-   ['M349 58 L373 30 L368 59 M384 72 L447 78','#9c8156','none',3.5]
+-  ];
+-  for(const [d,stroke,fill,sw] of parts)prop.append(svg('path',{d,fill,stroke,'stroke-width':sw,'stroke-linecap':'round','stroke-linejoin':'round'}));
+-  return prop;
++ function paintDialog(s,idx){
++  const [name,line]=timeline.intro[idx];const p=node('p','he-dialog',line);p.prepend(node('strong','',name));s.words.replaceChildren(p);
+  }
+- function addedArt(scene){
+-  if(scene==='homecoming'){
+-   const v=framed('naru','shore-dawn','h6ending-naru','새벽 나루터의 물길과 돌 선착장');
+-   const fg=node('div','h6ending-home-foreground'),ferry=node('div','h6ending-ferry-arrival');
+-   const yeonsil=image(assets.actor.yeonsil,'연실');if(yeonsil){yeonsil.className='h6ending-yeonsil';ferry.append(yeonsil);}
+-   ferry.append(wakeAndFerry());fg.append(ferry);
+-   const seol=image(assets.actor.seol,'설오');if(seol){seol.className='h6ending-seol';fg.append(seol);}
+-   const bag=svg('svg',{viewBox:'0 0 64 73',class:'h6ending-sack','aria-hidden':'true'});
+-   bag.append(svg('path',{d:'M29 22 L19 7 L37 4 L47 12 L39 24 Q53 34 59 58 Q47 71 15 69 Q5 65 9 55 Q15 36 29 22Z',fill:'#8a7353',stroke:'#b4a083','stroke-width':1.8}),
+-    svg('path',{d:'M28 20 Q38 24 42 21 M28 29 L21 52 M40 29 L47 50 M29 64 Q43 64 51 60',fill:'none',stroke:'#5d4c3c','stroke-width':2,'stroke-linecap':'round'}));
+-   fg.append(bag);v.append(fg);return v;
++ function intro(s,{surface,record,depart}){
++  let phase='quiet', ready=false, input=null, progress=0,last=0,closing=false;
++  const ledger=node('section','he-ledger'),title=node('h2','','이름을 새긴다'),press=button('이름을 새긴다','record'),
++   names=node('p','he-names'),walk=button('산문 밖으로 걷기 →','walk');
++  walk.style.touchAction='none';
++  const ink=()=>{ledger.replaceChildren(title,names);for(const name of timeline.names)names.append(node('span','',name));};
++  async function takeRecord(e){
++   if(!e.isTrusted||phase!=='ledger'||press.disabled)return;
++   press.disabled=true;mark(s);
++   let ok=false;try{ok=(await record(e)).ok;}catch{}
++   if(s.closed)return;
++   if(!ok){press.disabled=false;s.status.textContent='장부를 남기지 못했습니다. 다시 시도하십시오.';return;}
++   phase='ink';s.root.dataset.endingPhase='ink';ink();s.status.textContent='';
++   s.delay(()=>{
++    phase='walk';s.root.dataset.endingPhase='walk';s.words.replaceChildren();
++    s.controls.replaceChildren(walk);s.status.textContent='→ 또는 D를 누르거나 버튼을 길게 눌러 걸으십시오.';
++    ready=true;last=0;s.root.focus({preventScroll:true});s.frame(tick);
++   },5500);
+   }
+-  const page=framed('records','dossier-room','h6ending-ledger','저문골 고을 기록방의 낮은 나무 탁자'),book=node('section','h6ending-paper');
+-  const h=node('h2','','저문골 조사 기록');book.append(h);
+-  const list=node('dl');
+-  for(const [label,detail] of [['폐쇄 승인','일부 왕실 고관의 인장 · 출입 폐쇄와 제압을 승인함'],['학살','집행 보고·호적·현장 증언 · 대도사가 주민 학살을 지휘함'],['은폐','사후처리 명령 · 관리들과 한태록의 봉문군이 수송, 봉쇄, 기록 삭제를 맡음']]){
+-   const slip=node('div','h6ending-evidence-slip');
+-   slip.append(node('dt','',label),node('dd','',detail));list.append(slip);
++  function enterLedger(){
++   if(s.closed||phase!=='quiet')return;
++   phase='ledger';s.root.dataset.endingPhase='ledger';ledger.replaceChildren(title);
++   s.words.replaceChildren(ledger);s.controls.replaceChildren(press);press.focus({preventScroll:true});
+   }
+-  book.append(list);
+-  const hwigyeom=image(assets.actor.hwi,'휘겸');
+-  if(hwigyeom){hwigyeom.className='h6ending-hwi';page.append(hwigyeom);}
+-  page.append(book);return page;
+- }
+- function sceneText(script,rows){script.replaceChildren(...rows.map(text=>node('p','',text)));}
+- async function paintAdded(s,parts,scene,next,leave=null){
+-  const {root,media,heading,script,controls,status}=parts;
+-  const [title,...copy]=lines[scene];
+-  const seq=s.artSeq=(s.artSeq??0)+1;
+-  const current=()=>!s.closed&&seq===s.artSeq&&root.isConnected;
+-  const art=addedArt(scene),more=button('계속','next',next);
+-  const exit=leave?button('나가기','return',leave):null;
+-  root.dataset.cut='loading';heading.textContent=title;sceneText(script,copy);s.sync=null;
+-  controls.replaceChildren(...(exit?[exit]:[]));status.textContent='장면을 준비하고 있습니다.';
+-  art.classList.add('h6ending-preparing');media.replaceChildren(art);
+-  await decoded(art);if(!current())return;
+-  await frames();if(!current())return;
+-  art.classList.remove('h6ending-preparing');
+-  await frames();if(!current())return;
+-  root.dataset.cut=scene;status.textContent='';controls.replaceChildren(more,...(exit?[exit]:[]),audioButton(s));
+-  more.focus({preventScroll:true});
+- }
+- function normal(app,parts){
+-  const s=open(app,'completion');let step=0;
+-  return Object.freeze({
+-   shouldHold:v=>v.scene==='later-return'&&step<2,
+-   paint(next){
+-    void paintAdded(s,parts,order[3+step],()=>{if(s.closed)return;step++;next();});
+-   },
+-   audioAfter(v,result){if(result?.ok&&v.scene==='bridge-record'&&v.record?.recorded)arm(s);},
+-   controls(){s.sync=null;if(s.armed)parts.controls.append(audioButton(s));},
+-   done(){credits(s,{...parts,leave:()=>{s.close();app.showTitle();app.updateAudio();}});},
+-   close:s.close
++  paintDialog(s,0);s.delay(()=>paintDialog(s,1),6500);s.delay(enterLedger,14000);
++  press.addEventListener('click',takeRecord);
++  function stop(){input=null;}
++  s.resetInputs=stop;
++  async function finish(e){
++   if(!e.isTrusted||!ready||closing||progress<1)return;
++   closing=true;stop();prime(s);s.status.textContent='';walk.disabled=true;s.root.dataset.endingPhase='departure';
++   let result;try{result=await depart(e);}catch{}
++   if(s.closed)return;
++   if(!result?.ok){
++    closing=false;walk.disabled=false;phase='walk';walk.textContent='다시 기록하기';s.root.dataset.endingPhase='walk';
++    s.status.textContent='여정의 끝을 기록하지 못했습니다. 다시 시도하십시오.';return;
++   }
++   phase='finished';s.delay(()=>play(s),850);
++  }
++  function tick(now){
++   if(phase!=='walk'||!ready)return;
++   const d=last?Math.min(now-last,55):0;last=now;
++   if(input&&progress<1){
++    const next=clamp(progress+d/5300,0,1);
++    if(surface(next)){
++     progress=next;
++     if(progress===1){walk.textContent='산문을 나서기';s.status.textContent='누르던 버튼을 놓으면 산문을 나섭니다.';}
++    }
++   }
++   s.frame(tick);
++  }
++  walk.addEventListener('pointerdown',e=>{
++   if(!e.isTrusted||phase!=='walk'||closing||e.button!==0)return;
++   input='pointer';walk.setPointerCapture(e.pointerId);
++  });
++  walk.addEventListener('pointercancel',stop);
++  walk.addEventListener('lostpointercapture',stop);
++  walk.addEventListener('pointerup',e=>{if(input==='pointer'){stop();if(progress===1)void finish(e);}});
++  walk.addEventListener('click',e=>{
++   if(!e.isTrusted||phase!=='walk'||closing)return;
++   if(progress===1){void finish(e);return;}
++   if(e.detail===0){
++    input='assist';
++    s.delay(()=>{if(input==='assist'){stop();if(progress===1){walk.textContent='산문을 나서기';walk.focus();}}},5600);
++   }
+   });
++  s.onKeys=e=>{
++   if(phase==='ledger'&&e.code==='Space'&&e.target!==press){if(e.type==='keydown'&&!e.repeat)void takeRecord(e);return true;}
++   if(!['ArrowRight','KeyD'].includes(e.code))return false;
++   if(phase==='walk'){
++    if(e.type==='keydown'&&!e.repeat)input='key';
++    if(e.type==='keyup'&&input==='key'){stop();if(progress===1)void finish(e);}
++   }
++   return true;
++  };
++  return ()=>progress;
++ }
++ function play(s){
++  if(s.closed)return;
++  s.root.dataset.endingPhase='stills';s.words.replaceChildren();s.status.textContent='';
++  const picture=node('img','he-still');picture.alt='';s.backdrop.replaceChildren(picture);
++  const skip=button('건너뛰기','skip'),audioPlay=button('음악 재생','audio');audioPlay.hidden=true;s.audioPlay=audioPlay;
++  skip.setAttribute('aria-label','2초간 눌러 엔딩 건너뛰기');s.controls.replaceChildren(skip,audioPlay);
++  const p=s.playing={origin:G.performance.now(),hiddenAt:null,index:-1,beat:-1,side:null};
++  resumeAudio(s);
++  audioPlay.addEventListener('click',e=>{if(e.isTrusted){audioPlay.hidden=true;resumeAudio(s);}});
++  function cancel(){if(!s.hold)return;G.clearTimeout(s.hold.timer);s.timers.delete(s.hold.timer);s.hold=null;skip.classList.remove('he-held');}
++  function hold(e,mode){
++   if(!e.isTrusted||s.hold)return;
++   s.hold={mode,timer:s.delay(s.leave,2000)};skip.classList.add('he-held');
++  }
++  s.resetInputs=cancel;
++  for(const type of ['pointerup','pointercancel','lostpointercapture','blur'])skip.addEventListener(type,cancel);
++  skip.addEventListener('pointerdown',e=>{if(e.isTrusted&&e.button===0){skip.setPointerCapture(e.pointerId);hold(e,'pointer');}});
++  s.onKeys=e=>{
++   const isSkip=e.code==='Escape'||(doc.activeElement===skip&&['Enter','Space'].includes(e.code));
++   if(!isSkip)return false;
++   if(e.type==='keydown')hold(e,'key');else if(s.hold?.mode==='key')cancel();return true;
++  };
++  function show(cue){
++   const {index,beat,cut,final}=cue,side=orient(),changed=index!==p.index;
++   if(changed||side!==p.side){
++    p.index=index;p.side=side;
++    s.root.dataset.endingStill=cut.id;s.root.dataset.endingMotion=cut.motion;picture.style.animationDuration=cut.duration+'s';
++    const url=assets.stills[cut.id][side];picture.alt=cut.alt;
++    if(changed||!picture.src){picture.src=url;picture.classList.remove('he-drift');void picture.offsetWidth;picture.classList.add('he-drift');}
++    else void load(url).then(src=>{if(src&&!s.closed&&p.index===index&&p.side===side)picture.src=src;});
++    if(changed){
++     s.fx.replaceChildren();
++     if(!final)for(let i=0;i<6;i++){const d=node('i');d.style.setProperty('--i',String(i));s.fx.append(d);}
++    }
++   }
++   if(changed||beat!==p.beat){
++    p.beat=beat;s.root.dataset.endingBeat=String(beat);s.words.replaceChildren();
++    if(final&&beat===1){
++     const credits=node('div','he-credit');
++     credits.append(node('h1','','혼로'),node('p','he-roman','HONRO'),node('p','','기획 · 시나리오 · 아트 · 프로그래밍'));
++     if(assets.credit.developer)credits.append(node('p','he-credit-name',assets.credit.developer));
++     credits.append(node('p','he-song','엔딩곡'+(assets.credit.song?' · '+assets.credit.song:' (임시곡)')));
++     credits.append(node('p','he-thanks',cut.beats[1]));s.words.append(credits);
++    }else if(cut.beats[beat]){
++     const line=node('p','he-line',cut.beats[beat]);s.words.append(line);
++    }
++   }
++   const duration=final?[14,20,6][beat]:cut.duration/cut.beats.length;
++   const local=final?cue.time-[0,14,34][beat]:cue.time-beat*duration;
++   s.words.style.opacity=String(clamp(Math.min(local/.34,(duration-local)/.30),0,1));
++   s.root.style.setProperty('--he-outro',final?String(clamp((cue.time-38.8)/1.2,0,1)):'0');
++  }
++  function update(now){
++   if(p.hiddenAt==null){
++    const cue=timeline.cueAt(now-p.origin);
++    if(!cue){s.leave();return;}
++    show(cue);
++   }
++   s.frame(update);
++  }
++  s.frame(update);
+  }
+  function debug(app){
+   if(!app.debugMode||app.training||app.customMap||G.HONRO_EMBEDDED||app.dialogue||app.endingGallery||app.settingsPage!=='debug'||
+      app.modalKind!=='settings-dialog'||!app.modal.classList.contains('open')||sessions.has(app))return false;
+-  const s=open(app,'debug'),focus=doc.activeElement;
+-  const panel=node('div','honro-ending-60-panel'),root=node('section','honro-ending-60'),media=node('div','honro-ending-60-media'),
+-    heading=node('h1','honro-ending-60-title'),script=node('div','honro-ending-60-lines'),controls=node('div','honro-ending-60-controls'),
+-    status=node('p','honro-ending-60-status');
+-  root.dataset.stage='60';root.dataset.mode='debug';root.setAttribute('role','region');root.setAttribute('aria-label','혼로 6막 엔딩 미리보기');
+-  status.setAttribute('role','status');
+-  const held=[...app.root.children].map(n=>[n,n.inert]);
+-  for(const [n] of held)n.inert=true;
+-  const ownGallery={stage:60,debug:{screen:app.screen}};app.endingGallery=ownGallery;
+-  const priorScreen=app.screen;app.screen='act-ending';app.modal.classList.remove('open');panel.append(media,heading,script,controls,status);root.append(panel);app.root.append(root);
+-  let i=0,recorded=false;
+-  const token='act6-ending:'+G.performance.now();
+-  const onBack=()=>{if(G.history.state?.honroEndingGallery!==token)leave(false);};
+-  const leave=(requested=true)=>{
+-   if(s.closed)return;
+-   G.removeEventListener('popstate',onBack);
+-   if(requested!==false&&G.history?.state?.honroEndingGallery===token)G.history.back();
+-   s.close();root.remove();for(const [n,value] of held)n.inert=value;
++  const priorScreen=app.screen, token='act6-ending-v2:'+G.performance.now();
++  const ownGallery={stage:60,debug:{screen:priorScreen}};
++  app.endingGallery=ownGallery;app.screen='act-ending';app.modal.classList.remove('open');
++  const back=()=>{if(G.history.state?.honroEndingGallery!==token)s.leave();};
++  const s=open(app,'debug',()=>{
++   G.removeEventListener('popstate',back);
++   if(G.history.state?.honroEndingGallery===token)G.history.back();
+    if(app.endingGallery===ownGallery)delete app.endingGallery;
+-   app.screen=priorScreen;app.modal.classList.add('open');app.prev=G.performance.now();app.updateAudio();focus?.focus?.({preventScroll:true});
+-  };
+-  const parts={root,media,heading,script,controls,status};
+-  function next(){if(i===1&&!recorded){recorded=true;paint();return;}if(i===1)arm(s);i++;paint();}
+-  function paint(){
+-   if(s.closed)return;
+-   if(i===order.length){credits(s,{...parts,leave});return;}
+-   const scene=order[i];
+-   if(i===3||i===4){void paintAdded(s,parts,scene,next,leave);return;}
+-   root.dataset.cut=scene;
+-   const [title,...copy]=lines[scene];heading.textContent=title;media.replaceChildren();
+-   const preview=(G.innerWidth/G.innerHeight<.95?assets.preview?.Portrait:assets.preview?.Wide)?.[scene];
+-   const plate=image(preview,title);if(plate)media.append(plate);
+-   if(scene==='bridge-record'&&recorded)copy.push('곽진 · 박문돌 · 이만복');
+-   sceneText(script,copy);s.sync=null;
+-   const press=button(scene==='bridge-record'&&!recorded?'방패선의 이름을 적기':scene==='later-return'?'여정을 마치기':'계속','next',next);
+-   controls.replaceChildren(press,button('나가기','return',leave),audioButton(s));
+-   status.textContent='미리보기 · 기록과 보상은 바뀌지 않습니다.';press.focus({preventScroll:true});
+-  }
+-  if(G.history?.pushState){G.history.pushState({...G.history.state,honroEndingGallery:token},'');G.addEventListener('popstate',onBack);}
+-  root.addEventListener('keydown',e=>{e.stopPropagation();if(e.code==='Escape'){e.preventDefault();leave();}});
+-  root.addEventListener('click',e=>e.stopPropagation());
+-  paint();return true;
++   app.screen=priorScreen;app.modal.classList.add('open');app.prev=G.performance.now();app.updateAudio();
++  });
++  const pic=node('picture'),media=node('img','he-native-preview'), source=node('source');
++  source.media='(orientation: portrait)';source.srcset=assets.preview.port;media.src=assets.preview.land;
++  pic.append(source,media);s.backdrop.append(pic);
++  if(G.history?.pushState){G.history.pushState({...G.history.state,honroEndingGallery:token},'');G.addEventListener('popstate',back);}
++  intro(s,{surface:p=>{media.style.transform='scale(1.1) translateX('+(-4*p)+'%)';return true;},record:()=>({ok:true}),depart:()=>({ok:true})});
++  return true;
+  }
+- function installDebug(app){
++ function installDebug(){
+   const x=G.HonroActEndings;if(!x||installed.has(x)||G.HONRO_EMBEDDED)return;
+   installed.add(x);const formerControls=x.debugControls,formerPreview=x.previewDebug;
+   x.debugControls=a=>formerControls(a).replace('</div></section>','<button type="button" data-action="debug-act-ending-preview" data-id="60">6막</button></div></section>');
+   x.previewDebug=(a,id)=>Number(id)===60?debug(a):formerPreview(a,id);
+  }
+- return Object.freeze({normal,installDebug,silenceStock,lines});
++ return Object.freeze({installDebug,silenceStock:app=>sessions.has(app),open,intro});
+ }
+diff --git a/shared/act6-ending-replan/walk.inc.js b/shared/act6-ending-replan/walk.inc.js
+new file mode 100644
+index 0000000..0246765
+--- /dev/null
++++ b/shared/act6-ending-replan/walk.inc.js
+@@ -0,0 +1,35 @@
++// Walk only the disposable rendered clone. Never tick or rewrite the won battle.
++function endingV2Walk({frame,b,node,sc,fork,size,stage,paint,sample}){
++ const gate=frame.geo.gate,ground=b.terrain.find(t=>t.id===frame.geo.floor);
++ const actors=b.units.filter(u=>u.side===0&&!u.summoned),ids=['knight','archer','mage','occultist'];
++ if(!ground||actors.length!==4)return null;
++ b.units=ids.map(cls=>actors.find(u=>u.cls===cls));
++ if(b.units.some(u=>!u))return null;
++ b.projectiles=[];b.fields=[];b.events=[];
++ b.honroStage60Quiet=true;
++ const portrait=size.w<size.h, starts=b.units.map((u,i)=>gate[0]-62-i*39);
++ const distance=216, end=starts.map(x=>x+distance);
++ const point=x=>G.HONRO_CORE.topAt(ground,x);
++ if([...starts,...end].some(x=>!Number.isFinite(point(x))))return null;
++ let position=0,prev=0,signature=null;
++ function setup(p){
++  for(const [i,u] of b.units.entries()){
++   const x=starts[i]+distance*p;
++   Object.assign(u,{x,y:point(x),moving:p>0&&p<1?.08:0,walking:0,facing:1,jumping:false,airborne:false,vx:0,vy:0,walkPhase:p*32});
++  }
++  const median=(b.units[0].x+b.units.at(-1).x)/2;
++  sc.scale=portrait?Math.min(1.06,size.w/334):1.18;
++  sc.x=median+(portrait?15:38);
++  sc.y=point(median)-size.h*(portrait?.09:.13)/sc.scale;
++  sc.walkTime=p*3.4;sc.time=2+p;
++ }
++ setup(0);
++ function walk(p){
++  if(typeof p!=='number'||p<prev||p>1||!node.isConnected)return false;
++  const former=position;
++  setup(p);try{paint();signature=sample(node);}catch{setup(former);return false;}
++  if(!signature){setup(former);return false;}
++  position=prev=p;return true;
++ }
++ return {walk,walked:()=>position,signature:()=>signature};
++}
+diff --git a/tools/act6-ending-v2/cues.test.mjs b/tools/act6-ending-v2/cues.test.mjs
+new file mode 100644
+index 0000000..256cd8c
+--- /dev/null
++++ b/tools/act6-ending-v2/cues.test.mjs
+@@ -0,0 +1,18 @@
++import {test} from 'node:test';
++import assert from 'node:assert/strict';
++import {cueAt,cuts,names} from '../../shared/act6-ending-replan/cues.mjs';
++test('Act 6: both lineage stills get ten seconds; the ending score is still three minutes',()=>{
++  assert.equal(cuts.length,9);
++  assert.equal(cuts.reduce((sum,c)=>sum+c.duration,0),180);
++  assert.deepEqual(names,['곽진','박문돌','이만복']);
++  const starts=[0,20,40,60,80,100,110,120,140];
++  for(const [i,at] of starts.entries()){
++    assert.equal(cueAt(at*1000).index,i);
++    assert.equal(cueAt(at*1000).beat,0);
++    if(i>0)assert.equal(cueAt(at*1000-1).index,i-1);
++  }
++  assert.equal(cueAt(105000).beat,1);
++  assert.equal(cueAt(115000).beat,1);
++  assert.deepEqual([139999,140000,153999,154000,173999,174000,179999].map(x=>[cueAt(x).index,cueAt(x).beat]),[[7,3],[8,0],[8,0],[8,1],[8,1],[8,2],[8,2]]);
++  assert.equal(cueAt(180000),null);
++});
+diff --git a/tools/act6-ending-v2/drive60.js b/tools/act6-ending-v2/drive60.js
+new file mode 100644
+index 0000000..1ce6563
+--- /dev/null
++++ b/tools/act6-ending-v2/drive60.js
+@@ -0,0 +1,94 @@
++([quiet,expectedCrew])=>{
++// Only calls real engine controls; no stored actors, flags, phase, recovery or saves.
++const eq=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
++const insist=(p,m)=>{if(!p)throw Error(m);};
++function* driveWarmStage60({app,engine:e=app?.engine,owner,quiet,authoredId='stage-60',clock=120,step,expectedCrew,finish,captureSchedule=false}={}){
++ const b=e?.b,dt=1/clock;
++ insist(b&&app.engine===e&&app.stageId===60&&b.honroStage===60&&b.honroAuthoredId===authoredId&&b.mode==='campaign'&&b.phase==='aim'&&b.side===0&&b.round===1,'foreign 60 mode/entry');
++ insist((clock===60||clock===120)&&quiet?.support==='return-cutout-near-body'&&quiet.start?.length===4&&quiet.souls?.length===2&&typeof owner?.interact==='function'&&typeof owner?.tick==='function'&&typeof owner?.project==='function','invalid warm route API');
++ const all=b.units.filter(u=>u.side===0&&!u.summoned&&!u.honroAlly&&!u.honroCivilian);
++ const row=u=>({id:u.id,cls:u.cls,hp:u.hp,maxHp:u.maxHp,focus:u.focus,shield:u.shield,loadout:u.loadout,equipmentState:u.equipmentState});
++ const pinRoster=()=>all.every(u=>e.unit(u.id)===u);
++ const can=()=>b.phase!=='won'&&b.phase!=='lost'&&e.canAct();
++ const souls=quiet.souls.map(q=>e.unit(q.id));
++ const support=u=>e.contactSurface(u.x,u.y-4,u.y+5)?.t.id;
++ const combat=()=>b.units.some(u=>u.side===1)||e.combatEnemies().length>0;
++ insist(all.length===4&&new Set(all.map(u=>u.id)).size===4&&all.every(u=>u.hp>0&&!u.dead&&e.grounded(u))&&pinRoster()&&!combat()&&b.shot===0,'59 carried bodies or peaceful 60 scene mismatch');
++ for(const q of quiet.start){
++  const u=all.find(v=>v.cls===q.cls),prev=expectedCrew?.[q.cls];
++  insist(u&&Math.abs(u.x-q.x)<.001&&Math.abs(u.y-q.y)<.001&&(!expectedCrew||['id','cls','hp','maxHp','focus','shield','loadout','equipmentState'].every(k=>eq(u[k],prev?.[k]))),'crew/seat mismatch '+q.cls);
++ }
++ insist(souls.every((u,i)=>u&&u.side===2&&u.hp>0&&e.grounded(u)&&Math.abs(u.x-quiet.souls[i].from)<.001&&all.every(a=>!e.attackAllows(u,a.id))),'two physical protected souls missing');
++ const profile=JSON.stringify(app.profile),start=structuredClone(all.map(row)),sx=souls.map(u=>u.x), events=[], jumps=[],walk={}, focus=[];
++ const schedule=[];
++ const input=(op,args=[])=>{
++  if(!captureSchedule)return;
++  const last=schedule.at(-1),actor=e.active?.id??null,round=b.round;
++  if((op==='tick'||op==='move')&&last?.op===op&&last.actor===actor&&last.round===round&&eq(last.args,args)){last.n++;return;}
++  schedule.push({op,args,actor,round,n:1});
++ };
++ let ticks=0,turnMoves=0,armed=false,moves=0,guideAccepted=null;
++ const targetByRole={archer:2060,knight:2090,occultist:2110,mage:2080};
++ const escortDone=()=>souls.every((u,i)=>u.x>=quiet.souls[i].to-9&&e.grounded(u)&&support(u)===quiet.support);
++ const stepDefault=()=>{owner.tick(dt);e.tick(dt);if(b.phase==='aim'&&b.side===0)e.checkEnd();};
++ const tick=()=>{
++  insist(++ticks<=90000&&app.engine===e&&pinRoster()&&!combat()&&b.shot===0,'60 driver broke peaceful authority');
++  input('tick');
++  if(step)step({e,owner,dt,tick:ticks});else stepDefault();
++ };
++ const command=function*(id){return yield {kind:id,actor:e.active.id};};
++ const guide=function*(u){
++  if(!armed&&!escortDone()&&['mage','occultist'].includes(u.cls)&&e.grounded(u)&&support(u)===quiet.support&&Math.hypot(u.x-souls[0].x,u.y-souls[0].y)<225&&(yield* command('guide'))){
++   input('interact',['guide']);armed=true;guideAccepted={actor:u.id,tick:ticks,round:b.round,x:u.x,y:u.y,support:support(u),grounded:e.grounded(u)};
++   events.push({op:'guide',...guideAccepted});
++  }
++ };
++ insist(!owner.project()?.complete,'precompleted peace route');
++ for(let i=0;i<30;i++)tick();
++ insist(souls.every((u,i)=>u.x===sx[i]),'souls walked before a real guide');
++ for(let i=0;i<75&&b.phase!=='won';i++){
++  for(let j=0;j<2400&&!can()&&b.phase!=='won';j++)tick();
++  if(b.phase==='won')break;
++  insist(can(),'no live player turn');
++  const u=e.active;
++  const t=u.cls==='occultist'&&!escortDone()?Math.min(quiet.souls[0].to,souls[0].x+105):targetByRole[u.cls]*b.width/2172;
++  insist(Number.isFinite(t),'unknown body role');
++  let stalls=0;
++  const dir=Math.sign(t-u.x),before=u.x;
++  for(let j=0;j<1600&&b.phase==='aim'&&u.moveLeft>15&&dir*(t-u.x)>2;j++){
++   if(stalls>18&&e.grounded(u)){
++    const f0=u.focus;
++    if(e.jump(u)){input('jump',[u.id]);stalls=0;jumps.push({actor:u.id,tick:ticks,before:f0,after:u.focus});}
++   }
++   const x=u.x;input('move',[dir]);e.move(dir,dt);moves++;yield* guide(u);tick();stalls=Math.abs(u.x-x)<.05?stalls+1:0;
++  }
++  walk[u.cls]=(walk[u.cls]??0)+Math.abs(u.x-before);
++  yield* guide(u);
++  if(u.cls==='occultist'&&!escortDone()&&Math.hypot(u.x-souls[0].x,u.y-souls[0].y)<225)
++   for(let j=0;j<800&&!escortDone()&&souls[0].x<u.x+160&&b.phase==='aim';j++)tick();
++  if(can()){
++   input('interact',['end-walk']);
++   insist((yield* command('end-walk')),'native noncombat move end denied');
++   events.push({op:'end-walk',actor:u.id,tick:ticks,round:b.round});
++   turnMoves++;
++  }
++ }
++ insist(b.phase==='won'&&escortDone()&&armed&&guideAccepted.grounded&&pinRoster(),'60 physical objective incomplete');
++ const end=all.map(row);
++ for(const [i,u] of all.entries()){
++  insist(e.grounded(u)&&support(u)===quiet.support&&Math.abs(u.x-quiet.gate)<=182,'hero not physically at gate');
++  insist(['id','cls','hp','maxHp','shield','loadout','equipmentState'].every(k=>k==='equipmentState'?eq(u[k]?.version,start[i][k]?.version):eq(u[k],start[i][k])),'hero identity/vitals rewrote');
++  if(u.focus!==start[i].focus)focus.push({actor:u.id,before:start[i].focus,after:u.focus});
++ }
++ insist(JSON.stringify(app.profile)===profile&&!combat()&&b.shot===0,'combat/reward/profile mutation during walk');
++ const escort=souls.map((u,i)=>({id:u.id,x:u.x,y:u.y,walked:u.x-sx[i],grounded:e.grounded(u)}));
++ insist(escort.every(u=>u.walked>300),'shortened or fake soul walk');
++ const outcome=finish?.();
++ if(finish)insist(outcome?.stage===60&&outcome.won===true&&outcome.settlement===false&&outcome.flags?.['act6.lastSoulsGuided']===true&&outcome.flags?.['act6.endingStarted']===true,'owner did not issue actual ending capability');
++ return {clock,ticks,round:b.round,moves,turnMoves,start,end,escort,guideAccepted,events,jumps,focus,walk,shot:b.shot,outcome,...(captureSchedule?{schedule}: {})};
++}
++
++const app=HonroApp,e=app.engine;
++const owner={interact(){},tick(dt){app.missionTick(dt);},project:()=>({complete:!!e.b.honroState.flags.localAct6QuietExitVerified})};
++return driveWarmStage60({app,engine:e,owner,quiet,expectedCrew,step:({owner,e,dt})=>{owner.tick(dt);e.tick(dt);}});
++}
+diff --git a/tools/act6-ending-v2/normal.py b/tools/act6-ending-v2/normal.py
+new file mode 100644
+index 0000000..fe2cea6
+--- /dev/null
++++ b/tools/act6-ending-v2/normal.py
+@@ -0,0 +1,74 @@
++import hashlib,json,os,argparse,mimetypes
++from pathlib import Path
++from urllib.parse import urlparse
++from playwright.sync_api import sync_playwright
++r=Path.cwd()
++arg=argparse.ArgumentParser()
++arg.add_argument('--chromium',required=True)
++arg.add_argument('--live',action='store_true')
++args=arg.parse_args()
++origin='https://sys8994.github.io'
++sh=lambda data:hashlib.sha256(data.encode('utf-8')).hexdigest()
++jsonstr=lambda a:json.dumps(a,ensure_ascii=False,separators=(',',':'))
++q=json.loads((r/'shared/act6-debug-stages/fixtures.json').read_text())['60']
++boot=jsonstr(q['profile'])
++raw={**q['profile'],'honroAct6ChapterBoundary':{'body':q['body'],'sha':sh(jsonstr(q['body']))}}
++fixture=jsonstr(raw)
++path60=next((r/'web/data').glob('act6-qa-chapter-60.483701a278a8ccc6.json'))
++quiet=json.loads(path60.read_text())['quiet']
++driver=(r/'tools/act6-ending-v2/drive60.js').read_text()
++out=r/'_local/reports/ending-v2';out.mkdir(parents=True,exist_ok=True)
++def local(route):
++ f=r/urlparse(route.request.url).path.removeprefix('/honro/')
++ if f.is_dir():f=f/'index.html'
++ if not f.is_file():return route.fulfill(status=404)
++ route.fulfill(path=str(f),content_type={'.js':'text/javascript','.mjs':'text/javascript'}.get(f.suffix,mimetypes.guess_type(f)[0]))
++with sync_playwright() as p:
++ b=p.chromium.launch(executable_path=args.chromium,args=['--no-sandbox'])
++ c=b.new_context(viewport={'width':1440,'height':900})
++ if not args.live:c.route(origin+'/honro/**',local)
++ page=c.new_page()
++ page.on('console',lambda e:print('console:',e.type,e.text[:400],flush=True) if e.type in ('error','warning') else None)
++ page.on('pageerror',lambda e:print('PAGEERR',str(e),flush=True))
++ page.add_init_script("if(location.origin==='"+origin+"'&&!localStorage.getItem('honro-first-act-profile-1')){localStorage.setItem('honro-first-act-profile-1',"+jsonstr(boot)+");localStorage.setItem("+jsonstr(q['body']['slot'])+","+jsonstr(fixture)+");}")
++ page.goto(origin+'/honro/')
++ page.wait_for_function('!!window.HonroApp',timeout=120000)
++ page.evaluate('HonroApp.showRest(); for(let i=0;HonroApp.dialogue&&i<100;i++)HonroStory.finish(HonroApp)')
++ page.locator('[data-act6-boundary-resume="60"]').click()
++ page.wait_for_function('HonroApp.engine?.b.honroStage===60',timeout=120000)
++ page.evaluate('for(let i=0;HonroApp.dialogue&&i<100;i++)HonroStory.finish(HonroApp)')
++ print('mounted 60',flush=True)
++ page.clock.install()
++ page.clock.pause_at(page.evaluate('Date.now()+1000'))
++ page.evaluate('(payload)=>globalThis.testDriver=('+driver+')(payload)',[quiet,None])
++ step=page.evaluate('testDriver.next()')
++ while not step['done']:
++  k=step['value']['kind']
++  loc=page.locator('[data-act6-qa-lookout]' if k=='guide' else '[data-act6-qa-walk]')
++  loc.click(force=True)
++  step=page.evaluate('testDriver.next(true)')
++ assert step['value']['shot']==0 and len(step['value']['escort'])==2
++ print('completed native walk',step['value']['round'],flush=True)
++ page.clock.run_for(400)
++ main=page.locator('.he-root[data-ending-mode="completion"]')
++ main.wait_for(timeout=15000)
++ page.clock.fast_forward(16000)
++ assert main.locator('[data-ending-action="record"]').count()==1,main.inner_text()
++ page.screenshot(path=out/'normal-ledger.png')
++ main.locator('[data-ending-action="record"]').click(force=True)
++ page.clock.run_for(800)
++ assert main.locator('.he-names').inner_text().split()==['곽진','박문돌','이만복'],main.inner_text()
++ before=page.evaluate('JSON.stringify(HonroApp.engine.b.units)')
++ page.clock.fast_forward(5700)
++ page.keyboard.down('KeyD');page.clock.run_for(3000)
++ page.screenshot(path=out/'normal-walk.png')
++ page.clock.run_for(2600);page.keyboard.up('KeyD');page.clock.run_for(1200)
++ assert page.evaluate('JSON.stringify(HonroApp.engine.b.units)')==before
++ finale=page.evaluate("JSON.parse(localStorage.getItem('honro-campaign-act6-finale-v1:'+HonroApp.profile.equipment.runId))")
++ assert all(finale['honroFlags'][k] is True for k in ('act6.endingCompleted','game_completed','ending_act6_seen')) and finale['honroEndingReceipt']['winner']=='p-knight'
++ assert page.evaluate("localStorage.getItem('honro-first-act-profile-1')")==boot
++ assert main.get_attribute('data-ending-still')=='still_01'
++ page.clock.fast_forward(181000)
++ assert page.evaluate("HonroApp.screen==='title'&&!HonroApp.endingGallery")
++ print(jsonstr({'normalStage60PhysicalRoute':True,'liveRosterUnchanged':True,'verifiedFinaleReceipt':True,'baseSaveByteExact':True,'naturalTitleReturn':True,'live':args.live}))
++ b.close()
+diff --git a/tools/act6-ending-v2/preview.py b/tools/act6-ending-v2/preview.py
+new file mode 100644
+index 0000000..87b7bb2
+--- /dev/null
++++ b/tools/act6-ending-v2/preview.py
+@@ -0,0 +1,120 @@
++"""Play the release-shaped site locally or test its deployed URL without touching a real save."""
++import argparse
++import json
++import mimetypes
++from pathlib import Path
++from urllib.parse import urlparse
++from playwright.sync_api import sync_playwright
++
++arg=argparse.ArgumentParser()
++arg.add_argument('--live',action='store_true')
++arg.add_argument('--chromium',default='/usr/bin/chromium')
++arg.add_argument('--out',default='_local/reports/ending-v2')
++args=arg.parse_args()
++out=Path(args.out)
++out.mkdir(parents=True,exist_ok=True)
++root=Path.cwd()
++origin='https://sys8994.github.io'
++errors=[]
++
++def local(route):
++    path=urlparse(route.request.url).path.removeprefix('/honro/')
++    file=(root/(path or 'index.html')).resolve()
++    if not file.is_relative_to(root) or not file.is_file():return route.fulfill(status=404)
++    mime={'.js':'text/javascript','.mjs':'text/javascript','.webp':'image/webp'}.get(file.suffix,mimetypes.guess_type(file)[0])
++    return route.fulfill(path=str(file),content_type=mime)
++def menu(page):
++    page.locator('[data-action="settings"]').first.click()
++    page.locator('[data-action="settings-page"][data-id="records"]').click()
++    page.locator('[data-action="settings-page"][data-id="debug"]').click()
++
++def snapshot(page):
++    return page.evaluate("JSON.stringify(Object.fromEntries(Object.keys(localStorage).sort().map(k=>[k,localStorage.getItem(k)])))")
++
++def start(page):
++    menu(page)
++    page.locator('#debug-mode-setting').click()
++    page.wait_for_function('HonroApp.debugMode&&HonroApp.screen==="rest"')
++    page.evaluate('for(let i=0;HonroApp.dialogue&&i<60;i++)HonroStory.finish(HonroApp)')
++    menu(page)
++    button=page.locator('[data-action="debug-act-ending-preview"][data-id="60"]')
++    button.scroll_into_view_if_needed()
++    before=snapshot(page)
++    button.click()
++    page.locator('.he-root[data-ending-mode="debug"]').wait_for()
++    return before
++
++def displayed(page,id,wide):
++    page.wait_for_function("""({id,wide})=>{const r=document.querySelector('.he-root'),i=r?.querySelector('.he-still');
++      return r?.dataset.endingStill===id&&i?.complete&&i.naturalWidth===(wide?1920:1080)&&i.naturalHeight===(wide?1080:1920);
++    }""",arg={'id':id,'wide':wide},polling=100)
++    q=page.locator('.he-copy').bounding_box()
++    if q:assert q['y']+q['height']<=page.viewport_size['height']+1,q
++
++with sync_playwright() as p:
++    b=p.chromium.launch(executable_path=args.chromium,args=['--no-sandbox'])
++    for width,height in [(1440,900),(390,844)]:
++        wide=width>height
++        c=b.new_context(viewport={'width':width,'height':height},has_touch=not wide)
++        if not args.live:c.route(origin+'/honro/**',local)
++        page=c.new_page()
++        crawl=[]
++        page.on('pageerror',lambda e:errors.append(str(e)))
++        page.on('response',lambda r:crawl.append(r.url) if r.status>=400 and 'ending' in r.url else None)
++        page.goto(origin+'/honro/',wait_until='domcontentloaded')
++        page.wait_for_function('!!window.HonroApp',timeout=120000)
++        page.clock.install()
++        page.clock.pause_at(page.evaluate('Date.now()+1000'))
++        before=start(page)
++        page.clock.fast_forward(14500)
++        r=page.locator('.he-root')
++        r.locator('[data-ending-action="record"]').click()
++        page.clock.run_for(1500)
++        assert r.locator('.he-names').inner_text().split()==['곽진','박문돌','이만복']
++        page.screenshot(path=out/f'ledger-{width}.png')
++        page.clock.run_for(4500)
++        if wide:
++            page.keyboard.down('ArrowRight');page.clock.run_for(5500);page.keyboard.up('ArrowRight')
++        else:
++            btn=r.locator('[data-ending-action="walk"]')
++            box=btn.bounding_box()
++            cd=c.new_cdp_session(page)
++            pt={'x':box['x']+box['width']/2,'y':box['y']+box['height']/2}
++            cd.send('Input.dispatchTouchEvent',{'type':'touchStart','touchPoints':[pt]})
++            page.clock.run_for(5500)
++            cd.send('Input.dispatchTouchEvent',{'type':'touchEnd','touchPoints':[]})
++        page.clock.run_for(1100)
++        displayed(page,'still_01',wide)
++        page.clock.run_for(450)
++        page.screenshot(path=out/f'first-{width}.png')
++        if not wide:
++            old=r.get_attribute('data-ending-beat')
++            page.set_viewport_size({'width':844,'height':390})
++            page.clock.run_for(70)
++            displayed(page,'still_01',True)
++            assert r.get_attribute('data-ending-beat')==old
++            page.set_viewport_size({'width':width,'height':height})
++            page.clock.run_for(70)
++            displayed(page,'still_01',False)
++        for key,ms in [('still_02',20000),('still_03',20000),('still_04',20000),('still_05',20000),('still_06a',20000),('still_06b',10000),('still_07',10000),('final',20000)]:
++            page.clock.fast_forward(ms)
++            displayed(page,key,wide)
++            if key in ('still_06a','still_06b'):
++                page.screenshot(path=out/f'{key}-{width}.png')
++        page.clock.fast_forward(14200)
++        page.screenshot(path=out/f'credits-{width}.png')
++        assert r.locator('h1').inner_text()=='혼로'
++        if wide:
++            page.keyboard.down('Escape');page.clock.run_for(1000);page.keyboard.up('Escape')
++            assert r.count()==1
++            page.keyboard.down('Escape');page.clock.run_for(2020);page.keyboard.up('Escape')
++        else:
++            page.clock.fast_forward(27000)
++        assert r.count()==0
++        assert page.evaluate("HonroApp.modal.classList.contains('open')&&HonroApp.settingsPage==='debug'")
++        assert before==snapshot(page)
++        assert not crawl,crawl
++        c.close()
++    b.close()
++assert not errors,errors
++print(json.dumps({'debugStills':9,'pc':True,'mobile':True,'rotationStableBeat':True,'desktopEscHold':True,'naturalEnd':True,'previewSaveBytesUnchanged':True,'live':args.live}))
