@@ -60,3 +60,9 @@ python tools/act6-ending-v2/normal.py --chromium /usr/bin/chromium --from-courty
 [55 빈종각귀의 접지·사선과 실제 복구](bell-lane/README.md)
 
 [53·54 세 구역 실제 교전과 실패 지점](interior-pressure/README.md)
+
+51에서 실제로 사선이 열린 중턱·전망대의 측면 적을 우선 막은 뒤 네 명을 전망대로 모았다. 실제 아군 반격은 4~8라운드에 여덟 차례 있었고, 12라운드 담허가 전망대 서명을 만들었다. 시작 8명, 누적 17명, 활성·공격 순서 8·5, 적 실제 발사 15회와 체력·실드 피해 13건이다. 새 52가 라이브와 일반 쉼터 새 컨텍스트에서 열렸다. [실제 반격·전망대와 저장](flank-counterplay-51.json) · [전망대](screens/51-flank-overlook.webp)
+
+```bash
+python game/docs/act6/mumyeongsa-p00-p10/baseline/exterior_combat.py --build "$PWD" --out /tmp/honro-51-flanks --stages 51 --finish-overlook --press-flanks --rounds-per-site 1
+```

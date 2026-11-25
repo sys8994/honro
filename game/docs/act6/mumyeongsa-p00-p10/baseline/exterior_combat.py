@@ -108,6 +108,7 @@ def walk(page,target):
 
 def complete_overlook(browser,page,out,args):
     out['overlook']=[]
+    flank_shots={}
     slot=page.locator('[data-act6-qa-lookout]')
     for _ in range(60):
         base.dismiss_dialogue(page)
@@ -118,6 +119,17 @@ def complete_overlook(browser,page,out,args):
         if s['round']>17:
             break
         target=6730 if s['role']=='mage' else 6550
+        if getattr(args,'press_flanks',False) and 850<=s['x']<6000:
+            from daedosa_return import CANDIDATE
+            sector=0 if s['x']<2200 else 1 if s['x']<4400 else 2
+            if flank_shots.get(sector,0)<4:
+                plan=page.evaluate(CANDIDATE)
+                if plan and plan['target']!='crest-champion':
+                    page.locator(f'[data-action="combat-skill"][data-skill="{plan["id"]}"]').first.click(timeout=4500)
+                    aim(page,plan)
+                    flank_shots[sector]=flank_shots.get(sector,0)+1
+                    out['overlook'].append({'counterattack':plan,'before':s,'sector':sector})
+                    continue
         progress=min(target,s['x']+max(0,s['move']*.63-70))
         if progress>s['x']+65:
             m=sample_walk(page,1,progress,6200)
@@ -198,6 +210,7 @@ def main():
     p.add_argument('--opening-only',action='store_true')
     p.add_argument('--rounds-per-site',type=int,default=1)
     p.add_argument('--finish-overlook',action='store_true')
+    p.add_argument('--press-flanks',action='store_true')
     args=p.parse_args()
     base.ROOT=args.build.resolve()
     args.out.mkdir(parents=True,exist_ok=True)
