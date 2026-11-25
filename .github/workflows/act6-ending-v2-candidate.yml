@@ -1,0 +1,111 @@
+name: Verify and assemble HONRO Act 6 ending
+on:
+  push:
+    branches: ['qa/act6-ending-v2-20261125']
+    paths: ['.github/workflows/act6-ending-v2-candidate.yml']
+permissions:
+  contents: write
+jobs:
+  candidate:
+    if: github.repository == 'sys8994/honro' && github.ref == 'refs/heads/qa/act6-ending-v2-20261125'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    env:
+      BASE: 81d1e69d729f8bb182af070c0a88b3ba3ad7c14c
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c
+        with:
+          python-version: '3.12'
+      - name: Apply scoped authoring sources and verify exact images
+        shell: bash
+        run: |
+          set -euo pipefail
+          R="$RUNNER_TEMP/ending-v2-candidate"
+          O="$RUNNER_TEMP/ending-v2-evidence"
+          mkdir -p "$O"
+          echo "ENDING_ROOT=$R" >> "$GITHUB_ENV"
+          echo "ENDING_EVIDENCE=$O" >> "$GITHUB_ENV"
+          test "$(git ls-remote origin refs/heads/master | cut -f1)" = "$BASE"
+          git fetch --depth=1 origin "$BASE"
+          git worktree add --detach "$R" "$BASE"
+          cd "$R"
+          history="$(node --input-type=module -e 'import fs from "node:fs";import {selectPublishedGenerations} from "./shared/web-retention.mjs";const m=JSON.parse(fs.readFileSync("web/manifest.json"));console.log([...new Set(selectPublishedGenerations(m.publishedGenerations).map(x=>x.sourceSha))].join(" "));')"
+          git fetch --depth=1 origin $history
+          S="$GITHUB_WORKSPACE/.ending-v2-transfer"
+          git apply --check "$S/source.patch"
+          git apply --index "$S/source.patch"
+          A=shared/act6-ending-replan/stills
+          mkdir -p "$A"
+          for cut in still_01 still_02 still_03 still_04 still_05 still_06a still_06b still_07 final; do
+            for side in land port; do
+              a="ending_""$cut""_""$side"".webp"
+              if [[ "$cut" == "still_06b" ]]; then
+                cat "$S/ending_still_06b_r3_""$side"".webp.b64."{0,1,2} | base64 -d > "$A/$a"
+              else
+                base64 -d "$S/$a.b64" > "$A/$a"
+              fi
+            done
+          done
+          sha256sum -c "$S/assets.sha256"
+          git add "$A"
+          test "$(git diff --cached --name-only | grep -vE '^(shared/act6-ending-replan/|tools/act6-ending-v2/|game/docs/BUG_LOG.md$)' || true)" = ""
+          node tools/release/retain-published-web.mjs "$BASE" --published-at 2026-11-25T09:44:37Z --evidence https://github.com/sys8994/honro/actions/runs/45587964467 | tee "$O/retention.log"
+      - name: Build and run real browser checks
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd "$ENDING_ROOT"
+          npm ci --no-audit --no-fund
+          npm ci --prefix game --no-audit --no-fund
+          node --test tools/act6-ending-v2/cues.test.mjs | tee "$ENDING_EVIDENCE/cues.log"
+          npm run build | tee "$ENDING_EVIDENCE/build.log"
+          python -m pip install 'playwright==1.58.0'
+          python -m playwright install --with-deps chromium
+          CHROME="$(python -c 'from playwright.sync_api import sync_playwright; p=sync_playwright().start(); print(p.chromium.executable_path); p.stop()')"
+          python tools/act6-ending-v2/preview.py --chromium "$CHROME" --out "$ENDING_EVIDENCE/screens" | tee "$ENDING_EVIDENCE/preview.log"
+          python tools/act6-ending-v2/normal.py --chromium "$CHROME" | tee "$ENDING_EVIDENCE/normal.log"
+          cp _local/reports/ending-v2/*.png "$ENDING_EVIDENCE/screens/"
+          python - "$ENDING_EVIDENCE" <<'PY'
+          import re, subprocess, sys, json
+          from pathlib import Path
+          from hashlib import sha256
+          from os import environ
+          before=json.loads(subprocess.check_output(['git','show',environ['BASE']+':web/manifest.json']))
+          after=json.loads(Path('web/manifest.json').read_bytes())
+          def paths(m): return {x['path']:x['sha256'] for x in m['files']}
+          a,b=paths(before),paths(after)
+          assert len([p for p in b if 'act6-ending_still_' in p or 'act6-ending_final_' in p])==18
+          for prefix in ('act6-qa-chapter-','act6-terrain-art-','act6-debug-stages.','journey-map-act6.'):
+              assert {k:v for k,v in a.items() if prefix in k}=={k:v for k,v in b.items() if prefix in k},prefix
+          for path,digest in (a|b).items(): assert sha256(Path(path).read_bytes()).hexdigest()==digest,path
+          old,new=[next(p for p in paths(m) if 'ordered-game-24-normal51.' in p) for m in [before,after]]
+          pin=lambda p:re.search(r'boundary:\{build:"[a-f0-9]{64}",owner:\{[^}]+\},layout:\{.*?\}\}',Path(p).read_text()).group()
+          assert pin(old)==pin(new),'Existing Act 6 saves must retain the same boundary pins'
+          assert any(x['sourceSha']==environ['BASE'] for x in after['publishedGenerations'])
+          (Path(sys.argv[1])/'NEW.txt').write_text('\n'.join(sorted(set(b)-set(a)))+'\n')
+          (Path(sys.argv[1])/'MANIFEST.sha256').write_text(sha256(Path('web/manifest.json').read_bytes()).hexdigest()+'\n')
+          PY
+      - name: Preserve only the checked product candidate
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd "$ENDING_ROOT"
+          xargs -d '\n' -r git add -- < "$ENDING_EVIDENCE/NEW.txt"
+          git add -- HONRO.html HONRO_WORKSHOP.html index.html web/manifest.json
+          test "$(git diff --cached --name-only | grep -vE '^(shared/act6-ending-replan/|tools/act6-ending-v2/|game/docs/BUG_LOG.md$|web/|HONRO.html$|HONRO_WORKSHOP.html$|index.html$)' || true)" = ""
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Replace the Act 6 finale with nine responsive ending stills'
+          test "$(git rev-parse HEAD^)" = "$BASE"
+          test "$(git ls-remote origin refs/heads/master | cut -f1)" = "$BASE"
+          git push origin "HEAD:refs/heads/release/act6-ending-v2-20261125"
+          git rev-parse HEAD > "$ENDING_EVIDENCE/CANDIDATE.txt"
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: honro-ending-v2-evidence
+          path: ${{ runner.temp }}/ending-v2-evidence/
+          retention-days: 7
