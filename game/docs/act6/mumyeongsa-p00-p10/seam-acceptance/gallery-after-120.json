@@ -1,0 +1,204 @@
+{
+  "status": "PASS",
+  "hz": 120,
+  "wall": {
+    "id": "p-mage",
+    "cls": "mage",
+    "side": 0,
+    "x": 4380,
+    "y": 3034,
+    "vx": 0,
+    "vy": 0,
+    "hp": 1314.9,
+    "maxHp": 2050,
+    "shield": 0,
+    "r": 22,
+    "h": 92,
+    "ammo": null,
+    "loadout": [
+      "M01",
+      "M10",
+      "M07"
+    ],
+    "dead": false,
+    "actorsMoved": false,
+    "move": 1559.469495748482,
+    "grounded": true,
+    "family": {
+      "x": 320,
+      "y": 0
+    },
+    "contact": "m58-apse-pier",
+    "normal": {
+      "x": -1,
+      "y": -0.0
+    }
+  },
+  "ceiling": {
+    "id": "p-mage",
+    "cls": "mage",
+    "side": 0,
+    "x": 4334,
+    "y": 2570,
+    "vx": 0,
+    "vy": 0,
+    "hp": 1314.9,
+    "maxHp": 2050,
+    "shield": 0,
+    "r": 22,
+    "h": 92,
+    "ammo": null,
+    "loadout": [
+      "M01",
+      "M10",
+      "M07"
+    ],
+    "dead": false,
+    "actorsMoved": false,
+    "move": 1190.710960645705,
+    "grounded": true,
+    "family": {
+      "x": 0,
+      "y": -320
+    },
+    "contact": "m58-timber-soffit",
+    "normal": {
+      "x": 0,
+      "y": 1
+    }
+  },
+  "wallImpulse": {
+    "axis": "wall",
+    "before": {
+      "x": 4380,
+      "y": 3034,
+      "vx": 0,
+      "vy": 0,
+      "grounded": true
+    },
+    "requested": {
+      "x": 25,
+      "y": -145
+    },
+    "launch": {
+      "x": 4380,
+      "y": 3034,
+      "vx": -145,
+      "vy": -25,
+      "grounded": false
+    },
+    "maxClear": 32.696187592514434,
+    "maxAlong": 24.241464897223068,
+    "count": 54,
+    "recovered": true,
+    "final": {
+      "x": 4380,
+      "y": 3009.758535102777,
+      "vx": 0,
+      "vy": 0,
+      "grounded": true
+    }
+  },
+  "ceilingImpulse": {
+    "axis": "ceiling",
+    "before": {
+      "x": 4334,
+      "y": 2570,
+      "vx": 0,
+      "vy": 0,
+      "grounded": true
+    },
+    "requested": {
+      "x": 25,
+      "y": -145
+    },
+    "launch": {
+      "x": 4334,
+      "y": 2570,
+      "vx": 25,
+      "vy": 145,
+      "grounded": false
+    },
+    "maxClear": 32.70305305430702,
+    "maxAlong": 24,
+    "count": 43,
+    "recovered": true,
+    "final": {
+      "x": 4358,
+      "y": 2570,
+      "vx": 0,
+      "vy": 0,
+      "grounded": true
+    }
+  },
+  "wallJump": {
+    "id": "p-mage",
+    "cls": "mage",
+    "side": 0,
+    "x": 4380,
+    "y": 3009.758535102777,
+    "vx": 0,
+    "vy": 0,
+    "hp": 1314.9,
+    "maxHp": 2050,
+    "shield": 0,
+    "r": 22,
+    "h": 92,
+    "ammo": null,
+    "loadout": [
+      "M01",
+      "M10",
+      "M07"
+    ],
+    "dead": false,
+    "actorsMoved": false,
+    "move": 1484.469495748482,
+    "grounded": true,
+    "family": {
+      "x": 320,
+      "y": 0
+    },
+    "contact": "m58-apse-pier",
+    "normal": {
+      "x": -1,
+      "y": -0.0
+    }
+  },
+  "dismount": {
+    "id": "p-mage",
+    "cls": "mage",
+    "side": 0,
+    "x": 3929.199999999976,
+    "y": 3072.0799999999995,
+    "vx": 0,
+    "vy": 0,
+    "hp": 1314.9,
+    "maxHp": 2050,
+    "shield": 0,
+    "r": 22,
+    "h": 92,
+    "ammo": null,
+    "loadout": [
+      "M01",
+      "M10",
+      "M07"
+    ],
+    "dead": false,
+    "actorsMoved": false,
+    "move": 761.9109606456811,
+    "grounded": true,
+    "family": {
+      "x": 0,
+      "y": 320
+    },
+    "contact": "m58-rising-gallery",
+    "normal": null
+  },
+  "frames": {
+    "count": 370,
+    "acceleratingWall": 65,
+    "jumpAway": 33,
+    "acceleratingCeiling": 52
+  },
+  "seedHash": "20d85584b437bf73c6061745ba16c3700dd0ca2cdafb7e69f5bc005c7f2ec4e8"
+}

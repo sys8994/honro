@@ -171,7 +171,7 @@ export function hallB58(){
 // changes stance only after standing on its deck, then touching each actual face.
 export function installHallAxes({C,e,scene,crew}){
  const A=hallUpper,b=e.b,actors=new Set(crew),stances=new WeakMap(),exited=new WeakSet();
- const methods=['integrateBody','grounded','walk','jump','canDrop','origin','projectileOrigin','damageAim','damageDistance','collision','setEnvironment'];
+ const methods=['integrateBody','grounded','walk','jump','impulse','canDrop','origin','projectileOrigin','damageAim','damageDistance','collision','setEnvironment'];
  const stock=Object.fromEntries(methods.map(k=>[k,e[k].bind(e)])),draw=scene.unitBody,embedded=e.honroBBodyEmbedded;
  const wall=b.terrain.find(t=>t.id===A.wall),ceiling=b.terrain.find(t=>t.id===A.ceiling);
  const regions=[
@@ -195,6 +195,14 @@ export function installHallAxes({C,e,scene,crew}){
   (mode==='wall'?v.x===A.wallX:v.y===A.plane)&&face(v,mode);
  e.grounded=v=>stances.has(v)?stop(v,stances.get(v)):stock.grounded(v);
  e.canDrop=v=>!stances.has(v??e.active)&&stock.canDrop(v);
+ e.impulse=(u,vx,vy,attack)=>{
+  const mode=stances.get(u);
+  if(!mode)return stock.impulse(u,vx,vy,attack);
+  const wallMode=mode==='wall';
+  [u.vx,u.vy]=wallMode?[-u.vy,u.vx]:[u.vx,-u.vy];
+  try{return stock.impulse(u,vx,vy,attack);}
+  finally{[u.vx,u.vy]=wallMode?[u.vy,-u.vx]:[u.vx,-u.vy];}
+ };
  e.honroBBodyEmbedded=v=>{
   const mode=stances.get(v);
   if(!mode)return embedded?.call(e,v);
@@ -205,6 +213,7 @@ export function installHallAxes({C,e,scene,crew}){
   stances.delete(u);exited.add(u);
   Object.assign(u,{x,y,vx:0,vy,airborne:true,jumping:false,fallApexY:y,moveTarget:undefined});
  }
+ const slide=(velocity,dt)=>Math.abs(velocity)<1.5?0:velocity*Math.exp(-13*dt);
  e.integrateBody=(u,dt,silent=false)=>{
   let mode=stances.get(u);
   if(!mode){
@@ -218,13 +227,14 @@ export function installHallAxes({C,e,scene,crew}){
   const center=centered(u,mode),g=C.environmentAt(b.physics,center.x,center.y,true).gravity;
   if(mode==='wall'){
    const next=C.advanceLinear(u.x,u.y,u.vx,u.vy,g.x*(u.jumping?2:1),0,.015,dt);
-   u.y=Math.max(A.turnY,Math.min(A.floorY-u.h/2,next.y));u.vy=0;
-   if(next.x>=A.wallX&&face(u,mode)){u.x=A.wallX;u.vx=0;u.jumping=false;}
+   u.y=Math.max(A.turnY,Math.min(A.floorY-u.h/2,next.y));u.vy=u.y===next.y?next.vy:0;
+   if(next.x>=A.wallX&&face(u,mode)){u.x=A.wallX;u.vx=0;u.vy=slide(u.vy,dt);u.jumping=false;}
    else{u.x=Math.max(A.xIn+u.h/2,next.x);u.vx=u.x===next.x?next.vx:0;}
   }else{
    const next=C.advanceLinear(u.x,u.y,u.vx,u.vy,0,g.y*(u.jumping?2:1),.015,dt);
-   u.x=Math.max(A.left+u.r,Math.min(A.wallX-u.r,next.x));u.vx=0;
-   if(next.y<=A.plane&&face(u,mode)){u.y=A.plane;u.vy=0;u.jumping=false;}
+   u.x=Math.max(A.left+u.r,Math.min(A.wallX-u.r,next.x));u.vx=u.x===next.x?next.vx:0;
+   if(next.y<=A.plane&&face(u,mode)){u.y=A.plane;u.vy=0;u.vx=slide(u.vx,dt);u.jumping=false;}
+   else if(next.y+u.h/2>A.turnY&&next.vy>0){normal(u,u.x,next.y+u.h,next.vy);return false;}
    else{u.y=next.y;u.vy=next.vy;}
   }
   const now=stop(u,mode);u.airborne=!now&&!u.jumping;

@@ -333,7 +333,25 @@ def live_d(browser,out,sodan=False,session=None,touch_d=False,pressure=False):
         q['status']='FAIL'
     return q
 
-def gallery(browser,out,hz,combat=False):
+def measure_impulse(page,axis):
+    return page.evaluate("""axis=>new Promise(resolve=>{
+      const e=HonroApp.engine,u=e.active,read=()=>({x:u.x,y:u.y,vx:u.vx,vy:u.vy,grounded:e.grounded(u)});
+      const before=read(),requested={x:25,y:-145};
+      e.impulse(u,requested.x,requested.y);
+      const launch=read(),start=performance.now();let maxClear=0,maxAlong=0,count=0;
+      const observe=()=>{
+        const state=read(),clear=axis==='wall'?before.x-state.x:state.y-before.y;
+        const along=axis==='wall'?state.y-before.y:state.x-before.x;
+        maxClear=Math.max(maxClear,clear);maxAlong=Math.max(maxAlong,Math.abs(along));count++;
+        const recovered=maxClear>=4&&state.grounded&&(axis==='wall'?state.x===before.x:state.y===before.y);
+        if(recovered||performance.now()-start>=8500)resolve({axis,before,requested,launch,maxClear,maxAlong,count,recovered,final:state});
+        else requestAnimationFrame(observe);
+      };
+      requestAnimationFrame(observe);
+    })""",axis)
+
+
+def gallery(browser,out,hz,combat=False,force=False):
     ctx=seeded_context(browser,58,init_script=FRAME_DRIVER.replace('HZ',str(hz)))
     page=ctx.new_page()
     q={'hz':hz,'status':'FAIL','errors':[]}
@@ -372,6 +390,8 @@ def gallery(browser,out,hz,combat=False):
         q['wall']=actor(page)
         assert q['wall']['family']=={'x':320,'y':0} and q['wall']['normal']=={'x':-1,'y':0},q['wall']
         page.screenshot(path=out/f'd-wall-{hz}.png')
+        if force:
+            q['wallImpulse']=measure_impulse(page,'wall')
         page.keyboard.press('Control')
         page.wait_for_function("HonroApp.engine.active.vx<0",timeout=1200)
         page.wait_for_function("HonroApp.engine.active.x===4380&&HonroApp.engine.grounded(HonroApp.engine.active)",timeout=4800)
@@ -381,6 +401,9 @@ def gallery(browser,out,hz,combat=False):
         q['ceiling']=actor(page)
         assert q['ceiling']['family']=={'x':0,'y':-320} and q['ceiling']['normal']=={'x':0,'y':1},q['ceiling']
         page.screenshot(path=out/f'd-ceiling-{hz}.png')
+        if force:
+            q['ceilingImpulse']=measure_impulse(page,'ceiling')
+            assert q['wallImpulse']['recovered'] and q['ceilingImpulse']['recovered'],(q['wallImpulse'],q['ceilingImpulse'])
         if combat:
             q['combat']=combat_from_ceiling(page,out,hz)
             enemies={u['id'] for u in q['manifestation']} | set(page.evaluate("""() => HonroApp.engine.b.units
@@ -453,7 +476,7 @@ def main():
     p.add_argument('--build',type=Path,required=True)
     p.add_argument('--out',type=Path,required=True)
     p.add_argument('--rates',type=int,nargs='+',default=[60,120])
-    p.add_argument('--case',choices=['gallery','gallery-combat','live-d'],default='gallery')
+    p.add_argument('--case',choices=['gallery','gallery-combat','gallery-force','live-d'],default='gallery')
     p.add_argument('--sodan',action='store_true')
     p.add_argument('--touch-d',action='store_true')
     p.add_argument('--pressure',action='store_true')
@@ -463,7 +486,7 @@ def main():
     with sync_playwright() as pw:
         browser=pw.chromium.launch(executable_path='/usr/bin/chromium',headless=True,
                                    args=['--no-sandbox','--disable-dev-shm-usage'])
-        entries=[(f'{opts.case}-{hz}',gallery(browser,opts.out,hz,opts.case=='gallery-combat')) for hz in opts.rates] if opts.case!='live-d' else [('live-d',live_d(browser,opts.out,opts.sodan,touch_d=opts.touch_d,pressure=opts.pressure))]
+        entries=[(f'{opts.case}-{hz}',gallery(browser,opts.out,hz,opts.case=='gallery-combat',opts.case=='gallery-force')) for hz in opts.rates] if opts.case!='live-d' else [('live-d',live_d(browser,opts.out,opts.sodan,touch_d=opts.touch_d,pressure=opts.pressure))]
         for label,result in entries:
             (opts.out/f'{label}.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
             print(label,result['status'],result.get('error',''),flush=True)
