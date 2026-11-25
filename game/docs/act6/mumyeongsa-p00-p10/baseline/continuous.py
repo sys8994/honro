@@ -69,7 +69,7 @@ def play(browser,args):
     context,page=open_stage(browser,51,False,init_script=native_b.FRAME_DRIVER.replace('HZ','60'))
     session=(context,page)
     original=base.saved_bytes(page)['honro-first-act-profile-1']
-    q={'status':'FAIL','boundaries':[],'errors':[]}
+    q={'status':'RUNNING','boundaries':[],'errors':[]}
     page.on('pageerror',lambda err:q['errors'].append(str(err)))
 
     def transitioned(stage):
@@ -80,6 +80,7 @@ def play(browser,args):
         assert records['honro-first-act-profile-1']==original
         q['boundaries'].append({'from':stage-1,'to':stage,'storageHash':storage_hash(records)})
         write(args.out,'continuous',q)
+        write(args.out,f'seal-{stage}',seal)
         print(f'Warm stage {stage}, signed boundary and original save checked',flush=True)
         base.dismiss_dialogue(page)
         return records
@@ -125,6 +126,7 @@ def play(browser,args):
         assert not q['errors'],q['errors']
         q['status']='PASS'
     except Exception as error:
+        q['status']='FAIL'
         q['error']=str(error)
         if page.evaluate('!!HonroApp.engine'):
             q['last']=page.evaluate(base.SNAPSHOT)

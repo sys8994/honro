@@ -111,8 +111,52 @@ def march(page,target,cls=None,actor_id=None,tolerance=27,max_attempts=8):
                 pass
     raise AssertionError({'target':target,'actor':actor(page),'state':state(page)})
 
-def live_d(browser,out,sodan=False,session=None):
-    ctx,page=session if session else (seeded_context(browser,57),None)
+def reunion_feet(page):
+    source=next((base.ROOT/'web/data').glob('act6-qa-chapter-57.*.json'))
+    bridge=json.loads(source.read_text())['bridge']
+    return page.evaluate("""({required,additions})=>{
+      const e=HonroApp.engine,C=HONRO_CORE,body=e.unit(required.oldBodyId);
+      const after=[...e.b.terrain,...additions.terrain];
+      return Object.fromEntries(e.heroesAlive().map(u=>[u.cls,{x:u.x,y:u.y,
+       distance:Math.hypot(u.x-body.x,u.y-body.y),ready:e.grounded(u)&&
+       Math.hypot(u.x-body.x,u.y-body.y)<required.reunionRadius&&C.validTerrainContactPose(after,u)}]));
+    }""",bridge)
+
+def touch_send_d(context,page,steps):
+    from mobile_seams import POINTER_EVENTS, move
+    page.evaluate(POINTER_EVENTS)
+    for cls,goal in (('occultist',6200),('knight',6090),('mage',5992),('archer',5872)):
+        identity=actor(page,cls)['id']
+        for _ in range(6):
+            ready(page,30000)
+            if actor(page)['id']==identity:
+                break
+            target=page.locator(f'[data-action="select-hero"][data-id="{identity}"]:visible').first
+            if target.count() and target.is_enabled():
+                target.tap(timeout=4400)
+                if actor(page)['id']==identity:
+                    break
+            page.locator('button[data-action="defend"]:visible').first.tap(timeout=4500)
+        foot=actor(page)
+        assert foot['id']==identity,foot
+        if foot['contact'] not in D_APPROACH:
+            if abs(foot['x']-5260)>14:
+                move(context,page,1 if foot['x']<5260 else -1,
+                     '()=>Math.abs(HonroApp.engine.active.x-5260)<13',timeout=8000)
+            page.locator('#jump').tap(timeout=5000)
+            page.wait_for_function("""ids=>{const e=HonroApp.engine,u=e.active;return e.grounded(u)&&
+                ids.includes(e.contactSurface(u.x,u.y-4,u.y+5)?.t.id);}""",arg=D_APPROACH,timeout=5000)
+        steps['ramp-'+cls]=actor(page)
+        if cls=='archer':
+            move(context,page,1,"HonroApp.done&&HonroApp.engine.b.phase==='won'",timeout=10500)
+        else:
+            move(context,page,1,'x=>HonroApp.engine.active.x>=x',goal,timeout=10500)
+    steps['exitTouches']=page.evaluate('seamTouches')
+    assert len(steps['exitTouches'])>=8 and all(v['trusted'] and v['type']=='touch' for v in steps['exitTouches'])
+
+
+def live_d(browser,out,sodan=False,session=None,touch_d=False):
+    ctx,page=session if session else (seeded_context(browser,57,mobile=touch_d),None)
     if page is None:
         page=ctx.new_page()
     q={'status':'FAIL','steps':{},'errors':[]}
@@ -120,7 +164,7 @@ def live_d(browser,out,sodan=False,session=None):
     page.on('pageerror',lambda err:q['errors'].append(str(err)))
     try:
         if session is None:
-            resume(page,57,True)
+            resume(page,57,True,mobile=touch_d)
         else:
             base.dismiss_dialogue(page)
         steps['initial']=state(page)
@@ -159,8 +203,11 @@ def live_d(browser,out,sodan=False,session=None):
         page.wait_for_function("""()=>{const e=HonroApp.engine,u=e.active;return e.grounded(u)&&
           e.contactSurface(u.x,u.y-4,u.y+5)?.t.id==='a6-c07-stationary-stone-ward';}""",timeout=4300)
         steps['archerOnWard']=actor(page)
-        for cls,x,tolerance in [('knight',5385,10),('occultist',5285,18)]:
-            march(page,x,cls=cls,tolerance=tolerance)
+        for cls,x,tolerance in [('occultist',5285,18),('knight',5385,19)]:
+            if not reunion_feet(page)[cls]['ready']:
+                march(page,x,cls=cls,tolerance=tolerance)
+        steps['reunionFeet']=reunion_feet(page)
+        assert set(steps['reunionFeet'])=={'archer','knight','occultist'} and all(v['ready'] for v in steps['reunionFeet'].values()),steps['reunionFeet']
         mission_click(page,'reuniteAtWard')
         page.wait_for_function("!!HonroApp.engine.unit('p-mage')",timeout=4100)
         steps['folded']=state(page)
@@ -188,22 +235,26 @@ def live_d(browser,out,sodan=False,session=None):
             steps['restoredLoadout']={'before':initial_loadout,'after':actor(page,'occultist')['loadout']}
             assert steps['restoredLoadout']['after']==initial_loadout
         page.evaluate("window.dOriginals=new Map(HonroApp.engine.b.units.filter(u=>u.side===0&&!u.summoned).map(u=>[u.id,u]))")
-        for cls,x in [('occultist',6200),('knight',6090),('mage',5992),('archer',5872)]:
-            select(page,cls,advance=True)
-            if actor(page)['contact'] not in D_APPROACH:
-                march(page,5260,cls=cls,tolerance=12)
-                page.keyboard.press('Control')
-                page.wait_for_function("""ids=>{const e=HonroApp.engine,u=e.active;return e.grounded(u)&&
-                  ids.includes(e.contactSurface(u.x,u.y-4,u.y+5)?.t.id);}""",arg=D_APPROACH,timeout=5000)
-            steps['ramp-'+cls]=actor(page)
-            if cls=='archer':
-                sample_walk(page,1,x,4200)
-            else:
-                march(page,x,cls=cls,tolerance=23)
+        if touch_d:
+            touch_send_d(ctx,page,steps)
+        else:
+            for cls,x in [('occultist',6200),('knight',6090),('mage',5992),('archer',5872)]:
+                select(page,cls,advance=True)
+                if actor(page)['contact'] not in D_APPROACH:
+                    march(page,5260,cls=cls,tolerance=12)
+                    page.keyboard.press('Control')
+                    page.wait_for_function("""ids=>{const e=HonroApp.engine,u=e.active;return e.grounded(u)&&
+                      ids.includes(e.contactSurface(u.x,u.y-4,u.y+5)?.t.id);}""",arg=D_APPROACH,timeout=5000)
+                steps['ramp-'+cls]=actor(page)
+                if cls=='archer':
+                    sample_walk(page,1,x,4200)
+                else:
+                    march(page,x,cls=cls,tolerance=23)
         page.wait_for_function("HonroApp.engine.b.phase==='won'&&HonroApp.done",timeout=7200)
         q['outgoing']=state(page)
         page.screenshot(path=out/'d-live-57.png')
-        page.locator('[data-act6-qa-next="58"]').click(timeout=7000)
+        advance=page.locator('[data-act6-qa-next="58"]')
+        (advance.tap if touch_d else advance.click)(timeout=7000)
         page.wait_for_function('HonroApp.engine?.b?.honroStage===58',timeout=12000)
         base.dismiss_dialogue(page)
         q['live']=state(page)
@@ -370,13 +421,14 @@ def main():
     p.add_argument('--rates',type=int,nargs='+',default=[60,120])
     p.add_argument('--case',choices=['gallery','gallery-combat','live-d'],default='gallery')
     p.add_argument('--sodan',action='store_true')
+    p.add_argument('--touch-d',action='store_true')
     opts=p.parse_args()
     base.ROOT=opts.build.resolve()
     opts.out.mkdir(parents=True,exist_ok=True)
     with sync_playwright() as pw:
         browser=pw.chromium.launch(executable_path='/usr/bin/chromium',headless=True,
                                    args=['--no-sandbox','--disable-dev-shm-usage'])
-        entries=[(f'{opts.case}-{hz}',gallery(browser,opts.out,hz,opts.case=='gallery-combat')) for hz in opts.rates] if opts.case!='live-d' else [('live-d',live_d(browser,opts.out,opts.sodan))]
+        entries=[(f'{opts.case}-{hz}',gallery(browser,opts.out,hz,opts.case=='gallery-combat')) for hz in opts.rates] if opts.case!='live-d' else [('live-d',live_d(browser,opts.out,opts.sodan,touch_d=opts.touch_d))]
         for label,result in entries:
             (opts.out/f'{label}.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
             print(label,result['status'],result.get('error',''),flush=True)

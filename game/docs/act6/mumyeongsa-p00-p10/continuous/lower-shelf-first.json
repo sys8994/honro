@@ -1,0 +1,733 @@
+{
+  "status": "FAIL",
+  "boundaries": [
+    {
+      "from": 51,
+      "to": 52,
+      "storageHash": "920652e6c0d63b11fa5d2b1dc2e504113abe8991db9302d4f6a1b37bc660081d"
+    }
+  ],
+  "errors": [],
+  "error": "{'id': 'p-occultist', 'cls': 'occultist', 'side': 0, 'x': 3660.300945429639, 'y': 3136.7062952542747, 'vx': 0, 'vy': 0, 'hp': 2135, 'maxHp': 2304, 'shield': 0, 'r': 22, 'h': 92, 'ammo': None, 'loadout': ['O01', 'O04', 'O03', 'O06'], 'dead': False, 'actorsMoved': False, 'move': 22.119327931464802, 'grounded': True, 'family': {'x': 0, 'y': 320}, 'contact': 'landing-3', 'normal': None}",
+  "last": {
+    "stageId": 52,
+    "honroStage": 52,
+    "mode": "campaign",
+    "authoredId": "stage-52",
+    "round": 4,
+    "phase": "aim",
+    "side": 0,
+    "shot": 7,
+    "rng": 20147243331,
+    "active": "p-occultist",
+    "dialogue": false,
+    "isolatedStore": false,
+    "play": [
+      6250,
+      6250
+    ],
+    "terrainBounds": {
+      "left": -6500,
+      "top": -9800,
+      "right": 13000,
+      "bottom": 17000
+    },
+    "playBounds": {
+      "left": 0,
+      "top": 0,
+      "right": 6250,
+      "bottom": 6250
+    },
+    "camera": {
+      "x": 3827.3179086436953,
+      "y": 2952.3542657407684,
+      "zoom": null
+    },
+    "gravity": {
+      "x": 0,
+      "y": 320
+    },
+    "fieldFlags": [],
+    "terrain": [
+      {
+        "id": "west-watch-and-descent",
+        "vertices": 45,
+        "oneWay": false
+      },
+      {
+        "id": "east-return-buttress",
+        "vertices": 50,
+        "oneWay": false
+      },
+      {
+        "id": "broken-arch-west",
+        "vertices": 21,
+        "oneWay": false
+      },
+      {
+        "id": "broken-arch-east",
+        "vertices": 21,
+        "oneWay": false
+      },
+      {
+        "id": "return-lower-crossing",
+        "vertices": 31,
+        "oneWay": false
+      },
+      {
+        "id": "landing-1",
+        "vertices": 6,
+        "oneWay": false
+      },
+      {
+        "id": "landing-2",
+        "vertices": 6,
+        "oneWay": false
+      },
+      {
+        "id": "landing-3",
+        "vertices": 6,
+        "oneWay": false
+      },
+      {
+        "id": "landing-4",
+        "vertices": 6,
+        "oneWay": false
+      },
+      {
+        "id": "landing-5",
+        "vertices": 6,
+        "oneWay": false
+      }
+    ],
+    "worldTerrain": [
+      {
+        "id": "west-watch-and-descent",
+        "vertices": 45
+      },
+      {
+        "id": "east-return-buttress",
+        "vertices": 50
+      },
+      {
+        "id": "broken-arch-west",
+        "vertices": 21
+      },
+      {
+        "id": "broken-arch-east",
+        "vertices": 21
+      },
+      {
+        "id": "return-lower-crossing",
+        "vertices": 31
+      },
+      {
+        "id": "landing-1",
+        "vertices": 6
+      },
+      {
+        "id": "landing-2",
+        "vertices": 6
+      },
+      {
+        "id": "landing-3",
+        "vertices": 6
+      },
+      {
+        "id": "landing-4",
+        "vertices": 6
+      },
+      {
+        "id": "landing-5",
+        "vertices": 6
+      }
+    ],
+    "enemies": [
+      "watch-range",
+      "return-guard",
+      "a6-52-opening-3",
+      "a6-52-opening-4",
+      "a6-52-opening-5",
+      "a6-52-broken-arch-1",
+      "a6-52-broken-arch-2",
+      "a6-52-broken-arch-3",
+      "a6-52-cliff-watch-3"
+    ],
+    "units": [
+      {
+        "id": "p-archer",
+        "cls": "archer",
+        "side": 0,
+        "level": 25,
+        "hp": 1720,
+        "maxHp": 1720,
+        "loadout": [
+          "A01",
+          "A14",
+          "A02",
+          "A05"
+        ],
+        "pos": [
+          1200,
+          1224.58
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "west-watch-and-descent",
+        "fixed": false,
+        "objective": false,
+        "role": "archer",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "p-mage",
+        "cls": "mage",
+        "side": 0,
+        "level": 25,
+        "hp": 1908.7,
+        "maxHp": 2050,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "pos": [
+          3051.09,
+          2323.51
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "broken-arch-west",
+        "fixed": false,
+        "objective": false,
+        "role": "mage",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "p-knight",
+        "cls": "knight",
+        "side": 0,
+        "level": 25,
+        "hp": 3747,
+        "maxHp": 3846,
+        "loadout": [
+          "S00",
+          "S01",
+          "S03"
+        ],
+        "pos": [
+          3309.72,
+          2163.48
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "broken-arch-west",
+        "fixed": false,
+        "objective": false,
+        "role": "knight",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "p-occultist",
+        "cls": "occultist",
+        "side": 0,
+        "level": 25,
+        "hp": 2135,
+        "maxHp": 2304,
+        "loadout": [
+          "O01",
+          "O04",
+          "O03",
+          "O06"
+        ],
+        "pos": [
+          3660.3,
+          3136.71
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "landing-3",
+        "fixed": false,
+        "objective": false,
+        "role": "occultist",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "watch-range",
+        "cls": "archer",
+        "side": 1,
+        "level": 25,
+        "hp": 527,
+        "maxHp": 527,
+        "loadout": [
+          "HCW01",
+          "HCW02"
+        ],
+        "pos": [
+          4270,
+          2455
+        ],
+        "h": 92,
+        "r": 25,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "broken-arch-east",
+        "fixed": false,
+        "objective": false,
+        "role": "archer",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "bridge-keeper",
+        "cls": "knight",
+        "side": 1,
+        "level": 25,
+        "hp": 0,
+        "maxHp": 659,
+        "loadout": [
+          "HBM03"
+        ],
+        "pos": [
+          3234.51,
+          2214.53
+        ],
+        "h": 139,
+        "r": 42,
+        "awake": true,
+        "dead": true,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "broken-arch-west",
+        "fixed": false,
+        "objective": false,
+        "role": "knight",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "return-guard",
+        "cls": "knight",
+        "side": 1,
+        "level": 25,
+        "hp": 758,
+        "maxHp": 758,
+        "loadout": [
+          "HBM01"
+        ],
+        "pos": [
+          3370,
+          4498.08
+        ],
+        "h": 110,
+        "r": 37,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "return-lower-crossing",
+        "fixed": false,
+        "objective": false,
+        "role": "knight",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "cliff-stone",
+        "cls": "occultist",
+        "side": 1,
+        "level": 25,
+        "hp": 0,
+        "maxHp": 155,
+        "loadout": [],
+        "pos": [
+          1510,
+          1361.9
+        ],
+        "h": 137,
+        "r": 24,
+        "awake": true,
+        "dead": true,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "west-watch-and-descent",
+        "fixed": true,
+        "objective": false,
+        "role": "occultist",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-52-opening-1",
+        "cls": "knight",
+        "side": 1,
+        "level": 25,
+        "hp": 655,
+        "maxHp": 655,
+        "loadout": [
+          "HBM01"
+        ],
+        "pos": [
+          1633.02,
+          1673.02
+        ],
+        "h": 88,
+        "r": 32,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "west-watch-and-descent",
+        "fixed": false,
+        "objective": false,
+        "role": "leaper",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-52-opening-2",
+        "cls": "occultist",
+        "side": 1,
+        "level": 25,
+        "hp": 595,
+        "maxHp": 595,
+        "loadout": [
+          "HSH01",
+          "HSH02"
+        ],
+        "pos": [
+          1803,
+          1859
+        ],
+        "h": 115,
+        "r": 22,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "west-watch-and-descent",
+        "fixed": false,
+        "objective": false,
+        "role": "ice",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-52-opening-3",
+        "cls": "knight",
+        "side": 1,
+        "level": 25,
+        "hp": 655,
+        "maxHp": 655,
+        "loadout": [
+          "HBM01"
+        ],
+        "pos": [
+          2500,
+          2473.13
+        ],
+        "h": 88,
+        "r": 32,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "broken-arch-west",
+        "fixed": false,
+        "objective": false,
+        "role": "leaper",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-52-opening-4",
+        "cls": "occultist",
+        "side": 1,
+        "level": 25,
+        "hp": 684,
+        "maxHp": 684,
+        "loadout": [
+          "HSH01",
+          "HSH02"
+        ],
+        "pos": [
+          3990,
+          2285.86
+        ],
+        "h": 137,
+        "r": 24,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "broken-arch-east",
+        "fixed": false,
+        "objective": false,
+        "role": "ice",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-52-opening-5",
+        "cls": "knight",
+        "side": 1,
+        "level": 25,
+        "hp": 868,
+        "maxHp": 868,
+        "loadout": [
+          "HBM03"
+        ],
+        "pos": [
+          4650,
+          2489.14
+        ],
+        "h": 139,
+        "r": 42,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "broken-arch-east",
+        "fixed": false,
+        "objective": false,
+        "role": "leaper",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-52-opening-6",
+        "cls": "occultist",
+        "side": 1,
+        "level": 25,
+        "hp": 684,
+        "maxHp": 684,
+        "loadout": [
+          "HSH01",
+          "HSH02"
+        ],
+        "pos": [
+          3090,
+          4559
+        ],
+        "h": 137,
+        "r": 24,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "return-lower-crossing",
+        "fixed": false,
+        "objective": false,
+        "role": "ice",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-52-broken-arch-1",
+        "cls": "knight",
+        "side": 1,
+        "level": 25,
+        "hp": 868,
+        "maxHp": 868,
+        "loadout": [
+          "HBM03"
+        ],
+        "pos": [
+          3000,
+          2344.66
+        ],
+        "h": 139,
+        "r": 42,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "broken-arch-west",
+        "fixed": false,
+        "objective": false,
+        "role": "leaper",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-52-broken-arch-2",
+        "cls": "occultist",
+        "side": 1,
+        "level": 25,
+        "hp": 684,
+        "maxHp": 684,
+        "loadout": [
+          "HSH01",
+          "HSH02"
+        ],
+        "pos": [
+          3880,
+          2278.81
+        ],
+        "h": 137,
+        "r": 24,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "broken-arch-east",
+        "fixed": false,
+        "objective": false,
+        "role": "ice",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-52-broken-arch-3",
+        "cls": "knight",
+        "side": 1,
+        "level": 25,
+        "hp": 655,
+        "maxHp": 655,
+        "loadout": [
+          "HBM01"
+        ],
+        "pos": [
+          4145,
+          2375.4
+        ],
+        "h": 88,
+        "r": 32,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "broken-arch-east",
+        "fixed": false,
+        "objective": false,
+        "role": "leaper",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-52-cliff-watch-1",
+        "cls": "knight",
+        "side": 1,
+        "level": 25,
+        "hp": 655,
+        "maxHp": 655,
+        "loadout": [
+          "HBM01"
+        ],
+        "pos": [
+          2080,
+          2177.61
+        ],
+        "h": 88,
+        "r": 32,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "west-watch-and-descent",
+        "fixed": false,
+        "objective": false,
+        "role": "leaper",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-52-cliff-watch-2",
+        "cls": "occultist",
+        "side": 1,
+        "level": 25,
+        "hp": 595,
+        "maxHp": 595,
+        "loadout": [
+          "HSH01",
+          "HSH02"
+        ],
+        "pos": [
+          2365,
+          2456.25
+        ],
+        "h": 115,
+        "r": 22,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "broken-arch-west",
+        "fixed": false,
+        "objective": false,
+        "role": "ice",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-52-cliff-watch-3",
+        "cls": "knight",
+        "side": 1,
+        "level": 25,
+        "hp": 655,
+        "maxHp": 655,
+        "loadout": [
+          "HBM01"
+        ],
+        "pos": [
+          2690,
+          2470.8
+        ],
+        "h": 88,
+        "r": 32,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "broken-arch-west",
+        "fixed": false,
+        "objective": false,
+        "role": "leaper",
+        "summoned": false,
+        "ally": false
+      }
+    ]
+  }
+}
