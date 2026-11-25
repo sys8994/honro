@@ -45,7 +45,7 @@ with sync_playwright() as pw:
             tab=cx.new_page(); errors=[]
             tab.on('pageerror',lambda err:errors.append(str(err)))
             tab.goto(site+'HONRO.html',wait_until='domcontentloaded',timeout=30000)
-            tab.wait_for_function("HonroApp?.screen==='title'&&!!HONRO_READY",timeout=40000)
+            tab.wait_for_function("globalThis.HonroApp?.screen==='title'&&!!globalThis.HONRO_READY",timeout=40000)
             tab.evaluate('async()=>await HONRO_READY')
             tap(tab,'.title-actions button.primary[data-action="rest"]',mobile)
             tab.wait_for_function("HonroApp.screen==='rest'",timeout=20000)
@@ -54,6 +54,7 @@ with sync_playwright() as pw:
                 tab.wait_for_timeout(350)
                 tap(tab,'[data-action="dialogue-next"]',mobile)
             state={}; witness(tab,state,mobile,tap,out,case,51)
+            tab.wait_for_timeout(450)
             tap(tab,'[data-action="journey-book"]',mobile)
             tap(tab,'[data-action="journey-act"][data-id="5"]',mobile)
             tab.wait_for_function("()=>document.querySelector('.journey-act-5 .journey-map-image')?.naturalWidth>0",timeout=12000)

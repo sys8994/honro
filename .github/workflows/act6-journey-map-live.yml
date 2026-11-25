@@ -30,3 +30,5 @@ jobs:
           name: act6-journey-map-live
           path: ${{ runner.temp }}/act6-journey-live/
           retention-days: 7
+
+# Bind the product check to the boot-safe globalThis predicate.
