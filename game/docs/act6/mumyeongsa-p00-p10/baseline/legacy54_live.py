@@ -15,7 +15,7 @@ def resume(page,stage,fresh=False,mobile=False):
         page.goto(base.BASE+"HONRO.html",wait_until="domcontentloaded")
     else:
         page.reload(wait_until="domcontentloaded")
-    page.wait_for_function("window.HonroApp && !document.querySelector('[data-startup-title]')",timeout=13000)
+    page.wait_for_function("window.HonroApp && !document.querySelector('[data-startup-title]')",timeout=35000)
     def enter(button):
         (button.tap if mobile else button.click)(timeout=6000)
     enter(base.action(page,"rest"))

@@ -1,0 +1,134 @@
+{
+  "status": "FAIL",
+  "error": "({'axis': 'wall', 'before': {'x': 4380, 'y': 3034, 'vx': 0, 'vy': 0, 'grounded': True}, 'requested': {'x': 25, 'y': -145}, 'launch': {'x': 4380, 'y': 3034, 'vx': 25, 'vy': -145, 'grounded': False}, 'maxClear': 0, 'maxAlong': 1.2082578156464479, 'count': 347, 'recovered': False, 'final': {'x': 4380, 'y': 3032.7917421843536, 'vx': 0, 'vy': 0, 'grounded': True}}, {'axis': 'ceiling', 'before': {'x': 4334, 'y': 2570, 'vx': 0, 'vy': 0, 'grounded': True}, 'requested': {'x': 25, 'y': -145}, 'launch': {'x': 4334, 'y': 2570, 'vx': 25, 'vy': -145, 'grounded': False}, 'maxClear': 0, 'maxAlong': 0.20832031304234988, 'count': 361, 'recovered': False, 'final': {'x': 4334.208320313042, 'y': 2570, 'vx': 0, 'vy': 0, 'grounded': True}})",
+  "wall": {
+    "id": "p-mage",
+    "cls": "mage",
+    "side": 0,
+    "x": 4380,
+    "y": 3034,
+    "vx": 0,
+    "vy": 0,
+    "hp": 1314.9,
+    "maxHp": 2050,
+    "shield": 0,
+    "r": 22,
+    "h": 92,
+    "ammo": null,
+    "loadout": [
+      "M01",
+      "M10",
+      "M07"
+    ],
+    "dead": false,
+    "actorsMoved": false,
+    "move": 1562.8193434724028,
+    "grounded": true,
+    "family": {
+      "x": 320,
+      "y": 0
+    },
+    "contact": "m58-apse-pier",
+    "normal": {
+      "x": -1,
+      "y": -0.0
+    }
+  },
+  "ceiling": {
+    "id": "p-mage",
+    "cls": "mage",
+    "side": 0,
+    "x": 4334,
+    "y": 2570,
+    "vx": 0,
+    "vy": 0,
+    "hp": 1314.9,
+    "maxHp": 2050,
+    "shield": 0,
+    "r": 22,
+    "h": 92,
+    "ammo": null,
+    "loadout": [
+      "M01",
+      "M10",
+      "M07"
+    ],
+    "dead": false,
+    "actorsMoved": false,
+    "move": 1171.0276012880493,
+    "grounded": true,
+    "family": {
+      "x": 0,
+      "y": -320
+    },
+    "contact": "m58-timber-soffit",
+    "normal": {
+      "x": 0,
+      "y": 1
+    }
+  },
+  "wallImpulse": {
+    "axis": "wall",
+    "before": {
+      "x": 4380,
+      "y": 3034,
+      "vx": 0,
+      "vy": 0,
+      "grounded": true
+    },
+    "requested": {
+      "x": 25,
+      "y": -145
+    },
+    "launch": {
+      "x": 4380,
+      "y": 3034,
+      "vx": 25,
+      "vy": -145,
+      "grounded": false
+    },
+    "maxClear": 0,
+    "maxAlong": 1.2082578156464479,
+    "count": 347,
+    "recovered": false,
+    "final": {
+      "x": 4380,
+      "y": 3032.7917421843536,
+      "vx": 0,
+      "vy": 0,
+      "grounded": true
+    }
+  },
+  "ceilingImpulse": {
+    "axis": "ceiling",
+    "before": {
+      "x": 4334,
+      "y": 2570,
+      "vx": 0,
+      "vy": 0,
+      "grounded": true
+    },
+    "requested": {
+      "x": 25,
+      "y": -145
+    },
+    "launch": {
+      "x": 4334,
+      "y": 2570,
+      "vx": 25,
+      "vy": -145,
+      "grounded": false
+    },
+    "maxClear": 0,
+    "maxAlong": 0.20832031304234988,
+    "count": 361,
+    "recovered": false,
+    "final": {
+      "x": 4334.208320313042,
+      "y": 2570,
+      "vx": 0,
+      "vy": 0,
+      "grounded": true
+    }
+  }
+}

@@ -84,10 +84,30 @@ def m09_hall(page):
 
 def wall_trace(page):
     page.evaluate("""() => {
-      const e=HonroApp.engine, fire=e.fire, impact=e.impact, walk=e.walk,tick=e.tick,results=[];
+      const e=HonroApp.engine, fire=e.fire, impact=e.impact, walk=e.walk,tick=e.tick,impulse=e.impulse,results=[];
+      const watch=new Map();
+      const snap=u=>({x:u.x,y:u.y,vx:u.vx,vy:u.vy,grounded:e.grounded(u)});
       window.nativeWall=results;
-      window.nativeSolverSteps=new Set();window.nativeWallWalk=[];
-      e.tick=function(dt){nativeSolverSteps.add(dt);return tick.call(this,dt);};
+      window.nativeSolverSteps=new Set();window.nativeWallWalk=[];window.nativeImpulse=[];
+      e.tick=function(dt){
+        nativeSolverSteps.add(dt);const value=tick.call(this,dt);
+        for(const [u,w] of watch){
+          const p=snap(u);w.deltaX=Math.max(w.deltaX,Math.abs(p.x-w.before.x));
+          w.deltaY=Math.max(w.deltaY,Math.abs(p.y-w.before.y));
+          w.airborne||=!p.grounded;w.steps++;
+          if(u.dead||w.steps>1800||w.airborne&&p.grounded){w.recovered=u.dead?null:p;watch.delete(u);}
+        }
+        return value;
+      };
+      e.impulse=function(u,vx,vy,attack){
+        const before=snap(u),out=impulse.call(this,u,vx,vy,attack),after=snap(u);
+        const phase=e.b.physics.regions?.filter(r=>r.id==='mumyeongsa-broken-rail'||r.id?.startsWith('m58-gallery-'));
+        const row={id:u.id,owner:attack?.owner??null,skill:attack?.skill??null,
+          shot:attack?.shot??e.b.shot,round:e.b.round,phase:phase?.map(r=>r.id)??[],before,after,
+          requested:{x:vx,y:vy},steps:0,deltaX:0,deltaY:0,airborne:false,recovered:null};
+        if(before.vx!==after.vx||before.vy!==after.vy){nativeImpulse.push(row);watch.set(u,row);}
+        return out;
+      };
       e.walk=function(u,...args){
         const x=u.x,y=u.y,grounded=e.grounded(u),result=walk.call(this,u,...args);
         if(result&&u.x===x&&u.y!==y)nativeWallWalk.push({id:u.id,x,y,to:u.y,grounded});
@@ -217,14 +237,17 @@ def finish_wall(page,report,spirit=False):
     report['ordinary54']=page.evaluate(POSE)
     assert report['ordinary54']['gravity']=={'x':0,'y':320}
 
-def run(browser,out,hz,forks=False,mobile=False,spirit=False,spirit53=False,session=None,on_54=None,touch_c=False,on_chart=None):
+def run(browser,out,hz,forks=False,mobile=False,spirit=False,spirit53=False,session=None,on_54=None,touch_c=False,on_chart=None,reduced_motion=False):
     ctx,page=session if session else (seeded_context(browser,53,mobile=touch_c,init_script=FRAME_DRIVER.replace('HZ',str(hz))),None)
     if page is None:
         page=ctx.new_page()
+    if reduced_motion:
+        page.emulate_media(reduced_motion='reduce')
     errors=[]
     page.on('pageerror',lambda error:errors.append(str(error)))
     page.on('console',lambda line:errors.append(line.text) if line.type in ('warning','error') else None)
     report={'status':'FAIL','requestHz':hz,'errors':errors,'walk':[]}
+    report['reducedMotion']=page.evaluate("matchMedia('(prefers-reduced-motion: reduce)').matches")
     try:
         if session is None:
             resume(page,53,True,mobile=touch_c)
@@ -280,6 +303,7 @@ def run(browser,out,hz,forks=False,mobile=False,spirit=False,spirit53=False,sess
         page.screenshot(path=out/'native-54-foothill.png')
         report['wallTrace']=page.evaluate('window.nativeWall')
         report['wallWalk']=page.evaluate('window.nativeWallWalk')
+        report['wallImpulse']=page.evaluate('window.nativeImpulse')
         wall_hits=[row for row in report['wallTrace'] if row['event']=='impact' and row['target'] and row['actor']!='p-occultist']
         wall_fires={row['shot']:row for row in report['wallTrace'] if row['event']=='fire' and row['actor']!='p-occultist'}
         assert {'p-mage',GUARD}<={row['target'] for row in wall_hits}
@@ -336,6 +360,7 @@ if __name__=='__main__':
     parser.add_argument('--forks',action='store_true')
     parser.add_argument('--mobile',action='store_true')
     parser.add_argument('--touch-c',action='store_true')
+    parser.add_argument('--reduced-motion',action='store_true')
     parser.add_argument('--spirit',action='store_true')
     parser.add_argument('--spirit53',action='store_true')
     args=parser.parse_args()
@@ -343,7 +368,8 @@ if __name__=='__main__':
     args.out.mkdir(parents=True,exist_ok=True)
     with sync_playwright() as pw:
         with pw.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox','--disable-dev-shm-usage']) as browser:
-            result=run(browser,args.out,args.hz,args.forks,args.mobile,args.spirit,args.spirit53,touch_c=args.touch_c)
+            result=run(browser,args.out,args.hz,args.forks,args.mobile,args.spirit,args.spirit53,
+                       touch_c=args.touch_c,reduced_motion=args.reduced_motion)
     (args.out/'native-b.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
     print(result['status'],result.get('error',''),flush=True)
     raise SystemExit(0 if result['status']=='PASS' else 1)

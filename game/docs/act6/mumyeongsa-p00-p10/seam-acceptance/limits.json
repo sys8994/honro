@@ -1,0 +1,516 @@
+{
+  "B": {
+    "authoredWidth": 224,
+    "physicalWidth": 224,
+    "cases": {
+      "60": {
+        "source": {
+          "id": "p-mage",
+          "x": 3240,
+          "y": 457.94999999999857,
+          "vx": 0,
+          "vy": 0,
+          "grounded": true,
+          "surface": "b-inner-jamb"
+        },
+        "threshold": {
+          "id": "p-mage",
+          "x": 3240,
+          "y": 454.59999999999854,
+          "vx": 0,
+          "vy": 0,
+          "grounded": true,
+          "surface": "b-inner-jamb"
+        },
+        "arrival": {
+          "id": "p-mage",
+          "x": 3240,
+          "y": 454.59999999999854,
+          "vx": 0,
+          "vy": 0,
+          "hp": 1701.9,
+          "dead": false,
+          "embedded": false,
+          "grounded": true,
+          "support": "b-inner-jamb"
+        },
+        "step": 3.3500000000000227,
+        "handoffDelta": [
+          0,
+          0
+        ],
+        "rejects": {
+          "wide": true,
+          "wrongSide": true,
+          "longStep": true,
+          "airborne": true,
+          "wrongFace": true
+        }
+      },
+      "120": {
+        "source": {
+          "id": "p-mage",
+          "x": 3240,
+          "y": 457.94999999999857,
+          "vx": 0,
+          "vy": 0,
+          "grounded": true,
+          "surface": "b-inner-jamb"
+        },
+        "threshold": {
+          "id": "p-mage",
+          "x": 3240,
+          "y": 454.59999999999854,
+          "vx": 0,
+          "vy": 0,
+          "grounded": true,
+          "surface": "b-inner-jamb"
+        },
+        "arrival": {
+          "id": "p-mage",
+          "x": 3240,
+          "y": 454.59999999999854,
+          "vx": 0,
+          "vy": 0,
+          "hp": 1701.9,
+          "dead": false,
+          "embedded": false,
+          "grounded": true,
+          "support": "b-inner-jamb"
+        },
+        "step": 3.3500000000000227,
+        "handoffDelta": [
+          0,
+          0
+        ],
+        "rejects": {
+          "wide": true,
+          "wrongSide": true,
+          "longStep": true,
+          "airborne": true,
+          "wrongFace": true
+        }
+      }
+    }
+  },
+  "C": {
+    "authoredWidth": 236,
+    "physicalWidth": 236,
+    "approach": {
+      "id": "p-mage",
+      "x": 718.3500000000023,
+      "y": 900,
+      "vx": 0,
+      "vy": 0,
+      "grounded": true,
+      "support": "c-eave-soffit",
+      "normal": {
+        "x": 0,
+        "y": 1
+      }
+    },
+    "threshold": {
+      "id": "p-mage",
+      "x": 736,
+      "y": 900,
+      "vx": 0,
+      "vy": 0,
+      "grounded": true,
+      "support": "c-eave-soffit",
+      "normal": {
+        "x": 0,
+        "y": 1
+      }
+    },
+    "arrival": {
+      "stage": 56,
+      "id": "p-mage",
+      "x": 736,
+      "y": 900,
+      "vx": 0,
+      "vy": 0,
+      "gravity": {
+        "x": 0,
+        "y": -320
+      },
+      "grounded": true,
+      "support": "c-eave-soffit",
+      "normal": {
+        "x": 0,
+        "y": 1
+      },
+      "play": [
+        1400,
+        1440
+      ],
+      "health": 1708.9,
+      "focus": 692,
+      "loadout": [
+        "M01",
+        "M10",
+        "M07"
+      ],
+      "equipment": {
+        "version": 1
+      },
+      "others": []
+    },
+    "relayedSave": {
+      "id": "p-mage",
+      "x": 736,
+      "y": 900,
+      "vx": 0,
+      "vy": 0,
+      "grounded": true,
+      "support": "c-eave-soffit",
+      "normal": {
+        "x": 0,
+        "y": 1
+      }
+    },
+    "handoffDelta": [
+      0,
+      0
+    ],
+    "saveDelta": [
+      0,
+      0
+    ],
+    "rejects": {
+      "early": true,
+      "late": true,
+      "normal": true,
+      "gravity": true,
+      "wrongWidth": true
+    }
+  },
+  "D": {
+    "authoredWidth": 408,
+    "innerWidth": 408,
+    "commonSupportSpan": 450,
+    "offset": [
+      3936,
+      -238.85714285714266
+    ],
+    "internalReceipt": {
+      "version": 1,
+      "edge": "mumyeongsa-hall-sill",
+      "actor": "p-mage",
+      "clearWidth": 408,
+      "approach": {
+        "x": 6534.5353751975235,
+        "y": 3233.4646248024765,
+        "support": "E-joined-ordinary-floor",
+        "gravity": {
+          "x": 0,
+          "y": 320
+        },
+        "normal": {
+          "x": 0,
+          "y": -1
+        }
+      },
+      "entry": {
+        "x": 6537.250323515609,
+        "y": 3232.2679264676303,
+        "support": "m56-d-hall-sill",
+        "gravity": {
+          "x": 0,
+          "y": 320
+        },
+        "normal": {
+          "x": 0,
+          "y": -1
+        }
+      },
+      "contact": {
+        "x": 6866.86609541751,
+        "y": 3176.3239727378545,
+        "support": "m56-d-hall-sill",
+        "gravity": {
+          "x": 0,
+          "y": 320
+        },
+        "normal": {
+          "x": 0,
+          "y": -1
+        },
+        "junctionX": 2930.86609541751,
+        "junctionY": 3415.181115594997
+      }
+    },
+    "canonicalDelta": [
+      0,
+      0
+    ],
+    "rejects": {
+      "normal": true,
+      "junction": true,
+      "removed": true,
+      "receiverJunction": true
+    },
+    "external": {
+      "pc": [
+        {
+          "id": "p-archer",
+          "sent": [
+            5842.487358935317,
+            2721.961576914711
+          ],
+          "arrived": [
+            2642.4873589353174,
+            3479.961576914711
+          ],
+          "handoffDelta": [
+            0,
+            0
+          ],
+          "coldDelta": [
+            0,
+            0
+          ]
+        },
+        {
+          "id": "p-knight",
+          "sent": [
+            6096.5416349131865,
+            2667.1330737348812
+          ],
+          "arrived": [
+            2896.5416349131865,
+            3425.1330737348812
+          ],
+          "handoffDelta": [
+            0,
+            0
+          ],
+          "coldDelta": [
+            0,
+            0
+          ]
+        },
+        {
+          "id": "p-occultist",
+          "sent": [
+            6184.966891671321,
+            2641.7237452367654
+          ],
+          "arrived": [
+            2984.966891671321,
+            3399.7237452367654
+          ],
+          "handoffDelta": [
+            0,
+            0
+          ],
+          "coldDelta": [
+            0,
+            0
+          ]
+        },
+        {
+          "id": "p-mage",
+          "sent": [
+            5996.126945489223,
+            2696.285725503129
+          ],
+          "arrived": [
+            2796.1269454892226,
+            3454.285725503129
+          ],
+          "handoffDelta": [
+            0,
+            0
+          ],
+          "coldDelta": [
+            0,
+            0
+          ]
+        }
+      ],
+      "touch": [
+        {
+          "id": "p-archer",
+          "sent": [
+            5843.869804398389,
+            2722.2578152282263
+          ],
+          "arrived": [
+            2643.8698043983886,
+            3480.2578152282263
+          ],
+          "handoffDelta": [
+            0,
+            0
+          ],
+          "coldDelta": [
+            0,
+            0
+          ]
+        },
+        {
+          "id": "p-knight",
+          "sent": [
+            6090.158932930671,
+            2668.986116245934
+          ],
+          "arrived": [
+            2890.1589329306707,
+            3426.986116245934
+          ],
+          "handoffDelta": [
+            0,
+            0
+          ],
+          "coldDelta": [
+            0,
+            0
+          ]
+        },
+        {
+          "id": "p-occultist",
+          "sent": [
+            6201.095140241669,
+            2637.1156742166663
+          ],
+          "arrived": [
+            3001.0951402416686,
+            3395.1156742166663
+          ],
+          "handoffDelta": [
+            0,
+            0
+          ],
+          "coldDelta": [
+            0,
+            0
+          ]
+        },
+        {
+          "id": "p-mage",
+          "sent": [
+            5978.16325147676,
+            2701.500991506747
+          ],
+          "arrived": [
+            2778.16325147676,
+            3459.500991506747
+          ],
+          "handoffDelta": [
+            0,
+            0
+          ],
+          "coldDelta": [
+            0,
+            0
+          ]
+        }
+      ]
+    }
+  },
+  "R": {
+    "supportSpan": 560,
+    "threshold": 3260,
+    "crew": [
+      {
+        "id": "p-archer",
+        "enter": {
+          "x": 3261.2582107752423,
+          "y": 3306.61615957228
+        },
+        "step": {
+          "x": 3258.1572064776474,
+          "y": 3308.327058495091
+        },
+        "exit": {
+          "x": 3048.5405817368755,
+          "y": 3381.559833789464
+        },
+        "handoffDelta": [
+          0,
+          0
+        ],
+        "coldDelta": [
+          0,
+          0
+        ]
+      },
+      {
+        "id": "p-knight",
+        "enter": {
+          "x": 3262.9703298017525,
+          "y": 3305.6715421783433
+        },
+        "step": {
+          "x": 3259.905807907659,
+          "y": 3307.362312878533
+        },
+        "exit": {
+          "x": 3046.254157729936,
+          "y": 3382.2130977914467
+        },
+        "handoffDelta": [
+          0,
+          0
+        ],
+        "coldDelta": [
+          0,
+          0
+        ]
+      },
+      {
+        "id": "p-mage",
+        "enter": {
+          "x": 3260.9138972876453,
+          "y": 3306.8061256344026
+        },
+        "step": {
+          "x": 3257.9807120461555,
+          "y": 3308.4244347331555
+        },
+        "exit": {
+          "x": 3246.2479710801963,
+          "y": 3314.8976711281675
+        },
+        "handoffDelta": [
+          0,
+          0
+        ],
+        "coldDelta": [
+          0,
+          0
+        ]
+      },
+      {
+        "id": "p-occultist",
+        "enter": {
+          "x": 3261.3127881861337,
+          "y": 3306.5860478973054
+        },
+        "step": {
+          "x": 3258.2774522148407,
+          "y": 3308.2607160193984
+        },
+        "exit": {
+          "x": 2969.88375592536,
+          "y": 3404.0332125927544
+        },
+        "handoffDelta": [
+          0,
+          0
+        ],
+        "coldDelta": [
+          0,
+          0
+        ]
+      }
+    ],
+    "rejects": {
+      "missingActor": true,
+      "wrongSill": true,
+      "noCross": true,
+      "offSurface": true,
+      "wrongGravity": true
+    }
+  }
+}
