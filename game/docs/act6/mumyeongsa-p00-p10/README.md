@@ -162,3 +162,5 @@ git ls-tree HEAD web/data/chapter-01-assets.088719e10e63d482.json web/data/chapt
 `npm run test:release-guard`는 19개 통과했다. `test:runtime-contracts`와 `test:campaign-contracts`는 각각 `shared/build.mjs`와 `tools/environment/stage22-vertical-art.mjs`의 승인 SHA 검사에서 멈췄다. 두 파일의 실측 SHA가 기존 `master dd409de2`의 실제 바이트와 같은 것을 확인했다. 기존 승인 SHA를 직접 바꾸지 않았다.
 
 [53·54·58 본체와 외곽 실측, B·58 천장·R의 같은 카메라 전후](visual-atlas/README.md)
+
+- 감독이 P20까지 통과로 판정해 P00·P20·P40의 합계는 40%다. P20의 대표 실측 범위와 별도 미검수 조합은 게이트 표에 있다. [감독 판정과 검수표](gate-checklist.md)
