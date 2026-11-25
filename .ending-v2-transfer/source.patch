@@ -1,5 +1,5 @@
 diff --git a/game/docs/BUG_LOG.md b/game/docs/BUG_LOG.md
-index af02f30..5893540 100644
+index af02f30..f0363bf 100644
 --- a/game/docs/BUG_LOG.md
 +++ b/game/docs/BUG_LOG.md
 @@ -6070,3 +6070,9 @@ Title `여정 이어가기` could choose an older hub before honoring a saved di
@@ -8,7 +8,7 @@ index af02f30..5893540 100644
  - **한계:** 1~7장은 이번 범위에서 전투를 바꾸지 않았다. 9장 원혼·문턱 갑주·거대 앞발은 기존 종(상두꾼·수의귀·장승의 거대 변형)의 역할·수치·행동만 바꿨고, 전용 실루엣 미술은 남은 과제다.
 +
 +### 2026-11-25 | 6막 엔딩 교체
-+- 사용자 승인 기획으로 마지막 두 혼을 인도한 뒤 돌단의 장부 기록과 산문 이동을 이어 붙인다. 이후 담허·소단을 나눈 가로/세로 스틸컷 9장, 3인칭 내레이션과 크레딧을 3분으로 재생한다.
++- 사용자 승인 기획으로 마지막 두 혼을 인도한 뒤 돌단의 장부 기록과 산문 이동을 이어 붙인다. 이후 담허·소단을 나눈 가로/세로 스틸컷 9장과 3인칭 내레이션, 크레딧이 약 3분 20초 동안 이어진다. 이미지와 글은 서서히 나타나고 사라지며 화면을 누르면 음악을 끊지 않고 다음 문장으로 넘어간다.
 +- 6막 10장 원본 전투는 수정하지 않는다. 산문 이동은 복제한 네 캐릭터와 기존 이동 포즈를 렌더링하며, 기록은 기존 6막 완료 전용 저장 슬롯에서만 갱신한다. 진입용 저장 서명과 디버그 여정첩은 유지한다. 설정의 기존 엔딩 미리보기는 무기록이다.
 +- 임시곡은 기존 「혼로」 메인 트랙. 최종곡·크레딧 표기는 확정 후 별도로 교체한다.
 +- 재현: `node --test tools/act6-ending-v2/cues.test.mjs`, `npm run build`, `python tools/act6-ending-v2/preview.py --chromium <chromium>`, `python tools/act6-ending-v2/normal.py --chromium <chromium>`. `--live`는 같은 테스트를 GitHub Pages에서 실행한다.
@@ -199,10 +199,10 @@ index 0000000..4482b6a
 +}
 diff --git a/shared/act6-ending-replan/cues.mjs b/shared/act6-ending-replan/cues.mjs
 new file mode 100644
-index 0000000..83fe8f0
+index 0000000..9e7fada
 --- /dev/null
 +++ b/shared/act6-ending-replan/cues.mjs
-@@ -0,0 +1,127 @@
+@@ -0,0 +1,139 @@
 +export const intro=[
 + ['소단','마지막 혼까지 다 건넜어. 이제 붙잡히는 건 없어.'],
 + ['휘겸','돌아가서 남길 이름들이 있소.']
@@ -213,7 +213,7 @@ index 0000000..83fe8f0
 +    "id": "still_01",
 +    "alt": "마른 진목 뿌리와 돌문 앞에 놓인 진패와 붓대",
 +    "motion": "dust",
-+    "duration": 19,
++    "duration": 21,
 +    "beats": [
 +      "법당 뒤 돌문에는 마른 뿌리가 얽혀 있었다. 그 아래로 새벽빛이 닿았다.",
 +      "현묵은 스승이 울린 종을 멈추지 못했다. 대신 그 여파가 나갈 길을 제 몸으로 막았다.",
@@ -225,7 +225,7 @@ index 0000000..83fe8f0
 +    "id": "still_02",
 +    "alt": "붉은 천이 묶인 부러진 창대와 장부 앞 군패 세 개",
 +    "motion": "cloth",
-+    "duration": 19,
++    "duration": 21,
 +    "beats": [
 +      "곽진은 돌아올 길을 지키겠다 했다.",
 +      "네 사람이 돌아왔을 때 산문은 열려 있었다. 기다리던 사람은 없었다.",
@@ -237,7 +237,7 @@ index 0000000..83fe8f0
 +    "id": "still_03",
 +    "alt": "무명사 쪽 능선의 풀린 실과 작은 짚신 한 짝",
 +    "motion": "soul",
-+    "duration": 21,
++    "duration": 24,
 +    "beats": [
 +      "도식이 큰아이를 놓친 능선에는 마른 풀만 흔들리고 있었다.",
 +      "설오는 바위 틈에서 작은 짚신 한 짝을 들어 올렸다.",
@@ -250,7 +250,7 @@ index 0000000..83fe8f0
 +    "id": "still_04",
 +    "alt": "아침의 포구 돌계단에 앉은 도식과 설오",
 +    "motion": "water",
-+    "duration": 18,
++    "duration": 21,
 +    "beats": [
 +      "사라졌던 열셋 중 일곱은 몸을 피했고, 넷은 구조되어 돌아왔다.",
 +      "포구에서는 다시 배를 고치는 나무망치 소리가 났다.",
@@ -262,7 +262,7 @@ index 0000000..83fe8f0
 +    "id": "still_05",
 +    "alt": "읍성 기록처 창가의 휘겸과 푸른 표지의 기록서",
 +    "motion": "window",
-+    "duration": 21,
++    "duration": 25,
 +    "beats": [
 +      "읍성 창가에 저문골의 호적과 운송 장부가 펼쳐졌다.",
 +      "저문골에는 반란이 없었다. 그 한 줄이 기록에 오르기까지 수십 년이 걸렸다.",
@@ -275,7 +275,7 @@ index 0000000..83fe8f0
 +    "id": "still_06a",
 +    "alt": "산사 마루에서 진을 그리는 담허",
 +    "motion": "dust",
-+    "duration": 12,
++    "duration": 15,
 +    "beats": [
 +      "담허는 산사 마루에 앉아 현묵의 붓을 물에 적셨다.",
 +      "먹선은 한 바퀴를 돌기 직전 멈췄다. 붓끝 하나만 한 틈이 남았다.",
@@ -286,18 +286,23 @@ index 0000000..83fe8f0
 +    "id": "still_06b",
 +    "alt": "마을 어귀 장승에 등불을 거는 소단",
 +    "motion": "lamp",
-+    "duration": 12,
++    "duration": 16,
 +    "beats": [
 +      "해가 산 너머로 넘어가기 전, 소단은 마을 어귀로 나갔다.",
 +      "장승에 작은 등불을 걸고, 매듭은 바람에 흔들릴 만큼만 묶었다.",
 +      "날이 어두워지자 빈 길에 불빛이 내려앉았다. 그 길로 가는 혼을 붙드는 것은 없었다."
++    ],
++    "beatEnds": [
++      4.8,
++      9.8,
++      16
 +    ]
 +  },
 +  {
 +    "id": "still_07",
 +    "alt": "아침 언덕에서 각자의 길을 걷는 네 동행",
 +    "motion": "wind",
-+    "duration": 18,
++    "duration": 22,
 +    "beats": [
 +      "종이 울린 뒤 수십 년을 건너 이승에 닿은 것이 무엇인지는 끝내 밝혀지지 않았다.",
 +      "대도사가 기다린 대답인지, 그저 되돌아온 메아리인지도 알 수 없었다.",
@@ -309,10 +314,15 @@ index 0000000..83fe8f0
 +    "id": "final",
 +    "alt": "등불과 풀린 끈만 남은 무명사 석교",
 +    "motion": "still",
-+    "duration": 40,
++    "duration": 35,
 +    "beats": [
 +      "그날 이후 무명사의 산문은 닫히지 않았다. 날이 저물면 돌다리 난간에 등불 하나가 켜졌다. 불빛이 건너가는 이들의 발밑에 닿았다. 누구도 그들의 이름을 묻지 않았다.",
 +      "끝까지 함께 걸어주셔서 감사합니다."
++    ],
++    "beatEnds": [
++      14,
++      29,
++      35
 +    ]
 +  }
 +];
@@ -322,8 +332,10 @@ index 0000000..83fe8f0
 + for(const [index,cut] of cuts.entries()){
 +  const time=sec-start;
 +  if(time<cut.duration){
-+   const final=cut.id==='final', beat=final?(time<14?0:time<34?1:2):Math.min(cut.beats.length-1,Math.floor(time/(cut.duration/cut.beats.length)));
-+   return {index,beat,time,cut,final};
++   const final=cut.id==='final',num=cut.beats.length,ends=cut.beatEnds??cut.beats.map((_,i)=>(i+1)*cut.duration/num);
++   const beat=ends.findIndex(end=>time<end);
++   const beatStart=beat===0?0:ends[beat-1],beatSpan=ends[beat]-beatStart;
++   return {index,beat,time,start,beatStart,beatSpan,cut,final};
 +  }
 +  start+=cut.duration;
 + }
@@ -403,10 +415,10 @@ index 0000000..6fa1ea6
 + return Object.freeze({mountEnding,readPanelFrame,trustedUIAction,writeEnding});
 +}
 diff --git a/shared/act6-ending-replan/presentation.css b/shared/act6-ending-replan/presentation.css
-index 04ed2ea..fef2409 100644
+index 04ed2ea..86a0640 100644
 --- a/shared/act6-ending-replan/presentation.css
 +++ b/shared/act6-ending-replan/presentation.css
-@@ -1,48 +1,58 @@
+@@ -1,48 +1,66 @@
 -.honro-ending-60-controls{display:flex;align-items:center;justify-content:center;gap:.5rem;flex-wrap:wrap}
 -.honro-ending-60-controls button[hidden]{display:none}
 -.honro-ending-60 .h6ending-naru,.honro-ending-60 .h6ending-ledger{position:relative;isolation:isolate;overflow:hidden;box-sizing:border-box;border:1px solid #4d4a41;max-width:62rem}
@@ -503,20 +515,28 @@ index 04ed2ea..fef2409 100644
 + .he-root[data-ending-still="final"] .he-veil{background:linear-gradient(180deg,#b4bdd859,transparent 50%)}
 + .he-root[data-ending-still="final"] .he-copy{left:50%;width:85%;top:max(12%,calc(env(safe-area-inset-top) + 57px))}
 + .he-root[data-ending-motion="lamp"] .he-fx i{top:61%;left:82%}
++}
++@media(prefers-reduced-motion:reduce){.he-still.he-drift,.he-names span,.he-fx i{animation:none!important}}
++/* Sodan's road is part of the shot. Keep the ground visible, not vignetted. */
++.he-root[data-ending-still="still_06b"] .he-veil{background:none}
++.he-root[data-ending-still="still_06b"] .he-line{display:table;margin-inline:auto;padding:.32em .65em;background:#1b1713d6;border-radius:4px}
++/* Let the common contact point between the two silhouettes stay visible. */
++@media(orientation:portrait){
++ .he-root[data-ending-still="still_06b"] .he-copy{bottom:max(2%,calc(env(safe-area-inset-bottom) + 6px))}
++ .he-root[data-ending-still="still_06b"] .he-still{transform-origin:50% 84%}
++}
++@media(orientation:landscape){
++ .he-root[data-ending-still="still_06b"] .he-copy{left:31%;width:min(47%,720px);bottom:max(7%,env(safe-area-inset-bottom))}
  }
 -@media(prefers-reduced-motion:reduce){.honro-ending-60 *{animation:none!important;transition:none!important}}
 -
 -.h6ending-preparing{visibility:hidden!important}
 -.h6ending-preparing *{animation-play-state:paused!important}
-+@media(prefers-reduced-motion:reduce){.he-still.he-drift,.he-names span,.he-fx i{animation:none!important}}
-+/* Sodan's road is part of the shot. Keep the ground visible, not vignetted. */
-+.he-root[data-ending-still="still_06b"] .he-veil{background:none}
-+.he-root[data-ending-still="still_06b"] .he-line{display:table;margin-inline:auto;padding:.32em .65em;background:#1b1713d6;border-radius:4px}
 diff --git a/shared/act6-ending-replan/presentation.inc.js b/shared/act6-ending-replan/presentation.inc.js
-index 9c88124..99c3124 100644
+index 9c88124..1635380 100644
 --- a/shared/act6-ending-replan/presentation.inc.js
 +++ b/shared/act6-ending-replan/presentation.inc.js
-@@ -1,219 +1,269 @@
+@@ -1,219 +1,300 @@
 -(G, assets, css) => {
 +(G, assets, css, timeline) => {
   'use strict';
@@ -622,7 +642,9 @@ index 9c88124..99c3124 100644
 +    s.resetInputs?.();
 +    if(s.playing){s.playing.hiddenAt=G.performance.now();s.audio?.pause();}
 +   }else if(s.playing?.hiddenAt!=null){
-+    s.playing.origin+=G.performance.now()-s.playing.hiddenAt;s.playing.hiddenAt=null;resumeAudio(s);
++    const diff=G.performance.now()-s.playing.hiddenAt;s.playing.origin+=diff;s.playing.audioOrigin+=diff;
++    if(s.playing.transition)s.playing.transition.since+=diff;
++    s.playing.hiddenAt=null;resumeAudio(s);
 +   }
 +  }
 +  const previous=doc.activeElement;
@@ -684,7 +706,7 @@ index 9c88124..99c3124 100644
 + function resumeAudio(s){
 +  const a=track(s),v=volume(s);if(!a||!v||doc.hidden||s.closed||!s.playing)return;
 +  a.volume=v;
-+  const elapsed=Math.max(0,(G.performance.now()-s.playing.origin)/1000);
++  const elapsed=Math.max(0,(G.performance.now()-s.playing.audioOrigin)/1000);
 +  if(Number.isFinite(a.duration)&&elapsed>=a.duration)return;
 +  if(a.readyState>0&&Math.abs(a.currentTime-elapsed)>.22){a.currentTime=elapsed;}
 +  try{a.play()?.catch(()=>{if(!s.closed&&s.playing){s.audioPlay.hidden=false;}});}catch{s.audioPlay.hidden=false;}
@@ -822,7 +844,7 @@ index 9c88124..99c3124 100644
 +  walk.addEventListener('pointerdown',e=>{
 +   if(!e.isTrusted||phase!=='walk'||closing||e.button!==0)return;
 +   input='pointer';walk.setPointerCapture(e.pointerId);
-+  });
+   });
 +  walk.addEventListener('pointercancel',stop);
 +  walk.addEventListener('lostpointercapture',stop);
 +  walk.addEventListener('pointerup',e=>{if(input==='pointer'){stop();if(progress===1)void finish(e);}});
@@ -833,7 +855,7 @@ index 9c88124..99c3124 100644
 +    input='assist';
 +    s.delay(()=>{if(input==='assist'){stop();if(progress===1){walk.textContent='산문을 나서기';walk.focus();}}},5600);
 +   }
-   });
++  });
 +  s.onKeys=e=>{
 +   if(phase==='ledger'&&e.code==='Space'&&e.target!==press){if(e.type==='keydown'&&!e.repeat)void takeRecord(e);return true;}
 +   if(!['ArrowRight','KeyD'].includes(e.code))return false;
@@ -851,7 +873,8 @@ index 9c88124..99c3124 100644
 +  const picture=node('img','he-still');picture.alt='';s.backdrop.replaceChildren(picture);
 +  const skip=button('건너뛰기','skip'),audioPlay=button('음악 재생','audio');audioPlay.hidden=true;s.audioPlay=audioPlay;
 +  skip.setAttribute('aria-label','2초간 눌러 엔딩 건너뛰기');s.controls.replaceChildren(skip,audioPlay);
-+  const p=s.playing={origin:G.performance.now(),hiddenAt:null,index:-1,beat:-1,side:null};
++  const origin=G.performance.now(),p=s.playing={origin,audioOrigin:origin,hiddenAt:null,index:-1,beat:-1,side:null,transition:null};
++  s.root.setAttribute('aria-description','화면을 누르거나 스페이스 키를 누르면 다음 문장으로 넘어갑니다.');
 +  resumeAudio(s);
 +  audioPlay.addEventListener('click',e=>{if(e.isTrusted){audioPlay.hidden=true;resumeAudio(s);}});
 +  function cancel(){if(!s.hold)return;G.clearTimeout(s.hold.timer);s.timers.delete(s.hold.timer);s.hold=null;skip.classList.remove('he-held');}
@@ -859,14 +882,27 @@ index 9c88124..99c3124 100644
 +   if(!e.isTrusted||s.hold)return;
 +   s.hold={mode,timer:s.delay(s.leave,2000)};skip.classList.add('he-held');
 +  }
++  function advance(e){
++   if(!e.isTrusted||p.transition||p.hiddenAt!==null)return;
++   const since=G.performance.now(),elapsed=since-p.origin,cue=timeline.cueAt(elapsed);
++   if(!cue||cue.final&&cue.beat===2)return;
++   const target=(cue.start+cue.beatStart+cue.beatSpan)*1000+.1;
++   const next=timeline.cueAt(target);
++   if(!next||target<=elapsed)return;
++   p.transition={since,elapsed,target,changesImage:next.index!==cue.index};
++  }
++  s.root.addEventListener('click',e=>{if(!e.target.closest?.('button'))advance(e);},{signal:s.lifecycle.signal});
 +  s.resetInputs=cancel;
 +  for(const type of ['pointerup','pointercancel','lostpointercapture','blur'])skip.addEventListener(type,cancel);
 +  skip.addEventListener('pointerdown',e=>{if(e.isTrusted&&e.button===0){skip.setPointerCapture(e.pointerId);hold(e,'pointer');}});
 +  s.onKeys=e=>{
 +   const isSkip=e.code==='Escape'||(doc.activeElement===skip&&['Enter','Space'].includes(e.code));
-+   if(!isSkip)return false;
-+   if(e.type==='keydown')hold(e,'key');else if(s.hold?.mode==='key')cancel();return true;
++   if(isSkip){if(e.type==='keydown')hold(e,'key');else if(s.hold?.mode==='key')cancel();return true;}
++   if(!['Enter','Space','ArrowRight'].includes(e.code)||doc.activeElement?.closest?.('button'))return false;
++   if(e.type==='keydown'&&!e.repeat)advance(e);
++   return true;
 +  };
++  s.root.focus({preventScroll:true});
 +  function show(cue){
 +   const {index,beat,cut,final}=cue,side=orient(),changed=index!==p.index;
 +   if(changed||side!==p.side){
@@ -892,16 +928,31 @@ index 9c88124..99c3124 100644
 +     const line=node('p','he-line',cut.beats[beat]);s.words.append(line);
 +    }
 +   }
-+   const duration=final?[14,20,6][beat]:cut.duration/cut.beats.length;
-+   const local=final?cue.time-[0,14,34][beat]:cue.time-beat*duration;
-+   s.words.style.opacity=String(clamp(Math.min(local/.34,(duration-local)/.30),0,1));
-+   s.root.style.setProperty('--he-outro',final?String(clamp((cue.time-38.8)/1.2,0,1)):'0');
++   const local=cue.time-cue.beatStart, leftover=cue.beatSpan-local;
++   const wording=clamp(Math.min(local/.59,leftover/.66),0,1);
++   const still=clamp(Math.min(cue.time/.72,(cut.duration-cue.time)/.86),0,1);
++   return {wording,still};
 +  }
 +  function update(now){
 +   if(p.hiddenAt==null){
-+    const cue=timeline.cueAt(now-p.origin);
++    let textFactor=1,artFactor=1,elapsed=now-p.origin;
++    if(p.transition){
++     const f=clamp((now-p.transition.since)/340,0,1);
++     if(f>=1){p.origin=now-p.transition.target;elapsed=p.transition.target;p.transition=null;}
++     else{
++      elapsed=p.transition.elapsed;textFactor=1-f;
++      if(p.transition.changesImage)artFactor=1-f;
++     }
++    }
++    const cue=timeline.cueAt(elapsed);
 +    if(!cue){s.leave();return;}
-+    show(cue);
++    const {wording,still}=show(cue);
++    s.words.style.opacity=String(wording*textFactor);
++    s.backdrop.style.opacity=String(still*artFactor);
++    s.fx.style.opacity=String(still*artFactor);
++    const fade=cue.final?clamp(1-(cue.cut.duration-cue.time)/1.7,0,1):0;
++    s.root.style.setProperty('--he-outro',String(fade));
++    if(s.audio&&!s.audio.paused)s.audio.volume=volume(s)*(1-fade);
 +   }
 +   s.frame(update);
 +  }
@@ -1021,27 +1072,29 @@ index 0000000..0246765
 +}
 diff --git a/tools/act6-ending-v2/cues.test.mjs b/tools/act6-ending-v2/cues.test.mjs
 new file mode 100644
-index 0000000..256cd8c
+index 0000000..296c249
 --- /dev/null
 +++ b/tools/act6-ending-v2/cues.test.mjs
-@@ -0,0 +1,18 @@
+@@ -0,0 +1,20 @@
 +import {test} from 'node:test';
 +import assert from 'node:assert/strict';
 +import {cueAt,cuts,names} from '../../shared/act6-ending-replan/cues.mjs';
-+test('Act 6: both lineage stills get twelve seconds; the ending score is still three minutes',()=>{
++test('Act 6 ending: nine stills, with longer beats for the denser passages',()=>{
 +  assert.equal(cuts.length,9);
-+  assert.equal(cuts.reduce((sum,c)=>sum+c.duration,0),180);
++  assert.equal(cuts.reduce((sum,c)=>sum+c.duration,0),200);
 +  assert.deepEqual(names,['곽진','박문돌','이만복']);
-+  const starts=[0,19,38,59,77,98,110,122,140];
++  const starts=[0,21,42,66,87,112,127,143,165];
 +  for(const [i,at] of starts.entries()){
 +    assert.equal(cueAt(at*1000).index,i);
 +    assert.equal(cueAt(at*1000).beat,0);
 +    if(i>0)assert.equal(cueAt(at*1000-1).index,i-1);
 +  }
-+  assert.equal(cueAt(103000).beat,1);
-+  assert.equal(cueAt(115000).beat,1);
-+  assert.deepEqual([139999,140000,153999,154000,173999,174000,179999].map(x=>[cueAt(x).index,cueAt(x).beat]),[[7,3],[8,0],[8,0],[8,1],[8,1],[8,2],[8,2]]);
-+  assert.equal(cueAt(180000),null);
++  assert.equal(cueAt(132000).beat,1);
++  assert.equal(cueAt(137000).beat,2);
++  assert(Math.abs(cueAt(137000).beatSpan-6.2)<1e-9);
++  assert.deepEqual([164999,165000,178999,179000,193999,194000,199999].map(x=>[cueAt(x).index,cueAt(x).beat]),[[7,3],[8,0],[8,0],[8,1],[8,1],[8,2],[8,2]]);
++  for(let t=0;t<200000;t+=17){const c=cueAt(t);assert(c.beatSpan>0&&c.beat>=0);assert(c.time>=c.beatStart&&c.time<c.beatStart+c.beatSpan);}
++  assert.equal(cueAt(200000),null);
 +});
 diff --git a/tools/act6-ending-v2/drive60.js b/tools/act6-ending-v2/drive60.js
 new file mode 100644
@@ -1145,7 +1198,7 @@ index 0000000..1ce6563
 +}
 diff --git a/tools/act6-ending-v2/normal.py b/tools/act6-ending-v2/normal.py
 new file mode 100644
-index 0000000..fe2cea6
+index 0000000..da77c32
 --- /dev/null
 +++ b/tools/act6-ending-v2/normal.py
 @@ -0,0 +1,74 @@
@@ -1219,16 +1272,16 @@ index 0000000..fe2cea6
 + assert all(finale['honroFlags'][k] is True for k in ('act6.endingCompleted','game_completed','ending_act6_seen')) and finale['honroEndingReceipt']['winner']=='p-knight'
 + assert page.evaluate("localStorage.getItem('honro-first-act-profile-1')")==boot
 + assert main.get_attribute('data-ending-still')=='still_01'
-+ page.clock.fast_forward(181000)
++ page.clock.fast_forward(201000)
 + assert page.evaluate("HonroApp.screen==='title'&&!HonroApp.endingGallery")
 + print(jsonstr({'normalStage60PhysicalRoute':True,'liveRosterUnchanged':True,'verifiedFinaleReceipt':True,'baseSaveByteExact':True,'naturalTitleReturn':True,'live':args.live}))
 + b.close()
 diff --git a/tools/act6-ending-v2/preview.py b/tools/act6-ending-v2/preview.py
 new file mode 100644
-index 0000000..87b7bb2
+index 0000000..6fded9d
 --- /dev/null
 +++ b/tools/act6-ending-v2/preview.py
-@@ -0,0 +1,120 @@
+@@ -0,0 +1,133 @@
 +"""Play the release-shaped site locally or test its deployed URL without touching a real save."""
 +import argparse
 +import json
@@ -1327,12 +1380,25 @@ index 0000000..87b7bb2
 +            page.set_viewport_size({'width':width,'height':height})
 +            page.clock.run_for(70)
 +            displayed(page,'still_01',False)
-+        for key,ms in [('still_02',19000),('still_03',19000),('still_04',21000),('still_05',18000),('still_06a',21000),('still_06b',12000),('still_07',12000),('final',18000)]:
++        for key,ms in [('still_02',21000),('still_03',21000),('still_04',24000),('still_05',21000),('still_06a',25000),('still_06b',15000),('still_07',5000),('final',22000)]:
 +            page.clock.fast_forward(ms)
 +            displayed(page,key,wide)
-+            if key in ('still_06a','still_06b'):
++            if key=='still_06a':
 +                page.screenshot(path=out/f'{key}-{width}.png')
-+        page.clock.fast_forward(14200)
++            if key=='still_06b':
++                page.clock.fast_forward(11000)
++                assert r.get_attribute('data-ending-beat')=='2'
++                page.screenshot(path=out/f'{key}-{width}.png')
++        assert r.get_attribute('data-ending-beat')=='0'
++        if wide:
++            page.mouse.click(width/3,height/3)
++        else:
++            page.touchscreen.tap(width/3,height/3)
++        page.clock.run_for(180)
++        assert float(r.locator('.he-copy').evaluate('n=>n.style.opacity'))<.82
++        assert r.get_attribute('data-ending-beat')=='0'
++        page.clock.run_for(1000)
++        assert r.get_attribute('data-ending-beat')=='1'
 +        page.screenshot(path=out/f'credits-{width}.png')
 +        assert r.locator('h1').inner_text()=='혼로'
 +        if wide:
@@ -1348,4 +1414,4 @@ index 0000000..87b7bb2
 +        c.close()
 +    b.close()
 +assert not errors,errors
-+print(json.dumps({'debugStills':9,'pc':True,'mobile':True,'rotationStableBeat':True,'desktopEscHold':True,'naturalEnd':True,'previewSaveBytesUnchanged':True,'live':args.live}))
++print(json.dumps({'debugStills':9,'pc':True,'mobile':True,'rotationStableBeat':True,'tapNextSmooth':True,'desktopEscHold':True,'naturalEnd':True,'previewSaveBytesUnchanged':True,'live':args.live}))
