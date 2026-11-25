@@ -305,7 +305,7 @@ function replaceOne(src,old,next){
  assert.equal(src.split(old).length,2,'Unreviewed normal App callsite '+old);
  return src.replace(old,()=>next);
 }
-export function makeQaMain(main,source,descriptor,terrainArt=null,journeyArt=null,endingReplan=null){
+export function makeQaMain(main,source,descriptor,terrainArt=null,journeyArt=null,endingReplan=null,debugStages=null){
  const bytes=Buffer.from(main);
  assert.equal(hash(Buffer.concat([Buffer.from('blob '+bytes.length+'\0'),bytes]),'sha1'),pinnedMain);
  let proto=source.replace('/* SIGNED_ASSET */',JSON.stringify(descriptor));
@@ -323,6 +323,14 @@ export function makeQaMain(main,source,descriptor,terrainArt=null,journeyArt=nul
   proto=replaceOne(proto,'      function eligible(app,id)',journeyArt+'\n      function eligible(app,id)');
  }
  if(endingReplan)proto=spliceEndingPresentation(proto,endingReplan);
+ if(debugStages){
+  assert(descriptor.debugFixtures&&descriptor.boundary&&descriptor.releaseEnabled);
+  proto=replaceOne(proto,'      function eligible(app,id)',debugStages+'\n      function eligible(app,id)');
+  proto=replaceOne(proto,'      function issue(app,button,id){','      function issue(app,button,id){if(stageDebug.has(app)){button.hidden=true;return;}');
+  proto=replaceOne(proto,'      function boundarySession(app){','      function boundarySession(app){if(stageDebug.has(app))return null;');
+  proto=replaceOne(proto,'      function mountEndingNormal60(a,s,terminal){','      function mountEndingNormal60(a,s,terminal){if(stageDebug.has(a))return false;');
+  proto=replaceOne(proto,'active:app=>active.has(app),','active:app=>active.has(app)||stageDebug.has(app),installDebugStages,restoreDebug,');
+ }
  assert.equal(source.split('/* SIGNED_ASSET */').length,2);
  const edits=[
  ['    class App {',proto+'\n    class App {'],
@@ -332,7 +340,7 @@ export function makeQaMain(main,source,descriptor,terrainArt=null,journeyArt=nul
  ['        persist() {','        persist() { if(qa51.active(this))return false;'],
  ['        flushBattleSave() {','        flushBattleSave() { if(qa51.active(this)){this.dirty=false;return;}'],
  ["if (this.engine && !this.training && !this.done) {","if (!qa51.active(this) && this.engine && !this.training && !this.done) {"],
- ['this.profile=this.customMap.returnProfile;this.stageId=this.customMap.returnStageId;this.customMap=null;}','this.profile=this.customMap.returnProfile;this.stageId=this.customMap.returnStageId;this.customMap=null;} qa51.release(this);'],
+ ['this.profile=this.customMap.returnProfile;this.stageId=this.customMap.returnStageId;this.customMap=null;}','this.profile=this.customMap.returnProfile;this.stageId=this.customMap.returnStageId;this.customMap=null;} qa51.release(this);'+(debugStages?'qa51.restoreDebug(this);':'')],
  ['        isOpen(st) {','        isOpen(st) { if(st?.id>=51)return false;'],
  ['        launch(id = this.stageId, training = false, skill = null) {','        launch(id = this.stageId, training = false, skill = null, permit) {\n            if(id>=51)return (id===51||id===52)&&!training?qa51.launch(this,id,permit):undefined;'],
  ['        retry() {','        retry() { if(qa51.active(this))return this.showTitle();'],
@@ -349,7 +357,7 @@ export function makeQaMain(main,source,descriptor,terrainArt=null,journeyArt=nul
  ["else if (el.id === 'file-import' && el.files[0]) {","else if (el.id === 'file-import' && el.files[0]) {\n                if(qa51.active(this)){el.value='';return;}"]
  ];
  if(endingReplan)edits.push(
-  ['qa51.offer(this); if(this.profileStore.locked','qa51.offer(this); act6EndingReplan.installDebug(this); if(this.profileStore.locked'],
+  ['qa51.offer(this); if(this.profileStore.locked','qa51.offer(this); act6EndingReplan.installDebug(this); '+(debugStages?'qa51.installDebugStages(this); ':'')+'if(this.profileStore.locked'],
   ['this.audio?.update(inBattle&&!this.engine.noncombatWalk()', 'if(act6EndingReplan.silenceStock(this)){this.audio?.music?.setPaused(true);this.updateMusicLabel();return;}\n            this.audio?.update(inBattle&&!this.engine.noncombatWalk()']);
  if(source.includes('function enterNormal51('))edits.push(
   ['            G.HonroObjectives.updateSettlement(b,st,state.objectiveReady);','            if(!qa51.isNormal(this))G.HonroObjectives.updateSettlement(b,st,state.objectiveReady);']);
@@ -366,3 +374,4 @@ export function makeQaMain(main,source,descriptor,terrainArt=null,journeyArt=nul
   "this.scene = new G.HonroScene($('battlecanvas')); "+(terrainArt?'qa51.mountAct6TerrainArt(this,e); ':'')+"qa51.mountNormalFar(this,e); const u = e.active;"]);
  return edits.reduce((code,[a,b])=>replaceOne(code,a,b),main);
 }
+
