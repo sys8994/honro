@@ -4,9 +4,9 @@
 .he-veil{z-index:1;background:linear-gradient(180deg,rgba(9,10,11,.13),transparent 25%,transparent 65%,rgba(14,12,11,.60))}
 .he-root[data-ending-phase="stills"]::after{content:"";position:absolute;inset:0;background:#100e0e;opacity:var(--he-outro,0);pointer-events:none;z-index:6}
 .he-root[data-ending-phase="stills"] .he-veil{background:linear-gradient(0deg,rgba(16,12,9,.89),rgba(16,12,9,.55) 13%,transparent 31%)}
-.he-root[data-ending-still="final"] .he-veil{background:linear-gradient(90deg,rgba(21,25,30,.22),transparent 72%)}
+.he-root[data-ending-still="final"] .he-veil{background:linear-gradient(90deg,#0b141d57,transparent 72%)}
 .he-copy{position:absolute;z-index:3;left:50%;bottom:max(9%,env(safe-area-inset-bottom));width:min(86%,980px);transform:translateX(-50%);text-align:center;pointer-events:none}
-.he-dialog,.he-line{margin:0 auto;max-inline-size:38em;font-size:clamp(19px,2vw,30px);line-height:1.68;text-wrap:balance;word-break:keep-all;overflow-wrap:anywhere;text-shadow:0 2px 3px #111,0 0 16px #110e0a}
+.he-dialog,.he-line{margin:0 auto;max-inline-size:38em;font-size:clamp(19px,2vw,30px);line-height:1.68;text-wrap:balance;word-break:keep-all;overflow-wrap:anywhere;text-shadow:0 2px 3px #111,0 0 16px #110e0a;font-weight:400}
 .he-dialog strong{display:block;margin-bottom:.45em;font-size:.66em;letter-spacing:.13em;color:#f0cf9d}
 .he-controls{position:absolute;z-index:4;left:5%;right:5%;bottom:max(11%,env(safe-area-inset-bottom));display:flex;justify-content:center;gap:12px;pointer-events:none}
 .he-root[data-ending-phase="stills"] .he-controls{top:max(3%,env(safe-area-inset-top));right:max(3%,env(safe-area-inset-right));left:auto;bottom:auto;flex-direction:row-reverse}
@@ -16,8 +16,8 @@
 .he-button.he-held::after{position:absolute;inset:auto 0 0;height:3px;background:#e7bc70;content:"";transform-origin:left;animation:he-hold 2s linear both}
 .he-status{position:absolute;z-index:4;bottom:max(4%,env(safe-area-inset-bottom));margin:0;left:7%;right:7%;font-size:14px;text-align:center;text-shadow:0 2px 4px #000}
 .he-root[data-ending-still="final"] .he-copy{left:33%;width:min(48%,720px);top:19%;bottom:auto}
-.he-root[data-ending-still="final"] .he-line,.he-credit{color:#242932;text-shadow:0 0 15px #f8eddfb0,0 1px 4px #f2e2d4aa}
-.he-credit h1{font-size:clamp(34px,6vw,82px);line-height:1;margin:.18em 0}
+.he-root[data-ending-still="final"] .he-line,.he-credit{color:#f2eadc;text-shadow:0 1px 3px #050d15,0 0 16px #04101d}
+.he-credit h1{font-weight:400;font-size:clamp(34px,6vw,82px);line-height:1;margin:.18em 0}
 .he-credit p{margin:.5em 0;font-size:clamp(15px,1.35vw,23px);line-height:1.4}
 .he-credit .he-roman{letter-spacing:.4em;font-size:12px;margin:0 0 1.8em}
 .he-credit .he-thanks{margin-top:1.6em}
@@ -40,15 +40,15 @@
  .he-root[data-ending-phase="stills"] .he-veil{background:linear-gradient(0deg,rgba(16,12,9,.93),rgba(16,12,9,.64) 16%,transparent 36%)}
  .he-copy{width:88%;bottom:max(12%,env(safe-area-inset-bottom))}
  .he-line,.he-dialog{font-size:clamp(18px,4.7vw,26px);line-height:1.64}
- .he-root[data-ending-still="final"] .he-veil{background:linear-gradient(180deg,#b4bdd859,transparent 50%)}
+ .he-root[data-ending-still="final"] .he-veil{background:linear-gradient(180deg,#0d192951,transparent 50%)}
  .he-root[data-ending-still="final"] .he-copy{left:50%;width:85%;top:max(12%,calc(env(safe-area-inset-top) + 57px))}
  .he-root[data-ending-motion="lamp"] .he-fx i{top:61%;left:82%}
 }
 @media(prefers-reduced-motion:reduce){.he-still.he-drift,.he-fx i{animation:none!important}}
 /* Sodan's road is part of the shot. Keep the ground visible, not vignetted. */
 .he-root[data-ending-still="still_06b"] .he-veil{background:none}
-.he-root[data-ending-still="still_06b"] .he-line{display:table;margin-inline:auto;padding:.32em .65em;background:#1b1713d6;border-radius:4px}
-/* Let the common contact point between the two silhouettes stay visible. */
+.he-root[data-ending-still="still_06b"] .he-line{color:#fff3df;text-shadow:0 1px 3px #17121e,0 0 9px #191021,0 0 20px #191021}
+/* Keep captions away from Sodan and the branch. */
 @media(orientation:portrait){
  .he-root[data-ending-still="still_06b"] .he-copy{bottom:max(2%,calc(env(safe-area-inset-bottom) + 6px))}
  .he-root[data-ending-still="still_06b"] .he-still{transform-origin:50% 84%}
@@ -57,12 +57,11 @@
  .he-root[data-ending-still="still_06b"] .he-copy{left:31%;width:min(47%,720px);bottom:max(7%,env(safe-area-inset-bottom))}
 }
 .he-root[data-ending-still="still_06b"] .he-fx{display:none}
-/* This composition depends on seeing the hat brim and both bases at once. */
+/* The uncropped vertical artwork leaves room for captions. */
 @media(orientation:portrait){
  .he-root[data-ending-still="still_06b"] .he-media{bottom:clamp(110px,15%,138px)}
  .he-root[data-ending-still="still_06b"] .he-still{object-fit:contain;object-position:center top;animation:none}
  .he-root[data-ending-still="still_06b"] .he-copy{bottom:max(2.5%,calc(env(safe-area-inset-bottom) + 5px))}
- .he-root[data-ending-still="still_06b"] .he-line{background:none;padding:0}
 }
 
 /* Stage 60 stays in its actual gameplay camera; only the closing dialogue sits over it. */
