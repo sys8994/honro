@@ -78,21 +78,28 @@ export async function createStage55EmptyBell({C,packet,verifyMounted,verifyIncom
   if(id==='reach-bell'&&a.cls==='knight'&&!k.arrived&&at(e,a,D.bell.approach)){
    k.arrived=true;note(k,'hwigyeomBellTerraceReached',a.id);return {ok:true};
   }
-  if(id==='rebind-bell'&&a.cls==='occultist'&&k.status==='frayed'&&at(e,a,D.bell.repair)){
+  const seated=k.r.find(u=>u.cls==='occultist'&&u.fixed);
+  if(id==='rebind-bell'&&k.status==='frayed'&&(seated?
+    a!==seated&&at(e,seated,1)&&e.grounded(a):a.cls==='occultist'&&at(e,a,D.bell.repair))){
    const round=k.b.round;
    e.wait(); // native in-combat defend, consumes actual action; do not replace it
    if(k.b.round===round&&e.active===a&&e.canAct()&&!a.acted)return reject('방어 행동이 실제로 소비되지 않았습니다.');
-   k.status='secured';note(k,'sodanGroundedBellLinkRebound',a.id);return {ok:true};
+   k.status='secured';note(k,'sodanGroundedBellLinkRebound',seated?{actor:seated.id,guard:a.id,x:seated.x,y:seated.y}:a.id);return {ok:true,label:'소단이 돌단에서 혼줄을 다시 묶었습니다.'};
   }
-  if(id==='align-bell'&&a.cls==='knight'&&k.arrived&&!k.aligned&&k.status==='secured'&&death(k.g)&&at(e,a,D.bell.approach)){
-   k.aligned=true;note(k,'bellAlignedAfterGateDefeat',a.id);return {ok:true};
+  if(id==='align-bell'&&a.cls==='knight'&&k.arrived&&!k.aligned&&['stable','secured'].includes(k.status)&&death(k.g)&&at(e,a,D.bell.approach)){
+   k.aligned=true;
+   const repaired=k.status==='secured';
+   if(!repaired)k.status='held';
+   note(k,repaired?'bellAlignedAfterGateDefeat':'intactBellAlignedAfterGateDefeat',a.id);
+   return {ok:true};
   }
   return reject('종터의 순서, 접지, 결속과 빈종각귀 상태를 확인하십시오.');
  }
  function project(app,e){
   const k=get(app,e);if(!k)return null;
-  const r=party(k.b),failure=k.status==='failed'||!r.some(alive);
-  const complete=!failure&&k.arrived&&k.aligned&&k.status==='secured'&&death(k.g);
+  const r=party(k.b),seated=r.find(u=>u.cls==='occultist'&&u.fixed);
+  const failure=k.status==='failed'||(seated?(!alive(seated)||!r.some(u=>u!==seated&&alive(u))):!r.some(alive));
+  const complete=!failure&&k.arrived&&k.aligned&&['held','secured'].includes(k.status)&&death(k.g);
   const mark=complete?null:(!k.arrived?'reach-bell':(k.status==='frayed'?'rebind-bell':'align-bell'));
   const label=failure?'종터 결속 붕괴':(complete?'외부 세 진목의 결속이 잡혔습니다.':(mark==='reach-bell'?'휘겸으로 빈 종터 방어선에 닿으십시오.':(mark==='rebind-bell'?'소단으로 약해진 결속을 다시 묶으십시오.':(death(k.g)?'휘겸으로 빈 받침을 정렬하십시오.':'빈종각귀의 압력을 끊으십시오.'))));
   return {complete,objectiveReady:complete,failed:failure,summary:label,targets:!failure&&mark?[{kind:'route',id:mark,x:D.bell.x,y:D.bell.y,label,support:D.bell.support}]:[],binding:k.status,optionalEnemiesRemain:k.b.units.filter(u=>u.side===1&&u!==k.g&&alive(u)).length};

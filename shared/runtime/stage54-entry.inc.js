@@ -83,7 +83,7 @@
           button.type='button';button.dataset.act6QaLookout='';styleAction(button);button.textContent='첫 받침에서 건너기';
           button.addEventListener('click',event=>{if(event.isTrusted&&event.currentTarget===button)action(app,event);});s.button=button;
           if(s.wallAxis){button.disabled=true;button.textContent='벽에 발을 붙여 수문지기와 싸우세요.';}
-          ui.append(button);return true;
+          ui.append(button);attachSodanSpirit(app,s,t.external.occultist,t.sodanThread,54);return true;
         }catch(error){app.stopBattle();app.showTitle();throw error;}
       }
       function bindNormal54(app,e,s){
@@ -169,6 +169,7 @@
       function tick54(app){
         const s=active.get(app),e=app.engine;
         if(e?.b.honroStage!==54||!s?.owner54)return;
+        updateSodanSpirit(s);
         if(s.wallAxis){leaveBrokenReceive54(app,s);return;}
         if(s.eave54){if(s.eave54.exit&&!app.done)e.checkEnd();return;}
         if(s.owner54.enterEave(app,e,s)){mountEave54(app,e,s);return;}
@@ -177,4 +178,24 @@
         if(landed&&s.button)s.button.textContent=info.chart.length===3?'돌턱에 진목 놓기':'다음 받침에서 건너기';
         if(landed)app.updateHUD(true);
         if(p.complete&&!app.done)e.checkEnd();
+      }
+
+      function terminalNormal54(app,s){
+        const t=s.owner54.terminal(app,s.engine);
+        return t?{...t,sodanThread:s.spirit.record()}:null;
+      }
+      function attachSodanSpirit(app,s,body,previous,stage){
+        const e=s.engine,hero=e.active;
+        s.spirit=mountSodanSpirit({C,e,scene:app.scene,hero,body,previous,stage,isWall:u=>s.wallAxis?.isWall(u)===true});
+        const btn=document.createElement('button');btn.type='button';btn.dataset.act6SodanSpirit='';styleAction(btn);
+        btn.textContent='소단의 혼 · 주박부';
+        btn.addEventListener('click',event=>{
+          if(!event.isTrusted||active.get(app)!==s||app.engine!==e||!app.canInput())return;
+          if(!s.spirit.cast())app.notify('혼줄이 닿는 적에게 가까이 다가가세요.');
+          app.updateHUD(true);
+        });
+        s.spiritButton=btn;appUI(app).append(btn);updateSodanSpirit(s);
+      }
+      function updateSodanSpirit(s){
+        if(s.spiritButton)s.spiritButton.disabled=!s.spirit.canCast();
       }

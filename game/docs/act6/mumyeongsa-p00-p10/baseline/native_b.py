@@ -165,7 +165,7 @@ def touch_probe(browser,out,stage,records=None):
     finally:
         ctx.close()
 
-def finish_wall(page,report):
+def finish_wall(page,report,spirit=False):
     wall_trace(page)
     page.keyboard.press('Control')
     page.wait_for_function("HonroApp.engine.active.jumping",timeout=2500)
@@ -175,6 +175,12 @@ def finish_wall(page,report):
     page.keyboard.press('f')
     page.wait_for_function("nativeWall.some(v=>v.event==='fire'&&v.actor==='mumyeongsa-b-wall-guard')",timeout=17000)
     page.wait_for_function("HonroApp.canInput()",timeout=16000)
+    if spirit:
+        page.locator('[data-act6-sodan-spirit]').click(timeout=6000)
+        page.wait_for_function("nativeWall.some(v=>v.event==='impact'&&v.actor==='p-occultist'&&v.skill==='O06'&&v.target==='mumyeongsa-b-wall-guard')",timeout=12000)
+        page.wait_for_function("HonroApp.canInput()",timeout=20000)
+        report['spirit54']=page.evaluate("nativeWall.filter(v=>v.actor==='p-occultist')")
+        assert page.evaluate("!HonroApp.engine.b.units.some(u=>u.id==='p-occultist') && !HonroApp.engine.b.projectiles.length")
     report['attacks']=[]
     for _ in range(5):
         if page.evaluate(f"HonroApp.engine.unit('{GUARD}').dead"):
@@ -196,7 +202,7 @@ def finish_wall(page,report):
     report['ordinary54']=page.evaluate(POSE)
     assert report['ordinary54']['gravity']=={'x':0,'y':320}
 
-def run(browser,out,hz,forks=False,mobile=False):
+def run(browser,out,hz,forks=False,mobile=False,spirit=False):
     ctx=seeded_context(browser,53,init_script=FRAME_DRIVER.replace('HZ',str(hz)))
     page=ctx.new_page()
     errors=[]
@@ -243,19 +249,20 @@ def run(browser,out,hz,forks=False,mobile=False):
         assert all(u['grounded'] and u['support']=='b-inner-jamb' and not u['embedded'] for u in report['guardContact']['actors'])
         assert not report['guardContact']['actionReason'].startswith('지형에 걸림')
         page.screenshot(path=out/'native-54-both-contact.png')
-        finish_wall(page,report)
+        finish_wall(page,report,spirit)
         page.screenshot(path=out/'native-54-foothill.png')
         report['wallTrace']=page.evaluate('window.nativeWall')
         report['wallWalk']=page.evaluate('window.nativeWallWalk')
-        wall_hits=[row for row in report['wallTrace'] if row['event']=='impact' and row['target']]
-        wall_fires={row['shot']:row for row in report['wallTrace'] if row['event']=='fire'}
+        wall_hits=[row for row in report['wallTrace'] if row['event']=='impact' and row['target'] and row['actor']!='p-occultist']
+        wall_fires={row['shot']:row for row in report['wallTrace'] if row['event']=='fire' and row['actor']!='p-occultist'}
         assert {row['target'] for row in wall_hits}=={'p-mage',GUARD}
-        assert all(row['grounded'] and row['gravity']['x']>0 for row in report['wallTrace'] if row['event']=='fire')
+        assert all(row['grounded'] and row['gravity']['x']>0 for row in wall_fires.values())
         for hit in wall_hits:
             prediction=wall_fires[hit['shot']]['prediction']
             assert prediction['unit']==hit['target'] and math.dist((prediction['x'],prediction['y']),(hit['x'],hit['y']))<2
             assert hit['after']<hit['before'] or hit['shieldAfter']<hit['shieldBefore']
-        assert {row['id'] for row in report['wallWalk'] if row['grounded']}=={'p-mage',GUARD}
+        expected={GUARD} if spirit else {'p-mage',GUARD}
+        assert expected<={row['id'] for row in report['wallWalk'] if row['grounded']}
         if page.locator('[data-act6-qa-lookout]').is_disabled():
             if forks:
                 report['fork54']=[walk_fork(page,705,'gallery-outer-balcony',948,1015),
@@ -299,12 +306,13 @@ if __name__=='__main__':
     parser.add_argument('--hz',type=int,choices=[60,120],default=60)
     parser.add_argument('--forks',action='store_true')
     parser.add_argument('--mobile',action='store_true')
+    parser.add_argument('--spirit',action='store_true')
     args=parser.parse_args()
     base.ROOT=args.build.resolve()
     args.out.mkdir(parents=True,exist_ok=True)
     with sync_playwright() as pw:
         with pw.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox','--disable-dev-shm-usage']) as browser:
-            result=run(browser,args.out,args.hz,args.forks,args.mobile)
+            result=run(browser,args.out,args.hz,args.forks,args.mobile,args.spirit)
     (args.out/'native-b.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
     print(result['status'],result.get('error',''),flush=True)
     raise SystemExit(0 if result['status']=='PASS' else 1)

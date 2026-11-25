@@ -64,9 +64,15 @@
         try{
           a.mount(b,{freshReport:true,reportScope:'custom'});
           check(a.engine===s.engine&&a.engine.stage===content&&a.scene&&a.screen==='battle','Native normal 55 mount failed');
+          const body=party.find(u=>u.cls==='occultist');
+          check(debitSodanThread(body,t.sodanThread,54,0),'Inner support cost exceeds the seated body reserve');
+          s.seated55=mountSeatedSodan({C,e:a.engine,scene:a.scene,body});
           const ui=appUI(a);check(ui,'Normal 55 controls absent');const btn=document.createElement('button');
           btn.type='button';btn.dataset.act6QaLookout='';styleAction(btn);btn.textContent=s.owner55.project(a,a.engine).summary;
-          btn.addEventListener('click',event=>{if(event.isTrusted&&event.currentTarget===btn)action(a,event);});s.button=btn;ui.append(btn);return true;
+          btn.addEventListener('click',event=>{if(event.isTrusted&&event.currentTarget===btn)action(a,event);});s.button=btn;ui.append(btn);
+          const support=document.createElement('button');support.type='button';support.dataset.act6SodanBody='';styleAction(support);
+          support.addEventListener('click',event=>{if(event.isTrusted&&scope55(a,a.engine,s)&&a.canInput()&&s.seated55.release())a.updateHUD(true);});
+          s.support55=support;ui.append(support);tick55(a);return true;
         }catch(error){a.stopBattle();a.showTitle();throw error;}
       }
       function bindNormal55(a,e,s){
@@ -88,11 +94,16 @@
         if(e?.b.honroStage!==55||!s?.owner55)return;
         const r=s.owner55.project(a,e);if(!r)return;
         if(s.button){s.button.textContent=r.summary;s.button.disabled=r.complete||r.failed;s.button.dataset.act6Binding=r.binding;s.button.dataset.act6Mark=r.targets?.[0]?.id??'';}
+        if(s.support55){s.support55.disabled=!s.seated55.available()||r.complete||r.failed;
+          const body=e.b.units.find(u=>u.side===0&&u.cls==='occultist');
+          s.support55.textContent=body.loadout.includes(sodanSkills.body)?'소단 · 좌정한 채 호혼령 부르기':'소단 · 혼줄 유지 중 · 직접 공격과 이동 봉인';}
         if((r.complete||r.failed)&&!a.done)e.checkEnd();
       }
       function terminalNormal55(a,s){
         const t=s.owner55.terminal(a,s.engine),proof=s.previous?.eave;
-        if(!t||!proof)return t;
+        if(!t)return t;
+        if(s.previous.sodanThread)t.sodanThread=structuredClone(s.previous.sodanThread);
+        if(!proof)return t;
         check(validTornEave(t.parkedMage.id,proof)&&t.parkedMage.x===proof.exit.x&&t.parkedMage.y===proof.exit.y,'Parked ceiling witness changed');
         return {...t,eave:structuredClone(proof)};
       }

@@ -119,7 +119,8 @@ export async function createAct6WebQa(project,repoRoot,env=process.env,release=n
   packets.push({...fifth,schema:'honro-act6-normal-55-source/v1',trace:{stageId:55,authoredId:'stage-55',mapSHA256:hash(JSON.stringify(fifth.map)),assetSHA256:hash(JSON.stringify(fifth.library))}});
   const owner55=await readFile(new URL('./runtime/stage55-pilot-owner.mjs',import.meta.url),'utf8');
   const mount55=await readFile(new URL('./runtime/stage55-entry.inc.js',import.meta.url),'utf8');
-  const code55='const {createNormalBellOwner,D55}=(()=>{'+owner55.replaceAll('export ','')+'\nreturn {createNormalBellOwner:createStage55EmptyBell,D55:STAGE55};})();\n'+mount55;
+  const sodan=await readFile(new URL('./act6-mumyeongsa/sodan-thread.mjs',import.meta.url),'utf8');
+  const code55=sodan.replaceAll('export ','')+'\nconst {createNormalBellOwner,D55}=(()=>{'+owner55.replaceAll('export ','')+'\nreturn {createNormalBellOwner:createStage55EmptyBell,D55:STAGE55};})();\n'+mount55;
   const bindRail='const {createBrokenRail,validBrokenRailCrossing,installBrokenRail}=(()=>{'+railCode.replaceAll('export ','')+'\nreturn {createBrokenRail,validBrokenRailCrossing,installBrokenRail};})();\nconst brokenRail=createBrokenRail('+railSource+');\n';
   const eaveExports='tornEave,validTornEave,composeTornEave,swapTornEave,installTornEave';
   const bindEave='const {'+eaveExports+'}=(()=>{'+eaveCode.replaceAll('export ','')+'\nreturn {'+eaveExports+'};})();\n';
@@ -145,7 +146,7 @@ export async function createAct6WebQa(project,repoRoot,env=process.env,release=n
   source=replaceOne(source,"        if(e.b.honroStage===53&&s.kind", "        if(e.b.honroStage===54&&s.owner54)return bindNormal54(app,e,s);\n        if(e.b.honroStage===53&&s.kind");
   source=replaceOne(source,'function goalState(app,e){return e?.b?.honroStage===53?', 'function goalState(app,e){if(e?.b?.honroStage===54)return projectNormal54(app,e,active.get(app));return e?.b?.honroStage===53?');
   source=replaceOne(source,'        if(e.b.honroStage===53){const a=actions53', '        if(e.b.honroStage===54){chart54Input(app,s,e);return true;}\n        if(e.b.honroStage===53){const a=actions53');
-  source=replaceOne(source,'const terminal=s.b.honroStage===53?', 'const terminal=s.b.honroStage===54?s.owner54.terminal(app,s.engine):s.b.honroStage===53?');
+  source=replaceOne(source,'const terminal=s.b.honroStage===53?', 'const terminal=s.b.honroStage===54?terminalNormal54(app,s):s.b.honroStage===53?');
   source=replaceOne(source,'        if(terminal?.stage===52&&s.normal51)', "        if(terminal?.stage===53&&s.normal51){const btn=document.createElement('button');btn.type='button';btn.dataset.act6QaNext='54';styleAction(btn);btn.textContent='문턱에서 계속';appUI(app)?.append(btn);issue(app,btn,54);if(terminal.bridge)queueMicrotask(()=>advance(app,btn,54));}\n        if(terminal?.stage===52&&s.normal51)");
   source=replaceOne(source,"        return e?.b?.honroStage===53&&e.active===u&&actions53.aim(app,e)", "        if(e?.b?.honroStage===54)return contextualStakeIds(app,e,ids,chart54Aim(app,e,u));\n        return e?.b?.honroStage===53&&e.active===u&&actions53.aim(app,e)");
   source=replaceOne(source,"        if(e?.b?.honroStage!==53||e.active!==u||app.selected!=='M09')", "        if(e?.b?.honroStage===54&&e.active===u&&app.selected==='M09'){const s=active.get(app);if(chart54Aim(app,e,u)){const q=s.owner54.relay(app,e,{angle:u.angle,power:app.power});if(!q.ok)app.notify(q.reason);app.updateHUD(true);}return true;}\n        if(e?.b?.honroStage!==53||e.active!==u||app.selected!=='M09')");

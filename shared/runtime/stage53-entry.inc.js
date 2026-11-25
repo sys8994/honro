@@ -89,7 +89,8 @@
           const ui=appUI(app);check(ui,'Normal controls absent');
           const button=document.createElement('button');button.type='button';button.dataset.act6QaLookout='';styleAction(button);
           button.textContent='윗난간의 남은 진목 사이로 건너기';button.addEventListener('click',event=>{if(event.isTrusted&&event.currentTarget===button)action(app,event);});
-          s.button=button;ui.append(button);return true;
+          s.button=button;ui.append(button);
+          attachSodanSpirit(app,s,external.occultist,null,53);return true;
         }catch(error){app.stopBattle();app.showTitle();throw error;}
       }
       function mountB53(app,s){
@@ -114,11 +115,12 @@
       }
       function terminalB53(app,s){
         const result=indoor53.terminal(app,s.engine);
-        return result?{...result,bridge:structuredClone(s.bridge)}:null;
+        return result?{...result,bridge:structuredClone(s.bridge),sodanThread:s.spirit.record()}:null;
       }
       function tick53(app){
         const s=active.get(app),e=app.engine;
         if(e?.b.honroStage!==53||!s||app.done)return;
+        updateSodanSpirit(s);
         if(s.bridge){e.checkEnd();return;}
         if(!s.button)return;
         const u=e.active,rail=s.wallAxis?.isWall(u),proof=indoor53.qualified(app,e);

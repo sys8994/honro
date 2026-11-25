@@ -24,6 +24,8 @@ export function stage57Adapter(G,{normalPort=null}={}){
   const e=new C.Engine(probe,()=>{},false),at=x=>e.contactSurface(x,2100,3555)?.y;
   const place=(r,x)=>{const y=at(x);if(!Number.isFinite(y))return null;return {...structuredClone(r),x,y,spawnX:x,spawnY:y,vx:0,vy:0,airborne:false,jumping:false,acted:false,moveLeft:r.maxMove};};
   const heroes=roles.map(k=>place(previous.boundary.fullOuter[k],packet.slots[k]));
+  const sodan=heroes.find(u=>u?.cls==='occultist');
+  if(sodan)sodan.fixed=false;
   const foes=packet.foes.map(({owner})=>place(owner,owner.x));
   const proxy=place(packet.proxy,5384);
   const neutral=C.createBattle(1,G.HonroProfileStore.fresh(),'skirmish',{party:['archer'],distance:900}).units.find(a=>a.side===0&&a.cls==='archer');

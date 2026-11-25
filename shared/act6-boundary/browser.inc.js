@@ -33,6 +33,7 @@
           verifyBridge:(id,r)=>validBrokenRailCrossing(brokenRail,id,r),
           verifyEave:validTornEave,
           verifyReturn:verifyReturnGate,
+          verifyThread:validSodanThread,
           ownedStore:(a,w)=>a===app&&w===shadow&&owned(),originalProfile:a=>a===app&&owned()?normalize(normal):null,
           locks:{request(lock,options,f){return G.navigator.locks.request(lock,options,async()=>{
             if(locked||!owned())return {ok:false,reason:'stale-slot'};locked=true;try{return await f();}finally{locked=false;}

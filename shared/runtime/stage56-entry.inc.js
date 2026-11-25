@@ -16,13 +16,13 @@
         const fullOuter=Object.fromEntries(t.actors.map(row=>[row.cls,row]));
         check(Object.keys(fullOuter).length===3&&Object.entries(fullOuter).every(([role,row])=>same(row,e.b.units.find(u=>u.id===row.id&&u.cls===role)))&&
           same(t.parkedMage,prev.previous.mage)&&!e.b.units.some(u=>u.id===t.parkedMage.id),'55 carry contacts or parked row drift');
-        const previous=Object.freeze({stage:55,won:true,flags:t.flags,crew:{...fullOuter,mage:t.parkedMage},boundary:{fullParkedMage:t.parkedMage,fullOuter},eave:t.eave});
+        const previous=Object.freeze({stage:55,won:true,flags:t.flags,crew:{...fullOuter,mage:t.parkedMage},boundary:{fullParkedMage:t.parkedMage,fullOuter},eave:t.eave,sodanThread:t.sodanThread});
         return mountFrom55(a,grant,previous,e.stage,normal51Provider.budget(e.b),()=>eligible56(a,prev)&&active.get(a)===prev,undefined);
       }
       async function mountCold56(a,grant,body,stays,key){
         if(!cold56.has(key)||!stays()||body.from!==55||body.to!==56)return false;
         const t=body.terminal,{outer:fullOuter,mage:fullParkedMage}=body.custody;
-        const previous=Object.freeze({stage:55,won:true,flags:t.flags,crew:{...fullOuter,mage:fullParkedMage},boundary:{fullParkedMage,fullOuter},eave:t.eave});
+        const previous=Object.freeze({stage:55,won:true,flags:t.flags,crew:{...fullOuter,mage:fullParkedMage},boundary:{fullParkedMage,fullOuter},eave:t.eave,sodanThread:t.sodanThread});
         cold56.set(key,{a,p:previous,stays});
         try{return await mountFrom55(a,grant,previous,body.stageSeed,body.budget,stays,key);}
         finally{cold56.delete(key);}
@@ -60,7 +60,8 @@
           if(previous.eave)mountEave56(a,s,previous.eave);
           const ui=appUI(a);check(ui,'Normal 56 controls absent');const btn=document.createElement('button');
           btn.type='button';btn.dataset.act6QaLookout='';styleAction(btn);
-          btn.addEventListener('click',event=>{if(event.isTrusted&&event.currentTarget===btn)action(a,event);});s.button=btn;ui.append(btn);tick56(a);return true;
+          btn.addEventListener('click',event=>{if(event.isTrusted&&event.currentTarget===btn)action(a,event);});s.button=btn;ui.append(btn);
+          attachSodanSpirit(a,s,previous.boundary.fullOuter.occultist,previous.sodanThread,56);tick56(a);return true;
         }catch(error){a.stopBattle();a.showTitle();throw error;}
       }
       function bindNormal56(a,e,s){
@@ -93,6 +94,7 @@
       }
       function tick56(a){
         const s=active.get(a),e=a.engine;if(e?.b?.honroStage!==56||!scope56(a,e,s)||!s.owner56)return;
+        updateSodanSpirit(s);
         if(s.eave56){
           const r=s.eave56,u=e.active;
           if(!r.normal){
@@ -114,5 +116,6 @@
       function terminalNormal56(a,s){
         if(!scope56(a,s.engine,s))return null;
         const e=s.engine,result=s.owner56.terminal();
-        return native56Handoff({app:a,engine:e,result,previous:s.previous,isTerminal:(aa,ee,rr)=>aa===a&&ee===e&&rr===result});
+        const t=native56Handoff({app:a,engine:e,result,previous:s.previous,isTerminal:(aa,ee,rr)=>aa===a&&ee===e&&rr===result});
+        return t?{...t,sodanThread:s.spirit.record()}:null;
       }

@@ -27,6 +27,7 @@
         const {packet,compiled}=grant,m=packet.map,p=structuredClone(a.profile);
         const prepared=await adapter57.prepare({descriptor:descriptor57,packet,compiled,previous});
         check(prepared&&stays(),'56 owner expired during preparation');
+        check(debitSodanThread(prepared.heroes.find(u=>u.cls==='occultist'),previous.sodanThread,56,54),'Deep support cost exceeds the returning body reserve');
         mounting57.set(a,previous);let lease;
         try{lease=port57.prepare({id:57,app:a,previous,packet,descriptor:descriptor57,compiled,coldLease});}finally{mounting57.delete(a);}
         check(lease,'No private 57 parent lease');
@@ -64,7 +65,12 @@
         s.engine=e;mounted57.set(e,s);
         check(scope57(a,e,s),'Native 57 scope changed');
         s.owner57=adapter57.attach({app:a,engine:e,prepared:s.prepared57,receipt:s.previous,grant:s.lease57});
-        check(s.owner57,'Native 57 owner refused');e.checkEnd=()=>a.checkMission(e);return true;
+        check(s.owner57,'Native 57 owner refused');
+        const sodan=s.prepared57.heroes.find(u=>u.cls==='occultist'),allowed=e.skillAllowed.bind(e),reason=e.monsterSkillReason.bind(e);
+        const bound=(u,skill)=>u===sodan&&!e.b.honroState.flags[s.packet.bridge.required.marker]&&skill?.id!==sodanSkills.body;
+        e.skillAllowed=(skill,u=e.active)=>!bound(u,skill)&&allowed(skill,u);
+        e.monsterSkillReason=(skill,u=e.active)=>bound(u,skill)?'담허가 돌아올 때까지 혼줄을 붙듭니다.':reason(skill,u);
+        e.checkEnd=()=>a.checkMission(e);return true;
       }
       function stage57UI(a,s,e,split=false){
         if(!scope57(a,e,s)||a.done||a.dialogue||a.modal.classList.contains('open'))return;

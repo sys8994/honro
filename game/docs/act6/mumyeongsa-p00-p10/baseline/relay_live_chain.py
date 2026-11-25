@@ -76,7 +76,7 @@ def stage55_trace(page):
 def can_choose(page,actor):
     return page.evaluate("id=>{const u=HonroApp.engine.unit(id);return !!u&&!u.dead&&!u.acted;}",actor)
 
-def aim_at_gate(page,actor):
+def aim_at_gate(page,actor,strong=False):
     select(page,actor)
     u=pose(page,actor)
     want_left=u["x"]>2112
@@ -85,13 +85,20 @@ def aim_at_gate(page,actor):
         u=pose(page,actor)
     if not u["grounded"]:
         return None
-    spec=page.evaluate("""() => {
+    spec=page.evaluate("""strong => {
       const e=HonroApp.engine,u=e.active,target=e.unit('draft-pressure-0');
       const from=u.facing<0?91:-84, to=u.facing<0?264:89;
-      for(const id of (u.cls==='occultist'?['O04','O01']:['A01','A02'])){
+      if(u.cls==='knight'){
+        const x=target.x-u.x,y=target.y-target.h*.55-(u.y-u.h*.5);
+        let angle=-Math.atan2(y,x)*180/Math.PI;if(angle< -85)angle+=360;
+        const id='S03',skill=HONRO_CORE.SKILLS[id],power=.95;
+        return angle>=from&&angle<=to&&Math.hypot(x,y)<=skill.radius*1.22+target.r&&
+          !e.collision({x:u.x,y:u.y-u.h*.5},{x:target.x,y:target.y-target.h*.55},1,u.id,[],false)&&e.canAfford(skill,u,power)?{id,angle,power}:null;
+      }
+      for(const id of (u.cls==='occultist'?['O04','O01']:strong?['A02','A14','A01']:['A01','A02'])){
         if(!u.loadout.includes(id))continue;
         const skill=HONRO_CORE.SKILLS[id];
-        for(const power of [.75,.85,.64,.54,.92,.44,.34])for(let angle=from;angle<=to;angle+=1){
+        for(const power of (strong?[.95,.90,.84,.76,.68,.58,.48,.40]:[.75,.85,.64,.54,.92,.44,.34]))for(let angle=from;angle<=to;angle+=1){
           if(!e.canAfford(skill,u,power))continue;
           const even=[-.6,0,.6].every(d=>[0,.026].every(q=>
             e.predict(u,skill,angle+d,power+q,target,false).unit===target.id));
@@ -99,7 +106,7 @@ def aim_at_gate(page,actor):
         }
       }
       return null;
-    }""")
+    }""",strong)
     if not spec:
         return None
     page.locator(f'[data-action="combat-skill"][data-skill="{spec["id"]}"]').click(timeout=3000)
@@ -122,38 +129,68 @@ def fray_or_turn(page):
         e.b.phase==='aim'&&e.active?.side===0&&e.canAct();
     }""",timeout=19000)
 
-def finish_bell(page,out,report):
+def finish_bell(page,out,report,route='repair'):
     stage55_trace(page)
     report["battle55Actions"]=[]
     actions=report["battle55Actions"]
     ready(page)
+    seated=page.evaluate("HonroApp.engine.unit('p-occultist').fixed===true")
+    if seated:
+        report['seatedEntry']=pose(page,'p-occultist')
+        for _ in range(4):
+            page.keyboard.press('Tab')
+            assert active(page)!='p-occultist','Seated Sodan entered the active party'
+        page.locator('[data-action="select-hero"][data-id="p-occultist"]').first.click(force=True,timeout=3500)
+        assert active(page)!='p-occultist'
+        page.keyboard.press('Control')
+        page.wait_for_timeout(1100)
+        ready(page)
     knight=move(page,'p-knight',2660)
     actions.append({"approach":knight})
     assert knight["grounded"] and abs(knight["x"]-2688)<=84,knight
     page.locator(BELL).click(timeout=3500)
-    page.keyboard.press("f")
+    if route=='intact':
+        move(page,'p-archer',1810,100)
+        spec=aim_at_gate(page,'p-archer',True)
+        actions.append({'intactOpening':spec})
+        assert spec,'No actual opening shot'
+    else:
+        page.keyboard.press("f")
     for _ in range(30):
         base.dismiss_dialogue(page)
         if page.evaluate("HonroApp.engine.b.phase==='won'"):
             break
         if page.evaluate("HonroApp.engine.b.phase==='lost'"):
-            raise AssertionError("Bell mission lost")
+            assert route=='collapse',"Bell mission lost"
+            break
         ready(page)
         binding=page.locator(BELL).get_attribute("data-act6-binding")
         foe=pose(page,GATE)
         actor=active(page)
-        if binding=="frayed" and can_choose(page,"p-occultist"):
-            sodan=move(page,"p-occultist",2660,95)
+        if route=='collapse':
+            page.keyboard.press('f')
+            continue
+        if route=='intact':
+            assert binding=='stable','Intact run received a damaging bell strike'
+            if foe['hp']>0:
+                assert not any('intactKnight' in item for item in actions),'Opening sequence left the hoop alive'
+                move(page,'p-knight',2190,20)
+                spec=aim_at_gate(page,'p-knight',True)
+                actions.append({'intactKnight':spec,'pose':pose(page,'p-knight')})
+                assert spec,'No grounded sword contact before first enemy turn'
+                continue
+        if binding=="frayed" and (seated or can_choose(page,"p-occultist")):
+            sodan=pose(page,"p-occultist") if seated else move(page,"p-occultist",2660,95)
             assert sodan["grounded"] and abs(sodan["x"]-2688)<=360,sodan
             page.locator(BELL).click(timeout=3500)
             actions.append({"rebind":sodan})
             fray_or_turn(page)
-        elif binding=="secured" and foe["hp"]<=0 and can_choose(page,"p-knight"):
+        elif binding in ('secured','stable') and foe["hp"]<=0 and can_choose(page,"p-knight"):
             knight=move(page,"p-knight",2660)
             page.locator(BELL).click(timeout=3500)
             actions.append({"align":knight})
             page.wait_for_function("HonroApp.engine.b.phase==='won'",timeout=6000)
-        elif binding=="secured" and foe["hp"]>0 and can_choose(page,"p-occultist"):
+        elif not seated and binding=="secured" and foe["hp"]>0 and can_choose(page,"p-occultist"):
             move(page,"p-occultist",2510,55)
             spec=aim_at_gate(page,"p-occultist")
             actions.append({"sodanShot":spec,"priorGate":foe})
@@ -169,8 +206,16 @@ def finish_bell(page,out,report):
             actions.append({"defend":actor,"binding":binding})
             page.keyboard.press("f")
     report["stage55Outcome"]=page.evaluate(base.SNAPSHOT)
+    if seated:
+        report['seatedExit']=pose(page,'p-occultist')
+        keys=('id','x','y','support')
+        assert all(report['seatedEntry'][k]==report['seatedExit'][k] for k in keys)
     report["bellTrace"]=page.evaluate("window.bellTrace")
     page.screenshot(path=out/"relay-stage55-outcome.png")
+    if route=='collapse':
+        assert report['stage55Outcome']['phase']=='lost'
+        assert page.locator(BELL).get_attribute('data-act6-binding')=='failed'
+        return
     assert report["stage55Outcome"]["phase"]=="won","Bell mission incomplete"
     assert any(row.get("target")==GATE and row.get("after")==0 for row in report["bellTrace"])
     page.locator('[data-act6-qa-next="56"]').click(timeout=5500)
@@ -274,6 +319,7 @@ def main():
     parser.add_argument("--build",required=True,type=Path)
     parser.add_argument("--out",required=True,type=Path)
     parser.add_argument("--bell-only",action="store_true")
+    parser.add_argument("--bell-case",choices=['repair','intact','collapse'],default='repair')
     parser.add_argument("--reversal",action="store_true")
     args=parser.parse_args()
     base.ROOT=args.build.resolve()
@@ -315,7 +361,16 @@ def main():
             report={}
             try:
                 resume(page,55,True)
-                finish_bell(page,args.out,report)
+                finish_bell(page,args.out,report,args.bell_case)
+                if args.bell_case!='collapse':
+                    records=base.saved_bytes(page)
+                    report['checkpoint56']=boundary_of(records)
+                    report['newContext56']=cold_new(browser,records,56)
+                    ids={r['id'] for r in report['checkpoint56']['terminal']['events']}
+                    if args.bell_case=='intact':
+                        assert 'intactBellAlignedAfterGateDefeat' in ids and 'bellLinkFrayedByNativeImpact' not in ids and 'sodanGroundedBellLinkRebound' not in ids
+                    else:
+                        assert {'bellLinkFrayedByNativeImpact','sodanGroundedBellLinkRebound','bellAlignedAfterGateDefeat'}<=ids
                 report['status']='PASS'
             except (Error,AssertionError) as error:
                 report['status']='FAIL'
