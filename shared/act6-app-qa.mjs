@@ -192,9 +192,9 @@ export async function createAct6WebQa(project,repoRoot,env=process.env,release=n
   source=replaceOne(source,'release,context53,release53,tick54,tick55,tick56,keepAction:', 'release,context53,release53,tick54,tick55,tick56,tick57,keepAction:');
 
   const eighthRaw=await readFile(new URL('./data/act6-qa/eighth.json',import.meta.url));
-  assert.equal(hash(eighthRaw),'7df6e20b457fe8d34e72eae0e8a3ac6b6f2b3d853ee8424a477b1385f61e6cbd');
+  assert.equal(hash(eighthRaw),'5379e10b5e5490036308ab4e9c8d552f360359365f83106c6e52a57385114297');
   const eighth=JSON.parse(eighthRaw);
-  assert(eighth.id===58&&eighth.map.units.length===0&&eighth.roles.length===4);
+  assert(eighth.id===58&&eighth.map.units.length===0&&eighth.roles.length===8);
   packets.push({...eighth,schema:'honro-act6-normal-58-source/v1',trace:{stageId:58,authoredId:eighth.map.id,mapSHA256:hash(JSON.stringify(eighth.map)),assetSHA256:hash(JSON.stringify(eighth.library))}});
   const core58=await readFile(new URL('./runtime/stage58-owner.mjs',import.meta.url),'utf8');
   const normal58=await readFile(new URL('./runtime/stage58-normal-adapter.mjs',import.meta.url),'utf8');

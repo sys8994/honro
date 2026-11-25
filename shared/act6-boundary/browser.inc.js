@@ -78,7 +78,7 @@
         try{
           const cx=boundarySession(a),raw=cx?.stored();if(!raw||raw.length>160000||a.engine!==e)return false;
           const stamp=JSON.parse(raw)[markerKey],v=stamp?.body;
-          return !!(v&&v.to===60&&v.from===59&&v.runId===proof.runId&&v.pin.build===descriptor.boundary.build&&
+          return !!(v&&v.to===60&&v.from===59&&v.runId===proof.runId&&(v.pin.build===descriptor.boundary.build||v.pin.fromPacket===descriptor.rows[59]?.sha256)&&
             v.terminalSHA===proof.rawSHA&&sha256Boundary(JSON.stringify(v.terminal))===proof.rawSHA&&sha256Boundary(JSON.stringify(v))===stamp.sha);
         }catch{return false;}
       }
@@ -93,6 +93,12 @@
           }
         }
         const cx=boundarySession(app),raw=cx?.stored();if(!raw)return false;
+        // A stamp from a revised source chapter is retired: offer Act 6 chapter 1 again.
+        if(cx.port?.status?.()==='retired'){
+          const note=app.root.querySelector('.rest-actions [data-act6-boundary-retired]');
+          if(!note){const n=document.createElement('p');n.dataset.act6BoundaryRetired='';n.className='rest-note';n.textContent='6막이 개정되어 이전 장 기록은 이어갈 수 없습니다. 성장과 장비는 그대로이며 6막 1장부터 다시 걷습니다.';app.root.querySelector('.rest-actions')?.prepend(n);}
+          return false;
+        }
         const place=app.root.querySelector('.rest-actions .rest-next[disabled]');
         if(!place||boundaryButton.get(app)?.isConnected)return true;
         let id;try{id=JSON.parse(raw)[markerKey]?.body?.to;}catch{}
