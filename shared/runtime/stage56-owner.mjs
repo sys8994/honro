@@ -59,6 +59,7 @@ const fieldsBefore=()=>structuredClone(b.physics?.regions??[]);
    if(reflowActor){
     if(b.units.some(x=>x.id===reflowActor.id)||!e.grounded(reflowActor)||!core.validTerrainContactPose(b.terrain,reflowActor)){e.setEnvironment({regions:previousRegions});return false;}
     b.units.push(reflowActor); // one previously compiled authored pressure row, no HP setter
+    e.refreshActivation();
    }
    scopeFrame='reverse';projectScene({id:56,phase:'reverse',focus:{x:m.x,y:m.y},sample:[seeded.forward,still,reverse]});
    events.push({key:'native-reversal',pose:{x:m.x,y:m.y},support:support(),front:seeded.forward,stopped:still,reversed:reverse,method:'stock Engine forceSample on the live region, not a countdown'});

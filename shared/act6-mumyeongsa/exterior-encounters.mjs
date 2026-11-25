@@ -61,7 +61,7 @@ function installExteriorEncounters(app,e,paused=()=>false,admit=()=>true){
      [['stag','low',860,2540],['stag','west',1214,1155]],
      [['shade','court',2842,1748],['shade','court',1664,1385]]]},
    ]},
-  56:{active:7,attacks:5,sites:{veranda:'A-upper-veranda',ascent:'B-01-center-stone-ascent',descent:'B-02-center-lower-short-climb',
+  56:{active:7,attacks:5,priority:'draft-pressure-3',sites:{veranda:'A-upper-veranda',ascent:'B-01-center-stone-ascent',descent:'B-02-center-lower-short-climb',
     lower:'B-central-lower-floor',return:'E-joined-ordinary-floor'},
    initial:[['shade','veranda',1512,1136],['hound','veranda',2545,1136]],
    waves:[

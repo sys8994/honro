@@ -66,3 +66,11 @@ python tools/act6-ending-v2/normal.py --chromium /usr/bin/chromium --from-courty
 ```bash
 python game/docs/act6/mumyeongsa-p00-p10/baseline/exterior_combat.py --build "$PWD" --out /tmp/honro-51-flanks --stages 51 --finish-overlook --press-flanks --rounds-per-site 1
 ```
+
+### 56 원본 역류와 활성 한도
+
+원본 역류 적이 들어오는 순간 기존 활성 판정을 즉시 다시 적용한다. 처음 5명, 누적 16명, 순간 최대 활성 7명과 라운드 공격 순서 5명을 같은 판에서 확인했다. 원래 역류 적이 실제 발사했고 전체 적 포격 18회, 피해 적용 14회, 담허의 실제 공격 4회를 기록했다. 담허는 낮은 턱까지 가지 않았을 때 원본 역류를 피하지 못했다. 이후 실제 턴을 써 낮은 턱 x3027.089에 접지했고, 역류를 피한 뒤 D에서 새 57을 받았다. 옛 E에서는 이동 가능했고 새 57 기록이 없었다. 일반 쉼터 재로드는 바이트가 같았고 변조된 D 법선·위치·증거 누락을 각각 거부했다. 이 실행의 다음 57은 휘겸이 돌단 반경에 도달하기 전에 멈췄다. [56 원자료와 뒤따른 중단](approved-reserve-56.json)
+
+```bash
+python game/docs/act6/mumyeongsa-p00-p10/baseline/interior_join.py --build "$PWD" --out /tmp/honro-56-approved-reserve --combat-account --check-pressure
+```

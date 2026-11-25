@@ -278,7 +278,7 @@ def boundary_of(records):
     slot=next(k for k in records if 'act6-boundary' in k)
     return json.loads(records[slot])["honroAct6ChapterBoundary"]["body"]
 
-def reversal56(page,out,report,finish=False,exit_route=None,check_pressure=False):
+def reversal56(page,out,report,finish=False,exit_route=None,check_pressure=False,combat=False):
     actions=[]
     report['gaereumjin56']=actions
     def walk(target,margin=25):
@@ -299,12 +299,26 @@ def reversal56(page,out,report,finish=False,exit_route=None,check_pressure=False
                 sample_walk(page,direction,target,1200)
                 page.wait_for_function('HonroApp.canInput() && HonroApp.engine.grounded(HonroApp.engine.active)',timeout=7000)
         return page.evaluate(FOOT)
-    def use(key,target,support):
-        point=walk(target)
+    def use(key,target,support,margin=25):
+        point=walk(target,margin)
         assert point['support']==support and abs(point['x']-target)<80,(key,point)
         page.locator(f'{BELL}[data-act6-mission="{key}"]').click(timeout=4500)
         actions.append({'used':key,'pose':point})
+    def counter(target,support):
+        from daedosa_return import CANDIDATE
+        from native_b import aim
+        point=walk(target)
+        if point['support']!=support:
+            return
+        spec=page.evaluate(CANDIDATE)
+        actions.append({'counter':point,'shot':spec})
+        if spec:
+            page.locator(f'[data-action="combat-skill"][data-skill="{spec["id"]}"]').click(timeout=5200)
+            aim(page,spec)
+            ready(page,36000)
     use('stakeA',1872,'A-upper-veranda')
+    if combat:
+        counter(1990,'A-upper-veranda')
     walk(3300)
     if finish:
         stage55_trace(page)
@@ -313,7 +327,11 @@ def reversal56(page,out,report,finish=False,exit_route=None,check_pressure=False
         ready(page)
         report['spirit56']=[p for p in page.evaluate('bellTrace') if p.get('owner')=='p-occultist']
     use('stakeB',3600,'B-02-center-lower-short-climb')
+    if combat:
+        counter(3712,'B-02-center-lower-short-climb')
     walk(4250)
+    if combat:
+        counter(4810,'E-joined-ordinary-floor')
     use('activate',5190,'E-joined-ordinary-floor')
     def flow():
         return page.evaluate("""() => {
@@ -330,7 +348,8 @@ def reversal56(page,out,report,finish=False,exit_route=None,check_pressure=False
     page.screenshot(path=out/'stage56-first-reversal.png')
     if not finish:
         return
-    use('warnShelf',3264,'B-central-lower-floor')
+    use('warnShelf',3245,'B-central-lower-floor',18)
+    page.locator(BELL).filter(has_text='왼쪽 낮은 턱으로').wait_for(timeout=6000)
     if check_pressure:
         unsafe=page.evaluate(FOOT)
         page.keyboard.press('f')
@@ -338,13 +357,16 @@ def reversal56(page,out,report,finish=False,exit_route=None,check_pressure=False
         page.locator(f'{BELL}[data-act6-mission="warnShelf"]').wait_for(timeout=6000)
         assert not page.evaluate('HonroApp.done||!!HonroApp.engine.b.honroState.localHallD56')
         report['deniedUnsafeShelf']={'before':unsafe,'after':page.evaluate(FOOT)}
-        use('warnShelf',3264,'B-central-lower-floor')
-    safe=walk(3045,13)
+        use('warnShelf',3245,'B-central-lower-floor',18)
+        page.locator(BELL).filter(has_text='왼쪽 낮은 턱으로').wait_for(timeout=6000)
+    safe=walk(3038,25)
     assert safe['support']=='B-central-lower-floor' and safe['x']<3070,safe
     page.keyboard.press('f')
     ready(page,35000)
     use('open',3055,'B-central-lower-floor')
     use('returnEast',5200,'E-joined-ordinary-floor')
+    if combat:
+        counter(5450,'E-joined-ordinary-floor')
     walk(6050)
     if exit_route:
         exit_route(page,out,report)

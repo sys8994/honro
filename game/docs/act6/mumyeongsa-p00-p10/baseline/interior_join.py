@@ -103,7 +103,13 @@ def play(browser,args,mobile):
     try:
         resume(page,56,True,mobile=mobile)
         saved_profile=base.saved_bytes(page)['honro-first-act-profile-1']
-        reversal56(page,args.out,report,finish=True,exit_route=walk_d,check_pressure=args.check_pressure)
+        if args.combat_account:
+            from exterior_combat import TRACE
+            page.evaluate(TRACE)
+        reversal56(page,args.out,report,finish=True,exit_route=walk_d,check_pressure=args.check_pressure,combat=args.combat_account)
+        if args.combat_account:
+            report['combat56']=page.evaluate('window.a6Exterior')
+            report['combat56'].pop('frames')
         new57=base.saved_bytes(page)
         report['checkpoint57']=body57=boundary_of(new57)
         receipt=body57['terminal']['boundary']['interiorD']
@@ -116,8 +122,8 @@ def play(browser,args,mobile):
         assert report['cold57']['savedBytesBefore']==report['cold57']['savedBytesAfter']
         report['wrong57']={mode:reject(browser,new57,57,mode) for mode in ['normal','junction','removed']}
         assert new57['honro-first-act-profile-1']==saved_profile
-        if not mobile:
-            report['exterior']=exterior=live_d(browser,args.out,sodan=True,session=(ctx,page))
+        if not mobile or args.touch_exterior:
+            report['exterior']=exterior=live_d(browser,args.out,sodan=not mobile,session=(ctx,page),touch_d=mobile)
             assert exterior['status']=='PASS',exterior.get('error')
             assert exterior['sameObjects'] and exterior['checkpoint58']['custody']['interiorD']==receipt
             live=base.saved_bytes(page)
@@ -134,6 +140,10 @@ def play(browser,args,mobile):
             report['last']=page.evaluate(OBSERVE)
         page.screenshot(path=args.out/'d-interior-failure.png',timeout=5000)
     finally:
+        if args.combat_account and 'combat56' not in report:
+            report['combat56']=page.evaluate('window.a6Exterior??null')
+            if report['combat56']:
+                report['combat56'].pop('frames')
         ctx.close()
     return report
 
@@ -143,8 +153,12 @@ if __name__=='__main__':
     parser.add_argument('--build',required=True,type=Path)
     parser.add_argument('--out',required=True,type=Path)
     parser.add_argument('--touch',action='store_true')
+    parser.add_argument('--touch-exterior',action='store_true')
     parser.add_argument('--check-pressure',action='store_true')
+    parser.add_argument('--combat-account',action='store_true')
     args=parser.parse_args()
+    if args.touch_exterior and not args.touch:
+        parser.error('--touch-exterior requires --touch')
     base.ROOT=args.build.resolve()
     args.out.mkdir(parents=True,exist_ok=True)
     with sync_playwright() as playwright:
