@@ -130,3 +130,5 @@ done
 ```bash
 python game/docs/act6/mumyeongsa-p00-p10/baseline/interior_join.py --build "$PWD" --out /tmp/honro-56-live-force-counter --combat-account --check-pressure --stop-at-57
 ```
+
+56은 같은 일반 입력으로 대조 RNG 31717과 46183에서 각각 시작 5, 누적 16, 9라운드, 활성 7 및 공격 순서 5를 기록했다. 적의 실제 포격은 26·28회, 피해 처리는 23·23건이다. 두 판 모두 전진류 교전, 역류 대피, 기존 E에서 저장 차단, D에서 새 57과 독립 재로드가 나왔다. 위 명령에 `--rng 31717` 또는 `--rng 46183`을 붙여 재현한다. [31717](56-control-31717.json) · [46183](56-control-46183.json)
