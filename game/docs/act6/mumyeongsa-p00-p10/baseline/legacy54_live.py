@@ -167,7 +167,7 @@ def watch_eave(page):
       requestAnimationFrame(watch);
     }""")
 
-def walk_eave(page,out,receiving=False,suffix=''):
+def walk_eave(page,out,receiving=False,suffix='',touch_context=None):
     direction='receive' if receiving else 'send'
     page.wait_for_selector(f'[data-act6-torn-eave="{direction}"]',timeout=4500)
     first=page.evaluate(EAVE_POSE)
@@ -182,6 +182,10 @@ def walk_eave(page,out,receiving=False,suffix=''):
         watch_eave(page)
         hold(page,'ArrowRight',"!HonroApp.engine.b.physics.regions.some(s=>s.id==='mumyeongsa-torn-eave')",None,5500)
         page.wait_for_function("!document.querySelector('[data-act6-torn-eave=receive]')",timeout=5500)
+    elif touch_context is not None:
+        from mobile_seams import POINTER_EVENTS, move
+        page.evaluate(POINTER_EVENTS)
+        move(touch_context,page,1,"HonroApp.engine.b.phase==='won'",timeout=8500)
     else:
         hold(page,'ArrowRight',"HonroApp.engine.b.phase==='won'",None,6500)
     exit_pose=page.evaluate(EAVE_POSE)
@@ -198,9 +202,13 @@ def walk_eave(page,out,receiving=False,suffix=''):
     page.screenshot(path=out/f'eave-{direction}{suffix}-exit.png')
     flight=page.evaluate('window.eaveFlight??[]')
     moving=[q for q in flight if q['vy']>0] if receiving else [q for q in flight if q['vy']<0]
-    return {'entry':first,'ceiling':ceiling,'exit':exit_pose,'moving':moving}
+    proof={'entry':first,'ceiling':ceiling,'exit':exit_pose,'moving':moving}
+    if touch_context is not None:
+        proof['touches']=page.evaluate('seamTouches')
+        assert len(proof['touches'])>=2 and all(e['trusted'] and e['type']=='touch' for e in proof['touches'])
+    return proof
 
-def play54(page,out,results):
+def play54(page,out,results,touch_context=None):
     traces=results.setdefault("traces",{})
     page.wait_for_function('HonroApp.canInput() && HonroApp.engine.grounded(HonroApp.engine.active)',timeout=3500)
     if page.evaluate('HonroApp.engine.active.x')<510:
@@ -264,9 +272,10 @@ def play54(page,out,results):
                 raise
             walk_nudge(page,2336,1,10)
     if page.locator('[data-act6-torn-eave="send"]').count():
-        results['eave54']=walk_eave(page,out)
+        results['eave54']=walk_eave(page,out,touch_context=touch_context)
     results["won"]=page.evaluate(base.SNAPSHOT)
-    page.locator('[data-act6-qa-next="55"]').click(timeout=5000)
+    advance=page.locator('[data-act6-qa-next="55"]')
+    (advance.tap if touch_context is not None else advance.click)(timeout=5000)
     page.wait_for_function("HonroApp.engine?.b?.honroStage===55",timeout=10000)
     results["live55"]=page.evaluate(base.SNAPSHOT)
     page.screenshot(path=out/"legacy54-live55.png")
