@@ -1,4 +1,4 @@
-name: Verify the open sacred-tree finale revision
+name: Verify the final sacred-tree twilight
 on:
   push:
     branches: ['qa/act6-ending-tree-open-20261125']
@@ -37,9 +37,9 @@ jobs:
           S="$GITHUB_WORKSPACE/.ending-tree-open"
           D="shared/act6-ending-replan"
           cp "$S/cues.mjs" "$D/cues.mjs"
-          cat "$S/land.b64."{0,1} | base64 -d > "$D/stills/ending_still_06b_land.webp"
-          cat "$S/port.b64."{0,1,2} | base64 -d > "$D/stills/ending_still_06b_port.webp"
-          printf '%s\n' 'c14231fb7907d0ee6b0f30ac0ac710e3f3127a6ba5728be4461bc83c82db5688  shared/act6-ending-replan/stills/ending_still_06b_land.webp' 'ec9696db3ab7575a46ec79009234526606107af63a7bbb24b819228c58150ba6  shared/act6-ending-replan/stills/ending_still_06b_port.webp' | sha256sum -c
+          cat "$S/final-land.b64."{0,1} | base64 -d > "$D/stills/ending_still_06b_land.webp"
+          cat "$S/final-port.b64."{0,1} | base64 -d > "$D/stills/ending_still_06b_port.webp"
+          printf '%s\n' 'f62bafb5de3709b2511af77b716c3a0baa994a1f43eedabb1e0669371fea6501  shared/act6-ending-replan/stills/ending_still_06b_land.webp' '8f020dd988634917f19f5e9283c3c1ab848c520903115ae7e55c737c67e0370d  shared/act6-ending-replan/stills/ending_still_06b_port.webp' | sha256sum -c
           npm ci --no-audit --no-fund
           npm ci --prefix game --no-audit --no-fund
           node --test tools/act6-ending-v2/cues.test.mjs
@@ -70,7 +70,7 @@ jobs:
           git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Give Sodan’s sacred tree an open twilight landscape'
           test "$(git rev-parse HEAD^)" = "$BASE"
           test "$(git ls-remote origin refs/heads/master | cut -f1)" = "$BASE"
-          git -C "$GITHUB_WORKSPACE" push origin "$(git rev-parse HEAD)":refs/heads/release/act6-ending-tree-open-20261125
+          git -C "$GITHUB_WORKSPACE" push origin "$(git rev-parse HEAD)":refs/heads/release/act6-ending-tree-twilight-final-20261125
       - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
         if: always()
         with:
