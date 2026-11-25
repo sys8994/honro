@@ -1,0 +1,77 @@
+name: Build and verify the direct Stage 60 ending
+on:
+  push:
+    branches: ['qa/act6-ending-direct-20261125']
+    paths: ['.github/workflows/act6-ending-direct.yml','shared/act6-ending-replan/**','tools/act6-ending-v2/**']
+permissions:
+  contents: write
+jobs:
+  candidate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 24
+    env:
+      BASE: 831fee8a8d0f36d8be3b7aa9c2b8d49f19e4c712
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c
+        with:
+          python-version: '3.12'
+      - name: Build narrowed patch and verify PC and mobile
+        shell: bash
+        run: |
+          set -euo pipefail
+          Q="$RUNNER_TEMP/ending-direct"
+          O="$RUNNER_TEMP/ending-direct-evidence"
+          mkdir -p "$O/screens"
+          git fetch --depth=1 origin "$BASE"
+          test "$(git ls-remote origin refs/heads/master | cut -f1)" = "$BASE"
+          git diff --binary "$BASE" HEAD -- shared/act6-ending-replan tools/act6-ending-v2 > "$O/source.patch"
+          git worktree add --detach "$Q" "$BASE"
+          cd "$Q"
+          git apply "$O/source.patch"
+          H="$(node --input-type=module -e 'import fs from "node:fs";import {selectPublishedGenerations} from "./shared/web-retention.mjs";console.log([...new Set(selectPublishedGenerations(JSON.parse(fs.readFileSync("web/manifest.json")).publishedGenerations).map(x=>x.sourceSha))].join(" "));')"
+          git fetch --depth=1 origin $H
+          node tools/release/retain-published-web.mjs "$BASE" --published-at 2026-11-25T11:36:13Z --evidence https://github.com/sys8994/honro/actions/runs/45605633731
+          npm ci --no-audit --no-fund
+          npm ci --prefix game --no-audit --no-fund
+          node --test tools/act6-ending-v2/cues.test.mjs
+          npm run build
+          python -m pip install 'playwright==1.58.0'
+          python -m playwright install --with-deps chromium
+          CHROME="$(python -c 'from playwright.sync_api import sync_playwright; p=sync_playwright().start(); print(p.chromium.executable_path); p.stop()')"
+          python tools/act6-ending-v2/preview.py --chromium "$CHROME" --out "$O/screens" | tee "$O/preview.log"
+
+          python tools/act6-ending-v2/normal.py --chromium "$CHROME" | tee "$O/normal.log"
+          cp _local/reports/ending-v2/*.png "$O/screens/"
+          python - "$O/NEW" <<'PY'
+          import json,sys,re,subprocess
+          from pathlib import Path
+          from os import environ
+          from hashlib import sha256
+          a=json.loads(subprocess.check_output(['git','show',environ['BASE']+':web/manifest.json']))
+          b=json.loads(Path('web/manifest.json').read_bytes())
+          d=lambda m:{x['path']:x['sha256'] for x in m['files']}
+          before,after=d(a),d(b)
+          for prefix in ('act6-qa-chapter-','act6-terrain-art-','act6-debug-stages.','journey-map-act6.'):
+              assert {k:v for k,v in before.items() if prefix in k}=={k:v for k,v in after.items() if prefix in k}
+          assert {k:v for k,v in before.items() if ('act6-ending_still_' in k or 'act6-ending_final_' in k)}=={k:v for k,v in after.items() if ('act6-ending_still_' in k or 'act6-ending_final_' in k)}
+          for p,h in (before|after).items():assert sha256(Path(p).read_bytes()).hexdigest()==h,p
+          pins=lambda f:re.search(r'boundary:\{build:"[a-f0-9]{64}",owner:\{[^}]+\},layout:\{.*?\}\}',Path(f).read_text()).group()
+          assert pins(next(p for p in before if 'ordered-game-24-normal51.' in p))==pins(next(p for p in after if 'ordered-game-24-normal51.' in p))
+          Path(sys.argv[1]).write_text('\n'.join(sorted(set(after)-set(before)))+'\n')
+          PY
+          git add -A -- shared/act6-ending-replan tools/act6-ending-v2 HONRO.html HONRO_WORKSHOP.html index.html web/manifest.json
+          xargs -d '\n' -r git add -- < "$O/NEW"
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Close Stage 60 in its own camera and cut directly to the epilogue'
+          test "$(git rev-parse HEAD^)" = "$BASE"
+          test "$(git ls-remote origin refs/heads/master | cut -f1)" = "$BASE"
+          git -C "$GITHUB_WORKSPACE" push origin "$(git rev-parse HEAD)":refs/heads/release/act6-ending-direct-20261125
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: act6-ending-direct-qa
+          path: ${{ runner.temp }}/ending-direct-evidence/

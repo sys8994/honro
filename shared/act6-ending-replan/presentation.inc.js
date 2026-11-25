@@ -102,82 +102,30 @@
  function paintDialog(s,idx){
   const [name,line]=timeline.intro[idx];const p=node('p','he-dialog',line);p.prepend(node('strong','',name));s.words.replaceChildren(p);
  }
- function intro(s,{surface,record,depart}){
-  let phase='quiet', ready=false, input=null, progress=0,last=0,closing=false;
-  const ledger=node('section','he-ledger'),title=node('h2','','이름을 새긴다'),press=button('이름을 새긴다','record'),
-   names=node('p','he-names'),walk=button('산문 밖으로 걷기 →','walk');
-  walk.style.touchAction='none';
-  const ink=()=>{ledger.replaceChildren(title,names);for(const name of timeline.names)names.append(node('span','',name));};
-  async function takeRecord(e){
-   if(!e.isTrusted||phase!=='ledger'||press.disabled)return;
-   press.disabled=true;mark(s);
-   let ok=false;try{ok=(await record(e)).ok;}catch{}
+ function intro(s,{finish}){
+  let beat=0, pending=false;
+  const press=button('계속','continue');
+  const show=()=>{s.root.dataset.endingPhase='dialogue';paintDialog(s,beat);s.controls.replaceChildren(press);press.focus({preventScroll:true});};
+  async function next(e){
+   if(!e.isTrusted||pending)return;
+   if(beat<timeline.intro.length-1){showAfterAdvance();return;}
+   pending=true;press.disabled=true;s.status.textContent='';
+   mark(s);
+   let result;try{result=await finish(e);}catch{}
    if(s.closed)return;
-   if(!ok){press.disabled=false;s.status.textContent='장부를 남기지 못했습니다. 다시 시도하십시오.';return;}
-   phase='ink';s.root.dataset.endingPhase='ink';ink();s.status.textContent='';
-   s.delay(()=>{
-    phase='walk';s.root.dataset.endingPhase='walk';s.words.replaceChildren();
-    s.controls.replaceChildren(walk);s.status.textContent='→ 또는 D를 누르거나 버튼을 길게 눌러 걸으십시오.';
-    ready=true;last=0;s.root.focus({preventScroll:true});s.frame(tick);
-   },5500);
+   if(!result?.ok){pending=false;press.disabled=false;press.focus();s.status.textContent='기록을 저장하지 못했습니다. 다시 시도하십시오.';return;}
+   const names=node('p','he-line he-memorial',timeline.names.join('　'));
+   s.root.dataset.endingPhase='memorial';s.words.replaceChildren(names);s.controls.replaceChildren();
+   s.delay(()=>{s.root.dataset.endingPhase='fade-to-stills';s.words.replaceChildren();s.delay(()=>play(s),650);},2000);
   }
-  function enterLedger(){
-   if(s.closed||phase!=='quiet')return;
-   phase='ledger';s.root.dataset.endingPhase='ledger';ledger.replaceChildren(title);
-   s.words.replaceChildren(ledger);s.controls.replaceChildren(press);press.focus({preventScroll:true});
-  }
-  paintDialog(s,0);s.delay(()=>paintDialog(s,1),6500);s.delay(enterLedger,14000);
-  press.addEventListener('click',takeRecord);
-  function stop(){input=null;}
-  s.resetInputs=stop;
-  async function finish(e){
-   if(!e.isTrusted||!ready||closing||progress<1)return;
-   closing=true;stop();prime(s);s.status.textContent='';walk.disabled=true;s.root.dataset.endingPhase='departure';
-   let result;try{result=await depart(e);}catch{}
-   if(s.closed)return;
-   if(!result?.ok){
-    closing=false;walk.disabled=false;phase='walk';walk.textContent='다시 기록하기';s.root.dataset.endingPhase='walk';
-    s.status.textContent='여정의 끝을 기록하지 못했습니다. 다시 시도하십시오.';return;
-   }
-   phase='finished';s.delay(()=>play(s),850);
-  }
-  function tick(now){
-   if(phase!=='walk'||!ready)return;
-   const d=last?Math.min(now-last,55):0;last=now;
-   if(input&&progress<1){
-    const next=clamp(progress+d/5300,0,1);
-    if(surface(next)){
-     progress=next;
-     if(progress===1){walk.textContent='산문을 나서기';s.status.textContent='누르던 버튼을 놓으면 산문을 나섭니다.';}
-    }
-   }
-   s.frame(tick);
-  }
-  walk.addEventListener('pointerdown',e=>{
-   if(!e.isTrusted||phase!=='walk'||closing||e.button!==0)return;
-   input='pointer';walk.setPointerCapture(e.pointerId);
-  });
-  walk.addEventListener('pointercancel',stop);
-  walk.addEventListener('lostpointercapture',stop);
-  walk.addEventListener('pointerup',e=>{if(input==='pointer'){stop();if(progress===1)void finish(e);}});
-  walk.addEventListener('click',e=>{
-   if(!e.isTrusted||phase!=='walk'||closing)return;
-   if(progress===1){void finish(e);return;}
-   if(e.detail===0){
-    input='assist';
-    s.delay(()=>{if(input==='assist'){stop();if(progress===1){walk.textContent='산문을 나서기';walk.focus();}}},5600);
-   }
-  });
+  function showAfterAdvance(){beat++;show();}
+  prewarm();show();
+  press.addEventListener('click',next);
   s.onKeys=e=>{
-   if(phase==='ledger'&&e.code==='Space'&&e.target!==press){if(e.type==='keydown'&&!e.repeat)void takeRecord(e);return true;}
-   if(!['ArrowRight','KeyD'].includes(e.code))return false;
-   if(phase==='walk'){
-    if(e.type==='keydown'&&!e.repeat)input='key';
-    if(e.type==='keyup'&&input==='key'){stop();if(progress===1)void finish(e);}
-   }
+   if(!['Space','Enter'].includes(e.code)||e.target===press)return false;
+   if(e.type==='keydown'&&!e.repeat)void next(e);
    return true;
   };
-  return ()=>progress;
  }
  function play(s){
   if(s.closed)return;
@@ -283,11 +231,8 @@
    if(app.endingGallery===ownGallery)delete app.endingGallery;
    app.screen=priorScreen;app.modal.classList.add('open');app.prev=G.performance.now();app.updateAudio();
   });
-  const pic=node('picture'),media=node('img','he-native-preview'), source=node('source');
-  source.media='(orientation: portrait)';source.srcset=assets.preview.port;media.src=assets.preview.land;
-  pic.append(source,media);s.backdrop.append(pic);
   if(G.history?.pushState){G.history.pushState({...G.history.state,honroEndingGallery:token},'');G.addEventListener('popstate',back);}
-  intro(s,{surface:p=>{media.style.transform='scale(1.1) translateX('+(-4*p)+'%)';return true;},record:()=>({ok:true}),depart:()=>({ok:true})});
+  prewarm();play(s);
   return true;
  }
  function installDebug(){
