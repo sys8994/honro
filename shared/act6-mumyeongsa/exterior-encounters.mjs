@@ -17,7 +17,7 @@ function installExteriorEncounters(app,e,paused=()=>false,admit=()=>true){
    waves:[
     {id:'cliff-watch',label:'암벽 아래 초병이 올라옵니다.',at:[1820,1850],units:[['hound','descent',2080,2180],['shade','westArch',2365,2455],['hound','westArch',2690,2470]]},
     {id:'broken-arch',label:'끊어진 석교 양쪽에서 응전합니다.',at:[2890,2370],units:[['stag','westArch',3000,2340],['shade','eastArch',3880,2280],['hound','eastArch',4145,2380]]},
-    {id:'bell-approach',label:'종터로 향하는 길을 지키던 혼이 모입니다.',at:[4270,2630],units:[['shade','eastArch',4475,2500],['hound','eastArch',4830,2510],['shade','eastArch',4970,2515],['stag','return',4450,3830]]},
+    {id:'bell-approach',label:'낮은 종터 앞과 퇴로를 지키던 혼이 모입니다.',at:[4300,3890],units:[['shade','return',4480,3807],['hound','return',4620,3685],['shade','return',4710,3605],['stag','lowBridge',3740,4330]]},
    ]},
   53:{active:6,attacks:4,sites:{floor:'south',library:'library-balcony',beam:'sanctuary-beam'},
    initial:[['hound','floor',740,2390],['shade','library',1320,1910],['stag','floor',1985,1590]],
