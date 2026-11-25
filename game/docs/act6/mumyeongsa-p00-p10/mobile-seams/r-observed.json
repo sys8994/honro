@@ -1,0 +1,808 @@
+{
+  "stage": 59,
+  "source": "captured live boundary",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "status": "PASS",
+  "pageErrors": [],
+  "movement": {
+    "enter": {
+      "stage": 59,
+      "quiet": true,
+      "pending": true,
+      "round": 1,
+      "active": "p-archer",
+      "enemies": [],
+      "landmark": [
+        {
+          "fill": "#726b5b",
+          "points": [
+            {
+              "x": 3108,
+              "y": 3364.5714285714284
+            },
+            {
+              "x": 3208,
+              "y": 3336
+            },
+            {
+              "x": 3260,
+              "y": 3307.310344827586
+            },
+            {
+              "x": 3350,
+              "y": 3257.655172413793
+            },
+            {
+              "x": 3400,
+              "y": 3230.0689655172414
+            },
+            {
+              "x": 3400,
+              "y": 3252.0689655172414
+            },
+            {
+              "x": 3350,
+              "y": 3279.655172413793
+            },
+            {
+              "x": 3260,
+              "y": 3329.310344827586
+            },
+            {
+              "x": 3208,
+              "y": 3358
+            },
+            {
+              "x": 3108,
+              "y": 3386.5714285714284
+            }
+          ]
+        },
+        {
+          "fill": "#675848",
+          "points": [
+            {
+              "x": 3129,
+              "y": 3052.310344827586
+            },
+            {
+              "x": 3181,
+              "y": 3044.310344827586
+            },
+            {
+              "x": 3181,
+              "y": 3333.714285714286
+            },
+            {
+              "x": 3131,
+              "y": 3341
+            }
+          ]
+        },
+        {
+          "fill": "#75604c",
+          "points": [
+            {
+              "x": 3331,
+              "y": 2954.310344827586
+            },
+            {
+              "x": 3375,
+              "y": 2948.310344827586
+            },
+            {
+              "x": 3376,
+              "y": 3230.310344827586
+            },
+            {
+              "x": 3327,
+              "y": 3262.344827586207
+            }
+          ]
+        },
+        {
+          "fill": "#857058",
+          "points": [
+            {
+              "x": 3134,
+              "y": 3054.310344827586
+            },
+            {
+              "x": 3147,
+              "y": 3051.310344827586
+            },
+            {
+              "x": 3146,
+              "y": 3341
+            },
+            {
+              "x": 3134,
+              "y": 3341
+            }
+          ]
+        },
+        {
+          "fill": "#5b4d41",
+          "points": [
+            {
+              "x": 3333,
+              "y": 2959.310344827586
+            },
+            {
+              "x": 3345,
+              "y": 2955.310344827586
+            },
+            {
+              "x": 3342,
+              "y": 3262.344827586207
+            },
+            {
+              "x": 3330,
+              "y": 3262.344827586207
+            }
+          ]
+        },
+        {
+          "fill": "#4d3d36",
+          "points": [
+            {
+              "x": 3097,
+              "y": 3029.310344827586
+            },
+            {
+              "x": 3264,
+              "y": 2962.310344827586
+            },
+            {
+              "x": 3403,
+              "y": 2923.310344827586
+            },
+            {
+              "x": 3450,
+              "y": 2930.310344827586
+            },
+            {
+              "x": 3427,
+              "y": 2962.310344827586
+            },
+            {
+              "x": 3268,
+              "y": 3005.310344827586
+            },
+            {
+              "x": 3110,
+              "y": 3075.310344827586
+            }
+          ]
+        },
+        {
+          "fill": "#686054",
+          "points": [
+            {
+              "x": 3078,
+              "y": 3018.310344827586
+            },
+            {
+              "x": 3240,
+              "y": 2953.310344827586
+            },
+            {
+              "x": 3404,
+              "y": 2908.310344827586
+            },
+            {
+              "x": 3458,
+              "y": 2910.310344827586
+            },
+            {
+              "x": 3441,
+              "y": 2933.310344827586
+            },
+            {
+              "x": 3252,
+              "y": 2975.310344827586
+            },
+            {
+              "x": 3097,
+              "y": 3041.310344827586
+            }
+          ]
+        },
+        {
+          "fill": "#a08861",
+          "points": [
+            {
+              "x": 3238,
+              "y": 2968.310344827586
+            },
+            {
+              "x": 3263,
+              "y": 2959.310344827586
+            },
+            {
+              "x": 3265,
+              "y": 3003.310344827586
+            },
+            {
+              "x": 3243,
+              "y": 3008.310344827586
+            }
+          ]
+        },
+        {
+          "fill": "#a08861",
+          "points": [
+            {
+              "x": 3253,
+              "y": 3296.310344827586
+            },
+            {
+              "x": 3260,
+              "y": 3307.310344827586
+            },
+            {
+              "x": 3280,
+              "y": 3296.2758620689656
+            },
+            {
+              "x": 3271,
+              "y": 3285.2758620689656
+            }
+          ]
+        }
+      ],
+      "actors": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "x": 3067.0610148194514,
+          "y": 3376.268281480157,
+          "hp": 591.9000000000001,
+          "focus": 404,
+          "shield": 0,
+          "loadout": [
+            "A01",
+            "A14",
+            "A02",
+            "A05"
+          ],
+          "equipment": {
+            "version": 1
+          },
+          "grounded": true,
+          "valid": true,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "support": "m59-return-gate-stone"
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "x": 3138.783530834313,
+          "y": 3355.7761340473394,
+          "hp": 2798.1,
+          "focus": 477,
+          "shield": 0,
+          "loadout": [
+            "S00",
+            "S01",
+            "S03"
+          ],
+          "equipment": {
+            "version": 1
+          },
+          "grounded": true,
+          "valid": true,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "support": "m59-return-gate-stone"
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "x": 3007.762399782332,
+          "y": 3393.210742919334,
+          "hp": 886.3999999999999,
+          "focus": 751,
+          "shield": 0,
+          "loadout": [
+            "O01",
+            "O04",
+            "O03",
+            "O06"
+          ],
+          "equipment": {
+            "version": 1
+          },
+          "grounded": true,
+          "valid": true,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "support": "m59-return-gate-stone"
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "x": 3247.105966034877,
+          "y": 3314.4242946014474,
+          "hp": 734.0000000000002,
+          "focus": 724,
+          "shield": 0,
+          "loadout": [
+            "M01",
+            "M10",
+            "M07"
+          ],
+          "equipment": {
+            "version": 1
+          },
+          "grounded": true,
+          "valid": true,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "support": "m59-return-gate-stone"
+        }
+      ]
+    },
+    "crossed": [
+      {
+        "from": {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "x": 3007.762399782332,
+          "y": 3393.210742919334,
+          "hp": 886.3999999999999,
+          "focus": 751,
+          "shield": 0,
+          "loadout": [
+            "O01",
+            "O04",
+            "O03",
+            "O06"
+          ],
+          "equipment": {
+            "version": 1
+          },
+          "grounded": true,
+          "valid": true,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "support": "m59-return-gate-stone"
+        },
+        "to": {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "side": 0,
+          "x": 2887.8134938507933,
+          "y": 3427.66705017235,
+          "vx": 0,
+          "vy": 0,
+          "hp": 886.3999999999999,
+          "maxHp": 2304,
+          "shield": 0,
+          "r": 22,
+          "h": 92,
+          "ammo": null,
+          "loadout": [
+            "O01",
+            "O04",
+            "O03",
+            "O06"
+          ],
+          "dead": false,
+          "actorsMoved": false,
+          "move": 3132,
+          "grounded": true,
+          "family": {
+            "x": 0,
+            "y": 320
+          },
+          "contact": "m59-return-gate-stone",
+          "normal": null
+        }
+      },
+      {
+        "from": {
+          "id": "p-archer",
+          "cls": "archer",
+          "x": 3067.0610148194514,
+          "y": 3376.268281480157,
+          "hp": 591.9000000000001,
+          "focus": 404,
+          "shield": 0,
+          "loadout": [
+            "A01",
+            "A14",
+            "A02",
+            "A05"
+          ],
+          "equipment": {
+            "version": 1
+          },
+          "grounded": true,
+          "valid": true,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "support": "m59-return-gate-stone"
+        },
+        "to": {
+          "id": "p-archer",
+          "cls": "archer",
+          "side": 0,
+          "x": 2886.6256965373277,
+          "y": 3428.011894553679,
+          "vx": 0,
+          "vy": 0,
+          "hp": 591.9000000000001,
+          "maxHp": 1720,
+          "shield": 0,
+          "r": 22,
+          "h": 92,
+          "ammo": null,
+          "loadout": [
+            "A01",
+            "A14",
+            "A02",
+            "A05"
+          ],
+          "dead": false,
+          "actorsMoved": false,
+          "move": 2921,
+          "grounded": true,
+          "family": {
+            "x": 0,
+            "y": 320
+          },
+          "contact": "m59-return-gate-stone",
+          "normal": null
+        }
+      },
+      {
+        "from": {
+          "id": "p-knight",
+          "cls": "knight",
+          "x": 3138.783530834313,
+          "y": 3355.7761340473394,
+          "hp": 2798.1,
+          "focus": 477,
+          "shield": 0,
+          "loadout": [
+            "S00",
+            "S01",
+            "S03"
+          ],
+          "equipment": {
+            "version": 1
+          },
+          "grounded": true,
+          "valid": true,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "support": "m59-return-gate-stone"
+        },
+        "to": {
+          "id": "p-knight",
+          "cls": "knight",
+          "side": 0,
+          "x": 2889.7956802744566,
+          "y": 3427.0915766945127,
+          "vx": 0,
+          "vy": 0,
+          "hp": 2798.1,
+          "maxHp": 3846,
+          "shield": 0,
+          "r": 22,
+          "h": 92,
+          "ammo": null,
+          "loadout": [
+            "S00",
+            "S01",
+            "S03"
+          ],
+          "dead": false,
+          "actorsMoved": false,
+          "move": 4081,
+          "grounded": true,
+          "family": {
+            "x": 0,
+            "y": 320
+          },
+          "contact": "m59-return-gate-stone",
+          "normal": null
+        }
+      },
+      {
+        "from": {
+          "id": "p-mage",
+          "cls": "mage",
+          "x": 3247.105966034877,
+          "y": 3314.4242946014474,
+          "hp": 734.0000000000002,
+          "focus": 724,
+          "shield": 0,
+          "loadout": [
+            "M01",
+            "M10",
+            "M07"
+          ],
+          "equipment": {
+            "version": 1
+          },
+          "grounded": true,
+          "valid": true,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "support": "m59-return-gate-stone"
+        },
+        "to": {
+          "id": "p-mage",
+          "cls": "mage",
+          "side": 0,
+          "x": 5831.6915860601885,
+          "y": 2380.6662335712685,
+          "vx": 0,
+          "vy": 0,
+          "hp": 734.0000000000002,
+          "maxHp": 2050,
+          "shield": 0,
+          "r": 22,
+          "h": 92,
+          "ammo": null,
+          "loadout": [
+            "M01",
+            "M10",
+            "M07"
+          ],
+          "dead": false,
+          "actorsMoved": false,
+          "move": 2997.9500000000035,
+          "grounded": true,
+          "family": {
+            "x": 0,
+            "y": 320
+          },
+          "contact": "finale-cutout-near-body",
+          "normal": null
+        }
+      }
+    ],
+    "after": {
+      "stage": 59,
+      "quiet": false,
+      "pending": false,
+      "round": 1,
+      "active": "p-mage",
+      "enemies": [
+        "qa-immediate-bridge-threat",
+        "finale-first-west-ledge",
+        "finale-first-west-talus",
+        "finale-first-west-bank",
+        "finale-first-west-turn",
+        "finale-first-bridge-foot",
+        "finale-first-east-bell",
+        "finale-first-east-bend",
+        "finale-first-east-stone",
+        "finale-first-east-ward"
+      ],
+      "landmark": null,
+      "actors": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "x": 1404.1436464088397,
+          "y": 1452.259315857529,
+          "hp": 591.9000000000001,
+          "focus": 404,
+          "shield": 0,
+          "loadout": [
+            "A01",
+            "A14",
+            "A02",
+            "A05"
+          ],
+          "equipment": {
+            "version": 1
+          },
+          "grounded": true,
+          "valid": true,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "support": "finale-cutout-west-terrace"
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "x": 3041.71270718232,
+          "y": 2891.4450237335614,
+          "hp": 2798.1,
+          "focus": 477,
+          "shield": 0,
+          "loadout": [
+            "S00",
+            "S01",
+            "S03"
+          ],
+          "equipment": {
+            "version": 1
+          },
+          "grounded": true,
+          "valid": true,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "support": "finale-cutout-near-body"
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "x": 5458.563535911602,
+          "y": 2493.635514745934,
+          "hp": 886.3999999999999,
+          "focus": 751,
+          "shield": 0,
+          "loadout": [
+            "O01",
+            "O04",
+            "O03",
+            "O06"
+          ],
+          "equipment": {
+            "version": 1
+          },
+          "grounded": true,
+          "valid": true,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "support": "finale-cutout-near-body"
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "x": 5831.6915860601885,
+          "y": 2380.6662335712685,
+          "hp": 734.0000000000002,
+          "focus": 724,
+          "shield": 0,
+          "loadout": [
+            "M01",
+            "M10",
+            "M07"
+          ],
+          "equipment": {
+            "version": 1
+          },
+          "grounded": true,
+          "valid": true,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "support": "finale-cutout-near-body"
+        }
+      ]
+    }
+  },
+  "events": [
+    {
+      "name": "pointerdown",
+      "trusted": true,
+      "type": "touch",
+      "control": "select-hero"
+    },
+    {
+      "name": "pointerup",
+      "trusted": true,
+      "type": "touch",
+      "control": "select-hero"
+    },
+    {
+      "name": "pointerdown",
+      "trusted": true,
+      "type": "touch",
+      "control": "joystick"
+    },
+    {
+      "name": "pointerup",
+      "trusted": true,
+      "type": "touch",
+      "control": "joystick"
+    },
+    {
+      "name": "pointerdown",
+      "trusted": true,
+      "type": "touch",
+      "control": "select-hero"
+    },
+    {
+      "name": "pointerup",
+      "trusted": true,
+      "type": "touch",
+      "control": "select-hero"
+    },
+    {
+      "name": "pointerdown",
+      "trusted": true,
+      "type": "touch",
+      "control": "joystick"
+    },
+    {
+      "name": "pointerup",
+      "trusted": true,
+      "type": "touch",
+      "control": "joystick"
+    },
+    {
+      "name": "pointerdown",
+      "trusted": true,
+      "type": "touch",
+      "control": "select-hero"
+    },
+    {
+      "name": "pointerup",
+      "trusted": true,
+      "type": "touch",
+      "control": "select-hero"
+    },
+    {
+      "name": "pointerdown",
+      "trusted": true,
+      "type": "touch",
+      "control": "joystick"
+    },
+    {
+      "name": "pointerup",
+      "trusted": true,
+      "type": "touch",
+      "control": "joystick"
+    },
+    {
+      "name": "pointerdown",
+      "trusted": true,
+      "type": "touch",
+      "control": "select-hero"
+    },
+    {
+      "name": "pointerup",
+      "trusted": true,
+      "type": "touch",
+      "control": "select-hero"
+    },
+    {
+      "name": "pointerdown",
+      "trusted": true,
+      "type": "touch",
+      "control": "joystick"
+    },
+    {
+      "name": "pointerup",
+      "trusted": true,
+      "type": "touch",
+      "control": "joystick"
+    }
+  ],
+  "saveHash": "eaeb1fcbdfe385cedeebc3f4e8804ae25e89e5c2b1ba4c8796c9a5c34a5bbec7"
+}
