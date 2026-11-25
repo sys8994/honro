@@ -12,6 +12,10 @@ import {FRONTS59,STAGE59,sentries59} from '../shared/runtime/stage59-owner.mjs';
 import {ACT6_EXTERIOR_ENCOUNTERS,installExteriorEncounters} from '../shared/act6-mumyeongsa/exterior-encounters.mjs';
 import {hallB58,verifyHallD56,legacyHallExit56,hallSill} from '../shared/act6-mumyeongsa/hall-b.mjs';
 import {verifyReturnGate,watchReturnGate} from '../shared/act6-mumyeongsa/return-gate.mjs';
+import {createBrokenRail,validBrokenRailCrossing} from '../shared/act6-mumyeongsa/broken-rail.mjs';
+import {validTornEave} from '../shared/act6-mumyeongsa/torn-eave.mjs';
+import {validSodanThread} from '../shared/act6-mumyeongsa/sodan-thread.mjs';
+import {verifyStage54Relay} from '../shared/runtime/stage54-pilot-owner.mjs';
 import {createChapterBoundary} from '../shared/act6-boundary/chapter-boundary.mjs';
 import {prepareEnding} from '../shared/runtime/stage60-ending.mjs';
 import {endingCardFor} from '../shared/runtime/stage60-card.mjs';
@@ -245,6 +249,49 @@ function sealPort(app,stage,opts={}){
   ownedStore:(a,w)=>a===app&&w===store,originalProfile:a=>a===app?profile:null});
  assert(p);
  return {port:p,store,raw:()=>stored,writes:()=>writes};
+}
+
+async function testBoundaryRecipes(){
+ const rail=createBrokenRail(await read('shared/act6-b-slice/layout.json'));
+ const sill=(await pack(54)).charts.L.terrain.find(t=>t.id==='mid-contact');
+ const slice=(await pack(57)).bridge.additions.terrain.find(t=>t.id==='local-07-08-exact-receiving-slice');
+ const key='honro-first-act-profile-1',results={};
+ for(const [id,fixture] of Object.entries(fixtures)){
+  const to=Number(id),base=normalize(fixture.profile),app={profile:base,normalProfile:base,engine:null,screen:'rest'};
+  const sourceJSON=JSON.stringify(fixture),start=clone(fixture.body);
+  let raw,writes=0,mounts=0;
+  const store={locked:false,save(){writes++;return false;}};
+  const port=createChapterBoundary({slot:start.slot,key,storage:{getItem:k=>k===key?raw:null},
+   locks:{request:(_name,_options,fn)=>fn()},normalize,hash:shaText,releasePin:id=>id===to?start.pin:null,
+   verifyOwner:()=>false,verifyCold:(a,w,id)=>a===app&&w===store&&id===to,
+   verifyRelay54:r=>verifyStage54Relay(C,sill,r,true),verifyBridge:(id,r)=>validBrokenRailCrossing(rail,id,r),
+   verifyEave:validTornEave,verifyThread:validSodanThread,verifyReturn:verifyReturnGate,
+   verifyD:(u,r,options)=>verifyHallD56(C,slice,u,r,options),legacyD:legacyHallExit56,
+   ownedStore:(a,w)=>a===app&&w===store,originalProfile:()=>base});
+  function select(body){raw=JSON.stringify({...base,honroAct6ChapterBoundary:{body,sha:sha(body)}});return raw;}
+  const flags=Object.keys(start.terminal.flags);
+  for(const flag of flags){
+   const missing=clone(start);
+   delete missing.terminal.flags[flag];
+   missing.terminalSHA=sha(missing.terminal);
+   const held=select(missing);
+   assert.deepEqual(port.inspect(app),{kind:'invalid'},`${to} missing ${flag}`);
+   const bad=await port.restore({app,store,to,pin:start.pin,enter:()=>{mounts++;return true;}});
+   assert.equal(bad.reason,'checkpoint-integrity-or-revision',`${to} missing ${flag}`);
+   assert.equal(raw,held);
+  }
+  const held=select(start);
+  assert.deepEqual(port.inspect(app),{kind:'restorable',to},`${to} fixture compatibility`);
+  const good=await port.restore({app,store,to,pin:start.pin,enter:(body,still)=>{
+   mounts++;
+   return still()&&body.from===to-1&&body.to===to;
+  }});
+  assert(good.ok,`${to} ${JSON.stringify(good)}`);
+  assert.equal(mounts,1);assert.equal(writes,0);assert.equal(raw,held);assert.equal(JSON.stringify(fixture),sourceJSON);
+  results[to]={from:to-1,fixture:'tracked historical source',sourcePacket:start.pin.fromPacket,fixtureEnvelopeSHA:good.sha,
+   readOnlySHA:shaText(held),verifiedFlags:flags,deniedMissingFlags:flags.length,originalBytesPreserved:true};
+ }
+ stateChecks.boundaryRecipes=results;
 }
 async function test57(){
  const h=await make57(),{e,b,app,owner}=h;
@@ -613,4 +660,5 @@ await run('59 both grounds, real contact, strike, physical retreat and loss',()=
 await run('57 parked body defeat, signed retry, real reunion and signed 58',test57);
 if(winner59)await run('60 true guides, no combat, signed memorial and normal title handoff',()=>test60(winner59));
 await run('51–60 authored slots, actual supporting faces, roles and caps',auditRosters);
+await run('51→52 through 59→60 exact saved-state conditions and missing-flag negatives',testBoundaryRecipes);
 if(process.argv[2])await writeFile(process.argv[2],JSON.stringify({stateChecks,ledger},null,2)+'\n');
