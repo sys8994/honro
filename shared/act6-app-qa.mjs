@@ -59,13 +59,14 @@ export async function createAct6WebQa(project,repoRoot,env=process.env,release=n
  assert.equal(first.split('export function createFirstMissionOwner').length,2);
  if(env.HONRO_ACT6_QA_NORMAL51==='1'){
   const normal=await readFile(new URL('./runtime/stage51-entry.inc.js',import.meta.url),'utf8');
-  source=replaceOne(source,'      function enter(app,id,ticket){',normal+'\n      function enter(app,id,ticket){');
+  const outsideEncounters=await readFile(new URL('./act6-mumyeongsa/exterior-encounters.mjs',import.meta.url),'utf8');
+  source=replaceOne(source,'      function enter(app,id,ticket){',outsideEncounters+'\n'+normal+'\n      function enter(app,id,ticket){');
   source=replaceOne(source,'try{return enter(app,51,null);}finally{restGrants.delete(app);}', 'try{return enterNormal51(app,grant,carried);}finally{restGrants.delete(app);}');
   source=replaceOne(source,'        permits.delete(app);\n        const {packet,compiled,known}=grant','        permits.delete(app);\n        if(id===52&&active.get(app)?.normal51===true)return enterNormal52(app,grant,active.get(app));\n        const {packet,compiled,known}=grant');
   source=replaceOne(source,'terminal?.stage===51&&!s.ordinaryRest','terminal?.stage===51&&(!s.ordinaryRest||s.normal51===true)');
   source=replaceOne(source,"kind:'isolated-authored-engine',incoming:s.previous","kind:s.normal51?'normal-owned-release':'isolated-authored-engine',incoming:s.previous");
   source=replaceOne(source,"Object.defineProperty(e,'stage',{configurable:true,get:()=>rule});","if(!s.normal51)Object.defineProperty(e,'stage',{configurable:true,get:()=>rule});");
-  source=replaceOne(source,'active:app=>active.has(app),bind','active:app=>active.has(app),isNormal:app=>active.get(app)?.normal51===true,bind');
+  source=replaceOne(source,'active:app=>active.has(app),bind','active:app=>active.has(app),isNormal:app=>active.get(app)?.normal51===true,tickExterior:(a,dt)=>active.get(a)?.exterior?.tick(dt),bind');
   source=replaceOne(source,'if(terminal)s.terminal=terminal;',`if(terminal){
           s.terminal=terminal;
           if(s.normal51&&terminal.stage===51&&terminal.flags['act6.threeSitesSighted']===true&&terminal.settlement===false&&s.button){
@@ -394,7 +395,7 @@ export function makeQaMain(main,source,descriptor,terrainArt=null,journeyArt=nul
   ['G.HonroStakeCrossing.skills(this.engine.b,active).includes(remembered)','qa51.context53(this,active,G.HonroStakeCrossing.skills(this.engine.b,active)).includes(remembered)'],
   ['G.HonroStakeCrossing.skills(b,u).includes(this.selected)','qa51.context53(this,u,G.HonroStakeCrossing.skills(b,u)).includes(this.selected)'],
   ['}else this.engine.fire(this.selected, u.angle, this.power);','}else if(!qa51.release53(this,u))this.engine.fire(this.selected, u.angle, this.power);']);
- if(source.includes('function enterNormal54('))edits.push(['missionTick(dt){if(qa51.active(this))return;', 'missionTick(dt){if(qa51.active(this)){qa51.tick53(this);qa51.tick54(this);qa51.tick55(this);qa51.tick56(this);qa51.tick57(this);qa51.tick58(this);qa51.tick59(this);qa51.tick60(this,dt);return;}']);
+ if(source.includes('function enterNormal54('))edits.push(['missionTick(dt){if(qa51.active(this))return;', 'missionTick(dt){if(qa51.active(this)){qa51.tickExterior(this,dt);qa51.tick53(this);qa51.tick54(this);qa51.tick55(this);qa51.tick56(this);qa51.tick57(this);qa51.tick58(this);qa51.tick59(this);qa51.tick60(this,dt);return;}']);
  if(source.includes('function enterNormal58('))edits.push(
   ['if (!heroes.length || objective?.dead || rescuedResidentLost || channelerLost || act2Failure)', 'if (!heroes.length || objective?.dead || rescuedResidentLost || channelerLost || act2Failure || ([55,58,59].includes(b.honroStage)&&qa51.goalState(this,e)?.failed===true))'],
   ['b.winnerReason = (act2Failure===', "b.winnerReason = (b.honroStage===55&&qa51.goalState(this,e)?.failed?qa51.goalState(this,e).summary:null) || (act2Failure==="]);

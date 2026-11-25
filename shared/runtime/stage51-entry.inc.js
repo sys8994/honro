@@ -34,6 +34,7 @@
         try{
           app.mount(b,{freshReport:true,reportScope:'custom'});
           check(state.engine===app.engine&&app.engine.stage===content&&app.profile===app.normalProfile&&app.scene&&app.screen==='battle','Stock normal Stage51 mount refused');
+          state.exterior=installExteriorEncounters(app,app.engine);
           const ui=appUI(app);check(ui,'Normal battle objective owner is absent');
           const button=document.createElement('button');button.type='button';button.dataset.act6QaLookout='';styleAction(button);
           button.textContent=d.marks[0].label;button.addEventListener('click',event=>{if(event.isTrusted&&event.currentTarget===button)action(app,event);});
@@ -96,6 +97,7 @@
         try{
           app.mount(b,{freshReport:true,reportScope:'custom'});
           check(app.engine===state.engine&&app.engine.stage===content&&app.engine.b===b&&app.profile===app.normalProfile&&app.scene&&app.screen==='battle','Stock normal 52 mount refused');
+          state.exterior=installExteriorEncounters(app,app.engine);
           const ui=appUI(app);check(ui,'Normal battle objective owner absent');const button=document.createElement('button');
           button.type='button';button.dataset.act6QaLookout='';styleAction(button);button.textContent=d.marks[0].label;
           button.addEventListener('click',event=>{if(event.isTrusted&&event.currentTarget===button)action(app,event);});

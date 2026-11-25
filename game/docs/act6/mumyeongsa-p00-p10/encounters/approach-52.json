@@ -1,0 +1,411 @@
+{
+  "stage": 52,
+  "status": "PASS",
+  "route": [
+    {
+      "target": 1840,
+      "foot": {
+        "id": "p-archer",
+        "x": 1824.1793062735026,
+        "y": 1887.2390750313368,
+        "vx": 0,
+        "vy": 0,
+        "move": 2179.9700634817054,
+        "grounded": true,
+        "support": "west-watch-and-descent",
+        "phase": "aim",
+        "round": 1,
+        "chart": [
+          6250,
+          6250
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      }
+    },
+    {
+      "target": 2840,
+      "foot": {
+        "id": "p-archer",
+        "x": 2841.223832832277,
+        "y": 2428.5768919422476,
+        "vx": 0,
+        "vy": 0,
+        "move": 1631.361473921769,
+        "grounded": true,
+        "support": "broken-arch-west",
+        "phase": "aim",
+        "round": 2,
+        "chart": [
+          6250,
+          6250
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      }
+    },
+    {
+      "target": 4270,
+      "foot": {
+        "id": "p-archer",
+        "x": 4273.284422709223,
+        "y": 2456.2316585159588,
+        "vx": 0,
+        "vy": 0,
+        "move": 58.40373174481789,
+        "grounded": true,
+        "support": "broken-arch-east",
+        "phase": "aim",
+        "round": 2,
+        "chart": [
+          6250,
+          6250
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      }
+    }
+  ],
+  "errors": [],
+  "trace": {
+    "shots": [
+      {
+        "id": "a6-52-opening-2",
+        "skill": "HSH01",
+        "round": 1
+      },
+      {
+        "id": "a6-52-opening-1",
+        "skill": "HBM01",
+        "round": 1
+      },
+      {
+        "id": "a6-52-cliff-watch-1",
+        "skill": "HBM01",
+        "round": 1
+      }
+    ],
+    "damage": [
+      {
+        "id": "a6-52-cliff-watch-1",
+        "target": "p-archer",
+        "before": 1720,
+        "after": 1683,
+        "round": 1
+      }
+    ],
+    "joins": [
+      {
+        "id": "watch-range",
+        "role": "archer",
+        "source": "original",
+        "round": 1,
+        "x": 4270,
+        "y": 2396.129058094344,
+        "grounded": false,
+        "surface": null
+      },
+      {
+        "id": "bridge-keeper",
+        "role": "knight",
+        "source": "original",
+        "round": 1,
+        "x": 3230,
+        "y": 2217.7027027027025,
+        "grounded": true,
+        "surface": "broken-arch-west"
+      },
+      {
+        "id": "return-guard",
+        "role": "knight",
+        "source": "original",
+        "round": 1,
+        "x": 3370,
+        "y": 4498.076923076923,
+        "grounded": true,
+        "surface": "return-lower-crossing"
+      },
+      {
+        "id": "a6-52-opening-1",
+        "role": "leaper",
+        "source": "opening",
+        "round": 1,
+        "x": 1725,
+        "y": 1765,
+        "grounded": true,
+        "surface": "west-watch-and-descent"
+      },
+      {
+        "id": "a6-52-opening-2",
+        "role": "ice",
+        "source": "opening",
+        "round": 1,
+        "x": 1890,
+        "y": 1975,
+        "grounded": true,
+        "surface": "west-watch-and-descent"
+      },
+      {
+        "id": "a6-52-opening-3",
+        "role": "leaper",
+        "source": "opening",
+        "round": 1,
+        "x": 2500,
+        "y": 2473.125,
+        "grounded": true,
+        "surface": "broken-arch-west"
+      },
+      {
+        "id": "a6-52-opening-4",
+        "role": "ice",
+        "source": "opening",
+        "round": 1,
+        "x": 3990,
+        "y": 2285.8571428571427,
+        "grounded": true,
+        "surface": "broken-arch-east"
+      },
+      {
+        "id": "a6-52-opening-5",
+        "role": "leaper",
+        "source": "opening",
+        "round": 1,
+        "x": 4650,
+        "y": 2489.1428571428573,
+        "grounded": true,
+        "surface": "broken-arch-east"
+      },
+      {
+        "id": "a6-52-opening-6",
+        "role": "ice",
+        "source": "opening",
+        "round": 1,
+        "x": 3090,
+        "y": 4559,
+        "grounded": true,
+        "surface": "return-lower-crossing"
+      },
+      {
+        "id": "a6-52-cliff-watch-1",
+        "role": "leaper",
+        "source": "cliff-watch",
+        "round": 1,
+        "x": 2080,
+        "y": 2177.608695652174,
+        "grounded": true,
+        "surface": "west-watch-and-descent"
+      },
+      {
+        "id": "a6-52-cliff-watch-2",
+        "role": "ice",
+        "source": "cliff-watch",
+        "round": 1,
+        "x": 2365,
+        "y": 2456.25,
+        "grounded": true,
+        "surface": "broken-arch-west"
+      },
+      {
+        "id": "a6-52-cliff-watch-3",
+        "role": "leaper",
+        "source": "cliff-watch",
+        "round": 1,
+        "x": 2690,
+        "y": 2470.7954545454545,
+        "grounded": true,
+        "surface": "broken-arch-west"
+      },
+      {
+        "id": "a6-52-broken-arch-1",
+        "role": "leaper",
+        "source": "broken-arch",
+        "round": 2,
+        "x": 3000,
+        "y": 2344.655172413793,
+        "grounded": true,
+        "surface": "broken-arch-west"
+      },
+      {
+        "id": "a6-52-bell-approach-1",
+        "role": "ice",
+        "source": "bell-approach",
+        "round": 2,
+        "x": 4475,
+        "y": 2500,
+        "grounded": true,
+        "surface": "broken-arch-east"
+      },
+      {
+        "id": "a6-52-bell-approach-2",
+        "role": "leaper",
+        "source": "bell-approach",
+        "round": 2,
+        "x": 4830,
+        "y": 2512.2580645161293,
+        "grounded": true,
+        "surface": "broken-arch-east"
+      },
+      {
+        "id": "a6-52-bell-approach-3",
+        "role": "ice",
+        "source": "bell-approach",
+        "round": 2,
+        "x": 4970,
+        "y": 2513.809523809524,
+        "grounded": true,
+        "surface": "broken-arch-east"
+      }
+    ],
+    "queues": [
+      {
+        "round": 1,
+        "queue": [
+          "a6-52-opening-2",
+          "a6-52-opening-1",
+          "a6-52-cliff-watch-1"
+        ]
+      }
+    ],
+    "peak": 9,
+    "initial": 9,
+    "limit": 6
+  },
+  "frameP95HostMs": 33.29999999999927,
+  "final": {
+    "honroStage": 52,
+    "round": 2,
+    "phase": "aim",
+    "rng": 3663151014,
+    "shot": 3
+  },
+  "partyEnd": [
+    {
+      "id": "p-archer",
+      "cls": "archer",
+      "side": 0,
+      "level": 25,
+      "hp": 1683,
+      "maxHp": 1720,
+      "loadout": [
+        "A01",
+        "A14",
+        "A02",
+        "A05"
+      ],
+      "pos": [
+        4273.28,
+        2456.23
+      ],
+      "h": 92,
+      "r": 22,
+      "awake": true,
+      "dead": false,
+      "airborne": false,
+      "grounded": true,
+      "validContact": true,
+      "support": "broken-arch-east",
+      "fixed": false,
+      "objective": false,
+      "role": "archer",
+      "summoned": false,
+      "ally": false
+    },
+    {
+      "id": "p-mage",
+      "cls": "mage",
+      "side": 0,
+      "level": 25,
+      "hp": 2050,
+      "maxHp": 2050,
+      "loadout": [
+        "M01",
+        "M10",
+        "M07"
+      ],
+      "pos": [
+        1290,
+        1258.75
+      ],
+      "h": 92,
+      "r": 22,
+      "awake": true,
+      "dead": false,
+      "airborne": false,
+      "grounded": true,
+      "validContact": true,
+      "support": "west-watch-and-descent",
+      "fixed": false,
+      "objective": false,
+      "role": "mage",
+      "summoned": false,
+      "ally": false
+    },
+    {
+      "id": "p-knight",
+      "cls": "knight",
+      "side": 0,
+      "level": 25,
+      "hp": 3846,
+      "maxHp": 3846,
+      "loadout": [
+        "S00",
+        "S01",
+        "S03"
+      ],
+      "pos": [
+        1080,
+        1166.11
+      ],
+      "h": 92,
+      "r": 22,
+      "awake": true,
+      "dead": false,
+      "airborne": false,
+      "grounded": true,
+      "validContact": true,
+      "support": "west-watch-and-descent",
+      "fixed": false,
+      "objective": false,
+      "role": "knight",
+      "summoned": false,
+      "ally": false
+    },
+    {
+      "id": "p-occultist",
+      "cls": "occultist",
+      "side": 0,
+      "level": 25,
+      "hp": 2304,
+      "maxHp": 2304,
+      "loadout": [
+        "O01",
+        "O04",
+        "O03",
+        "O06"
+      ],
+      "pos": [
+        1000,
+        1151.89
+      ],
+      "h": 92,
+      "r": 22,
+      "awake": true,
+      "dead": false,
+      "airborne": false,
+      "grounded": true,
+      "validContact": true,
+      "support": "west-watch-and-descent",
+      "fixed": false,
+      "objective": false,
+      "role": "occultist",
+      "summoned": false,
+      "ally": false
+    }
+  ]
+}

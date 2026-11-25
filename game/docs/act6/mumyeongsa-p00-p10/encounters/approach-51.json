@@ -1,0 +1,425 @@
+{
+  "stage": 51,
+  "status": "PASS",
+  "route": [
+    {
+      "target": 1070,
+      "foot": {
+        "id": "p-archer",
+        "x": 1073.73927877978,
+        "y": 4562.879931761301,
+        "vx": 0,
+        "vy": 0,
+        "move": 1904.1187463761887,
+        "grounded": true,
+        "support": "mountain-main",
+        "phase": "aim",
+        "round": 1,
+        "chart": [
+          7200,
+          5400
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      }
+    },
+    {
+      "target": 2860,
+      "foot": {
+        "id": "p-archer",
+        "x": 2866.6571431744287,
+        "y": 4002.812029908195,
+        "vx": 0,
+        "vy": 0,
+        "move": 894.1626164928894,
+        "grounded": true,
+        "support": "mountain-main",
+        "phase": "aim",
+        "round": 2,
+        "chart": [
+          7200,
+          5400
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      }
+    },
+    {
+      "target": 5150,
+      "foot": {
+        "id": "p-archer",
+        "x": 5160.34123067856,
+        "y": 2672.7225512782734,
+        "vx": 0,
+        "vy": 0,
+        "move": 147.09595053031697,
+        "grounded": true,
+        "support": "mountain-main",
+        "phase": "aim",
+        "round": 3,
+        "chart": [
+          7200,
+          5400
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      }
+    }
+  ],
+  "errors": [],
+  "trace": {
+    "shots": [
+      {
+        "id": "a6-51-opening-2",
+        "skill": "HSH01",
+        "round": 1
+      },
+      {
+        "id": "a6-51-opening-1",
+        "skill": "HBM01",
+        "round": 1
+      },
+      {
+        "id": "a6-51-opening-2",
+        "skill": "HSH01",
+        "round": 2
+      }
+    ],
+    "damage": [],
+    "joins": [
+      {
+        "id": "watcher",
+        "role": "archer",
+        "source": "original",
+        "round": 1,
+        "x": 2440,
+        "y": 3534.6174301873675,
+        "grounded": false,
+        "surface": null
+      },
+      {
+        "id": "pocket",
+        "role": "knight",
+        "source": "original",
+        "round": 1,
+        "x": 4170,
+        "y": 3255.8333333333335,
+        "grounded": true,
+        "surface": "mountain-main"
+      },
+      {
+        "id": "armor",
+        "role": "knight",
+        "source": "original",
+        "round": 1,
+        "x": 5900,
+        "y": 1800,
+        "grounded": true,
+        "surface": "terrace-continuous"
+      },
+      {
+        "id": "crest-champion",
+        "role": "occultist",
+        "source": "original",
+        "round": 1,
+        "x": 6475,
+        "y": 1647.857142857143,
+        "grounded": true,
+        "surface": "mountain-main"
+      },
+      {
+        "id": "a6-51-opening-1",
+        "role": "leaper",
+        "source": "opening",
+        "round": 1,
+        "x": 874,
+        "y": 4654.76,
+        "grounded": true,
+        "surface": "mountain-main"
+      },
+      {
+        "id": "a6-51-opening-2",
+        "role": "ice",
+        "source": "opening",
+        "round": 1,
+        "x": 1330,
+        "y": 4405.416666666667,
+        "grounded": true,
+        "surface": "mountain-main"
+      },
+      {
+        "id": "a6-51-opening-3",
+        "role": "leaper",
+        "source": "opening",
+        "round": 1,
+        "x": 1740,
+        "y": 4000,
+        "grounded": true,
+        "surface": "terrace-continuous"
+      },
+      {
+        "id": "a6-51-opening-4",
+        "role": "ice",
+        "source": "opening",
+        "round": 1,
+        "x": 3210,
+        "y": 3280,
+        "grounded": true,
+        "surface": "terrace-continuous"
+      },
+      {
+        "id": "a6-51-lower-turn-1",
+        "role": "leaper",
+        "source": "lower-turn",
+        "round": 1,
+        "x": 1575,
+        "y": 4388.2558139534885,
+        "grounded": true,
+        "surface": "mountain-main"
+      },
+      {
+        "id": "a6-51-lower-turn-2",
+        "role": "leaper",
+        "source": "lower-turn",
+        "round": 1,
+        "x": 1715,
+        "y": 4340,
+        "grounded": true,
+        "surface": "mountain-main"
+      },
+      {
+        "id": "a6-51-lower-turn-3",
+        "role": "ice",
+        "source": "lower-turn",
+        "round": 1,
+        "x": 1890,
+        "y": 3961.309523809524,
+        "grounded": true,
+        "surface": "terrace-continuous"
+      },
+      {
+        "id": "a6-51-split-ledge-1",
+        "role": "leaper",
+        "source": "split-ledge",
+        "round": 2,
+        "x": 3885,
+        "y": 3310.217391304348,
+        "grounded": true,
+        "surface": "mountain-main"
+      },
+      {
+        "id": "a6-51-split-ledge-2",
+        "role": "leaper",
+        "source": "split-ledge",
+        "round": 2,
+        "x": 3748,
+        "y": 3405.521739130435,
+        "grounded": true,
+        "surface": "mountain-main"
+      },
+      {
+        "id": "a6-51-split-ledge-3",
+        "role": "ice",
+        "source": "split-ledge",
+        "round": 2,
+        "x": 3655,
+        "y": 3126.0526315789475,
+        "grounded": true,
+        "surface": "terrace-continuous"
+      },
+      {
+        "id": "a6-51-crest-1",
+        "role": "ice",
+        "source": "crest",
+        "round": 3,
+        "x": 5515,
+        "y": 2092.8947368421054,
+        "grounded": true,
+        "surface": "terrace-continuous"
+      },
+      {
+        "id": "a6-51-crest-2",
+        "role": "leaper",
+        "source": "crest",
+        "round": 3,
+        "x": 5578,
+        "y": 2469,
+        "grounded": true,
+        "surface": "mountain-main"
+      },
+      {
+        "id": "a6-51-crest-3",
+        "role": "leaper",
+        "source": "crest",
+        "round": 3,
+        "x": 6060,
+        "y": 1657.142857142857,
+        "grounded": true,
+        "surface": "terrace-continuous"
+      }
+    ],
+    "queues": [
+      {
+        "round": 1,
+        "queue": [
+          "a6-51-opening-2",
+          "a6-51-opening-1",
+          "a6-51-lower-turn-1",
+          "a6-51-lower-turn-2",
+          "a6-51-opening-3"
+        ]
+      },
+      {
+        "round": 2,
+        "queue": [
+          "a6-51-opening-1",
+          "a6-51-lower-turn-2",
+          "a6-51-lower-turn-1",
+          "a6-51-opening-3",
+          "a6-51-opening-2"
+        ]
+      }
+    ],
+    "peak": 8,
+    "initial": 8,
+    "limit": 5
+  },
+  "frameP95HostMs": 16.80000000000109,
+  "final": {
+    "honroStage": 51,
+    "round": 3,
+    "phase": "aim",
+    "rng": 7326282640,
+    "shot": 3
+  },
+  "partyEnd": [
+    {
+      "id": "p-archer",
+      "cls": "archer",
+      "side": 0,
+      "level": 25,
+      "hp": 1720,
+      "maxHp": 1720,
+      "loadout": [
+        "A01",
+        "A14",
+        "A02",
+        "A05"
+      ],
+      "pos": [
+        5160.34,
+        2672.72
+      ],
+      "h": 92,
+      "r": 22,
+      "awake": true,
+      "dead": false,
+      "airborne": false,
+      "grounded": true,
+      "validContact": true,
+      "support": "mountain-main",
+      "fixed": false,
+      "objective": false,
+      "role": "archer",
+      "summoned": false,
+      "ally": false
+    },
+    {
+      "id": "p-mage",
+      "cls": "mage",
+      "side": 0,
+      "level": 25,
+      "hp": 2050,
+      "maxHp": 2050,
+      "loadout": [
+        "M01",
+        "M10",
+        "M07"
+      ],
+      "pos": [
+        170,
+        4762.68
+      ],
+      "h": 92,
+      "r": 22,
+      "awake": true,
+      "dead": false,
+      "airborne": false,
+      "grounded": true,
+      "validContact": true,
+      "support": "mountain-main",
+      "fixed": false,
+      "objective": false,
+      "role": "mage",
+      "summoned": false,
+      "ally": false
+    },
+    {
+      "id": "p-knight",
+      "cls": "knight",
+      "side": 0,
+      "level": 25,
+      "hp": 3846,
+      "maxHp": 3846,
+      "loadout": [
+        "S00",
+        "S01",
+        "S03"
+      ],
+      "pos": [
+        248,
+        4763.63
+      ],
+      "h": 92,
+      "r": 22,
+      "awake": true,
+      "dead": false,
+      "airborne": false,
+      "grounded": true,
+      "validContact": true,
+      "support": "mountain-main",
+      "fixed": false,
+      "objective": false,
+      "role": "knight",
+      "summoned": false,
+      "ally": false
+    },
+    {
+      "id": "p-occultist",
+      "cls": "occultist",
+      "side": 0,
+      "level": 25,
+      "hp": 2304,
+      "maxHp": 2304,
+      "loadout": [
+        "O01",
+        "O04",
+        "O03",
+        "O06"
+      ],
+      "pos": [
+        330,
+        4764.63
+      ],
+      "h": 92,
+      "r": 22,
+      "awake": true,
+      "dead": false,
+      "airborne": false,
+      "grounded": true,
+      "validContact": true,
+      "support": "mountain-main",
+      "fixed": false,
+      "objective": false,
+      "role": "occultist",
+      "summoned": false,
+      "ally": false
+    }
+  ]
+}
