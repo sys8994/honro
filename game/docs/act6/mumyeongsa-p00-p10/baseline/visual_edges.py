@@ -65,14 +65,14 @@ BULK="""({name, scale}) => {
 }"""
 
 
-def scene_context(browser, stage, source=None, mobile=False):
+def scene_context(browser, stage, source=None, mobile=False, device_scale=1):
     if not source:
-        return seeded_context(browser,stage,mobile=mobile)
+        return seeded_context(browser,stage,mobile=mobile,device_scale=device_scale)
     path,key=source
     fixture=base.ROOT/'shared/act6-debug-stages/fixtures.json'
     records=json.loads(subprocess.check_output(
         ['node','-e',REPLAY,str(fixture),str(path),key,str(stage)],text=True))
-    return saved_context(browser,records,mobile=mobile)
+    return saved_context(browser,records,mobile=mobile,device_scale=device_scale)
 
 
 def sheet(out, name, kind, labels):
@@ -178,6 +178,72 @@ def seam_views(browser,args):
             print(name,'CAPTURED',frame,flush=True)
     (args.out/'seams.json').write_text(json.dumps(result,indent=2)+'\n')
 
+LIVE_FRAME_TIMING="""camera=>new Promise((resolve,reject)=>{
+ const a=HonroApp,s=a.scene,c=HonroReinforcementCamera;
+ const keys=['x','y','scale','manual','storyTween','goalFocus','focusId','focusUntil','speakerId','speakerUntil',
+   'storyFrame','storyFrameReport','zoom'];
+ const saved=Object.fromEntries(keys.map(k=>[k,s[k]]));
+ const {update,checkpoint}=c,render=s.render,raw=[];
+ let frameTime=null,elapsed=0;
+ function restore(){
+  s.render=render;c.update=update;c.checkpoint=checkpoint;Object.assign(s,saved);
+ }
+ const deadline=setTimeout(()=>{restore();reject(Error('Insufficient native frames'));},30000);
+ c.update=()=>true;c.checkpoint=()=>{};
+ s._releaseDomainTiles?.();s._releaseScreenCaches?.();
+ s.render=function(...args){
+  if(HonroApp.scene!==s){clearTimeout(deadline);restore();return render.apply(this,args);}
+  Object.assign(s,{...camera,manual:true,zoom:null,storyTween:null,storyFrame:null,storyFrameReport:null,
+    goalFocus:null,focusId:null,focusUntil:0,speakerId:null,speakerUntil:0});
+  const start=performance.now();
+  const result=render.apply(this,args);
+  const interval=frameTime===null?null:start-frameTime;
+  frameTime=start;
+  elapsed=performance.now()-start;
+  if(interval!==null)raw.push({interval,renderCPU:elapsed});
+  if(raw.length===105){
+   clearTimeout(deadline);restore();
+   resolve({raw,stats:s.renderCacheStats?.(),dpr:devicePixelRatio});
+  }
+  return result;
+ };
+})"""
+
+
+def detail_views(browser,args):
+    assert args.d_proof
+    rows=[
+        ('53-foundation',53,None,False,475,2420,1.05),('53-vault',53,None,True,850,385,.82),
+        ('58-stone-step',58,(args.d_proof,'checkpoint58'),False,3530,3110,.95),
+        ('58-soffit',58,(args.d_proof,'checkpoint58'),True,4200,2550,.82),
+    ]
+    results=[]
+    for name,stage,source,mobile,x,y,scale in rows:
+        with scene_context(browser,stage,source,mobile,device_scale=2 if mobile else 1) as context:
+            page=context.new_page()
+            resume(page,stage,True,mobile=mobile)
+            save=storage_hash(base.saved_bytes(page))
+            camera=dict(x=x,y=y,scale=scale)
+            g=page.evaluate(GEOMETRY)
+            masks={k:hashlib.sha256(json.dumps(g[k],sort_keys=True).encode()).hexdigest()
+                   for k in ('local','worldTerrain','sharedB')}
+            frame=capture(page,args.out,name,camera)
+            live=page.evaluate(LIVE_FRAME_TIMING,camera)
+            assert save==storage_hash(base.saved_bytes(page))
+            def summary(rows):
+                values={}
+                for name in ('interval','renderCPU'):
+                    ordered=sorted(v[name] for v in rows)
+                    values[name]={'p50':ordered[len(ordered)//2],
+                                  'p95':ordered[int(.95*(len(ordered)-1))]}
+                return values
+            results.append({'name':name,'stage':stage,'viewport':page.viewport_size,'camera':camera,
+                            'frame':frame,'masks':masks,'save':save,'dpr':live['dpr'],
+                            'cold':summary(live['raw'][:15]),'warm':summary(live['raw'][25:]),
+                            'cache':live['stats'],'samples':live['raw']})
+            print(name,'CAPTURED',results[-1]['warm'],flush=True)
+            (args.out/'details.json').write_text(json.dumps(results,indent=2)+'\n')
+
 
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__)
@@ -187,6 +253,7 @@ if __name__=='__main__':
     p.add_argument('--d-proof',type=Path)
     p.add_argument('--r-proof',type=Path)
     p.add_argument('--seams',action='store_true')
+    p.add_argument('--details',action='store_true')
     p.add_argument('--charts',action='store_true')
     p.add_argument('--only',nargs='+')
     args=p.parse_args()
@@ -201,6 +268,9 @@ if __name__=='__main__':
         with pw.chromium.launch(executable_path='/usr/bin/chromium',args=['--no-sandbox','--disable-dev-shm-usage']) as browser:
             if args.seams:
                 seam_views(browser,args)
+                raise SystemExit(0)
+            if args.details:
+                detail_views(browser,args)
                 raise SystemExit(0)
             results=[]
             if args.charts:

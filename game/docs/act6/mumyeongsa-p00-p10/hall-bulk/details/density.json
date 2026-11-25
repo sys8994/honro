@@ -1,0 +1,2746 @@
+{
+  "reference": "9acde7427f3ebfce00f9ad3a9b943d030e2c352d",
+  "alphaThreshold": 128,
+  "foregroundNeighbours": 4,
+  "backgroundNeighbours": 8,
+  "rows": {
+    "53": [
+      {
+        "play": {
+          "left": 0,
+          "top": 0,
+          "right": 3540,
+          "bottom": 3000
+        },
+        "outer": {
+          "left": -305,
+          "top": -320,
+          "right": 3845,
+          "bottom": 3450
+        },
+        "scale": 0.21176470588235294,
+        "rows": [
+          {
+            "id": "art-m53-grey-bedrock",
+            "asset": "m53-grey-bedrock",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 399,
+            "sourcePaths": 44,
+            "closedContours": 44,
+            "colorPaths": 44,
+            "clips": [
+              "rockBody"
+            ],
+            "normalizedBytes": 11204,
+            "gzipBytes": 2984,
+            "assetSHA256": "175008c4f9fa9d93da3372d1edb498dd41d91f653697c49a3cd0d7b27aafb803",
+            "playEndpoints": 295,
+            "outerEndpoints": 22
+          },
+          {
+            "id": "art-m53-walk-fascia",
+            "asset": "m53-walk-fascia",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 84,
+            "sourcePaths": 6,
+            "closedContours": 6,
+            "colorPaths": 6,
+            "clips": [],
+            "normalizedBytes": 2049,
+            "gzipBytes": 553,
+            "assetSHA256": "d8da3ef07544823cc3beeefe0cd8c90d33066b03d952b2570a6be6f7b6af5785",
+            "playEndpoints": 80,
+            "outerEndpoints": 4
+          },
+          {
+            "id": "art-approved-upper-door-sill-extension",
+            "asset": "approved-upper-door-sill-extension",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 25,
+            "sourcePaths": 2,
+            "closedContours": 2,
+            "colorPaths": 2,
+            "clips": [],
+            "normalizedBytes": 907,
+            "gzipBytes": 380,
+            "assetSHA256": "59f2d179ba98459834dba7319955612d6a5b6fc9ba48ab8947f3d85fb2bbaa2f",
+            "playEndpoints": 25,
+            "outerEndpoints": 0
+          },
+          {
+            "id": "art-mumyeongsa-broken-rail",
+            "asset": "mumyeongsa-broken-rail",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 142,
+            "sourcePaths": 24,
+            "closedContours": 24,
+            "colorPaths": 24,
+            "clips": [],
+            "normalizedBytes": 3621,
+            "gzipBytes": 851,
+            "assetSHA256": "a1ac1279c0d96ba0e17683a15dadf3b2caf07232aab39f90fc322c9d587796ca",
+            "playEndpoints": 112,
+            "outerEndpoints": 26
+          }
+        ],
+        "mask": "53-1x.png",
+        "maskSHA256": "415ffe3ef849b4adc785abb46d293ea192361bf6768e99287dd4342bcdeb014a",
+        "playBulk": {
+          "worldArea": 6063185.72,
+          "endpoints": 512,
+          "endpointsPerMillion": 84.44,
+          "components": 2,
+          "holes": 0,
+          "outsideComponent": 32,
+          "largestComponents": [
+            {
+              "worldAreaAtAlpha128": 6042748.47,
+              "endpoints": 464
+            },
+            {
+              "worldAreaAtAlpha128": 14002.53,
+              "endpoints": 16
+            }
+          ]
+        },
+        "outerBulk": {
+          "worldArea": 3519572.26,
+          "endpoints": 52,
+          "endpointsPerMillion": 14.77,
+          "components": 2,
+          "holes": 0,
+          "outsideComponent": 4,
+          "largestComponents": [
+            {
+              "worldAreaAtAlpha128": 1828711.25,
+              "endpoints": 20
+            },
+            {
+              "worldAreaAtAlpha128": 1686294.8,
+              "endpoints": 28
+            }
+          ]
+        }
+      },
+      {
+        "play": {
+          "left": 0,
+          "top": 0,
+          "right": 3540,
+          "bottom": 3000
+        },
+        "outer": {
+          "left": -305,
+          "top": -320,
+          "right": 3845,
+          "bottom": 3450
+        },
+        "scale": 0.4235294117647059,
+        "rows": [
+          {
+            "id": "art-m53-grey-bedrock",
+            "asset": "m53-grey-bedrock",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 399,
+            "sourcePaths": 44,
+            "closedContours": 44,
+            "colorPaths": 44,
+            "clips": [
+              "rockBody"
+            ],
+            "normalizedBytes": 11204,
+            "gzipBytes": 2984,
+            "assetSHA256": "175008c4f9fa9d93da3372d1edb498dd41d91f653697c49a3cd0d7b27aafb803",
+            "playEndpoints": 295,
+            "outerEndpoints": 22
+          },
+          {
+            "id": "art-m53-walk-fascia",
+            "asset": "m53-walk-fascia",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 84,
+            "sourcePaths": 6,
+            "closedContours": 6,
+            "colorPaths": 6,
+            "clips": [],
+            "normalizedBytes": 2049,
+            "gzipBytes": 553,
+            "assetSHA256": "d8da3ef07544823cc3beeefe0cd8c90d33066b03d952b2570a6be6f7b6af5785",
+            "playEndpoints": 80,
+            "outerEndpoints": 4
+          },
+          {
+            "id": "art-approved-upper-door-sill-extension",
+            "asset": "approved-upper-door-sill-extension",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 25,
+            "sourcePaths": 2,
+            "closedContours": 2,
+            "colorPaths": 2,
+            "clips": [],
+            "normalizedBytes": 907,
+            "gzipBytes": 380,
+            "assetSHA256": "59f2d179ba98459834dba7319955612d6a5b6fc9ba48ab8947f3d85fb2bbaa2f",
+            "playEndpoints": 25,
+            "outerEndpoints": 0
+          },
+          {
+            "id": "art-mumyeongsa-broken-rail",
+            "asset": "mumyeongsa-broken-rail",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 142,
+            "sourcePaths": 24,
+            "closedContours": 24,
+            "colorPaths": 24,
+            "clips": [],
+            "normalizedBytes": 3621,
+            "gzipBytes": 851,
+            "assetSHA256": "a1ac1279c0d96ba0e17683a15dadf3b2caf07232aab39f90fc322c9d587796ca",
+            "playEndpoints": 112,
+            "outerEndpoints": 26
+          }
+        ],
+        "mask": "53-2x.png",
+        "maskSHA256": "3908769cbd0771d2ef8afc5f542e90be21e80a3ff2010487227c471846e294b2",
+        "playBulk": {
+          "worldArea": 6066058.71,
+          "endpoints": 512,
+          "endpointsPerMillion": 84.4,
+          "components": 2,
+          "holes": 0,
+          "outsideComponent": 39,
+          "largestComponents": [
+            {
+              "worldAreaAtAlpha128": 6048888.14,
+              "endpoints": 461
+            },
+            {
+              "worldAreaAtAlpha128": 14227.68,
+              "endpoints": 12
+            }
+          ]
+        },
+        "outerBulk": {
+          "worldArea": 3509107.91,
+          "endpoints": 52,
+          "endpointsPerMillion": 14.82,
+          "components": 2,
+          "holes": 0,
+          "outsideComponent": 4,
+          "largestComponents": [
+            {
+              "worldAreaAtAlpha128": 1823100.27,
+              "endpoints": 20
+            },
+            {
+              "worldAreaAtAlpha128": 1683531.36,
+              "endpoints": 28
+            }
+          ]
+        }
+      }
+    ],
+    "act1-01": [
+      {
+        "play": {
+          "left": 0,
+          "top": 0,
+          "right": 5400,
+          "bottom": 2200
+        },
+        "outer": {
+          "left": 0,
+          "top": 0,
+          "right": 5400,
+          "bottom": 2200
+        },
+        "scale": 0.21176470588235294,
+        "rows": [
+          {
+            "id": "act1-traced:stage01-body-v2",
+            "asset": "act1-traced:stage01-body-v2",
+            "layer": null,
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 6177,
+            "sourcePaths": 9,
+            "closedContours": 166,
+            "colorPaths": 9,
+            "clips": [
+              "sourceSolid",
+              "sourceInset"
+            ],
+            "normalizedBytes": 107442,
+            "gzipBytes": 32811,
+            "assetSHA256": "50948a9e207fb753ff21674ca70136d702b00bc86565c8d0bf7229ef3c1b6a34",
+            "playEndpoints": 5253,
+            "outerEndpoints": 0
+          }
+        ],
+        "mask": "act1-01-1x.png",
+        "maskSHA256": "b638c45e946683d19b8c306ba960a34971bd8e2ae9258a1ef01ae70da101eb57",
+        "frozenSourceBlob": "9868e01095bebbab67f6d4eea7dea14b1b9f64dc",
+        "playBulk": {
+          "worldArea": 4731876.46,
+          "endpoints": 5253,
+          "endpointsPerMillion": 1110.13,
+          "components": 1,
+          "holes": 0,
+          "outsideComponent": 20,
+          "largestComponents": [
+            {
+              "worldAreaAtAlpha128": 4729987.92,
+              "endpoints": 5233
+            }
+          ]
+        },
+        "outerBulk": {
+          "worldArea": 0.0,
+          "endpoints": 0,
+          "endpointsPerMillion": null,
+          "components": 0,
+          "holes": 0,
+          "outsideComponent": 0,
+          "largestComponents": []
+        }
+      },
+      {
+        "play": {
+          "left": 0,
+          "top": 0,
+          "right": 5400,
+          "bottom": 2200
+        },
+        "outer": {
+          "left": 0,
+          "top": 0,
+          "right": 5400,
+          "bottom": 2200
+        },
+        "scale": 0.4235294117647059,
+        "rows": [
+          {
+            "id": "act1-traced:stage01-body-v2",
+            "asset": "act1-traced:stage01-body-v2",
+            "layer": null,
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 6177,
+            "sourcePaths": 9,
+            "closedContours": 166,
+            "colorPaths": 9,
+            "clips": [
+              "sourceSolid",
+              "sourceInset"
+            ],
+            "normalizedBytes": 107442,
+            "gzipBytes": 32811,
+            "assetSHA256": "50948a9e207fb753ff21674ca70136d702b00bc86565c8d0bf7229ef3c1b6a34",
+            "playEndpoints": 5253,
+            "outerEndpoints": 0
+          }
+        ],
+        "mask": "act1-01-2x.png",
+        "maskSHA256": "fa13ba9baf709ee709afb4e53ea70a5932ff6c722f41c27376c0d25d941cf40e",
+        "frozenSourceBlob": "9868e01095bebbab67f6d4eea7dea14b1b9f64dc",
+        "playBulk": {
+          "worldArea": 4727686.1,
+          "endpoints": 5253,
+          "endpointsPerMillion": 1111.11,
+          "components": 1,
+          "holes": 0,
+          "outsideComponent": 19,
+          "largestComponents": [
+            {
+              "worldAreaAtAlpha128": 4726602.46,
+              "endpoints": 5234
+            }
+          ]
+        },
+        "outerBulk": {
+          "worldArea": 0.0,
+          "endpoints": 0,
+          "endpointsPerMillion": null,
+          "components": 0,
+          "holes": 0,
+          "outsideComponent": 0,
+          "largestComponents": []
+        }
+      }
+    ],
+    "act1-02": [
+      {
+        "play": {
+          "left": 0,
+          "top": 0,
+          "right": 4300,
+          "bottom": 3300
+        },
+        "outer": {
+          "left": 0,
+          "top": 0,
+          "right": 4300,
+          "bottom": 3300
+        },
+        "scale": 0.21176470588235294,
+        "rows": [
+          {
+            "id": "act1-traced:stage02-body-v2",
+            "asset": "act1-traced:stage02-body-v2",
+            "layer": null,
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 16575,
+            "sourcePaths": 13,
+            "closedContours": 363,
+            "colorPaths": 13,
+            "clips": [
+              "extendedSolid",
+              "extendedInset"
+            ],
+            "normalizedBytes": 269807,
+            "gzipBytes": 98454,
+            "assetSHA256": "8324899209ac940d5161031faa8d9409cc679d639c51345830894a0c9afb0a06",
+            "playEndpoints": 2875,
+            "outerEndpoints": 0
+          }
+        ],
+        "mask": "act1-02-1x.png",
+        "maskSHA256": "dabd8c7e42d233db595ca8dc7bb69670d6910f91587168f3f5e126a7e2c6f3a9",
+        "frozenSourceBlob": "94bc93576e97e4154645361f8356b82be87c00ec",
+        "playBulk": {
+          "worldArea": 2234590.53,
+          "endpoints": 2875,
+          "endpointsPerMillion": 1286.59,
+          "components": 11,
+          "holes": 0,
+          "outsideComponent": 74,
+          "largestComponents": [
+            {
+              "worldAreaAtAlpha128": 1749852.76,
+              "endpoints": 1637
+            },
+            {
+              "worldAreaAtAlpha128": 107470.17,
+              "endpoints": 242
+            },
+            {
+              "worldAreaAtAlpha128": 87212.8,
+              "endpoints": 250
+            },
+            {
+              "worldAreaAtAlpha128": 64448.98,
+              "endpoints": 137
+            },
+            {
+              "worldAreaAtAlpha128": 60920.25,
+              "endpoints": 104
+            },
+            {
+              "worldAreaAtAlpha128": 58933.51,
+              "endpoints": 136
+            },
+            {
+              "worldAreaAtAlpha128": 57434.12,
+              "endpoints": 137
+            },
+            {
+              "worldAreaAtAlpha128": 42620.5,
+              "endpoints": 158
+            },
+            {
+              "worldAreaAtAlpha128": 206.47,
+              "endpoints": 0
+            },
+            {
+              "worldAreaAtAlpha128": 183.64,
+              "endpoints": 0
+            },
+            {
+              "worldAreaAtAlpha128": 123.48,
+              "endpoints": 0
+            }
+          ]
+        },
+        "outerBulk": {
+          "worldArea": 0.0,
+          "endpoints": 0,
+          "endpointsPerMillion": null,
+          "components": 0,
+          "holes": 0,
+          "outsideComponent": 0,
+          "largestComponents": []
+        }
+      },
+      {
+        "play": {
+          "left": 0,
+          "top": 0,
+          "right": 4300,
+          "bottom": 3300
+        },
+        "outer": {
+          "left": 0,
+          "top": 0,
+          "right": 4300,
+          "bottom": 3300
+        },
+        "scale": 0.4235294117647059,
+        "rows": [
+          {
+            "id": "act1-traced:stage02-body-v2",
+            "asset": "act1-traced:stage02-body-v2",
+            "layer": null,
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 16575,
+            "sourcePaths": 13,
+            "closedContours": 363,
+            "colorPaths": 13,
+            "clips": [
+              "extendedSolid",
+              "extendedInset"
+            ],
+            "normalizedBytes": 269807,
+            "gzipBytes": 98454,
+            "assetSHA256": "8324899209ac940d5161031faa8d9409cc679d639c51345830894a0c9afb0a06",
+            "playEndpoints": 2875,
+            "outerEndpoints": 0
+          }
+        ],
+        "mask": "act1-02-2x.png",
+        "maskSHA256": "57afe924ab13318cb7c61c2fa9d77a065d8c3ef1b2d4f5d18b0128cae27bf672",
+        "frozenSourceBlob": "94bc93576e97e4154645361f8356b82be87c00ec",
+        "playBulk": {
+          "worldArea": 2225979.56,
+          "endpoints": 2875,
+          "endpointsPerMillion": 1291.57,
+          "components": 8,
+          "holes": 0,
+          "outsideComponent": 60,
+          "largestComponents": [
+            {
+              "worldAreaAtAlpha128": 1746776.76,
+              "endpoints": 1650
+            },
+            {
+              "worldAreaAtAlpha128": 106319.17,
+              "endpoints": 240
+            },
+            {
+              "worldAreaAtAlpha128": 87182.69,
+              "endpoints": 251
+            },
+            {
+              "worldAreaAtAlpha128": 64309.43,
+              "endpoints": 136
+            },
+            {
+              "worldAreaAtAlpha128": 60604.78,
+              "endpoints": 101
+            },
+            {
+              "worldAreaAtAlpha128": 59025.5,
+              "endpoints": 137
+            },
+            {
+              "worldAreaAtAlpha128": 57189.83,
+              "endpoints": 141
+            },
+            {
+              "worldAreaAtAlpha128": 42526.61,
+              "endpoints": 159
+            }
+          ]
+        },
+        "outerBulk": {
+          "worldArea": 0.0,
+          "endpoints": 0,
+          "endpointsPerMillion": null,
+          "components": 0,
+          "holes": 0,
+          "outsideComponent": 0,
+          "largestComponents": []
+        }
+      }
+    ],
+    "54-N": [
+      {
+        "play": {
+          "left": 0,
+          "top": 0,
+          "right": 3200,
+          "bottom": 3000
+        },
+        "outer": {
+          "left": -260,
+          "top": -280,
+          "right": 3580,
+          "bottom": 3450
+        },
+        "scale": 0.21176470588235294,
+        "rows": [
+          {
+            "id": "art-g00-foothill",
+            "asset": "g00-foothill",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 47,
+            "sourcePaths": 1,
+            "closedContours": 1,
+            "colorPaths": 1,
+            "clips": [],
+            "normalizedBytes": 1319,
+            "gzipBytes": 521,
+            "assetSHA256": "26783a3de1970939fc3171ef92afbe98e05be8af70d081a0d09588573bc20201",
+            "playEndpoints": 26,
+            "outerEndpoints": 19
+          },
+          {
+            "id": "art-g00-east-spine",
+            "asset": "g00-east-spine",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 60,
+            "sourcePaths": 4,
+            "closedContours": 4,
+            "colorPaths": 4,
+            "clips": [],
+            "normalizedBytes": 1892,
+            "gzipBytes": 722,
+            "assetSHA256": "c1c18a05a74278dece57879ae0e84d5e085b3310b74fed2e5a81942521b77da4",
+            "playEndpoints": 43,
+            "outerEndpoints": 16
+          },
+          {
+            "id": "art-g00-mid-contact",
+            "asset": "g00-mid-contact",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 74,
+            "sourcePaths": 3,
+            "closedContours": 3,
+            "colorPaths": 3,
+            "clips": [],
+            "normalizedBytes": 2064,
+            "gzipBytes": 765,
+            "assetSHA256": "01d9359aa27d686d4f1542b65b39d40b58db41cad3550d2be8d88b8d5632c464",
+            "playEndpoints": 68,
+            "outerEndpoints": 6
+          },
+          {
+            "id": "art-g00-post-contact",
+            "asset": "g00-post-contact",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 29,
+            "sourcePaths": 1,
+            "closedContours": 1,
+            "colorPaths": 1,
+            "clips": [],
+            "normalizedBytes": 940,
+            "gzipBytes": 431,
+            "assetSHA256": "1f62cf7b5bdaf897b49a1ae35d02617110997805a0d2478c5e878c1aad9e0180",
+            "playEndpoints": 29,
+            "outerEndpoints": 0
+          },
+          {
+            "id": "art-g00-west-continuation",
+            "asset": "g00-west-continuation",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 28,
+            "sourcePaths": 3,
+            "closedContours": 3,
+            "colorPaths": 3,
+            "clips": [],
+            "normalizedBytes": 1168,
+            "gzipBytes": 500,
+            "assetSHA256": "07f0f80153da579e23524dbce4aec71d90cbe04db33b9d5965d5dd970ec354e9",
+            "playEndpoints": 2,
+            "outerEndpoints": 26
+          },
+          {
+            "id": "art-g10-foothill-facets",
+            "asset": "g10-foothill-facets",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 813,
+            "sourcePaths": 153,
+            "closedContours": 153,
+            "colorPaths": 153,
+            "clips": [],
+            "normalizedBytes": 24995,
+            "gzipBytes": 5085,
+            "assetSHA256": "c0585d36e8a79cdfbe161e55f0daebee69c0723b8092e59b894099bfa8aa3c7a",
+            "playEndpoints": 752,
+            "outerEndpoints": 61
+          },
+          {
+            "id": "art-g11-east-facets",
+            "asset": "g11-east-facets",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 344,
+            "sourcePaths": 81,
+            "closedContours": 81,
+            "colorPaths": 81,
+            "clips": [],
+            "normalizedBytes": 10215,
+            "gzipBytes": 1988,
+            "assetSHA256": "7774c8176724cc9ec371ac5c3ffabe527fac1f89cf165ae7cb89e34612d2fd64",
+            "playEndpoints": 265,
+            "outerEndpoints": 79
+          },
+          {
+            "id": "art-g12-mid-facets",
+            "asset": "g12-mid-facets",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 909,
+            "sourcePaths": 165,
+            "closedContours": 165,
+            "colorPaths": 165,
+            "clips": [],
+            "normalizedBytes": 27812,
+            "gzipBytes": 5635,
+            "assetSHA256": "04c9413003d44459db9d9e624e43a850c87662ac4bf63a6065b5ac1e26ded205",
+            "playEndpoints": 886,
+            "outerEndpoints": 23
+          },
+          {
+            "id": "art-g13-inner-facets",
+            "asset": "g13-inner-facets",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 466,
+            "sourcePaths": 81,
+            "closedContours": 81,
+            "colorPaths": 81,
+            "clips": [],
+            "normalizedBytes": 14457,
+            "gzipBytes": 3166,
+            "assetSHA256": "3c292bf997c6c0fbb1d096cc3ff93d4f22010134ee80126c8377115006215de0",
+            "playEndpoints": 466,
+            "outerEndpoints": 0
+          },
+          {
+            "id": "art-g16-deep-join-strata",
+            "asset": "g16-deep-join-strata",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 80,
+            "sourcePaths": 7,
+            "closedContours": 7,
+            "colorPaths": 7,
+            "clips": [],
+            "normalizedBytes": 2146,
+            "gzipBytes": 730,
+            "assetSHA256": "083c42a8c0fd1d7caf409c9364594123b0924bcf90395810ab1c64f972161820",
+            "playEndpoints": 45,
+            "outerEndpoints": 35
+          },
+          {
+            "id": "art-g15-quiet-mids-foothill",
+            "asset": "g15-quiet-mids-foothill",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 65,
+            "sourcePaths": 6,
+            "closedContours": 6,
+            "colorPaths": 6,
+            "clips": [],
+            "normalizedBytes": 1840,
+            "gzipBytes": 652,
+            "assetSHA256": "c348fcdf78c7f61ffc6303c99495b6ebb993bb63d2be86e66c6cec330c9c614d",
+            "playEndpoints": 65,
+            "outerEndpoints": 0
+          },
+          {
+            "id": "art-g28-fascia-outcrop-joins",
+            "asset": "g28-fascia-outcrop-joins",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 58,
+            "sourcePaths": 8,
+            "closedContours": 8,
+            "colorPaths": 8,
+            "clips": [],
+            "normalizedBytes": 1738,
+            "gzipBytes": 588,
+            "assetSHA256": "49daef2c22b5654eaf4fa9a0da2bcab821d5c7ab0df13051c1558a02fb3c616b",
+            "playEndpoints": 58,
+            "outerEndpoints": 0
+          },
+          {
+            "id": "art-m54-observation-balconies",
+            "asset": "m54-observation-balconies",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 40,
+            "sourcePaths": 4,
+            "closedContours": 4,
+            "colorPaths": 4,
+            "clips": [],
+            "normalizedBytes": 1108,
+            "gzipBytes": 370,
+            "assetSHA256": "55d075e654dde95fcbb742dff5fc32a361be855bcfab91c82924d08baabae748",
+            "playEndpoints": 40,
+            "outerEndpoints": 0
+          }
+        ],
+        "mask": "54-N-1x.png",
+        "maskSHA256": "0f0444ccba69e510add2ec3bc2f19e380f2fc1a0c9c13b9ef003290c2a99be45",
+        "playBulk": {
+          "worldArea": 4272288.1,
+          "endpoints": 2745,
+          "endpointsPerMillion": 642.51,
+          "components": 3,
+          "holes": 1,
+          "outsideComponent": 148,
+          "largestComponents": [
+            {
+              "worldAreaAtAlpha128": 3397414.58,
+              "endpoints": 1665
+            },
+            {
+              "worldAreaAtAlpha128": 865850.31,
+              "endpoints": 932
+            },
+            {
+              "worldAreaAtAlpha128": 145.25,
+              "endpoints": 0
+            }
+          ]
+        },
+        "outerBulk": {
+          "worldArea": 2549667.17,
+          "endpoints": 265,
+          "endpointsPerMillion": 103.94,
+          "components": 2,
+          "holes": 0,
+          "outsideComponent": 26,
+          "largestComponents": [
+            {
+              "worldAreaAtAlpha128": 2379230.28,
+              "endpoints": 189
+            },
+            {
+              "worldAreaAtAlpha128": 165145.99,
+              "endpoints": 50
+            }
+          ]
+        }
+      },
+      {
+        "play": {
+          "left": 0,
+          "top": 0,
+          "right": 3200,
+          "bottom": 3000
+        },
+        "outer": {
+          "left": -260,
+          "top": -280,
+          "right": 3580,
+          "bottom": 3450
+        },
+        "scale": 0.4235294117647059,
+        "rows": [
+          {
+            "id": "art-g00-foothill",
+            "asset": "g00-foothill",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 47,
+            "sourcePaths": 1,
+            "closedContours": 1,
+            "colorPaths": 1,
+            "clips": [],
+            "normalizedBytes": 1319,
+            "gzipBytes": 521,
+            "assetSHA256": "26783a3de1970939fc3171ef92afbe98e05be8af70d081a0d09588573bc20201",
+            "playEndpoints": 26,
+            "outerEndpoints": 19
+          },
+          {
+            "id": "art-g00-east-spine",
+            "asset": "g00-east-spine",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 60,
+            "sourcePaths": 4,
+            "closedContours": 4,
+            "colorPaths": 4,
+            "clips": [],
+            "normalizedBytes": 1892,
+            "gzipBytes": 722,
+            "assetSHA256": "c1c18a05a74278dece57879ae0e84d5e085b3310b74fed2e5a81942521b77da4",
+            "playEndpoints": 43,
+            "outerEndpoints": 16
+          },
+          {
+            "id": "art-g00-mid-contact",
+            "asset": "g00-mid-contact",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 74,
+            "sourcePaths": 3,
+            "closedContours": 3,
+            "colorPaths": 3,
+            "clips": [],
+            "normalizedBytes": 2064,
+            "gzipBytes": 765,
+            "assetSHA256": "01d9359aa27d686d4f1542b65b39d40b58db41cad3550d2be8d88b8d5632c464",
+            "playEndpoints": 68,
+            "outerEndpoints": 6
+          },
+          {
+            "id": "art-g00-post-contact",
+            "asset": "g00-post-contact",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 29,
+            "sourcePaths": 1,
+            "closedContours": 1,
+            "colorPaths": 1,
+            "clips": [],
+            "normalizedBytes": 940,
+            "gzipBytes": 431,
+            "assetSHA256": "1f62cf7b5bdaf897b49a1ae35d02617110997805a0d2478c5e878c1aad9e0180",
+            "playEndpoints": 29,
+            "outerEndpoints": 0
+          },
+          {
+            "id": "art-g00-west-continuation",
+            "asset": "g00-west-continuation",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 28,
+            "sourcePaths": 3,
+            "closedContours": 3,
+            "colorPaths": 3,
+            "clips": [],
+            "normalizedBytes": 1168,
+            "gzipBytes": 500,
+            "assetSHA256": "07f0f80153da579e23524dbce4aec71d90cbe04db33b9d5965d5dd970ec354e9",
+            "playEndpoints": 2,
+            "outerEndpoints": 26
+          },
+          {
+            "id": "art-g10-foothill-facets",
+            "asset": "g10-foothill-facets",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 813,
+            "sourcePaths": 153,
+            "closedContours": 153,
+            "colorPaths": 153,
+            "clips": [],
+            "normalizedBytes": 24995,
+            "gzipBytes": 5085,
+            "assetSHA256": "c0585d36e8a79cdfbe161e55f0daebee69c0723b8092e59b894099bfa8aa3c7a",
+            "playEndpoints": 752,
+            "outerEndpoints": 61
+          },
+          {
+            "id": "art-g11-east-facets",
+            "asset": "g11-east-facets",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 344,
+            "sourcePaths": 81,
+            "closedContours": 81,
+            "colorPaths": 81,
+            "clips": [],
+            "normalizedBytes": 10215,
+            "gzipBytes": 1988,
+            "assetSHA256": "7774c8176724cc9ec371ac5c3ffabe527fac1f89cf165ae7cb89e34612d2fd64",
+            "playEndpoints": 265,
+            "outerEndpoints": 79
+          },
+          {
+            "id": "art-g12-mid-facets",
+            "asset": "g12-mid-facets",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 909,
+            "sourcePaths": 165,
+            "closedContours": 165,
+            "colorPaths": 165,
+            "clips": [],
+            "normalizedBytes": 27812,
+            "gzipBytes": 5635,
+            "assetSHA256": "04c9413003d44459db9d9e624e43a850c87662ac4bf63a6065b5ac1e26ded205",
+            "playEndpoints": 886,
+            "outerEndpoints": 23
+          },
+          {
+            "id": "art-g13-inner-facets",
+            "asset": "g13-inner-facets",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 466,
+            "sourcePaths": 81,
+            "closedContours": 81,
+            "colorPaths": 81,
+            "clips": [],
+            "normalizedBytes": 14457,
+            "gzipBytes": 3166,
+            "assetSHA256": "3c292bf997c6c0fbb1d096cc3ff93d4f22010134ee80126c8377115006215de0",
+            "playEndpoints": 466,
+            "outerEndpoints": 0
+          },
+          {
+            "id": "art-g16-deep-join-strata",
+            "asset": "g16-deep-join-strata",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 80,
+            "sourcePaths": 7,
+            "closedContours": 7,
+            "colorPaths": 7,
+            "clips": [],
+            "normalizedBytes": 2146,
+            "gzipBytes": 730,
+            "assetSHA256": "083c42a8c0fd1d7caf409c9364594123b0924bcf90395810ab1c64f972161820",
+            "playEndpoints": 45,
+            "outerEndpoints": 35
+          },
+          {
+            "id": "art-g15-quiet-mids-foothill",
+            "asset": "g15-quiet-mids-foothill",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 65,
+            "sourcePaths": 6,
+            "closedContours": 6,
+            "colorPaths": 6,
+            "clips": [],
+            "normalizedBytes": 1840,
+            "gzipBytes": 652,
+            "assetSHA256": "c348fcdf78c7f61ffc6303c99495b6ebb993bb63d2be86e66c6cec330c9c614d",
+            "playEndpoints": 65,
+            "outerEndpoints": 0
+          },
+          {
+            "id": "art-g28-fascia-outcrop-joins",
+            "asset": "g28-fascia-outcrop-joins",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 58,
+            "sourcePaths": 8,
+            "closedContours": 8,
+            "colorPaths": 8,
+            "clips": [],
+            "normalizedBytes": 1738,
+            "gzipBytes": 588,
+            "assetSHA256": "49daef2c22b5654eaf4fa9a0da2bcab821d5c7ab0df13051c1558a02fb3c616b",
+            "playEndpoints": 58,
+            "outerEndpoints": 0
+          },
+          {
+            "id": "art-m54-observation-balconies",
+            "asset": "m54-observation-balconies",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 40,
+            "sourcePaths": 4,
+            "closedContours": 4,
+            "colorPaths": 4,
+            "clips": [],
+            "normalizedBytes": 1108,
+            "gzipBytes": 370,
+            "assetSHA256": "55d075e654dde95fcbb742dff5fc32a361be855bcfab91c82924d08baabae748",
+            "playEndpoints": 40,
+            "outerEndpoints": 0
+          }
+        ],
+        "mask": "54-N-2x.png",
+        "maskSHA256": "f9fb35c9e4a222c506ec1c382c00f2c89d3103b622a08630f4820b6eb2fcaef7",
+        "playBulk": {
+          "worldArea": 4253175.24,
+          "endpoints": 2745,
+          "endpointsPerMillion": 645.4,
+          "components": 3,
+          "holes": 1,
+          "outsideComponent": 122,
+          "largestComponents": [
+            {
+              "worldAreaAtAlpha128": 3382769.59,
+              "endpoints": 1672
+            },
+            {
+              "worldAreaAtAlpha128": 865861.97,
+              "endpoints": 951
+            },
+            {
+              "worldAreaAtAlpha128": 169.85,
+              "endpoints": 0
+            }
+          ]
+        },
+        "outerBulk": {
+          "worldArea": 2563306.68,
+          "endpoints": 265,
+          "endpointsPerMillion": 103.38,
+          "components": 2,
+          "holes": 0,
+          "outsideComponent": 24,
+          "largestComponents": [
+            {
+              "worldAreaAtAlpha128": 2395172.92,
+              "endpoints": 191
+            },
+            {
+              "worldAreaAtAlpha128": 165495.0,
+              "endpoints": 50
+            }
+          ]
+        }
+      }
+    ],
+    "58": [
+      {
+        "play": {
+          "left": 0,
+          "top": 0,
+          "right": 7200,
+          "bottom": 3600
+        },
+        "outer": {
+          "left": -3600,
+          "top": -3250,
+          "right": 11440,
+          "bottom": 7500
+        },
+        "scale": 0.21176470588235294,
+        "rows": [
+          {
+            "id": "vault-crown-extension-body",
+            "asset": "vault-crown-extension-body",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 63,
+            "sourcePaths": 3,
+            "closedContours": 3,
+            "colorPaths": 3,
+            "clips": [],
+            "normalizedBytes": 1929,
+            "gzipBytes": 705,
+            "assetSHA256": "58f18bcf5e08e8a87e53fc9375f014e52298ce781f5ffca2ce0b4df186ca7b31",
+            "playEndpoints": 0,
+            "outerEndpoints": 63
+          },
+          {
+            "id": "vault-crown-extension-facets",
+            "asset": "vault-crown-extension-facets",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 108,
+            "sourcePaths": 6,
+            "closedContours": 6,
+            "colorPaths": 6,
+            "clips": [],
+            "normalizedBytes": 2861,
+            "gzipBytes": 935,
+            "assetSHA256": "577983a8068f63357104b1e9f5f416a11f7fe37288a1303564455537d7e6d7f2",
+            "playEndpoints": 0,
+            "outerEndpoints": 108
+          },
+          {
+            "id": "west-face-extension-body",
+            "asset": "west-face-extension-body",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 27,
+            "sourcePaths": 1,
+            "closedContours": 1,
+            "colorPaths": 1,
+            "clips": [],
+            "normalizedBytes": 948,
+            "gzipBytes": 430,
+            "assetSHA256": "2b2c5fd729475faee5f31f5d3e10afb64ba1c53bc0c8bdda1b4b41be846d9968",
+            "playEndpoints": 0,
+            "outerEndpoints": 27
+          },
+          {
+            "id": "west-face-extension-facets",
+            "asset": "west-face-extension-facets",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 88,
+            "sourcePaths": 6,
+            "closedContours": 6,
+            "colorPaths": 6,
+            "clips": [],
+            "normalizedBytes": 2488,
+            "gzipBytes": 884,
+            "assetSHA256": "357f6fdf945aa856bab7319630a33a20d240c727366326d2e0e1ef9e151dc568",
+            "playEndpoints": 0,
+            "outerEndpoints": 88
+          },
+          {
+            "id": "east-face-extension-body",
+            "asset": "east-face-extension-body",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 52,
+            "sourcePaths": 3,
+            "closedContours": 3,
+            "colorPaths": 3,
+            "clips": [],
+            "normalizedBytes": 1675,
+            "gzipBytes": 653,
+            "assetSHA256": "ef7c9fc0032c2220682f82185cd59f770f3c4ac230d4944d61741930eb88a71e",
+            "playEndpoints": 0,
+            "outerEndpoints": 52
+          },
+          {
+            "id": "east-face-extension-facets",
+            "asset": "east-face-extension-facets",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 91,
+            "sourcePaths": 6,
+            "closedContours": 6,
+            "colorPaths": 6,
+            "clips": [],
+            "normalizedBytes": 2463,
+            "gzipBytes": 870,
+            "assetSHA256": "dff5ea3989e903b62542c4eaf35bb122ddfc0d1c6f358d90cae484d7536675fa",
+            "playEndpoints": 0,
+            "outerEndpoints": 91
+          },
+          {
+            "id": "floor-mass-extension-body",
+            "asset": "floor-mass-extension-body",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 47,
+            "sourcePaths": 1,
+            "closedContours": 1,
+            "colorPaths": 1,
+            "clips": [],
+            "normalizedBytes": 1332,
+            "gzipBytes": 552,
+            "assetSHA256": "b721a6594f2642ea6ebda433c016e3855ee74dbae82cae06f8491fa452b62fb5",
+            "playEndpoints": 0,
+            "outerEndpoints": 47
+          },
+          {
+            "id": "floor-mass-extension-facets",
+            "asset": "floor-mass-extension-facets",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 142,
+            "sourcePaths": 10,
+            "closedContours": 10,
+            "colorPaths": 10,
+            "clips": [],
+            "normalizedBytes": 3603,
+            "gzipBytes": 1180,
+            "assetSHA256": "47c4608727a01115d8b585fc8a6dffbd86e7f9ff22527a36dfc890be40416e47",
+            "playEndpoints": 0,
+            "outerEndpoints": 142
+          },
+          {
+            "id": "hall-body",
+            "asset": "hall-body",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 82,
+            "sourcePaths": 3,
+            "closedContours": 3,
+            "colorPaths": 3,
+            "clips": [],
+            "normalizedBytes": 2184,
+            "gzipBytes": 793,
+            "assetSHA256": "a9fd51a5df0dc10788710588500273f9212e8354d15bf2f6ffb7867afe83919b",
+            "playEndpoints": 52,
+            "outerEndpoints": 30
+          },
+          {
+            "id": "hall-facets",
+            "asset": "hall-facets",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 1230,
+            "sourcePaths": 73,
+            "closedContours": 73,
+            "colorPaths": 73,
+            "clips": [],
+            "normalizedBytes": 32008,
+            "gzipBytes": 10243,
+            "assetSHA256": "998116c0fd8d002acb22302a3c0b362f1fbe49f2c1649388412ddc0b56fd39c9",
+            "playEndpoints": 982,
+            "outerEndpoints": 248
+          },
+          {
+            "id": "west-body",
+            "asset": "west-body",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 48,
+            "sourcePaths": 3,
+            "closedContours": 3,
+            "colorPaths": 3,
+            "clips": [],
+            "normalizedBytes": 1508,
+            "gzipBytes": 606,
+            "assetSHA256": "aba1c8ccb8d5260241304fd726fa67ed891a104b91ac0a624b72c72733394268",
+            "playEndpoints": 22,
+            "outerEndpoints": 26
+          },
+          {
+            "id": "west-facets",
+            "asset": "west-facets",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 347,
+            "sourcePaths": 32,
+            "closedContours": 32,
+            "colorPaths": 32,
+            "clips": [],
+            "normalizedBytes": 9223,
+            "gzipBytes": 2657,
+            "assetSHA256": "c8a7c25f942b3882e7264c53f204b93565275c774c15828e8ffdd5f820f1404c",
+            "playEndpoints": 221,
+            "outerEndpoints": 126
+          },
+          {
+            "id": "battery-body",
+            "asset": "battery-body",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 46,
+            "sourcePaths": 1,
+            "closedContours": 1,
+            "colorPaths": 1,
+            "clips": [],
+            "normalizedBytes": 1274,
+            "gzipBytes": 462,
+            "assetSHA256": "0f3abbf7acf75fe309efdfaf92612cbf3e5440798e764460a534f5a9cebb6d6a",
+            "playEndpoints": 46,
+            "outerEndpoints": 0
+          },
+          {
+            "id": "battery-facets",
+            "asset": "battery-facets",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 115,
+            "sourcePaths": 14,
+            "closedContours": 14,
+            "colorPaths": 14,
+            "clips": [],
+            "normalizedBytes": 3117,
+            "gzipBytes": 946,
+            "assetSHA256": "77d2777489ba7b06c134b4bbc8567b85ca6c2d7811c8993cd2c588d8e344c81b",
+            "playEndpoints": 115,
+            "outerEndpoints": 0
+          },
+          {
+            "id": "hook-body",
+            "asset": "hook-body",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 23,
+            "sourcePaths": 1,
+            "closedContours": 1,
+            "colorPaths": 1,
+            "clips": [],
+            "normalizedBytes": 828,
+            "gzipBytes": 392,
+            "assetSHA256": "69dc7a673c47f464971f9778e3f58cacd63b36ea98f8f11000cf217f51895fde",
+            "playEndpoints": 21,
+            "outerEndpoints": 2
+          },
+          {
+            "id": "hook-facets",
+            "asset": "hook-facets",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 87,
+            "sourcePaths": 6,
+            "closedContours": 6,
+            "colorPaths": 6,
+            "clips": [],
+            "normalizedBytes": 2282,
+            "gzipBytes": 761,
+            "assetSHA256": "0a664e7800a8f5ce6445f94b9ba45c8bdf7bb8c262f4385efdea68cf0c465b6e",
+            "playEndpoints": 85,
+            "outerEndpoints": 2
+          },
+          {
+            "id": "dais-body",
+            "asset": "dais-body",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 37,
+            "sourcePaths": 1,
+            "closedContours": 1,
+            "colorPaths": 1,
+            "clips": [],
+            "normalizedBytes": 1111,
+            "gzipBytes": 455,
+            "assetSHA256": "5dd67363aae0aebaeaa8dfdce68383582833cb5fbe557be4f9b1e3ed84c01bf9",
+            "playEndpoints": 37,
+            "outerEndpoints": 0
+          },
+          {
+            "id": "dais-facets",
+            "asset": "dais-facets",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 162,
+            "sourcePaths": 15,
+            "closedContours": 15,
+            "colorPaths": 15,
+            "clips": [],
+            "normalizedBytes": 4316,
+            "gzipBytes": 1290,
+            "assetSHA256": "85e33524644ecce0683b12ac6e88166530d19b8252eb31a9d49ed63bd6fef9f6",
+            "playEndpoints": 162,
+            "outerEndpoints": 0
+          },
+          {
+            "id": "east-body",
+            "asset": "east-body",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 47,
+            "sourcePaths": 3,
+            "closedContours": 3,
+            "colorPaths": 3,
+            "clips": [],
+            "normalizedBytes": 1506,
+            "gzipBytes": 611,
+            "assetSHA256": "6e18614d7961bdc4cb65cdeef24d52e4f5ef797180372bcd1483526d029827b4",
+            "playEndpoints": 17,
+            "outerEndpoints": 30
+          },
+          {
+            "id": "east-facets",
+            "asset": "east-facets",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 505,
+            "sourcePaths": 44,
+            "closedContours": 44,
+            "colorPaths": 44,
+            "clips": [],
+            "normalizedBytes": 13598,
+            "gzipBytes": 3657,
+            "assetSHA256": "7d3ec4d85884e930028d70348befed5b3879ffae9f8d6a3818bf4b8c3013b27e",
+            "playEndpoints": 330,
+            "outerEndpoints": 175
+          },
+          {
+            "id": "floor-body",
+            "asset": "floor-body",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 65,
+            "sourcePaths": 3,
+            "closedContours": 3,
+            "colorPaths": 3,
+            "clips": [],
+            "normalizedBytes": 1867,
+            "gzipBytes": 700,
+            "assetSHA256": "7bb5b086b02144100c0ec3af3cd5f43e715743c44df4c6fbbfc2601cfed9be91",
+            "playEndpoints": 35,
+            "outerEndpoints": 30
+          },
+          {
+            "id": "floor-facets",
+            "asset": "floor-facets",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 2005,
+            "sourcePaths": 223,
+            "closedContours": 223,
+            "colorPaths": 223,
+            "clips": [],
+            "normalizedBytes": 60748,
+            "gzipBytes": 13950,
+            "assetSHA256": "81ae0eb89c8cda4ff9f84bcbe9efb04ddef4af0f0668bb3cbf60f8cca5b485c1",
+            "playEndpoints": 1432,
+            "outerEndpoints": 573
+          },
+          {
+            "id": "art-m58-suspended-hall",
+            "asset": "m58-suspended-hall",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 256,
+            "sourcePaths": 42,
+            "closedContours": 42,
+            "colorPaths": 42,
+            "clips": [],
+            "normalizedBytes": 6587,
+            "gzipBytes": 1476,
+            "assetSHA256": "e3d33382c257caf5149d25da6f249f8f5c6e245e5f632746a5b77692604a51f2",
+            "playEndpoints": 256,
+            "outerEndpoints": 0
+          },
+          {
+            "id": "art-m58-tile-eaves",
+            "asset": "m58-tile-eaves",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 60,
+            "sourcePaths": 10,
+            "closedContours": 10,
+            "colorPaths": 10,
+            "clips": [],
+            "normalizedBytes": 1703,
+            "gzipBytes": 533,
+            "assetSHA256": "c6acc9013c4a83b520f3db042e35eef9d3c2e2994323512951fe68a5f2e0ab7b",
+            "playEndpoints": 60,
+            "outerEndpoints": 0
+          },
+          {
+            "id": "edge-joint-crown-body",
+            "asset": "edge-joint-crown-body",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 53,
+            "sourcePaths": 1,
+            "closedContours": 1,
+            "colorPaths": 1,
+            "clips": [],
+            "normalizedBytes": 1501,
+            "gzipBytes": 560,
+            "assetSHA256": "09489068ab78e846babe5b1d88ccc8e712ed9609362120160cfb273e0869ed13",
+            "playEndpoints": 0,
+            "outerEndpoints": 53
+          },
+          {
+            "id": "edge-joint-crown-facets",
+            "asset": "edge-joint-crown-facets",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 63,
+            "sourcePaths": 4,
+            "closedContours": 4,
+            "colorPaths": 4,
+            "clips": [],
+            "normalizedBytes": 1982,
+            "gzipBytes": 768,
+            "assetSHA256": "c0abffd5f5976f0298ce9d197b0ce6591156b4b6e5f40a6022534111279df3f5",
+            "playEndpoints": 0,
+            "outerEndpoints": 63
+          },
+          {
+            "id": "edge-joint-floor-body",
+            "asset": "edge-joint-floor-body",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 56,
+            "sourcePaths": 1,
+            "closedContours": 1,
+            "colorPaths": 1,
+            "clips": [],
+            "normalizedBytes": 1519,
+            "gzipBytes": 577,
+            "assetSHA256": "e8d02e88d603d370310b1dd553e545d8d11443c36fb5d68e38afb19f3fd952f0",
+            "playEndpoints": 0,
+            "outerEndpoints": 56
+          },
+          {
+            "id": "edge-joint-floor-facets",
+            "asset": "edge-joint-floor-facets",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 43,
+            "sourcePaths": 3,
+            "closedContours": 3,
+            "colorPaths": 3,
+            "clips": [],
+            "normalizedBytes": 1444,
+            "gzipBytes": 614,
+            "assetSHA256": "5aa9e89107304f8515984cfb5ee752580491c05650efd449a5d2a33ca0b5e50b",
+            "playEndpoints": 0,
+            "outerEndpoints": 43
+          },
+          {
+            "id": "edge-joint-east-body",
+            "asset": "act6-08--edge-joint-east-body",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 38,
+            "sourcePaths": 1,
+            "closedContours": 1,
+            "colorPaths": 1,
+            "clips": [],
+            "normalizedBytes": 1162,
+            "gzipBytes": 496,
+            "assetSHA256": "984c148fc67b2b7b7e21069a2e7336540919f19aa72c76a0b5e320a129f6d226",
+            "playEndpoints": 0,
+            "outerEndpoints": 38
+          },
+          {
+            "id": "edge-joint-east-facets",
+            "asset": "act6-08--edge-joint-east-facets",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 17,
+            "sourcePaths": 1,
+            "closedContours": 1,
+            "colorPaths": 1,
+            "clips": [],
+            "normalizedBytes": 791,
+            "gzipBytes": 403,
+            "assetSHA256": "19cde7b0053c00e04909719aec414561ddf786fdceb7679c8d03cb9b3ad4c62c",
+            "playEndpoints": 0,
+            "outerEndpoints": 17
+          },
+          {
+            "id": "edge-joint-west-body",
+            "asset": "act6-08--edge-joint-west-body",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 31,
+            "sourcePaths": 1,
+            "closedContours": 1,
+            "colorPaths": 1,
+            "clips": [],
+            "normalizedBytes": 1038,
+            "gzipBytes": 460,
+            "assetSHA256": "8fc360f773fd3b9f47aa42e406d698bb4f20b9da3ed69fda9343fc056ba40c31",
+            "playEndpoints": 0,
+            "outerEndpoints": 31
+          },
+          {
+            "id": "edge-joint-west-facets",
+            "asset": "act6-08--edge-joint-west-facets",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 9,
+            "sourcePaths": 1,
+            "closedContours": 1,
+            "colorPaths": 1,
+            "clips": [],
+            "normalizedBytes": 620,
+            "gzipBytes": 355,
+            "assetSHA256": "b1a026a80f728dfc4d541b99fafa189fb2ce35b9f654a6aaa1a78ec1419d817a",
+            "playEndpoints": 0,
+            "outerEndpoints": 9
+          }
+        ],
+        "mask": "58-1x.png",
+        "maskSHA256": "09f978528c82267d6acd638209fa97c2c20968879d2307dc7aab2ceeb230f3f4",
+        "playBulk": {
+          "worldArea": 16769614.76,
+          "endpoints": 3873,
+          "endpointsPerMillion": 230.95,
+          "components": 2,
+          "holes": 3,
+          "outsideComponent": 155,
+          "largestComponents": [
+            {
+              "worldAreaAtAlpha128": 16741966.23,
+              "endpoints": 3709
+            },
+            {
+              "worldAreaAtAlpha128": 6714.13,
+              "endpoints": 9
+            }
+          ]
+        },
+        "outerBulk": {
+          "worldArea": 84586277.37,
+          "endpoints": 2170,
+          "endpointsPerMillion": 25.65,
+          "components": 1,
+          "holes": 1,
+          "outsideComponent": 77,
+          "largestComponents": [
+            {
+              "worldAreaAtAlpha128": 84563908.9,
+              "endpoints": 2093
+            }
+          ]
+        }
+      },
+      {
+        "play": {
+          "left": 0,
+          "top": 0,
+          "right": 7200,
+          "bottom": 3600
+        },
+        "outer": {
+          "left": -3600,
+          "top": -3250,
+          "right": 11440,
+          "bottom": 7500
+        },
+        "scale": 0.4235294117647059,
+        "rows": [
+          {
+            "id": "vault-crown-extension-body",
+            "asset": "vault-crown-extension-body",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 63,
+            "sourcePaths": 3,
+            "closedContours": 3,
+            "colorPaths": 3,
+            "clips": [],
+            "normalizedBytes": 1929,
+            "gzipBytes": 705,
+            "assetSHA256": "58f18bcf5e08e8a87e53fc9375f014e52298ce781f5ffca2ce0b4df186ca7b31",
+            "playEndpoints": 0,
+            "outerEndpoints": 63
+          },
+          {
+            "id": "vault-crown-extension-facets",
+            "asset": "vault-crown-extension-facets",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 108,
+            "sourcePaths": 6,
+            "closedContours": 6,
+            "colorPaths": 6,
+            "clips": [],
+            "normalizedBytes": 2861,
+            "gzipBytes": 935,
+            "assetSHA256": "577983a8068f63357104b1e9f5f416a11f7fe37288a1303564455537d7e6d7f2",
+            "playEndpoints": 0,
+            "outerEndpoints": 108
+          },
+          {
+            "id": "west-face-extension-body",
+            "asset": "west-face-extension-body",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 27,
+            "sourcePaths": 1,
+            "closedContours": 1,
+            "colorPaths": 1,
+            "clips": [],
+            "normalizedBytes": 948,
+            "gzipBytes": 430,
+            "assetSHA256": "2b2c5fd729475faee5f31f5d3e10afb64ba1c53bc0c8bdda1b4b41be846d9968",
+            "playEndpoints": 0,
+            "outerEndpoints": 27
+          },
+          {
+            "id": "west-face-extension-facets",
+            "asset": "west-face-extension-facets",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 88,
+            "sourcePaths": 6,
+            "closedContours": 6,
+            "colorPaths": 6,
+            "clips": [],
+            "normalizedBytes": 2488,
+            "gzipBytes": 884,
+            "assetSHA256": "357f6fdf945aa856bab7319630a33a20d240c727366326d2e0e1ef9e151dc568",
+            "playEndpoints": 0,
+            "outerEndpoints": 88
+          },
+          {
+            "id": "east-face-extension-body",
+            "asset": "east-face-extension-body",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 52,
+            "sourcePaths": 3,
+            "closedContours": 3,
+            "colorPaths": 3,
+            "clips": [],
+            "normalizedBytes": 1675,
+            "gzipBytes": 653,
+            "assetSHA256": "ef7c9fc0032c2220682f82185cd59f770f3c4ac230d4944d61741930eb88a71e",
+            "playEndpoints": 0,
+            "outerEndpoints": 52
+          },
+          {
+            "id": "east-face-extension-facets",
+            "asset": "east-face-extension-facets",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 91,
+            "sourcePaths": 6,
+            "closedContours": 6,
+            "colorPaths": 6,
+            "clips": [],
+            "normalizedBytes": 2463,
+            "gzipBytes": 870,
+            "assetSHA256": "dff5ea3989e903b62542c4eaf35bb122ddfc0d1c6f358d90cae484d7536675fa",
+            "playEndpoints": 0,
+            "outerEndpoints": 91
+          },
+          {
+            "id": "floor-mass-extension-body",
+            "asset": "floor-mass-extension-body",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 47,
+            "sourcePaths": 1,
+            "closedContours": 1,
+            "colorPaths": 1,
+            "clips": [],
+            "normalizedBytes": 1332,
+            "gzipBytes": 552,
+            "assetSHA256": "b721a6594f2642ea6ebda433c016e3855ee74dbae82cae06f8491fa452b62fb5",
+            "playEndpoints": 0,
+            "outerEndpoints": 47
+          },
+          {
+            "id": "floor-mass-extension-facets",
+            "asset": "floor-mass-extension-facets",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 142,
+            "sourcePaths": 10,
+            "closedContours": 10,
+            "colorPaths": 10,
+            "clips": [],
+            "normalizedBytes": 3603,
+            "gzipBytes": 1180,
+            "assetSHA256": "47c4608727a01115d8b585fc8a6dffbd86e7f9ff22527a36dfc890be40416e47",
+            "playEndpoints": 0,
+            "outerEndpoints": 142
+          },
+          {
+            "id": "hall-body",
+            "asset": "hall-body",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 82,
+            "sourcePaths": 3,
+            "closedContours": 3,
+            "colorPaths": 3,
+            "clips": [],
+            "normalizedBytes": 2184,
+            "gzipBytes": 793,
+            "assetSHA256": "a9fd51a5df0dc10788710588500273f9212e8354d15bf2f6ffb7867afe83919b",
+            "playEndpoints": 52,
+            "outerEndpoints": 30
+          },
+          {
+            "id": "hall-facets",
+            "asset": "hall-facets",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 1230,
+            "sourcePaths": 73,
+            "closedContours": 73,
+            "colorPaths": 73,
+            "clips": [],
+            "normalizedBytes": 32008,
+            "gzipBytes": 10243,
+            "assetSHA256": "998116c0fd8d002acb22302a3c0b362f1fbe49f2c1649388412ddc0b56fd39c9",
+            "playEndpoints": 982,
+            "outerEndpoints": 248
+          },
+          {
+            "id": "west-body",
+            "asset": "west-body",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 48,
+            "sourcePaths": 3,
+            "closedContours": 3,
+            "colorPaths": 3,
+            "clips": [],
+            "normalizedBytes": 1508,
+            "gzipBytes": 606,
+            "assetSHA256": "aba1c8ccb8d5260241304fd726fa67ed891a104b91ac0a624b72c72733394268",
+            "playEndpoints": 22,
+            "outerEndpoints": 26
+          },
+          {
+            "id": "west-facets",
+            "asset": "west-facets",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 347,
+            "sourcePaths": 32,
+            "closedContours": 32,
+            "colorPaths": 32,
+            "clips": [],
+            "normalizedBytes": 9223,
+            "gzipBytes": 2657,
+            "assetSHA256": "c8a7c25f942b3882e7264c53f204b93565275c774c15828e8ffdd5f820f1404c",
+            "playEndpoints": 221,
+            "outerEndpoints": 126
+          },
+          {
+            "id": "battery-body",
+            "asset": "battery-body",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 46,
+            "sourcePaths": 1,
+            "closedContours": 1,
+            "colorPaths": 1,
+            "clips": [],
+            "normalizedBytes": 1274,
+            "gzipBytes": 462,
+            "assetSHA256": "0f3abbf7acf75fe309efdfaf92612cbf3e5440798e764460a534f5a9cebb6d6a",
+            "playEndpoints": 46,
+            "outerEndpoints": 0
+          },
+          {
+            "id": "battery-facets",
+            "asset": "battery-facets",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 115,
+            "sourcePaths": 14,
+            "closedContours": 14,
+            "colorPaths": 14,
+            "clips": [],
+            "normalizedBytes": 3117,
+            "gzipBytes": 946,
+            "assetSHA256": "77d2777489ba7b06c134b4bbc8567b85ca6c2d7811c8993cd2c588d8e344c81b",
+            "playEndpoints": 115,
+            "outerEndpoints": 0
+          },
+          {
+            "id": "hook-body",
+            "asset": "hook-body",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 23,
+            "sourcePaths": 1,
+            "closedContours": 1,
+            "colorPaths": 1,
+            "clips": [],
+            "normalizedBytes": 828,
+            "gzipBytes": 392,
+            "assetSHA256": "69dc7a673c47f464971f9778e3f58cacd63b36ea98f8f11000cf217f51895fde",
+            "playEndpoints": 21,
+            "outerEndpoints": 2
+          },
+          {
+            "id": "hook-facets",
+            "asset": "hook-facets",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 87,
+            "sourcePaths": 6,
+            "closedContours": 6,
+            "colorPaths": 6,
+            "clips": [],
+            "normalizedBytes": 2282,
+            "gzipBytes": 761,
+            "assetSHA256": "0a664e7800a8f5ce6445f94b9ba45c8bdf7bb8c262f4385efdea68cf0c465b6e",
+            "playEndpoints": 85,
+            "outerEndpoints": 2
+          },
+          {
+            "id": "dais-body",
+            "asset": "dais-body",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 37,
+            "sourcePaths": 1,
+            "closedContours": 1,
+            "colorPaths": 1,
+            "clips": [],
+            "normalizedBytes": 1111,
+            "gzipBytes": 455,
+            "assetSHA256": "5dd67363aae0aebaeaa8dfdce68383582833cb5fbe557be4f9b1e3ed84c01bf9",
+            "playEndpoints": 37,
+            "outerEndpoints": 0
+          },
+          {
+            "id": "dais-facets",
+            "asset": "dais-facets",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 162,
+            "sourcePaths": 15,
+            "closedContours": 15,
+            "colorPaths": 15,
+            "clips": [],
+            "normalizedBytes": 4316,
+            "gzipBytes": 1290,
+            "assetSHA256": "85e33524644ecce0683b12ac6e88166530d19b8252eb31a9d49ed63bd6fef9f6",
+            "playEndpoints": 162,
+            "outerEndpoints": 0
+          },
+          {
+            "id": "east-body",
+            "asset": "east-body",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 47,
+            "sourcePaths": 3,
+            "closedContours": 3,
+            "colorPaths": 3,
+            "clips": [],
+            "normalizedBytes": 1506,
+            "gzipBytes": 611,
+            "assetSHA256": "6e18614d7961bdc4cb65cdeef24d52e4f5ef797180372bcd1483526d029827b4",
+            "playEndpoints": 17,
+            "outerEndpoints": 30
+          },
+          {
+            "id": "east-facets",
+            "asset": "east-facets",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 505,
+            "sourcePaths": 44,
+            "closedContours": 44,
+            "colorPaths": 44,
+            "clips": [],
+            "normalizedBytes": 13598,
+            "gzipBytes": 3657,
+            "assetSHA256": "7d3ec4d85884e930028d70348befed5b3879ffae9f8d6a3818bf4b8c3013b27e",
+            "playEndpoints": 330,
+            "outerEndpoints": 175
+          },
+          {
+            "id": "floor-body",
+            "asset": "floor-body",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 65,
+            "sourcePaths": 3,
+            "closedContours": 3,
+            "colorPaths": 3,
+            "clips": [],
+            "normalizedBytes": 1867,
+            "gzipBytes": 700,
+            "assetSHA256": "7bb5b086b02144100c0ec3af3cd5f43e715743c44df4c6fbbfc2601cfed9be91",
+            "playEndpoints": 35,
+            "outerEndpoints": 30
+          },
+          {
+            "id": "floor-facets",
+            "asset": "floor-facets",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 2005,
+            "sourcePaths": 223,
+            "closedContours": 223,
+            "colorPaths": 223,
+            "clips": [],
+            "normalizedBytes": 60748,
+            "gzipBytes": 13950,
+            "assetSHA256": "81ae0eb89c8cda4ff9f84bcbe9efb04ddef4af0f0668bb3cbf60f8cca5b485c1",
+            "playEndpoints": 1432,
+            "outerEndpoints": 573
+          },
+          {
+            "id": "art-m58-suspended-hall",
+            "asset": "m58-suspended-hall",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 256,
+            "sourcePaths": 42,
+            "closedContours": 42,
+            "colorPaths": 42,
+            "clips": [],
+            "normalizedBytes": 6587,
+            "gzipBytes": 1476,
+            "assetSHA256": "e3d33382c257caf5149d25da6f249f8f5c6e245e5f632746a5b77692604a51f2",
+            "playEndpoints": 256,
+            "outerEndpoints": 0
+          },
+          {
+            "id": "art-m58-tile-eaves",
+            "asset": "m58-tile-eaves",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 60,
+            "sourcePaths": 10,
+            "closedContours": 10,
+            "colorPaths": 10,
+            "clips": [],
+            "normalizedBytes": 1703,
+            "gzipBytes": 533,
+            "assetSHA256": "c6acc9013c4a83b520f3db042e35eef9d3c2e2994323512951fe68a5f2e0ab7b",
+            "playEndpoints": 60,
+            "outerEndpoints": 0
+          },
+          {
+            "id": "edge-joint-crown-body",
+            "asset": "edge-joint-crown-body",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 53,
+            "sourcePaths": 1,
+            "closedContours": 1,
+            "colorPaths": 1,
+            "clips": [],
+            "normalizedBytes": 1501,
+            "gzipBytes": 560,
+            "assetSHA256": "09489068ab78e846babe5b1d88ccc8e712ed9609362120160cfb273e0869ed13",
+            "playEndpoints": 0,
+            "outerEndpoints": 53
+          },
+          {
+            "id": "edge-joint-crown-facets",
+            "asset": "edge-joint-crown-facets",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 63,
+            "sourcePaths": 4,
+            "closedContours": 4,
+            "colorPaths": 4,
+            "clips": [],
+            "normalizedBytes": 1982,
+            "gzipBytes": 768,
+            "assetSHA256": "c0abffd5f5976f0298ce9d197b0ce6591156b4b6e5f40a6022534111279df3f5",
+            "playEndpoints": 0,
+            "outerEndpoints": 63
+          },
+          {
+            "id": "edge-joint-floor-body",
+            "asset": "edge-joint-floor-body",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 56,
+            "sourcePaths": 1,
+            "closedContours": 1,
+            "colorPaths": 1,
+            "clips": [],
+            "normalizedBytes": 1519,
+            "gzipBytes": 577,
+            "assetSHA256": "e8d02e88d603d370310b1dd553e545d8d11443c36fb5d68e38afb19f3fd952f0",
+            "playEndpoints": 0,
+            "outerEndpoints": 56
+          },
+          {
+            "id": "edge-joint-floor-facets",
+            "asset": "edge-joint-floor-facets",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 43,
+            "sourcePaths": 3,
+            "closedContours": 3,
+            "colorPaths": 3,
+            "clips": [],
+            "normalizedBytes": 1444,
+            "gzipBytes": 614,
+            "assetSHA256": "5aa9e89107304f8515984cfb5ee752580491c05650efd449a5d2a33ca0b5e50b",
+            "playEndpoints": 0,
+            "outerEndpoints": 43
+          },
+          {
+            "id": "edge-joint-east-body",
+            "asset": "act6-08--edge-joint-east-body",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 38,
+            "sourcePaths": 1,
+            "closedContours": 1,
+            "colorPaths": 1,
+            "clips": [],
+            "normalizedBytes": 1162,
+            "gzipBytes": 496,
+            "assetSHA256": "984c148fc67b2b7b7e21069a2e7336540919f19aa72c76a0b5e320a129f6d226",
+            "playEndpoints": 0,
+            "outerEndpoints": 38
+          },
+          {
+            "id": "edge-joint-east-facets",
+            "asset": "act6-08--edge-joint-east-facets",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 17,
+            "sourcePaths": 1,
+            "closedContours": 1,
+            "colorPaths": 1,
+            "clips": [],
+            "normalizedBytes": 791,
+            "gzipBytes": 403,
+            "assetSHA256": "19cde7b0053c00e04909719aec414561ddf786fdceb7679c8d03cb9b3ad4c62c",
+            "playEndpoints": 0,
+            "outerEndpoints": 17
+          },
+          {
+            "id": "edge-joint-west-body",
+            "asset": "act6-08--edge-joint-west-body",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 31,
+            "sourcePaths": 1,
+            "closedContours": 1,
+            "colorPaths": 1,
+            "clips": [],
+            "normalizedBytes": 1038,
+            "gzipBytes": 460,
+            "assetSHA256": "8fc360f773fd3b9f47aa42e406d698bb4f20b9da3ed69fda9343fc056ba40c31",
+            "playEndpoints": 0,
+            "outerEndpoints": 31
+          },
+          {
+            "id": "edge-joint-west-facets",
+            "asset": "act6-08--edge-joint-west-facets",
+            "layer": "prop",
+            "transform": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "sourceEndpoints": 9,
+            "sourcePaths": 1,
+            "closedContours": 1,
+            "colorPaths": 1,
+            "clips": [],
+            "normalizedBytes": 620,
+            "gzipBytes": 355,
+            "assetSHA256": "b1a026a80f728dfc4d541b99fafa189fb2ce35b9f654a6aaa1a78ec1419d817a",
+            "playEndpoints": 0,
+            "outerEndpoints": 9
+          }
+        ],
+        "mask": "58-2x.png",
+        "maskSHA256": "ccc39a1a14265162ab7b64010437d8c144ad66e0dce91023347510e828969c2e",
+        "playBulk": {
+          "worldArea": 16738259.16,
+          "endpoints": 3873,
+          "endpointsPerMillion": 231.39,
+          "components": 2,
+          "holes": 3,
+          "outsideComponent": 170,
+          "largestComponents": [
+            {
+              "worldAreaAtAlpha128": 16721049.15,
+              "endpoints": 3698
+            },
+            {
+              "worldAreaAtAlpha128": 6903.56,
+              "endpoints": 5
+            }
+          ]
+        },
+        "outerBulk": {
+          "worldArea": 84608805.47,
+          "endpoints": 2170,
+          "endpointsPerMillion": 25.65,
+          "components": 1,
+          "holes": 1,
+          "outsideComponent": 63,
+          "largestComponents": [
+            {
+              "worldAreaAtAlpha128": 84597553.36,
+              "endpoints": 2107
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

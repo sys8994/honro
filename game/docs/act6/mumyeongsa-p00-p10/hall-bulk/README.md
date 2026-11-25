@@ -39,3 +39,27 @@ python game/docs/act6/mumyeongsa-p00-p10/baseline/hall_bulk.py --out /tmp/honro-
 p=game/docs/act6/mumyeongsa-p00-p10
 python "$p/baseline/body_density.py" --build "$PWD" --out /tmp/honro-body-density --b-proof "$p/visual-atlas/capture-input-b.json" --d-proof "$p/visual-atlas/capture-input-d.json"
 ```
+
+## 53 기단·볼트와 58 마루·처마의 국소 조형
+
+53의 원래 암면 clip 안에서 기단의 하중을 받는 석면 14개와 볼트의 사선 이음 13개를 얹었다. 기단의 작은 면들은 수평 돌턱에서 실제 오르막 각도를 따라 돌아가고, 천장 면은 넓은 암면과 경계의 좁은 띠를 연결한다. 58에는 마루 받침의 돌과 기둥 하부 11면, 처마 속 목재의 이음 10면을 넣었다. 마루 받침은 실제 윗면 아래, 처마 무늬는 뒤집힌 실제 접촉면 위에 그렸다. 59 수신 R의 동쪽 수직 닫힘선 제거를 보존했다.
+
+| 동일 본편 카메라 | 색면 전후 | 충돌 표시 전후 | warmed renderer CPU p95 ms | warmed 화면 간격 p95 ms |
+|---|---|---|---:|---:|
+| 53 기단 PC | [전](details/53-foundation-before-plain.webp) · [후](details/53-foundation-after-plain.webp) | [전](details/53-foundation-before-outline.webp) · [후](details/53-foundation-after-outline.webp) | 5.1 → 4.7 | 21.3 → 22.8 |
+| 53 볼트 모바일 390 DPR2 | [전](details/53-vault-before-plain.webp) · [후](details/53-vault-after-plain.webp) | [전](details/53-vault-before-outline.webp) · [후](details/53-vault-after-outline.webp) | 3.4 → 1.4 | 21.7 → 18.1 |
+| 58 석단 PC | [전](details/58-stone-step-before-plain.webp) · [후](details/58-stone-step-after-plain.webp) | [전](details/58-stone-step-before-outline.webp) · [후](details/58-stone-step-after-outline.webp) | 5.5 → 5.3 | 27.1 → 28.4 |
+| 58 천장 처마 모바일 390 DPR2 | [전](details/58-soffit-before-plain.webp) · [후](details/58-soffit-after-plain.webp) | [전](details/58-soffit-before-outline.webp) · [후](details/58-soffit-after-outline.webp) | 2.2 → 3.9 | 20.4 → 20.2 |
+
+고정 카메라의 투영 좌표·viewport·DPR·정상 저장·충돌 마스크 해시가 전후 모두 같다. 첫 15프레임과 안정화 뒤 80프레임 원자료를 남겼다. 같은 Chromium 호스트에서 다른 플레이 검수가 함께 실행돼 프레임 간격을 실기기 수치로 해석할 수 없다. 58 처마의 렌더 CPU p95는 1.7 ms 증가했다. [한 화면 비교](details/paired.webp) · [전 원자료](details/frames-before.json) · [후 원자료](details/frames-after.json)
+
+BODY 재측정의 53 끝점 밀도는 같은 1×/2× ROI에서 54.92/54.90 → 84.44/84.40, 58은 223.41/223.84 → 230.95/231.39다. 현재 1막 두 기준 대비 53은 6.6–7.6%, 58은 18.0–20.8%다. 54 N은 같은 면적과 끝점 수를 재확인했다. 58의 마루 아래 색면으로 1× 채움 면적이 약 0.26% 늘었다. 다섯 번의 기존 B·천장·R 화면 검수는 별도로 보존했다. 이 국소 조형을 반영한 P10 감독 판정은 대기 중이다. [같은 마스크 및 도형 원자료](details/density.json)
+
+직전 대조 앱은 `583037e8`의 런타임이다. 그 앱에서 변경된 53 벡터 원본·파생본 및 58 색면 소스만 적용해 재빌드했다. 같은 도구와 자료로 전후를 각각 실행한다.
+
+```bash
+npm run build
+p=game/docs/act6/mumyeongsa-p00-p10
+python "$p/baseline/visual_edges.py" --build "$PWD" --out /tmp/honro-p10-details --details --d-proof "$p/visual-atlas/capture-input-d.json"
+python "$p/baseline/body_density.py" --build "$PWD" --out /tmp/honro-p10-density --b-proof "$p/visual-atlas/capture-input-b.json" --d-proof "$p/visual-atlas/capture-input-d.json"
+```
