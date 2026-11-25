@@ -12,7 +12,7 @@ const auth=['act6.garmjinCompleted','act6.finalThreatResolved'];
 // round ahead on its own entry, holds (never drops) a squad when its own cap is full, and puts a
 // new squad on a rear line while the front line still stands.
 export const FRONTS59=Object.freeze({
- perFrontCap:3,totalCap:8,soften:{hp:.85,attack:.75},warn:1,period:2,forward:900,rear:420,breachLimit:3,guard:260,
+ perFrontCap:4,totalCap:10,soften:{hp:.85,attack:.75},warn:1,period:1,forward:900,rear:420,breachLimit:3,guard:260,
  posts:[{id:'west-cleat',x:522*7800/2172,label:'서쪽 지지석',radius:170},{id:'bell-path',x:1490*7800/2172,label:'종터 혼길',radius:170}],
  fronts:[
   {id:'west-return',dir:1,offset:2,line:'서쪽 높은 단과 아래 퇴각 경로로 원혼이 맺힙니다.',squads:[
@@ -87,9 +87,12 @@ export async function createStage59Owner({C,packet,authorize,verifyIncoming,crea
     const key=f.id+'#'+f.next;
     if(f.warned!==key){f.warned=key;b.honroState.localFinaleIncoming={front:f.id,squad:f.next,round:due,line:f.line};e.message(f.line);note('front-warned',{front:f.id,squad:f.next,due});}
     if(round<due||waves.rounds.some(o=>o.round===round&&o.front===f.id))continue;
-    const bodies=f.squads[f.next],room=Math.min(FRONTS59.perFrontCap-frontAlive(f),FRONTS59.totalCap-walks.filter(z=>alive(z.unit)).length);
-    if(room<bodies.length){f.held++;waves.rounds.push({round,action:'held',front:f.id,squad:f.next});note('wave-held',{front:f.id,squad:f.next,room});continue;}
-    const cap=frontAlive(f)>=2?FRONTS59.rear:FRONTS59.forward,id='finale-'+f.id+'-s'+f.next,picked=[];
+    f.left??=f.squads[f.next].slice();
+    const room=Math.min(FRONTS59.perFrontCap-frontAlive(f),FRONTS59.totalCap-walks.filter(z=>alive(z.unit)).length);
+    if(room<=0){f.held++;waves.rounds.push({round,action:'held',front:f.id,squad:f.next});note('wave-held',{front:f.id,squad:f.next,room});continue;}
+    // Partial entry: as many bodies as the front has room for come now, the rest next round.
+    const bodies=f.left.splice(0,room);
+    const cap=frontAlive(f)>=2?FRONTS59.rear:FRONTS59.forward,id='finale-'+f.id+'-s'+f.next+'-r'+round,picked=[];
     for(const [suffix,kind,x,t] of bodies){const v=reserve([id+'-'+suffix,kind,x,t==='high'?high:near]);if(!v)return;
      // Courtyard bodies are knotted fragments of the dead, lighter than a whole possessed body.
      if(kind!=='warden'){v.maxHp=v.hp=Math.round(v.maxHp*FRONTS59.soften.hp);v.attack*=FRONTS59.soften.attack;}else{v.name='문턱 갑주';v.armor=Math.max(v.armor,.2);}
@@ -97,7 +100,7 @@ export async function createStage59Owner({C,packet,authorize,verifyIncoming,crea
     const want={round,action:'spawn',front:f.id,squad:f.next,line:f.line,id,cap,squadActors:picked.map(({v,t})=>({id:v.id,kind:v.honroType,entry:[v.x,v.y],deck:t}))};
     for(const [i,{v,t}] of picked.entries()){add(v);walks.push({unit:v,cap:cap+i*40,front:f.id,dir:f.dir,t,delay:i*7,ticks:0,walked:0,steps:0,wave:want});}
     b.honroState.localFinaleFront={id:f.id,actors:copy(want.squadActors),round,type:'tangible-squad',line:f.line};delete b.honroState.localFinaleIncoming;
-    waves.rounds.push(want);f.next++;f.spawned+=picked.length;note('wave-spawn',{front:f.id,count:picked.length,cap});
+    waves.rounds.push(want);f.spawned+=picked.length;if(!f.left.length){f.next++;f.left=null;}note('wave-spawn',{front:f.id,count:picked.length,cap});
    }
    // The giant forepaw body joins once both fronts have pushed (a bent line, not a timer).
    if(!giant&&fronts.every(f=>f.next>=1)){
@@ -153,7 +156,7 @@ export async function createStage59Owner({C,packet,authorize,verifyIncoming,crea
    state.cleared=state.activated&&resolved();
    if(state.cleared){waves.closed=true;e.message('설오: 올라오던 것들이 멈췄습니다.');e.message('휘겸: 길은 남겼군.');note('final-threat-resolved',{actor:threat.id,dead:down(threat),distance:threat.x-origin,retreat:retreatOrder&&{...retreatOrder}});}
    posts();wave();
-   b.honroState.localFinaleProgress={...copy(state),soulPending:!!soulPending,breach,breachLimit:FRONTS59.breachLimit,lost:lostReason,fronts:fronts.map(f=>({id:f.id,next:f.next,of:f.squads.length,held:f.held,alive:frontAlive(f)})),giant:giant?{id:giant.id,alive:alive(giant)}:null};
+   b.honroState.localFinaleProgress={...copy(state),soulPending:!!soulPending,breach,breachLimit:FRONTS59.breachLimit,lost:lostReason,fronts:fronts.map(f=>({id:f.id,next:f.next,of:f.squads.length,held:f.held,alive:frontAlive(f),spawned:f.spawned})),giant:giant?{id:giant.id,alive:alive(giant)}:null};
    return state.cleared;
   }
   // Revision 2: each outer anchor takes two true hits on different rounds, and the soul path
@@ -188,7 +191,7 @@ export async function createStage59Owner({C,packet,authorize,verifyIncoming,crea
     if(key==='markSoulPath'&&!state.soul&&!soulPending&&state.bell&&local(u,1490,near)){soulPending={end:b.teamEnds[1]};note('soul-route-marking',{actor:u.id});e.message('소단: 길을 그었어요. 이 자리를 한 번만 버티면 혼길이 남아요.');return true;}
     if(key==='activateGarmjin'&&!state.activated&&state.mage&&state.cliff&&state.bridge&&state.soul&&state.bell&&local(u,1755,near)){state.activated=true;waves.closed=true;note('garmjin-activated',{actor:u.id});e.message('소단: 떠날 혼은 왼쪽으로 가요. 이제 저 길만 남았어요.');
      // The corrected garmjin separates what crossed over: every body still standing is torn by it once.
-     for(const v of b.units.filter(x=>x.side===1&&alive(x))){e.hurt(v,v.maxHp*.35,u.id,true,undefined,{x:v.x,y:v.y-v.h*.5},'normal');e.fx('ring',v.x,v.y-v.h*.5,'#bfe3d4',70);}note('garmjin-separation');poll();return true;}
+     for(const v of b.units.filter(x=>x.side===1&&alive(x)&&x!==threat)){e.hurt(v,v.maxHp*.35,u.id,true,undefined,{x:v.x,y:v.y-v.h*.5},'normal');e.fx('ring',v.x,v.y-v.h*.5,'#bfe3d4',70);}note('garmjin-separation');poll();return true;}
     return false;
    },onStop(){}
   }});
