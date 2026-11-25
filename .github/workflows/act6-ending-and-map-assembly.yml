@@ -28,6 +28,7 @@ jobs:
           OUT="$RUNNER_TEMP/ending-release"
           mkdir -p "$OUT"
           test "$(git -C "$GITHUB_WORKSPACE" ls-remote origin refs/heads/master | cut -f1)" = "$BASE"
+          git fetch --depth=1 origin "$BASE"
           readarray -t HISTORY < <(git show "$BASE:web/manifest.json" | node -e 'let x="";process.stdin.on("data",c=>x+=c);process.stdin.on("end",()=>console.log([...new Set(JSON.parse(x).publishedGenerations.map(r=>r.sourceSha))].join("\n")));')
           git fetch --depth=1 origin "$PROOF" "$MAP" "${HISTORY[@]}"
           R="$(realpath "$(mktemp -d /tmp/honro-act6-web-qa-XXXXXXXX)")"
