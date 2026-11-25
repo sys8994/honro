@@ -1,4 +1,6 @@
 """Operate the published application UI on the isolated release-host browser fixture."""
+from io import BytesIO
+from PIL import Image,ImageChops
 import json
 ROOT='.honro-ending-60[data-mode="debug"]'
 AUDIO_SPY="""(() => {
@@ -15,13 +17,37 @@ AUDIO_SPY="""(() => {
 })();"""
 def prepare(context):
     context.add_init_script(AUDIO_SPY)
+def actual_pixels(page,view,cut,clock=False):
+    # Compare real final-composited browser pixels, not authored source files or DOM width.
+    plate=view.locator('.h6ending-naru' if cut=='homecoming' else '.h6ending-ledger')
+    targets=('.h6ending-backdrop img','.h6ending-yeonsil','.h6ending-seol') if cut=='homecoming' else ('.h6ending-backdrop img','.h6ending-hwi')
+    def paints():
+        if clock: page.clock.run_for(90)
+        else: page.evaluate("()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)))")
+    def capture(): return Image.open(BytesIO(plate.screenshot(animations='disabled'))).convert('RGB')
+    paints(); on=capture(); w,h=on.size; actual={}
+    for selector in targets:
+        im=plate.locator(selector)
+        box=im.bounding_box()
+        assert box and box['width']>12 and box['height']>12, (cut,selector,box)
+        saved=im.evaluate("el=>{const s=el.style.visibility;el.style.visibility='hidden';return s}")
+        try: paints(); off=capture()
+        finally:
+            im.evaluate("(el,s)=>{el.style.visibility=s}",saved)
+            paints()
+        parts=ImageChops.difference(on,off).split()
+        max_rgb=ImageChops.lighter(ImageChops.lighter(parts[0],parts[1]),parts[2])
+        n=sum(max_rgb.histogram()[20:]); actual[selector]=n
+        limit=int(w*h*.18) if 'backdrop' in selector else max(70,int(w*h*.0014))
+        assert n>=limit,('Decoded but missing rendered pixels',cut,selector,n,limit,box)
+    return actual
 def check(browser,route,tap,homepage,out,outer):
     for case,w,h,mobile,muted,deny in [('PC-sound',1440,900,False,False,False),('M-blocked',390,844,True,False,True),('M-muted',390,844,True,True,False)]:
         ctx=browser.new_context(viewport={'width':w,'height':h},is_mobile=mobile,has_touch=mobile,device_scale_factor=1)
         route(ctx);prepare(ctx)
         if deny:ctx.add_init_script('globalThis.act6EndingDeny=true')
         # Reduced motion is an independent browser presentation setting.
-        page=ctx.new_page();errors=[];packets=[];motion={}
+        page=ctx.new_page();errors=[];packets=[];motion={};raster={}
         if muted:page.emulate_media(reduced_motion='reduce')
         page.on('pageerror',lambda err:errors.append(str(err)))
         page.on('request',lambda req:packets.append(req.url) if 'act6-qa-chapter-' in req.url else None)
@@ -88,6 +114,9 @@ def check(browser,route,tap,homepage,out,outer):
                     if not muted:
                         page.wait_for_function("()=>act6EndingMedia.length===1&&act6EndingMedia[0].el.readyState>=2&&!act6EndingMedia[0].el.paused",timeout=10000)
                         assert page.evaluate("()=>act6EndingMedia[0].el.currentSrc.endsWith('/honro/assets/bgm/main.mp3')&&!act6EndingMedia[0].el.loop&&HonroApp.audio.music.paused")
+                if cut in ('homecoming','jeomungol-record'):
+                    page.screenshot(path=out/f'{case}-preview-{cut}-first.png')
+                    raster[cut]=actual_pixels(page,view,cut)
                 page.screenshot(path=out/f'{case}-preview-{cut}.png',animations='disabled')
                 assert before==page.evaluate(snapshot),cut
                 tap(page,ROOT+' [data-ending-action=next]',mobile)
@@ -98,5 +127,5 @@ def check(browser,route,tap,homepage,out,outer):
             assert before==page.evaluate(snapshot) and page.evaluate('HonroApp.screen')==screen
             assert not page.locator(ROOT).count() and (muted or page.evaluate("()=>act6EndingMedia[0].el.paused"))
             assert not packets and not errors,(errors,packets)
-            outer[case]={'scenes':6,'storageByteIdentical':True,'noEngineNoRewardsNoPacket':True,'temporaryMusic':not muted,'fallbackRetried':deny,'animationNames':motion,'actualArtAndOfficialCast':True}
+            outer[case]={'scenes':6,'storageByteIdentical':True,'noEngineNoRewardsNoPacket':True,'temporaryMusic':not muted,'fallbackRetried':deny,'animationNames':motion,'actualArtAndOfficialCast':True,'compositedRasterPixels':raster}
         finally:ctx.close()

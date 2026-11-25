@@ -14,6 +14,8 @@ patch('smoke.py',[
  ('        browser.close()','        if RELEASE_SHAPE:\n            debug={}\n            ending_debug(browser,route_only_local_release,tap,RELEASE_ORIGIN+\'/honro/HONRO.html\',out,debug)\n            (out/\'DEBUG-ENDING.json\').write_text(json.dumps(debug,ensure_ascii=False,indent=2)+\'\\n\')\n        browser.close()',1)
 ])
 patch('normal60_ending_stock.py',[
+ ('from urllib.parse import urlsplit','from urllib.parse import urlsplit\nfrom debug_ui import actual_pixels',1),
+ ("        page.screenshot(path=out/f'{case}-ending-{cut}.png',animations='disabled')","        if cut not in ('homecoming','jeomungol-record'):\n            page.screenshot(path=out/f'{case}-ending-{cut}.png',animations='disabled')",1),
  ("    ending=page.locator(root)","    ending=page.locator(root)\n    main=root+' button.honro-ending-60-button:not([data-ending-action]),'+root+' button[data-ending-action=next]'",1),
  ("('daybreak','계속','img'),('later-return','여정을 마치기','canvas')]",
   "('daybreak','계속','img'),('homecoming','계속','.h6ending-naru'),('jeomungol-record','계속','.h6ending-ledger'),('later-return','여정을 마치기','canvas')]",1),
@@ -30,6 +32,10 @@ patch('normal60_ending_stock.py',[
             page.wait_for_function("()=>['.h6ending-hwi','.h6ending-ledger .h6ending-backdrop img'].every(s=>document.querySelector(s)?.naturalWidth>0)",timeout=10000)
             assert ending.locator('.h6ending-backdrop img').evaluate("e=>e.currentSrc.includes('act6-ending-dossier-room'+(innerWidth/innerHeight<.95?'-m.':'.'))")
             assert ending.locator('.h6ending-evidence-slip').nth(2).evaluate("e=>getComputedStyle(e).animationName")=='h6fold-proof'
+        if cut in ('homecoming','jeomungol-record'):
+            page.screenshot(path=out/f'{case}-ending-{cut}-first.png')
+            state.setdefault('endingVisibleLayers',{})[cut]=actual_pixels(page,ending,cut,clock=True)
+            page.screenshot(path=out/f'{case}-ending-{cut}.png',animations='disabled')
         if cut=='later-return':""",1),
  ("    assert not ending.locator('button').count()",
   """    assert ending.get_attribute('data-cut')=='credits'

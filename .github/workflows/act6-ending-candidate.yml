@@ -1,4 +1,4 @@
-name: Verify staged Act 6 ending and read-only preview
+name: Verify painted Act 6 ending and read-only preview
 on:
   push:
     branches: ['qa/act6-ending-20261125']
@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
         with:
-          fetch-depth: 3
+          fetch-depth: 4
       - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
         with:
           node-version: '22'
@@ -28,7 +28,7 @@ jobs:
           PROOF=027052f5831180f42e24762b910cddc7fd0178f5
           OFF=b607164fd31da526373efb12d06063c2b564719d
           test "$(git merge-base HEAD "$BASE")" = "$BASE"
-          test "$(git rev-list --count "$BASE..HEAD")" = 2
+          test "$(git rev-list --count "$BASE..HEAD")" = 3
           test "$(git ls-remote origin refs/heads/master | cut -f1)" = "$BASE"
           readarray -t HISTORY < <(git show "$BASE:web/manifest.json" | node -e 'let x="";process.stdin.on("data",c=>x+=c);process.stdin.on("end",()=>console.log([...new Set(JSON.parse(x).publishedGenerations.map(r=>r.sourceSha))].join("\n")));')
           git fetch --depth=1 origin "$PROOF" "$OFF" "${HISTORY[@]}"
@@ -65,7 +65,7 @@ jobs:
       - name: Test the real normal ending and debug route in Chromium
         run: |
           set -euo pipefail
-          python -m pip install 'playwright==1.58.0'
+          python -m pip install 'playwright==1.58.0' 'Pillow==11.3.0'
           python -m playwright install --with-deps chromium
           cd "$WITNESS_ROOT"
           HONRO_ACT6_TERRAIN_PROOF=1 HONRO_ACT6_RELEASE_HOST_TEST=1 HONRO_ACT6_QA_NORMAL_BOUNDARY=1 HONRO_ACT6_QA_QUIET_MATTE_WITNESS=1 HONRO_ACT6_QA_PAGES_SHAPE=1 HONRO_ACT6_QA_NORMAL_FAR=1 HONRO_ACT6_QA_NORMAL_LATE_FAR=1 HONRO_ACT6_QA_NORMAL_FINAL_FAR=1 HONRO_ACT6_QA_NORMAL_ENDING_STOCK=1 python tools/act6-qa/rest-51/smoke.py "$RUNNER_TEMP/act6-stock" "$WITNESS_ROOT" "$RUNNER_TEMP/act6-ending-proof" > "$RUNNER_TEMP/act6-ending-proof/PLAYWRIGHT.log" 2>&1

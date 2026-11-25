@@ -1,6 +1,6 @@
 (G, assets, css) => {
  'use strict';
- const doc=G.document, sessions=new WeakMap(), installed=new WeakSet();
+ const doc=G.document, sessions=new WeakMap(), installed=new WeakSet(), mediaCache=new Map();
  const order=['last-souls','bridge-record','daybreak','homecoming','jeomungol-record','later-return'];
  const lines={
   'last-souls':['다시 흐르는 길','마지막 두 혼이 산문을 건넙니다. 소단이 길에서 한 발 물러납니다.'],
@@ -11,7 +11,23 @@
   'later-return':['그리고 어느 날','내 발로 가네. 해 지기 전 돌아오리다.']
  };
  const node=(tag,cls,text)=>{const n=doc.createElement(tag);if(cls)n.className=cls;if(text)n.textContent=text;return n;};
- const image=(src,alt='')=>{if(!src)return null;const i=node('img');i.alt=alt;i.decoding='async';i.addEventListener('error',()=>{i.remove();});i.src=src;return i;};
+ const image=(src,alt='')=>{if(!src)return null;const i=node('img');i.alt=alt;i.decoding='sync';i.addEventListener('error',()=>{i.remove();});i.src=src;return i;};
+ const frames=()=>new Promise(done=>G.requestAnimationFrame(()=>G.requestAnimationFrame(done)));
+ function prewarm(){
+  const format=G.matchMedia('(max-aspect-ratio: 19/20)').matches?'portrait':'wide';
+  for(const src of [...Object.values(assets.actor),...Object.values(assets.places).map(x=>x[format])]){
+   if(mediaCache.has(src))continue;
+   const art=new G.Image();art.decoding='sync';art.src=src;
+   const ready=art.decode().catch(()=>null);mediaCache.set(src,{art,ready});
+  }
+ }
+ async function decoded(art){
+  let deadline;
+  try{
+   const real=Promise.allSettled([...art.querySelectorAll('img')].map(i=>i.decode()));
+   await Promise.race([real,new Promise(done=>{deadline=G.setTimeout(done,3500);})]);
+  }finally{G.clearTimeout(deadline);}
+ }
  function track(s){
   if(s.audio||!assets.track)return s.audio;
   try {
@@ -43,7 +59,7 @@
   const refresh=()=>{syncAudio(s);s.sync?.();};
   doc.addEventListener('visibilitychange',refresh);
   s.close=()=>{if(s.closed)return;s.closed=true;doc.removeEventListener('visibilitychange',refresh);s.sync=null;if(s.audio){s.audio.pause();s.audio.removeAttribute('src');s.audio.load();}if(sessions.get(app)===s)sessions.delete(app);s.style.remove();};
-  sessions.set(app,s);app.updateAudio();return s;
+  sessions.set(app,s);prewarm();app.updateAudio();return s;
  }
  function arm(s){if(s.armed)return;s.armed=true;s.app.updateAudio();start(s);}
  function silenceStock(app){const s=sessions.get(app);if(!s||s.closed)return false;syncAudio(s);return true;}
@@ -117,18 +133,29 @@
   page.append(book);return page;
  }
  function sceneText(script,rows){script.replaceChildren(...rows.map(text=>node('p','',text)));}
- function paintAdded(s,parts,scene,next){
+ async function paintAdded(s,parts,scene,next,leave=null){
   const {root,media,heading,script,controls,status}=parts;
-  const [title,...copy]=lines[scene];root.dataset.cut=scene;
-  media.replaceChildren(addedArt(scene));heading.textContent=title;sceneText(script,copy);status.textContent='';s.sync=null;
-  const more=button('계속','next',next);controls.replaceChildren(more,audioButton(s));more.focus({preventScroll:true});
+  const [title,...copy]=lines[scene];
+  const seq=s.artSeq=(s.artSeq??0)+1;
+  const current=()=>!s.closed&&seq===s.artSeq&&root.isConnected;
+  const art=addedArt(scene),more=button('계속','next',next);
+  const exit=leave?button('나가기','return',leave):null;
+  root.dataset.cut='loading';heading.textContent=title;sceneText(script,copy);s.sync=null;
+  controls.replaceChildren(...(exit?[exit]:[]));status.textContent='장면을 준비하고 있습니다.';
+  art.classList.add('h6ending-preparing');media.replaceChildren(art);
+  await decoded(art);if(!current())return;
+  await frames();if(!current())return;
+  art.classList.remove('h6ending-preparing');
+  await frames();if(!current())return;
+  root.dataset.cut=scene;status.textContent='';controls.replaceChildren(more,...(exit?[exit]:[]),audioButton(s));
+  more.focus({preventScroll:true});
  }
  function normal(app,parts){
   const s=open(app,'completion');let step=0;
   return Object.freeze({
    shouldHold:v=>v.scene==='later-return'&&step<2,
    paint(next){
-    paintAdded(s,parts,order[3+step],()=>{if(s.closed)return;step++;next();});
+    void paintAdded(s,parts,order[3+step],()=>{if(s.closed)return;step++;next();});
    },
    audioAfter(v,result){if(result?.ok&&v.scene==='bridge-record'&&v.record?.recorded)arm(s);},
    controls(){s.sync=null;if(s.armed)parts.controls.append(audioButton(s));},
@@ -165,8 +192,9 @@
   function paint(){
    if(s.closed)return;
    if(i===order.length){credits(s,{...parts,leave});return;}
-   const scene=order[i];root.dataset.cut=scene;
-   if(i===3||i===4){paintAdded(s,parts,scene,next);controls.append(button('나가기','return',leave));return;}
+   const scene=order[i];
+   if(i===3||i===4){void paintAdded(s,parts,scene,next,leave);return;}
+   root.dataset.cut=scene;
    const [title,...copy]=lines[scene];heading.textContent=title;media.replaceChildren();
    const preview=(G.innerWidth/G.innerHeight<.95?assets.preview?.Portrait:assets.preview?.Wide)?.[scene];
    const plate=image(preview,title);if(plate)media.append(plate);
