@@ -1,0 +1,118 @@
+{
+  "status": "FAIL",
+  "boundaries": [
+    {
+      "from": 51,
+      "to": 52,
+      "storageHash": "54090d506e34c7728d36791b7782e899d5a581f902ccc78b8e4b07657ec7b1fa"
+    },
+    {
+      "from": 52,
+      "to": 53,
+      "storageHash": "f8f0cdeec271f176da24a04f60c0e8f5ef231750d7c585acc29d2a66f7112ec5"
+    },
+    {
+      "from": 53,
+      "to": 54,
+      "storageHash": "e6f158683017407e7a81ec1b696473b0ff64cc1b51c37570a481c12fe5457366"
+    },
+    {
+      "from": 54,
+      "to": 55,
+      "storageHash": "5f2478ec86e7f35fbc7148c688c77840fcdf32e83b81d6705f78a3221af5e5f8"
+    },
+    {
+      "from": 55,
+      "to": 56,
+      "storageHash": "0ed0dea482aa762ed5898d7d2806de65dd615cfdc106911a8dcc7d15642bd1da"
+    },
+    {
+      "from": 56,
+      "to": 57,
+      "storageHash": "336195a5a9bb405474d858b0caa78908718b9ef06451752907141a286014c618"
+    }
+  ],
+  "terminalChecks": {
+    "52": {
+      "from": 51,
+      "to": 52,
+      "terminalSHA": "bdeb0c79b0514a72bfe18aafdd8d8cda5fa8544e782e598d9d3aca698c2dfbae",
+      "custodySHA": "df97aa149ac18573d21e696436bdb94f9690836e97ec41cf3c8f2f84fc1fc222",
+      "profileSHA": "1050dd6f22f698ff8d576b17b451b1e7d9dfe8155e6dadef7950882e09452f53"
+    },
+    "53": {
+      "from": 52,
+      "to": 53,
+      "terminalSHA": "bb2a015051a3807ff438116fca090b06e6da742539466547a348d024c86ca26e",
+      "custodySHA": "1cfa09e619990f5a92ecb1ac756a8a96dafa64ce866e002f145e1d86f7d237d9",
+      "profileSHA": "1050dd6f22f698ff8d576b17b451b1e7d9dfe8155e6dadef7950882e09452f53"
+    },
+    "54": {
+      "from": 53,
+      "to": 54,
+      "terminalSHA": "96e1332800f430955db2dd6e48baa509dbc49874159600a4514f53f33a8bf75b",
+      "custodySHA": "58c217293a3a2c6f4a5913c9c0a5ec9ccb1ed1eae81540082e406b3612312e31",
+      "profileSHA": "1050dd6f22f698ff8d576b17b451b1e7d9dfe8155e6dadef7950882e09452f53"
+    },
+    "55": {
+      "from": 54,
+      "to": 55,
+      "terminalSHA": "c76bdae6cacac84f77dc8e6e0a4628cce9d1d70aa8d4f6ad1bb8bf6601f1a950",
+      "custodySHA": "819049415b86a069ad2e893406858c7be3173612c13344f468107702b9d8031d",
+      "profileSHA": "1050dd6f22f698ff8d576b17b451b1e7d9dfe8155e6dadef7950882e09452f53"
+    },
+    "56": {
+      "from": 55,
+      "to": 56,
+      "terminalSHA": "e8d9e1871671b2204c782ee6be6e28130fe68cab29fd98850a61840f04e7cb9e",
+      "custodySHA": "65988dcbccfd0d545a53ec5e4a2471e86059877219faa63f56488d67d2f0531e",
+      "profileSHA": "1050dd6f22f698ff8d576b17b451b1e7d9dfe8155e6dadef7950882e09452f53"
+    },
+    "57": {
+      "from": 56,
+      "to": 57,
+      "terminalSHA": "81ab901db1fb7b52a5a9175aea602cd1647b1982318be4c22c6ff66f499464de",
+      "custodySHA": "716561b684235a182e90e025879ee9565c26c2249495ac184dd93b35969992c4",
+      "profileSHA": "1050dd6f22f698ff8d576b17b451b1e7d9dfe8155e6dadef7950882e09452f53"
+    }
+  },
+  "failure": {
+    "stage": 57,
+    "targetX": 5260,
+    "uncompletedAction": "approach original ward before jump",
+    "actor": {
+      "id": "p-archer",
+      "cls": "archer",
+      "side": 0,
+      "x": 5275.64098157386,
+      "y": 3041.765574060877,
+      "vx": 0,
+      "vy": 0,
+      "hp": 1415,
+      "maxHp": 1720,
+      "shield": 0,
+      "r": 22,
+      "h": 92,
+      "ammo": null,
+      "loadout": [
+        "A01",
+        "A14",
+        "A02",
+        "A05"
+      ],
+      "dead": false,
+      "actorsMoved": false,
+      "move": 1577.8486058405392,
+      "grounded": true,
+      "family": {
+        "x": 0,
+        "y": 320
+      },
+      "contact": "local-lower-07-west",
+      "normal": null
+    },
+    "phase": "aim",
+    "round": 5
+  },
+  "errors": []
+}
