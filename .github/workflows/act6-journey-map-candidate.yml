@@ -29,7 +29,7 @@ jobs:
           OFF=b607164fd31da526373efb12d06063c2b564719d
           git fetch --depth=1 origin "$BASE"
           test "$(git diff "$BASE" HEAD --name-only | grep -c "^shared/act6-journey/")" -eq 3
-          test "$(git ls-remote origin refs/heads/master | cut -f1)" = "$BASE"
+          test "$(git -C "$GITHUB_WORKSPACE" ls-remote origin refs/heads/master | cut -f1)" = "$BASE"
           readarray -t HISTORY < <(git show "$BASE:web/manifest.json" | node -e 'let x="";process.stdin.on("data",c=>x+=c);process.stdin.on("end",()=>console.log([...new Set(JSON.parse(x).publishedGenerations.map(r=>r.sourceSha))].join("\n")));')
           git fetch --depth=1 origin "$PROOF" "$OFF" "${HISTORY[@]}"
           R="$(realpath "$(mktemp -d /tmp/honro-act6-web-qa-XXXXXXXX)")"
@@ -84,6 +84,7 @@ jobs:
           p=Path('tools/act6-qa/rest-51/smoke.py')
           s=p.read_text()
           mappings={
+          "                stage52(page,state,mobile,original,tap,out,key,'/'+PACKETS[52][0])":"                stage52(page,state,mobile,original,tap,out,key,'/'+PACKETS[52][0])\n                cold_browser_sibling(page,52,state,mobile,original,out,key)",
           'from normal52_witness import stage52':'from witness import witness as run_journey_witness\nfrom normal52_witness import stage52',
           "            original=page.evaluate(\"key=>localStorage.getItem(key)\",KEY)":"            if kind=='fresh-pending': run_journey_witness(page,state,mobile,tap,out,key,51)\n            original=page.evaluate(\"key=>localStorage.getItem(key)\",KEY)",
           "        t.locator(selector).evaluate(\"e=>e.click()\")":"        run_journey_witness(t,state,mobile,tap,out,case,stage)\n        t.locator(selector).evaluate(\"e=>e.click()\")",
@@ -119,8 +120,8 @@ jobs:
           test -z "$(git diff --cached --diff-filter=D --name-only)"
           git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' -c core.hooksPath=/dev/null commit -m 'feat(journey): chart the folded paths of Act 6'
           test "$(git rev-parse HEAD^)" = "$BASE"
-          test "$(git ls-remote origin refs/heads/master | cut -f1)" = "$BASE"
-          git push origin HEAD:refs/heads/release/act6-journey-map-20261125-r5
+          test "$(git -C "$GITHUB_WORKSPACE" ls-remote origin refs/heads/master | cut -f1)" = "$BASE"
+          git -C "$GITHUB_WORKSPACE" push origin "$(git rev-parse HEAD)":refs/heads/release/act6-journey-map-20261125-r6
           git rev-parse HEAD > "$OUT/CANDIDATE.txt"
       - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
         if: always()

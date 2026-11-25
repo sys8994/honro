@@ -229,3 +229,7 @@ body:has(#modal.open .journey-confirm) #turn-banner,body:has(#modal.open .pause-
  .journey-act-6 .journey6-legend strong{font-size:.85rem}
  .journey-act-6 .journey-detail{min-height:80px}
 }
+
+.journey-act-6 .journey-progress .journey6-return-underlay{stroke:#121d23;stroke-width:7;stroke-dasharray:none}
+.journey-act-6 .journey-progress .journey6-return{stroke:#ffd0a0;stroke-width:2.5;stroke-dasharray:none}
+.honro #app .journey-image-screen.journey-act-6 .journey-detail{padding-bottom:max(21px,env(safe-area-inset-bottom))}
