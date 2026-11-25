@@ -85,6 +85,19 @@ def finish(browser,args):
         select(page,'occultist',advance=True)
         page.locator(MARK).filter(has_text='빈 종터').click(timeout=6500)
         page.locator(MARK).filter(has_text='담허').wait_for(timeout=6500)
+        if args.engage_bell:
+            r['bellShots']=[]
+            target='a6-52-bell-approach-1'
+            for _ in range(4):
+                pass_until(page,"HonroApp.engine.active?.cls==='mage'")
+                foe=page.evaluate('id=>{const u=HonroApp.engine.unit(id);return u&&{hp:u.hp,x:u.x,y:u.y};}',target)
+                if not foe or foe['hp']<=0:
+                    break
+                spec=shot(page,{'skills':['M01','M07'],'actor':target})
+                r['bellShots'].append({'foe':foe,'input':spec})
+                if not spec:
+                    page.keyboard.press('f')
+                page.wait_for_timeout(370)
         select(page,'mage',advance=True)
         page.locator(MARK).filter(has_text='담허').click(timeout=6500)
         page.wait_for_function("HonroApp.engine.b.phase==='won'",timeout=8000)
@@ -114,6 +127,7 @@ def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--build',required=True,type=Path)
     p.add_argument('--out',required=True,type=Path)
+    p.add_argument('--engage-bell',action='store_true')
     args=p.parse_args()
     base.ROOT=args.build.resolve()
     args.out.mkdir(parents=True,exist_ok=True)

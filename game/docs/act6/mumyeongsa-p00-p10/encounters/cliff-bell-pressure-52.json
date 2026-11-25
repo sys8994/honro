@@ -1,0 +1,1433 @@
+{
+  "status": "PASS",
+  "cliffShots": [
+    {
+      "input": {
+        "id": "A01",
+        "angle": 74,
+        "power": 0.44
+      },
+      "before": 155,
+      "after": 17
+    },
+    {
+      "input": {
+        "id": "A01",
+        "angle": 74,
+        "power": 0.44
+      },
+      "before": 17,
+      "after": 0
+    }
+  ],
+  "bridgeShots": [
+    {
+      "before": {
+        "x": 3230,
+        "y": 2217.7027027027025,
+        "hp": 659,
+        "round": 3
+      },
+      "spec": null
+    },
+    {
+      "before": {
+        "x": 3235.3432439988087,
+        "y": 2213.9479907035397,
+        "hp": 71,
+        "round": 3
+      },
+      "spec": null
+    }
+  ],
+  "bellShots": [
+    {
+      "foe": {
+        "hp": 684,
+        "x": 4028.0840347622243,
+        "y": 3726.044703498267
+      },
+      "input": {
+        "id": "M01",
+        "angle": 141,
+        "power": 0.57
+      }
+    },
+    {
+      "foe": {
+        "hp": 281,
+        "x": 3930.5536053523765,
+        "y": 3725.698236608712
+      },
+      "input": {
+        "id": "M01",
+        "angle": 145,
+        "power": 0.57
+      }
+    }
+  ],
+  "bridge": {
+    "id": "p-knight",
+    "cls": "knight",
+    "side": 0,
+    "x": 3294.736582809902,
+    "y": 2172.2121309984473,
+    "vx": 0,
+    "vy": 0,
+    "hp": 3747,
+    "maxHp": 3846,
+    "shield": 0,
+    "r": 22,
+    "h": 92,
+    "ammo": null,
+    "loadout": [
+      "S00",
+      "S01",
+      "S03"
+    ],
+    "dead": false,
+    "actorsMoved": false,
+    "move": 1664.9656100130485,
+    "grounded": true,
+    "family": {
+      "x": 0,
+      "y": 320
+    },
+    "contact": "broken-arch-west",
+    "normal": null
+  },
+  "descent": [
+    {
+      "role": "occultist",
+      "expected": "landing-1",
+      "pose": {
+        "id": "p-occultist",
+        "cls": "occultist",
+        "side": 0,
+        "x": 3677.629634636707,
+        "y": 2445.992441523198,
+        "vx": 0,
+        "vy": 0,
+        "hp": 2202,
+        "maxHp": 2304,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "O01",
+          "O04",
+          "O03",
+          "O06"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 273.91932793146873,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "landing-1",
+        "normal": null
+      }
+    },
+    {
+      "role": "occultist",
+      "expected": "landing-2",
+      "pose": {
+        "id": "p-occultist",
+        "cls": "occultist",
+        "side": 0,
+        "x": 3791.12986992928,
+        "y": 2790.3803392063983,
+        "vx": 0,
+        "vy": 0,
+        "hp": 2202,
+        "maxHp": 2304,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "O01",
+          "O04",
+          "O03",
+          "O06"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 138.67366625959167,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "landing-2",
+        "normal": null
+      }
+    },
+    {
+      "role": "occultist",
+      "expected": "landing-3",
+      "pose": {
+        "id": "p-occultist",
+        "cls": "occultist",
+        "side": 0,
+        "x": 3655.627186769502,
+        "y": 3136.67690054572,
+        "vx": 0,
+        "vy": 0,
+        "hp": 2202,
+        "maxHp": 2304,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "O01",
+          "O04",
+          "O03",
+          "O06"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 0,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "landing-3",
+        "normal": null
+      }
+    },
+    {
+      "role": "occultist",
+      "expected": "landing-4",
+      "pose": {
+        "id": "p-occultist",
+        "cls": "occultist",
+        "side": 0,
+        "x": 3789.902060225378,
+        "y": 3475.3766851624086,
+        "vx": 0,
+        "vy": 0,
+        "hp": 2294,
+        "maxHp": 2304,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "O01",
+          "O04",
+          "O03",
+          "O06"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 2975.9889642775056,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "landing-4",
+        "normal": null
+      }
+    },
+    {
+      "role": "occultist",
+      "expected": "landing-5",
+      "pose": {
+        "id": "p-occultist",
+        "cls": "occultist",
+        "side": 0,
+        "x": 4184.202228782888,
+        "y": 3726.5992974379496,
+        "vx": 0,
+        "vy": 0,
+        "hp": 2294,
+        "maxHp": 2304,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "O01",
+          "O04",
+          "O03",
+          "O06"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 2559.949621427617,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "landing-5",
+        "normal": null
+      }
+    },
+    {
+      "role": "occultist",
+      "expected": "east-return-buttress",
+      "pose": {
+        "id": "p-occultist",
+        "cls": "occultist",
+        "side": 0,
+        "x": 4401.6946181308895,
+        "y": 3875.2694545903914,
+        "vx": 0,
+        "vy": 0,
+        "hp": 2294,
+        "maxHp": 2304,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "O01",
+          "O04",
+          "O03",
+          "O06"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 2341.521374113755,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "east-return-buttress",
+        "normal": null
+      }
+    },
+    {
+      "role": "knight",
+      "expected": "landing-1",
+      "pose": {
+        "id": "p-knight",
+        "cls": "knight",
+        "side": 0,
+        "x": 3657.494440260058,
+        "y": 2445.5815191889806,
+        "vx": 0,
+        "vy": 0,
+        "hp": 3846,
+        "maxHp": 3846,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "S00",
+          "S01",
+          "S03"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 3650.499999999995,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "landing-1",
+        "normal": null
+      }
+    },
+    {
+      "role": "knight",
+      "expected": "landing-2",
+      "pose": {
+        "id": "p-knight",
+        "cls": "knight",
+        "side": 0,
+        "x": 3793.053188223882,
+        "y": 2790.391236193903,
+        "vx": 0,
+        "vy": 0,
+        "hp": 3846,
+        "maxHp": 3846,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "S00",
+          "S01",
+          "S03"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 3492.991633008329,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "landing-2",
+        "normal": null
+      }
+    },
+    {
+      "role": "knight",
+      "expected": "landing-3",
+      "pose": {
+        "id": "p-knight",
+        "cls": "knight",
+        "side": 0,
+        "x": 3649.2242021931047,
+        "y": 3136.636630202472,
+        "vx": 0,
+        "vy": 0,
+        "hp": 3846,
+        "maxHp": 3846,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "S00",
+          "S01",
+          "S03"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 3324.991633008329,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "landing-3",
+        "normal": null
+      }
+    },
+    {
+      "role": "knight",
+      "expected": "landing-4",
+      "pose": {
+        "id": "p-knight",
+        "cls": "knight",
+        "side": 0,
+        "x": 3784.8182807383832,
+        "y": 3475.3514554875355,
+        "vx": 0,
+        "vy": 0,
+        "hp": 3846,
+        "maxHp": 3846,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "S00",
+          "S01",
+          "S03"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 3167.461265561381,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "landing-4",
+        "normal": null
+      }
+    },
+    {
+      "role": "knight",
+      "expected": "landing-5",
+      "pose": {
+        "id": "p-knight",
+        "cls": "knight",
+        "side": 0,
+        "x": 4172.384583558659,
+        "y": 3726.557316460244,
+        "vx": 0,
+        "vy": 0,
+        "hp": 3846,
+        "maxHp": 3846,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "S00",
+          "S01",
+          "S03"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 2736.9557258444634,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "landing-5",
+        "normal": null
+      }
+    },
+    {
+      "role": "knight",
+      "expected": "east-return-buttress",
+      "pose": {
+        "id": "p-knight",
+        "cls": "knight",
+        "side": 0,
+        "x": 4402.473058231853,
+        "y": 3874.582595677776,
+        "vx": 0,
+        "vy": 0,
+        "hp": 3846,
+        "maxHp": 3846,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "S00",
+          "S01",
+          "S03"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 2505.931318639063,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "east-return-buttress",
+        "normal": null
+      }
+    },
+    {
+      "role": "archer",
+      "expected": "landing-1",
+      "pose": {
+        "id": "p-archer",
+        "cls": "archer",
+        "side": 0,
+        "x": 3644.6456649530282,
+        "y": 2445.3192992847557,
+        "vx": 0,
+        "vy": 0,
+        "hp": 1635,
+        "maxHp": 1720,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "A01",
+          "A14",
+          "A02",
+          "A05"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 263.5586472987114,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "landing-1",
+        "normal": null
+      }
+    },
+    {
+      "role": "archer",
+      "expected": "landing-2",
+      "pose": {
+        "id": "p-archer",
+        "cls": "archer",
+        "side": 0,
+        "x": 3781.864191882137,
+        "y": 2790.3278424469245,
+        "vx": 0,
+        "vy": 0,
+        "hp": 1635,
+        "maxHp": 1720,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "A01",
+          "A14",
+          "A02",
+          "A05"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 82.88782590700183,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "landing-2",
+        "normal": null
+      }
+    },
+    {
+      "role": "archer",
+      "expected": "landing-3",
+      "pose": {
+        "id": "p-archer",
+        "cls": "archer",
+        "side": 0,
+        "x": 3656.1055336934437,
+        "y": 3136.6799090169397,
+        "vx": 0,
+        "vy": 0,
+        "hp": 1704,
+        "maxHp": 1720,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "A01",
+          "A14",
+          "A02",
+          "A05"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 2853.7083333333353,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "landing-3",
+        "normal": null
+      }
+    },
+    {
+      "role": "archer",
+      "expected": "landing-4",
+      "pose": {
+        "id": "p-archer",
+        "cls": "archer",
+        "side": 0,
+        "x": 3782.7086743914233,
+        "y": 3475.3409859771286,
+        "vx": 0,
+        "vy": 0,
+        "hp": 1704,
+        "maxHp": 1720,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "A01",
+          "A14",
+          "A02",
+          "A05"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 2697.8357064959087,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "landing-4",
+        "normal": null
+      }
+    },
+    {
+      "role": "archer",
+      "expected": "landing-5",
+      "pose": {
+        "id": "p-archer",
+        "cls": "archer",
+        "side": 0,
+        "x": 4174.932547042979,
+        "y": 3726.566367840295,
+        "vx": 0,
+        "vy": 0,
+        "hp": 1704,
+        "maxHp": 1720,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "A01",
+          "A14",
+          "A02",
+          "A05"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 2262.172570968943,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "landing-5",
+        "normal": null
+      }
+    },
+    {
+      "role": "archer",
+      "expected": "east-return-buttress",
+      "pose": {
+        "id": "p-archer",
+        "cls": "archer",
+        "side": 0,
+        "x": 4404.238301396211,
+        "y": 3873.025028179814,
+        "vx": 0,
+        "vy": 0,
+        "hp": 1704,
+        "maxHp": 1720,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "A01",
+          "A14",
+          "A02",
+          "A05"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 2031.9309001605047,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "east-return-buttress",
+        "normal": null
+      }
+    },
+    {
+      "role": "mage",
+      "expected": "landing-1",
+      "pose": {
+        "id": "p-mage",
+        "cls": "mage",
+        "side": 0,
+        "x": 3655.698432942678,
+        "y": 2445.544865978422,
+        "vx": 0,
+        "vy": 0,
+        "hp": 1919.2,
+        "maxHp": 2050,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 2482.049999999996,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "landing-1",
+        "normal": null
+      }
+    },
+    {
+      "role": "mage",
+      "expected": "landing-2",
+      "pose": {
+        "id": "p-mage",
+        "cls": "mage",
+        "side": 0,
+        "x": 3795.489991602411,
+        "y": 2790.4050424453394,
+        "vx": 0,
+        "vy": 0,
+        "hp": 1919.2,
+        "maxHp": 2050,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 2321.2084483390036,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "landing-2",
+        "normal": null
+      }
+    },
+    {
+      "role": "mage",
+      "expected": "landing-3",
+      "pose": {
+        "id": "p-mage",
+        "cls": "mage",
+        "side": 0,
+        "x": 3637.8616409624374,
+        "y": 3136.565167553223,
+        "vx": 0,
+        "vy": 0,
+        "hp": 1919.2,
+        "maxHp": 2050,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 2080.008448339006,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "landing-3",
+        "normal": null
+      }
+    },
+    {
+      "role": "mage",
+      "expected": "landing-4",
+      "pose": {
+        "id": "p-mage",
+        "cls": "mage",
+        "side": 0,
+        "x": 3807.7958385751995,
+        "y": 3475.465488032631,
+        "vx": 0,
+        "vy": 0,
+        "hp": 1919.2,
+        "maxHp": 2050,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 1828.7371183048451,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "landing-4",
+        "normal": null
+      }
+    },
+    {
+      "role": "mage",
+      "expected": "landing-5",
+      "pose": {
+        "id": "p-mage",
+        "cls": "mage",
+        "side": 0,
+        "x": 4178.748178708564,
+        "y": 3726.5799224820908,
+        "vx": 0,
+        "vy": 0,
+        "hp": 1919.2,
+        "maxHp": 2050,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 1416.6458242322649,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "landing-5",
+        "normal": null
+      }
+    },
+    {
+      "role": "mage",
+      "expected": "east-return-buttress",
+      "pose": {
+        "id": "p-mage",
+        "cls": "mage",
+        "side": 0,
+        "x": 4409.003689987065,
+        "y": 3868.8202735408254,
+        "vx": 0,
+        "vy": 0,
+        "hp": 1919.2,
+        "maxHp": 2050,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 1185.4544205742352,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "east-return-buttress",
+        "normal": null
+      }
+    }
+  ],
+  "warnings": [],
+  "errors": [],
+  "sealEvents": [
+    {
+      "key": "archerCliffDirectImpact",
+      "role": "p-archer",
+      "round": 1
+    },
+    {
+      "key": "act6-local-objective:cliff",
+      "role": "p-archer",
+      "round": 3
+    },
+    {
+      "key": "act6-local-objective:bridge",
+      "role": "p-knight",
+      "round": 4
+    },
+    {
+      "key": "act6-local-objective:bell",
+      "role": "p-occultist",
+      "round": 6
+    },
+    {
+      "key": "act6-local-objective:threshold",
+      "role": "p-mage",
+      "round": 8
+    }
+  ],
+  "cold53": {
+    "stage": 53,
+    "byteExact": true
+  },
+  "trace": [
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2"
+      ],
+      "newIds": [
+        "watch-range",
+        "bridge-keeper",
+        "return-guard",
+        "cliff-stone",
+        "a6-52-opening-1",
+        "a6-52-opening-2",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6"
+      ]
+    },
+    {
+      "type": "fire",
+      "round": 1,
+      "owner": "a6-52-opening-2",
+      "skill": "HSH02"
+    },
+    {
+      "type": "hit",
+      "round": 1,
+      "owner": "a6-52-opening-2",
+      "target": "p-occultist",
+      "loss": 42
+    },
+    {
+      "type": "fire",
+      "round": 2,
+      "owner": "a6-52-opening-2",
+      "skill": "HSH02"
+    },
+    {
+      "type": "hit",
+      "round": 2,
+      "owner": "a6-52-opening-2",
+      "target": "p-knight",
+      "loss": 32
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "bridge-keeper",
+        "a6-52-opening-1",
+        "a6-52-opening-2",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-broken-arch-1",
+        "a6-52-broken-arch-2"
+      ],
+      "newIds": [
+        "a6-52-broken-arch-1",
+        "a6-52-broken-arch-2"
+      ]
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "bridge-keeper",
+        "a6-52-opening-1",
+        "a6-52-opening-2",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-broken-arch-1",
+        "a6-52-broken-arch-2",
+        "a6-52-broken-arch-3"
+      ],
+      "newIds": [
+        "a6-52-broken-arch-3"
+      ]
+    },
+    {
+      "type": "fire",
+      "round": 3,
+      "owner": "a6-52-opening-2",
+      "skill": "HSH02"
+    },
+    {
+      "type": "hit",
+      "round": 3,
+      "owner": "a6-52-opening-2",
+      "target": "p-knight",
+      "loss": 29
+    },
+    {
+      "type": "hit",
+      "round": 3,
+      "owner": "a6-52-opening-2",
+      "target": "p-occultist",
+      "loss": 31
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2",
+        "a6-52-opening-3",
+        "a6-52-cliff-watch-1"
+      ],
+      "newIds": [
+        "a6-52-cliff-watch-1"
+      ]
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2",
+        "a6-52-opening-3",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3"
+      ],
+      "newIds": [
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3"
+      ]
+    },
+    {
+      "type": "fire",
+      "round": 4,
+      "owner": "a6-52-broken-arch-2",
+      "skill": "HSH01"
+    },
+    {
+      "type": "hit",
+      "round": 4,
+      "owner": "a6-52-broken-arch-2",
+      "target": "p-knight",
+      "loss": 18
+    },
+    {
+      "type": "fire",
+      "round": 4,
+      "owner": "a6-52-opening-4",
+      "skill": "HSH02"
+    },
+    {
+      "type": "hit",
+      "round": 4,
+      "owner": "a6-52-opening-4",
+      "target": "p-knight",
+      "loss": 23
+    },
+    {
+      "type": "fire",
+      "round": 4,
+      "owner": "a6-52-broken-arch-1",
+      "skill": "HBM03"
+    },
+    {
+      "type": "hit",
+      "round": 4,
+      "owner": "a6-52-broken-arch-1",
+      "target": "p-knight",
+      "loss": 57
+    },
+    {
+      "type": "fire",
+      "round": 4,
+      "owner": "a6-52-cliff-watch-2",
+      "skill": "HSH02"
+    },
+    {
+      "type": "hit",
+      "round": 4,
+      "owner": "a6-52-cliff-watch-2",
+      "target": "p-mage",
+      "loss": 43
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-broken-arch-1",
+        "a6-52-broken-arch-2",
+        "a6-52-broken-arch-3",
+        "a6-52-bell-approach-1"
+      ],
+      "newIds": [
+        "a6-52-bell-approach-1"
+      ]
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-broken-arch-2",
+        "a6-52-broken-arch-3",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2"
+      ],
+      "newIds": [
+        "a6-52-bell-approach-2"
+      ]
+    },
+    {
+      "type": "fire",
+      "round": 5,
+      "owner": "a6-52-bell-approach-1",
+      "skill": "HSH01"
+    },
+    {
+      "type": "hit",
+      "round": 5,
+      "owner": "a6-52-bell-approach-1",
+      "target": "p-knight",
+      "loss": 18
+    },
+    {
+      "type": "hit",
+      "round": 5,
+      "owner": "a6-52-bell-approach-1",
+      "target": "p-occultist",
+      "loss": 30
+    },
+    {
+      "type": "fire",
+      "round": 5,
+      "owner": "watch-range",
+      "skill": "HCW01"
+    },
+    {
+      "type": "hit",
+      "round": 5,
+      "owner": "watch-range",
+      "target": "p-mage",
+      "loss": 56.99999999999977
+    },
+    {
+      "type": "fire",
+      "round": 5,
+      "owner": "a6-52-opening-4",
+      "skill": "HSH01"
+    },
+    {
+      "type": "fire",
+      "round": 5,
+      "owner": "a6-52-opening-6",
+      "skill": "HSH02"
+    },
+    {
+      "type": "hit",
+      "round": 5,
+      "owner": "a6-52-opening-6",
+      "target": "p-knight",
+      "loss": 32
+    },
+    {
+      "type": "hit",
+      "round": 5,
+      "owner": "a6-52-opening-6",
+      "target": "p-occultist",
+      "loss": 55
+    },
+    {
+      "type": "fire",
+      "round": 5,
+      "owner": "a6-52-broken-arch-2",
+      "skill": "HSH01"
+    },
+    {
+      "type": "fire",
+      "round": 5,
+      "owner": "a6-52-bell-approach-2",
+      "skill": "HBM01"
+    },
+    {
+      "type": "hit",
+      "round": 5,
+      "owner": "a6-52-bell-approach-2",
+      "target": "p-knight",
+      "loss": 57
+    },
+    {
+      "type": "fire",
+      "round": 6,
+      "owner": "a6-52-bell-approach-2",
+      "skill": "HBM01"
+    },
+    {
+      "type": "hit",
+      "round": 6,
+      "owner": "a6-52-bell-approach-2",
+      "target": "p-knight",
+      "loss": 55
+    },
+    {
+      "type": "fire",
+      "round": 6,
+      "owner": "a6-52-opening-6",
+      "skill": "HSH02"
+    },
+    {
+      "type": "hit",
+      "round": 6,
+      "owner": "a6-52-opening-6",
+      "target": "p-archer",
+      "loss": 48
+    },
+    {
+      "type": "hit",
+      "round": 6,
+      "owner": "a6-52-opening-6",
+      "target": "p-mage",
+      "loss": 59
+    },
+    {
+      "type": "hit",
+      "round": 6,
+      "owner": "a6-52-opening-6",
+      "target": "p-knight",
+      "loss": 22
+    },
+    {
+      "type": "hit",
+      "round": 6,
+      "owner": "a6-52-opening-6",
+      "target": "p-occultist",
+      "loss": 39
+    },
+    {
+      "type": "fire",
+      "round": 6,
+      "owner": "a6-52-bell-approach-1",
+      "skill": "HSH01"
+    },
+    {
+      "type": "sample",
+      "round": 7,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-broken-arch-2",
+        "a6-52-broken-arch-3",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3"
+      ],
+      "newIds": [
+        "a6-52-bell-approach-3"
+      ]
+    },
+    {
+      "type": "fire",
+      "round": 7,
+      "owner": "a6-52-bell-approach-2",
+      "skill": "HBM01"
+    },
+    {
+      "type": "hit",
+      "round": 7,
+      "owner": "a6-52-bell-approach-2",
+      "target": "p-knight",
+      "loss": 58
+    },
+    {
+      "type": "fire",
+      "round": 7,
+      "owner": "a6-52-opening-4",
+      "skill": "HSH01"
+    },
+    {
+      "type": "fire",
+      "round": 7,
+      "owner": "a6-52-opening-6",
+      "skill": "HSH02"
+    },
+    {
+      "type": "hit",
+      "round": 7,
+      "owner": "a6-52-opening-6",
+      "target": "p-archer",
+      "loss": 47
+    },
+    {
+      "type": "hit",
+      "round": 7,
+      "owner": "a6-52-opening-6",
+      "target": "p-mage",
+      "loss": 48
+    },
+    {
+      "type": "hit",
+      "round": 7,
+      "owner": "a6-52-opening-6",
+      "target": "p-knight",
+      "loss": 23
+    },
+    {
+      "type": "hit",
+      "round": 7,
+      "owner": "a6-52-opening-6",
+      "target": "p-occultist",
+      "loss": 39
+    },
+    {
+      "type": "fire",
+      "round": 7,
+      "owner": "a6-52-bell-approach-3",
+      "skill": "HSH02"
+    },
+    {
+      "type": "hit",
+      "round": 7,
+      "owner": "a6-52-bell-approach-3",
+      "target": "p-archer",
+      "loss": 35
+    },
+    {
+      "type": "hit",
+      "round": 7,
+      "owner": "a6-52-bell-approach-3",
+      "target": "p-mage",
+      "loss": 32
+    },
+    {
+      "type": "hit",
+      "round": 7,
+      "owner": "a6-52-bell-approach-3",
+      "target": "p-knight",
+      "loss": 18
+    },
+    {
+      "type": "hit",
+      "round": 7,
+      "owner": "a6-52-bell-approach-3",
+      "target": "p-occultist",
+      "loss": 31
+    }
+  ]
+}

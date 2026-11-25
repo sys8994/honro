@@ -5,7 +5,7 @@
 | 장 | 실측 시작 / 누적 / 최대 활성 | 엔진 공격 큐 상한 | 교전 표본 |
 |---|---:|---:|---|
 | 51 | 8 / 17 / 8 | 5 | 아랫길·중턱·전망대에서 각 3명. 구간마다 두 라운드 진행한 판에서 20발 발사, 추격대가 설오에게 실제 2회 명중해 1720→1606. 별도 완주 판에서는 경계암귀를 처치하고 네 원본이 전망대에 닿아, 5라운드에 실제 전망대 영수증과 52 라이브·새 저장을 검수했다. 제안 라운드 8–16보다 짧았다. [추가 교전](pressure-51.json) · [완주 판](overlook-live-51.json) · [화면](screens/overlook-51.webp) |
-| 52 | 9 / 17 / 9 | 6 | 종터 증원대를 실제 하단 종터의 발판으로 내렸다. 설오의 A01 두 발로 원래 암벽 지지석을 155→17→0으로 낮췄고, 석교·하강 받침 다섯 개를 거쳐 네 원본이 종터에 닿았다. 6라운드 승리와 53 라이브·새 저장을 확인했다. 누적 목표를 한 명 밑돌았다. [완주 로그](cliff-bell-52.json) · [종터](screens/cliff-bell-52.webp) · [이전 상층 표본](approach-52.json) |
+| 52 | 9 / 18 / 9 | 6 | 설오의 A01 두 발로 원래 암벽 지지석 155→17→0, 석교와 하강 받침 다섯 개를 거쳐 네 원본이 하단 종터에 닿았다. 6라운드 속전 판은 누적 17이었다. 별도 판에서 담허가 종터 증원에게 실제 M01 두 발을 쏜 뒤 다음 예비가 나와 누적 18, 8라운드였다. 두 판 모두 53 라이브와 새 저장을 확인했다. [속전](cliff-bell-52.json) · [하단 교전](cliff-bell-pressure-52.json) · [종터](screens/cliff-bell-pressure-52.webp) |
 | 53 | 5 / 9 / 미실측 | 4 | 세 구간의 증원이 일부 입장했다. 실제 M09와 B를 거쳐 54, 차트와 C 뒤 새 55까지 진행했다. 이 판 누적 9는 목표 12보다 적다. [로그](interior-53.json) · [산문 안쪽](screens/approach-53.webp) |
 | 54 | 4 / 8 이상 / 미실측 | 4 | +X 같은 면에 원래 수문지기와 새 순라·매듭귀·잔향, 갤러리에 별도 예비대. 피격 밀림이 접선 방향 몸 겹침을 만들어 재조준을 막는 문제를 고쳤다. 60·120Hz의 실제 접지·접선 이동·도약·착지·포격으로 B와 기존 차트·M09·C, 54·55 새 저장을 통과했다. 120Hz 판에는 53·54에서 각각 실제 소단 O06을 썼다. [60/120Hz](wall-60-120.json) · [B 입구](screens/wall-60.webp) |
 | 55 | 8 / 18 / 미실측 | 7 | 빈종각귀의 공격 순서를 보장하되 나머지 증원이 그 뒤에 실제 행동한다. 원래 적이 소단을 실제로 맞혀 복구한 판과, 두 동행이 공격하고 온전한 결속을 정렬한 판이 각각 새 56까지 통과했다. 계획 누적 24 중 관측 누적은 18이다. [온전한 판](bell-intact-55.json) · [복구 판](bell-repair-55.json) · [화면](screens/bell-pressure-55.webp) |
@@ -34,6 +34,7 @@ python game/docs/act6/mumyeongsa-p00-p10/baseline/exterior_combat.py --build "$P
 python game/docs/act6/mumyeongsa-p00-p10/baseline/exterior_combat.py --build "$PWD" --out /tmp/honro-act6-pressure51 --stages 51 --rounds-per-site 2
 python game/docs/act6/mumyeongsa-p00-p10/baseline/exterior_combat.py --build "$PWD" --out /tmp/honro-act6-overlook51 --stages 51 --finish-overlook --rounds-per-site 0
 python game/docs/act6/mumyeongsa-p00-p10/baseline/cliff_bell_chain.py --build "$PWD" --out /tmp/honro-act6-cliff-bell52
+python game/docs/act6/mumyeongsa-p00-p10/baseline/cliff_bell_chain.py --build "$PWD" --out /tmp/honro-act6-cliff-bell52-combat --engage-bell
 python game/docs/act6/mumyeongsa-p00-p10/baseline/native_b.py --build "$PWD" --out /tmp/honro-act6-inner53 --hz 120 --spirit
 python game/docs/act6/mumyeongsa-p00-p10/baseline/native_b.py --build "$PWD" --out /tmp/honro-act6-wall60 --hz 60
 python game/docs/act6/mumyeongsa-p00-p10/baseline/native_b.py --build "$PWD" --out /tmp/honro-act6-wall120 --hz 120 --spirit --spirit53
