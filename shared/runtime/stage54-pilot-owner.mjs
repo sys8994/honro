@@ -21,7 +21,7 @@ export function verifyStage54Relay(C,sill,relay,allowLegacy=false){
   impact.normal?.x===0&&impact.normal?.y===-1&&s.terrain===sill.id&&s.x===impact.x&&s.y===2930&&
   s.y===impact.y-impact.normal.y*impact.radius&&faces.some(f=>f.edge===s.edge&&f.y===s.y&&f.slope===0));
 }
-export async function createStage54ChartOwner({C,domain,charts,verifyMounted,verifyIncoming,fireMissionSkill}){
+export async function createStage54ChartOwner({C,domain,charts,gallery=null,observatory=null,verifyMounted,verifyIncoming,fireMissionSkill}){
  const digest=async x=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(sig(x)))),v=>v.toString(16).padStart(2,'0')).join('');
  const pages=structuredClone(charts);
  for(const [k,c] of Object.entries(pages)){
@@ -31,7 +31,14 @@ export async function createStage54ChartOwner({C,domain,charts,verifyMounted,ver
  if(Object.keys(pages).sort().join(',')!=='C,L,N'||typeof verifyMounted!=='function'||typeof verifyIncoming!=='function'||typeof fireMissionSkill!=='function')throw Error('chart ownership port unavailable');
  const owned=new WeakMap();
  const geometry=(b,k)=>sig(b.terrain)===sig(pages[k].terrain)&&sig(b.honroWorldTerrain)===sig(pages[k].world)&&b.width===pages[k].width&&b.height===pages[k].height;
- const get=(a,e)=>{const s=owned.get(e);return s&&safe(a)&&s.app===a&&a.engine===e&&s.b===e.b&&a.stage===s.stage&&a.stageId===54&&s.b.honroAuthoredId===ids.N&&s.b.units.length===1&&s.b.units[0]===s.u&&s.u.hp>0&&!s.u.dead&&(s.b.honroGrowth?.limit.total===0&&s.b.honroGrowth?.limit.combat===0)&&verifyMounted(a,e,s.ticket)?s:null;};
+ const galleryGeometry=b=>gallery&&sig(b.terrain)===sig(gallery.terrain)&&sig(b.honroWorldTerrain)===sig(gallery.worldTerrain)&&b.width===pages.N.width&&b.height===pages.N.height;
+ const get=(a,e)=>{
+  const s=owned.get(e),units=e?.b.units;
+  return s&&safe(a)&&s.app===a&&a.engine===e&&s.b===e.b&&a.stage===s.stage&&a.stageId===54&&s.b.honroAuthoredId===ids.N&&
+    units[0]===s.u&&s.u.side===0&&s.u.cls==='mage'&&s.u.hp>0&&!s.u.dead&&
+    (s.foe?units.length===2&&units[1]===s.foe&&s.foe.side===1:units.length===1)&&
+    s.b.honroGrowth?.limit.total===0&&s.b.honroGrowth?.limit.combat===0&&verifyMounted(a,e,s.ticket)?s:null;
+ };
  const support=(e,a)=>e.contactSurface(a.x,a.y-4,a.y+4)?.t.id;
  const noTransients=b=>['projectiles','stakes','waters','fields','drafts','summons','supportHazards'].every(k=>!b[k]?.length)&&!b.volley;
  function mount(a,e,ticket){
@@ -66,7 +73,10 @@ export async function createStage54ChartOwner({C,domain,charts,verifyMounted,ver
  }
  function chart(a,e,id){
   const g=get(a,e),m=map[id];
-  if(!g||!m||steps[g.order.length]!==id||g.frame!==m.from||g.pending||!geometry(g.b,g.frame))return response(false,'chart order/owner');
+  if(!g||g.foe&&(!g.foe.dead||g.foe.hp!==0)||!m||steps[g.order.length]!==id||g.frame!==m.from||g.pending)return response(false,'chart order/owner');
+  if(g.frame==='N'&&g.gallery){
+   if(!g.observed||!galleryGeometry(g.b))return response(false,'회랑 끝 관측턱에 닿은 뒤 돌아오세요.');
+  }else if(!geometry(g.b,g.frame))return response(false,'chart order/owner');
   const {u,b}=g;
   if(e.active!==u||!e.canAct()||!e.grounded(u)||!C.validTerrainContactPose(b.terrain,u)||!noTransients(b)||!span(u.x,...m.zone)||support(e,u)!==m.surface)return response(false,'same grounded chart mark');
   const scene=a.scene;
@@ -89,6 +99,27 @@ export async function createStage54ChartOwner({C,domain,charts,verifyMounted,ver
   scene._releaseDomainTiles(); scene.manual=false;scene.x=u.x;scene.y=u.y-170;scene.focusUnit(u.id,700,false);
   g.cameraEvents.push({id,focus:u.id,frame:g.frame,sceneVersion:b.sceneVersion});
   return {ok:true,pending:true,drop:g.pending.drop};
+ }
+ function admitGuard(a,e,ticket,foe){
+  const g=get(a,e);
+  if(!g||g.ticket!==ticket||g.foe||g.order.length||!geometry(e.b,'N')||foe?.id!=='mumyeongsa-b-wall-guard'||foe.side!==1||
+     foe.cls!=='archer'||foe.summoned||foe.honroAlly||foe.dead||foe.hp!==foe.maxHp||sig(foe.loadout)!==sig(['LA01']))return false;
+  g.foe=foe;
+  e.b.units.push(foe);
+  return true;
+ }
+ function beginGallery(a,e,ticket){
+  const g=get(a,e);
+  if(!g||g.ticket!==ticket||g.gallery||!g.foe?.dead||!galleryGeometry(e.b))return false;
+  g.gallery=true;
+  return true;
+ }
+ function observeGallery(a,e){
+  const g=get(a,e),u=g?.u,q=observatory;
+  if(!g?.gallery||g.observed||g.frame!=='N'||!galleryGeometry(g.b)||!q||e.active!==u||!e.canAct()||
+     !span(u.x,q.x-q.halfWidth,q.x+q.halfWidth)||!e.grounded(u)||support(e,u)!==q.support||!C.validTerrainContactPose(e.b.terrain,u))return false;
+  g.observed={x:u.x,y:u.y,support:q.support,actor:u.id,grounded:true,round:g.b.round};
+  return true;
  }
  function observe(a,e){
   const g=get(a,e);if(!g||!g.pending||!e.grounded(g.u))return false;
@@ -115,13 +146,17 @@ export async function createStage54ChartOwner({C,domain,charts,verifyMounted,ver
   const u=g.u;
   const complete=g.order.length===3&&!g.pending&&!!g.m09&&geometry(g.b,'L')&&span(u.x,2308,2324)&&span(u.y,2926,2934)&&
     e.grounded(u)&&C.validTerrainContactPose(g.b.terrain,u)&&support(e,u)==='mid-contact';
-  return {complete,objectiveReady:complete,summary:complete?'처마 안쪽의 진목과 출구를 확인했습니다.':g.m09?'돌턱 안쪽 문으로 이동하세요.':g.pending?'새 받침에 발이 닿을 때까지 기다리세요.':'안내점을 따라 처마를 건너 진목을 묶으세요.',targets:[]};
+  const observing=g.frame==='N'&&g.gallery&&!g.observed;
+  const targets=observing?[{kind:'route',id:'observatory',label:'회랑 끝 관측턱',x:observatory.x,y:C.topAt(g.b.terrain.find(t=>t.id===observatory.support),observatory.x)}]:[];
+  const missed=g.shot&&!g.m09&&g.b.phase==='aim'&&!g.b.projectiles.length;
+  return {complete,objectiveReady:complete,summary:complete?'처마 안쪽의 진목과 출구를 확인했습니다.':g.m09?'돌턱 안쪽 문으로 이동하세요.':g.pending?'새 받침에 발이 닿을 때까지 기다리세요.':observing?'회랑을 걸어 끝의 관측턱에 닿으세요.':missed?'진목을 이어야 하는 돌턱의 윗면을 다시 조준하세요.':'안내점을 따라 처마를 건너 진목을 묶으세요.',targets};
  }
  function terminal(a,e){
   const g=get(a,e);if(!g||g.terminal||e.b.phase!=='won'||!project(a,e).complete)return null;
   g.terminal=true;return {stage:54,won:true,flags:{'act6.invertedGalleryCrossed':true},mage:structuredClone(g.u),external:structuredClone(g.external),
-   chart:structuredClone(g.order),relay:structuredClone(g.m09),settlement:false};
+   chart:structuredClone(g.order),relay:structuredClone(g.m09),...(g.gallery?{gallery:{observed:structuredClone(g.observed),guard:g.foe.id}}:{}),settlement:false};
  }
  function inspect(a,e){const g=get(a,e);return g&&structuredClone({frame:g.frame,pending:g.pending,chart:g.order,m09:g.m09,camera:g.cameraEvents});}
- return Object.freeze({mount,chart,observe,relay,project,terminal,inspect,releaseEnabled:false});
+ return Object.freeze({mount,admitGuard,beginGallery,observeGallery,chart,observe,relay,project,terminal,inspect,
+  readyAfterGuard:(a,e)=>{const g=get(a,e);return !!g?.foe&&g.foe.dead===true&&g.foe.hp===0&&noTransients(g.b);},releaseEnabled:false});
 }

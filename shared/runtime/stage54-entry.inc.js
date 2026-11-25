@@ -1,9 +1,16 @@
       const mounted54=new WeakMap(),cold54=new WeakSet(),charts54Steps=Object.freeze(['N>L','L>C','C>L']);
+      const rail54Assets=new WeakMap();
       const scope54=(app,e,s)=>s===active.get(app)&&!!s?.normal51&&app.engine===e&&app.stageId===54&&s.b===e.b&&mounted54.get(e)===s&&
         app.profile===app.normalProfile&&e.b.mode==='campaign'&&e.b.honroCanonical===true&&e.b.honroCustom===false&&normal51Provider.content(e.b)===e.stage&&
         e.b.honroGrowth?.limit.total===0&&e.b.honroGrowth?.limit.combat===0&&runtime(app);
       async function prepareNormal54(packet,known){
+        const B=brokenRail,m=packet.map,rail={...m,width:B.width,height:B.height,terrains:B.terrain,materials:[],elements:B.elements,
+          playBounds:{left:0,top:0,right:B.width,bottom:B.height},terrainBounds:{left:-320,top:-320,right:B.width+320,bottom:B.height+320}};
+        const data=G.HonroMaps.compile(rail,{library:B.assets});
+        const source=composeGallery54(m,packet.library),gallery=G.HonroMaps.compile(source.map,{library:source.library});
+        rail54Assets.set(packet,{rail,data,gallery});
         const chart=await createStage54ChartOwner({C,domain:G.HonroTerrainDomain,charts:packet.charts,
+          gallery,observatory:observatory54,
           verifyMounted:(app,e,s)=>scope54(app,e,s)&&s.owner54===chart,
           verifyIncoming:(app,e,s)=>scope54(app,e,s)&&s.owner54===chart?s.previous:null,
           fireMissionSkill:(app,e,q)=>{
@@ -24,15 +31,16 @@
         const t=prev.terminal,e=prev.engine,mage=e.active,m=grant.packet.map;
         check(eligible54(app,prev)&&active.get(app)===prev&&app.profile===app.normalProfile&&e.stage.id===53&&normal51Provider.content(e.b)===e.stage&&
           mage?.cls==='mage'&&e.grounded(mage)&&mage.hp>0&&!mage.dead&&t?.mage?.id===mage.id&&carryFields.every(k=>same(t.mage[k],mage[k]))&&
-          same(t.external,prev.incoming53.external),'Actual 53 chart predecessor changed');
-        return mountFrom53(app,grant,t,mage,e.stage,normal51Provider.budget(e.b));
+          same(t.external,prev.incoming53.external)&&canLeaveHall53(e,mage)&&validBrokenRailCrossing(brokenRail,mage.id,t.bridge)&&
+          same(prev.wallAxis.contact(mage),t.bridge.to),'Actual 53 chart predecessor changed');
+        return mountFrom53(app,grant,t,mage,e.stage,normal51Provider.budget(e.b),{x:app.scene.x,y:app.scene.y,zoom:app.scene.zoom});
       }
       function mountCold54(app,grant,data,stays,key){
         if(!cold54.has(key)||!stays()||data.from!==53||data.to!==54||!runtime(app))return false;
         cold54.delete(key);
         return mountFrom53(app,grant,data.terminal,data.custody.mage,data.stageSeed,data.budget);
       }
-      function mountFrom53(app,grant,t,mage,stageSeed,budget){
+      function mountFrom53(app,grant,t,mage,stageSeed,budget,view=null){
         const m=grant.packet.map;
         const spawn=grant.packet.spawn,support=grant.packet.charts.N.terrain.find(x=>x.id===spawn.support),y=C.topAt(support,spawn.x);
         check(spawn.x===250&&spawn.support==='foothill'&&Number.isFinite(y),'Invalid native foothill arrival');
@@ -54,6 +62,10 @@
         check(C.validTerrainContactPose(b.terrain,u),'Original Damheo cannot stand on 54 foothill');
         b.honroGeometryReady=true;b.honroGeometryRevision=2;b.honroContactRevision=2;
         app.stopBattle();
+        if(view){
+          for(const key of Object.keys(mage))if(!Object.hasOwn(u,key))delete mage[key];
+          Object.assign(mage,u);b.units[0]=mage;
+        }
         const old={profile:app.profile,stage:app.stage,stageId:app.stageId,training:app.training,selectedByUnit:app.selectedByUnit,done:app.done};
         const s={old,b,packet:grant.packet,previous:t,terminal:null,ordinaryRest:true,normal51:true,owner54:grant.chart};
         active.set(app,s);app.close();
@@ -61,9 +73,12 @@
         try{
           app.mount(b,{freshReport:true,reportScope:'custom'});
           check(app.engine===s.engine&&app.engine.stage===content&&app.scene&&app.screen==='battle','Normal 54 chart mount failed');
+          if(t.bridge)mountBrokenReceive54(app,s,t.bridge,view);
           const ui=appUI(app);check(ui,'Normal 54 controls absent');const button=document.createElement('button');
           button.type='button';button.dataset.act6QaLookout='';styleAction(button);button.textContent='첫 받침에서 건너기';
-          button.addEventListener('click',event=>{if(event.isTrusted&&event.currentTarget===button)action(app,event);});s.button=button;ui.append(button);return true;
+          button.addEventListener('click',event=>{if(event.isTrusted&&event.currentTarget===button)action(app,event);});s.button=button;
+          if(s.wallAxis){button.disabled=true;button.textContent='벽에 발을 붙여 수문지기와 싸우세요.';}
+          ui.append(button);return true;
         }catch(error){app.stopBattle();app.showTitle();throw error;}
       }
       function bindNormal54(app,e,s){
@@ -71,7 +86,56 @@
         check(s.owner54.mount(app,e,s),'Normal 54 chart owner refused');
         s.engine=e;e.checkEnd=()=>app.checkMission(e);return true;
       }
+      function mountBrokenReceive54(app,s,receipt,view){
+        const e=s.engine,b=s.b,hero=e.active,B=brokenRail,to=receipt.to,origin={x:hero.x,y:hero.y};
+        check(validBrokenRailCrossing(B,hero.id,receipt),'Broken rail receipt refused');
+        const {rail,data}=rail54Assets.get(s.packet),[x,y]=B.guard;
+        const guard=C.makeUnit('archer',1,x,y,{id:'mumyeongsa-b-wall-guard',name:'기둥그림자',h:88,r:23,hp:600,maxHp:600,
+          focus:140,maxFocus:140,loadout:['LA01'],ranks:{LA01:1},awake:true,role:'bow',attack:.9,walkSpeed:290,maxMove:420,moveLeft:420});
+        check(s.owner54.admitGuard(app,e,s,guard),'The signed wall guard was refused');
+        b.honroActiveLimit=1;b.enemyLimit=1;
+        if(b.honroCounters)b.honroCounters.initialEnemies=1;
+        const layout={terrain:data.terrain,honroWorldTerrain:data.worldTerrain,honroLandmarks:data.landmarks,honroElements:data.elements,
+          honroSurfaceZones:data.materials,honroPlayBounds:rail.playBounds,honroTerrainBounds:rail.terrainBounds,width:rail.width,height:rail.height};
+        s.foothill54={origin,layout:Object.fromEntries(Object.keys(layout).map(k=>[k,b[k]]))};
+        Object.assign(b,layout,{sceneVersion:(b.sceneVersion??0)+1});
+        Object.assign(hero,{x:to.x,y:to.y,vx:to.vx,vy:to.vy,airborne:false,jumping:false,spawnX:to.x,spawnY:to.y});
+        s.guardB=guard;
+        s.wallAxis=installBrokenRail({C,e,scene:app.scene,B,hero,foe:guard});
+        s.wallAxis.adopt(hero);s.wallAxis.adopt(guard);
+        guard.airborne=true;
+        e.refreshActivation();focusChart54(app,hero,view);
+      }
+      function focusChart54(app,u,view){
+        const scene=app.scene;
+        scene._releaseDomainTiles();scene._releaseScreenCaches?.();scene.manual=false;
+        scene.x=Number.isFinite(view?.x)?view.x:u.x;
+        scene.y=Number.isFinite(view?.y)?view.y:u.y-120;
+        if(Number.isFinite(view?.zoom))scene.zoom=view.zoom;
+        scene.focusUnit(u.id,700,false);
+      }
+      function projectNormal54(app,e,s){
+        if(!s?.wallAxis)return s?.owner54?.project(app,e);
+        const still=s.guardB.dead?'벽을 따라 위쪽 처마에 닿으세요.':'같은 벽에 선 수문지기를 쓰러뜨리세요.';
+        return {complete:false,objectiveReady:false,summary:still,targets:[]};
+      }
+      function leaveBrokenReceive54(app,s){
+        const e=s.engine,u=e.active,B=brokenRail;
+        if(!scope54(app,e,s)||u?.cls!=='mage'||!e.canAct()||!s.wallAxis.isWall(u)||!e.grounded(u)||u.y>B.exitY||!s.owner54.readyAfterGuard(app,e))return;
+        const {origin,layout}=s.foothill54,{gallery}=rail54Assets.get(s.packet);
+        s.wallAxis.dispose();s.wallAxis=null;
+        Object.assign(e.b,layout,{terrain:gallery.terrain,honroWorldTerrain:gallery.worldTerrain,honroLandmarks:gallery.landmarks,
+          honroElements:gallery.elements,honroSurfaceZones:gallery.materials,sceneVersion:(e.b.sceneVersion??0)+1});
+        const x=origin.x+B.exitY-u.y,y=C.topAt(e.b.terrain.find(t=>t.id==='foothill'),x);
+        Object.assign(u,{x,y,spawnX:x,spawnY:y,vx:0,vy:0,airborne:false,jumping:false});
+        check(e.grounded(u)&&C.validTerrainContactPose(e.b.terrain,u),'Unmatched foothill receiving face');
+        check(s.owner54.beginGallery(app,e,s),'Gallery owner did not receive the wall passage');
+        focusChart54(app,u);
+        if(s.button){s.button.disabled=true;s.button.textContent='회랑 끝 관측턱으로';}
+        app.updateHUD(true);
+      }
       function chart54Input(app,s,e){
+        if(s.wallAxis)return false;
         const i=s.owner54.inspect(app,e),id=charts54Steps[i?.chart.length];if(!id||i?.pending)return false;
         const q=s.owner54.chart(app,e,id);if(!q.ok)app.notify(q.reason);if(q.ok)app.updateHUD(true);return q.ok;
       }
@@ -83,6 +147,8 @@
       function tick54(app){
         const s=active.get(app),e=app.engine;
         if(e?.b.honroStage!==54||!s?.owner54)return;
+        if(s.wallAxis){leaveBrokenReceive54(app,s);return;}
+        if(s.owner54.observeGallery(app,e)&&s.button){s.button.disabled=false;s.button.textContent='첫 받침으로 돌아가 건너기';app.updateHUD(true);}
         const landed=s.owner54.observe(app,e), p=s.owner54.project(app,e),info=s.owner54.inspect(app,e);
         if(landed&&s.button)s.button.textContent=info.chart.length===3?'돌턱에 진목 놓기':'다음 받침에서 건너기';
         if(landed)app.updateHUD(true);

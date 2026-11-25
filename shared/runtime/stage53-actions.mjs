@@ -4,7 +4,7 @@ const lower='south', upper='upper-threshold-footing', first='act6.innerStakeARea
 const skill='M09', near=(x,a,b)=>Number.isFinite(x)&&x>=a&&x<=b;
 const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
 const denied=reason=>({ok:false,reason});
-export function createStage53PhysicalActions({C, authenticate}){
+export function createStage53PhysicalActions({C, authenticate, entryX=425, passageX=425}){
  const owners=new WeakMap();
  const safe=(app,e,g)=>!!g&&g.app===app&&g.b===e?.b&&app.engine===e&&app.stageId===53&&
    !app.debugMode&&!app.training&&!app.workshopMode&&!app.customMap&&!app.embedded&&authenticate(app,e,g.author)&&
@@ -17,12 +17,12 @@ export function createStage53PhysicalActions({C, authenticate}){
   const b=e.b,u=b.units.find(u=>u.side===0&&!u.summoned&&!u.dead);
   if(!u||u.cls!=='mage'||!Array.isArray(u.loadout)||b.stakes?.length||b.honroState?.flags?.[first]||b.projectiles?.length)return false;
   const g={app,b,u,author,launch:null,pair:null};
-  if(!safe(app,e,g)||!live(e,g)||contact(e,u)!==lower||!near(u.x,422,428))return false;
+  if(!safe(app,e,g)||!live(e,g)||contact(e,u)!==lower||u.x!==entryX)return false;
   if(![lower,upper].every(id=>b.terrain.filter(t=>t.id===id).length===1))return false;
   // These are two visible retained pieces of the authored passage, not an
   // invisible teleport. Native Engine owns useGate's check and movement.
   const control=(id,surface,x)=>({id,x,y:C.topAt(b.terrain.find(t=>t.id===surface),x),side:0,skill,rank:1,owner:u.id,hp:90,r:13,h:36});
-  const pair=[control(11,lower,425),control(12,upper,2640)];
+  const pair=[control(11,lower,passageX),control(12,upper,2640)];
   if(pair.some(s=>!Number.isFinite(s.y)))return false;
   for (const s of pair) if(!C.validTerrainContactPose(b.terrain,{...u,x:s.x,y:s.y}))return false;
   b.stakes=pair;

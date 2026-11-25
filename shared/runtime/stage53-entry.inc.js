@@ -1,4 +1,13 @@
       const declared53=Object.create(null),verified53=new WeakMap();
+      const preparedHalls53=new WeakMap();
+      async function prepareHall53(packet){
+        const {map,library}=composeHall53(packet.map,packet.library,brokenRail);
+        const compiled=G.HonroMaps.compile(map,{library});
+        const known=await Promise.all([compiled.terrain,compiled.worldTerrain].map(async v=>{
+          const serial=JSON.stringify(v);return [serial,await sha(new TextEncoder().encode(serial))];
+        }));
+        preparedHalls53.set(packet,{map,library,known});
+      }
       const trust53=(app,e,s)=>s===active.get(app)&&s?.normal51&&s.b===e.b&&s.source53===verified53.get(e)&&
         app.engine===e&&app.stageId===53&&app.profile===app.normalProfile&&e.b.mode==='campaign'&&e.b.honroAuthoredId==='stage-53'&&
         e.b.honroCanonical===true&&e.b.honroCustom===false&&normal51Provider.content(e.b)===e.stage&&app.stage?.id===53&&app.stage?.objective===e.stage.objective&&
@@ -7,8 +16,9 @@
         verifyMounted:(app,e,s,d)=>trust53(app,e,s)&&declared53[53]===d,
         verifyIncoming:(app,e,s,n)=>n===52&&trust53(app,e,s)?s.incoming53:null,
         verifyChart:(app,e,frame)=>frame==='hall'&&trust53(app,e,active.get(app))&&
-          fingerprints.get(JSON.stringify(e.b.terrain))===declared53[53].playSHA&&fingerprints.get(JSON.stringify(e.b.honroWorldTerrain))===declared53[53].worldSHA});
-      const actions53=createStage53PhysicalActions({C,authenticate:trust53});
+          fingerprints.get(JSON.stringify(e.b.terrain))===declared53[53].playSHA&&fingerprints.get(JSON.stringify(e.b.honroWorldTerrain))===declared53[53].worldSHA,
+        verifyExit:(app,e,u)=>validBrokenRailCrossing(brokenRail,u.id,active.get(app)?.bridge)&&e.grounded(u)});
+      const actions53=createStage53PhysicalActions({C,authenticate:trust53,entryX:hall53.entryX,passageX:hall53.passageX});
       function enterNormal53(app,grant,predecessor){
         const t=predecessor?.terminal,e=predecessor?.engine;
         check(predecessor?.normal51&&active.get(app)===predecessor&&app.engine===e&&e.b===predecessor.b&&e.b.phase==='won'&&app.done&&
@@ -25,7 +35,8 @@
         return enterFrom52(app,grant,sealed.terminal,Object.values(sealed.custody.full),sealed.stageSeed,sealed.budget);
       }
       function enterFrom52(app,grant,t,real,previousStage,budget){
-        const {packet,known}=grant,m=packet.map,d=packet.mission;
+        const {packet}=grant,{map:m,library,known}=preparedHalls53.get(packet);
+        const d={...packet.mission,playSHA:known[0][1],worldSHA:known[1][1]};
         const mage=real.find(a=>a.cls==='mage'),mageView=t.actors.find(a=>a.cls==='mage');
         check(real.length===4&&t.actors.length===4&&t.actors.every(v=>real.some(u=>u.id===v.id&&carryFields.every(k=>same(u[k],v[k]))&&u.hp>0&&!u.dead)),'Real 52 bodies changed');
         const external=Object.fromEntries(real.filter(a=>a!==mage).map(x=>[x.cls,structuredClone(x)]));
@@ -43,7 +54,7 @@
             honroType:spec.kind,honroVariant:a.look,...(spec.kind==='shade'?{honroMonsterEffectSkill:'HSH02'}:{})});
           return {...native,...u,cls:a.cls,runtimeTemplate:true};
         })};
-        const p=structuredClone(app.profile),project={...G.HONRO_PROJECT,stages:[st],library:packet.library};
+        const p=structuredClone(app.profile),project={...G.HONRO_PROJECT,stages:[st],library};
         const content=Object.freeze({...previousStage,id:53,local:53,actStage:3,active:1,requires:[52],name:'끝없이 이어지는 법당',goal:'담허의 진목을 지정 받침에 설치하세요.',
           w:st.width,h:st.height,wind:[0],victoryRule:{kind:'scripted',target:'act6-native-53'}});
         check(budget?.id===52,'Missing normal 52 budget quote');
@@ -59,8 +70,9 @@
         }
         raw[0].moveLeft=raw[0].maxMove;
         const entrance=st.units.find(u=>u.team==='player'),deck=b.terrain.find(t=>t.id==='south');
-        check(entrance?.x===425&&deck&&Math.abs(C.topAt(deck,425)-entrance.y)<=3,'Signed 53 arrival seat is invalid');
-        Object.assign(raw[0],{x:425,y:C.topAt(deck,425),spawnX:425,spawnY:C.topAt(deck,425),vx:0,vy:0,airborne:false,jumping:false});
+        const x=hall53.entryX,y=C.topAt(deck,x);
+        check(entrance?.x===x&&deck&&y===entrance.y,'Signed 53 arrival seat is invalid');
+        Object.assign(raw[0],{x,y,spawnX:x,spawnY:y,vx:0,vy:0,airborne:false,jumping:false});
         b.honroMonsterEffectsRevision=1;
         b.honroGeometryReady=true;b.honroGeometryRevision=2;b.honroContactRevision=2;
         check(C.validTerrainContactPose(b.terrain,raw[0]),'Damheo body does not fit the hall');
@@ -73,11 +85,51 @@
         try{
           app.mount(b,{freshReport:true,reportScope:'custom'});
           check(app.engine===s.engine&&app.engine.stage===content&&app.scene&&app.screen==='battle','Normal 53 mount failed');
+          mountB53(app,s);
           const ui=appUI(app);check(ui,'Normal controls absent');
           const button=document.createElement('button');button.type='button';button.dataset.act6QaLookout='';styleAction(button);
-          button.textContent='남은 진목 사이 건너기';button.addEventListener('click',event=>{if(event.isTrusted&&event.currentTarget===button)action(app,event);});
+          button.textContent='윗난간의 남은 진목 사이로 건너기';button.addEventListener('click',event=>{if(event.isTrusted&&event.currentTarget===button)action(app,event);});
           s.button=button;ui.append(button);return true;
         }catch(error){app.stopBattle();app.showTitle();throw error;}
+      }
+      function mountB53(app,s){
+        const e=s.engine,hero=e.active;
+        let south=null;
+        s.wallAxis=installBrokenRail({C,e,scene:app.scene,B:brokenRail,hero,
+          canTurn:()=>trust53(app,e,s)&&indoor53.qualified(app,e)&&e.b.phase==='aim'&&canLeaveHall53(e,hero),
+          afterLand:pose=>{
+            if(!trust53(app,e,s)||s.bridge)return;
+            if(pose.y>brokenRail.crossY){south=pose;return;}
+            const proof={id:brokenRail.id,clearWidth:brokenRail.clearWidth,gravity:brokenRail.gravity,from:south,to:pose};
+            if(validBrokenRailCrossing(brokenRail,hero.id,proof))s.bridge=proof;
+          }
+        });
+      }
+      function canLeaveHall53(e,u){
+        const b=e.b;
+        // A retained M09 is proof anchored to the old room. Other world-bound
+        // effects finish in the room where the player used them.
+        return !b.volley&&!b.summonTurn&&['projectiles','fields','drafts','waters','summons','supportHazards'].every(key=>!b[key]?.length)&&
+          !b.units.some(v=>!v.dead&&(v.summoned||v.honroAlly))&&b.stakes.every(v=>v.skill==='M09'&&v.owner===u.id);
+      }
+      function terminalB53(app,s){
+        const result=indoor53.terminal(app,s.engine);
+        return result?{...result,bridge:structuredClone(s.bridge)}:null;
+      }
+      function tick53(app){
+        const s=active.get(app),e=app.engine;
+        if(e?.b.honroStage!==53||!s||app.done)return;
+        if(s.bridge){e.checkEnd();return;}
+        if(!s.button)return;
+        const u=e.active,rail=s.wallAxis?.isWall(u),proof=indoor53.qualified(app,e);
+        if(rail||proof){
+          s.button.disabled=true;s.button.textContent=rail?'벽에 발을 붙이고 오른쪽 조작으로 올라가세요.':'오른쪽 파손 난간을 향해 걸으세요.';
+        }
+      }
+      function adjustNativeWallAngle(app,u,delta){
+        if(!active.get(app)?.wallAxis?.isWall(u))return false;
+        u.angle=Math.max(C.AIM_MIN,Math.min(C.AIM_MAX,u.angle+delta));
+        return true;
       }
       function bindNormal53(app,e,s){
         verified53.set(e,s.source53);

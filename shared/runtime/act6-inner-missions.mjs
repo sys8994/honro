@@ -7,7 +7,7 @@ const roster=b=>b.units.filter(u=>u.side===0&&!u.summoned&&!u.honroAlly);
 const keys=['id','cls','hp','maxHp','focus','maxFocus','shield','level','loadout','tune','ranks','h','r','equipmentState','dead'];
 const row=u=>Object.fromEntries(keys.map(k=>[k,u[k]]));
 const surface=(e,x,y)=>e.contactSurface(x,y-4,y+4)?.t.id;
-export function createInnerMissionOwner({C,manifest,verifyMounted,verifyIncoming,verifyChart}) {
+export function createInnerMissionOwner({C,manifest,verifyMounted,verifyIncoming,verifyChart,verifyExit=null}) {
  const owned=new WeakMap();
  const safe=app=>app&&!app.debugMode&&!app.customMap&&!app.training&&!app.workshopMode&&!app.embedded;
  const contact=(e,u,s)=>e.grounded(u)&&C.validTerrainContactPose(e.b.terrain,u)&&surface(e,u.x,u.y)===s;
@@ -58,7 +58,8 @@ export function createInnerMissionOwner({C,manifest,verifyMounted,verifyIncoming
   if(!verifyChart(app,e,g.frame))return {complete:false,objectiveReady:false,summary:'현재 지형과 목적이 일치하지 않습니다.',targets:[],blocked:true};
   if(!g.stake)for(const q of e.b.stakes??[])if(g.hits.has(q)){g.stake={...g.hits.get(q)};break;}
   const u=g.actor,d=g.d;
-  const complete=!!g.stake&&inRange(u.x,d.exitX)&&inRange(u.y,d.exitY)&&contact(e,u,d.support)&&(d.id===53||g.steps.join('')==='N-L-L-C-C-L-');
+  const exit=verifyExit?verifyExit(app,e,u):inRange(u.x,d.exitX)&&inRange(u.y,d.exitY)&&contact(e,u,d.support);
+  const complete=!!g.stake&&exit&&(d.id===53||g.steps.join('')==='N-L-L-C-C-L-');
   return {complete,objectiveReady:complete,summary:complete?'진목과 실제 출구를 확인했습니다.':g.stake?'실제 받침을 따라 출구로 이동하세요.':'담허의 진목을 지정 받침에 설치하세요.',targets:[]};
  }
  function terminal(app,e){
@@ -66,5 +67,5 @@ export function createInnerMissionOwner({C,manifest,verifyMounted,verifyIncoming
   g.mint=true;
   return {stage:g.d.id,won:true,flags:{[g.d.missionFlag]:true},mage:row(g.actor),external:structuredClone(g.external),stake:structuredClone(g.stake),frames:[...g.steps],settlement:false};
  }
- return {mount,observeChart,project,terminal};
+  return {mount,observeChart,project,terminal,qualified:(app,e)=>!!get(app,e)?.stake};
 }

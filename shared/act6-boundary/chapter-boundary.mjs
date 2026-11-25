@@ -98,8 +98,9 @@ const recipes={
    validate:(r,p)=>withFlags(r,['act6.outerSitesPrepared','act6.darmheoInTemple'])&&exactRoster(r,p),
    capture({engine}){const full=packRoster(originals(engine));return shapeRoles(full,combat)?{full}:null;}},
 
- 54:{from:53,kind:'mage-with-real-M09-plus-three-parked',capture:ctx=>captureRelay(ctx,'stake'),
-   validate:(r,p)=>withFlags(r,['act6.innerStakeAReady'])&&solo(r,p,false)&&relay(r,p,'stake')},
+  54:{from:53,kind:'mage-with-real-M09-plus-three-parked',capture:ctx=>ctx.terminal.bridge?captureRelay(ctx,'stake'):null,
+    validate:(r,p,_verifyRelay,verifyBridge)=>withFlags(r,['act6.innerStakeAReady'])&&solo(r,p,false)&&relay(r,p,'stake')&&
+      (!Object.hasOwn(r,'bridge')||verifyBridge(p.mage.id,r.bridge)&&p.mage.x===r.bridge.to.x&&p.mage.y===r.bridge.to.y)},
  55:{from:54,kind:'three-exterior-plus-mage-with-complete-native-chart-relay',
    capture:ctx=>ctx.terminal.relay?.support&&ctx.terminal.relay?.impact?captureRelay(ctx,'relay'):null,
    validate:(r,p,verifyRelay54)=>withFlags(r,['act6.invertedGalleryCrossed'])&&solo(r,p,true)&&relay(r,p,'relay')&&
@@ -132,8 +133,8 @@ const recipes={
    }}
 };
 const reject=reason=>({ok:false,reason,keepOriginal:true});
-export function createChapterBoundary({slot,key,storage,locks,normalize,hash,verifyOwner,verifyCold,releasePin,verifyRelay54,ownedStore=(a,w)=>a?.profileStore===w,originalProfile=a=>a.profile}){
- if(!slot||!key||typeof locks?.request!=='function'||typeof hash!=='function'||!storage||typeof normalize!=='function'||typeof verifyOwner!=='function'||typeof verifyCold!=='function'||typeof releasePin!=='function'||typeof verifyRelay54!=='function')return null;
+export function createChapterBoundary({slot,key,storage,locks,normalize,hash,verifyOwner,verifyCold,releasePin,verifyRelay54,verifyBridge,ownedStore=(a,w)=>a?.profileStore===w,originalProfile=a=>a.profile}){
+ if(!slot||!key||typeof locks?.request!=='function'||typeof hash!=='function'||!storage||typeof normalize!=='function'||typeof verifyOwner!=='function'||typeof verifyCold!=='function'||typeof releasePin!=='function'||typeof verifyRelay54!=='function'||typeof verifyBridge!=='function')return null;
  const written=new WeakSet(),booted=new WeakMap(),working=new WeakSet();
  const digest=v=>hash(JSON.stringify(v)), read=()=>storage.getItem(key), exclusive=f=>locks.request('honro:profile-slot:'+slot,{mode:'exclusive'},f);
  function pinOkay(pin,id){
@@ -160,7 +161,7 @@ export function createChapterBoundary({slot,key,storage,locks,normalize,hash,ver
   return !!(x&&r&&pinOkay(pin,id)&&x.schema===schema&&x.slot===slot&&x.runId===p?.equipment?.runId&&x.kind===r.kind&&x.from===r.from&&x.to===id&&
    x.profileSHA===digest(naked(p))&&same(pin,releasePin(id))&&pinCompatible(x.pin,pin,id)&&x.generation>=1&&Number.isSafeInteger(x.generation)&&x.parent&&(x.parent==='initial'&&x.generation===1||hash64(x.parent)&&x.generation>1)&&
    x.terminal?.stage===r.from&&([51,52].includes(r.from)?x.terminal.won===undefined:x.terminal.won===true)&&x.terminal.settlement===false&&x.terminalSHA===digest(x.terminal)&&x.custodySHA===digest(x.custody)&&
-   x.stageSeed?.id===r.from&&x.budget?.id===r.from&&r.validate(x.terminal,x.custody,verifyRelay54)&&sha===digest(x));
+   x.stageSeed?.id===r.from&&x.budget?.id===r.from&&r.validate(x.terminal,x.custody,verifyRelay54,verifyBridge)&&sha===digest(x));
  }
  async function checkpoint({app,engine:e,store,terminal,upstream,physical,stageSeed,budget,to,pin,expectedRaw}){
   const r=recipes[to];
