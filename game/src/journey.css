@@ -218,8 +218,8 @@ body:has(#modal.open .journey-confirm) #turn-banner,body:has(#modal.open .pause-
 .journey-act-6 .journey6-legend{position:absolute;z-index:6;top:12px;left:50%;transform:translateX(-50%);display:grid;gap:3px;justify-items:center;pointer-events:none;white-space:nowrap;padding:7px 14px;background:#141f25e8;border:1px solid #b49f7459;color:#f2e6ca}
 .journey-act-6 .journey6-legend strong{font-size:1rem;font-weight:650}
 .journey-act-6 .journey6-legend span{font-size:.68rem;color:#e4d6b6}
-.journey-act-6 .journey-progress .journey6-outside{stroke:#ebcd85}
-.journey-act-6 .journey-progress .journey6-inside{stroke:#b4f5fa}
+.journey-act-6 .journey-progress .journey6-outside{stroke:#ebcd85;stroke-dasharray:none}
+.journey-act-6 .journey-progress .journey6-inside{stroke:#b4f5fa;stroke-dasharray:none}
 .journey-act-6 .journey-progress .journey6-fold{stroke:#acf0ed;stroke-dasharray:2 7;stroke-linecap:round}
 .journey-act-6 .journey-progress .progress-current{stroke:#fff1b2;stroke-width:3.5}
 .journey-act-6 .journey6-inner i{border-color:#8fe4e6;color:#e9ffff}

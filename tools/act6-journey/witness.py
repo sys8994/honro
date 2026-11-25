@@ -19,6 +19,10 @@ def witness(page,state,mobile,tap,out,case,stage):
     assert page.locator('.journey-act-6 .journey-progress path[data-to]').count()==end-51
     assert bool(page.locator('.journey-act-6 .journey-fog').count())==(stage!='done')
     assert page.locator('.journey-act-6 .journey-pin[aria-current="location"]').count()==(0 if stage=='done' else 1)
+    if end>=52:
+        assert page.locator('.journey-act-6 path[data-from="51"]').evaluate("e=>getComputedStyle(e).strokeDasharray")=='none'
+    if end>=53:
+        assert page.locator('.journey-act-6 path[data-from="52"]').evaluate("e=>getComputedStyle(e).strokeDasharray")!='none'
     if stage!= 'done':
         assert page.get_by_text('쉼터에서 이어가기',exact=True).count()==1
     pos=page.locator('[data-action="journey-fit"]')

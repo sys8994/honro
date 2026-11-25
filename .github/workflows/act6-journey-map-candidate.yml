@@ -120,7 +120,7 @@ jobs:
           git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' -c core.hooksPath=/dev/null commit -m 'feat(journey): chart the folded paths of Act 6'
           test "$(git rev-parse HEAD^)" = "$BASE"
           test "$(git ls-remote origin refs/heads/master | cut -f1)" = "$BASE"
-          git push origin HEAD:refs/heads/release/act6-journey-map-20261125
+          git push origin HEAD:refs/heads/release/act6-journey-map-20261125-r3
           git rev-parse HEAD > "$OUT/CANDIDATE.txt"
       - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
         if: always()
