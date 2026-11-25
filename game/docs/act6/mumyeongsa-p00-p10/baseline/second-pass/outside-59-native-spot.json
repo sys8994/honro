@@ -1,0 +1,163 @@
+{
+  "stage": 59,
+  "entry": "normal rest, previous 58-to-59 checkpoint",
+  "scope": "initial west terrace, nine solver contacts",
+  "notes": [
+    "These are exact supporting world coordinates within the first camera. The visible boundary is a separate approximate measurement.",
+    "The x+180 sample was outside the mobile camera."
+  ],
+  "views": {
+    "desktop": {
+      "actor": "p-archer",
+      "view": {
+        "w": 1280,
+        "h": 769.1875,
+        "scale": 0.94
+      },
+      "left": {
+        "x": 557.6252847822876,
+        "y": 859.4738393931647
+      },
+      "right": {
+        "x": 1919.3274124418622,
+        "y": 1677.7584138612497
+      },
+      "samples": [
+        {
+          "dx": -180,
+          "x": 1224.1436464088397,
+          "y": 1323.1683881815998,
+          "id": "finale-cutout-west-terrace"
+        },
+        {
+          "dx": -135,
+          "x": 1269.1436464088397,
+          "y": 1354.4727360076868,
+          "id": "finale-cutout-west-terrace"
+        },
+        {
+          "dx": -90,
+          "x": 1314.1436464088397,
+          "y": 1385.7770838337738,
+          "id": "finale-cutout-west-terrace"
+        },
+        {
+          "dx": -45,
+          "x": 1359.1436464088397,
+          "y": 1418.7486775596567,
+          "id": "finale-cutout-west-terrace"
+        },
+        {
+          "dx": 0,
+          "x": 1404.1436464088397,
+          "y": 1452.259315857529,
+          "id": "finale-cutout-west-terrace"
+        },
+        {
+          "dx": 45,
+          "x": 1449.1436464088397,
+          "y": 1485.7699541554014,
+          "id": "finale-cutout-west-terrace"
+        },
+        {
+          "dx": 90,
+          "x": 1494.1436464088397,
+          "y": 1519.3475401210208,
+          "id": "finale-cutout-west-terrace"
+        },
+        {
+          "dx": 135,
+          "x": 1539.1436464088397,
+          "y": 1566.4903972638779,
+          "id": "finale-cutout-west-terrace"
+        },
+        {
+          "dx": 180,
+          "x": 1584.1436464088397,
+          "y": 1613.633254406735,
+          "id": "finale-cutout-west-terrace"
+        }
+      ]
+    },
+    "mobile": {
+      "actor": "p-archer",
+      "view": {
+        "w": 390,
+        "h": 647.609375,
+        "scale": 0.82
+      },
+      "left": {
+        "x": 1077.3676757516516,
+        "y": 873.591635051622
+      },
+      "right": {
+        "x": 1552.9774318492125,
+        "y": 1663.3591655394268
+      },
+      "samples": [
+        {
+          "dx": -180,
+          "x": 1224.1436464088397,
+          "y": 1323.1683881815998,
+          "id": "finale-cutout-west-terrace"
+        },
+        {
+          "dx": -135,
+          "x": 1269.1436464088397,
+          "y": 1354.4727360076868,
+          "id": "finale-cutout-west-terrace"
+        },
+        {
+          "dx": -90,
+          "x": 1314.1436464088397,
+          "y": 1385.7770838337738,
+          "id": "finale-cutout-west-terrace"
+        },
+        {
+          "dx": -45,
+          "x": 1359.1436464088397,
+          "y": 1418.7486775596567,
+          "id": "finale-cutout-west-terrace"
+        },
+        {
+          "dx": 0,
+          "x": 1404.1436464088397,
+          "y": 1452.259315857529,
+          "id": "finale-cutout-west-terrace"
+        },
+        {
+          "dx": 45,
+          "x": 1449.1436464088397,
+          "y": 1485.7699541554014,
+          "id": "finale-cutout-west-terrace"
+        },
+        {
+          "dx": 90,
+          "x": 1494.1436464088397,
+          "y": 1519.3475401210208,
+          "id": "finale-cutout-west-terrace"
+        },
+        {
+          "dx": 135,
+          "x": 1539.1436464088397,
+          "y": 1566.4903972638779,
+          "id": "finale-cutout-west-terrace"
+        },
+        {
+          "dx": 180,
+          "x": 1584.1436464088397,
+          "y": 1613.633254406735,
+          "id": "finale-cutout-west-terrace"
+        }
+      ]
+    }
+  },
+  "desktopLocalContrast": {
+    "x": 1539.1436464088397,
+    "projectedContactPixel": 664,
+    "contrastStepPixel": 668,
+    "screenDeltaPx": 4,
+    "worldDeltaApprox": 4.26,
+    "classification": "visual boundary near limit, full visual inspection pending"
+  }
+}
