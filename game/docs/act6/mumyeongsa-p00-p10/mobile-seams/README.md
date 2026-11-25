@@ -22,3 +22,9 @@ python "$p/baseline/mobile_seams.py" --build "$PWD" --out /tmp/honro-mobile-seam
 실제로 법당을 마치고 돌문턱을 걸어 작성한 58→59 새 기록을 390×844의 별도 창에서 열었다. 같은 산문에 네 몸이 접지했다. 소단·설오·휘겸·담허를 차례로 실제 탭으로 선택하고 조이스틱으로 서쪽 출구를 넘겼다. 열여섯 번의 trusted 터치 시작·종료를 기록했다. 마지막 담허 뒤 마당이 열렸고 네 명 모두 원래 마당 받침에 접지했다. 원래 기록 바이트를 유지했다. [R 수신](r-receiving-mobile.webp) · [마당 착지](r-courtyard-mobile.webp) · [터치 원자료](r-observed.json) · [58에서 작성한 R 기록](captured-r-source.json)
 
 위 명령에 `--r-proof "$p/mobile-seams/captured-r-source.json"`을 더하면 같은 R 수신을 다시 열 수 있다.
+
+58 실제 승리 직후 소단·설오·휘겸·담허를 터치로 선택하고 조이스틱으로 같은 `R.sill`을 네 번 건넜다. 390×844에서 16개의 trusted touch 시작·종료가 잡혔다. 실제 다음 장 탭 뒤 같은 객체·발점·상태와 같은 돌문이 59에 들어왔고 별도 일반 쉼터에서 같은 네 발점과 저장 바이트를 확인했다. 문턱 앞 보스전은 키와 버튼으로 진행했다. [58에서 네 발점](r-send-mobile.webp) · [59 라이브](r-receive-live-mobile.webp) · [송신·재로드·터치 원자료](../encounters/hall-pressure/phase-counterplay-touch-r58.json)
+
+```bash
+python game/docs/act6/mumyeongsa-p00-p10/baseline/daedosa_return.py --build "$PWD" --out /tmp/honro-58-touch-r --pressure --tactic ceiling --touch-return
+```

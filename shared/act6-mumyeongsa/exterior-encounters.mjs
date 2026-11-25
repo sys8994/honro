@@ -71,8 +71,10 @@ function installExteriorEncounters(app,e,paused=()=>false,admit=()=>true){
    initial:[['hound','hull',3220,3330],['shade','entryDeck',3580,3072],['stag','hull',3910,3362],['shade','hull',4625,3150]],
    waves:[
     {id:'entrance-columns',label:'첫 기둥의 술식 뒤에서 잔향이 올라옵니다.',at:[3470,3250],units:[['shade','hull',3340,3260],['hound','hull',3475,3230],['shade','gallery',3730,3070]]},
-    {id:'apse-lower',label:'상층 마루와 낮은 기둥 양편에서 짐승 혼이 나타납니다.',at:[4220,3210],units:[['hound','gallery',3880,3070],['shade','hull',4110,3280],['stag','hull',4500,3185]]},
-    {id:'folded-rear',label:'대도사 뒤 석단이 흔들리며 혼이 밀려옵니다.',at:[4920,3090],units:[['hound','hull',4770,3180],['shade','hull',5150,2940],['stag','hull',5660,2925]]},
+    {id:'apse-lower',label:'상층 들보와 아래 기둥 양쪽에서 발소리가 들립니다.',phase:2,at:[4450,3020],
+     units:[['shade','apse',4335,3080],['hound','gallery',3975,3075],['stag','hull',4500,3185]]},
+    {id:'folded-rear',label:'먹선을 지키는 혼들이 양쪽 돌턱으로 다가옵니다.',phase:3,at:[4920,3090],
+     units:[['hound','hull',4770,3180],['shade','hull',5150,2940],['stag','hull',5660,2925]]},
    ]},
  };
  const plan=chapters[stage];
