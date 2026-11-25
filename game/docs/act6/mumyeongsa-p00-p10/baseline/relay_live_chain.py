@@ -58,7 +58,7 @@ def stage55_trace(page):
     page.evaluate("""() => {
       const e=HonroApp.engine, events=[];
       window.bellTrace=events;
-      const fire=e.fire, impact=e.impact;
+      const fire=e.fire, impact=e.impact,hurt=e.hurt;
       e.fire=function(id,angle,power,...rest){
         const u=e.active, shot=fire.call(this,id,angle,power,...rest);
         if(shot)events.push({type:'fire',id,owner:u.id,angle,power,shot:e.b.shot,round:e.b.round});
@@ -69,6 +69,12 @@ def stage55_trace(page):
         const result=impact.call(this,p,h);
         if(h.unit)events.push({type:'impact',id:p.skill,owner:p.owner,target:h.unit.id,
           x:h.x,y:h.y,before,after:h.unit.hp,round:e.b.round});
+        return result;
+      };
+      e.hurt=function(target,amount,owner,direct,p,...rest){
+        const before=target.hp,result=hurt.call(this,target,amount,owner,direct,p,...rest);
+        if(target.id==='draft-pressure-0'&&target.hp<before)events.push({type:'damage',id:p?.skill??null,owner,
+          target:target.id,before,after:target.hp,round:e.b.round});
         return result;
       };
     }""")
@@ -163,7 +169,12 @@ def finish_bell(page,out,report,route='repair'):
         if page.evaluate("HonroApp.engine.b.phase==='lost'"):
             assert route=='collapse',"Bell mission lost"
             break
-        ready(page)
+        if route=='collapse':
+            page.wait_for_function("HonroApp.engine.b.phase==='lost'||HonroApp.canInput()",timeout=25000)
+            if page.evaluate("HonroApp.engine.b.phase==='lost'"):
+                break
+        else:
+            ready(page)
         binding=page.locator(BELL).get_attribute("data-act6-binding")
         foe=pose(page,GATE)
         actor=active(page)
@@ -227,7 +238,7 @@ def boundary_of(records):
     slot=next(k for k in records if 'act6-boundary' in k)
     return json.loads(records[slot])["honroAct6ChapterBoundary"]["body"]
 
-def reversal56(page,out,report):
+def reversal56(page,out,report,finish=False):
     actions=[]
     report['gaereumjin56']=actions
     def walk(target,margin=25):
@@ -255,6 +266,12 @@ def reversal56(page,out,report):
         actions.append({'used':key,'pose':point})
     use('stakeA',1872,'A-upper-veranda')
     walk(3300)
+    if finish:
+        stage55_trace(page)
+        page.locator('[data-act6-sodan-spirit]').click(timeout=5000)
+        page.wait_for_function("bellTrace.some(p=>p.type==='impact'&&p.owner==='p-occultist'&&p.id==='O06')",timeout=10000)
+        ready(page)
+        report['spirit56']=[p for p in page.evaluate('bellTrace') if p.get('owner')=='p-occultist']
     use('stakeB',3600,'B-02-center-lower-short-climb')
     walk(4250)
     use('activate',5190,'E-joined-ordinary-floor')
@@ -271,6 +288,21 @@ def reversal56(page,out,report):
     report['flowReverse56']=flow()
     assert report['flowReverse56']['force']['x']==-145 and 'draft-pressure-3' in report['flowReverse56']['foes']
     page.screenshot(path=out/'stage56-first-reversal.png')
+    if not finish:
+        return
+    use('warnShelf',3264,'B-central-lower-floor')
+    safe=walk(3045,13)
+    assert safe['support']=='B-central-lower-floor' and safe['x']<3070,safe
+    page.keyboard.press('f')
+    ready(page,35000)
+    use('open',3055,'B-central-lower-floor')
+    use('returnEast',5200,'E-joined-ordinary-floor')
+    walk(6050)
+    hold(page,'ArrowRight',"()=>HonroApp.engine.b.phase==='won'",None,11000)
+    page.locator('[data-act6-qa-next="57"]').click(timeout=5500)
+    page.wait_for_function('HonroApp.engine?.b.honroStage===57',timeout=12000)
+    report['live57']=page.evaluate(base.SNAPSHOT)
+    page.screenshot(path=out/'sodan-live57.png')
 
 def cold_new(browser,records,stage):
     context=saved_context(browser,records)
@@ -321,6 +353,7 @@ def main():
     parser.add_argument("--bell-only",action="store_true")
     parser.add_argument("--bell-case",choices=['repair','intact','collapse'],default='repair')
     parser.add_argument("--reversal",action="store_true")
+    parser.add_argument("--deep-thread",action="store_true")
     args=parser.parse_args()
     base.ROOT=args.build.resolve()
     args.out.mkdir(parents=True,exist_ok=True)
@@ -354,7 +387,31 @@ def main():
                 assert result['eave56Live']['ceiling']==result['eave56Cold']['ceiling']
             if args.reversal:
                 reversal56(page,args.out,result)
-        if args.bell_only:
+        if args.deep_thread:
+            from cold_resume import seeded_context
+            context=seeded_context(browser,56)
+            page=context.new_page()
+            report={}
+            try:
+                resume(page,56,True)
+                reversal56(page,args.out,report,True)
+                records=base.saved_bytes(page)
+                stamp=boundary_of(records)
+                assert stamp['terminal']['sodanThread']['casts'][0]['stage']==56
+                source=stamp['custody']['external']['occultist']['focus']
+                debited=page.evaluate("HonroApp.engine.unit('p-occultist').focus")
+                assert source-debited==stamp['terminal']['sodanThread']['casts'][0]['cost']
+                report['carriedSodan']={'before':source,'after':debited,'thread':stamp['terminal']['sodanThread']}
+                report['newContext57']=cold_new(browser,records,57)
+                report['status']='PASS'
+            except (Error,AssertionError) as error:
+                report['status']='FAIL'
+                report['error']=str(error)
+                report['last']=page.evaluate(base.SNAPSHOT)
+                page.screenshot(path=args.out/'sodan-deep-failure.png')
+            finally:
+                context.close()
+        elif args.bell_only:
             from cold_resume import seeded_context
             context=seeded_context(browser,55)
             page=context.new_page()

@@ -12,11 +12,17 @@
 |---|---|
 | 54 B → 차트·M09·C | 소단의 O06이 기존 수문지기의 체력을 600→236으로 낮췄고 담허의 M01이 나머지를 제거했다. 실제 차트·M09·C 뒤 새 55 기록을 열었다. 54에서 기력 36을 사용한 영수증을 확인했다. [로그](b-to-bell.json) · [혼줄 화면](screens/spirit-on-b.webp) |
 | 55 피격 → 좌정 복구 | 휘겸이 방어선에 닿은 뒤 실제 HLN01이 결속을 약하게 했다. 좌정 소단을 선택 키와 초상으로 바꿀 수 없었다. 소단은 (2688, 1700.3077)에서 같은 arrival-core-terrace 접촉을 유지하며 결속을 복구했다. 설오가 실제 포격으로 빈종각귀를 격파하고 휘겸이 결속을 정렬했다. 새 56 기록의 라이브와 재로드를 확인했다. [로그](bell-repair.json) · [좌정 화면](screens/seated-at-bell.webp) |
-| 55 무피격 및 붕괴 | 두 경로를 실행 중이다. 첫 무피격 입력에서 설오의 공격 한 발은 실제로 적을 맞혔고 적 체력이 남았다. |
-| 56의 실제 혼 기예 → 57 해제 | 미검수. 56 원본 지형·배경을 그대로 적용한다. |
+| 55 온전한 결속 방어 | 설오의 A02와 휘겸의 S03으로 빈종각귀 체력을 480→276→11로 내렸다. 이어 발생한 빈종각귀의 HLN01 범위 피해로 자기 체력이 0이 됐다. HLN01은 결속 범위 밖 휘겸도 맞혔고 다른 적의 LA01이 소단을 맞혔다. 결속은 내내 온전했고, 수리 없이 `intactBellAlignedAfterGateDefeat`를 남겨 라이브 및 새 컨텍스트에서 56을 열었다. [로그](bell-intact.json) · [정렬 화면](screens/bell-intact.webp) |
+| 55 방어 실패 | 복구하지 않고 가만히 있으면 실제 HLN01 두 발이 돌단의 소단에게 닿고 3라운드에 패배한다. 장 소유자가 붕괴를 기록해도 전투가 계속되던 문제를 고쳤다. 이 경로에서 56 저장을 쓰지 않았다. [로그](bell-collapse.json) · [패배 화면](screens/bell-collapse.webp) |
+| 57 네 원본 재합류 | 기존 57 저장에서 합체 전 O06 거부, 합체 후 같은 소단 원본의 O06 실제 명중(보조 적 850→0), 네 명의 D 직접 통과와 58 새 저장을 확인했다. [로그](reunion.json) · [재합류 화면](screens/sodan-reunited.webp) |
+
+55의 실제 O13은 기예가 장착된 기록으로 추가 검수가 필요하다. 외부에서는 O06 사용을 막으므로 무피격 결속 판에 O06 차단을 적용하지 않았다. 56의 첫 O06 실전은 확인했고 56의 새 57 인계는 별도 실행 중이다. 53의 O06 실전과 이 변경 뒤 모바일 좌정·복구는 미검수다.
 
 ```bash
 npm run build
 python game/docs/act6/mumyeongsa-p00-p10/baseline/native_b.py --build "$PWD" --out /tmp/honro-sodan-b --hz 120 --spirit
 python game/docs/act6/mumyeongsa-p00-p10/baseline/relay_live_chain.py --build "$PWD" --out /tmp/honro-sodan-repair --bell-only --bell-case repair
+python game/docs/act6/mumyeongsa-p00-p10/baseline/relay_live_chain.py --build "$PWD" --out /tmp/honro-sodan-intact --bell-only --bell-case intact
+python game/docs/act6/mumyeongsa-p00-p10/baseline/relay_live_chain.py --build "$PWD" --out /tmp/honro-sodan-collapse --bell-only --bell-case collapse
+python game/docs/act6/mumyeongsa-p00-p10/baseline/hall_passage.py --build "$PWD" --out /tmp/honro-sodan-reunion --case live-d --sodan
 ```

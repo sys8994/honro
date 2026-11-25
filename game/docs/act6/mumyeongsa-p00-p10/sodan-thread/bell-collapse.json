@@ -1,0 +1,181 @@
+{
+  "status": "PASS",
+  "bellTrace": [
+    {
+      "type": "fire",
+      "id": "LA01",
+      "owner": "draft-pressure-3",
+      "angle": -25.548331365091983,
+      "power": 0.62165560074033,
+      "shot": 1,
+      "round": 1
+    },
+    {
+      "type": "impact",
+      "id": "LA01",
+      "owner": "draft-pressure-3",
+      "target": "p-archer",
+      "x": 1207,
+      "y": 1093.6599954865771,
+      "before": 1720,
+      "after": 1720,
+      "round": 1
+    },
+    {
+      "type": "fire",
+      "id": "HLN01",
+      "owner": "draft-pressure-0",
+      "angle": -15.685389679400004,
+      "power": 0.7358416598161909,
+      "shot": 2,
+      "round": 1
+    },
+    {
+      "type": "impact",
+      "id": "HLN01",
+      "owner": "draft-pressure-0",
+      "target": "p-knight",
+      "x": 2633.044420601593,
+      "y": 1625.337457087844,
+      "before": 3842.1,
+      "after": 3842.1,
+      "round": 1
+    },
+    {
+      "type": "fire",
+      "id": "HBM01",
+      "owner": "draft-pressure-2",
+      "angle": 180,
+      "power": 0.5,
+      "shot": 3,
+      "round": 1
+    },
+    {
+      "type": "fire",
+      "id": "HBM01",
+      "owner": "draft-pressure-2",
+      "angle": 180,
+      "power": 0.5,
+      "shot": 4,
+      "round": 2
+    },
+    {
+      "type": "fire",
+      "id": "HLN01",
+      "owner": "draft-pressure-0",
+      "angle": -37.24743016443217,
+      "power": 0.7405920248709847,
+      "shot": 5,
+      "round": 2
+    },
+    {
+      "type": "impact",
+      "id": "HLN01",
+      "owner": "draft-pressure-0",
+      "target": "p-occultist",
+      "x": 2660,
+      "y": 1634.8918323801695,
+      "before": 2116.1,
+      "after": 2078.1,
+      "round": 2
+    },
+    {
+      "type": "fire",
+      "id": "LA01",
+      "owner": "draft-pressure-3",
+      "angle": -24.886113733228267,
+      "power": 0.6567527866526796,
+      "shot": 6,
+      "round": 2
+    },
+    {
+      "type": "impact",
+      "id": "LA01",
+      "owner": "draft-pressure-3",
+      "target": "p-archer",
+      "x": 1207,
+      "y": 1118.805421964129,
+      "before": 1720,
+      "after": 1720,
+      "round": 2
+    },
+    {
+      "type": "fire",
+      "id": "HBM01",
+      "owner": "draft-pressure-2",
+      "angle": 180,
+      "power": 0.5,
+      "shot": 7,
+      "round": 3
+    },
+    {
+      "type": "fire",
+      "id": "HLN01",
+      "owner": "draft-pressure-0",
+      "angle": -36.235453690022204,
+      "power": 0.7276650683505084,
+      "shot": 8,
+      "round": 3
+    },
+    {
+      "type": "impact",
+      "id": "HLN01",
+      "owner": "draft-pressure-0",
+      "target": "p-occultist",
+      "x": 2660,
+      "y": 1619.6004294019513,
+      "before": 2078.1,
+      "after": 2044.1,
+      "round": 3
+    }
+  ],
+  "battle55Actions": [
+    {
+      "approach": {
+        "id": "p-knight",
+        "x": 2661.044420601593,
+        "y": 1692.0136678774134,
+        "grounded": true,
+        "hp": 3688.1,
+        "acted": false,
+        "move": 1264,
+        "support": "arrival-core-terrace",
+        "facing": 1,
+        "angle": 44
+      }
+    }
+  ],
+  "seatedEntry": {
+    "id": "p-occultist",
+    "x": 2688,
+    "y": 1700.3076923076924,
+    "grounded": true,
+    "hp": 2144.1,
+    "acted": true,
+    "move": 3132,
+    "support": "arrival-core-terrace",
+    "facing": 1,
+    "angle": 44
+  },
+  "seatedExit": {
+    "id": "p-occultist",
+    "x": 2688,
+    "y": 1700.3076923076924,
+    "grounded": true,
+    "hp": 2044.1,
+    "acted": true,
+    "move": 3132,
+    "support": "arrival-core-terrace",
+    "facing": 1,
+    "angle": 44
+  },
+  "outcome": {
+    "stageId": 55,
+    "round": 3,
+    "phase": "lost",
+    "active": "draft-pressure-0",
+    "shot": 8,
+    "rng": 32968204022
+  },
+  "checkpoint56": null
+}

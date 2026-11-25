@@ -111,7 +111,7 @@ def march(page,target,cls=None,actor_id=None,tolerance=27,max_attempts=8):
                 pass
     raise AssertionError({'target':target,'actor':actor(page),'state':state(page)})
 
-def live_d(browser,out):
+def live_d(browser,out,sodan=False):
     ctx=seeded_context(browser,57)
     page=ctx.new_page()
     q={'status':'FAIL','steps':{},'errors':[]}
@@ -120,6 +120,8 @@ def live_d(browser,out):
     try:
         resume(page,57,True)
         steps['initial']=state(page)
+        if sodan:
+            assert not page.evaluate("HonroApp.engine.skillAllowed(HONRO_CORE.SKILLS.O06,HonroApp.engine.unit('p-occultist'))")
         select(page,'occultist')
         mission_click(page,'warnBell','repairRelay')
         steps['warnBell']=state(page)
@@ -157,6 +159,26 @@ def live_d(browser,out):
         mission_click(page,'reuniteAtWard')
         page.wait_for_function("!!HonroApp.engine.unit('p-mage')",timeout=4100)
         steps['folded']=state(page)
+        if sodan:
+            ready(page)
+            select(page,'occultist')
+            assert page.evaluate("HonroApp.engine.skillAllowed(HONRO_CORE.SKILLS.O06,HonroApp.engine.active)")
+            assert not page.evaluate("HonroApp.engine.active.fixed")
+            wall_trace(page)
+            spec=page.evaluate("""()=>{
+              const e=HonroApp.engine,u=e.active,s=HONRO_CORE.SKILLS.O06;
+              const foes=new Set(e.b.units.filter(v=>v.side===1&&!v.dead).map(v=>v.id));
+              for(const power of [.45,.56,.69,.35,.8])for(let angle=u.facing>0?-83:93;angle<=(u.facing>0?88:264);angle++){
+               const a=e.predict(u,s,angle,power,undefined,true);
+               if(foes.has(a.unit)&&[-.8,.8].every(d=>e.predict(u,s,angle+d,power+.02,undefined,true).unit===a.unit))return {angle,power};
+              }return null;
+             }""")
+            assert spec,'No real post-reunion O06 trajectory'
+            page.locator('[data-action="combat-skill"][data-skill="O06"]').first.click(timeout=5000)
+            aim(page,spec)
+            page.wait_for_function("nativeWall.some(p=>p.event==='impact'&&p.actor==='p-occultist'&&p.skill==='O06'&&p.target?.startsWith('a6-c07-'))",timeout=12000)
+            steps['sodanAfterReunion']=page.evaluate('nativeWall')
+            ready(page,30000)
         page.evaluate("window.dOriginals=new Map(HonroApp.engine.b.units.filter(u=>u.side===0&&!u.summoned).map(u=>[u.id,u]))")
         for cls,x in [('occultist',6200),('knight',6090),('mage',5992),('archer',5872)]:
             select(page,cls,advance=True)
@@ -322,13 +344,14 @@ def main():
     p.add_argument('--out',type=Path,required=True)
     p.add_argument('--rates',type=int,nargs='+',default=[60,120])
     p.add_argument('--case',choices=['gallery','gallery-combat','live-d'],default='gallery')
+    p.add_argument('--sodan',action='store_true')
     opts=p.parse_args()
     base.ROOT=opts.build.resolve()
     opts.out.mkdir(parents=True,exist_ok=True)
     with sync_playwright() as pw:
         browser=pw.chromium.launch(executable_path='/usr/bin/chromium',headless=True,
                                    args=['--no-sandbox','--disable-dev-shm-usage'])
-        entries=[(f'{opts.case}-{hz}',gallery(browser,opts.out,hz,opts.case=='gallery-combat')) for hz in opts.rates] if opts.case!='live-d' else [('live-d',live_d(browser,opts.out))]
+        entries=[(f'{opts.case}-{hz}',gallery(browser,opts.out,hz,opts.case=='gallery-combat')) for hz in opts.rates] if opts.case!='live-d' else [('live-d',live_d(browser,opts.out,opts.sodan))]
         for label,result in entries:
             (opts.out/f'{label}.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
             print(label,result['status'],result.get('error',''),flush=True)

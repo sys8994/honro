@@ -395,7 +395,9 @@ export function makeQaMain(main,source,descriptor,terrainArt=null,journeyArt=nul
   ['G.HonroStakeCrossing.skills(b,u).includes(this.selected)','qa51.context53(this,u,G.HonroStakeCrossing.skills(b,u)).includes(this.selected)'],
   ['}else this.engine.fire(this.selected, u.angle, this.power);','}else if(!qa51.release53(this,u))this.engine.fire(this.selected, u.angle, this.power);']);
  if(source.includes('function enterNormal54('))edits.push(['missionTick(dt){if(qa51.active(this))return;', 'missionTick(dt){if(qa51.active(this)){qa51.tick53(this);qa51.tick54(this);qa51.tick55(this);qa51.tick56(this);qa51.tick57(this);qa51.tick58(this);qa51.tick59(this);qa51.tick60(this,dt);return;}']);
- if(source.includes('function enterNormal58('))edits.push(['if (!heroes.length || objective?.dead || rescuedResidentLost || channelerLost || act2Failure)', 'if (!heroes.length || objective?.dead || rescuedResidentLost || channelerLost || act2Failure || ([58,59].includes(b.honroStage)&&qa51.goalState(this,e)?.failed===true))']);
+ if(source.includes('function enterNormal58('))edits.push(
+  ['if (!heroes.length || objective?.dead || rescuedResidentLost || channelerLost || act2Failure)', 'if (!heroes.length || objective?.dead || rescuedResidentLost || channelerLost || act2Failure || ([55,58,59].includes(b.honroStage)&&qa51.goalState(this,e)?.failed===true))'],
+  ['b.winnerReason = (act2Failure===', "b.winnerReason = (b.honroStage===55&&qa51.goalState(this,e)?.failed?qa51.goalState(this,e).summary:null) || (act2Failure==="]);
  if(source.includes('function mountNormalFar('))edits.push([
   "this.scene = new G.HonroScene($('battlecanvas')); const u = e.active;",
   "this.scene = new G.HonroScene($('battlecanvas')); "+(terrainArt?'qa51.mountAct6TerrainArt(this,e); ':'')+"qa51.mountNormalFar(this,e); const u = e.active;"]);
