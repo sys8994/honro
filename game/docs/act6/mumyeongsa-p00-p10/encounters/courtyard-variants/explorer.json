@@ -1,0 +1,46 @@
+{
+  "status": "OBSERVED",
+  "difficulty": "explorer",
+  "sourceRng": 19388,
+  "rounds": 6,
+  "opening": 10,
+  "peakAlive": 12,
+  "peakAttackQueue": 8,
+  "cumulative": 24,
+  "giant": [],
+  "damage": [
+    {
+      "id": "finale-west-return-s0-r3-lead",
+      "target": "p-archer",
+      "skill": "HMO01",
+      "before": 1198,
+      "after": 1144,
+      "shieldBefore": 0,
+      "shieldAfter": 0,
+      "amount": 104.01230867771291,
+      "round": 3
+    },
+    {
+      "id": "finale-west-return-s0-r3-rear",
+      "target": "p-knight",
+      "skill": "HMO01",
+      "before": 3604.1,
+      "after": 3582.1,
+      "shieldBefore": 0,
+      "shieldAfter": 0,
+      "amount": 90.93788087178135,
+      "round": 3
+    },
+    {
+      "id": "finale-east-fault-s0-r4-knot",
+      "target": "p-mage",
+      "skill": "HSH01",
+      "before": 738.3000000000001,
+      "after": 705.3000000000001,
+      "shieldBefore": 0,
+      "shieldAfter": 0,
+      "amount": 68.6257994016461,
+      "round": 4
+    }
+  ]
+}

@@ -172,11 +172,16 @@ export async function createStage59Owner({C,packet,authorize,verifyIncoming,crea
    }
    // Keep a berth for the real forepaw even while the two wings are full.
    if(!giant&&enemyAlive()<FRONTS59.totalCap-Number(!bell)&&fronts.every(f=>f.spawned>0)){
-    const v=reserve(['finale-giant-forepaw','warden',1180,near]);
-    if(v){Object.assign(v,{name:'혼류의 앞발',honroRigAsset:'forepaw',maxHp:Math.round(v.maxHp*2.6),hp:Math.round(v.maxHp*2.6),armor:Math.max(v.armor,.18),h:Math.round(v.h*1.9),r:Math.round(v.r*1.8)});
-     if(!grounded(v,near)||localCrowd(v.x,v.y,v.r+32))return;
-     giant=v;add(v);track(v,fronts[1],near);e.refreshActivation();e.message('교각 아래에서 앞발이 올라옵니다. 휘겸은 교각을 지키고, 나머지는 앞발을 쳐서 물리치십시오.');
-     note('giant-arrived',{id:v.id,hp:v.hp,x:v.x,y:v.y,support:near});}
+    for(const seat of [1180,1137,1230]){
+     const v=reserve(['finale-giant-forepaw','warden',seat,near]);
+     if(!v)continue;
+     Object.assign(v,{name:'혼류의 앞발',honroRigAsset:'forepaw',maxHp:Math.round(v.maxHp*2.6),hp:Math.round(v.maxHp*2.6),armor:Math.max(v.armor,.18),h:Math.round(v.h*1.9),r:Math.round(v.r*1.8)});
+     if(!grounded(v,near)||localCrowd(v.x,v.y,v.r+32))continue;
+     giant=v;add(v);track(v,fronts[1],near);e.refreshActivation();
+     e.message('교각 아래에서 앞발이 올라옵니다. 휘겸은 교각을 지키고, 나머지는 앞발을 쳐서 물리치십시오.');
+     note('giant-arrived',{id:v.id,hp:v.hp,x:v.x,y:v.y,support:near});
+     break;
+    }
    }
   }
   // Posts: enemies standing on a post at the end of their side's turn break it; a cleared

@@ -1,0 +1,101 @@
+{
+  "status": "OBSERVED",
+  "difficulty": "explorer",
+  "sourceRng": 19388,
+  "rounds": 6,
+  "opening": 10,
+  "peakAlive": 13,
+  "peakAttackQueue": 8,
+  "cumulative": 25,
+  "giant": [
+    {
+      "id": "finale-giant-forepaw",
+      "role": "guard",
+      "source": "original",
+      "round": 4,
+      "x": 4237.5690607734805,
+      "y": 2912.486187845304,
+      "grounded": true,
+      "surface": "finale-cutout-near-body"
+    }
+  ],
+  "damage": [
+    {
+      "id": "finale-west-return-s0-r3-lead",
+      "target": "p-archer",
+      "skill": "HMO01",
+      "before": 1196,
+      "after": 1149,
+      "shieldBefore": 0,
+      "shieldAfter": 0,
+      "amount": 90.33519730401945,
+      "round": 3
+    },
+    {
+      "id": "finale-west-return-s0-r3-lower",
+      "target": "p-archer",
+      "skill": "HSH01",
+      "before": 1149,
+      "after": 1113,
+      "shieldBefore": 0,
+      "shieldAfter": 0,
+      "amount": 68.6257994016461,
+      "round": 3
+    },
+    {
+      "id": "finale-west-return-s0-r3-rear",
+      "target": "p-knight",
+      "skill": "HMO01",
+      "before": 3597.1,
+      "after": 3580.1,
+      "shieldBefore": 0,
+      "shieldAfter": 0,
+      "amount": 70.87910776072111,
+      "round": 3
+    },
+    {
+      "id": "finale-east-fault-s0-r4-knot",
+      "target": "p-mage",
+      "skill": "HSH01",
+      "before": 1125.6000000000001,
+      "after": 1125.6000000000001,
+      "shieldBefore": 246,
+      "shieldAfter": 213,
+      "amount": 68.6257994016461,
+      "round": 4
+    },
+    {
+      "id": "finale-east-fault-s0-r4-rear",
+      "target": "p-mage",
+      "skill": "HMO01",
+      "before": 1125.6000000000001,
+      "after": 1125.6000000000001,
+      "shieldBefore": 213,
+      "shieldAfter": 161,
+      "amount": 108.17229858233367,
+      "round": 4
+    },
+    {
+      "id": "finale-east-fault-s0-r4-lead",
+      "target": "p-occultist",
+      "skill": "HMO01",
+      "before": 1972.2999999999997,
+      "after": 1972.2999999999997,
+      "shieldBefore": 276,
+      "shieldAfter": 219,
+      "amount": 122.78824427258755,
+      "round": 5
+    },
+    {
+      "id": "finale-west-return-s1-r5-knot",
+      "target": "p-archer",
+      "skill": "HSH01",
+      "before": 1113,
+      "after": 1077,
+      "shieldBefore": 0,
+      "shieldAfter": 0,
+      "amount": 68.6257994016461,
+      "round": 5
+    }
+  ]
+}

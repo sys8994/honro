@@ -1,0 +1,464 @@
+{
+  "trace": [
+    {
+      "round": 1,
+      "actor": "p-knight",
+      "baseSeat": 4237.5690607734805,
+      "knight": {
+        "x": 3225.6028714840722,
+        "y": 2915.721077167553
+      },
+      "fronts": [
+        {
+          "id": "west-return",
+          "next": 0,
+          "of": 6,
+          "held": 0,
+          "alive": 0,
+          "spawned": 0
+        },
+        {
+          "id": "east-fault",
+          "next": 0,
+          "of": 7,
+          "held": 0,
+          "alive": 0,
+          "spawned": 0
+        }
+      ],
+      "giant": null,
+      "park": {
+        "id": "p-knight",
+        "cls": "knight",
+        "side": 0,
+        "x": 4245.894533041812,
+        "y": 2911.540111451175,
+        "vx": 0,
+        "vy": 0,
+        "hp": 3688.1,
+        "maxHp": 3846,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "S00",
+          "S01",
+          "S03"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 2873.488994939473,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "finale-cutout-near-body",
+        "normal": null
+      }
+    },
+    {
+      "round": 1,
+      "actor": "p-archer",
+      "baseSeat": 4237.5690607734805,
+      "knight": {
+        "x": 4245.894533041812,
+        "y": 2911.540111451175
+      },
+      "fronts": [
+        {
+          "id": "west-return",
+          "next": 0,
+          "of": 6,
+          "held": 0,
+          "alive": 0,
+          "spawned": 0
+        },
+        {
+          "id": "east-fault",
+          "next": 0,
+          "of": 7,
+          "held": 0,
+          "alive": 0,
+          "spawned": 0
+        }
+      ],
+      "giant": null
+    },
+    {
+      "round": 1,
+      "actor": "p-occultist",
+      "baseSeat": 4237.5690607734805,
+      "knight": {
+        "x": 4245.894533041812,
+        "y": 2911.540111451175
+      },
+      "fronts": [
+        {
+          "id": "west-return",
+          "next": 0,
+          "of": 6,
+          "held": 0,
+          "alive": 0,
+          "spawned": 0
+        },
+        {
+          "id": "east-fault",
+          "next": 0,
+          "of": 7,
+          "held": 0,
+          "alive": 0,
+          "spawned": 0
+        }
+      ],
+      "giant": null
+    },
+    {
+      "round": 1,
+      "actor": "p-mage",
+      "baseSeat": 4237.5690607734805,
+      "knight": {
+        "x": 4245.894533041812,
+        "y": 2911.540111451175
+      },
+      "fronts": [
+        {
+          "id": "west-return",
+          "next": 0,
+          "of": 6,
+          "held": 0,
+          "alive": 0,
+          "spawned": 0
+        },
+        {
+          "id": "east-fault",
+          "next": 0,
+          "of": 7,
+          "held": 0,
+          "alive": 0,
+          "spawned": 0
+        }
+      ],
+      "giant": null
+    },
+    {
+      "round": 2,
+      "actor": "p-archer",
+      "baseSeat": 4237.5690607734805,
+      "knight": {
+        "x": 4245.894533041812,
+        "y": 2911.540111451175
+      },
+      "fronts": [
+        {
+          "id": "west-return",
+          "next": 0,
+          "of": 6,
+          "held": 0,
+          "alive": 0,
+          "spawned": 0
+        },
+        {
+          "id": "east-fault",
+          "next": 0,
+          "of": 7,
+          "held": 0,
+          "alive": 0,
+          "spawned": 0
+        }
+      ],
+      "giant": null
+    },
+    {
+      "round": 2,
+      "actor": "p-knight",
+      "baseSeat": 4237.5690607734805,
+      "knight": {
+        "x": 4245.894533041812,
+        "y": 2911.540111451175
+      },
+      "fronts": [
+        {
+          "id": "west-return",
+          "next": 0,
+          "of": 6,
+          "held": 0,
+          "alive": 0,
+          "spawned": 0
+        },
+        {
+          "id": "east-fault",
+          "next": 0,
+          "of": 7,
+          "held": 0,
+          "alive": 0,
+          "spawned": 0
+        }
+      ],
+      "giant": null,
+      "park": {
+        "id": "p-knight",
+        "cls": "knight",
+        "side": 0,
+        "x": 4245.894533041812,
+        "y": 2911.540111451175,
+        "vx": 0,
+        "vy": 0,
+        "hp": 3842.1,
+        "maxHp": 3846,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "S00",
+          "S01",
+          "S03"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 4081,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "finale-cutout-near-body",
+        "normal": null
+      }
+    },
+    {
+      "round": 2,
+      "actor": "p-occultist",
+      "baseSeat": 4237.5690607734805,
+      "knight": {
+        "x": 4245.894533041812,
+        "y": 2911.540111451175
+      },
+      "fronts": [
+        {
+          "id": "west-return",
+          "next": 0,
+          "of": 6,
+          "held": 0,
+          "alive": 0,
+          "spawned": 0
+        },
+        {
+          "id": "east-fault",
+          "next": 0,
+          "of": 7,
+          "held": 0,
+          "alive": 0,
+          "spawned": 0
+        }
+      ],
+      "giant": null
+    },
+    {
+      "round": 2,
+      "actor": "p-mage",
+      "baseSeat": 4237.5690607734805,
+      "knight": {
+        "x": 4245.894533041812,
+        "y": 2911.540111451175
+      },
+      "fronts": [
+        {
+          "id": "west-return",
+          "next": 0,
+          "of": 6,
+          "held": 0,
+          "alive": 0,
+          "spawned": 0
+        },
+        {
+          "id": "east-fault",
+          "next": 0,
+          "of": 7,
+          "held": 0,
+          "alive": 0,
+          "spawned": 0
+        }
+      ],
+      "giant": null
+    },
+    {
+      "round": 3,
+      "actor": "p-archer",
+      "baseSeat": 4237.5690607734805,
+      "knight": {
+        "x": 4255.376038596993,
+        "y": 2910.4626676380867
+      },
+      "fronts": [
+        {
+          "id": "west-return",
+          "next": 1,
+          "of": 6,
+          "held": 0,
+          "alive": 3,
+          "spawned": 3
+        },
+        {
+          "id": "east-fault",
+          "next": 0,
+          "of": 7,
+          "held": 0,
+          "alive": 0,
+          "spawned": 0
+        }
+      ],
+      "giant": null
+    },
+    {
+      "round": 3,
+      "actor": "p-knight",
+      "baseSeat": 4237.5690607734805,
+      "knight": {
+        "x": 4255.376038596993,
+        "y": 2910.4626676380867
+      },
+      "fronts": [
+        {
+          "id": "west-return",
+          "next": 1,
+          "of": 6,
+          "held": 0,
+          "alive": 3,
+          "spawned": 3
+        },
+        {
+          "id": "east-fault",
+          "next": 0,
+          "of": 7,
+          "held": 0,
+          "alive": 0,
+          "spawned": 0
+        }
+      ],
+      "giant": null,
+      "park": {
+        "id": "p-knight",
+        "cls": "knight",
+        "side": 0,
+        "x": 4255.376038596993,
+        "y": 2910.4626676380867,
+        "vx": 0,
+        "vy": 0,
+        "hp": 3846,
+        "maxHp": 3846,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "S00",
+          "S01",
+          "S03"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 4081,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "finale-cutout-near-body",
+        "normal": null
+      }
+    },
+    {
+      "round": 3,
+      "actor": "p-occultist",
+      "baseSeat": 4237.5690607734805,
+      "knight": {
+        "x": 4255.376038596993,
+        "y": 2910.4626676380867
+      },
+      "fronts": [
+        {
+          "id": "west-return",
+          "next": 1,
+          "of": 6,
+          "held": 0,
+          "alive": 3,
+          "spawned": 3
+        },
+        {
+          "id": "east-fault",
+          "next": 0,
+          "of": 7,
+          "held": 0,
+          "alive": 0,
+          "spawned": 0
+        }
+      ],
+      "giant": null
+    },
+    {
+      "round": 3,
+      "actor": "p-mage",
+      "baseSeat": 4237.5690607734805,
+      "knight": {
+        "x": 4255.376038596993,
+        "y": 2910.4626676380867
+      },
+      "fronts": [
+        {
+          "id": "west-return",
+          "next": 1,
+          "of": 6,
+          "held": 0,
+          "alive": 3,
+          "spawned": 3
+        },
+        {
+          "id": "east-fault",
+          "next": 0,
+          "of": 7,
+          "held": 0,
+          "alive": 0,
+          "spawned": 0
+        }
+      ],
+      "giant": null
+    },
+    {
+      "round": 4,
+      "actor": "p-archer",
+      "baseSeat": 4237.5690607734805,
+      "knight": {
+        "x": 4276.447573181632,
+        "y": 2908.0681750716503
+      },
+      "fronts": [
+        {
+          "id": "west-return",
+          "next": 1,
+          "of": 6,
+          "held": 0,
+          "alive": 3,
+          "spawned": 3
+        },
+        {
+          "id": "east-fault",
+          "next": 1,
+          "of": 7,
+          "held": 0,
+          "alive": 3,
+          "spawned": 3
+        }
+      ],
+      "giant": {
+        "x": 4417.1270718232045,
+        "y": 2892.904200979881,
+        "grounded": true,
+        "surface": "finale-cutout-near-body"
+      }
+    }
+  ],
+  "passed": true
+}
