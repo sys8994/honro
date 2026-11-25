@@ -21,6 +21,14 @@ assert before and now and before.group(0)==now.group(0)
 assert before.group(1)=='33a76bb72ae121b9786958b6e39d83bf9903fc5450053d1d47a7b6b8e212e36d'
 assert 'mountAct6TerrainArt' in s1 and 'HonroAct6Journey' in s1 and 'act6EndingReplan' in s1
 views=scope(rows,'act6-ending-preview-')
+places={**scope(rows,'act6-ending-shore-dawn'),**scope(rows,'act6-ending-dossier-room')}
+actors={p:record for p,record in rows.items() if any(x in p for x in (
+ 'portrait-seoro-action-lower_bow.349c5a541a01528e.','portrait-hwigyeom-action-inspect_record.c719ee39c460ba5e.',
+ 'npc-portrait-yeonsil.6a79ba32cc70096d.'))}
+assert len(places)==4 and len(actors)==3
+for p,record in {**places,**actors}.items():
+ data=(root/p).read_bytes()
+ assert sha256(data).hexdigest()==record['sha256'] and len(data)==record['bytes'],p
 assert len(views)==6
 for p,r in views.items():
  b=(root/p).read_bytes();assert sha256(b).hexdigest()==r['sha256'],p
@@ -31,4 +39,4 @@ assert not any('/data/' in p or 'journey-map-act6.' in p for p in added),added
 (out/'RELEASE-AUTHORITY.json').write_text(json.dumps({'base':base,'project':m['project'],
  'boundaryBuild':before.group(1),'boundaryBlockSHA':sha256(before.group(0).encode()).hexdigest(),
  'packets':scope(rows,'act6-qa-chapter-'),'journeyMap':scope(rows,'journey-map-act6.'),
- 'previewMedia':views,'tempTrackSHA256':t,'newPaths':sorted(added),'entry':m['gameEntry']},ensure_ascii=False,indent=2)+'\n')
+ 'previewMedia':views,'cinemaPlates':places,'existingActors':actors,'tempTrackSHA256':t,'newPaths':sorted(added),'entry':m['gameEntry']},ensure_ascii=False,indent=2)+'\n')

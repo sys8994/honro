@@ -21,7 +21,7 @@ def check(browser,route,tap,homepage,out,outer):
         route(ctx);prepare(ctx)
         if deny:ctx.add_init_script('globalThis.act6EndingDeny=true')
         # Reduced motion is an independent browser presentation setting.
-        page=ctx.new_page();errors=[];packets=[]
+        page=ctx.new_page();errors=[];packets=[];motion={}
         if muted:page.emulate_media(reduced_motion='reduce')
         page.on('pageerror',lambda err:errors.append(str(err)))
         page.on('request',lambda req:packets.append(req.url) if 'act6-qa-chapter-' in req.url else None)
@@ -67,10 +67,18 @@ def check(browser,route,tap,homepage,out,outer):
                 if cut=='homecoming':
                     assert view.locator('.h6ending-ferry path').count()>=4 and view.locator('.h6ending-sack path').count()==2
                     hero=view.locator('.h6ending-seol');hero.wait_for(state='visible')
-                    page.wait_for_function("()=>['.h6ending-seol','.h6ending-yeonsil'].every(s=>document.querySelector(s)?.naturalWidth>0)",timeout=10000)
+                    page.wait_for_function("()=>['.h6ending-seol','.h6ending-yeonsil','.h6ending-naru .h6ending-backdrop img'].every(s=>document.querySelector(s)?.naturalWidth>0)",timeout=10000)
+                    assert view.locator('.h6ending-backdrop img').evaluate("e=>e.currentSrc.includes('act6-ending-shore-dawn'+(innerWidth/innerHeight<.95?'-m.':'.'))")
+                    name=view.locator('.h6ending-ferry-arrival').evaluate("e=>getComputedStyle(e).animationName")
+                    assert name==('none' if muted else 'h6naru-arrive')
+                    motion['boat']=name
                 if cut=='jeomungol-record':
                     assert view.locator('.h6ending-evidence-slip dt').all_text_contents()==['폐쇄 승인','학살','은폐']
-                    assert view.locator('.h6ending-evidence-slip').nth(2).evaluate("e=>getComputedStyle(e).animationName")==('none' if muted else 'h6fold-proof')
+                    page.wait_for_function("()=>['.h6ending-hwi','.h6ending-ledger .h6ending-backdrop img'].every(s=>document.querySelector(s)?.naturalWidth>0)",timeout=10000)
+                    assert view.locator('.h6ending-backdrop img').evaluate("e=>e.currentSrc.includes('act6-ending-dossier-room'+(innerWidth/innerHeight<.95?'-m.':'.'))")
+                    name=view.locator('.h6ending-evidence-slip').nth(2).evaluate("e=>getComputedStyle(e).animationName")
+                    assert name==('none' if muted else 'h6fold-proof')
+                    motion['evidence']=name
                 if cut=='daybreak':
                     if muted:assert not page.evaluate('act6EndingMedia.length')
                     elif deny:
@@ -90,5 +98,5 @@ def check(browser,route,tap,homepage,out,outer):
             assert before==page.evaluate(snapshot) and page.evaluate('HonroApp.screen')==screen
             assert not page.locator(ROOT).count() and (muted or page.evaluate("()=>act6EndingMedia[0].el.paused"))
             assert not packets and not errors,(errors,packets)
-            outer[case]={'scenes':6,'storageByteIdentical':True,'noEngineNoRewardsNoPacket':True,'temporaryMusic':not muted,'fallbackRetried':deny}
+            outer[case]={'scenes':6,'storageByteIdentical':True,'noEngineNoRewardsNoPacket':True,'temporaryMusic':not muted,'fallbackRetried':deny,'animationNames':motion,'actualArtAndOfficialCast':True}
         finally:ctx.close()

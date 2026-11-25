@@ -70,9 +70,11 @@
   const controlsUpdate=s.sync;s.sync=()=>{controlsUpdate?.();left.textContent=!s.ended&&s.audio&&!s.audio.paused?' 곡은 계속 재생됩니다. 바로 나갈 수도 있습니다.':'';};
   status.replaceChildren(node('span','',s.mode==='completion'?'여정의 끝을 기록했습니다.':''),left);controls.replaceChildren(exit,music);s.sync();exit.focus({preventScroll:true});
  }
- function framed(name,cssClass,src,alt){
+ function framed(name,scene,cssClass,alt){
   const box=node('div',cssClass);box.dataset.art=name;
-  const i=image(src,alt);if(i)box.append(i);return box;
+  const place=assets.places[scene],pic=node('picture','h6ending-backdrop');
+  const portrait=node('source');portrait.media='(max-aspect-ratio: 19/20)';portrait.srcset=place.portrait;
+  const i=image(place.wide,alt);if(i)pic.append(portrait,i);box.append(pic);return box;
  }
  function svg(tag,attrs={}){
   const el=doc.createElementNS('http://www.w3.org/2000/svg',tag);
@@ -92,17 +94,17 @@
  }
  function addedArt(scene){
   if(scene==='homecoming'){
-   const v=framed('naru','h6ending-naru',(G.innerWidth/G.innerHeight<.95?G.HONRO_ACT_ENDINGS?.[30]?.portraitImage:null)??G.HONRO_ACT_ENDINGS?.[30]?.image,'어스름한 나루터와 물길');
+   const v=framed('naru','shore-dawn','h6ending-naru','새벽 나루터의 물길과 돌 선착장');
    const fg=node('div','h6ending-home-foreground'),ferry=node('div','h6ending-ferry-arrival');
-   const yeonsil=image(G.HONRO_NPC_PORTRAITS?.assets?.yeonsil?.src,'연실');if(yeonsil){yeonsil.className='h6ending-yeonsil';ferry.append(yeonsil);}
+   const yeonsil=image(assets.actor.yeonsil,'연실');if(yeonsil){yeonsil.className='h6ending-yeonsil';ferry.append(yeonsil);}
    ferry.append(wakeAndFerry());fg.append(ferry);
-   const seol=image(G.HONRO_STORY_PORTRAITS?.['설오']?.image,'설오');if(seol){seol.className='h6ending-seol';fg.append(seol);}
+   const seol=image(assets.actor.seol,'설오');if(seol){seol.className='h6ending-seol';fg.append(seol);}
    const bag=svg('svg',{viewBox:'0 0 64 73',class:'h6ending-sack','aria-hidden':'true'});
    bag.append(svg('path',{d:'M29 22 L19 7 L37 4 L47 12 L39 24 Q53 34 59 58 Q47 71 15 69 Q5 65 9 55 Q15 36 29 22Z',fill:'#8a7353',stroke:'#b4a083','stroke-width':1.8}),
     svg('path',{d:'M28 20 Q38 24 42 21 M28 29 L21 52 M40 29 L47 50 M29 64 Q43 64 51 60',fill:'none',stroke:'#5d4c3c','stroke-width':2,'stroke-linecap':'round'}));
    fg.append(bag);v.append(fg);return v;
   }
-  const page=node('div','h6ending-ledger'),book=node('section','h6ending-paper');
+  const page=framed('records','dossier-room','h6ending-ledger','저문골 고을 기록방의 낮은 나무 탁자'),book=node('section','h6ending-paper');
   const h=node('h2','','저문골 조사 기록');book.append(h);
   const list=node('dl');
   for(const [label,detail] of [['폐쇄 승인','일부 왕실 고관의 인장 · 출입 폐쇄와 제압을 승인함'],['학살','집행 보고·호적·현장 증언 · 대도사가 주민 학살을 지휘함'],['은폐','사후처리 명령 · 관리들과 한태록의 봉문군이 수송, 봉쇄, 기록 삭제를 맡음']]){
@@ -110,7 +112,7 @@
    slip.append(node('dt','',label),node('dd','',detail));list.append(slip);
   }
   book.append(list);
-  const hwigyeom=image(G.HONRO_STORY_PORTRAITS?.['휘겸']?.image,'휘겸');
+  const hwigyeom=image(assets.actor.hwi,'휘겸');
   if(hwigyeom){hwigyeom.className='h6ending-hwi';page.append(hwigyeom);}
   page.append(book);return page;
  }
