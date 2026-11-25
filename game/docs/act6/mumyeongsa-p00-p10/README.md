@@ -138,3 +138,16 @@ git ls-tree HEAD web/data/chapter-01-assets.088719e10e63d482.json web/data/chapt
 - P30은 외부 6개 장의 PC·터치 시작 이동과 대표 오버레이를 남겼다. 55 중앙 비접촉 암면은 거리감이 읽히도록 명도를 조정했고, 59 서쪽 높은 단과 57 접힌 석교는 원본 윗변·꼭짓점이 물리 면과 일치했다. 60의 두 혼 인도와 엔딩을 PC·모바일에서 확인했다. 개별 외곽 착지 전수 플레이는 미검수다. [외부 실측과 명령](exterior/README.md)
 - P40은 53·54 실제 혼 O06과 차트·M09·C, 55 온전한 정렬과 실제 복구 뒤 각각 56 라이브/새 저장, 방치했을 때 패배, 모바일 터치 좌정·복구를 확인했다. 장착 시험 기록에서 실제 O13 호혼령도 소환했다. 56 실제 O06의 57 인계·단일 차감, 57 합체 뒤 소단의 일반 O06과 네 원본 D 통과를 확인했다. [소단 검수표와 명령](sodan-thread/README.md)
 - P50은 51–59에 편성을 추가했다. 51 전망대와 57→58의 새 저장, 54 B와 55 두 결속 결과, 56 역류 회피, 58 두 의식·천장 명중, 59 실제 터치 양쪽 출현을 검수했다. 장별 누적·공격·정량 목표는 미달 또는 미검수 항목과 함께 기록했다. [편성 로그와 명령](encounters/README.md) · [첫 가름진 역류](torn-eave/README.md)
+
+## 추가 구현과 검수 커밋
+
+| 단위 | 원격 커밋과 증거 |
+|---|---|
+| 소단 육신, 결속·붕괴, 안쪽 혼줄, 실제 터치 | [850208d6](https://github.com/sys8994/honro/commit/850208d69ce632998ea0e0007a6021ee80cc5a32) · [18ae93e8](https://github.com/sys8994/honro/commit/18ae93e83ea2f5a153f3d59456c2cafc14f64011) · [bce43de8](https://github.com/sys8994/honro/commit/bce43de8) · [a743f4de](https://github.com/sys8994/honro/commit/a743f4de574234bcfc0b69fbb1772068cca7d26e) · [소단 증거](sodan-thread/README.md) |
+| 외부 접촉선과 55 암면 명도 | [d42f27c9](https://github.com/sys8994/honro/commit/d42f27c9ff0b42d0cdaac4568ca4b12f3cf9c22c) · [외부 표본](exterior/README.md) |
+| 51 전망대와 52 하강·종터 | [761d60f6](https://github.com/sys8994/honro/commit/761d60f67ff49ac835542477a1046dd7c2766c03) · [c7859779](https://github.com/sys8994/honro/commit/c7859779) · [51 완주](encounters/overlook-live-51.json) · [52 완주](encounters/cliff-bell-52.json) |
+| 53·54 실전 B, 55 수비, 56 역류, 57 합체, 58 대도사·R | [531273be](https://github.com/sys8994/honro/commit/531273be61bf3b583fe08c39d6f21db4acc52eb3) · [cb8dc54d](https://github.com/sys8994/honro/commit/cb8dc54d82960c1de96f5ea8754a40b1ff01d5ba) · [59cf4d34](https://github.com/sys8994/honro/commit/59cf4d3492d102fc4274878eff12ad6323f7d333) · [4ff52e82](https://github.com/sys8994/honro/commit/4ff52e82) · [3075c4bc](https://github.com/sys8994/honro/commit/3075c4bc4c859272732a5ecffd421124eec5326e) · [d82d7258](https://github.com/sys8994/honro/commit/d82d725883f449baad8712a0adbcca354e2f0780) · [출현·교전표](encounters/README.md) |
+| 59 두 전선과 실제 방어·전진 | [e7668b6a](https://github.com/sys8994/honro/commit/e7668b6a) · [d729d739](https://github.com/sys8994/honro/commit/d729d739) · [bd5a48dc](https://github.com/sys8994/honro/commit/bd5a48dce461fbdec791692b96163e1af3d02175) · [전진 로그](encounters/courtyard-advance-59.json) |
+| 이전 정상 기록과 여정첩 | [1899cfd3](https://github.com/sys8994/honro/commit/1899cfd3) · [변경 전후](journey-boundary/README.md) |
+
+`npm run test:release-guard`는 19개 통과했다. `test:runtime-contracts`와 `test:campaign-contracts`는 각각 `shared/build.mjs`와 `tools/environment/stage22-vertical-art.mjs`의 승인 SHA 검사에서 멈췄다. 두 파일의 실측 SHA가 기존 `master dd409de2`의 실제 바이트와 같은 것을 확인했다. 기존 승인 SHA를 직접 바꾸지 않았다.
