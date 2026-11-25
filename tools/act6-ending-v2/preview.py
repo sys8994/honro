@@ -66,23 +66,9 @@ with sync_playwright() as p:
         page.clock.install()
         page.clock.pause_at(page.evaluate('Date.now()+1000'))
         before=start(page)
-        page.clock.fast_forward(14500)
         r=page.locator('.he-root')
-        r.locator('[data-ending-action="record"]').click()
-        page.clock.run_for(1500)
-        assert r.locator('.he-names').inner_text().split()==['곽진','박문돌','이만복']
-        page.screenshot(path=out/f'ledger-{width}.png')
-        page.clock.run_for(4500)
-        if wide:
-            page.keyboard.down('ArrowRight');page.clock.run_for(5500);page.keyboard.up('ArrowRight')
-        else:
-            btn=r.locator('[data-ending-action="walk"]')
-            box=btn.bounding_box()
-            cd=c.new_cdp_session(page)
-            pt={'x':box['x']+box['width']/2,'y':box['y']+box['height']/2}
-            cd.send('Input.dispatchTouchEvent',{'type':'touchStart','touchPoints':[pt]})
-            page.clock.run_for(5500)
-            cd.send('Input.dispatchTouchEvent',{'type':'touchEnd','touchPoints':[]})
+        assert r.locator('[data-ending-action="walk"],[data-ending-action="record"]').count()==0
+        if not wide:cd=c.new_cdp_session(page)
         page.clock.run_for(1100)
         displayed(page,'still_01',wide)
         page.clock.run_for(450)
@@ -139,4 +125,4 @@ with sync_playwright() as p:
         c.close()
     b.close()
 assert not errors,errors
-print(json.dumps({'debugStills':9,'pc':True,'mobile':True,'rotationStableBeat':True,'tapNextSmooth':True,'desktopEscHold':True,'mobileSkipHold':True,'previewSaveBytesUnchanged':True,'live':args.live}))
+print(json.dumps({'debugDirectToStills':True,'debugStills':9,'pc':True,'mobile':True,'rotationStableBeat':True,'tapNextSmooth':True,'desktopEscHold':True,'mobileSkipHold':True,'previewSaveBytesUnchanged':True,'live':args.live}))
