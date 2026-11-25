@@ -260,7 +260,7 @@ export async function createStage59Owner({C,packet,authorize,verifyIncoming,crea
    if(!aftermath||aftermath.anchor!==held.anchor||aftermath.seenBy!==witness.id||aftermath.source!==held.source)return null;
    const distance=retreatOrder?threat.x-retreatOrder.from:threat.x-origin, dead=down(threat), stand=grounded(threat,near);
    if(!resolved())return null;
-   return copy({witness,guardAftermath:aftermath,finalThreat:{id:threat.id,hp:threat.hp,dead,distance,grounded:stand,retreat:retreatOrder},closed:true});
+   return copy({witness,guardAftermath:aftermath,finalThreat:{id:threat.id,hp:threat.hp,dead,distance,grounded:dead||stand,retreat:retreatOrder},closed:true});
   },dispose(){
    if(everDisposed)return;everDisposed=true;
    if(e.tick===advance)e.tick=realTick;if(e.enemyActionSteps===sweep)e.enemyActionSteps=realSteps;if(e.hurt===follow)e.hurt=realHurt;
