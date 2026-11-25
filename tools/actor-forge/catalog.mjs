@@ -8,5 +8,6 @@ export const actorCatalog=[
  {id:'bier_boss',name:'빈 상여',family:'object',unit:{side:1,honroType:'bier',cls:'knight',id:'boss'}},
  {id:'stretcher',name:'부상자 운반대',family:'object',unit:{side:2,honroType:'civilian',cls:'knight',honroCivilian:true,id:'objective',name:'부상자 운반대'}},
  {id:'gate',name:'피란문',family:'object',unit:{side:2,honroType:'gate',cls:'knight',honroCivilian:true}},
+ {id:'boss_daedosa',name:'대도사',family:'human',role:'daedosa',unit:{side:1,honroType:'human',cls:'mage',honroRigAsset:'boss_daedosa',name:'대도사'}},
  {id:'colossus',name:'봉인 거신 (구 보스 호환)',family:'monster',unit:{side:1,boss:1,cls:'knight',honroType:'boss'}}
 ];

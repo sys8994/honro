@@ -137,10 +137,26 @@ export function createChapterBoundary({slot,key,storage,locks,normalize,hash,ver
  function pinOkay(pin,id){
   const d=recipes[id];return !!(d&&pin?.from===d.from&&pin.to===id&&['build','fromPacket','toPacket','owner','play','world'].every(k=>hash64(pin[k])));
  }
+ // Revision compatibility (2026-11-25): a stored stamp carries the PREVIOUS chapter's
+ // terminal. The destination chapter re-validates that terminal in full when it mounts,
+ // so a later build/destination/owner revision must not strand the player. The stored
+ // terminal stays valid while the source chapter packet (fromPacket) is unchanged.
+ function pinCompatible(stored,current,id){
+  if(same(stored,current))return true;
+  return !!(stored&&current&&pinOkay(stored,id)&&stored.from===current.from&&stored.to===current.to&&stored.fromPacket===current.fromPacket);
+ }
+ // A structurally sound stamp whose source packet itself was revised cannot be resumed.
+ // It is retired: Act 6 restarts at chapter 1 (zero growth budget, nothing is lost) and
+ // the retired stamp becomes the audited parent of the next checkpoint.
+ function retired(stamp,p){
+  const x=stamp?.body,id=x?.to,r=recipes[id];
+  if(!x||!r||x.schema!==schema||x.slot!==slot||x.runId!==p?.equipment?.runId||!pinOkay(x.pin,id))return false;
+  const now=releasePin(id);return !!now&&!pinCompatible(x.pin,now,id);
+ }
  function shape(stamp,p,pin,id){
   const {body:x,sha}=stamp??{},r=recipes[id];
   return !!(x&&r&&pinOkay(pin,id)&&x.schema===schema&&x.slot===slot&&x.runId===p?.equipment?.runId&&x.kind===r.kind&&x.from===r.from&&x.to===id&&
-   x.profileSHA===digest(naked(p))&&same(pin,releasePin(id))&&same(x.pin,pin)&&x.generation>=1&&Number.isSafeInteger(x.generation)&&x.parent&&(x.parent==='initial'&&x.generation===1||hash64(x.parent)&&x.generation>1)&&
+   x.profileSHA===digest(naked(p))&&same(pin,releasePin(id))&&pinCompatible(x.pin,pin,id)&&x.generation>=1&&Number.isSafeInteger(x.generation)&&x.parent&&(x.parent==='initial'&&x.generation===1||hash64(x.parent)&&x.generation>1)&&
    x.terminal?.stage===r.from&&([51,52].includes(r.from)?x.terminal.won===undefined:x.terminal.won===true)&&x.terminal.settlement===false&&x.terminalSHA===digest(x.terminal)&&x.custodySHA===digest(x.custody)&&
    x.stageSeed?.id===r.from&&x.budget?.id===r.from&&r.validate(x.terminal,x.custody)&&sha===digest(x));
  }
@@ -151,7 +167,7 @@ export function createChapterBoundary({slot,key,storage,locks,normalize,hash,ver
   try{cap=r.capture({app,engine:e,terminal,upstream,physical});baseline=normalize(expectedRaw);}catch{return reject('bad-native-terminal-or-slot');}
   const old=baseline?.[keyField];
   if(!cap||priorUnsafe(baseline)||!baseline.equipment?.runId||!compatibleLegacy(baseline,normalize(JSON.stringify(app.profile)))||!same(stageSeed,e.stage)||budget?.id!==r.from||
-     (old&&(old?.body?.to>r.from||!shape(old,baseline,releasePin(old.body.to),old.body.to)||old.body.pin.build!==pin.build)))return reject('prior-or-custody');
+     (old&&!retired(old,baseline)&&(old?.body?.to>r.from||!shape(old,baseline,releasePin(old.body.to),old.body.to))))return reject('prior-or-custody');
   const t=json(terminal),p=json(cap);
   const data={schema,slot,runId:baseline.equipment.runId,from:r.from,to,kind:r.kind,generation:old?old.body.generation+1:1,parent:old?.sha??'initial',pin:json(pin),
    profileSHA:digest(naked(baseline)),terminal:t,terminalSHA:digest(t),custody:p,custodySHA:digest(p),stageSeed:json(stageSeed),budget:json(budget)};
@@ -183,5 +199,11 @@ export function createChapterBoundary({slot,key,storage,locks,normalize,hash,ver
     booted.set(app,Object.freeze({to,sha:stamp.sha}));return {ok:true,sha:stamp.sha};
   });}catch{return reject('lock-or-native-entry-failed');}finally{working.delete(app);}
  }
- return Object.freeze({checkpoint,restore});
+ function status(){
+  try{const loaded=normalize(read()),stamp=loaded?.[keyField];if(!stamp)return 'none';
+   if(retired(stamp,loaded))return 'retired';
+   const id=stamp.body?.to,pin=releasePin(id);return pin&&shape(stamp,loaded,pin,id)?'restorable':'invalid';
+  }catch{return 'invalid';}
+ }
+ return Object.freeze({checkpoint,restore,status});
 }

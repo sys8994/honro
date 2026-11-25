@@ -2,8 +2,8 @@ import {asset,part,shape,line,oval,track,sway,react,paper} from './shapes.mjs';
 // Native bind-space anatomy; head width/height and landmark relationships stay consistent.
 // NPCs get their own hair, clothing and tools, not renamed companion silhouettes.
 export function human(d){
- const a=asset(d),role=d.id.replace('ally_',''),robe=['guard','healer','ritualist','daoist','medium'].includes(role),woman=['healer','medium'].includes(role),old=role==='daoist';
- const colors={porter:['#77735B','#B0A482'],guard:['#455B57','#839486'],archer:['#6B7056','#A0A482'],healer:['#758F83','#BECBBC'],ritualist:['#777463','#B5AF95'],daoist:['#566C6A','#91A29A'],medium:['#756579','#B0A0AC'],scout:['#5C6C57','#91A47F'],woodcutter:['#756347','#B19B72'],civilian:['#817D70','#B7AD96']}[role];Object.assign(a.palette,{cloth:colors[0],light:colors[1],hair:old?'#69695F':'#292C29'});
+ const a=asset(d),role=d.role||d.id.replace('ally_',''),robe=['guard','healer','ritualist','daoist','medium','daedosa'].includes(role),woman=['healer','medium'].includes(role),old=role==='daoist'||role==='daedosa';
+ const colors={porter:['#77735B','#B0A482'],guard:['#455B57','#839486'],archer:['#6B7056','#A0A482'],healer:['#758F83','#BECBBC'],ritualist:['#777463','#B5AF95'],daoist:['#566C6A','#91A29A'],medium:['#756579','#B0A0AC'],scout:['#5C6C57','#91A47F'],woodcutter:['#756347','#B19B72'],civilian:['#817D70','#B7AD96'],daedosa:['#2B3130','#57605C']}[role];Object.assign(a.palette,{cloth:colors[0],light:colors[1],hair:role==='daedosa'?'#C4C1B5':old?'#69695F':'#292C29'});
  a.brief={reference:'기존 역할별 게임 그림; 얼굴은 3/4 구도의 제한된 곡선으로 새로 작성',silhouette:robe?'겹친 긴 옷과 작고 자연스러운 얼굴':'넓은 소매·벌어진 바지·접지한 신발',identity:[d.name,role==='woodcutter'?'도끼와 짚 지게':role==='archer'?'활과 화살통':robe?'옷깃·안감·역할별 의식 도구':'머리띠·일하는 손·역할별 도구','어두운 머리와 절제된 두 눈'],materials:['삼베','낡은 가죽','목재/철']};
  part(a,'root');
  for(const side of ['rear','front']){const x=side==='rear'?-7:7,p=part(a,side+'-leg',[x,-40],'root');shape(p,`M${x-6} -44 L${x+6} -42 ${x+5} -24 ${x+3} -5 ${x-5} -5 ${x-5} -23Z`,side==='rear'?'shade':'cloth');shape(p,`M${x-3} -26 L${x+3} -23 ${x+1} -7 ${x-3} -7Z`,'linenShade');const f=part(a,side+'-foot',[x,-5],side+'-leg');shape(f,`M${x-5} -7 L${x+3} -7 ${x+6} -3 ${x+12} -1 ${x+12} 1 ${x-6} 1Z`,'leather');line(f,`M${x-4} -4 L${x+4} -3`,'gold',.7,1);track(a,'move',p.id,'rotate',[[0,0],[.25,side==='rear'?-13:13],[.75,side==='rear'?13:-13],[1,0]]);track(a,'jump_fall',p.id,'rotate',[[0,0],[.35,side==='rear'?22:-15],[.7,side==='rear'?15:-8],[1,0]]);}
@@ -47,6 +47,23 @@ export function human(d){
    head.paths=head.paths.filter(p=>p.fill!=='hair');shape(head,'M-10 -97 Q-12 -109 0 -109 Q9 -109 10 -100 L7 -102 Q0 -106 -7 -99Z','skinShade');
    shape(body,'M-14 -78 L-6 -76 14 -51 8 -44 -12 -63Z','red');shape(hem,'M-7 -48 L8 -49 16 -8 7 -5 -9 -14Z','red');line(hem,'M-3 -37 L11 -34 M-1 -27 L13 -24','gold',.6,1);
    oval(tool,24,-43,7,5,'woodLight','wood',.7);oval(tool,25,-49,3,3,null,'wood',1.4);line(tool,'M20 -43 Q24 -40 29 -44','wood',1.1,0);line(rh,'M-22 -41 L-9 -56','wood',1.5,0);oval(rh,-9,-56,1.8,2,'woodLight');
+  }else if(role==='daedosa'){
+   // Boss (Act 6-8): the old royal daoist. Faded ash dopo with a torn hem, long drooping
+   // sleeves, white topknot and beard, deep-set eyes, a short wooden stake bound with red
+   // cord and seals. No bow, no hat, no monster parts: a man made imposing by bearing.
+   hem.paths=[];shape(hem,'M-15 -52 L16 -50 Q18 -30 27 -8 L22 -2 18 -8 13 -1 7 -6 1 1 -5 -5 -11 0 -16 -6 -25 -2 -19 -25Z','cloth','ink',.7);
+   shape(hem,'M-3 -47 L6 -43 15 -9 9 -4 3 -2 -4 -7Z','light');line(hem,'M-12 -36 L-17 -10 M10 -34 L19 -9 M2 -30 L4 -4','shade',.8,1);
+   rear.paths=[];shape(rear,'M-9 -79 Q-21 -79 -27 -64 L-33 -42 -27 -33 -19 -38 -14 -48 -16 -60 -5 -67Z','shade','ink',.6);line(rear,'M-22 -66 L-27 -48 -22 -40','light');
+   arm.paths=[];shape(arm,'M10 -79 Q20 -78 25 -66 L32 -47 27 -36 18 -40 12 -48 13 -59 7 -68Z','cloth','ink',.65);shape(arm,'M18 -64 L27 -49 23 -40 16 -45Z','linen');line(arm,'M15 -74 L19 -62 17 -57','light',.75,1);
+   head.paths=head.paths.filter(p=>p.fill!=='hair');
+   shape(head,'M-9 -103 Q-3 -110 6 -108 L10 -103 7 -102 1 -104 -5 -102Z','hair');shape(head,'M-3 -108 Q-6 -117 0 -118 Q6 -117 3 -108Z','hair','linenShade',.5);line(head,'M-4 -112 L4 -112','red',.9,0);
+   shape(head,'M-4 -97.5 L1 -96.8 1 -95.8 -4 -96.5Z M5 -96.8 L9 -97 9 -95.9 5 -95.8Z','ink');line(head,'M-3 -99 Q0 -100.5 2 -99 M5 -99 Q7 -100.5 9 -99','feature',.6,0);
+   shape(head,'M-2 -89 Q3 -92 7 -89 L8 -86 4 -87 -1 -86Z M-4 -86 L1 -85 6 -86 5 -77 1 -72 -3 -78Z','hair');line(head,'M0 -84 L1 -75','linenShade',.5,1);
+   const stake=part(a,'stake',[23,-43],'front-hand');
+   shape(stake,'M20 -50 L26 -52 31 -21 28 -14 24 -21Z','wood','ink',.6);line(stake,'M23 -49 L27 -24','woodLight',.8,1);
+   line(stake,'M20 -44 L27 -46 M21 -39 L28 -41 M22 -34 L29 -36','red',1.1,0);shape(stake,'M27 -35 L33 -36 34 -26 28 -25Z','linen');line(stake,'M29 -33 L32 -33 M29 -30 L32 -30','red',.5,1);
+   paper(body,-15,-60,5,14);paper(body,10,-56,4,11);shape(body,'M-14 -47 L14 -48 14 -43 -13 -42Z','shade');
+   track(a,'attack','front-sleeve','rotate',[[0,0],[.25,-35],[.55,-62],[.8,-40],[1,0]]);track(a,'attack','stake','rotate',[[0,0],[.3,-25],[.6,-48],[1,0]]);track(a,'attack','body','rotate',[[0,0],[.4,-4],[1,0]]);
   }else if(role==='daoist'){
    // Folded cloth headwear, long dopo, whisk and a paper seal; no crystal-topped wand.
    shape(head,'M-11 -102 L-11 -113 -4 -116 1 -114 8 -116 12 -109 10 -102 5 -104 -6 -104Z','shade');line(head,'M-8 -110 L-2 -112 2 -108 7 -111','light',.7,1);
@@ -58,7 +75,7 @@ export function human(d){
    shape(body,'M-13 -76 L-9 -79 4 -57 -1 -51Z','red');const ribbon=part(a,'ribbon',[-10,-94],'head');shape(ribbon,'M-11 -98 Q-17 -83 -13 -70 L-18 -78 -17 -88 -16 -96Z','red');sway(a,'ribbon',3);
   }
  }
- if(!['guard','healer','ritualist','daoist'].includes(role))line(head,'M-9 -102 L8 -102','linenShade',1.4,0);
+ if(!['guard','healer','ritualist','daoist','daedosa'].includes(role))line(head,'M-9 -102 L8 -102','linenShade',1.4,0);
  // Cloth ties, broad lapels and ankle bindings remain visible before tiny surface detail.
  const ties=part(a,'goreum',[2,-63],'body');shape(ties,'M-1 -68 L5 -67 8 -54 4 -55 1 -62 -3 -52 -6 -54Z','linenShade');sway(a,'goreum',2);
  if(role==='civilian'){

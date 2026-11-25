@@ -331,6 +331,24 @@
         "honroType": "boss"
       },
       "family": "monster"
+    },
+    "boss_daedosa": {
+      "id": "ally_daoist",
+      "name": "동맹 도사",
+      "anchors": 106,
+      "controls": 0,
+      "paths": 32,
+      "ellipses": 1,
+      "unit": {
+        "side": 2,
+        "honroType": "ally",
+        "honroAlly": true,
+        "allyRole": "daoist",
+        "cls": "mage",
+        "name": "검수 동맹"
+      },
+      "family": "human",
+      "note": "Act6-8 boss derived from the daoist human anatomy; budget equals ally_daoist baseline"
     }
   }
 }

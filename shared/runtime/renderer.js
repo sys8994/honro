@@ -715,6 +715,7 @@
             }
             if(foreground.length){this._drawForeground(c,b,w,h,foreground);targetingGuides();}
             if(!quietWalk&&!quietOutro&&!this.storyFrozen&&u&&b.phase==='aim'&&!u.summoned&&e.canAct?.())G.HonroLinkGuide?.draw(c,this,e);
+            if(b.honroStage===58)G.HonroDaedosaFx?.draw(c,this,e);
             G.HonroAct1StoryArt?.cartFront(this,e);
             if(!quietWalk&&!quietOutro&&!this.skillPreview){this.occludedUnitSilhouettes(c,b,visibleUnits,charging?power:0);this.tacticalUnitMarkers(c,b,visibleUnits);}
             if(!quietOutro){G.HonroStoryFraming?.highlight(this,e);
