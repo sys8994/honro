@@ -95,6 +95,10 @@ with sync_playwright() as p:
                 line=r.locator('.he-line')
                 style=line.evaluate("(n)=>[getComputedStyle(n).backgroundColor,getComputedStyle(n).fontWeight]")
                 assert style==['rgba(0, 0, 0, 0)','400'],style
+                if not wide:
+                    img=r.locator('.he-still')
+                    box=img.bounding_box(); assert box['y']+box['height']>=height-1,box
+                    assert img.evaluate("n=>getComputedStyle(n).objectFit")=='cover'
                 target=start_ms+round(cut['beatEnds'][1]*1000)+1200
                 page.clock.fast_forward(target-elapsed);elapsed=target
                 assert r.get_attribute('data-ending-beat')=='2'
