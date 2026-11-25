@@ -59,6 +59,9 @@ def finish(browser,args,session=None):
         else:
             base.dismiss_dialogue(page)
         original=base.saved_bytes(page)['honro-first-act-profile-1']
+        if getattr(args,'rng',None) is not None:
+            page.evaluate('seed=>{HonroApp.engine.b.rng=seed;}',args.rng)
+            r['controlledRng']=args.rng
         page.evaluate(base.TRACE)
         r['cliffShots']=[]
         for attempt in range(6):
@@ -145,6 +148,7 @@ def main():
     p.add_argument('--build',required=True,type=Path)
     p.add_argument('--out',required=True,type=Path)
     p.add_argument('--engage-bell',action='store_true')
+    p.add_argument('--rng',type=int)
     args=p.parse_args()
     base.ROOT=args.build.resolve()
     args.out.mkdir(parents=True,exist_ok=True)

@@ -103,6 +103,9 @@ def play(browser,args,mobile):
     try:
         resume(page,56,True,mobile=mobile)
         saved_profile=base.saved_bytes(page)['honro-first-act-profile-1']
+        if args.rng is not None:
+            page.evaluate('seed=>{HonroApp.engine.b.rng=seed;}',args.rng)
+            report['controlledRng']=args.rng
         if args.combat_account:
             from exterior_combat import TRACE
             page.evaluate(TRACE)
@@ -156,6 +159,7 @@ if __name__=='__main__':
     parser.add_argument('--touch-exterior',action='store_true')
     parser.add_argument('--check-pressure',action='store_true')
     parser.add_argument('--combat-account',action='store_true')
+    parser.add_argument('--rng',type=int)
     args=parser.parse_args()
     if args.touch_exterior and not args.touch:
         parser.error('--touch-exterior requires --touch')

@@ -1,0 +1,3877 @@
+{
+  "stage": 51,
+  "status": "PASS",
+  "route": [
+    {
+      "target": 1070,
+      "foot": {
+        "id": "p-archer",
+        "x": 1088.4711505865857,
+        "y": 4553.223079530731,
+        "vx": 0,
+        "vy": 0,
+        "move": 1886.3790353583809,
+        "grounded": true,
+        "support": "mountain-main",
+        "phase": "aim",
+        "round": 1,
+        "chart": [
+          7200,
+          5400
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      }
+    },
+    {
+      "target": 2860,
+      "foot": {
+        "id": "p-archer",
+        "x": 2861.8326724153594,
+        "y": 4005.351225044548,
+        "vx": 0,
+        "vy": 0,
+        "move": 2818.2916666666642,
+        "grounded": true,
+        "support": "mountain-main",
+        "phase": "aim",
+        "round": 2,
+        "chart": [
+          7200,
+          5400
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      }
+    },
+    {
+      "target": 5150,
+      "foot": {
+        "id": "p-archer",
+        "x": 5163.1602365129065,
+        "y": 2672.8400098547045,
+        "vx": 0,
+        "vy": 0,
+        "move": 36.11428220505817,
+        "grounded": true,
+        "support": "mountain-main",
+        "phase": "aim",
+        "round": 2,
+        "chart": [
+          7200,
+          5400
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      }
+    }
+  ],
+  "errors": [],
+  "controlledRng": 31717,
+  "overlook": [
+    {
+      "counterattack": {
+        "id": "A01",
+        "angle": 27,
+        "power": 0.97,
+        "score": 655,
+        "target": "a6-51-crest-2",
+        "x": 5543,
+        "y": 2450.4544813154052
+      },
+      "before": {
+        "round": 2,
+        "role": "archer",
+        "id": "p-archer",
+        "x": 5163.1602365129065,
+        "grounded": true,
+        "move": 36.11428220505817,
+        "crest": 758,
+        "allThere": false
+      },
+      "sector": 2
+    },
+    {
+      "walk": {
+        "id": "p-mage",
+        "x": 2063.186186158854,
+        "y": 4062.7417417492816,
+        "vx": 0,
+        "vy": 0,
+        "move": 973.8251511637674,
+        "grounded": true,
+        "support": "mountain-main",
+        "phase": "aim",
+        "round": 2,
+        "chart": [
+          7200,
+          5400
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      },
+      "actor": "p-mage"
+    },
+    {
+      "walk": {
+        "id": "p-mage",
+        "x": 2615.3582620708207,
+        "y": 4029.020691778092,
+        "vx": 0,
+        "vy": 0,
+        "move": 400.9740522586264,
+        "grounded": true,
+        "support": "mountain-main",
+        "phase": "aim",
+        "round": 2,
+        "chart": [
+          7200,
+          5400
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      },
+      "actor": "p-mage"
+    },
+    {
+      "walk": {
+        "id": "p-mage",
+        "x": 2803.7701534514204,
+        "y": 4035.910445551884,
+        "vx": 0,
+        "vy": 0,
+        "move": 189.91052379133623,
+        "grounded": true,
+        "support": "mountain-main",
+        "phase": "aim",
+        "round": 2,
+        "chart": [
+          7200,
+          5400
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      },
+      "actor": "p-mage"
+    },
+    {
+      "wait": {
+        "round": 2,
+        "role": "mage",
+        "id": "p-mage",
+        "x": 2803.7701534514204,
+        "grounded": true,
+        "move": 189.91052379133623,
+        "crest": 758,
+        "allThere": false
+      }
+    },
+    {
+      "walk": {
+        "id": "p-knight",
+        "x": 2755.9392020374303,
+        "y": 4061.0846305066157,
+        "vx": 0,
+        "vy": 0,
+        "move": 1327.9675910368833,
+        "grounded": true,
+        "support": "mountain-main",
+        "phase": "aim",
+        "round": 2,
+        "chart": [
+          7200,
+          5400
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      },
+      "actor": "p-knight"
+    },
+    {
+      "walk": {
+        "id": "p-knight",
+        "x": 3531.9545658543416,
+        "y": 3558.6112295245466,
+        "vx": 0,
+        "vy": 0,
+        "move": 354.1796735015503,
+        "grounded": true,
+        "support": "mountain-main",
+        "phase": "aim",
+        "round": 2,
+        "chart": [
+          7200,
+          5400
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      },
+      "actor": "p-knight"
+    },
+    {
+      "walk": {
+        "id": "p-knight",
+        "x": 3686.023663016675,
+        "y": 3449.1410815407835,
+        "vx": 0,
+        "vy": 0,
+        "move": 165.1796735015404,
+        "grounded": true,
+        "support": "mountain-main",
+        "phase": "aim",
+        "round": 2,
+        "chart": [
+          7200,
+          5400
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      },
+      "actor": "p-knight"
+    },
+    {
+      "counterattack": {
+        "id": "S03",
+        "angle": 37.18034246621233,
+        "power": 0.9,
+        "target": "a6-51-split-ledge-1",
+        "score": 755
+      },
+      "before": {
+        "round": 2,
+        "role": "knight",
+        "id": "p-knight",
+        "x": 3686.023663016675,
+        "grounded": true,
+        "move": 165.1796735015404,
+        "crest": 758,
+        "allThere": false
+      },
+      "sector": 1
+    },
+    {
+      "walk": {
+        "id": "p-occultist",
+        "x": 2247.8406353873384,
+        "y": 4011.802583341424,
+        "vx": 0,
+        "vy": 0,
+        "move": 998.9666300452596,
+        "grounded": true,
+        "support": "mountain-main",
+        "phase": "aim",
+        "round": 2,
+        "chart": [
+          7200,
+          5400
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      },
+      "actor": "p-occultist"
+    },
+    {
+      "counterattack": {
+        "id": "O04",
+        "angle": 33,
+        "power": 0.97,
+        "score": 684,
+        "target": "a6-51-split-ledge-3",
+        "x": 3625,
+        "y": 3099.0046388446394
+      },
+      "before": {
+        "round": 2,
+        "role": "occultist",
+        "id": "p-occultist",
+        "x": 2247.8406353873384,
+        "grounded": true,
+        "move": 998.9666300452596,
+        "crest": 758,
+        "allThere": false
+      },
+      "sector": 1
+    },
+    {
+      "counterattack": {
+        "id": "A01",
+        "angle": 27,
+        "power": 0.97,
+        "score": 178,
+        "target": "a6-51-crest-2",
+        "x": 5543,
+        "y": 2450.4544813154052
+      },
+      "before": {
+        "round": 3,
+        "role": "archer",
+        "id": "p-archer",
+        "x": 5163.1602365129065,
+        "grounded": true,
+        "move": 2921,
+        "crest": 758,
+        "allThere": false
+      },
+      "sector": 2
+    },
+    {
+      "walk": {
+        "id": "p-mage",
+        "x": 4714.583542672426,
+        "y": 2893.922570206044,
+        "vx": 0,
+        "vy": 0,
+        "move": 762.2740030859443,
+        "grounded": true,
+        "support": "mountain-main",
+        "phase": "aim",
+        "round": 3,
+        "chart": [
+          7200,
+          5400
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      },
+      "actor": "p-mage"
+    },
+    {
+      "walk": {
+        "id": "p-mage",
+        "x": 5127.276555476281,
+        "y": 2671.3448564781784,
+        "vx": 0,
+        "vy": 0,
+        "move": 263.124003085898,
+        "grounded": true,
+        "support": "mountain-main",
+        "phase": "aim",
+        "round": 3,
+        "chart": [
+          7200,
+          5400
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      },
+      "actor": "p-mage"
+    },
+    {
+      "walk": {
+        "id": "p-mage",
+        "x": 5226.946086552149,
+        "y": 2670.099041414503,
+        "vx": 0,
+        "vy": 0,
+        "move": 162.4121083875426,
+        "grounded": true,
+        "support": "mountain-main",
+        "phase": "aim",
+        "round": 3,
+        "chart": [
+          7200,
+          5400
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      },
+      "actor": "p-mage"
+    },
+    {
+      "wait": {
+        "round": 3,
+        "role": "mage",
+        "id": "p-mage",
+        "x": 5226.946086552149,
+        "grounded": true,
+        "move": 162.4121083875426,
+        "crest": 758,
+        "allThere": false
+      }
+    },
+    {
+      "walk": {
+        "id": "p-knight",
+        "x": 6204.875147701641,
+        "y": 1851.60044764454,
+        "vx": 0,
+        "vy": 0,
+        "move": 999.2429497599508,
+        "grounded": true,
+        "support": "mountain-main",
+        "phase": "aim",
+        "round": 3,
+        "chart": [
+          7200,
+          5400
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      },
+      "actor": "p-knight"
+    },
+    {
+      "walk": {
+        "id": "p-knight",
+        "x": 6577.880876894885,
+        "y": 1629.1768923157472,
+        "vx": 0,
+        "vy": 0,
+        "move": 551.1732413617697,
+        "grounded": true,
+        "support": "mountain-main",
+        "phase": "aim",
+        "round": 3,
+        "chart": [
+          7200,
+          5400
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      },
+      "actor": "p-knight"
+    },
+    {
+      "wait": {
+        "round": 3,
+        "role": "knight",
+        "id": "p-knight",
+        "x": 6577.880876894885,
+        "grounded": true,
+        "move": 551.1732413617697,
+        "crest": 758,
+        "allThere": false
+      }
+    },
+    {
+      "counterattack": {
+        "id": "O04",
+        "angle": 24,
+        "power": 0.8,
+        "score": 758,
+        "target": "pocket",
+        "x": 4127,
+        "y": 3209.4038439450765
+      },
+      "before": {
+        "round": 3,
+        "role": "occultist",
+        "id": "p-occultist",
+        "x": 2247.8406353873384,
+        "grounded": true,
+        "move": 3132,
+        "crest": 758,
+        "allThere": false
+      },
+      "sector": 1
+    },
+    {
+      "walk": {
+        "id": "p-archer",
+        "x": 6611.979673448319,
+        "y": 1619.4343790147661,
+        "vx": 0,
+        "vy": 0,
+        "move": 1081.386662280353,
+        "grounded": true,
+        "support": "mountain-main",
+        "phase": "aim",
+        "round": 4,
+        "chart": [
+          7200,
+          5400
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      },
+      "actor": "p-archer"
+    },
+    {
+      "wait": {
+        "round": 4,
+        "role": "archer",
+        "id": "p-archer",
+        "x": 6611.979673448319,
+        "grounded": true,
+        "move": 1081.386662280353,
+        "crest": 758,
+        "allThere": false
+      }
+    },
+    {
+      "walk": {
+        "id": "p-mage",
+        "x": 6768.645266892753,
+        "y": 1574.6727808877847,
+        "vx": 0,
+        "vy": 0,
+        "move": 1137.2490638290553,
+        "grounded": true,
+        "support": "mountain-main",
+        "phase": "aim",
+        "round": 4,
+        "chart": [
+          7200,
+          5400
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      },
+      "actor": "p-mage"
+    },
+    {
+      "wait": {
+        "round": 4,
+        "role": "mage",
+        "id": "p-mage",
+        "x": 6768.645266892753,
+        "grounded": true,
+        "move": 1137.2490638290553,
+        "crest": 758,
+        "allThere": false
+      }
+    },
+    {
+      "wait": {
+        "round": 4,
+        "role": "knight",
+        "id": "p-knight",
+        "x": 6577.880876894885,
+        "grounded": true,
+        "move": 4081,
+        "crest": 758,
+        "allThere": false
+      }
+    },
+    {
+      "counterattack": {
+        "id": "O04",
+        "angle": 78,
+        "power": 0.97,
+        "score": 937,
+        "target": "a6-51-opening-3",
+        "x": 2276.603533767879,
+        "y": 3751.9876552107
+      },
+      "before": {
+        "round": 4,
+        "role": "occultist",
+        "id": "p-occultist",
+        "x": 2232.715566809212,
+        "grounded": true,
+        "move": 3132,
+        "crest": 758,
+        "allThere": false
+      },
+      "sector": 1
+    },
+    {
+      "wait": {
+        "round": 5,
+        "role": "archer",
+        "id": "p-archer",
+        "x": 6611.979673448319,
+        "grounded": true,
+        "move": 2921,
+        "crest": 758,
+        "allThere": false
+      }
+    },
+    {
+      "wait": {
+        "round": 5,
+        "role": "mage",
+        "id": "p-mage",
+        "x": 6768.645266892753,
+        "grounded": true,
+        "move": 3075,
+        "crest": 758,
+        "allThere": false
+      }
+    },
+    {
+      "wait": {
+        "round": 5,
+        "role": "knight",
+        "id": "p-knight",
+        "x": 6577.880876894885,
+        "grounded": true,
+        "move": 4081,
+        "crest": 758,
+        "allThere": false
+      }
+    },
+    {
+      "walk": {
+        "id": "p-occultist",
+        "x": 4150.913137032345,
+        "y": 3256.628619290319,
+        "vx": 0,
+        "vy": 0,
+        "move": 880.7476039597595,
+        "grounded": true,
+        "support": "mountain-main",
+        "phase": "aim",
+        "round": 5,
+        "chart": [
+          7200,
+          5400
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      },
+      "actor": "p-occultist"
+    },
+    {
+      "walk": {
+        "id": "p-occultist",
+        "x": 4650.141588295138,
+        "y": 2953.6492596288967,
+        "vx": 0,
+        "vy": 0,
+        "move": 287.56754253888573,
+        "grounded": true,
+        "support": "mountain-main",
+        "phase": "aim",
+        "round": 5,
+        "chart": [
+          7200,
+          5400
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      },
+      "actor": "p-occultist"
+    },
+    {
+      "counterattack": {
+        "id": "O04",
+        "angle": 45,
+        "power": 0.97,
+        "score": 684,
+        "target": "a6-51-crest-1",
+        "x": 5485,
+        "y": 2080.8345151517724
+      },
+      "before": {
+        "round": 5,
+        "role": "occultist",
+        "id": "p-occultist",
+        "x": 4650.141588295138,
+        "grounded": true,
+        "move": 287.56754253888573,
+        "crest": 758,
+        "allThere": false
+      },
+      "sector": 2
+    },
+    {
+      "wait": {
+        "round": 6,
+        "role": "archer",
+        "id": "p-archer",
+        "x": 6611.979673448319,
+        "grounded": true,
+        "move": 2921,
+        "crest": 758,
+        "allThere": false
+      }
+    },
+    {
+      "wait": {
+        "round": 6,
+        "role": "mage",
+        "id": "p-mage",
+        "x": 6768.645266892753,
+        "grounded": true,
+        "move": 3075,
+        "crest": 758,
+        "allThere": false
+      }
+    },
+    {
+      "wait": {
+        "round": 6,
+        "role": "knight",
+        "id": "p-knight",
+        "x": 6577.880876894885,
+        "grounded": true,
+        "move": 4081,
+        "crest": 758,
+        "allThere": false
+      }
+    },
+    {
+      "counterattack": {
+        "id": "O04",
+        "angle": 45,
+        "power": 0.97,
+        "score": 758,
+        "target": "armor",
+        "x": 5852,
+        "y": 1736.2281078716435
+      },
+      "before": {
+        "round": 6,
+        "role": "occultist",
+        "id": "p-occultist",
+        "x": 4650.141588295138,
+        "grounded": true,
+        "move": 3132,
+        "crest": 758,
+        "allThere": false
+      },
+      "sector": 2
+    },
+    {
+      "wait": {
+        "round": 7,
+        "role": "archer",
+        "id": "p-archer",
+        "x": 6611.979673448319,
+        "grounded": true,
+        "move": 2921,
+        "crest": 758,
+        "allThere": false
+      }
+    },
+    {
+      "wait": {
+        "round": 7,
+        "role": "mage",
+        "id": "p-mage",
+        "x": 6768.645266892753,
+        "grounded": true,
+        "move": 3075,
+        "crest": 758,
+        "allThere": false
+      }
+    },
+    {
+      "wait": {
+        "round": 7,
+        "role": "knight",
+        "id": "p-knight",
+        "x": 6577.880876894885,
+        "grounded": true,
+        "move": 4081,
+        "crest": 758,
+        "allThere": false
+      }
+    },
+    {
+      "walk": {
+        "id": "p-occultist",
+        "x": 6554.688138986859,
+        "y": 1633.6271180380609,
+        "vx": 0,
+        "vy": 0,
+        "move": 728.5506813699811,
+        "grounded": true,
+        "support": "mountain-main",
+        "phase": "aim",
+        "round": 7,
+        "chart": [
+          7200,
+          5400
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      },
+      "actor": "p-occultist"
+    },
+    {
+      "wait": {
+        "round": 7,
+        "role": "occultist",
+        "id": "p-occultist",
+        "x": 6554.688138986859,
+        "grounded": true,
+        "move": 728.5506813699811,
+        "crest": 758,
+        "allThere": true
+      }
+    },
+    {
+      "shot": {
+        "skill": "A02",
+        "angle": 39,
+        "power": 0.4
+      },
+      "before": {
+        "round": 8,
+        "role": "archer",
+        "id": "p-archer",
+        "x": 6611.979673448319,
+        "grounded": true,
+        "move": 2921,
+        "crest": 758,
+        "allThere": true
+      }
+    }
+  ],
+  "warm52": {
+    "stageId": 52,
+    "honroStage": 52,
+    "mode": "campaign",
+    "authoredId": "stage-52",
+    "round": 1,
+    "phase": "aim",
+    "side": 0,
+    "shot": 0,
+    "rng": 19388,
+    "active": "p-archer",
+    "dialogue": false,
+    "isolatedStore": false,
+    "play": [
+      6250,
+      6250
+    ],
+    "terrainBounds": {
+      "left": -6500,
+      "top": -9800,
+      "right": 13000,
+      "bottom": 17000
+    },
+    "playBounds": {
+      "left": 0,
+      "top": 0,
+      "right": 6250,
+      "bottom": 6250
+    },
+    "camera": {
+      "x": 1541.3944885432259,
+      "y": 1426.3513281864807,
+      "zoom": null
+    },
+    "gravity": {
+      "x": 0,
+      "y": 320
+    },
+    "fieldFlags": [],
+    "terrain": [
+      {
+        "id": "west-watch-and-descent",
+        "vertices": 45,
+        "oneWay": false
+      },
+      {
+        "id": "east-return-buttress",
+        "vertices": 50,
+        "oneWay": false
+      },
+      {
+        "id": "broken-arch-west",
+        "vertices": 21,
+        "oneWay": false
+      },
+      {
+        "id": "broken-arch-east",
+        "vertices": 21,
+        "oneWay": false
+      },
+      {
+        "id": "return-lower-crossing",
+        "vertices": 31,
+        "oneWay": false
+      },
+      {
+        "id": "landing-1",
+        "vertices": 6,
+        "oneWay": false
+      },
+      {
+        "id": "landing-2",
+        "vertices": 6,
+        "oneWay": false
+      },
+      {
+        "id": "landing-3",
+        "vertices": 6,
+        "oneWay": false
+      },
+      {
+        "id": "landing-4",
+        "vertices": 6,
+        "oneWay": false
+      },
+      {
+        "id": "landing-5",
+        "vertices": 6,
+        "oneWay": false
+      }
+    ],
+    "worldTerrain": [
+      {
+        "id": "west-watch-and-descent",
+        "vertices": 45
+      },
+      {
+        "id": "east-return-buttress",
+        "vertices": 50
+      },
+      {
+        "id": "broken-arch-west",
+        "vertices": 21
+      },
+      {
+        "id": "broken-arch-east",
+        "vertices": 21
+      },
+      {
+        "id": "return-lower-crossing",
+        "vertices": 31
+      },
+      {
+        "id": "landing-1",
+        "vertices": 6
+      },
+      {
+        "id": "landing-2",
+        "vertices": 6
+      },
+      {
+        "id": "landing-3",
+        "vertices": 6
+      },
+      {
+        "id": "landing-4",
+        "vertices": 6
+      },
+      {
+        "id": "landing-5",
+        "vertices": 6
+      }
+    ],
+    "enemies": [
+      "a6-52-opening-1",
+      "a6-52-opening-2"
+    ],
+    "units": [
+      {
+        "id": "p-archer",
+        "cls": "archer",
+        "side": 0,
+        "level": 25,
+        "hp": 1720,
+        "maxHp": 1720,
+        "loadout": [
+          "A01",
+          "A14",
+          "A02",
+          "A05"
+        ],
+        "pos": [
+          1200,
+          1224.58
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "west-watch-and-descent",
+        "fixed": false,
+        "objective": false,
+        "role": "archer",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "p-mage",
+        "cls": "mage",
+        "side": 0,
+        "level": 25,
+        "hp": 2050,
+        "maxHp": 2050,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "pos": [
+          1290,
+          1258.75
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "west-watch-and-descent",
+        "fixed": false,
+        "objective": false,
+        "role": "mage",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "p-knight",
+        "cls": "knight",
+        "side": 0,
+        "level": 25,
+        "hp": 3846,
+        "maxHp": 3846,
+        "loadout": [
+          "S00",
+          "S01",
+          "S03"
+        ],
+        "pos": [
+          1080,
+          1166.11
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "west-watch-and-descent",
+        "fixed": false,
+        "objective": false,
+        "role": "knight",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "p-occultist",
+        "cls": "occultist",
+        "side": 0,
+        "level": 25,
+        "hp": 1834,
+        "maxHp": 2304,
+        "loadout": [
+          "O01",
+          "O04",
+          "O03",
+          "O06"
+        ],
+        "pos": [
+          1000,
+          1151.89
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "west-watch-and-descent",
+        "fixed": false,
+        "objective": false,
+        "role": "occultist",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "watch-range",
+        "cls": "archer",
+        "side": 1,
+        "level": 25,
+        "hp": 527,
+        "maxHp": 527,
+        "loadout": [
+          "HCW01",
+          "HCW02"
+        ],
+        "pos": [
+          4270,
+          2391
+        ],
+        "h": 92,
+        "r": 25,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": false,
+        "validContact": false,
+        "support": null,
+        "fixed": false,
+        "objective": false,
+        "role": "archer",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "bridge-keeper",
+        "cls": "knight",
+        "side": 1,
+        "level": 25,
+        "hp": 659,
+        "maxHp": 659,
+        "loadout": [
+          "HBM03"
+        ],
+        "pos": [
+          3230,
+          2217.7
+        ],
+        "h": 139,
+        "r": 42,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "broken-arch-west",
+        "fixed": false,
+        "objective": false,
+        "role": "knight",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "return-guard",
+        "cls": "knight",
+        "side": 1,
+        "level": 25,
+        "hp": 758,
+        "maxHp": 758,
+        "loadout": [
+          "HBM01"
+        ],
+        "pos": [
+          3370,
+          4498.08
+        ],
+        "h": 110,
+        "r": 37,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "return-lower-crossing",
+        "fixed": false,
+        "objective": false,
+        "role": "knight",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "cliff-stone",
+        "cls": "occultist",
+        "side": 1,
+        "level": 25,
+        "hp": 155,
+        "maxHp": 155,
+        "loadout": [],
+        "pos": [
+          1510,
+          1361.9
+        ],
+        "h": 137,
+        "r": 24,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "west-watch-and-descent",
+        "fixed": true,
+        "objective": false,
+        "role": "occultist",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-52-opening-1",
+        "cls": "knight",
+        "side": 1,
+        "level": 25,
+        "hp": 655,
+        "maxHp": 655,
+        "loadout": [
+          "HBM01"
+        ],
+        "pos": [
+          1725,
+          1765
+        ],
+        "h": 88,
+        "r": 32,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "west-watch-and-descent",
+        "fixed": false,
+        "objective": false,
+        "role": "leaper",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-52-opening-2",
+        "cls": "occultist",
+        "side": 1,
+        "level": 25,
+        "hp": 595,
+        "maxHp": 595,
+        "loadout": [
+          "HSH01",
+          "HSH02"
+        ],
+        "pos": [
+          1890,
+          1975
+        ],
+        "h": 115,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "west-watch-and-descent",
+        "fixed": false,
+        "objective": false,
+        "role": "ice",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-52-opening-3",
+        "cls": "knight",
+        "side": 1,
+        "level": 25,
+        "hp": 655,
+        "maxHp": 655,
+        "loadout": [
+          "HBM01"
+        ],
+        "pos": [
+          2500,
+          2473.13
+        ],
+        "h": 88,
+        "r": 32,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "broken-arch-west",
+        "fixed": false,
+        "objective": false,
+        "role": "leaper",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-52-opening-4",
+        "cls": "occultist",
+        "side": 1,
+        "level": 25,
+        "hp": 595,
+        "maxHp": 595,
+        "loadout": [
+          "HSH01",
+          "HSH02"
+        ],
+        "pos": [
+          3990,
+          2285.86
+        ],
+        "h": 115,
+        "r": 22,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "broken-arch-east",
+        "fixed": false,
+        "objective": false,
+        "role": "ice",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-52-opening-5",
+        "cls": "knight",
+        "side": 1,
+        "level": 25,
+        "hp": 755,
+        "maxHp": 755,
+        "loadout": [
+          "HBM03"
+        ],
+        "pos": [
+          4650,
+          2489.14
+        ],
+        "h": 116,
+        "r": 38,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "broken-arch-east",
+        "fixed": false,
+        "objective": false,
+        "role": "leaper",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-52-opening-6",
+        "cls": "occultist",
+        "side": 1,
+        "level": 25,
+        "hp": 595,
+        "maxHp": 595,
+        "loadout": [
+          "HSH01",
+          "HSH02"
+        ],
+        "pos": [
+          3090,
+          4559
+        ],
+        "h": 115,
+        "r": 22,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "return-lower-crossing",
+        "fixed": false,
+        "objective": false,
+        "role": "ice",
+        "summoned": false,
+        "ally": false
+      }
+    ]
+  },
+  "cold52": {
+    "snapshot": {
+      "stageId": 52,
+      "honroStage": 52,
+      "mode": "campaign",
+      "authoredId": "stage-52",
+      "round": 1,
+      "phase": "aim",
+      "side": 0,
+      "shot": 0,
+      "rng": 19388,
+      "active": "p-archer",
+      "dialogue": false,
+      "isolatedStore": false,
+      "play": [
+        6250,
+        6250
+      ],
+      "terrainBounds": {
+        "left": -6500,
+        "top": -9800,
+        "right": 13000,
+        "bottom": 17000
+      },
+      "playBounds": {
+        "left": 0,
+        "top": 0,
+        "right": 6250,
+        "bottom": 6250
+      },
+      "camera": {
+        "x": 3190.5,
+        "y": 3222.176011565728,
+        "zoom": null
+      },
+      "gravity": {
+        "x": 0,
+        "y": 320
+      },
+      "fieldFlags": [],
+      "terrain": [
+        {
+          "id": "west-watch-and-descent",
+          "vertices": 45,
+          "oneWay": false
+        },
+        {
+          "id": "east-return-buttress",
+          "vertices": 50,
+          "oneWay": false
+        },
+        {
+          "id": "broken-arch-west",
+          "vertices": 21,
+          "oneWay": false
+        },
+        {
+          "id": "broken-arch-east",
+          "vertices": 21,
+          "oneWay": false
+        },
+        {
+          "id": "return-lower-crossing",
+          "vertices": 31,
+          "oneWay": false
+        },
+        {
+          "id": "landing-1",
+          "vertices": 6,
+          "oneWay": false
+        },
+        {
+          "id": "landing-2",
+          "vertices": 6,
+          "oneWay": false
+        },
+        {
+          "id": "landing-3",
+          "vertices": 6,
+          "oneWay": false
+        },
+        {
+          "id": "landing-4",
+          "vertices": 6,
+          "oneWay": false
+        },
+        {
+          "id": "landing-5",
+          "vertices": 6,
+          "oneWay": false
+        }
+      ],
+      "worldTerrain": [
+        {
+          "id": "west-watch-and-descent",
+          "vertices": 45
+        },
+        {
+          "id": "east-return-buttress",
+          "vertices": 50
+        },
+        {
+          "id": "broken-arch-west",
+          "vertices": 21
+        },
+        {
+          "id": "broken-arch-east",
+          "vertices": 21
+        },
+        {
+          "id": "return-lower-crossing",
+          "vertices": 31
+        },
+        {
+          "id": "landing-1",
+          "vertices": 6
+        },
+        {
+          "id": "landing-2",
+          "vertices": 6
+        },
+        {
+          "id": "landing-3",
+          "vertices": 6
+        },
+        {
+          "id": "landing-4",
+          "vertices": 6
+        },
+        {
+          "id": "landing-5",
+          "vertices": 6
+        }
+      ],
+      "enemies": [
+        "a6-52-opening-1",
+        "a6-52-opening-2"
+      ],
+      "units": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "side": 0,
+          "level": 25,
+          "hp": 1720,
+          "maxHp": 1720,
+          "loadout": [
+            "A01",
+            "A14",
+            "A02",
+            "A05"
+          ],
+          "pos": [
+            1200,
+            1224.58
+          ],
+          "h": 92,
+          "r": 22,
+          "awake": true,
+          "dead": false,
+          "airborne": false,
+          "grounded": true,
+          "validContact": true,
+          "support": "west-watch-and-descent",
+          "fixed": false,
+          "objective": false,
+          "role": "archer",
+          "summoned": false,
+          "ally": false
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "side": 0,
+          "level": 25,
+          "hp": 2050,
+          "maxHp": 2050,
+          "loadout": [
+            "M01",
+            "M10",
+            "M07"
+          ],
+          "pos": [
+            1290,
+            1258.75
+          ],
+          "h": 92,
+          "r": 22,
+          "awake": true,
+          "dead": false,
+          "airborne": false,
+          "grounded": true,
+          "validContact": true,
+          "support": "west-watch-and-descent",
+          "fixed": false,
+          "objective": false,
+          "role": "mage",
+          "summoned": false,
+          "ally": false
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "side": 0,
+          "level": 25,
+          "hp": 3846,
+          "maxHp": 3846,
+          "loadout": [
+            "S00",
+            "S01",
+            "S03"
+          ],
+          "pos": [
+            1080,
+            1166.11
+          ],
+          "h": 92,
+          "r": 22,
+          "awake": true,
+          "dead": false,
+          "airborne": false,
+          "grounded": true,
+          "validContact": true,
+          "support": "west-watch-and-descent",
+          "fixed": false,
+          "objective": false,
+          "role": "knight",
+          "summoned": false,
+          "ally": false
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "side": 0,
+          "level": 25,
+          "hp": 1834,
+          "maxHp": 2304,
+          "loadout": [
+            "O01",
+            "O04",
+            "O03",
+            "O06"
+          ],
+          "pos": [
+            1000,
+            1151.89
+          ],
+          "h": 92,
+          "r": 22,
+          "awake": true,
+          "dead": false,
+          "airborne": false,
+          "grounded": true,
+          "validContact": true,
+          "support": "west-watch-and-descent",
+          "fixed": false,
+          "objective": false,
+          "role": "occultist",
+          "summoned": false,
+          "ally": false
+        },
+        {
+          "id": "watch-range",
+          "cls": "archer",
+          "side": 1,
+          "level": 25,
+          "hp": 527,
+          "maxHp": 527,
+          "loadout": [
+            "HCW01",
+            "HCW02"
+          ],
+          "pos": [
+            4270,
+            2402.72
+          ],
+          "h": 92,
+          "r": 25,
+          "awake": false,
+          "dead": false,
+          "airborne": false,
+          "grounded": false,
+          "validContact": false,
+          "support": null,
+          "fixed": false,
+          "objective": false,
+          "role": "archer",
+          "summoned": false,
+          "ally": false
+        },
+        {
+          "id": "bridge-keeper",
+          "cls": "knight",
+          "side": 1,
+          "level": 25,
+          "hp": 659,
+          "maxHp": 659,
+          "loadout": [
+            "HBM03"
+          ],
+          "pos": [
+            3230,
+            2217.7
+          ],
+          "h": 139,
+          "r": 42,
+          "awake": false,
+          "dead": false,
+          "airborne": false,
+          "grounded": true,
+          "validContact": true,
+          "support": "broken-arch-west",
+          "fixed": false,
+          "objective": false,
+          "role": "knight",
+          "summoned": false,
+          "ally": false
+        },
+        {
+          "id": "return-guard",
+          "cls": "knight",
+          "side": 1,
+          "level": 25,
+          "hp": 758,
+          "maxHp": 758,
+          "loadout": [
+            "HBM01"
+          ],
+          "pos": [
+            3370,
+            4498.08
+          ],
+          "h": 110,
+          "r": 37,
+          "awake": false,
+          "dead": false,
+          "airborne": false,
+          "grounded": true,
+          "validContact": true,
+          "support": "return-lower-crossing",
+          "fixed": false,
+          "objective": false,
+          "role": "knight",
+          "summoned": false,
+          "ally": false
+        },
+        {
+          "id": "cliff-stone",
+          "cls": "occultist",
+          "side": 1,
+          "level": 25,
+          "hp": 155,
+          "maxHp": 155,
+          "loadout": [],
+          "pos": [
+            1510,
+            1361.9
+          ],
+          "h": 137,
+          "r": 24,
+          "awake": true,
+          "dead": false,
+          "airborne": false,
+          "grounded": true,
+          "validContact": true,
+          "support": "west-watch-and-descent",
+          "fixed": true,
+          "objective": false,
+          "role": "occultist",
+          "summoned": false,
+          "ally": false
+        },
+        {
+          "id": "a6-52-opening-1",
+          "cls": "knight",
+          "side": 1,
+          "level": 25,
+          "hp": 655,
+          "maxHp": 655,
+          "loadout": [
+            "HBM01"
+          ],
+          "pos": [
+            1725,
+            1765
+          ],
+          "h": 88,
+          "r": 32,
+          "awake": true,
+          "dead": false,
+          "airborne": false,
+          "grounded": true,
+          "validContact": true,
+          "support": "west-watch-and-descent",
+          "fixed": false,
+          "objective": false,
+          "role": "leaper",
+          "summoned": false,
+          "ally": false
+        },
+        {
+          "id": "a6-52-opening-2",
+          "cls": "occultist",
+          "side": 1,
+          "level": 25,
+          "hp": 595,
+          "maxHp": 595,
+          "loadout": [
+            "HSH01",
+            "HSH02"
+          ],
+          "pos": [
+            1890,
+            1975
+          ],
+          "h": 115,
+          "r": 22,
+          "awake": true,
+          "dead": false,
+          "airborne": false,
+          "grounded": true,
+          "validContact": true,
+          "support": "west-watch-and-descent",
+          "fixed": false,
+          "objective": false,
+          "role": "ice",
+          "summoned": false,
+          "ally": false
+        },
+        {
+          "id": "a6-52-opening-3",
+          "cls": "knight",
+          "side": 1,
+          "level": 25,
+          "hp": 655,
+          "maxHp": 655,
+          "loadout": [
+            "HBM01"
+          ],
+          "pos": [
+            2500,
+            2473.13
+          ],
+          "h": 88,
+          "r": 32,
+          "awake": false,
+          "dead": false,
+          "airborne": false,
+          "grounded": true,
+          "validContact": true,
+          "support": "broken-arch-west",
+          "fixed": false,
+          "objective": false,
+          "role": "leaper",
+          "summoned": false,
+          "ally": false
+        },
+        {
+          "id": "a6-52-opening-4",
+          "cls": "occultist",
+          "side": 1,
+          "level": 25,
+          "hp": 595,
+          "maxHp": 595,
+          "loadout": [
+            "HSH01",
+            "HSH02"
+          ],
+          "pos": [
+            3990,
+            2285.86
+          ],
+          "h": 115,
+          "r": 22,
+          "awake": false,
+          "dead": false,
+          "airborne": false,
+          "grounded": true,
+          "validContact": true,
+          "support": "broken-arch-east",
+          "fixed": false,
+          "objective": false,
+          "role": "ice",
+          "summoned": false,
+          "ally": false
+        },
+        {
+          "id": "a6-52-opening-5",
+          "cls": "knight",
+          "side": 1,
+          "level": 25,
+          "hp": 755,
+          "maxHp": 755,
+          "loadout": [
+            "HBM03"
+          ],
+          "pos": [
+            4650,
+            2489.14
+          ],
+          "h": 116,
+          "r": 38,
+          "awake": false,
+          "dead": false,
+          "airborne": false,
+          "grounded": true,
+          "validContact": true,
+          "support": "broken-arch-east",
+          "fixed": false,
+          "objective": false,
+          "role": "leaper",
+          "summoned": false,
+          "ally": false
+        },
+        {
+          "id": "a6-52-opening-6",
+          "cls": "occultist",
+          "side": 1,
+          "level": 25,
+          "hp": 595,
+          "maxHp": 595,
+          "loadout": [
+            "HSH01",
+            "HSH02"
+          ],
+          "pos": [
+            3090,
+            4559
+          ],
+          "h": 115,
+          "r": 22,
+          "awake": false,
+          "dead": false,
+          "airborne": false,
+          "grounded": true,
+          "validContact": true,
+          "support": "return-lower-crossing",
+          "fixed": false,
+          "objective": false,
+          "role": "ice",
+          "summoned": false,
+          "ally": false
+        }
+      ]
+    },
+    "savedBytesBefore": "e411ddb71194057754b1d831e59b230af729d44485d7d191b30ad4e6fa8a3cd9",
+    "savedBytesAfter": "e411ddb71194057754b1d831e59b230af729d44485d7d191b30ad4e6fa8a3cd9"
+  },
+  "seal": {
+    "schema": "honro-act6-boundary/v2",
+    "slot": "honro-campaign-act6-boundary-v2:eq-mwuu06k6-y7h4w7qc",
+    "runId": "eq-mwuu06k6-y7h4w7qc",
+    "from": 51,
+    "to": 52,
+    "kind": "four-live-exterior-carry",
+    "generation": 1,
+    "parent": "initial",
+    "pin": {
+      "from": 51,
+      "to": 52,
+      "build": "85aba26bb2b20df5ee9f8138c44211f988252272c1dade482c060e67b21768e2",
+      "fromPacket": "c8620ccf547450952f3cbbae6e49c2f8dbddab2af69622d3f4221ab99f7046ba",
+      "toPacket": "3e35d12c62d32164643d48a58a772161912cb889f438049bd480d78ed4ac96e9",
+      "owner": "1bbbfff697c2664ce873f97393faa714bf89a5d0f047111631d5108fdc4f49cf",
+      "play": "a0f26cff01aa252b083adfb8ddc623941498808a65aa9797379f47201cc8b54d",
+      "world": "a0f26cff01aa252b083adfb8ddc623941498808a65aa9797379f47201cc8b54d"
+    },
+    "profileSHA": "1050dd6f22f698ff8d576b17b451b1e7d9dfe8155e6dadef7950882e09452f53",
+    "terminal": {
+      "stage": 51,
+      "flags": {
+        "act6.threeSitesSighted": true
+      },
+      "actors": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "hp": 1720,
+          "maxHp": 1720,
+          "focus": 375,
+          "maxFocus": 404,
+          "shield": 0,
+          "level": 25,
+          "loadout": [
+            "A01",
+            "A14",
+            "A02",
+            "A05"
+          ],
+          "tune": 0.5,
+          "ranks": {
+            "A01": 1,
+            "A14": 4,
+            "A02": 4,
+            "A05": 4
+          },
+          "h": 92,
+          "r": 22,
+          "dead": false
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "hp": 3846,
+          "maxHp": 3846,
+          "focus": 477,
+          "maxFocus": 477,
+          "shield": 0,
+          "level": 25,
+          "loadout": [
+            "S00",
+            "S01",
+            "S03"
+          ],
+          "tune": 0.5,
+          "ranks": {
+            "S00": 1,
+            "S01": 4,
+            "S03": 4
+          },
+          "h": 92,
+          "r": 22,
+          "equipmentState": {
+            "version": 1
+          },
+          "dead": false
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "hp": 2050,
+          "maxHp": 2050,
+          "focus": 724,
+          "maxFocus": 724,
+          "shield": 0,
+          "level": 25,
+          "loadout": [
+            "M01",
+            "M10",
+            "M07"
+          ],
+          "tune": 0.5,
+          "ranks": {
+            "M01": 1,
+            "M07": 4,
+            "M10": 3
+          },
+          "h": 92,
+          "r": 22,
+          "equipmentState": {
+            "version": 1
+          },
+          "dead": false
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "hp": 1834,
+          "maxHp": 2304,
+          "focus": 751,
+          "maxFocus": 751,
+          "shield": 0,
+          "level": 25,
+          "loadout": [
+            "O01",
+            "O04",
+            "O03",
+            "O06"
+          ],
+          "tune": 0.5,
+          "ranks": {
+            "O01": 1,
+            "O06": 5,
+            "O02": 4,
+            "O03": 3,
+            "O04": 2
+          },
+          "h": 92,
+          "r": 22,
+          "equipmentState": {
+            "version": 1
+          },
+          "dead": false
+        }
+      ],
+      "events": [
+        {
+          "key": "act6-local-objective:overlook",
+          "role": "p-mage",
+          "round": 8
+        }
+      ],
+      "settlement": false
+    },
+    "terminalSHA": "256141d8474ad6634cb99ce891d401b3f11178e77b71c92773efdb66e649f1d6",
+    "custody": {
+      "full": {
+        "archer": {
+          "id": "p-archer",
+          "name": "설오",
+          "role": "archer",
+          "cls": "archer",
+          "side": 0,
+          "x": 6611.979673448319,
+          "y": 1619.4343790147661,
+          "vx": 0,
+          "vy": 0,
+          "hp": 1720,
+          "maxHp": 1720,
+          "r": 22,
+          "h": 92,
+          "focus": 375,
+          "maxFocus": 404,
+          "regen": 28,
+          "level": 25,
+          "attack": 11.98825,
+          "armor": 0.42800000000000005,
+          "shield": 0,
+          "bound": 0,
+          "mark": 0,
+          "breaks": 0,
+          "acted": true,
+          "moveLeft": 2921,
+          "maxMove": 2921,
+          "walkSpeed": 425,
+          "angle": 38.829199999999446,
+          "lastPower": 0.4150005316998581,
+          "loadout": [
+            "A01",
+            "A14",
+            "A02",
+            "A05"
+          ],
+          "tune": 0.5,
+          "facing": 1,
+          "hurt": 0,
+          "anim": 0,
+          "airborne": false,
+          "fixed": false,
+          "spawnX": 97,
+          "spawnY": 4761.792682926829,
+          "intent": "",
+          "dead": false,
+          "ranks": {
+            "A01": 1,
+            "A14": 4,
+            "A02": 4,
+            "A05": 4
+          },
+          "group": 0,
+          "awake": true,
+          "lastAct": 0,
+          "aggroUntil": 0,
+          "xpBudget": 0,
+          "xpGranted": 0,
+          "killRewarded": false,
+          "damageBy": {},
+          "honroAlly": false,
+          "honroCivilian": false,
+          "critChance": 0.28400000000000003,
+          "critMultiplier": 3.085,
+          "cooldowns": {},
+          "eaterSwallow": 0,
+          "moving": 0,
+          "landing": 0,
+          "impactCooldown": 0,
+          "salheunFlash": 0,
+          "walkPhase": 290.5289641095565,
+          "honroShieldSources": {
+            "p-archer": 206
+          },
+          "jucheon": 0,
+          "jucheonReady": false
+        },
+        "mage": {
+          "id": "p-mage",
+          "name": "담허",
+          "role": "mage",
+          "cls": "mage",
+          "side": 0,
+          "x": 6745.982991104369,
+          "y": 1581.1477168273232,
+          "vx": 0,
+          "vy": 0,
+          "hp": 2050,
+          "maxHp": 2050,
+          "r": 22,
+          "h": 92,
+          "focus": 724,
+          "maxFocus": 724,
+          "regen": 28,
+          "level": 25,
+          "attack": 11.4116,
+          "armor": 0.472,
+          "shield": 0,
+          "bound": 0,
+          "mark": 0,
+          "breaks": 0,
+          "acted": false,
+          "moveLeft": 3075,
+          "maxMove": 3075,
+          "walkSpeed": 402,
+          "angle": 44,
+          "lastPower": 0.55,
+          "loadout": [
+            "M01",
+            "M10",
+            "M07"
+          ],
+          "tune": 0.5,
+          "facing": 1,
+          "hurt": 0,
+          "anim": 0,
+          "airborne": false,
+          "fixed": false,
+          "spawnX": 170,
+          "spawnY": 4762.682926829269,
+          "intent": "",
+          "dead": false,
+          "ranks": {
+            "M01": 1,
+            "M07": 4,
+            "M10": 3
+          },
+          "group": 0,
+          "awake": true,
+          "lastAct": 0,
+          "aggroUntil": 0,
+          "xpBudget": 0,
+          "xpGranted": 0,
+          "killRewarded": false,
+          "damageBy": {},
+          "honroAlly": false,
+          "honroCivilian": false,
+          "critChance": 0.174,
+          "critMultiplier": 2.51,
+          "cooldowns": {},
+          "eaterSwallow": 0,
+          "moving": 0,
+          "landing": 0,
+          "impactCooldown": 0,
+          "salheunFlash": 0,
+          "honroShieldSources": {
+            "p-mage": 176
+          },
+          "walkPhase": 293.9462755516991,
+          "equipmentState": {
+            "version": 1
+          },
+          "jumping": false,
+          "jucheon": 0,
+          "jucheonReady": false
+        },
+        "knight": {
+          "id": "p-knight",
+          "name": "휘겸",
+          "role": "knight",
+          "cls": "knight",
+          "side": 0,
+          "x": 6577.880876894885,
+          "y": 1629.1768923157472,
+          "vx": 0,
+          "vy": 0,
+          "hp": 3846,
+          "maxHp": 3846,
+          "r": 22,
+          "h": 92,
+          "focus": 477,
+          "maxFocus": 477,
+          "regen": 28,
+          "level": 25,
+          "attack": 9.98515,
+          "armor": 0.7,
+          "shield": 0,
+          "bound": 0,
+          "mark": 0,
+          "breaks": 0,
+          "acted": false,
+          "moveLeft": 4081,
+          "maxMove": 4081,
+          "walkSpeed": 420,
+          "angle": 36.77079999999965,
+          "lastPower": 0.9411902879733005,
+          "loadout": [
+            "S00",
+            "S01",
+            "S03"
+          ],
+          "tune": 0.5,
+          "facing": 1,
+          "hurt": 0,
+          "anim": 0,
+          "airborne": false,
+          "fixed": false,
+          "spawnX": 248,
+          "spawnY": 4763.634146341464,
+          "intent": "",
+          "dead": false,
+          "ranks": {
+            "S00": 1,
+            "S01": 4,
+            "S03": 4
+          },
+          "group": 0,
+          "awake": true,
+          "lastAct": 0,
+          "aggroUntil": 0,
+          "xpBudget": 0,
+          "xpGranted": 0,
+          "killRewarded": false,
+          "damageBy": {},
+          "honroAlly": false,
+          "honroCivilian": false,
+          "critChance": 0.1648,
+          "critMultiplier": 2.5330000000000004,
+          "cooldowns": {},
+          "eaterSwallow": 0,
+          "moving": 0,
+          "landing": 0,
+          "impactCooldown": 0,
+          "salheunFlash": 0,
+          "honroShieldSources": {
+            "p-knight": 462
+          },
+          "walkPhase": 282.9345892351932,
+          "harmony": false,
+          "equipmentState": {
+            "version": 1
+          },
+          "jumping": false,
+          "jucheon": 0,
+          "jucheonReady": false
+        },
+        "occultist": {
+          "id": "p-occultist",
+          "name": "소단",
+          "role": "occultist",
+          "cls": "occultist",
+          "side": 0,
+          "x": 6554.688138986859,
+          "y": 1633.6271180380609,
+          "vx": 0,
+          "vy": 0,
+          "hp": 1834,
+          "maxHp": 2304,
+          "r": 22,
+          "h": 92,
+          "focus": 751,
+          "maxFocus": 751,
+          "regen": 32,
+          "level": 25,
+          "attack": 11.170800000000002,
+          "armor": 0.487,
+          "shield": 0,
+          "bound": 0,
+          "mark": 0,
+          "breaks": 0,
+          "acted": false,
+          "moveLeft": 3132,
+          "maxMove": 3132,
+          "walkSpeed": 416,
+          "angle": 44.83079999999604,
+          "lastPower": 0.9982736104479033,
+          "loadout": [
+            "O01",
+            "O04",
+            "O03",
+            "O06"
+          ],
+          "tune": 0.5,
+          "facing": 1,
+          "hurt": 0,
+          "anim": 0,
+          "airborne": false,
+          "fixed": false,
+          "spawnX": 330,
+          "spawnY": 4764.634146341464,
+          "intent": "",
+          "dead": false,
+          "spiritSight": true,
+          "ranks": {
+            "O01": 1,
+            "O06": 5,
+            "O02": 4,
+            "O03": 3,
+            "O04": 2
+          },
+          "group": 0,
+          "awake": true,
+          "lastAct": 0,
+          "aggroUntil": 0,
+          "xpBudget": 0,
+          "xpGranted": 0,
+          "killRewarded": false,
+          "damageBy": {},
+          "honroAlly": false,
+          "honroCivilian": false,
+          "critChance": 0.20700000000000002,
+          "critMultiplier": 2.4855,
+          "cooldowns": {},
+          "eaterSwallow": 0,
+          "moving": 0,
+          "landing": 0,
+          "impactCooldown": 0,
+          "salheunFlash": 0,
+          "honroShieldSources": {
+            "p-occultist": 276
+          },
+          "equipmentState": {
+            "version": 1
+          },
+          "jumping": false,
+          "walkPhase": 280.4747755497407,
+          "jucheon": 0,
+          "jucheonReady": false
+        }
+      }
+    },
+    "custodySHA": "388c55c3dc9855c332fd4deb040d6bf44e7f9ae184dede19028ffc61e240c4f7",
+    "stageSeed": {
+      "id": 51,
+      "local": 51,
+      "region": 6,
+      "act": 6,
+      "actStage": 1,
+      "active": 4,
+      "requires": [
+        50
+      ],
+      "name": "산이 사라진 자리",
+      "goal": "세 외부 자리 방향 확인",
+      "objective": "act6-native",
+      "w": 7200,
+      "h": 5400,
+      "story": [],
+      "outro": [],
+      "wind": [
+        0
+      ],
+      "victoryRule": {
+        "kind": "scripted",
+        "target": "act6-owned-51"
+      }
+    },
+    "budget": {
+      "id": 51,
+      "act": 6,
+      "entryLevel": 25,
+      "exitLevel": 25,
+      "rewardCurve": "current",
+      "balanceStatus": "detached-zero-increment-horizon"
+    }
+  },
+  "trace": {
+    "shots": [
+      {
+        "id": "a6-51-opening-2",
+        "skill": "HSH01",
+        "round": 1
+      },
+      {
+        "id": "a6-51-split-ledge-3",
+        "skill": "HSH01",
+        "round": 2
+      },
+      {
+        "id": "a6-51-lower-turn-2",
+        "skill": "HBM01",
+        "round": 2
+      },
+      {
+        "id": "a6-51-lower-turn-3",
+        "skill": "HSH01",
+        "round": 2
+      },
+      {
+        "id": "a6-51-lower-turn-2",
+        "skill": "HBM01",
+        "round": 3
+      },
+      {
+        "id": "a6-51-lower-turn-3",
+        "skill": "HSH01",
+        "round": 3
+      },
+      {
+        "id": "a6-51-split-ledge-3",
+        "skill": "HSH01",
+        "round": 3
+      },
+      {
+        "id": "a6-51-lower-turn-2",
+        "skill": "HBM01",
+        "round": 4
+      },
+      {
+        "id": "a6-51-lower-turn-1",
+        "skill": "HBM01",
+        "round": 4
+      },
+      {
+        "id": "a6-51-lower-turn-3",
+        "skill": "HSH01",
+        "round": 4
+      },
+      {
+        "id": "a6-51-split-ledge-3",
+        "skill": "HSH01",
+        "round": 4
+      },
+      {
+        "id": "pocket",
+        "skill": "HBM01",
+        "round": 6
+      },
+      {
+        "id": "crest-champion",
+        "skill": "HSH02",
+        "round": 7
+      }
+    ],
+    "heroShots": [
+      {
+        "id": "p-archer",
+        "skill": "A01",
+        "round": 2,
+        "shot": 2
+      },
+      {
+        "id": "p-knight",
+        "skill": "S03",
+        "round": 2,
+        "shot": 3
+      },
+      {
+        "id": "p-occultist",
+        "skill": "O04",
+        "round": 2,
+        "shot": 4
+      },
+      {
+        "id": "p-archer",
+        "skill": "A01",
+        "round": 3,
+        "shot": 8
+      },
+      {
+        "id": "p-occultist",
+        "skill": "O04",
+        "round": 3,
+        "shot": 9
+      },
+      {
+        "id": "p-occultist",
+        "skill": "O04",
+        "round": 4,
+        "shot": 13
+      },
+      {
+        "id": "p-occultist",
+        "skill": "O04",
+        "round": 5,
+        "shot": 18
+      },
+      {
+        "id": "p-occultist",
+        "skill": "O04",
+        "round": 6,
+        "shot": 19
+      },
+      {
+        "id": "p-archer",
+        "skill": "A02",
+        "round": 8,
+        "shot": 22
+      }
+    ],
+    "damage": [
+      {
+        "id": "a6-51-opening-2",
+        "target": "p-occultist",
+        "skill": "HSH01",
+        "before": 2304,
+        "after": 2304,
+        "shieldBefore": 276,
+        "shieldAfter": 246,
+        "amount": 64.29693181042863,
+        "round": 1
+      },
+      {
+        "id": "a6-51-split-ledge-3",
+        "target": "p-knight",
+        "skill": "HSH01",
+        "before": 3846,
+        "after": 3828,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 64.29693181042863,
+        "round": 2
+      },
+      {
+        "id": "a6-51-lower-turn-2",
+        "target": "p-occultist",
+        "skill": "HBM01",
+        "before": 2304,
+        "after": 2203,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 182.50335288197294,
+        "round": 2
+      },
+      {
+        "id": "a6-51-lower-turn-3",
+        "target": "p-knight",
+        "skill": "HSH01",
+        "before": 3828,
+        "after": 3810,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 64.29693181042863,
+        "round": 2
+      },
+      {
+        "id": "a6-51-lower-turn-2",
+        "target": "p-occultist",
+        "skill": "HBM01",
+        "before": 2203,
+        "after": 2105,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 182.50335288197294,
+        "round": 3
+      },
+      {
+        "id": "a6-51-split-ledge-3",
+        "target": "p-occultist",
+        "skill": "HSH01",
+        "before": 2105,
+        "after": 2075,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 64.29693181042863,
+        "round": 3
+      },
+      {
+        "id": "a6-51-lower-turn-2",
+        "target": "p-occultist",
+        "skill": "HBM01",
+        "before": 2075,
+        "after": 1983,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 182.50335288197294,
+        "round": 4
+      },
+      {
+        "id": "a6-51-lower-turn-1",
+        "target": "p-occultist",
+        "skill": "HBM01",
+        "before": 1983,
+        "after": 1883,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 182.50335288197294,
+        "round": 4
+      },
+      {
+        "id": "a6-51-split-ledge-3",
+        "target": "p-occultist",
+        "skill": "HSH01",
+        "before": 1883,
+        "after": 1853,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 64.29693181042863,
+        "round": 4
+      },
+      {
+        "id": "pocket",
+        "target": "p-occultist",
+        "skill": "HBM01",
+        "before": 1853,
+        "after": 1742,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 223.33413461538464,
+        "round": 6
+      },
+      {
+        "id": "crest-champion",
+        "target": "p-mage",
+        "skill": "HSH02",
+        "before": 2050,
+        "after": 2050,
+        "shieldBefore": 246,
+        "shieldAfter": 176,
+        "amount": 145.92698734224857,
+        "round": 7
+      }
+    ],
+    "impacts": [
+      {
+        "id": "a6-51-opening-2",
+        "target": "p-occultist",
+        "skill": "HSH01",
+        "before": {
+          "hp": 2304,
+          "shield": 276
+        },
+        "after": {
+          "hp": 2304,
+          "shield": 246
+        },
+        "x": 358,
+        "y": 4688.121897338016,
+        "shot": 1,
+        "round": 1
+      },
+      {
+        "id": "a6-51-split-ledge-3",
+        "target": "p-knight",
+        "skill": "HSH01",
+        "before": {
+          "hp": 3846,
+          "shield": 0
+        },
+        "after": {
+          "hp": 3828,
+          "shield": 0
+        },
+        "x": 3658.023663016675,
+        "y": 3408.0133427005107,
+        "shot": 5,
+        "round": 2
+      },
+      {
+        "id": "a6-51-lower-turn-3",
+        "target": "p-knight",
+        "skill": "HSH01",
+        "before": {
+          "hp": 3828,
+          "shield": 0
+        },
+        "after": {
+          "hp": 3810,
+          "shield": 0
+        },
+        "x": 3663.88447482421,
+        "y": 3385.6562269014544,
+        "shot": 7,
+        "round": 2
+      },
+      {
+        "id": "a6-51-lower-turn-3",
+        "target": "p-occultist",
+        "skill": "HSH01",
+        "before": {
+          "hp": 2105,
+          "shield": 0
+        },
+        "after": {
+          "hp": 2105,
+          "shield": 0
+        },
+        "x": 2258.1452046528093,
+        "y": 3913.802583341424,
+        "shot": 11,
+        "round": 3
+      },
+      {
+        "id": "a6-51-split-ledge-3",
+        "target": "p-occultist",
+        "skill": "HSH01",
+        "before": {
+          "hp": 2105,
+          "shield": 0
+        },
+        "after": {
+          "hp": 2075,
+          "shield": 0
+        },
+        "x": 2275.8406353873384,
+        "y": 3976.187877469557,
+        "shot": 12,
+        "round": 3
+      },
+      {
+        "id": "a6-51-lower-turn-3",
+        "target": "p-occultist",
+        "skill": "HSH01",
+        "before": {
+          "hp": 1883,
+          "shield": 0
+        },
+        "after": {
+          "hp": 1883,
+          "shield": 0
+        },
+        "x": 2204.715566809212,
+        "y": 3933.430419181542,
+        "shot": 16,
+        "round": 4
+      },
+      {
+        "id": "a6-51-split-ledge-3",
+        "target": "p-occultist",
+        "skill": "HSH01",
+        "before": {
+          "hp": 1883,
+          "shield": 0
+        },
+        "after": {
+          "hp": 1853,
+          "shield": 0
+        },
+        "x": 2260.715566809212,
+        "y": 3958.201875709382,
+        "shot": 17,
+        "round": 4
+      },
+      {
+        "id": "crest-champion",
+        "target": "p-mage",
+        "skill": "HSH02",
+        "before": {
+          "hp": 2050,
+          "shield": 246
+        },
+        "after": {
+          "hp": 2050,
+          "shield": 176
+        },
+        "x": 6796.645266892753,
+        "y": 1496.5047112965883,
+        "shot": 21,
+        "round": 7
+      }
+    ],
+    "knockbacks": [],
+    "enemyTurns": [
+      {
+        "id": "a6-51-opening-2",
+        "round": 1,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1330,
+        "y": 4405.416666666667
+      },
+      {
+        "id": "a6-51-opening-1",
+        "round": 1,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 874,
+        "y": 4654.76
+      },
+      {
+        "id": "a6-51-opening-3",
+        "round": 1,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1740,
+        "y": 4000
+      },
+      {
+        "id": "a6-51-lower-turn-1",
+        "round": 1,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1575,
+        "y": 4388.2558139534885
+      },
+      {
+        "id": "a6-51-lower-turn-2",
+        "round": 1,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1715,
+        "y": 4340
+      },
+      {
+        "id": "a6-51-split-ledge-3",
+        "round": 2,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 3655,
+        "y": 3126.0526315789475
+      },
+      {
+        "id": "watcher",
+        "round": 2,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 2440,
+        "y": 3593.4883720930234
+      },
+      {
+        "id": "a6-51-lower-turn-1",
+        "round": 2,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1243.3461015384185,
+        "y": 4429.323118769265
+      },
+      {
+        "id": "a6-51-lower-turn-2",
+        "round": 2,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1920.416666666673,
+        "y": 4177.152777777773
+      },
+      {
+        "id": "a6-51-lower-turn-3",
+        "round": 2,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1890,
+        "y": 3961.309523809524
+      },
+      {
+        "id": "a6-51-lower-turn-2",
+        "round": 3,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 2181.3296488273336,
+        "y": 4030.1504417028045
+      },
+      {
+        "id": "a6-51-opening-3",
+        "round": 3,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1945.416666666673,
+        "y": 3928.323412698409
+      },
+      {
+        "id": "a6-51-lower-turn-1",
+        "round": 3,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1576.486929832453,
+        "y": 4388.290393717034
+      },
+      {
+        "id": "a6-51-lower-turn-3",
+        "round": 3,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1687.9769249181168,
+        "y": 4000
+      },
+      {
+        "id": "a6-51-split-ledge-3",
+        "round": 3,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 3163.5452153585193,
+        "y": 3280
+      },
+      {
+        "id": "a6-51-lower-turn-2",
+        "round": 4,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 2183.659297654665,
+        "y": 4029.5077799573337
+      },
+      {
+        "id": "a6-51-opening-3",
+        "round": 4,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 2238.9227385379263,
+        "y": 3745.9876552107
+      },
+      {
+        "id": "a6-51-lower-turn-1",
+        "round": 4,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1778.5401371478645,
+        "y": 4291.122971424719
+      },
+      {
+        "id": "a6-51-lower-turn-3",
+        "round": 4,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1687.9769249181168,
+        "y": 4000
+      },
+      {
+        "id": "a6-51-split-ledge-3",
+        "round": 4,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 2830.6667595979916,
+        "y": 3313.838052755204
+      },
+      {
+        "id": "pocket",
+        "round": 5,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 4170,
+        "y": 3255.8333333333335
+      },
+      {
+        "id": "pocket",
+        "round": 6,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 4501.285789900097,
+        "y": 3083.1352905894123
+      },
+      {
+        "id": "crest-champion",
+        "round": 7,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 6475,
+        "y": 1647.857142857143
+      },
+      {
+        "id": "a6-51-crest-3",
+        "round": 7,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 6060,
+        "y": 1657.142857142857
+      }
+    ],
+    "joins": [
+      {
+        "id": "watcher",
+        "role": "archer",
+        "source": "original",
+        "round": 1,
+        "bossPhase": null,
+        "x": 2440,
+        "y": 3541.2065640688397,
+        "grounded": false,
+        "surface": null
+      },
+      {
+        "id": "pocket",
+        "role": "knight",
+        "source": "original",
+        "round": 1,
+        "bossPhase": null,
+        "x": 4170,
+        "y": 3255.8333333333335,
+        "grounded": true,
+        "surface": "mountain-main"
+      },
+      {
+        "id": "armor",
+        "role": "knight",
+        "source": "original",
+        "round": 1,
+        "bossPhase": null,
+        "x": 5900,
+        "y": 1800,
+        "grounded": true,
+        "surface": "terrace-continuous"
+      },
+      {
+        "id": "crest-champion",
+        "role": "occultist",
+        "source": "original",
+        "round": 1,
+        "bossPhase": null,
+        "x": 6475,
+        "y": 1647.857142857143,
+        "grounded": true,
+        "surface": "mountain-main"
+      },
+      {
+        "id": "a6-51-opening-1",
+        "role": "leaper",
+        "source": "opening",
+        "round": 1,
+        "bossPhase": null,
+        "x": 874,
+        "y": 4654.76,
+        "grounded": true,
+        "surface": "mountain-main"
+      },
+      {
+        "id": "a6-51-opening-2",
+        "role": "ice",
+        "source": "opening",
+        "round": 1,
+        "bossPhase": null,
+        "x": 1330,
+        "y": 4405.416666666667,
+        "grounded": true,
+        "surface": "mountain-main"
+      },
+      {
+        "id": "a6-51-opening-3",
+        "role": "leaper",
+        "source": "opening",
+        "round": 1,
+        "bossPhase": null,
+        "x": 1740,
+        "y": 4000,
+        "grounded": true,
+        "surface": "terrace-continuous"
+      },
+      {
+        "id": "a6-51-opening-4",
+        "role": "ice",
+        "source": "opening",
+        "round": 1,
+        "bossPhase": null,
+        "x": 3210,
+        "y": 3280,
+        "grounded": true,
+        "surface": "terrace-continuous"
+      },
+      {
+        "id": "a6-51-lower-turn-1",
+        "role": "leaper",
+        "source": "lower-turn",
+        "round": 1,
+        "bossPhase": null,
+        "x": 1575,
+        "y": 4388.2558139534885,
+        "grounded": true,
+        "surface": "mountain-main"
+      },
+      {
+        "id": "a6-51-lower-turn-2",
+        "role": "leaper",
+        "source": "lower-turn",
+        "round": 1,
+        "bossPhase": null,
+        "x": 1715,
+        "y": 4340,
+        "grounded": true,
+        "surface": "mountain-main"
+      },
+      {
+        "id": "a6-51-lower-turn-3",
+        "role": "ice",
+        "source": "lower-turn",
+        "round": 1,
+        "bossPhase": null,
+        "x": 1890,
+        "y": 3961.309523809524,
+        "grounded": true,
+        "surface": "terrace-continuous"
+      },
+      {
+        "id": "a6-51-split-ledge-1",
+        "role": "leaper",
+        "source": "split-ledge",
+        "round": 1,
+        "bossPhase": null,
+        "x": 3885,
+        "y": 3310.217391304348,
+        "grounded": true,
+        "surface": "mountain-main"
+      },
+      {
+        "id": "a6-51-split-ledge-2",
+        "role": "leaper",
+        "source": "split-ledge",
+        "round": 2,
+        "bossPhase": null,
+        "x": 3748,
+        "y": 3405.521739130435,
+        "grounded": true,
+        "surface": "mountain-main"
+      },
+      {
+        "id": "a6-51-split-ledge-3",
+        "role": "ice",
+        "source": "split-ledge",
+        "round": 2,
+        "bossPhase": null,
+        "x": 3655,
+        "y": 3126.0526315789475,
+        "grounded": true,
+        "surface": "terrace-continuous"
+      },
+      {
+        "id": "a6-51-crest-1",
+        "role": "ice",
+        "source": "crest",
+        "round": 2,
+        "bossPhase": null,
+        "x": 5515,
+        "y": 2092.8947368421054,
+        "grounded": true,
+        "surface": "terrace-continuous"
+      },
+      {
+        "id": "a6-51-crest-2",
+        "role": "leaper",
+        "source": "crest",
+        "round": 2,
+        "bossPhase": null,
+        "x": 5578,
+        "y": 2469,
+        "grounded": true,
+        "surface": "mountain-main"
+      },
+      {
+        "id": "a6-51-crest-3",
+        "role": "leaper",
+        "source": "crest",
+        "round": 2,
+        "bossPhase": null,
+        "x": 6060,
+        "y": 1657.142857142857,
+        "grounded": true,
+        "surface": "terrace-continuous"
+      }
+    ],
+    "queues": [
+      {
+        "round": 1,
+        "queue": [
+          "a6-51-opening-2",
+          "a6-51-opening-1",
+          "a6-51-opening-3",
+          "a6-51-lower-turn-2",
+          "a6-51-lower-turn-1"
+        ],
+        "fronts": []
+      },
+      {
+        "round": 2,
+        "queue": [
+          "a6-51-split-ledge-3",
+          "a6-51-lower-turn-3",
+          "watcher",
+          "a6-51-lower-turn-2",
+          "a6-51-lower-turn-1"
+        ],
+        "fronts": []
+      },
+      {
+        "round": 3,
+        "queue": [
+          "a6-51-lower-turn-2",
+          "a6-51-split-ledge-3",
+          "a6-51-opening-3",
+          "a6-51-lower-turn-3",
+          "a6-51-lower-turn-1"
+        ],
+        "fronts": []
+      },
+      {
+        "round": 4,
+        "queue": [
+          "a6-51-lower-turn-2",
+          "a6-51-split-ledge-3",
+          "a6-51-opening-3",
+          "a6-51-lower-turn-1",
+          "a6-51-lower-turn-3"
+        ],
+        "fronts": []
+      },
+      {
+        "round": 5,
+        "queue": [
+          "pocket"
+        ],
+        "fronts": []
+      },
+      {
+        "round": 6,
+        "queue": [
+          "pocket"
+        ],
+        "fronts": []
+      },
+      {
+        "round": 7,
+        "queue": [
+          "crest-champion",
+          "a6-51-crest-3"
+        ],
+        "fronts": []
+      }
+    ],
+    "peak": 8,
+    "initialRng": 31717,
+    "seed": 19388,
+    "peakWitness": {
+      "round": 1,
+      "bossPhase": null,
+      "phase": "aim",
+      "ids": [
+        "watcher",
+        "a6-51-opening-1",
+        "a6-51-opening-2",
+        "a6-51-opening-3",
+        "a6-51-opening-4",
+        "a6-51-lower-turn-1",
+        "a6-51-lower-turn-2",
+        "a6-51-lower-turn-3"
+      ]
+    },
+    "initial": 8,
+    "limit": 5
+  },
+  "frameP95HostMs": 66.59999999999854,
+  "final": {
+    "stageId": 52,
+    "honroStage": 52,
+    "mode": "campaign",
+    "authoredId": "stage-52",
+    "round": 1,
+    "phase": "aim",
+    "side": 0,
+    "shot": 0,
+    "rng": 19388,
+    "active": "p-archer",
+    "dialogue": false,
+    "isolatedStore": false,
+    "play": [
+      6250,
+      6250
+    ],
+    "terrainBounds": {
+      "left": -6500,
+      "top": -9800,
+      "right": 13000,
+      "bottom": 17000
+    },
+    "playBounds": {
+      "left": 0,
+      "top": 0,
+      "right": 6250,
+      "bottom": 6250
+    },
+    "camera": {
+      "x": 1370,
+      "y": 1040.5833333333333,
+      "zoom": null
+    },
+    "gravity": {
+      "x": 0,
+      "y": 320
+    },
+    "fieldFlags": [],
+    "terrain": [
+      {
+        "id": "west-watch-and-descent",
+        "vertices": 45,
+        "oneWay": false
+      },
+      {
+        "id": "east-return-buttress",
+        "vertices": 50,
+        "oneWay": false
+      },
+      {
+        "id": "broken-arch-west",
+        "vertices": 21,
+        "oneWay": false
+      },
+      {
+        "id": "broken-arch-east",
+        "vertices": 21,
+        "oneWay": false
+      },
+      {
+        "id": "return-lower-crossing",
+        "vertices": 31,
+        "oneWay": false
+      },
+      {
+        "id": "landing-1",
+        "vertices": 6,
+        "oneWay": false
+      },
+      {
+        "id": "landing-2",
+        "vertices": 6,
+        "oneWay": false
+      },
+      {
+        "id": "landing-3",
+        "vertices": 6,
+        "oneWay": false
+      },
+      {
+        "id": "landing-4",
+        "vertices": 6,
+        "oneWay": false
+      },
+      {
+        "id": "landing-5",
+        "vertices": 6,
+        "oneWay": false
+      }
+    ],
+    "worldTerrain": [
+      {
+        "id": "west-watch-and-descent",
+        "vertices": 45
+      },
+      {
+        "id": "east-return-buttress",
+        "vertices": 50
+      },
+      {
+        "id": "broken-arch-west",
+        "vertices": 21
+      },
+      {
+        "id": "broken-arch-east",
+        "vertices": 21
+      },
+      {
+        "id": "return-lower-crossing",
+        "vertices": 31
+      },
+      {
+        "id": "landing-1",
+        "vertices": 6
+      },
+      {
+        "id": "landing-2",
+        "vertices": 6
+      },
+      {
+        "id": "landing-3",
+        "vertices": 6
+      },
+      {
+        "id": "landing-4",
+        "vertices": 6
+      },
+      {
+        "id": "landing-5",
+        "vertices": 6
+      }
+    ],
+    "enemies": [
+      "a6-52-opening-1",
+      "a6-52-opening-2"
+    ],
+    "units": [
+      {
+        "id": "p-archer",
+        "cls": "archer",
+        "side": 0,
+        "level": 25,
+        "hp": 1720,
+        "maxHp": 1720,
+        "loadout": [
+          "A01",
+          "A14",
+          "A02",
+          "A05"
+        ],
+        "pos": [
+          1200,
+          1224.58
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "west-watch-and-descent",
+        "fixed": false,
+        "objective": false,
+        "role": "archer",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "p-mage",
+        "cls": "mage",
+        "side": 0,
+        "level": 25,
+        "hp": 2050,
+        "maxHp": 2050,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "pos": [
+          1290,
+          1258.75
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "west-watch-and-descent",
+        "fixed": false,
+        "objective": false,
+        "role": "mage",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "p-knight",
+        "cls": "knight",
+        "side": 0,
+        "level": 25,
+        "hp": 3846,
+        "maxHp": 3846,
+        "loadout": [
+          "S00",
+          "S01",
+          "S03"
+        ],
+        "pos": [
+          1080,
+          1166.11
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "west-watch-and-descent",
+        "fixed": false,
+        "objective": false,
+        "role": "knight",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "p-occultist",
+        "cls": "occultist",
+        "side": 0,
+        "level": 25,
+        "hp": 1834,
+        "maxHp": 2304,
+        "loadout": [
+          "O01",
+          "O04",
+          "O03",
+          "O06"
+        ],
+        "pos": [
+          1000,
+          1151.89
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "west-watch-and-descent",
+        "fixed": false,
+        "objective": false,
+        "role": "occultist",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "watch-range",
+        "cls": "archer",
+        "side": 1,
+        "level": 25,
+        "hp": 527,
+        "maxHp": 527,
+        "loadout": [
+          "HCW01",
+          "HCW02"
+        ],
+        "pos": [
+          4270,
+          2455
+        ],
+        "h": 92,
+        "r": 25,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "broken-arch-east",
+        "fixed": false,
+        "objective": false,
+        "role": "archer",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "bridge-keeper",
+        "cls": "knight",
+        "side": 1,
+        "level": 25,
+        "hp": 659,
+        "maxHp": 659,
+        "loadout": [
+          "HBM03"
+        ],
+        "pos": [
+          3230,
+          2217.7
+        ],
+        "h": 139,
+        "r": 42,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "broken-arch-west",
+        "fixed": false,
+        "objective": false,
+        "role": "knight",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "return-guard",
+        "cls": "knight",
+        "side": 1,
+        "level": 25,
+        "hp": 758,
+        "maxHp": 758,
+        "loadout": [
+          "HBM01"
+        ],
+        "pos": [
+          3370,
+          4498.08
+        ],
+        "h": 110,
+        "r": 37,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "return-lower-crossing",
+        "fixed": false,
+        "objective": false,
+        "role": "knight",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "cliff-stone",
+        "cls": "occultist",
+        "side": 1,
+        "level": 25,
+        "hp": 155,
+        "maxHp": 155,
+        "loadout": [],
+        "pos": [
+          1510,
+          1361.9
+        ],
+        "h": 137,
+        "r": 24,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "west-watch-and-descent",
+        "fixed": true,
+        "objective": false,
+        "role": "occultist",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-52-opening-1",
+        "cls": "knight",
+        "side": 1,
+        "level": 25,
+        "hp": 655,
+        "maxHp": 655,
+        "loadout": [
+          "HBM01"
+        ],
+        "pos": [
+          1725,
+          1765
+        ],
+        "h": 88,
+        "r": 32,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "west-watch-and-descent",
+        "fixed": false,
+        "objective": false,
+        "role": "leaper",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-52-opening-2",
+        "cls": "occultist",
+        "side": 1,
+        "level": 25,
+        "hp": 595,
+        "maxHp": 595,
+        "loadout": [
+          "HSH01",
+          "HSH02"
+        ],
+        "pos": [
+          1890,
+          1975
+        ],
+        "h": 115,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "west-watch-and-descent",
+        "fixed": false,
+        "objective": false,
+        "role": "ice",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-52-opening-3",
+        "cls": "knight",
+        "side": 1,
+        "level": 25,
+        "hp": 655,
+        "maxHp": 655,
+        "loadout": [
+          "HBM01"
+        ],
+        "pos": [
+          2500,
+          2473.13
+        ],
+        "h": 88,
+        "r": 32,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "broken-arch-west",
+        "fixed": false,
+        "objective": false,
+        "role": "leaper",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-52-opening-4",
+        "cls": "occultist",
+        "side": 1,
+        "level": 25,
+        "hp": 595,
+        "maxHp": 595,
+        "loadout": [
+          "HSH01",
+          "HSH02"
+        ],
+        "pos": [
+          3990,
+          2285.86
+        ],
+        "h": 115,
+        "r": 22,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "broken-arch-east",
+        "fixed": false,
+        "objective": false,
+        "role": "ice",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-52-opening-5",
+        "cls": "knight",
+        "side": 1,
+        "level": 25,
+        "hp": 755,
+        "maxHp": 755,
+        "loadout": [
+          "HBM03"
+        ],
+        "pos": [
+          4650,
+          2489.14
+        ],
+        "h": 116,
+        "r": 38,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "broken-arch-east",
+        "fixed": false,
+        "objective": false,
+        "role": "leaper",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-52-opening-6",
+        "cls": "occultist",
+        "side": 1,
+        "level": 25,
+        "hp": 595,
+        "maxHp": 595,
+        "loadout": [
+          "HSH01",
+          "HSH02"
+        ],
+        "pos": [
+          3090,
+          4559
+        ],
+        "h": 115,
+        "r": 22,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "return-lower-crossing",
+        "fixed": false,
+        "objective": false,
+        "role": "ice",
+        "summoned": false,
+        "ally": false
+      }
+    ]
+  }
+}

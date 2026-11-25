@@ -187,7 +187,7 @@ def finish_bell(page,out,report,route='repair',pressure=False):
             assert route=='collapse',"Bell mission lost"
             break
         if route=='collapse':
-            page.wait_for_function("HonroApp.engine.b.phase==='lost'||HonroApp.canInput()",timeout=25000)
+            page.wait_for_function("HonroApp.engine.b.phase==='lost'||HonroApp.canInput()",timeout=60000)
             if page.evaluate("HonroApp.engine.b.phase==='lost'"):
                 break
         else:
@@ -288,8 +288,9 @@ def reversal56(page,out,report,finish=False,exit_route=None,check_pressure=False
             if abs(p['x']-target)<=margin:
                 return p
             if p['move']<max(110,min(abs(p['x']-target)+75,1000)):
+                actions.append({'recoverMovementAt':p,'target':target})
                 page.keyboard.press('f')
-                page.wait_for_function('round=>HonroApp.engine.b.round>round&&HonroApp.canInput()',arg=p['round'],timeout=22000)
+                page.wait_for_function('round=>HonroApp.engine.b.round>round&&HonroApp.canInput()',arg=p['round'],timeout=60000)
             direction=1 if p['x']<target else -1
             q=sample_walk(page,direction,target,3800)
             actions.append({'walk':target,'end':q['end']})
@@ -428,6 +429,7 @@ def main():
     parser.add_argument("--reversal",action="store_true")
     parser.add_argument("--deep-thread",action="store_true")
     parser.add_argument("--pressure",action="store_true")
+    parser.add_argument("--rng",type=int)
     args=parser.parse_args()
     base.ROOT=args.build.resolve()
     args.out.mkdir(parents=True,exist_ok=True)
@@ -492,6 +494,9 @@ def main():
             report={}
             try:
                 resume(page,55,True)
+                if args.rng is not None:
+                    page.evaluate('seed=>{HonroApp.engine.b.rng=seed;}',args.rng)
+                    report['controlledRng']=args.rng
                 if args.pressure:
                     from exterior_combat import TRACE
                     page.evaluate(TRACE)

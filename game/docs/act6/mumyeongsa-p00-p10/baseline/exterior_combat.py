@@ -174,6 +174,9 @@ def run(browser,args,stage):
     out={'stage':stage,'status':'FAIL','route':[],'errors':[]}
     page.on('pageerror',lambda e:out['errors'].append(str(e)))
     try:
+        if args.rng is not None:
+            page.evaluate('seed=>{HonroApp.engine.b.rng=seed;}',args.rng)
+            out['controlledRng']=args.rng
         page.evaluate(TRACE)
         start=page.evaluate('a6Exterior.initial')
         assert start in ({51:range(7,10),52:range(8,11)}[stage]),start
@@ -211,6 +214,7 @@ def main():
     p.add_argument('--rounds-per-site',type=int,default=1)
     p.add_argument('--finish-overlook',action='store_true')
     p.add_argument('--press-flanks',action='store_true')
+    p.add_argument('--rng',type=int)
     args=p.parse_args()
     base.ROOT=args.build.resolve()
     args.out.mkdir(parents=True,exist_ok=True)
