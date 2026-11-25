@@ -125,7 +125,7 @@ def play(browser,args,mobile):
         assert report['cold57']['savedBytesBefore']==report['cold57']['savedBytesAfter']
         report['wrong57']={mode:reject(browser,new57,57,mode) for mode in ['normal','junction','removed']}
         assert new57['honro-first-act-profile-1']==saved_profile
-        if not mobile or args.touch_exterior:
+        if not args.stop_at_57 and (not mobile or args.touch_exterior):
             report['exterior']=exterior=live_d(browser,args.out,sodan=not mobile,session=(ctx,page),touch_d=mobile)
             assert exterior['status']=='PASS',exterior.get('error')
             assert exterior['sameObjects'] and exterior['checkpoint58']['custody']['interiorD']==receipt
@@ -157,6 +157,7 @@ if __name__=='__main__':
     parser.add_argument('--out',required=True,type=Path)
     parser.add_argument('--touch',action='store_true')
     parser.add_argument('--touch-exterior',action='store_true')
+    parser.add_argument('--stop-at-57',action='store_true')
     parser.add_argument('--check-pressure',action='store_true')
     parser.add_argument('--combat-account',action='store_true')
     parser.add_argument('--rng',type=int)

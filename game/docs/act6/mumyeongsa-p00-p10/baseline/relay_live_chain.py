@@ -342,6 +342,8 @@ def reversal56(page,out,report,finish=False,exit_route=None,check_pressure=False
         }""")
     report['flowForward56']=flow()
     assert report['flowForward56']['force']['x']==145
+    if combat:
+        counter(4970,'E-joined-ordinary-floor')
     use('readNarrowing',5030,'E-joined-ordinary-floor')
     page.locator(f'{BELL}[data-act6-mission="warnShelf"]').wait_for(timeout=5000)
     report['flowReverse56']=flow()
@@ -368,6 +370,7 @@ def reversal56(page,out,report,finish=False,exit_route=None,check_pressure=False
     use('returnEast',5200,'E-joined-ordinary-floor')
     if combat:
         counter(5450,'E-joined-ordinary-floor')
+        counter(5650,'E-joined-ordinary-floor')
     walk(6050)
     if exit_route:
         exit_route(page,out,report)
