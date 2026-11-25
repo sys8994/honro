@@ -11,7 +11,7 @@
 | 55 | 8 / 18 / 미실측 | 7 | 빈종각귀의 공격 순서를 보장하되 나머지 증원이 그 뒤에 실제 행동한다. 원래 적이 소단을 실제로 맞혀 복구한 판과, 두 동행이 공격하고 온전한 결속을 정렬한 판이 각각 새 56까지 통과했다. 계획 누적 24 중 관측 누적은 18이다. [온전한 판](bell-intact-55.json) · [복구 판](bell-repair-55.json) · [화면](screens/bell-pressure-55.webp) |
 | 56 | 5 / 16 / 미실측 | 5 | 가름진 역류 시 원본 예비 적을 포함해 모두 16명이 나타났다. 일반 증원이 담허를 먼저 밀어서 원본 역류 회피를 확인할 수 없는 실패를 재현했다. 낮은 턱의 단일 회피 차례에 원본 적을 먼저 행동시킨 뒤 세 구간 전투를 재개한다. 변경 후 실제 O06·역류·회피·57 라이브/새 저장을 다시 확인했다. [로그](interior-56.json) · [역류](screens/approach-56.webp) |
 | 57 | 7 / 17 / 미실측 | 6 | 새 동쪽 추격대가 접힐 석교와 겹쳐 합체가 막힌 실패를 재현했다. 마지막 감시대를 접힘 범위 밖의 실제 발판에 배치했다. 7라운드에 네 원본을 회수해 D를 직접 넘겼고, 합체 직후 소단 O06이 기존 적의 체력 771→249로 명중했다. 58 동일 객체·새 저장을 확인했다. 누적은 목표 18을 한 명 밑돌았다. [로그](folded-57.json) · [접힌 석교](screens/folded-57.webp) |
-| 58 | 4 / 7 이상 / 미실측 | 6 | D 수신 때 부하 4명이 실제 받침에 섰고 대도사는 두 의식 뒤 원래 제기혼과 함께 나타났다. 60·120Hz의 실제 벽·천장 접지에서 담허 M01이 윗마루 부하를 595→367로 낮췄다. 전체 국면·R 재검수는 진행 중이다. [60Hz](hall-58-60.json) · [120Hz](hall-58-120.json) · [화면](screens/hall-combat-58.webp) |
+| 58 | 4 / 7 이상 / 미실측 | 6 | D 수신 때 부하 4명이 실제 받침에 섰고 대도사는 두 의식 뒤 원래 제기혼과 함께 나타났다. 60·120Hz 실제 벽·천장 접지에서 담허 M01이 윗마루 부하를 595→367로 낮췄다. 별도 실전에서 10라운드에 대도사 3상과 유지점을 끝낸 뒤 네 원본이 R을 직접 걸었다. 동일 객체로 59를 받고 새 저장도 열었다. 계획 누적·두 전술은 별도 실측한다. [60Hz](hall-58-60.json) · [120Hz](hall-58-120.json) · [대도사·귀환](daedosa-return-58.json) · [화면](screens/after-daedosa-58.webp) |
 | 59 | 10 / 14 / 14 | 8 | R을 직접 벗어난 직후와 기존 기록의 첫 화면에서 각각 10명. 390×844 실제 터치 방어에서 서쪽 3라운드, 동쪽 4라운드에 각 첫 증원이 나왔다. 원래 서쪽이 남은 자리를 다 쓰던 현상을 수정하고, 자리 두 개를 두 전선에 한 자리씩 배정했다. 실제 발사 32회, 공격 큐 최고 8. 이 방어 표본은 HP 감소가 없었고 누적 목표는 미달이다. [R](courtyard-59.json) · [두 전선](courtyard-touch-59.json) · [터치](screens/courtyard-touch-59.webp) |
 
 54는 담허와 원래 수문지기 객체를 유지하고 장 소유자가 검사한 적만 각 방에 들인다. 진행 중인 포격·진목·장 효과가 남으면 방을 바꾸지 않는다. 실제 발점과 원래 수문지기 제압이 확인된 뒤 이전 방의 증원만 남겨 두고, 관측과 발점이 맞으면 다시 다음 차트로 넘어간다.
@@ -29,6 +29,7 @@ python game/docs/act6/mumyeongsa-p00-p10/baseline/relay_live_chain.py --build "$
 python game/docs/act6/mumyeongsa-p00-p10/baseline/relay_live_chain.py --build "$PWD" --out /tmp/honro-act6-inner56 --deep-thread
 python game/docs/act6/mumyeongsa-p00-p10/baseline/hall_passage.py --build "$PWD" --out /tmp/honro-act6-fold57 --case live-d --sodan
 python game/docs/act6/mumyeongsa-p00-p10/baseline/hall_passage.py --build "$PWD" --out /tmp/honro-act6-hall58 --case gallery-combat --rates 60 120
+python game/docs/act6/mumyeongsa-p00-p10/baseline/daedosa_return.py --build "$PWD" --out /tmp/honro-act6-hall58-return --turns 100
 python game/docs/act6/mumyeongsa-p00-p10/baseline/return_gate.py --build "$PWD" --out /tmp/honro-act6-courtyard59
 python game/docs/act6/mumyeongsa-p00-p10/baseline/courtyard_combat.py --build "$PWD" --out /tmp/honro-act6-courtyard59-touch --rounds 5 --touch
 ```

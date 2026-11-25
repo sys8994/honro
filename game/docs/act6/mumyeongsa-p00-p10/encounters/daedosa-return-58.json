@@ -1,0 +1,2545 @@
+{
+  "status": "PASS",
+  "allFourEast": [
+    "p-archer",
+    "p-knight",
+    "p-mage",
+    "p-occultist"
+  ],
+  "winTargets": {
+    "round": 10,
+    "phase": "aim",
+    "side": 0,
+    "shot": 59,
+    "major": [
+      {
+        "id": "a6-c08-boss",
+        "x": 4650.033501657695,
+        "y": 2834.006700331539,
+        "hp": 0,
+        "dead": true
+      },
+      {
+        "id": "a6-c08-expansion-node",
+        "x": 4896,
+        "y": 3074.909090909091,
+        "hp": 0,
+        "dead": true
+      }
+    ],
+    "state": 3,
+    "mark": null,
+    "flags": {
+      "localColumnSealAligned": true,
+      "localThresholdGravityNormalized": true,
+      "localBossManifested": true,
+      "localDaedosaDefeated": true
+    }
+  },
+  "returnRoute": [
+    {
+      "id": "p-archer",
+      "cls": "archer",
+      "side": 0,
+      "x": 3054.8700686819484,
+      "y": 3379.7514089480146,
+      "vx": 0,
+      "vy": 0,
+      "hp": 929,
+      "maxHp": 1720,
+      "shield": 0,
+      "r": 22,
+      "h": 92,
+      "ammo": null,
+      "loadout": [
+        "A01",
+        "A14",
+        "A02",
+        "A05"
+      ],
+      "dead": false,
+      "actorsMoved": false,
+      "move": 551.6250000000549,
+      "grounded": true,
+      "family": {
+        "x": 0,
+        "y": 320
+      },
+      "contact": "local-lower-08-body",
+      "normal": null
+    },
+    {
+      "id": "p-occultist",
+      "cls": "occultist",
+      "side": 0,
+      "x": 3002.4441953316527,
+      "y": 3394.730229905242,
+      "vx": 0,
+      "vy": 0,
+      "hp": 1529.3999999999999,
+      "maxHp": 2304,
+      "shield": 0,
+      "r": 22,
+      "h": 92,
+      "ammo": null,
+      "loadout": [
+        "O01",
+        "O04",
+        "O03",
+        "O06"
+      ],
+      "dead": false,
+      "actorsMoved": false,
+      "move": 417.6000000000158,
+      "grounded": true,
+      "family": {
+        "x": 0,
+        "y": 320
+      },
+      "contact": "local-lower-08-body",
+      "normal": null
+    },
+    {
+      "id": "p-knight",
+      "cls": "knight",
+      "side": 0,
+      "x": 3120.6387604823935,
+      "y": 3360.9603541478878,
+      "vx": 0,
+      "vy": 0,
+      "hp": 3078.3999999999996,
+      "maxHp": 3846,
+      "shield": 0,
+      "r": 22,
+      "h": 92,
+      "ammo": null,
+      "loadout": [
+        "S00",
+        "S01",
+        "S03"
+      ],
+      "dead": false,
+      "actorsMoved": false,
+      "move": 2033.5000000000502,
+      "grounded": true,
+      "family": {
+        "x": 0,
+        "y": 320
+      },
+      "contact": "local-lower-08-body",
+      "normal": null
+    },
+    {
+      "id": "p-mage",
+      "cls": "mage",
+      "side": 0,
+      "x": 3247.135484522929,
+      "y": 3314.4080085390738,
+      "vx": 0,
+      "vy": 0,
+      "hp": 1003.3000000000001,
+      "maxHp": 2050,
+      "shield": 0,
+      "r": 22,
+      "h": 92,
+      "ammo": null,
+      "loadout": [
+        "M01",
+        "M10",
+        "M07"
+      ],
+      "dead": false,
+      "actorsMoved": false,
+      "move": 1031.5000000000464,
+      "grounded": true,
+      "family": {
+        "x": 0,
+        "y": 320
+      },
+      "contact": "local-lower-08-body",
+      "normal": null
+    }
+  ],
+  "liveSameObjects": true,
+  "routeReceipt": {
+    "id": "mumyeongsa-return-gate",
+    "floor": "local-lower-08-body",
+    "sill": 3260,
+    "gravity": {
+      "x": 0,
+      "y": 320
+    },
+    "actors": [
+      {
+        "role": "archer",
+        "id": "p-archer",
+        "enter": {
+          "x": 3260.819925001561,
+          "y": 3306.8579724129318
+        },
+        "step": {
+          "x": 3257.718920703966,
+          "y": 3308.568871335743
+        },
+        "exit": {
+          "x": 3054.8700686819484,
+          "y": 3379.7514089480146
+        }
+      },
+      {
+        "role": "knight",
+        "id": "p-knight",
+        "enter": {
+          "x": 3260.2220268044425,
+          "y": 3307.187847280308
+        },
+        "step": {
+          "x": 3257.157504910349,
+          "y": 3308.878617980497
+        },
+        "exit": {
+          "x": 3120.6387604823935,
+          "y": 3360.9603541478878
+        }
+      },
+      {
+        "role": "mage",
+        "id": "p-mage",
+        "enter": {
+          "x": 3261.801410730378,
+          "y": 3306.316463045309
+        },
+        "step": {
+          "x": 3258.868225488888,
+          "y": 3307.9347721440618
+        },
+        "exit": {
+          "x": 3247.135484522929,
+          "y": 3314.4080085390738
+        }
+      },
+      {
+        "role": "occultist",
+        "id": "p-occultist",
+        "enter": {
+          "x": 3260.609437915202,
+          "y": 3306.974103219199
+        },
+        "step": {
+          "x": 3257.5741019439088,
+          "y": 3308.6487713412916
+        },
+        "exit": {
+          "x": 3002.4441953316527,
+          "y": 3394.730229905242
+        }
+      }
+    ]
+  },
+  "storageHash": "539516f969415113ebd98d5fc35928f8703660a3ef4d3e2bbfdc9de80545ebf2",
+  "projectileTrace": [
+    {
+      "event": "fire",
+      "skill": "M01",
+      "angle": 96.16459999999994,
+      "power": 0.9890461713652438,
+      "actor": "p-mage",
+      "grounded": true,
+      "x": 4656.463464729316,
+      "y": 3155.292692945863,
+      "prediction": {
+        "x": 4651.738520224459,
+        "y": 3053.5871228909878,
+        "unit": "a6-58-opening-4",
+        "terrain": null
+      },
+      "shot": 1,
+      "gravity": {
+        "x": -252.24989688969367,
+        "y": 71.75379058862477
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "M01",
+      "actor": "p-mage",
+      "target": "a6-58-opening-4",
+      "terrain": null,
+      "x": 4651.738520224459,
+      "y": 3053.5871228909878,
+      "normal": {
+        "x": 0,
+        "y": -1
+      },
+      "radius": 6,
+      "shot": 1,
+      "before": 595,
+      "after": 289,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "A01",
+      "angle": 140.87079999999992,
+      "power": 0.9778996941062377,
+      "actor": "p-archer",
+      "grounded": true,
+      "x": 4764.829321347338,
+      "y": 3176.9658642694676,
+      "prediction": {
+        "x": 4643.096680273675,
+        "y": 3021.5822664557463,
+        "unit": "a6-58-opening-4",
+        "terrain": null
+      },
+      "shot": 2,
+      "gravity": {
+        "x": -235.92733283098727,
+        "y": 19.583705224505817
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "A01",
+      "actor": "p-archer",
+      "target": "a6-58-opening-4",
+      "terrain": null,
+      "x": 4643.096680273675,
+      "y": 3021.5822664557463,
+      "normal": {
+        "x": 1,
+        "y": 0
+      },
+      "radius": 3,
+      "shot": 2,
+      "before": 332,
+      "after": 199,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "S03",
+      "angle": 129.8,
+      "power": 0.924223602484472,
+      "actor": "p-knight",
+      "grounded": true,
+      "x": 4507.352799669414,
+      "y": 3183.196892447556,
+      "prediction": {
+        "x": 4507.352799669414,
+        "y": 3137.196892447556,
+        "unit": null,
+        "terrain": null
+      },
+      "shot": 3,
+      "gravity": null
+    },
+    {
+      "event": "fire",
+      "skill": "O03",
+      "angle": 188.7,
+      "power": 0.9076841171245821,
+      "actor": "p-occultist",
+      "grounded": true,
+      "x": 4991.280763594331,
+      "y": 2980.0706607900293,
+      "prediction": {
+        "x": 4495.916296517959,
+        "y": 3006.769230769231,
+        "unit": "a6-c08-boss",
+        "terrain": null
+      },
+      "shot": 4,
+      "gravity": {
+        "x": 163.02014147160858,
+        "y": -0.2785207836240089
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "O03",
+      "actor": "p-occultist",
+      "target": "a6-c08-boss",
+      "terrain": null,
+      "x": 4495.916296517959,
+      "y": 3006.769230769231,
+      "normal": {
+        "x": 0,
+        "y": -1
+      },
+      "radius": 6,
+      "shot": 4,
+      "before": 9460,
+      "after": 9240,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "HSH01",
+      "angle": 7.677179206555606,
+      "power": 0.21084499006340807,
+      "actor": "a6-58-opening-2",
+      "grounded": true,
+      "x": 3913.29234562652,
+      "y": 3071.577653019785,
+      "prediction": {
+        "x": 4963.280763594331,
+        "y": 2954.4549375900947,
+        "unit": "p-occultist",
+        "terrain": null
+      },
+      "shot": 5,
+      "gravity": {
+        "x": -21.51032541240107,
+        "y": 66.8995864322298
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HSH01",
+      "actor": "a6-58-opening-2",
+      "target": "p-occultist",
+      "terrain": null,
+      "x": 4963.280763594331,
+      "y": 2954.4549375900947,
+      "normal": {
+        "x": -1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 5,
+      "before": 2144.1,
+      "after": 2114.1,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "HSH01",
+      "angle": 24.250833577825688,
+      "power": 0.35526968485489485,
+      "actor": "a6-58-opening-4",
+      "grounded": true,
+      "x": 4947.868819574962,
+      "y": 3015.9672504829978,
+      "prediction": {
+        "x": 4984.3390622975385,
+        "y": 2913.2279657829154,
+        "unit": "p-occultist",
+        "terrain": null
+      },
+      "shot": 6,
+      "gravity": {
+        "x": -75.78400337779959,
+        "y": 10.714328549277681
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HSH01",
+      "actor": "a6-58-opening-4",
+      "target": "p-occultist",
+      "terrain": null,
+      "x": 4984.3390622975385,
+      "y": 2913.2279657829154,
+      "normal": {
+        "x": 0,
+        "y": -1
+      },
+      "radius": 6,
+      "shot": 6,
+      "before": 2114.1,
+      "after": 2084.1,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "M01",
+      "angle": 110.62920000000008,
+      "power": 0.9866419096559292,
+      "actor": "p-mage",
+      "grounded": true,
+      "x": 4493.05072315772,
+      "y": 3189.2477709717336,
+      "prediction": {
+        "x": 4477.548702449375,
+        "y": 3090.109046441243,
+        "unit": "a6-c08-boss",
+        "terrain": null
+      },
+      "shot": 7,
+      "gravity": {
+        "x": -234.63457903929122,
+        "y": 67.37932441147098
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "M01",
+      "actor": "p-mage",
+      "target": "a6-c08-boss",
+      "terrain": null,
+      "x": 4477.548702449375,
+      "y": 3090.109046441243,
+      "normal": {
+        "x": 0,
+        "y": -1
+      },
+      "radius": 6,
+      "shot": 7,
+      "before": 9240,
+      "after": 8998,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "A02",
+      "angle": 96.44779999999992,
+      "power": 0.9860584576666257,
+      "actor": "p-archer",
+      "grounded": true,
+      "x": 4490.606206926699,
+      "y": 3190.2819893771657,
+      "prediction": {
+        "x": 4344.488015137911,
+        "y": 2573,
+        "unit": "a6-c08-boss",
+        "terrain": "m58-timber-soffit"
+      },
+      "shot": 8,
+      "gravity": {
+        "x": -256.13226415577014,
+        "y": 34.22386955128786
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "A02",
+      "actor": "p-archer",
+      "target": "a6-c08-boss",
+      "terrain": null,
+      "x": 4485.889692544559,
+      "y": 3090.587657082482,
+      "normal": {
+        "x": 0,
+        "y": -1
+      },
+      "radius": 3,
+      "shot": 8,
+      "before": 8998,
+      "after": 8563,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "impact",
+      "skill": "A02",
+      "actor": "p-archer",
+      "target": null,
+      "terrain": "m58-apse-pier",
+      "x": 4423.131210948589,
+      "y": 2709.205475357638,
+      "normal": {
+        "x": 0.9997451546843654,
+        "y": -0.02257489058964696
+      },
+      "radius": 3,
+      "shot": 8,
+      "before": null,
+      "after": null,
+      "shieldBefore": null,
+      "shieldAfter": null
+    },
+    {
+      "event": "impact",
+      "skill": "A02",
+      "actor": "p-archer",
+      "target": null,
+      "terrain": "m58-timber-soffit",
+      "x": 4344.488015137911,
+      "y": 2573,
+      "normal": {
+        "x": 0,
+        "y": 1
+      },
+      "radius": 3,
+      "shot": 8,
+      "before": null,
+      "after": null,
+      "shieldBefore": null,
+      "shieldAfter": null
+    },
+    {
+      "event": "fire",
+      "skill": "S03",
+      "angle": 138.07080000000053,
+      "power": 0.9101298701298701,
+      "actor": "p-knight",
+      "grounded": true,
+      "x": 4514.034413785926,
+      "y": 3180.3700557059547,
+      "prediction": {
+        "x": 4514.034413785926,
+        "y": 3134.3700557059547,
+        "unit": null,
+        "terrain": null
+      },
+      "shot": 9,
+      "gravity": null
+    },
+    {
+      "event": "fire",
+      "skill": "O04",
+      "angle": 92.60000000000005,
+      "power": 0.9932282210535488,
+      "actor": "p-occultist",
+      "grounded": true,
+      "x": 5005.434401357928,
+      "y": 2976.4311539365326,
+      "prediction": {
+        "x": 5003.619881832758,
+        "y": 2878.512331144904,
+        "unit": "a6-c08-vessel-b",
+        "terrain": null
+      },
+      "shot": 10,
+      "gravity": {
+        "x": -20.672692584306347,
+        "y": 2.803526990587635
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "O04",
+      "actor": "p-occultist",
+      "target": "a6-c08-vessel-b",
+      "terrain": null,
+      "x": 5003.619881832758,
+      "y": 2878.512331144904,
+      "normal": {
+        "x": 0,
+        "y": -1
+      },
+      "radius": 6,
+      "shot": 10,
+      "before": 948,
+      "after": 129,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "HSH02",
+      "angle": 186.71796806086786,
+      "power": 0.3514893592710141,
+      "actor": "a6-58-opening-4",
+      "grounded": true,
+      "x": 5278.902066402889,
+      "y": 2886.2351752967493,
+      "prediction": {
+        "x": 4542.034413785926,
+        "y": 3110.095227077077,
+        "unit": "p-knight",
+        "terrain": null
+      },
+      "shot": 11,
+      "gravity": {
+        "x": 29.341170200805735,
+        "y": 124.54387590456253
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HSH02",
+      "actor": "a6-58-opening-4",
+      "target": "p-knight",
+      "terrain": null,
+      "x": 4542.034413785926,
+      "y": 3110.095227077077,
+      "normal": {
+        "x": 1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 11,
+      "before": 3601.3999999999996,
+      "after": 3571.3999999999996,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "HBM01",
+      "angle": 0,
+      "power": 0.5,
+      "actor": "a6-58-folded-rear-1",
+      "grounded": true,
+      "x": 4425.8143909632945,
+      "y": 3217.693911515529,
+      "prediction": {
+        "x": 4453.8143909632945,
+        "y": 3162.253911515529,
+        "unit": "p-mage",
+        "terrain": null
+      },
+      "shot": 12,
+      "gravity": null
+    },
+    {
+      "event": "fire",
+      "skill": "M01",
+      "angle": 135.43539999999945,
+      "power": 0.9876483447903031,
+      "actor": "p-mage",
+      "grounded": true,
+      "x": 4597.269603607487,
+      "y": 3145.155167704525,
+      "prediction": {
+        "x": 4520,
+        "y": 3012.0211635239707,
+        "unit": "a6-c08-boss",
+        "terrain": null
+      },
+      "shot": 13,
+      "gravity": {
+        "x": 51.34634598598186,
+        "y": 370.5718381262184
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "M01",
+      "actor": "p-mage",
+      "target": "a6-c08-boss",
+      "terrain": null,
+      "x": 4520,
+      "y": 3012.0211635239707,
+      "normal": {
+        "x": 1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 13,
+      "before": 7848,
+      "after": 7848,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "A02",
+      "angle": 117.11240000000014,
+      "power": 0.44069860560608576,
+      "actor": "p-archer",
+      "grounded": true,
+      "x": 4760.419324004377,
+      "y": 3176.0838648008753,
+      "prediction": {
+        "x": 4454.622034489003,
+        "y": 3009.769230769231,
+        "unit": "a6-c08-boss",
+        "terrain": null
+      },
+      "shot": 14,
+      "gravity": {
+        "x": 7.015179154986025,
+        "y": 333.7015491564878
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "A02",
+      "actor": "p-archer",
+      "target": null,
+      "terrain": "m58-apse-pier",
+      "x": 4422.718326376568,
+      "y": 2853.8506930528606,
+      "normal": {
+        "x": 0.9993190393883691,
+        "y": 0.036897933762032084
+      },
+      "radius": 3,
+      "shot": 14,
+      "before": null,
+      "after": null,
+      "shieldBefore": null,
+      "shieldAfter": null
+    },
+    {
+      "event": "impact",
+      "skill": "A02",
+      "actor": "p-archer",
+      "target": null,
+      "terrain": "m58-apse-pier",
+      "x": 4377,
+      "y": 2991.7830925830517,
+      "normal": {
+        "x": -1,
+        "y": -0.0
+      },
+      "radius": 3,
+      "shot": 14,
+      "before": null,
+      "after": null,
+      "shieldBefore": null,
+      "shieldAfter": null
+    },
+    {
+      "event": "impact",
+      "skill": "A02",
+      "actor": "p-archer",
+      "target": "a6-c08-boss",
+      "terrain": null,
+      "x": 4454.622034489003,
+      "y": 3009.769230769231,
+      "normal": {
+        "x": 0,
+        "y": -1
+      },
+      "radius": 3,
+      "shot": 14,
+      "before": 7848,
+      "after": 7600,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "S03",
+      "angle": 138.07080000000053,
+      "power": 0.9237899491808496,
+      "actor": "p-knight",
+      "grounded": true,
+      "x": 4513.590075550419,
+      "y": 3180.558044959438,
+      "prediction": {
+        "x": 4513.590075550419,
+        "y": 3134.558044959438,
+        "unit": null,
+        "terrain": null
+      },
+      "shot": 15,
+      "gravity": null
+    },
+    {
+      "event": "fire",
+      "skill": "O04",
+      "angle": 191.80000000000018,
+      "power": 0.9898646281258775,
+      "actor": "p-occultist",
+      "grounded": true,
+      "x": 5005.434401357928,
+      "y": 2976.4311539365326,
+      "prediction": {
+        "x": 4520,
+        "y": 3022.9478447646998,
+        "unit": "a6-c08-boss",
+        "terrain": null
+      },
+      "shot": 16,
+      "gravity": {
+        "x": 2.7378059460372706,
+        "y": 25.028042538650848
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "O04",
+      "actor": "p-occultist",
+      "target": "a6-c08-boss",
+      "terrain": null,
+      "x": 4520,
+      "y": 3022.9478447646998,
+      "normal": {
+        "x": 1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 16,
+      "before": 7600,
+      "after": 7600,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "HSH02",
+      "angle": 186.9101892184699,
+      "power": 0.356258109676186,
+      "actor": "a6-58-opening-4",
+      "grounded": true,
+      "x": 5278.902066402889,
+      "y": 2886.2351752967493,
+      "prediction": {
+        "x": 4587.05597947296,
+        "y": 3047.155167704525,
+        "unit": "p-mage",
+        "terrain": null
+      },
+      "shot": 17,
+      "gravity": {
+        "x": 99.49277247895581,
+        "y": 54.425660590831455
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HSH02",
+      "actor": "a6-58-opening-4",
+      "target": "p-mage",
+      "terrain": null,
+      "x": 4587.05597947296,
+      "y": 3047.155167704525,
+      "normal": {
+        "x": 0,
+        "y": -1
+      },
+      "radius": 6,
+      "shot": 17,
+      "before": 1180.9,
+      "after": 1138.9,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "M01",
+      "angle": 72.4646000000005,
+      "power": 0.5461028862974127,
+      "actor": "p-mage",
+      "grounded": true,
+      "x": 4463.892024313487,
+      "y": 3201.5841435596785,
+      "prediction": {
+        "x": 5020,
+        "y": 2566.877748624246,
+        "unit": "a6-c08-boss",
+        "terrain": null
+      },
+      "shot": 18,
+      "gravity": {
+        "x": 162.99358736554245,
+        "y": 182.99759924071935
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "M01",
+      "actor": "p-mage",
+      "target": "a6-c08-boss",
+      "terrain": null,
+      "x": 5020,
+      "y": 2566.877748624246,
+      "normal": {
+        "x": -1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 18,
+      "before": 6283,
+      "after": 6163,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "A02",
+      "angle": 92.30619999999982,
+      "power": 1,
+      "actor": "p-archer",
+      "grounded": true,
+      "x": 5050.338130669265,
+      "y": 2964.884480685046,
+      "prediction": {
+        "x": 5491.027351093053,
+        "y": 2545.8037756910608,
+        "unit": "a6-c08-boss",
+        "terrain": "local-lower-08-east-buttress"
+      },
+      "shot": 19,
+      "gravity": {
+        "x": 176.4055274460283,
+        "y": 179.900397169406
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "A02",
+      "actor": "p-archer",
+      "target": "a6-c08-boss",
+      "terrain": null,
+      "x": 5045.003648192244,
+      "y": 2745.4,
+      "normal": {
+        "x": 0,
+        "y": 1
+      },
+      "radius": 3,
+      "shot": 19,
+      "before": 6163,
+      "after": 5731,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "impact",
+      "skill": "A02",
+      "actor": "p-archer",
+      "target": null,
+      "terrain": "local-lower-08-east-buttress",
+      "x": 5491.027351093053,
+      "y": 2545.8037756910608,
+      "normal": {
+        "x": -0.9417419115948374,
+        "y": -0.3363363969981562
+      },
+      "radius": 3,
+      "shot": 19,
+      "before": null,
+      "after": null,
+      "shieldBefore": null,
+      "shieldAfter": null
+    },
+    {
+      "event": "fire",
+      "skill": "S00",
+      "angle": 191.3783999999998,
+      "power": 0.9110513833988055,
+      "actor": "p-knight",
+      "grounded": true,
+      "x": 5109.029697937515,
+      "y": 2949.792363387496,
+      "prediction": {
+        "x": 5109.029697937515,
+        "y": 2903.792363387496,
+        "unit": null,
+        "terrain": null
+      },
+      "shot": 20,
+      "gravity": null
+    },
+    {
+      "event": "fire",
+      "skill": "O04",
+      "angle": 150.46460000000116,
+      "power": 0.9850230928495596,
+      "actor": "p-occultist",
+      "grounded": true,
+      "x": 5372.398962563642,
+      "y": 2781.0511671159024,
+      "prediction": {
+        "x": 5100,
+        "y": 2569.412831933806,
+        "unit": "a6-c08-boss",
+        "terrain": null
+      },
+      "shot": 21,
+      "gravity": {
+        "x": 2.4215545853923772,
+        "y": 26.97202542097263
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "O04",
+      "actor": "p-occultist",
+      "target": "a6-c08-boss",
+      "terrain": null,
+      "x": 5100,
+      "y": 2569.412831933806,
+      "normal": {
+        "x": 1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 21,
+      "before": 5731,
+      "after": 5357,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "HSH02",
+      "angle": 211.40247339633007,
+      "power": 0.6441289864582347,
+      "actor": "a6-58-opening-4",
+      "grounded": true,
+      "x": 5278.902066402889,
+      "y": 2886.2351752967493,
+      "prediction": {
+        "x": 5137.029697937515,
+        "y": 2889.55570228985,
+        "unit": "p-knight",
+        "terrain": null
+      },
+      "shot": 22,
+      "gravity": {
+        "x": 103.83580891090986,
+        "y": 37.34452909653699
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HSH02",
+      "actor": "a6-58-opening-4",
+      "target": "p-knight",
+      "terrain": null,
+      "x": 5137.029697937515,
+      "y": 2889.55570228985,
+      "normal": {
+        "x": 1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 22,
+      "before": 3517.3999999999996,
+      "after": 3485.3999999999996,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "HBM01",
+      "angle": 0,
+      "power": 0.5,
+      "actor": "a6-58-entrance-columns-2",
+      "grounded": true,
+      "x": 4390.198766405784,
+      "y": 3232.1863345097463,
+      "prediction": {
+        "x": 4435.892024313487,
+        "y": 3176.824468318596,
+        "unit": "p-mage",
+        "terrain": null
+      },
+      "shot": 23,
+      "gravity": null
+    },
+    {
+      "event": "fire",
+      "skill": "M01",
+      "angle": 143.48919999999896,
+      "power": 1,
+      "actor": "p-mage",
+      "grounded": true,
+      "x": 5217.627837630471,
+      "y": 2921.8671274664503,
+      "prediction": {
+        "x": 5100,
+        "y": 2776.9470264686993,
+        "unit": "a6-c08-boss",
+        "terrain": null
+      },
+      "shot": 24,
+      "gravity": {
+        "x": 233.6495945976524,
+        "y": 188.41552782755727
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "M01",
+      "actor": "p-mage",
+      "target": "a6-c08-boss",
+      "terrain": null,
+      "x": 5100,
+      "y": 2776.9470264686993,
+      "normal": {
+        "x": 1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 24,
+      "before": 5289,
+      "after": 5289,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "A05",
+      "angle": 96.02619999999982,
+      "power": 0.9120919406102077,
+      "actor": "p-archer",
+      "grounded": true,
+      "x": 5327.40179660049,
+      "y": 2831.6729788244484,
+      "prediction": {
+        "x": 5034.357645687416,
+        "y": 2777.4,
+        "unit": "a6-c08-boss",
+        "terrain": null
+      },
+      "shot": 25,
+      "gravity": {
+        "x": 3.1028337641852484,
+        "y": 349.3921959897901
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "A05",
+      "actor": "p-archer",
+      "target": "a6-c08-boss",
+      "terrain": null,
+      "x": 5034.357645687416,
+      "y": 2777.4,
+      "normal": {
+        "x": 0,
+        "y": -1
+      },
+      "radius": 3,
+      "shot": 25,
+      "before": 5289,
+      "after": 4600,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "S03",
+      "angle": 131.25080000000062,
+      "power": 0.9365285149628936,
+      "actor": "p-knight",
+      "grounded": true,
+      "x": 5089.822940052603,
+      "y": 2954.7312439864736,
+      "prediction": {
+        "x": 5089.822940052603,
+        "y": 2908.7312439864736,
+        "unit": null,
+        "terrain": null
+      },
+      "shot": 26,
+      "gravity": null
+    },
+    {
+      "event": "fire",
+      "skill": "O04",
+      "angle": 92.60000000000198,
+      "power": 0.9808950469816239,
+      "actor": "p-occultist",
+      "grounded": true,
+      "x": 5379.308346487473,
+      "y": 2773.2781102015933,
+      "prediction": {
+        "x": 5377.493826962301,
+        "y": 2675.359287409965,
+        "unit": "a6-c08-grot-1",
+        "terrain": null
+      },
+      "shot": 27,
+      "gravity": {
+        "x": 0.12572660628346627,
+        "y": 28.368714864172638
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "O04",
+      "actor": "p-occultist",
+      "target": "a6-c08-grot-1",
+      "terrain": null,
+      "x": 5377.493826962301,
+      "y": 2675.359287409965,
+      "normal": {
+        "x": 0,
+        "y": -1
+      },
+      "radius": 6,
+      "shot": 27,
+      "before": 2400,
+      "after": 1693,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "HSH01",
+      "angle": 210.27084901966873,
+      "power": 0.6448877963433417,
+      "actor": "a6-58-opening-4",
+      "grounded": true,
+      "x": 5278.902066402889,
+      "y": 2886.2351752967493,
+      "prediction": {
+        "x": 5237.896869674661,
+        "y": 2823.8671274664503,
+        "unit": "p-mage",
+        "terrain": null
+      },
+      "shot": 28,
+      "gravity": {
+        "x": 30.116714811769224,
+        "y": 46.42176174540664
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HSH01",
+      "actor": "a6-58-opening-4",
+      "target": "p-mage",
+      "terrain": null,
+      "x": 5237.896869674661,
+      "y": 2823.8671274664503,
+      "normal": {
+        "x": 0,
+        "y": -1
+      },
+      "radius": 6,
+      "shot": 28,
+      "before": 1049.9,
+      "after": 1049.9,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "HSH02",
+      "angle": 95.10960724146571,
+      "power": 0.3438065058139618,
+      "actor": "a6-58-folded-rear-2",
+      "grounded": true,
+      "x": 5231.918360548816,
+      "y": 2918.1924215731615,
+      "prediction": {
+        "x": 5063.46619706321,
+        "y": 2856.7312439864736,
+        "unit": "p-knight",
+        "terrain": null
+      },
+      "shot": 29,
+      "gravity": {
+        "x": 2.6076174502034815,
+        "y": 157.16255290745687
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HSH02",
+      "actor": "a6-58-folded-rear-2",
+      "target": "p-knight",
+      "terrain": null,
+      "x": 5063.46619706321,
+      "y": 2856.7312439864736,
+      "normal": {
+        "x": 0,
+        "y": -1
+      },
+      "radius": 6,
+      "shot": 29,
+      "before": 3485.3999999999996,
+      "after": 3463.3999999999996,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "M01",
+      "angle": 108.57079999999465,
+      "power": 0.5130023530032337,
+      "actor": "p-mage",
+      "grounded": true,
+      "x": 5113.805395256075,
+      "y": 2948.564326934152,
+      "prediction": {
+        "x": 4930,
+        "y": 2595.437476509604,
+        "unit": "a6-c08-boss",
+        "terrain": null
+      },
+      "shot": 30,
+      "gravity": {
+        "x": 11.921839974760976,
+        "y": 355.4848430687835
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "M01",
+      "actor": "p-mage",
+      "target": "a6-c08-boss",
+      "terrain": null,
+      "x": 4930,
+      "y": 2595.437476509604,
+      "normal": {
+        "x": 1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 30,
+      "before": 2761,
+      "after": 2489,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "A02",
+      "angle": 98.08459999999693,
+      "power": 0.4303726522730302,
+      "actor": "p-archer",
+      "grounded": true,
+      "x": 5113.122049504244,
+      "y": 2948.7400444131945,
+      "prediction": {
+        "x": 4842.078576026913,
+        "y": 3131.642302022504,
+        "unit": "a6-c08-expansion-node",
+        "terrain": "local-lower-08-body"
+      },
+      "shot": 31,
+      "gravity": {
+        "x": 2.114076741567112,
+        "y": 334.88295287174174
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "A02",
+      "actor": "p-archer",
+      "target": "a6-c08-expansion-node",
+      "terrain": null,
+      "x": 4922.200133358334,
+      "y": 2961.909090909091,
+      "normal": {
+        "x": 0,
+        "y": -1
+      },
+      "radius": 3,
+      "shot": 31,
+      "before": 1800,
+      "after": 1599,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "impact",
+      "skill": "A02",
+      "actor": "p-archer",
+      "target": null,
+      "terrain": "local-lower-08-body",
+      "x": 4842.078576026913,
+      "y": 3131.642302022504,
+      "normal": {
+        "x": -0.7507135169227555,
+        "y": -0.6606278948920248
+      },
+      "radius": 3,
+      "shot": 31,
+      "before": null,
+      "after": null,
+      "shieldBefore": null,
+      "shieldAfter": null
+    },
+    {
+      "event": "fire",
+      "skill": "S03",
+      "angle": 224.45540000000335,
+      "power": 1,
+      "actor": "p-knight",
+      "grounded": true,
+      "x": 4952.016985140393,
+      "y": 3011.253425976826,
+      "prediction": {
+        "x": 4952.016985140393,
+        "y": 2965.253425976826,
+        "unit": null,
+        "terrain": null
+      },
+      "shot": 32,
+      "gravity": null
+    },
+    {
+      "event": "fire",
+      "skill": "O04",
+      "angle": 160.18000000000188,
+      "power": 0.9923618410580629,
+      "actor": "p-occultist",
+      "grounded": true,
+      "x": 5358.580194715982,
+      "y": 2796.5972809445207,
+      "prediction": {
+        "x": 4930,
+        "y": 2586.702759561949,
+        "unit": "a6-c08-boss",
+        "terrain": null
+      },
+      "shot": 33,
+      "gravity": {
+        "x": 2.6378678609068507,
+        "y": 26.55073113624607
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "O04",
+      "actor": "p-occultist",
+      "target": "a6-c08-boss",
+      "terrain": null,
+      "x": 4930,
+      "y": 2586.702759561949,
+      "normal": {
+        "x": 1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 33,
+      "before": 2489,
+      "after": 1532,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "HSH02",
+      "angle": 96.0450679010246,
+      "power": 0.3454375185109675,
+      "actor": "a6-58-opening-4",
+      "grounded": true,
+      "x": 5199.22571611375,
+      "y": 2926.59910157075,
+      "prediction": {
+        "x": 4994.259337854057,
+        "y": 2913.8753265269424,
+        "unit": null,
+        "terrain": null
+      },
+      "shot": 34,
+      "gravity": {
+        "x": 3.089309035222838,
+        "y": 157.1720629823139
+      }
+    },
+    {
+      "event": "fire",
+      "skill": "HBM01",
+      "angle": 180,
+      "power": 0.5,
+      "actor": "a6-58-entrance-columns-2",
+      "grounded": true,
+      "x": 5010.953469251901,
+      "y": 2975.011965049511,
+      "prediction": {
+        "x": 4980.016985140393,
+        "y": 2919.575334472831,
+        "unit": "p-knight",
+        "terrain": null
+      },
+      "shot": 35,
+      "gravity": null
+    },
+    {
+      "event": "fire",
+      "skill": "HSH01",
+      "angle": 208.7939523198844,
+      "power": 0.6358008565412554,
+      "actor": "a6-58-folded-rear-2",
+      "grounded": true,
+      "x": 5150,
+      "y": 2939.2571428571428,
+      "prediction": {
+        "x": 5114.945698992306,
+        "y": 2872.2135898794136,
+        "unit": "p-mage",
+        "terrain": null
+      },
+      "shot": 36,
+      "gravity": {
+        "x": -21.681797016826035,
+        "y": 1.336593947271755
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HSH01",
+      "actor": "a6-58-folded-rear-2",
+      "target": "p-mage",
+      "terrain": null,
+      "x": 5114.945698992306,
+      "y": 2872.2135898794136,
+      "normal": {
+        "x": 0,
+        "y": -1
+      },
+      "radius": 6,
+      "shot": 36,
+      "before": 1049.9,
+      "after": 1018.9000000000001,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "M01",
+      "angle": 107.52919999999898,
+      "power": 0.48761782240210244,
+      "actor": "p-mage",
+      "grounded": true,
+      "x": 5108.87326002957,
+      "y": 2949.8325902781107,
+      "prediction": {
+        "x": 4655.089445712052,
+        "y": 3148.8990657260993,
+        "unit": null,
+        "terrain": "local-lower-08-body"
+      },
+      "shot": 37,
+      "gravity": {
+        "x": 10.716910568559197,
+        "y": 353.9293940335931
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "M01",
+      "actor": "p-mage",
+      "target": null,
+      "terrain": "local-lower-08-body",
+      "x": 4655.089445712052,
+      "y": 3148.8990657260993,
+      "normal": {
+        "x": 0.19611613513818404,
+        "y": -0.9805806756909201
+      },
+      "radius": 6,
+      "shot": 37,
+      "before": null,
+      "after": null,
+      "shieldBefore": null,
+      "shieldAfter": null
+    },
+    {
+      "event": "fire",
+      "skill": "A01",
+      "angle": 92.9137999999991,
+      "power": 0.9972879762345976,
+      "actor": "p-archer",
+      "grounded": true,
+      "x": 5170.033501657695,
+      "y": 2934.105671002307,
+      "prediction": {
+        "x": 5167.898495262752,
+        "y": 2834.199971011801,
+        "unit": "a6-58-folded-rear-2",
+        "terrain": null
+      },
+      "shot": 38,
+      "gravity": {
+        "x": 1.6087651387021848,
+        "y": 351.6068279809484
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "A01",
+      "actor": "p-archer",
+      "target": "a6-58-folded-rear-2",
+      "terrain": null,
+      "x": 5167.898495262752,
+      "y": 2834.199971011801,
+      "normal": {
+        "x": 0,
+        "y": -1
+      },
+      "radius": 3,
+      "shot": 38,
+      "before": 610,
+      "after": 209,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "S03",
+      "angle": 224.45540000000335,
+      "power": 0.923193675889126,
+      "actor": "p-knight",
+      "grounded": true,
+      "x": 4952.016985140393,
+      "y": 3011.253425976826,
+      "prediction": {
+        "x": 4952.016985140393,
+        "y": 2965.253425976826,
+        "unit": null,
+        "terrain": null
+      },
+      "shot": 39,
+      "gravity": null
+    },
+    {
+      "event": "fire",
+      "skill": "O01",
+      "angle": 180.03240000000258,
+      "power": 0.2739091206278899,
+      "actor": "p-occultist",
+      "grounded": true,
+      "x": 5372.398962563642,
+      "y": 2781.0511671159024,
+      "prediction": {
+        "x": 4829.366382984512,
+        "y": 2887.025197459776,
+        "unit": null,
+        "terrain": null
+      },
+      "shot": 40,
+      "gravity": {
+        "x": 0.6284158995246185,
+        "y": 57.59964463914289
+      }
+    },
+    {
+      "event": "fire",
+      "skill": "HSH01",
+      "angle": 211.95636101250176,
+      "power": 0.617938838498559,
+      "actor": "a6-58-opening-4",
+      "grounded": true,
+      "x": 5117.307355564934,
+      "y": 2947.6638228547313,
+      "prediction": {
+        "x": 5083.369297165897,
+        "y": 2882.524750848174,
+        "unit": "p-mage",
+        "terrain": null
+      },
+      "shot": 41,
+      "gravity": {
+        "x": -23.106947932035723,
+        "y": -0.023798463939456838
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HSH01",
+      "actor": "a6-58-opening-4",
+      "target": "p-mage",
+      "terrain": null,
+      "x": 5083.369297165897,
+      "y": 2882.524750848174,
+      "normal": {
+        "x": 0,
+        "y": -1
+      },
+      "radius": 6,
+      "shot": 41,
+      "before": 1018.9000000000001,
+      "after": 987.9000000000001,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "HBM01",
+      "angle": 180,
+      "power": 0.5,
+      "actor": "a6-58-entrance-columns-2",
+      "grounded": true,
+      "x": 5008.612944664792,
+      "y": 2975.6138142290533,
+      "prediction": {
+        "x": 4980.016985140393,
+        "y": 2920.174498053601,
+        "unit": "p-knight",
+        "terrain": null
+      },
+      "shot": 42,
+      "gravity": null
+    },
+    {
+      "event": "fire",
+      "skill": "HSH01",
+      "angle": 11.030481972848065,
+      "power": 0.3610734382020309,
+      "actor": "a6-58-folded-rear-2",
+      "grounded": true,
+      "x": 5154.97427268775,
+      "y": 2937.9780441660073,
+      "prediction": {
+        "x": 5194.235293971377,
+        "y": 2844.014795981962,
+        "unit": "p-archer",
+        "terrain": null
+      },
+      "shot": 43,
+      "gravity": {
+        "x": -25.776806063544516,
+        "y": 69.02473669167077
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HSH01",
+      "actor": "a6-58-folded-rear-2",
+      "target": "p-archer",
+      "terrain": null,
+      "x": 5194.235293971377,
+      "y": 2844.014795981962,
+      "normal": {
+        "x": 0,
+        "y": -1
+      },
+      "radius": 6,
+      "shot": 43,
+      "before": 1056,
+      "after": 1056,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "M01",
+      "angle": 93.06459999999973,
+      "power": 1,
+      "actor": "p-mage",
+      "grounded": true,
+      "x": 5395.789051610831,
+      "y": 2771.929683870277,
+      "prediction": {
+        "x": 5393.436729759384,
+        "y": 2670.032608615918,
+        "unit": "a6-c08-grot-1",
+        "terrain": null
+      },
+      "shot": 44,
+      "gravity": {
+        "x": 3.9011346931689417,
+        "y": 392.8660699579724
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "M01",
+      "actor": "p-mage",
+      "target": "a6-c08-grot-1",
+      "terrain": null,
+      "x": 5393.436729759384,
+      "y": 2670.032608615918,
+      "normal": {
+        "x": 0,
+        "y": -1
+      },
+      "radius": 6,
+      "shot": 44,
+      "before": 1693,
+      "after": 1128,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "A14",
+      "angle": 113.57839999999834,
+      "power": 0.5502726763375886,
+      "actor": "p-archer",
+      "grounded": true,
+      "x": 5393.968647979849,
+      "y": 2771.3228826599498,
+      "prediction": {
+        "x": 4646.284914437341,
+        "y": 2649.006700331539,
+        "unit": "a6-c08-boss",
+        "terrain": null
+      },
+      "shot": 45,
+      "gravity": {
+        "x": 4.1783410146078275,
+        "y": 329.57368102368395
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "A14",
+      "actor": "p-archer",
+      "target": "a6-c08-boss",
+      "terrain": null,
+      "x": 4646.284914437341,
+      "y": 2649.006700331539,
+      "normal": {
+        "x": 0,
+        "y": -1
+      },
+      "radius": 3,
+      "shot": 45,
+      "before": 286,
+      "after": 0,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "S03",
+      "angle": 224.45540000000335,
+      "power": 0.9092083568609345,
+      "actor": "p-knight",
+      "grounded": true,
+      "x": 4952.016985140393,
+      "y": 3011.253425976826,
+      "prediction": {
+        "x": 4952.016985140393,
+        "y": 2965.253425976826,
+        "unit": null,
+        "terrain": null
+      },
+      "shot": 46,
+      "gravity": null
+    },
+    {
+      "event": "fire",
+      "skill": "O06",
+      "angle": 180.03240000000258,
+      "power": 0.5921382292871886,
+      "actor": "p-occultist",
+      "grounded": true,
+      "x": 5397.261113414601,
+      "y": 2772.4203711382,
+      "prediction": {
+        "x": 4615.381771367402,
+        "y": 3140.957530857169,
+        "unit": null,
+        "terrain": "local-lower-08-body"
+      },
+      "shot": 47,
+      "gravity": {
+        "x": 35.53199431887426,
+        "y": 319.97990712843915
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "O06",
+      "actor": "p-occultist",
+      "target": null,
+      "terrain": "local-lower-08-body",
+      "x": 4615.381771367402,
+      "y": 3140.957530857169,
+      "normal": {
+        "x": 0.19611613513818404,
+        "y": -0.9805806756909201
+      },
+      "radius": 6,
+      "shot": 47,
+      "before": null,
+      "after": null,
+      "shieldBefore": null,
+      "shieldAfter": null
+    },
+    {
+      "event": "fire",
+      "skill": "HBM01",
+      "angle": 180,
+      "power": 0.5,
+      "actor": "a6-58-entrance-columns-2",
+      "grounded": true,
+      "x": 5006.272420077683,
+      "y": 2976.215663408596,
+      "prediction": {
+        "x": 4978.272420077683,
+        "y": 2920.775663408596,
+        "unit": "p-knight",
+        "terrain": null
+      },
+      "shot": 48,
+      "gravity": null
+    },
+    {
+      "event": "fire",
+      "skill": "HSH01",
+      "angle": 5.829703494596075,
+      "power": 0.8108921369046729,
+      "actor": "a6-58-opening-2",
+      "grounded": true,
+      "x": 4048.532667283289,
+      "y": 3076.5448985775342,
+      "prediction": {
+        "x": 4924.016985140393,
+        "y": 2947.9774938581536,
+        "unit": "p-knight",
+        "terrain": null
+      },
+      "shot": 49,
+      "gravity": {
+        "x": -39.70061587278336,
+        "y": 68.05343669946046
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HSH01",
+      "actor": "a6-58-opening-2",
+      "target": "p-knight",
+      "terrain": null,
+      "x": 4924.016985140393,
+      "y": 2947.9774938581536,
+      "normal": {
+        "x": -1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 49,
+      "before": 3150.3999999999996,
+      "after": 3132.3999999999996,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "HSH02",
+      "angle": 8.570815084502101,
+      "power": 0.3601832251166925,
+      "actor": "a6-58-opening-4",
+      "grounded": true,
+      "x": 5328.315936684705,
+      "y": 2830.6445712297073,
+      "prediction": {
+        "x": 5367.869233565451,
+        "y": 2738.373304093976,
+        "unit": "p-archer",
+        "terrain": null
+      },
+      "shot": 50,
+      "gravity": {
+        "x": -29.51073719059707,
+        "y": 132.44770478415288
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HSH02",
+      "actor": "a6-58-opening-4",
+      "target": "p-archer",
+      "terrain": null,
+      "x": 5367.869233565451,
+      "y": 2738.373304093976,
+      "normal": {
+        "x": 0,
+        "y": -1
+      },
+      "radius": 6,
+      "shot": 50,
+      "before": 1056,
+      "after": 990,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "HSH02",
+      "angle": -45.850239563542424,
+      "power": 0.21095715737409063,
+      "actor": "a6-58-folded-rear-2",
+      "grounded": true,
+      "x": 5360.390939354443,
+      "y": 2794.560193226252,
+      "prediction": {
+        "x": 5393.582437457944,
+        "y": 2742.477035460351,
+        "unit": "p-mage",
+        "terrain": null
+      },
+      "shot": 51,
+      "gravity": {
+        "x": -17.200686073164185,
+        "y": 110.28108720413199
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HSH02",
+      "actor": "a6-58-folded-rear-2",
+      "target": "p-mage",
+      "terrain": null,
+      "x": 5393.582437457944,
+      "y": 2742.477035460351,
+      "normal": {
+        "x": -1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 51,
+      "before": 896.3000000000001,
+      "after": 839.3000000000001,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "A02",
+      "angle": 129.9030000000012,
+      "power": 0.2593636513706405,
+      "actor": "p-archer",
+      "grounded": true,
+      "x": 5191.08516991019,
+      "y": 2928.6923848802367,
+      "prediction": {
+        "x": 4795.777093320087,
+        "y": 3180.0960069558614,
+        "unit": "a6-c08-expansion-node",
+        "terrain": "local-lower-08-body"
+      },
+      "shot": 52,
+      "gravity": {
+        "x": 5.811404918081076,
+        "y": 326.9496228177051
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "A02",
+      "actor": "p-archer",
+      "target": "a6-c08-expansion-node",
+      "terrain": null,
+      "x": 4878.288045087106,
+      "y": 2961.909090909091,
+      "normal": {
+        "x": 0,
+        "y": -1
+      },
+      "radius": 3,
+      "shot": 52,
+      "before": 835,
+      "after": 658,
+      "shieldBefore": 18,
+      "shieldAfter": 0
+    },
+    {
+      "event": "impact",
+      "skill": "A02",
+      "actor": "p-archer",
+      "target": null,
+      "terrain": "local-lower-08-body",
+      "x": 4795.777093320087,
+      "y": 3180.0960069558614,
+      "normal": {
+        "x": 0.19611613513818404,
+        "y": -0.9805806756909201
+      },
+      "radius": 3,
+      "shot": 52,
+      "before": null,
+      "after": null,
+      "shieldBefore": null,
+      "shieldAfter": null
+    },
+    {
+      "event": "fire",
+      "skill": "S00",
+      "angle": 224.45540000000335,
+      "power": 0.9117560700169395,
+      "actor": "p-knight",
+      "grounded": true,
+      "x": 4955.2614402241425,
+      "y": 3007.566545199838,
+      "prediction": {
+        "x": 4955.2614402241425,
+        "y": 2961.566545199838,
+        "unit": null,
+        "terrain": null
+      },
+      "shot": 53,
+      "gravity": null
+    },
+    {
+      "event": "fire",
+      "skill": "O06",
+      "angle": 180.03240000000258,
+      "power": 0.5327444251337624,
+      "actor": "p-occultist",
+      "grounded": true,
+      "x": 5424.933355774255,
+      "y": 2755.083263205454,
+      "prediction": {
+        "x": 4857.327132940622,
+        "y": 2958.909090909091,
+        "unit": "a6-c08-expansion-node",
+        "terrain": null
+      },
+      "shot": 54,
+      "gravity": {
+        "x": 31.967994888713616,
+        "y": 319.98192252285105
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "O06",
+      "actor": "p-occultist",
+      "target": "a6-c08-expansion-node",
+      "terrain": null,
+      "x": 4857.327132940622,
+      "y": 2958.909090909091,
+      "normal": {
+        "x": 0,
+        "y": -1
+      },
+      "radius": 6,
+      "shot": 54,
+      "before": 509,
+      "after": 56,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "HBM01",
+      "angle": 180,
+      "power": 0.5,
+      "actor": "a6-58-entrance-columns-2",
+      "grounded": true,
+      "x": 5006.025033146179,
+      "y": 2976.2792771909826,
+      "prediction": {
+        "x": 4978.025033146179,
+        "y": 2920.8392771909826,
+        "unit": "p-knight",
+        "terrain": null
+      },
+      "shot": 55,
+      "gravity": null
+    },
+    {
+      "event": "fire",
+      "skill": "HSH01",
+      "angle": 7.768963309807092,
+      "power": 0.8071753385018572,
+      "actor": "a6-58-opening-2",
+      "grounded": true,
+      "x": 4094.405995887759,
+      "y": 3078.5393911255546,
+      "prediction": {
+        "x": 4927.2614402241425,
+        "y": 2919.90923437348,
+        "unit": "p-knight",
+        "terrain": null
+      },
+      "shot": 56,
+      "gravity": {
+        "x": -39.42899719532536,
+        "y": 69.37934321786287
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HSH01",
+      "actor": "a6-58-opening-2",
+      "target": "p-knight",
+      "terrain": null,
+      "x": 4927.2614402241425,
+      "y": 2919.90923437348,
+      "normal": {
+        "x": -1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 56,
+      "before": 3078.3999999999996,
+      "after": 3078.3999999999996,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "HSH01",
+      "angle": 9.334064355003648,
+      "power": 0.3599013751882594,
+      "actor": "a6-58-folded-rear-2",
+      "grounded": true,
+      "x": 5393.581482439,
+      "y": 2771.1938274796667,
+      "prediction": {
+        "x": 5433.051860952884,
+        "y": 2678.396206962814,
+        "unit": "p-occultist",
+        "terrain": null
+      },
+      "shot": 57,
+      "gravity": {
+        "x": -25.879176267809388,
+        "y": 68.25367785249952
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HSH01",
+      "actor": "a6-58-folded-rear-2",
+      "target": "p-occultist",
+      "terrain": null,
+      "x": 5433.051860952884,
+      "y": 2678.396206962814,
+      "normal": {
+        "x": 0,
+        "y": -1
+      },
+      "radius": 6,
+      "shot": 57,
+      "before": 1467.3999999999999,
+      "after": 1437.3999999999999,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "A02",
+      "angle": 165.0321999999997,
+      "power": 0.5312959970683967,
+      "actor": "p-archer",
+      "grounded": true,
+      "x": 5191.08516991019,
+      "y": 2928.6923848802367,
+      "prediction": {
+        "x": 4011.972914112533,
+        "y": 3203.1102281464973,
+        "unit": "a6-58-opening-3",
+        "terrain": null
+      },
+      "shot": 58,
+      "gravity": {
+        "x": 17.927837926710673,
+        "y": 324.79295256644093
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "A02",
+      "actor": "p-archer",
+      "target": null,
+      "terrain": "m58-apse-pier",
+      "x": 4417.95183384435,
+      "y": 2982.943199133754,
+      "normal": {
+        "x": 0.9993190393883691,
+        "y": 0.036897933762032084
+      },
+      "radius": 3,
+      "shot": 58,
+      "before": null,
+      "after": null,
+      "shieldBefore": null,
+      "shieldAfter": null
+    },
+    {
+      "event": "impact",
+      "skill": "A02",
+      "actor": "p-archer",
+      "target": null,
+      "terrain": "m58-upper-deck",
+      "x": 4203,
+      "y": 3099.0015278433534,
+      "normal": {
+        "x": 1,
+        "y": -0.0
+      },
+      "radius": 3,
+      "shot": 58,
+      "before": null,
+      "after": null,
+      "shieldBefore": null,
+      "shieldAfter": null
+    },
+    {
+      "event": "impact",
+      "skill": "A02",
+      "actor": "p-archer",
+      "target": "a6-58-opening-3",
+      "terrain": null,
+      "x": 4011.972914112533,
+      "y": 3203.1102281464973,
+      "normal": {
+        "x": 0,
+        "y": -1
+      },
+      "radius": 3,
+      "shot": 58,
+      "before": 868,
+      "after": 198,
+      "shieldBefore": 69,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "S00",
+      "angle": 224.45540000000335,
+      "power": 0.9142495765102441,
+      "actor": "p-knight",
+      "grounded": true,
+      "x": 4955.2614402241425,
+      "y": 3007.566545199838,
+      "prediction": {
+        "x": 4955.2614402241425,
+        "y": 2961.566545199838,
+        "unit": null,
+        "terrain": null
+      },
+      "shot": 59,
+      "gravity": null
+    }
+  ],
+  "phases": [
+    {
+      "round": 1,
+      "actors": [
+        {
+          "id": "a6-c08-boss",
+          "x": 4480,
+          "y": 3194.769230769231,
+          "hp": 10500,
+          "dead": false
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "actors": [
+        {
+          "id": "a6-c08-boss",
+          "x": 4480,
+          "y": 3194.769230769231,
+          "hp": 9240,
+          "dead": false
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "actors": [
+        {
+          "id": "a6-c08-boss",
+          "x": 4480,
+          "y": 3194.769230769231,
+          "hp": 7848,
+          "dead": false
+        }
+      ]
+    },
+    {
+      "round": 4,
+      "actors": [
+        {
+          "id": "a6-c08-boss",
+          "x": 5060,
+          "y": 2742.4,
+          "hp": 6283,
+          "dead": false
+        }
+      ]
+    },
+    {
+      "round": 5,
+      "actors": [
+        {
+          "id": "a6-c08-boss",
+          "x": 5060,
+          "y": 2962.4,
+          "hp": 5289,
+          "dead": false
+        }
+      ]
+    },
+    {
+      "round": 6,
+      "actors": [
+        {
+          "id": "a6-c08-boss",
+          "x": 4890,
+          "y": 2761.7272727272725,
+          "hp": 2761,
+          "dead": false
+        },
+        {
+          "id": "a6-c08-expansion-node",
+          "x": 4896,
+          "y": 3074.909090909091,
+          "hp": 1800,
+          "dead": false
+        }
+      ]
+    },
+    {
+      "round": 7,
+      "actors": [
+        {
+          "id": "a6-c08-boss",
+          "x": 4890,
+          "y": 3081.7272727272725,
+          "hp": 1532,
+          "dead": false
+        },
+        {
+          "id": "a6-c08-expansion-node",
+          "x": 4896,
+          "y": 3074.909090909091,
+          "hp": 1340,
+          "dead": false
+        }
+      ]
+    },
+    {
+      "round": 8,
+      "actors": [
+        {
+          "id": "a6-c08-boss",
+          "x": 4650.033501657695,
+          "y": 2834.006700331539,
+          "hp": 286,
+          "dead": false
+        },
+        {
+          "id": "a6-c08-expansion-node",
+          "x": 4896,
+          "y": 3074.909090909091,
+          "hp": 1085,
+          "dead": false
+        }
+      ]
+    },
+    {
+      "round": 9,
+      "actors": [
+        {
+          "id": "a6-c08-boss",
+          "x": 4650.033501657695,
+          "y": 2834.006700331539,
+          "hp": 0,
+          "dead": true
+        },
+        {
+          "id": "a6-c08-expansion-node",
+          "x": 4896,
+          "y": 3074.909090909091,
+          "hp": 835,
+          "dead": false
+        }
+      ]
+    },
+    {
+      "round": 10,
+      "actors": [
+        {
+          "id": "a6-c08-boss",
+          "x": 4650.033501657695,
+          "y": 2834.006700331539,
+          "hp": 0,
+          "dead": true
+        },
+        {
+          "id": "a6-c08-expansion-node",
+          "x": 4896,
+          "y": 3074.909090909091,
+          "hp": 56,
+          "dead": false
+        }
+      ]
+    }
+  ],
+  "newCold": {
+    "stage": 59,
+    "sameActors": true,
+    "courtEnemyCount": 10
+  }
+}
