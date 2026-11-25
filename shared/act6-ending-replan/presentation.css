@@ -57,11 +57,10 @@
  .he-root[data-ending-still="still_06b"] .he-copy{left:31%;width:min(47%,720px);bottom:max(7%,env(safe-area-inset-bottom))}
 }
 .he-root[data-ending-still="still_06b"] .he-fx{display:none}
-/* The uncropped vertical artwork leaves room for captions. */
+/* Keep the mobile illustration full-bleed, including behind the captions. */
 @media(orientation:portrait){
- .he-root[data-ending-still="still_06b"] .he-media{bottom:clamp(110px,15%,138px)}
- .he-root[data-ending-still="still_06b"] .he-still{object-fit:contain;object-position:center top;animation:none}
- .he-root[data-ending-still="still_06b"] .he-copy{bottom:max(2.5%,calc(env(safe-area-inset-bottom) + 5px))}
+ .he-root[data-ending-still="still_06b"] .he-still{object-fit:cover;object-position:55% center;animation:none}
+ .he-root[data-ending-still="still_06b"] .he-copy{bottom:max(4%,calc(env(safe-area-inset-bottom) + 10px))}
 }
 
 /* Stage 60 stays in its actual gameplay camera; only the closing dialogue sits over it. */
