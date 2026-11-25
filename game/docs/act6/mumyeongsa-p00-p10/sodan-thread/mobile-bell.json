@@ -1,0 +1,161 @@
+{
+  "status": "PASS",
+  "errors": [],
+  "anchorBefore": {
+    "id": "p-occultist",
+    "x": 2688,
+    "y": 1700.3076923076924,
+    "grounded": true,
+    "hp": 2144.1,
+    "acted": true,
+    "move": 3132,
+    "support": "arrival-core-terrace",
+    "facing": 1,
+    "angle": 44
+  },
+  "guardAtBell": {
+    "id": "p-knight",
+    "x": 2678.6802157207085,
+    "y": 1697.4400663756026,
+    "grounded": true,
+    "hp": 3688.1,
+    "acted": false,
+    "move": 1297,
+    "support": "arrival-core-terrace",
+    "facing": 1,
+    "angle": 44
+  },
+  "anchorAfter": {
+    "id": "p-occultist",
+    "x": 2688,
+    "y": 1700.3076923076924,
+    "grounded": true,
+    "hp": 2026.1,
+    "acted": true,
+    "move": 3132,
+    "support": "arrival-core-terrace",
+    "facing": 1,
+    "angle": 44
+  },
+  "trace": [
+    {
+      "type": "fire",
+      "id": "HLN01",
+      "owner": "draft-pressure-0",
+      "angle": -22.074713347077335,
+      "power": 0.5548636415697598,
+      "shot": 1,
+      "round": 1
+    },
+    {
+      "type": "impact",
+      "id": "HLN01",
+      "owner": "draft-pressure-0",
+      "target": "p-occultist",
+      "x": 2699.8628994040714,
+      "y": 1602.3076923076924,
+      "before": 2144.1,
+      "after": 2113.1,
+      "round": 1
+    },
+    {
+      "type": "fire",
+      "id": "HBM01",
+      "owner": "draft-pressure-2",
+      "angle": 180,
+      "power": 0.5,
+      "shot": 2,
+      "round": 1
+    },
+    {
+      "type": "fire",
+      "id": "LA01",
+      "owner": "draft-pressure-3",
+      "angle": 170.66311336494982,
+      "power": 0.3501255756113678,
+      "shot": 3,
+      "round": 1
+    },
+    {
+      "type": "impact",
+      "id": "LA01",
+      "owner": "draft-pressure-3",
+      "target": "p-archer",
+      "x": 1222.5564381568117,
+      "y": 1116.219593382423,
+      "before": 1720,
+      "after": 1720,
+      "round": 1
+    },
+    {
+      "type": "fire",
+      "id": "HSH02",
+      "owner": "a6-55-opening-2",
+      "angle": 6.10071901688375,
+      "power": 0.6436989437370797,
+      "shot": 4,
+      "round": 1
+    },
+    {
+      "type": "impact",
+      "id": "HSH02",
+      "owner": "a6-55-opening-2",
+      "target": "p-occultist",
+      "x": 2660,
+      "y": 1621.12859073357,
+      "before": 2113.1,
+      "after": 2066.1,
+      "round": 1
+    },
+    {
+      "type": "fire",
+      "id": "HSH02",
+      "owner": "a6-55-opening-3",
+      "angle": 34.811771332744804,
+      "power": 0.20535025352469613,
+      "shot": 5,
+      "round": 1
+    },
+    {
+      "type": "impact",
+      "id": "HSH02",
+      "owner": "a6-55-opening-3",
+      "target": "p-occultist",
+      "x": 2660,
+      "y": 1605.8237738842724,
+      "before": 2066.1,
+      "after": 2026.1,
+      "round": 1
+    },
+    {
+      "type": "fire",
+      "id": "HBM01",
+      "owner": "a6-55-west-bank-3",
+      "angle": 0,
+      "power": 0.5,
+      "shot": 6,
+      "round": 1
+    },
+    {
+      "type": "fire",
+      "id": "HSH01",
+      "owner": "a6-55-west-bank-4",
+      "angle": 3.7824913608061754,
+      "power": 0.45909681892304033,
+      "shot": 7,
+      "round": 1
+    },
+    {
+      "type": "impact",
+      "id": "HSH01",
+      "owner": "a6-55-west-bank-4",
+      "target": "p-occultist",
+      "x": 2660,
+      "y": 1621.7820949274724,
+      "before": 2026.1,
+      "after": 2026.1,
+      "round": 1
+    }
+  ],
+  "storageUnchanged": true
+}

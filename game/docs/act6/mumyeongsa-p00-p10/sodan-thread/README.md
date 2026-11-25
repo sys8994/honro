@@ -15,10 +15,11 @@
 | 55 피격 → 좌정 복구 | 휘겸이 방어선에 닿은 뒤 실제 HLN01이 결속을 약하게 했다. 좌정 소단을 선택 키와 초상으로 바꿀 수 없었다. 소단은 (2688, 1700.3077)에서 같은 arrival-core-terrace 접촉을 유지하며 결속을 복구했다. 설오가 실제 포격으로 빈종각귀를 격파하고 휘겸이 결속을 정렬했다. 새 56 기록의 라이브와 재로드를 확인했다. [로그](bell-repair.json) · [좌정 화면](screens/seated-at-bell.webp) |
 | 55 온전한 결속 방어 | 설오의 A02와 휘겸의 S03으로 빈종각귀 체력을 480→276→11로 내렸다. 이어 발생한 빈종각귀의 HLN01 범위 피해로 자기 체력이 0이 됐다. HLN01은 결속 범위 밖 휘겸도 맞혔고 다른 적의 LA01이 소단을 맞혔다. 결속은 내내 온전했고, 수리 없이 `intactBellAlignedAfterGateDefeat`를 남겨 라이브 및 새 컨텍스트에서 56을 열었다. [로그](bell-intact.json) · [정렬 화면](screens/bell-intact.webp) |
 | 55 방어 실패 | 복구하지 않고 가만히 있으면 실제 HLN01 두 발이 돌단의 소단에게 닿고 3라운드에 패배한다. 장 소유자가 붕괴를 기록해도 전투가 계속되던 문제를 고쳤다. 이 경로에서 56 저장을 쓰지 않았다. [로그](bell-collapse.json) · [패배 화면](screens/bell-collapse.webp) |
+| 55 터치 복구 | 390×844에서 소단 초상 탭을 거부하고 휘겸이 실제 터치 조이스틱과 도약으로 종터에 닿았다. HLN01 피격 뒤 실제 복구 버튼을 탭해 결속을 복구했다. 소단 발점과 지지면, 기존 저장은 동일했다. [로그](mobile-bell.json) · [화면](screens/mobile-bell.webp) |
 | 57 네 원본 재합류 | 기존 57 저장에서 합체 전 O06 거부, 합체 후 같은 소단 원본의 O06 실제 명중(보조 적 850→0), 네 명의 D 직접 통과와 58 새 저장을 확인했다. [로그](reunion.json) · [재합류 화면](screens/sodan-reunited.webp) |
 | 56 혼 기예 → 새 57 저장 | 기존 56 저장을 열었다. 첫 하강에서 소단의 O06이 기존 적의 체력을 987→440으로 낮췄다. 가름진의 +145→−145 역류를 지나 57에 들어갔다. 소단 육신의 기력이 751→715로 한 번 차감됐고 새 컨텍스트에서 같은 장과 저장 바이트를 확인했다. [로그](deep-to-reunion.json) · [57 수신 화면](screens/deep-to-reunion.webp) |
 
-55의 실제 O13은 기예가 장착된 기록으로 추가 검수가 필요하다. 외부에서는 O06 사용을 막으므로 무피격 결속 판에 O06 차단을 적용하지 않았다. 모바일 좌정·복구는 별도 검수한다.
+55의 실제 O13은 기예가 장착된 기록으로 추가 검수가 필요하다. 외부에서는 O06 사용을 막으므로 온전한 결속 판에 O06 차단을 적용하지 않았다.
 
 ```bash
 npm run build
@@ -28,4 +29,5 @@ python game/docs/act6/mumyeongsa-p00-p10/baseline/relay_live_chain.py --build "$
 python game/docs/act6/mumyeongsa-p00-p10/baseline/relay_live_chain.py --build "$PWD" --out /tmp/honro-sodan-collapse --bell-only --bell-case collapse
 python game/docs/act6/mumyeongsa-p00-p10/baseline/hall_passage.py --build "$PWD" --out /tmp/honro-sodan-reunion --case live-d --sodan
 python game/docs/act6/mumyeongsa-p00-p10/baseline/relay_live_chain.py --build "$PWD" --out /tmp/honro-sodan-deep --deep-thread
+python game/docs/act6/mumyeongsa-p00-p10/baseline/mobile_bell.py --build "$PWD" --out /tmp/honro-sodan-mobile
 ```
