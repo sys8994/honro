@@ -15,7 +15,7 @@ from cold_resume import saved_context, seeded_context, storage_hash
 from exterior_audit import capture
 from legacy54_live import resume
 from mobile_seams import REPLAY
-from native_b import finish_wall
+from native_b import finish_wall, run as play_b
 
 GEOMETRY="""() => {
  const e=HonroApp.engine,b=e.b,C=HONRO_CORE;
@@ -110,6 +110,38 @@ def measure_bulk(page,out,name):
     return rows
 
 
+def survey_page(page,args,stage,name):
+    before=storage_hash(base.saved_bytes(page))
+    geometry=page.evaluate(GEOMETRY)
+    p=geometry['play']
+    l,t,r,b=(p[k] for k in ('left','top','right','bottom'))
+    width,height=r-l,b-t
+    canvas=page.locator('#battlecanvas').bounding_box()
+    full=min(canvas['width']/width,canvas['height']/height)*.9
+    middle=((l+r)/2,(t+b)/2)
+    corners={'northwest':(l,t),'north':(middle[0],t),'northeast':(r,t),
+             'west':(l,middle[1]),'center':middle,'east':(r,middle[1]),
+             'southwest':(l,b),'south':(middle[0],b),'southeast':(r,b)}
+    views={label:capture(page,args.out,f'{name}-{label}',{'x':x,'y':y,'scale':.62}) for label,(x,y) in corners.items()}
+    overview=capture(page,args.out,f'{name}-overview',{'x':middle[0],'y':middle[1],'scale':full})
+    o=geometry['world']
+    outer_center=((o['left']+o['right'])/2,(o['top']+o['bottom'])/2)
+    outer_scale=min(canvas['width']/(o['right']-o['left']),canvas['height']/(o['bottom']-o['top']))*.94
+    outer=capture(page,args.out,f'{name}-world',{'x':outer_center[0],'y':outer_center[1],'scale':outer_scale})
+    for label,(x,y) in corners.items():
+        view=views[label]
+        assert view['left']['x']<=x<=view['right']['x'] and view['left']['y']<=y<=view['right']['y'],(name,label,view)
+    for kind in ('plain','outline'):
+        sheet(args.out,name,kind,corners)
+        for span in ('overview','world'):
+            with Image.open(args.out/f'{name}-{span}-{kind}.png') as img:
+                img.save(args.out/f'{name}-{span}-{kind}.webp',quality=89)
+    assert before==storage_hash(base.saved_bytes(page))
+    return {'stage':stage,'chart':name,'viewport':page.viewport_size,'bounds':geometry,'views':views,
+            'overview':overview,'worldView':outer,'bulk':measure_bulk(page,args.out,name),
+            'unchangedStorage':True,'status':'CAPTURED'}
+
+
 def survey(browser,args,stage,name,source,enter=None):
     with scene_context(browser,stage,source) as context:
         page=context.new_page()
@@ -121,35 +153,9 @@ def survey(browser,args,stage,name,source,enter=None):
             enter(page)
         page.locator('#turn-banner').wait_for(state='hidden',timeout=4500)
         page.wait_for_function('!HonroReinforcementCamera.active(HonroApp.scene)',timeout=6000)
-        geometry=page.evaluate(GEOMETRY)
-        p=geometry['play']
-        l,t,r,b=(p[k] for k in ('left','top','right','bottom'))
-        width,height=r-l,b-t
-        canvas=page.locator('#battlecanvas').bounding_box()
-        full=min(canvas['width']/width,canvas['height']/height)*.9
-        middle=((l+r)/2,(t+b)/2)
-        corners={'northwest':(l,t),'north':(middle[0],t),'northeast':(r,t),
-                 'west':(l,middle[1]),'center':middle,'east':(r,middle[1]),
-                 'southwest':(l,b),'south':(middle[0],b),'southeast':(r,b)}
-        views={label:capture(page,args.out,f'{name}-{label}',{'x':x,'y':y,'scale':.62}) for label,(x,y) in corners.items()}
-        overview=capture(page,args.out,f'{name}-overview',{'x':middle[0],'y':middle[1],'scale':full})
-        o=geometry['world']
-        outer_center=((o['left']+o['right'])/2,(o['top']+o['bottom'])/2)
-        outer_scale=min(canvas['width']/(o['right']-o['left']),canvas['height']/(o['bottom']-o['top']))*.94
-        outer=capture(page,args.out,f'{name}-world',{'x':outer_center[0],'y':outer_center[1],'scale':outer_scale})
-        for label,(x,y) in corners.items():
-            view=views[label]
-            assert view['left']['x']<=x<=view['right']['x'] and view['left']['y']<=y<=view['right']['y'],(name,label,view)
-        for kind in ('plain','outline'):
-            sheet(args.out,name,kind,corners)
-            for span in ('overview','world'):
-                with Image.open(args.out/f'{name}-{span}-{kind}.png') as img:
-                    img.save(args.out/f'{name}-{span}-{kind}.webp',quality=89)
+        result=survey_page(page,args,stage,name)
         assert before==storage_hash(base.saved_bytes(page)) and not errors,errors
-        return {'stage':stage,'chart':name,'viewport':page.viewport_size,'bounds':geometry,'views':views,
-                'overview':overview,'worldView':outer,'bulk':measure_bulk(page,args.out,name),
-                'unchangedStorage':True,'status':'CAPTURED'}
-
+        return result
 
 def seam_views(browser,args):
     assert args.b_proof and args.d_proof and args.r_proof
@@ -181,6 +187,7 @@ if __name__=='__main__':
     p.add_argument('--d-proof',type=Path)
     p.add_argument('--r-proof',type=Path)
     p.add_argument('--seams',action='store_true')
+    p.add_argument('--charts',action='store_true')
     p.add_argument('--only',nargs='+')
     args=p.parse_args()
     base.ROOT=args.build.resolve()
@@ -196,10 +203,20 @@ if __name__=='__main__':
                 seam_views(browser,args)
                 raise SystemExit(0)
             results=[]
-            for stage,name,proof,enter in cases:
-                if args.only and name not in args.only:
-                    continue
-                data=survey(browser,args,stage,name,proof,enter)
-                results.append(data)
-                print(name,'CAPTURED',len(data['views']),'edges and center',flush=True)
+            if args.charts:
+                def save_chart(page,name):
+                    data=survey_page(page,args,54,name)
+                    results.append(data)
+                    print(name,'CAPTURED',len(data['views']),'edges and center',flush=True)
+                native=play_b(browser,args.out,60,spirit=True,on_chart=save_chart)
+                (args.out/'charts-native.json').write_text(json.dumps(native,ensure_ascii=False,indent=2)+'\n')
+                print('Native path after capture',native['status'],native.get('error',''),flush=True)
+                assert len(results)==3, (len(results),native.get('error'))
+            else:
+                for stage,name,proof,enter in cases:
+                    if args.only and name not in args.only:
+                        continue
+                    data=survey(browser,args,stage,name,proof,enter)
+                    results.append(data)
+                    print(name,'CAPTURED',len(data['views']),'edges and center',flush=True)
     (args.out/'edges.json').write_text(json.dumps(results,ensure_ascii=False,indent=2)+'\n')

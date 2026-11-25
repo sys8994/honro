@@ -217,7 +217,7 @@ def finish_wall(page,report,spirit=False):
     report['ordinary54']=page.evaluate(POSE)
     assert report['ordinary54']['gravity']=={'x':0,'y':320}
 
-def run(browser,out,hz,forks=False,mobile=False,spirit=False,spirit53=False,session=None,on_54=None,touch_c=False):
+def run(browser,out,hz,forks=False,mobile=False,spirit=False,spirit53=False,session=None,on_54=None,touch_c=False,on_chart=None):
     ctx,page=session if session else (seeded_context(browser,53,mobile=touch_c,init_script=FRAME_DRIVER.replace('HZ',str(hz))),None)
     if page is None:
         page=ctx.new_page()
@@ -303,7 +303,7 @@ def run(browser,out,hz,forks=False,mobile=False,spirit=False,spirit53=False,sess
             report['gallery']=reports
             assert all(r['reached'] for r in report['gallery'])
             assert page.locator('[data-act6-qa-lookout]').is_enabled()
-        play54(page,out,report,touch_context=ctx if touch_c else None)
+        play54(page,out,report,touch_context=ctx if touch_c else None,on_chart=on_chart)
         after=base.saved_bytes(page)
         report['ordinarySaveUnchanged']=after['honro-first-act-profile-1']==normal
         assert report['ordinarySaveUnchanged']

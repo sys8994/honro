@@ -35,3 +35,13 @@ python game/docs/act6/mumyeongsa-p00-p10/baseline/visual_edges.py --build "$PWD"
 ```
 
 B 입력은 표준 53 일반 저장에서 실제 진목과 B를 통과해 작성한 `checkpoint54`를 옮긴 JSON, D 입력은 표준 57에서 실제 네 몸이 통과한 `baseline/interior_join.py`의 `exterior.checkpoint58`을 옮긴 JSON이다. 새 코드에서도 저장 원문을 바꾸지 않고 열 수 있다.
+
+## 외곽 수정과 54의 실제 좌표계 재검수
+
+53의 평평한 상부·하부·우하단 절단을 암반의 꺾이는 외곽으로 다시 그렸다. 입장부터 네 방과 공용 B까지의 상부 보행선과 공용 마스크 네 개는 그대로다. 54 N은 x3260 이후 원래 동쪽 폐합 뒤에 세 층의 바깥 받침을 추가했다. 플레이 창은 x3200까지이며 이 받침의 충돌은 비어 있다. 54의 본편 및 월드 충돌 배열은 이전과 일치한다. 실제 쌍을 비교하면 53의 왼쪽 세로 외곽과 54 받침 안쪽의 어두운 선은 일부 남아 있다. [53 동일 카메라 전](53-world-plain.webp) · [53 후](closure-53-world-plain.webp) · [54 동일 카메라 전](54-native-N-world-plain.webp) · [54 후](closure-54-native-N-world-plain.webp) · [53 후 충돌선](closure-53-edges-outline.webp) · [54 후 충돌선](closure-54-native-N-edges-outline.webp) · [동일 카메라·마스크·면적](envelope-geometry.json)
+
+같은 53→54 플레이에서 실제 B 포격 뒤 N→L→C→L에서 각각 같은 기준의 전체 화면과 가장자리 9곳을 캡처했다. 54 L/C 영역의 렌더 지형과 충돌을 확인한 뒤 그대로 실제 M09와 찢어진 처마 C를 지나 55 새 기록으로 이어갔다. 원래 일반 저장은 바이트가 같았다. 외곽 명암 수정의 본편 반복 횟수는 기존 접촉 명암 1회와 이 외곽 1회다. [54 L](54-L-world-plain.webp) · [L 충돌](54-L-edges-outline.webp) · [54 C](54-C-world-plain.webp) · [C 충돌](54-C-edges-outline.webp) · [재진입 L](54-C-return-L-world-plain.webp) · [재진입 L 충돌](54-C-return-L-edges-outline.webp) · [라이브 M09·C·서명](chart-native-route.json) · [카메라와 벌크](chart-geometry.json)
+
+```bash
+python game/docs/act6/mumyeongsa-p00-p10/baseline/visual_edges.py --build "$PWD" --out /tmp/honro-54-live-charts --charts
+```

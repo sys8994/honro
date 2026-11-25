@@ -1,0 +1,2117 @@
+{
+  "status": "PASS",
+  "requestHz": 60,
+  "ordinarySaveUnchanged": true,
+  "N_L": {
+    "before": {
+      "id": "p-mage",
+      "x": 551.9369302352901,
+      "y": 2685.408133052405,
+      "vx": 0,
+      "vy": 0,
+      "move": 641.8078707913364,
+      "grounded": true,
+      "support": "foothill",
+      "phase": "aim",
+      "round": 4,
+      "chart": [
+        3200,
+        3000
+      ],
+      "gravity": {
+        "x": 0,
+        "y": 320
+      }
+    },
+    "after": {
+      "id": "p-mage",
+      "x": 2639.408133052405,
+      "y": 2778.925138730227,
+      "vx": 0,
+      "vy": 0,
+      "move": 641.8078707913364,
+      "grounded": true,
+      "support": "foothill",
+      "phase": "aim",
+      "round": 4,
+      "chart": [
+        3000,
+        3200
+      ],
+      "gravity": {
+        "x": 0,
+        "y": 320
+      }
+    },
+    "notice": "되돌아가는 돌턱에 뒤처진 혼이 모입니다.",
+    "changed": true
+  },
+  "L_C": {
+    "before": {
+      "id": "p-mage",
+      "x": 2360.6068243855125,
+      "y": 2930,
+      "vx": 0,
+      "vy": 0,
+      "move": 276.0743246847771,
+      "grounded": true,
+      "support": "mid-contact",
+      "phase": "aim",
+      "round": 4,
+      "chart": [
+        3000,
+        3200
+      ],
+      "gravity": {
+        "x": 0,
+        "y": 320
+      }
+    },
+    "after": {
+      "id": "p-mage",
+      "x": 2884,
+      "y": 708.96,
+      "vx": 0,
+      "vy": 0,
+      "move": 276.0743246847771,
+      "grounded": true,
+      "support": "mid-contact",
+      "phase": "aim",
+      "round": 4,
+      "chart": [
+        3200,
+        3000
+      ],
+      "gravity": {
+        "x": 0,
+        "y": 320
+      }
+    },
+    "notice": "되돌아가는 돌턱에 뒤처진 혼이 모입니다.",
+    "changed": true
+  },
+  "C_L": {
+    "before": {
+      "id": "p-mage",
+      "x": 2884,
+      "y": 708.96,
+      "vx": 0,
+      "vy": 0,
+      "move": 276.0743246847771,
+      "grounded": true,
+      "support": "mid-contact",
+      "phase": "aim",
+      "round": 4,
+      "chart": [
+        3200,
+        3000
+      ],
+      "gravity": {
+        "x": 0,
+        "y": 320
+      }
+    },
+    "after": {
+      "id": "p-mage",
+      "x": 2337.04,
+      "y": 2930,
+      "vx": 0,
+      "vy": 0,
+      "move": 276.0743246847771,
+      "grounded": true,
+      "support": "mid-contact",
+      "phase": "aim",
+      "round": 4,
+      "chart": [
+        3000,
+        3200
+      ],
+      "gravity": {
+        "x": 0,
+        "y": 320
+      }
+    },
+    "notice": "되돌아가는 돌턱에 뒤처진 혼이 모입니다.",
+    "changed": true
+  },
+  "m09": {
+    "input": {
+      "angle": 199,
+      "power": 0.62
+    },
+    "stakes": [
+      {
+        "id": 12,
+        "x": 2640,
+        "y": 569.6666666666666,
+        "side": 0,
+        "skill": "M09",
+        "rank": 1,
+        "owner": "p-mage",
+        "hp": 90,
+        "r": 13,
+        "h": 36,
+        "authoredPassage": true
+      },
+      {
+        "attackSide": 0,
+        "damageRoll": 1,
+        "id": 2,
+        "skill": "M09",
+        "owner": "p-mage",
+        "side": 0,
+        "x": 2466.0076062029634,
+        "y": 577.3693140070311,
+        "rank": 1,
+        "damage": 0,
+        "shot": 1,
+        "effectBoost": 0,
+        "expires": 7
+      }
+    ]
+  },
+  "relay": {
+    "target": {
+      "aim": 91.25,
+      "power": 0.62,
+      "x": 2310.030867117744,
+      "y": 2924,
+      "score": 7.867283220563991
+    },
+    "shot": 9,
+    "stakes": [
+      {
+        "attackSide": 0,
+        "damageRoll": 1,
+        "id": 10,
+        "skill": "M09",
+        "owner": "p-mage",
+        "side": 0,
+        "x": 2336.4378734857896,
+        "y": 2930,
+        "rank": 1,
+        "damage": 0,
+        "shot": 9,
+        "effectBoost": 0,
+        "expires": 10
+      },
+      {
+        "attackSide": 0,
+        "damageRoll": 1,
+        "id": 11,
+        "skill": "M09",
+        "owner": "p-mage",
+        "side": 0,
+        "x": 2309.4312999120357,
+        "y": 2924,
+        "rank": 1,
+        "damage": 0,
+        "shot": 9,
+        "effectBoost": 0,
+        "expires": 10
+      }
+    ]
+  },
+  "to54": {
+    "schema": "honro-act6-boundary/v2",
+    "slot": "honro-campaign-act6-boundary-v2:eq-mwuu06k6-y7h4w7qc",
+    "runId": "eq-mwuu06k6-y7h4w7qc",
+    "from": 53,
+    "to": 54,
+    "kind": "mage-with-real-M09-plus-three-parked",
+    "generation": 3,
+    "parent": "871d99430ac50050008b5db1ba22d1dbbbc8603d6ac47344b74456d77a52a407",
+    "pin": {
+      "from": 53,
+      "to": 54,
+      "build": "2987cb64aa43c76280653850cb7bb55346eeae535fe0cc25aad0495278061218",
+      "fromPacket": "8f046099facbcca3e715115256795f8252434d5cf42066606fea372cbe141830",
+      "toPacket": "db8378878dd4cbf81e8f2463d6f466c72c7bd8420331a12486919513c9a049b4",
+      "owner": "896a6a55ba2cbfc21f64478ede59e825c735b1a3d0bc1dca563771424dcc9799",
+      "play": "3913a4853a7acca4fb18851fad6ff5f36288ff36e0d86a8f0c03267176b59f57",
+      "world": "cb812ca24f46e3b1049ffbc621985dd40846e8acab1f8fedcf09bb325039e6d3"
+    },
+    "profileSHA": "624977606fd1a5b7c23ca6ca492fec8aee57a04e9b2a0a25bd358bcc64a8747b",
+    "terminal": {
+      "stage": 53,
+      "won": true,
+      "flags": {
+        "act6.innerStakeAReady": true
+      },
+      "mage": {
+        "id": "p-mage",
+        "cls": "mage",
+        "hp": 1708.9,
+        "maxHp": 2050,
+        "focus": 708,
+        "maxFocus": 724,
+        "shield": 0,
+        "level": 25,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "tune": 0.5,
+        "ranks": {
+          "M01": 1,
+          "M07": 4,
+          "M10": 3
+        },
+        "h": 92,
+        "r": 22,
+        "equipmentState": {
+          "version": 1
+        },
+        "dead": false
+      },
+      "external": {
+        "archer": {
+          "id": "p-archer",
+          "name": "설오",
+          "role": "archer",
+          "cls": "archer",
+          "side": 0,
+          "x": 4398.557742659368,
+          "y": 3878.0372858887927,
+          "vx": 0,
+          "vy": 0,
+          "hp": 1651,
+          "maxHp": 1720,
+          "r": 22,
+          "h": 92,
+          "focus": 404,
+          "maxFocus": 404,
+          "regen": 28,
+          "level": 25,
+          "attack": 11.98825,
+          "armor": 0.42800000000000005,
+          "shield": 206,
+          "bound": 0,
+          "mark": 0,
+          "breaks": 0,
+          "acted": true,
+          "moveLeft": 1036.1013760212497,
+          "maxMove": 2921,
+          "walkSpeed": 425,
+          "angle": 52.91371749235654,
+          "lastPower": 0.54,
+          "loadout": [
+            "A01",
+            "A14",
+            "A02",
+            "A05"
+          ],
+          "tune": 0.5,
+          "facing": 1,
+          "hurt": 0,
+          "anim": 0,
+          "airborne": false,
+          "fixed": false,
+          "spawnX": 1200,
+          "spawnY": 1224.5833333333333,
+          "intent": "",
+          "dead": false,
+          "ranks": {
+            "A01": 1,
+            "A14": 4,
+            "A02": 4,
+            "A05": 4
+          },
+          "group": 0,
+          "awake": true,
+          "lastAct": 0,
+          "aggroUntil": 0,
+          "xpBudget": 0,
+          "xpGranted": 0,
+          "killRewarded": false,
+          "damageBy": {},
+          "honroAlly": false,
+          "honroCivilian": false,
+          "critChance": 0.28400000000000003,
+          "critMultiplier": 3.085,
+          "cooldowns": {},
+          "moving": 0,
+          "eaterSwallow": 0,
+          "landing": 0.26,
+          "impactCooldown": 0,
+          "salheunFlash": 0,
+          "walkPhase": 154.14725244717326,
+          "honroShieldSources": {
+            "": 0,
+            "p-archer": 206
+          },
+          "jumping": false,
+          "equipmentState": {
+            "version": 1,
+            "jumpCycle": 6
+          },
+          "shieldUntil": 6,
+          "jucheon": 0,
+          "jucheonReady": false
+        },
+        "knight": {
+          "id": "p-knight",
+          "name": "휘겸",
+          "role": "knight",
+          "cls": "knight",
+          "side": 0,
+          "x": 4400.808951849008,
+          "y": 3876.050924839111,
+          "vx": 0,
+          "vy": 0,
+          "hp": 3688.1,
+          "maxHp": 3846,
+          "r": 22,
+          "h": 92,
+          "focus": 477,
+          "maxFocus": 477,
+          "regen": 28,
+          "level": 25,
+          "attack": 9.98515,
+          "armor": 0.7,
+          "shield": 0,
+          "bound": 0,
+          "mark": 0,
+          "breaks": 0,
+          "acted": false,
+          "moveLeft": 4081,
+          "maxMove": 4081,
+          "walkSpeed": 420,
+          "angle": 44,
+          "lastPower": 0.55,
+          "loadout": [
+            "S00",
+            "S01",
+            "S03"
+          ],
+          "tune": 0.5,
+          "facing": 1,
+          "hurt": 0,
+          "anim": 0,
+          "airborne": false,
+          "fixed": false,
+          "spawnX": 1080,
+          "spawnY": 1166.111111111111,
+          "intent": "",
+          "dead": false,
+          "ranks": {
+            "S00": 1,
+            "S01": 4,
+            "S03": 4
+          },
+          "group": 0,
+          "awake": true,
+          "lastAct": 0,
+          "aggroUntil": 0,
+          "xpBudget": 0,
+          "xpGranted": 0,
+          "killRewarded": false,
+          "damageBy": {},
+          "honroAlly": false,
+          "honroCivilian": false,
+          "critChance": 0.1648,
+          "critMultiplier": 2.5330000000000004,
+          "cooldowns": {},
+          "equipmentState": {
+            "version": 1
+          },
+          "eaterSwallow": 0,
+          "moving": 0,
+          "landing": 0,
+          "impactCooldown": 0,
+          "salheunFlash": 0,
+          "honroShieldSources": {
+            "p-knight": 462
+          },
+          "walkPhase": 155.96559506897273,
+          "jumping": false,
+          "jucheon": 0,
+          "jucheonReady": false
+        },
+        "occultist": {
+          "id": "p-occultist",
+          "name": "소단",
+          "role": "occultist",
+          "cls": "occultist",
+          "side": 0,
+          "x": 4399.834064268077,
+          "y": 3876.9111197634616,
+          "vx": 0,
+          "vy": 0,
+          "hp": 2144.1,
+          "maxHp": 2304,
+          "r": 22,
+          "h": 92,
+          "focus": 751,
+          "maxFocus": 751,
+          "regen": 32,
+          "level": 25,
+          "attack": 11.170800000000002,
+          "armor": 0.487,
+          "shield": 0,
+          "bound": 0,
+          "mark": 0,
+          "breaks": 0,
+          "acted": false,
+          "moveLeft": 3132,
+          "maxMove": 3132,
+          "walkSpeed": 416,
+          "angle": 44,
+          "lastPower": 0.55,
+          "loadout": [
+            "O01",
+            "O04",
+            "O03",
+            "O06"
+          ],
+          "tune": 0.5,
+          "facing": 1,
+          "hurt": 0,
+          "anim": 0,
+          "airborne": false,
+          "fixed": false,
+          "spawnX": 1000,
+          "spawnY": 1151.888888888889,
+          "intent": "",
+          "dead": false,
+          "spiritSight": true,
+          "ranks": {
+            "O01": 1,
+            "O06": 5,
+            "O02": 4,
+            "O03": 3,
+            "O04": 2
+          },
+          "group": 0,
+          "awake": true,
+          "lastAct": 0,
+          "aggroUntil": 0,
+          "xpBudget": 0,
+          "xpGranted": 0,
+          "killRewarded": false,
+          "damageBy": {},
+          "honroAlly": false,
+          "honroCivilian": false,
+          "critChance": 0.20700000000000002,
+          "critMultiplier": 2.4855,
+          "cooldowns": {},
+          "eaterSwallow": 0,
+          "moving": 0,
+          "landing": 0,
+          "impactCooldown": 0,
+          "salheunFlash": 0,
+          "honroShieldSources": {
+            "p-occultist": 276
+          },
+          "walkPhase": 158.8154148591665,
+          "jumping": false,
+          "equipmentState": {
+            "version": 1
+          },
+          "jucheon": 0,
+          "jucheonReady": false
+        }
+      },
+      "stake": {
+        "shot": 1,
+        "x": 2466.0076062029634,
+        "y": 577.3693140070311,
+        "round": 1
+      },
+      "frames": [],
+      "settlement": false,
+      "bridge": {
+        "id": "mumyeongsa-broken-rail",
+        "clearWidth": 224,
+        "gravity": 320,
+        "from": {
+          "id": "p-mage",
+          "x": 3240,
+          "y": 457.94999999999857,
+          "vx": 0,
+          "vy": 0,
+          "grounded": true,
+          "surface": "b-inner-jamb"
+        },
+        "to": {
+          "id": "p-mage",
+          "x": 3240,
+          "y": 454.59999999999854,
+          "vx": 0,
+          "vy": 0,
+          "grounded": true,
+          "surface": "b-inner-jamb"
+        }
+      },
+      "sodanThread": {
+        "version": 1,
+        "body": "p-occultist",
+        "casts": []
+      }
+    },
+    "terminalSHA": "6efe95f3f4f07258b2297ebde4e88c8e2656e3aed2264411817bdd95141a17b7",
+    "custody": {
+      "mage": {
+        "id": "p-mage",
+        "name": "담허",
+        "role": "mage",
+        "cls": "mage",
+        "side": 0,
+        "x": 3240,
+        "y": 454.59999999999854,
+        "vx": 0,
+        "vy": 0,
+        "hp": 1708.9,
+        "maxHp": 2050,
+        "r": 22,
+        "h": 92,
+        "focus": 708,
+        "maxFocus": 724,
+        "regen": 28,
+        "level": 25,
+        "attack": 11.4116,
+        "armor": 0.472,
+        "shield": 0,
+        "bound": 0,
+        "mark": 0,
+        "breaks": 0,
+        "acted": false,
+        "moveLeft": 2515.527542114405,
+        "maxMove": 3075,
+        "walkSpeed": 402,
+        "angle": -19.326799999907593,
+        "lastPower": 0.7149424388160459,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "tune": 0.5,
+        "facing": 1,
+        "hurt": 0,
+        "anim": 0,
+        "airborne": false,
+        "fixed": false,
+        "spawnX": 425,
+        "spawnY": 2477,
+        "intent": "",
+        "dead": false,
+        "ranks": {
+          "M01": 1,
+          "M07": 4,
+          "M10": 3
+        },
+        "group": 0,
+        "awake": true,
+        "lastAct": 0,
+        "aggroUntil": 0,
+        "xpBudget": 0,
+        "xpGranted": 0,
+        "killRewarded": false,
+        "damageBy": {},
+        "honroAlly": false,
+        "honroCivilian": false,
+        "critChance": 0.174,
+        "critMultiplier": 2.51,
+        "cooldowns": {},
+        "equipmentState": {
+          "version": 1
+        },
+        "jumping": false,
+        "eaterSwallow": 0,
+        "moving": 0.07166666666666667,
+        "landing": 0,
+        "impactCooldown": 0,
+        "salheunFlash": 0,
+        "walkPhase": 120.1434075947827,
+        "gateTurn": "1:0",
+        "jucheon": 0,
+        "jucheonReady": false
+      },
+      "external": {
+        "archer": {
+          "id": "p-archer",
+          "name": "설오",
+          "role": "archer",
+          "cls": "archer",
+          "side": 0,
+          "x": 4398.557742659368,
+          "y": 3878.0372858887927,
+          "vx": 0,
+          "vy": 0,
+          "hp": 1651,
+          "maxHp": 1720,
+          "r": 22,
+          "h": 92,
+          "focus": 404,
+          "maxFocus": 404,
+          "regen": 28,
+          "level": 25,
+          "attack": 11.98825,
+          "armor": 0.42800000000000005,
+          "shield": 206,
+          "bound": 0,
+          "mark": 0,
+          "breaks": 0,
+          "acted": true,
+          "moveLeft": 1036.1013760212497,
+          "maxMove": 2921,
+          "walkSpeed": 425,
+          "angle": 52.91371749235654,
+          "lastPower": 0.54,
+          "loadout": [
+            "A01",
+            "A14",
+            "A02",
+            "A05"
+          ],
+          "tune": 0.5,
+          "facing": 1,
+          "hurt": 0,
+          "anim": 0,
+          "airborne": false,
+          "fixed": false,
+          "spawnX": 1200,
+          "spawnY": 1224.5833333333333,
+          "intent": "",
+          "dead": false,
+          "ranks": {
+            "A01": 1,
+            "A14": 4,
+            "A02": 4,
+            "A05": 4
+          },
+          "group": 0,
+          "awake": true,
+          "lastAct": 0,
+          "aggroUntil": 0,
+          "xpBudget": 0,
+          "xpGranted": 0,
+          "killRewarded": false,
+          "damageBy": {},
+          "honroAlly": false,
+          "honroCivilian": false,
+          "critChance": 0.28400000000000003,
+          "critMultiplier": 3.085,
+          "cooldowns": {},
+          "moving": 0,
+          "eaterSwallow": 0,
+          "landing": 0.26,
+          "impactCooldown": 0,
+          "salheunFlash": 0,
+          "walkPhase": 154.14725244717326,
+          "honroShieldSources": {
+            "": 0,
+            "p-archer": 206
+          },
+          "jumping": false,
+          "equipmentState": {
+            "version": 1,
+            "jumpCycle": 6
+          },
+          "shieldUntil": 6,
+          "jucheon": 0,
+          "jucheonReady": false
+        },
+        "knight": {
+          "id": "p-knight",
+          "name": "휘겸",
+          "role": "knight",
+          "cls": "knight",
+          "side": 0,
+          "x": 4400.808951849008,
+          "y": 3876.050924839111,
+          "vx": 0,
+          "vy": 0,
+          "hp": 3688.1,
+          "maxHp": 3846,
+          "r": 22,
+          "h": 92,
+          "focus": 477,
+          "maxFocus": 477,
+          "regen": 28,
+          "level": 25,
+          "attack": 9.98515,
+          "armor": 0.7,
+          "shield": 0,
+          "bound": 0,
+          "mark": 0,
+          "breaks": 0,
+          "acted": false,
+          "moveLeft": 4081,
+          "maxMove": 4081,
+          "walkSpeed": 420,
+          "angle": 44,
+          "lastPower": 0.55,
+          "loadout": [
+            "S00",
+            "S01",
+            "S03"
+          ],
+          "tune": 0.5,
+          "facing": 1,
+          "hurt": 0,
+          "anim": 0,
+          "airborne": false,
+          "fixed": false,
+          "spawnX": 1080,
+          "spawnY": 1166.111111111111,
+          "intent": "",
+          "dead": false,
+          "ranks": {
+            "S00": 1,
+            "S01": 4,
+            "S03": 4
+          },
+          "group": 0,
+          "awake": true,
+          "lastAct": 0,
+          "aggroUntil": 0,
+          "xpBudget": 0,
+          "xpGranted": 0,
+          "killRewarded": false,
+          "damageBy": {},
+          "honroAlly": false,
+          "honroCivilian": false,
+          "critChance": 0.1648,
+          "critMultiplier": 2.5330000000000004,
+          "cooldowns": {},
+          "equipmentState": {
+            "version": 1
+          },
+          "eaterSwallow": 0,
+          "moving": 0,
+          "landing": 0,
+          "impactCooldown": 0,
+          "salheunFlash": 0,
+          "honroShieldSources": {
+            "p-knight": 462
+          },
+          "walkPhase": 155.96559506897273,
+          "jumping": false,
+          "jucheon": 0,
+          "jucheonReady": false
+        },
+        "occultist": {
+          "id": "p-occultist",
+          "name": "소단",
+          "role": "occultist",
+          "cls": "occultist",
+          "side": 0,
+          "x": 4399.834064268077,
+          "y": 3876.9111197634616,
+          "vx": 0,
+          "vy": 0,
+          "hp": 2144.1,
+          "maxHp": 2304,
+          "r": 22,
+          "h": 92,
+          "focus": 751,
+          "maxFocus": 751,
+          "regen": 32,
+          "level": 25,
+          "attack": 11.170800000000002,
+          "armor": 0.487,
+          "shield": 0,
+          "bound": 0,
+          "mark": 0,
+          "breaks": 0,
+          "acted": false,
+          "moveLeft": 3132,
+          "maxMove": 3132,
+          "walkSpeed": 416,
+          "angle": 44,
+          "lastPower": 0.55,
+          "loadout": [
+            "O01",
+            "O04",
+            "O03",
+            "O06"
+          ],
+          "tune": 0.5,
+          "facing": 1,
+          "hurt": 0,
+          "anim": 0,
+          "airborne": false,
+          "fixed": false,
+          "spawnX": 1000,
+          "spawnY": 1151.888888888889,
+          "intent": "",
+          "dead": false,
+          "spiritSight": true,
+          "ranks": {
+            "O01": 1,
+            "O06": 5,
+            "O02": 4,
+            "O03": 3,
+            "O04": 2
+          },
+          "group": 0,
+          "awake": true,
+          "lastAct": 0,
+          "aggroUntil": 0,
+          "xpBudget": 0,
+          "xpGranted": 0,
+          "killRewarded": false,
+          "damageBy": {},
+          "honroAlly": false,
+          "honroCivilian": false,
+          "critChance": 0.20700000000000002,
+          "critMultiplier": 2.4855,
+          "cooldowns": {},
+          "eaterSwallow": 0,
+          "moving": 0,
+          "landing": 0,
+          "impactCooldown": 0,
+          "salheunFlash": 0,
+          "honroShieldSources": {
+            "p-occultist": 276
+          },
+          "walkPhase": 158.8154148591665,
+          "jumping": false,
+          "equipmentState": {
+            "version": 1
+          },
+          "jucheon": 0,
+          "jucheonReady": false
+        }
+      },
+      "witness": {
+        "attackSide": 0,
+        "damageRoll": 1,
+        "id": 2,
+        "skill": "M09",
+        "owner": "p-mage",
+        "side": 0,
+        "x": 2466.0076062029634,
+        "y": 577.3693140070311,
+        "rank": 1,
+        "damage": 0,
+        "shot": 1,
+        "effectBoost": 0,
+        "expires": 7
+      }
+    },
+    "custodySHA": "52a8086488170de8b2936f14bf09258578b74c9398e0bc72ddf047dd45d61e37",
+    "stageSeed": {
+      "id": 53,
+      "local": 53,
+      "region": 6,
+      "act": 6,
+      "actStage": 3,
+      "active": 1,
+      "requires": [
+        52
+      ],
+      "name": "끝없이 이어지는 법당",
+      "goal": "담허의 진목을 지정 받침에 설치하세요.",
+      "objective": "act6-native",
+      "w": 3540,
+      "h": 3000,
+      "story": [],
+      "outro": [],
+      "wind": [
+        0
+      ],
+      "victoryRule": {
+        "kind": "scripted",
+        "target": "act6-native-53"
+      }
+    },
+    "budget": {
+      "id": 53,
+      "act": 6,
+      "entryLevel": 25,
+      "exitLevel": 25,
+      "rewardCurve": "current",
+      "balanceStatus": "detached-zero-increment-horizon"
+    }
+  },
+  "to55": {
+    "schema": "honro-act6-boundary/v2",
+    "slot": "honro-campaign-act6-boundary-v2:eq-mwuu06k6-y7h4w7qc",
+    "runId": "eq-mwuu06k6-y7h4w7qc",
+    "from": 54,
+    "to": 55,
+    "kind": "three-exterior-plus-mage-with-complete-native-chart-relay",
+    "generation": 4,
+    "parent": "1e43f30d905f7ffa907d2738df7f7bea06124ababab5b432966c34ded646d175",
+    "pin": {
+      "from": 54,
+      "to": 55,
+      "build": "2987cb64aa43c76280653850cb7bb55346eeae535fe0cc25aad0495278061218",
+      "fromPacket": "db8378878dd4cbf81e8f2463d6f466c72c7bd8420331a12486919513c9a049b4",
+      "toPacket": "a512361224885cc60579d53ae09566877761f522a7c494101624883ac97dec43",
+      "owner": "cac03fd59c7da04d1d41a6cee4a4279553330ba1509cbfd9ea42cf7cbd8cf954",
+      "play": "3bed6724fbe77d55adef1022c937a0c6943830434217a9a087ff7eb1b7be865b",
+      "world": "3bed6724fbe77d55adef1022c937a0c6943830434217a9a087ff7eb1b7be865b"
+    },
+    "profileSHA": "624977606fd1a5b7c23ca6ca492fec8aee57a04e9b2a0a25bd358bcc64a8747b",
+    "terminal": {
+      "stage": 54,
+      "won": true,
+      "flags": {
+        "act6.invertedGalleryCrossed": true
+      },
+      "mage": {
+        "id": "p-mage",
+        "name": "담허",
+        "role": "mage",
+        "cls": "mage",
+        "side": 0,
+        "x": 736,
+        "y": 900,
+        "vx": 0,
+        "vy": 0,
+        "hp": 1691.9,
+        "maxHp": 2050,
+        "r": 22,
+        "h": 92,
+        "focus": 708,
+        "maxFocus": 724,
+        "regen": 28,
+        "level": 25,
+        "attack": 11.4116,
+        "armor": 0.472,
+        "shield": 0,
+        "bound": 0,
+        "mark": 0,
+        "breaks": 0,
+        "acted": false,
+        "moveLeft": 3075,
+        "maxMove": 3075,
+        "walkSpeed": 402,
+        "angle": 91.32502621156327,
+        "lastPower": 0.6068520747173403,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "tune": 0.5,
+        "facing": 1,
+        "hurt": 0,
+        "anim": 0,
+        "airborne": false,
+        "fixed": false,
+        "spawnX": 2643.271919191919,
+        "spawnY": 2871.5333333333338,
+        "intent": "",
+        "dead": false,
+        "ranks": {
+          "M01": 1,
+          "M07": 4,
+          "M10": 3
+        },
+        "group": 0,
+        "awake": true,
+        "lastAct": 0,
+        "aggroUntil": 0,
+        "xpBudget": 0,
+        "xpGranted": 0,
+        "killRewarded": false,
+        "damageBy": {},
+        "honroAlly": false,
+        "honroCivilian": false,
+        "critChance": 0.174,
+        "critMultiplier": 2.51,
+        "cooldowns": {},
+        "equipmentState": {
+          "version": 1
+        },
+        "jumping": false,
+        "eaterSwallow": 0,
+        "moving": 0.07166666666666667,
+        "landing": 0,
+        "salheunFlash": 0,
+        "honroShieldSources": {
+          "p-mage": 0
+        },
+        "walkPhase": 93.69031951761038,
+        "impactCooldown": 0,
+        "jucheon": 0,
+        "jucheonReady": false
+      },
+      "external": {
+        "archer": {
+          "id": "p-archer",
+          "name": "설오",
+          "role": "archer",
+          "cls": "archer",
+          "side": 0,
+          "x": 4398.557742659368,
+          "y": 3878.0372858887927,
+          "vx": 0,
+          "vy": 0,
+          "hp": 1651,
+          "maxHp": 1720,
+          "r": 22,
+          "h": 92,
+          "focus": 404,
+          "maxFocus": 404,
+          "regen": 28,
+          "level": 25,
+          "attack": 11.98825,
+          "armor": 0.42800000000000005,
+          "shield": 206,
+          "bound": 0,
+          "mark": 0,
+          "breaks": 0,
+          "acted": true,
+          "moveLeft": 1036.1013760212497,
+          "maxMove": 2921,
+          "walkSpeed": 425,
+          "angle": 52.91371749235654,
+          "lastPower": 0.54,
+          "loadout": [
+            "A01",
+            "A14",
+            "A02",
+            "A05"
+          ],
+          "tune": 0.5,
+          "facing": 1,
+          "hurt": 0,
+          "anim": 0,
+          "airborne": false,
+          "fixed": false,
+          "spawnX": 1200,
+          "spawnY": 1224.5833333333333,
+          "intent": "",
+          "dead": false,
+          "ranks": {
+            "A01": 1,
+            "A14": 4,
+            "A02": 4,
+            "A05": 4
+          },
+          "group": 0,
+          "awake": true,
+          "lastAct": 0,
+          "aggroUntil": 0,
+          "xpBudget": 0,
+          "xpGranted": 0,
+          "killRewarded": false,
+          "damageBy": {},
+          "honroAlly": false,
+          "honroCivilian": false,
+          "critChance": 0.28400000000000003,
+          "critMultiplier": 3.085,
+          "cooldowns": {},
+          "moving": 0,
+          "eaterSwallow": 0,
+          "landing": 0.26,
+          "impactCooldown": 0,
+          "salheunFlash": 0,
+          "walkPhase": 154.14725244717326,
+          "honroShieldSources": {
+            "": 0,
+            "p-archer": 206
+          },
+          "jumping": false,
+          "equipmentState": {
+            "version": 1,
+            "jumpCycle": 6
+          },
+          "shieldUntil": 6,
+          "jucheon": 0,
+          "jucheonReady": false
+        },
+        "knight": {
+          "id": "p-knight",
+          "name": "휘겸",
+          "role": "knight",
+          "cls": "knight",
+          "side": 0,
+          "x": 4400.808951849008,
+          "y": 3876.050924839111,
+          "vx": 0,
+          "vy": 0,
+          "hp": 3688.1,
+          "maxHp": 3846,
+          "r": 22,
+          "h": 92,
+          "focus": 477,
+          "maxFocus": 477,
+          "regen": 28,
+          "level": 25,
+          "attack": 9.98515,
+          "armor": 0.7,
+          "shield": 0,
+          "bound": 0,
+          "mark": 0,
+          "breaks": 0,
+          "acted": false,
+          "moveLeft": 4081,
+          "maxMove": 4081,
+          "walkSpeed": 420,
+          "angle": 44,
+          "lastPower": 0.55,
+          "loadout": [
+            "S00",
+            "S01",
+            "S03"
+          ],
+          "tune": 0.5,
+          "facing": 1,
+          "hurt": 0,
+          "anim": 0,
+          "airborne": false,
+          "fixed": false,
+          "spawnX": 1080,
+          "spawnY": 1166.111111111111,
+          "intent": "",
+          "dead": false,
+          "ranks": {
+            "S00": 1,
+            "S01": 4,
+            "S03": 4
+          },
+          "group": 0,
+          "awake": true,
+          "lastAct": 0,
+          "aggroUntil": 0,
+          "xpBudget": 0,
+          "xpGranted": 0,
+          "killRewarded": false,
+          "damageBy": {},
+          "honroAlly": false,
+          "honroCivilian": false,
+          "critChance": 0.1648,
+          "critMultiplier": 2.5330000000000004,
+          "cooldowns": {},
+          "equipmentState": {
+            "version": 1
+          },
+          "eaterSwallow": 0,
+          "moving": 0,
+          "landing": 0,
+          "impactCooldown": 0,
+          "salheunFlash": 0,
+          "honroShieldSources": {
+            "p-knight": 462
+          },
+          "walkPhase": 155.96559506897273,
+          "jumping": false,
+          "jucheon": 0,
+          "jucheonReady": false
+        },
+        "occultist": {
+          "id": "p-occultist",
+          "name": "소단",
+          "role": "occultist",
+          "cls": "occultist",
+          "side": 0,
+          "x": 4399.834064268077,
+          "y": 3876.9111197634616,
+          "vx": 0,
+          "vy": 0,
+          "hp": 2144.1,
+          "maxHp": 2304,
+          "r": 22,
+          "h": 92,
+          "focus": 751,
+          "maxFocus": 751,
+          "regen": 32,
+          "level": 25,
+          "attack": 11.170800000000002,
+          "armor": 0.487,
+          "shield": 0,
+          "bound": 0,
+          "mark": 0,
+          "breaks": 0,
+          "acted": false,
+          "moveLeft": 3132,
+          "maxMove": 3132,
+          "walkSpeed": 416,
+          "angle": 44,
+          "lastPower": 0.55,
+          "loadout": [
+            "O01",
+            "O04",
+            "O03",
+            "O06"
+          ],
+          "tune": 0.5,
+          "facing": 1,
+          "hurt": 0,
+          "anim": 0,
+          "airborne": false,
+          "fixed": false,
+          "spawnX": 1000,
+          "spawnY": 1151.888888888889,
+          "intent": "",
+          "dead": false,
+          "spiritSight": true,
+          "ranks": {
+            "O01": 1,
+            "O06": 5,
+            "O02": 4,
+            "O03": 3,
+            "O04": 2
+          },
+          "group": 0,
+          "awake": true,
+          "lastAct": 0,
+          "aggroUntil": 0,
+          "xpBudget": 0,
+          "xpGranted": 0,
+          "killRewarded": false,
+          "damageBy": {},
+          "honroAlly": false,
+          "honroCivilian": false,
+          "critChance": 0.20700000000000002,
+          "critMultiplier": 2.4855,
+          "cooldowns": {},
+          "eaterSwallow": 0,
+          "moving": 0,
+          "landing": 0,
+          "impactCooldown": 0,
+          "salheunFlash": 0,
+          "honroShieldSources": {
+            "p-occultist": 276
+          },
+          "walkPhase": 158.8154148591665,
+          "jumping": false,
+          "equipmentState": {
+            "version": 1
+          },
+          "jucheon": 0,
+          "jucheonReady": false
+        }
+      },
+      "chart": [
+        {
+          "id": "N>L",
+          "frame": "L",
+          "drop": 84.86206896551721,
+          "expected": "foothill",
+          "actor": "p-mage",
+          "round": 4,
+          "grounded": true,
+          "x": 2639.408133052405,
+          "y": 2778.925138730227
+        },
+        {
+          "id": "L>C",
+          "frame": "C",
+          "drop": 23.56682438551252,
+          "expected": "mid-contact",
+          "actor": "p-mage",
+          "round": 4,
+          "grounded": true,
+          "x": 2884,
+          "y": 708.96
+        },
+        {
+          "id": "C>L",
+          "frame": "L",
+          "drop": 0,
+          "expected": "mid-contact",
+          "actor": "p-mage",
+          "round": 4,
+          "grounded": true,
+          "x": 2337.04,
+          "y": 2930
+        }
+      ],
+      "relay": {
+        "id": 11,
+        "shot": 9,
+        "x": 2309.4312999120357,
+        "y": 2924,
+        "round": 4,
+        "impact": {
+          "x": 2309.4312999120357,
+          "y": 2924,
+          "radius": 6,
+          "normal": {
+            "x": 0,
+            "y": -1
+          }
+        },
+        "support": {
+          "terrain": "mid-contact",
+          "edge": 49,
+          "x": 2309.4312999120357,
+          "y": 2930
+        }
+      },
+      "eave": {
+        "edge": "mumyeongsa-torn-eave",
+        "clearWidth": 236,
+        "gravity": {
+          "x": 0,
+          "y": -320
+        },
+        "landed": {
+          "id": "p-mage",
+          "x": 380,
+          "y": 900,
+          "vx": 0,
+          "vy": 0,
+          "grounded": true,
+          "support": "c-eave-soffit",
+          "normal": {
+            "x": 0,
+            "y": 1
+          }
+        },
+        "approach": {
+          "id": "p-mage",
+          "x": 718.3500000000023,
+          "y": 900,
+          "vx": 0,
+          "vy": 0,
+          "grounded": true,
+          "support": "c-eave-soffit",
+          "normal": {
+            "x": 0,
+            "y": 1
+          }
+        },
+        "exit": {
+          "id": "p-mage",
+          "x": 736,
+          "y": 900,
+          "vx": 0,
+          "vy": 0,
+          "grounded": true,
+          "support": "c-eave-soffit",
+          "normal": {
+            "x": 0,
+            "y": 1
+          }
+        }
+      },
+      "gallery": {
+        "observed": {
+          "x": 1370.0480013814367,
+          "y": 2479.366570158143,
+          "support": "foothill",
+          "actor": "p-mage",
+          "grounded": true,
+          "round": 4
+        },
+        "guard": "mumyeongsa-b-wall-guard"
+      },
+      "settlement": false,
+      "sodanThread": {
+        "version": 1,
+        "body": "p-occultist",
+        "casts": [
+          {
+            "stage": 54,
+            "skill": "O06",
+            "shot": 3,
+            "cost": 36
+          }
+        ]
+      }
+    },
+    "terminalSHA": "c114a7d2b29ec66a26d937a04068e71a74708933e7ff0d287e34820ea32b14f9",
+    "custody": {
+      "mage": {
+        "id": "p-mage",
+        "name": "담허",
+        "role": "mage",
+        "cls": "mage",
+        "side": 0,
+        "x": 736,
+        "y": 900,
+        "vx": 0,
+        "vy": 0,
+        "hp": 1691.9,
+        "maxHp": 2050,
+        "r": 22,
+        "h": 92,
+        "focus": 708,
+        "maxFocus": 724,
+        "regen": 28,
+        "level": 25,
+        "attack": 11.4116,
+        "armor": 0.472,
+        "shield": 0,
+        "bound": 0,
+        "mark": 0,
+        "breaks": 0,
+        "acted": false,
+        "moveLeft": 3075,
+        "maxMove": 3075,
+        "walkSpeed": 402,
+        "angle": 91.32502621156327,
+        "lastPower": 0.6068520747173403,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "tune": 0.5,
+        "facing": 1,
+        "hurt": 0,
+        "anim": 0,
+        "airborne": false,
+        "fixed": false,
+        "spawnX": 2643.271919191919,
+        "spawnY": 2871.5333333333338,
+        "intent": "",
+        "dead": false,
+        "ranks": {
+          "M01": 1,
+          "M07": 4,
+          "M10": 3
+        },
+        "group": 0,
+        "awake": true,
+        "lastAct": 0,
+        "aggroUntil": 0,
+        "xpBudget": 0,
+        "xpGranted": 0,
+        "killRewarded": false,
+        "damageBy": {},
+        "honroAlly": false,
+        "honroCivilian": false,
+        "critChance": 0.174,
+        "critMultiplier": 2.51,
+        "cooldowns": {},
+        "equipmentState": {
+          "version": 1
+        },
+        "jumping": false,
+        "eaterSwallow": 0,
+        "moving": 0.07166666666666667,
+        "landing": 0,
+        "salheunFlash": 0,
+        "honroShieldSources": {
+          "p-mage": 0
+        },
+        "walkPhase": 93.69031951761038,
+        "impactCooldown": 0,
+        "jucheon": 0,
+        "jucheonReady": false
+      },
+      "external": {
+        "archer": {
+          "id": "p-archer",
+          "name": "설오",
+          "role": "archer",
+          "cls": "archer",
+          "side": 0,
+          "x": 4398.557742659368,
+          "y": 3878.0372858887927,
+          "vx": 0,
+          "vy": 0,
+          "hp": 1651,
+          "maxHp": 1720,
+          "r": 22,
+          "h": 92,
+          "focus": 404,
+          "maxFocus": 404,
+          "regen": 28,
+          "level": 25,
+          "attack": 11.98825,
+          "armor": 0.42800000000000005,
+          "shield": 206,
+          "bound": 0,
+          "mark": 0,
+          "breaks": 0,
+          "acted": true,
+          "moveLeft": 1036.1013760212497,
+          "maxMove": 2921,
+          "walkSpeed": 425,
+          "angle": 52.91371749235654,
+          "lastPower": 0.54,
+          "loadout": [
+            "A01",
+            "A14",
+            "A02",
+            "A05"
+          ],
+          "tune": 0.5,
+          "facing": 1,
+          "hurt": 0,
+          "anim": 0,
+          "airborne": false,
+          "fixed": false,
+          "spawnX": 1200,
+          "spawnY": 1224.5833333333333,
+          "intent": "",
+          "dead": false,
+          "ranks": {
+            "A01": 1,
+            "A14": 4,
+            "A02": 4,
+            "A05": 4
+          },
+          "group": 0,
+          "awake": true,
+          "lastAct": 0,
+          "aggroUntil": 0,
+          "xpBudget": 0,
+          "xpGranted": 0,
+          "killRewarded": false,
+          "damageBy": {},
+          "honroAlly": false,
+          "honroCivilian": false,
+          "critChance": 0.28400000000000003,
+          "critMultiplier": 3.085,
+          "cooldowns": {},
+          "moving": 0,
+          "eaterSwallow": 0,
+          "landing": 0.26,
+          "impactCooldown": 0,
+          "salheunFlash": 0,
+          "walkPhase": 154.14725244717326,
+          "honroShieldSources": {
+            "": 0,
+            "p-archer": 206
+          },
+          "jumping": false,
+          "equipmentState": {
+            "version": 1,
+            "jumpCycle": 6
+          },
+          "shieldUntil": 6,
+          "jucheon": 0,
+          "jucheonReady": false
+        },
+        "knight": {
+          "id": "p-knight",
+          "name": "휘겸",
+          "role": "knight",
+          "cls": "knight",
+          "side": 0,
+          "x": 4400.808951849008,
+          "y": 3876.050924839111,
+          "vx": 0,
+          "vy": 0,
+          "hp": 3688.1,
+          "maxHp": 3846,
+          "r": 22,
+          "h": 92,
+          "focus": 477,
+          "maxFocus": 477,
+          "regen": 28,
+          "level": 25,
+          "attack": 9.98515,
+          "armor": 0.7,
+          "shield": 0,
+          "bound": 0,
+          "mark": 0,
+          "breaks": 0,
+          "acted": false,
+          "moveLeft": 4081,
+          "maxMove": 4081,
+          "walkSpeed": 420,
+          "angle": 44,
+          "lastPower": 0.55,
+          "loadout": [
+            "S00",
+            "S01",
+            "S03"
+          ],
+          "tune": 0.5,
+          "facing": 1,
+          "hurt": 0,
+          "anim": 0,
+          "airborne": false,
+          "fixed": false,
+          "spawnX": 1080,
+          "spawnY": 1166.111111111111,
+          "intent": "",
+          "dead": false,
+          "ranks": {
+            "S00": 1,
+            "S01": 4,
+            "S03": 4
+          },
+          "group": 0,
+          "awake": true,
+          "lastAct": 0,
+          "aggroUntil": 0,
+          "xpBudget": 0,
+          "xpGranted": 0,
+          "killRewarded": false,
+          "damageBy": {},
+          "honroAlly": false,
+          "honroCivilian": false,
+          "critChance": 0.1648,
+          "critMultiplier": 2.5330000000000004,
+          "cooldowns": {},
+          "equipmentState": {
+            "version": 1
+          },
+          "eaterSwallow": 0,
+          "moving": 0,
+          "landing": 0,
+          "impactCooldown": 0,
+          "salheunFlash": 0,
+          "honroShieldSources": {
+            "p-knight": 462
+          },
+          "walkPhase": 155.96559506897273,
+          "jumping": false,
+          "jucheon": 0,
+          "jucheonReady": false
+        },
+        "occultist": {
+          "id": "p-occultist",
+          "name": "소단",
+          "role": "occultist",
+          "cls": "occultist",
+          "side": 0,
+          "x": 4399.834064268077,
+          "y": 3876.9111197634616,
+          "vx": 0,
+          "vy": 0,
+          "hp": 2144.1,
+          "maxHp": 2304,
+          "r": 22,
+          "h": 92,
+          "focus": 751,
+          "maxFocus": 751,
+          "regen": 32,
+          "level": 25,
+          "attack": 11.170800000000002,
+          "armor": 0.487,
+          "shield": 0,
+          "bound": 0,
+          "mark": 0,
+          "breaks": 0,
+          "acted": false,
+          "moveLeft": 3132,
+          "maxMove": 3132,
+          "walkSpeed": 416,
+          "angle": 44,
+          "lastPower": 0.55,
+          "loadout": [
+            "O01",
+            "O04",
+            "O03",
+            "O06"
+          ],
+          "tune": 0.5,
+          "facing": 1,
+          "hurt": 0,
+          "anim": 0,
+          "airborne": false,
+          "fixed": false,
+          "spawnX": 1000,
+          "spawnY": 1151.888888888889,
+          "intent": "",
+          "dead": false,
+          "spiritSight": true,
+          "ranks": {
+            "O01": 1,
+            "O06": 5,
+            "O02": 4,
+            "O03": 3,
+            "O04": 2
+          },
+          "group": 0,
+          "awake": true,
+          "lastAct": 0,
+          "aggroUntil": 0,
+          "xpBudget": 0,
+          "xpGranted": 0,
+          "killRewarded": false,
+          "damageBy": {},
+          "honroAlly": false,
+          "honroCivilian": false,
+          "critChance": 0.20700000000000002,
+          "critMultiplier": 2.4855,
+          "cooldowns": {},
+          "eaterSwallow": 0,
+          "moving": 0,
+          "landing": 0,
+          "impactCooldown": 0,
+          "salheunFlash": 0,
+          "honroShieldSources": {
+            "p-occultist": 276
+          },
+          "walkPhase": 158.8154148591665,
+          "jumping": false,
+          "equipmentState": {
+            "version": 1
+          },
+          "jucheon": 0,
+          "jucheonReady": false
+        }
+      },
+      "witness": {
+        "attackSide": 0,
+        "damageRoll": 1,
+        "id": 11,
+        "skill": "M09",
+        "owner": "p-mage",
+        "side": 0,
+        "x": 2309.4312999120357,
+        "y": 2924,
+        "rank": 1,
+        "damage": 0,
+        "shot": 9,
+        "effectBoost": 0,
+        "expires": 10
+      }
+    },
+    "custodySHA": "d8de48f27716930620591fb1c7ce77970c59d7c8e06554704de26988aebbf587",
+    "stageSeed": {
+      "id": 54,
+      "local": 54,
+      "region": 6,
+      "act": 6,
+      "actStage": 4,
+      "active": 1,
+      "requires": [
+        53
+      ],
+      "name": "거꾸로 선 처마",
+      "goal": "처마의 세 방향 확인",
+      "objective": "act6-gallery-charts",
+      "w": 3200,
+      "h": 3000,
+      "story": [],
+      "outro": [],
+      "wind": [
+        0
+      ],
+      "victoryRule": {
+        "kind": "scripted",
+        "target": "act6-native-54"
+      }
+    },
+    "budget": {
+      "id": 54,
+      "act": 6,
+      "entryLevel": 25,
+      "exitLevel": 25,
+      "rewardCurve": "current",
+      "balanceStatus": "detached-zero-increment-horizon"
+    }
+  },
+  "errors": [],
+  "eave54": {
+    "entry": {
+      "stage": 54,
+      "id": "p-mage",
+      "x": 380,
+      "y": 900,
+      "vx": 0,
+      "vy": 0,
+      "gravity": {
+        "x": 0,
+        "y": -320
+      },
+      "grounded": true,
+      "support": "c-eave-soffit",
+      "normal": {
+        "x": 0,
+        "y": 1
+      },
+      "play": [
+        1400,
+        1440
+      ],
+      "health": 1691.9,
+      "focus": 708,
+      "loadout": [
+        "M01",
+        "M10",
+        "M07"
+      ],
+      "equipment": {
+        "version": 1
+      },
+      "others": []
+    },
+    "ceiling": {
+      "stage": 54,
+      "id": "p-mage",
+      "x": 380,
+      "y": 900,
+      "vx": 0,
+      "vy": 0,
+      "gravity": {
+        "x": 0,
+        "y": -320
+      },
+      "grounded": true,
+      "support": "c-eave-soffit",
+      "normal": {
+        "x": 0,
+        "y": 1
+      },
+      "play": [
+        1400,
+        1440
+      ],
+      "health": 1691.9,
+      "focus": 708,
+      "loadout": [
+        "M01",
+        "M10",
+        "M07"
+      ],
+      "equipment": {
+        "version": 1
+      },
+      "others": []
+    },
+    "exit": {
+      "stage": 54,
+      "id": "p-mage",
+      "x": 736,
+      "y": 900,
+      "vx": 0,
+      "vy": 0,
+      "gravity": {
+        "x": 0,
+        "y": -320
+      },
+      "grounded": true,
+      "support": "c-eave-soffit",
+      "normal": {
+        "x": 0,
+        "y": 1
+      },
+      "play": [
+        1400,
+        1440
+      ],
+      "health": 1691.9,
+      "focus": 708,
+      "loadout": [
+        "M01",
+        "M10",
+        "M07"
+      ],
+      "equipment": {
+        "version": 1
+      },
+      "others": []
+    },
+    "moving": [
+      {
+        "x": 380,
+        "y": 968.9888893518374,
+        "vy": -2.6665000069442275,
+        "gravity": {
+          "x": 0,
+          "y": -320
+        },
+        "grounded": false
+      },
+      {
+        "x": 380,
+        "y": 967.8893517072125,
+        "vy": -26.650006942274857,
+        "gravity": {
+          "x": 0,
+          "y": -320
+        },
+        "grounded": false
+      },
+      {
+        "x": 380,
+        "y": 967.4007997000905,
+        "vy": -31.976011995501366,
+        "gravity": {
+          "x": 0,
+          "y": -320
+        },
+        "grounded": false
+      },
+      {
+        "x": 380,
+        "y": 966.5015617678533,
+        "vy": -39.962523426517805,
+        "gravity": {
+          "x": 0,
+          "y": -320
+        },
+        "grounded": false
+      },
+      {
+        "x": 380,
+        "y": 963.1278510462947,
+        "vy": -61.245251099027755,
+        "gravity": {
+          "x": 0,
+          "y": -320
+        },
+        "grounded": false
+      },
+      {
+        "x": 380,
+        "y": 961.4970193188793,
+        "vy": -69.22078862311653,
+        "gravity": {
+          "x": 0,
+          "y": -320
+        },
+        "grounded": false
+      },
+      {
+        "x": 380,
+        "y": 959.6668365340213,
+        "vy": -77.19333588134369,
+        "gravity": {
+          "x": 0,
+          "y": -320
+        },
+        "grounded": false
+      },
+      {
+        "x": 380,
+        "y": 958.3360010010757,
+        "vy": -82.50670668168284,
+        "gravity": {
+          "x": 0,
+          "y": -320
+        },
+        "grounded": false
+      },
+      {
+        "x": 380,
+        "y": 953.8123122623172,
+        "vy": -98.43885135060152,
+        "gravity": {
+          "x": 0,
+          "y": -320
+        },
+        "grounded": false
+      },
+      {
+        "x": 380,
+        "y": 951.2518148518225,
+        "vy": -106.40044388944412,
+        "gravity": {
+          "x": 0,
+          "y": -320
+        },
+        "grounded": false
+      },
+      {
+        "x": 380,
+        "y": 949.4342550284799,
+        "vy": -111.70651382542734,
+        "gravity": {
+          "x": 0,
+          "y": -320
+        },
+        "grounded": false
+      },
+      {
+        "x": 380,
+        "y": 947.5282717595956,
+        "vy": -117.01125740972742,
+        "gravity": {
+          "x": 0,
+          "y": -320
+        },
+        "grounded": false
+      },
+      {
+        "x": 380,
+        "y": 944.5035512448949,
+        "vy": -124.96588660200695,
+        "gravity": {
+          "x": 0,
+          "y": -320
+        },
+        "grounded": false
+      },
+      {
+        "x": 380,
+        "y": 941.2800022830512,
+        "vy": -132.9175333675793,
+        "gravity": {
+          "x": 0,
+          "y": -320
+        },
+        "grounded": false
+      },
+      {
+        "x": 380,
+        "y": 934.2367171767418,
+        "vy": -148.81188409098473,
+        "gravity": {
+          "x": 0,
+          "y": -320
+        },
+        "grounded": false
+      },
+      {
+        "x": 380,
+        "y": 931.7123883665113,
+        "vy": -154.10735249216464,
+        "gravity": {
+          "x": 0,
+          "y": -320
+        },
+        "grounded": false
+      },
+      {
+        "x": 380,
+        "y": 927.7604393409615,
+        "vy": -162.04807325678144,
+        "gravity": {
+          "x": 0,
+          "y": -320
+        },
+        "grounded": false
+      },
+      {
+        "x": 380,
+        "y": 923.6100095137725,
+        "vy": -169.98581680937363,
+        "gravity": {
+          "x": 0,
+          "y": -320
+        },
+        "grounded": false
+      },
+      {
+        "x": 380,
+        "y": 920.7328259335862,
+        "vy": -175.2759923890042,
+        "gravity": {
+          "x": 0,
+          "y": -320
+        },
+        "grounded": false
+      },
+      {
+        "x": 380,
+        "y": 917.7674837806869,
+        "vy": -180.56484559004406,
+        "gravity": {
+          "x": 0,
+          "y": -320
+        },
+        "grounded": false
+      },
+      {
+        "x": 380,
+        "y": 908.3427262270535,
+        "vy": -196.42347422673964,
+        "gravity": {
+          "x": 0,
+          "y": -320
+        },
+        "grounded": false
+      },
+      {
+        "x": 380,
+        "y": 905.0249700971078,
+        "vy": -201.7070412181238,
+        "gravity": {
+          "x": 0,
+          "y": -320
+        },
+        "grounded": false
+      }
+    ]
+  }
+}

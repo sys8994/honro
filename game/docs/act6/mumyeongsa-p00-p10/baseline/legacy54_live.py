@@ -208,7 +208,7 @@ def walk_eave(page,out,receiving=False,suffix='',touch_context=None):
         assert len(proof['touches'])>=2 and all(e['trusted'] and e['type']=='touch' for e in proof['touches'])
     return proof
 
-def play54(page,out,results,touch_context=None):
+def play54(page,out,results,touch_context=None,on_chart=None):
     traces=results.setdefault("traces",{})
     page.wait_for_function('HonroApp.canInput() && HonroApp.engine.grounded(HonroApp.engine.active)',timeout=3500)
     if page.evaluate('HonroApp.engine.active.x')<510:
@@ -227,6 +227,8 @@ def play54(page,out,results,touch_context=None):
     results["N_nudge"]=page.evaluate(FOOT)
     results["N_L"]=chart(page)
     assert results["N_L"]["changed"],results['N_L']['notice']
+    if on_chart:
+        on_chart(page,'54-L')
     page.keyboard.press('Control')
     traces["L_fall"]=sample_walk(page,-1,2387,limit=2700)
     page.wait_for_function("HonroApp.engine.grounded(HonroApp.engine.active)",timeout=3400)
@@ -240,8 +242,12 @@ def play54(page,out,results,touch_context=None):
     results['L_nudge']={"before":start,"after":page.evaluate(FOOT)}
     results["L_C"]=chart(page)
     assert results["L_C"]["changed"],results['L_C']['notice']
+    if on_chart:
+        on_chart(page,'54-C')
     results["C_L"]=chart(page)
     assert results["C_L"]["changed"],results['C_L']['notice']
+    if on_chart:
+        on_chart(page,'54-C-return-L')
     results['previousRelayAttempts']=[]
     watch_eave(page)
     for attempt in range(3):
