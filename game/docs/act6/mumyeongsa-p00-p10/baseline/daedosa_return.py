@@ -183,6 +183,7 @@ def play(browser,out,turns,session=None):
         saved=base.saved_bytes(page)
         q['storageHash']=storage_hash(saved)
         signed=boundary_of(saved)
+        q['checkpoint59']=signed
         assert signed['from']==58 and signed['to']==59 and len(signed['custody']['returnGate']['actors'])==4,signed
         q['routeReceipt']=signed['custody']['returnGate']
         exists={u['id']:u for u in q['outgoing']['actors']}

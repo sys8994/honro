@@ -1,0 +1,1144 @@
+[
+  {
+    "stage": 56,
+    "source": "captured live boundary",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "status": "PASS",
+    "pageErrors": [],
+    "movement": {
+      "ceiling": {
+        "stage": 56,
+        "id": "p-mage",
+        "x": 736,
+        "y": 900,
+        "vx": 0,
+        "vy": 0,
+        "gravity": {
+          "x": 0,
+          "y": -320
+        },
+        "grounded": true,
+        "support": "c-eave-soffit",
+        "normal": {
+          "x": 0,
+          "y": 1
+        },
+        "play": [
+          1400,
+          1440
+        ],
+        "health": 1708.9,
+        "focus": 692,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "equipment": {
+          "version": 1
+        },
+        "others": []
+      },
+      "landed": {
+        "stage": 56,
+        "id": "p-mage",
+        "x": 928,
+        "y": 1136,
+        "vx": 0,
+        "vy": 0,
+        "gravity": {
+          "x": 0,
+          "y": 320
+        },
+        "grounded": true,
+        "support": "A-upper-veranda",
+        "normal": {
+          "x": 0,
+          "y": -1
+        },
+        "play": [
+          6720,
+          5040
+        ],
+        "health": 1708.9,
+        "focus": 692,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "equipment": {
+          "version": 1
+        },
+        "others": [
+          {
+            "id": "draft-pressure-0",
+            "x": 1936,
+            "y": 3784.0650406504064
+          },
+          {
+            "id": "draft-pressure-1",
+            "x": 3456,
+            "y": 2247.2
+          },
+          {
+            "id": "draft-pressure-2",
+            "x": 5872,
+            "y": 3694.8321167883214
+          },
+          {
+            "id": "a6-56-opening-1",
+            "x": 1512,
+            "y": 1136
+          },
+          {
+            "id": "a6-56-opening-2",
+            "x": 2545,
+            "y": 1136
+          }
+        ]
+      },
+      "flight": [
+        {
+          "x": 736,
+          "y": 900,
+          "vy": 0,
+          "gravity": {
+            "x": 0,
+            "y": -320
+          },
+          "grounded": true
+        },
+        {
+          "x": 736,
+          "y": 900,
+          "vy": 0,
+          "gravity": {
+            "x": 0,
+            "y": -320
+          },
+          "grounded": true
+        },
+        {
+          "x": 736,
+          "y": 900,
+          "vy": 0,
+          "gravity": {
+            "x": 0,
+            "y": -320
+          },
+          "grounded": true
+        },
+        {
+          "x": 736,
+          "y": 900,
+          "vy": 0,
+          "gravity": {
+            "x": 0,
+            "y": -320
+          },
+          "grounded": true
+        },
+        {
+          "x": 736,
+          "y": 900,
+          "vy": 0,
+          "gravity": {
+            "x": 0,
+            "y": -320
+          },
+          "grounded": true
+        },
+        {
+          "x": 736,
+          "y": 900,
+          "vy": 0,
+          "gravity": {
+            "x": 0,
+            "y": -320
+          },
+          "grounded": true
+        },
+        {
+          "x": 736,
+          "y": 900,
+          "vy": 0,
+          "gravity": {
+            "x": 0,
+            "y": -320
+          },
+          "grounded": true
+        },
+        {
+          "x": 736,
+          "y": 900,
+          "vy": 0,
+          "gravity": {
+            "x": 0,
+            "y": -320
+          },
+          "grounded": true
+        },
+        {
+          "x": 736,
+          "y": 900,
+          "vy": 0,
+          "gravity": {
+            "x": 0,
+            "y": -320
+          },
+          "grounded": true
+        },
+        {
+          "x": 746.0500000000001,
+          "y": 900,
+          "vy": 0,
+          "gravity": {
+            "x": 0,
+            "y": -320
+          },
+          "grounded": true
+        },
+        {
+          "x": 756.1000000000001,
+          "y": 900,
+          "vy": 0,
+          "gravity": {
+            "x": 0,
+            "y": -320
+          },
+          "grounded": true
+        },
+        {
+          "x": 766.1500000000002,
+          "y": 900,
+          "vy": 0,
+          "gravity": {
+            "x": 0,
+            "y": -320
+          },
+          "grounded": true
+        },
+        {
+          "x": 776.2000000000003,
+          "y": 900,
+          "vy": 0,
+          "gravity": {
+            "x": 0,
+            "y": -320
+          },
+          "grounded": true
+        },
+        {
+          "x": 786.2500000000003,
+          "y": 900,
+          "vy": 0,
+          "gravity": {
+            "x": 0,
+            "y": -320
+          },
+          "grounded": true
+        },
+        {
+          "x": 796.3000000000004,
+          "y": 900,
+          "vy": 0,
+          "gravity": {
+            "x": 0,
+            "y": -320
+          },
+          "grounded": true
+        },
+        {
+          "x": 806.3500000000005,
+          "y": 900,
+          "vy": 0,
+          "gravity": {
+            "x": 0,
+            "y": -320
+          },
+          "grounded": true
+        },
+        {
+          "x": 816.4000000000005,
+          "y": 900,
+          "vy": 0,
+          "gravity": {
+            "x": 0,
+            "y": -320
+          },
+          "grounded": true
+        },
+        {
+          "x": 826.4500000000006,
+          "y": 900,
+          "vy": 0,
+          "gravity": {
+            "x": 0,
+            "y": -320
+          },
+          "grounded": true
+        },
+        {
+          "x": 836.5000000000007,
+          "y": 900,
+          "vy": 0,
+          "gravity": {
+            "x": 0,
+            "y": -320
+          },
+          "grounded": true
+        },
+        {
+          "x": 846.5500000000008,
+          "y": 900,
+          "vy": 0,
+          "gravity": {
+            "x": 0,
+            "y": -320
+          },
+          "grounded": true
+        },
+        {
+          "x": 856.6000000000008,
+          "y": 900,
+          "vy": 0,
+          "gravity": {
+            "x": 0,
+            "y": -320
+          },
+          "grounded": true
+        },
+        {
+          "x": 866.6500000000009,
+          "y": 900,
+          "vy": 0,
+          "gravity": {
+            "x": 0,
+            "y": -320
+          },
+          "grounded": true
+        },
+        {
+          "x": 876.700000000001,
+          "y": 900,
+          "vy": 0,
+          "gravity": {
+            "x": 0,
+            "y": -320
+          },
+          "grounded": true
+        },
+        {
+          "x": 886.750000000001,
+          "y": 900,
+          "vy": 0,
+          "gravity": {
+            "x": 0,
+            "y": -320
+          },
+          "grounded": true
+        },
+        {
+          "x": 896.8000000000011,
+          "y": 900,
+          "vy": 0,
+          "gravity": {
+            "x": 0,
+            "y": -320
+          },
+          "grounded": true
+        },
+        {
+          "x": 906.8500000000012,
+          "y": 900,
+          "vy": 0,
+          "gravity": {
+            "x": 0,
+            "y": -320
+          },
+          "grounded": true
+        },
+        {
+          "x": 916.9000000000012,
+          "y": 900,
+          "vy": 0,
+          "gravity": {
+            "x": 0,
+            "y": -320
+          },
+          "grounded": true
+        },
+        {
+          "x": 926.9500000000013,
+          "y": 900,
+          "vy": 0,
+          "gravity": {
+            "x": 0,
+            "y": -320
+          },
+          "grounded": true
+        },
+        {
+          "x": 928,
+          "y": 992.0666638888889,
+          "vy": 5.333,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 992.3332777829859,
+          "vy": 13.330000416640626,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 992.7997667104112,
+          "vy": 21.32400233296879,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 993.4660557273961,
+          "vy": 29.315006873281554,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 994.3320699182724,
+          "vy": 37.30301516145443,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 995.3977343954615,
+          "vy": 45.28802832094153,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 996.6629742994642,
+          "vy": 53.27004747477572,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 998.1277147988502,
+          "vy": 61.24907374556878,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 999.7918810902474,
+          "vy": 69.22510825551157,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 1001.6553983983317,
+          "vy": 77.19815212637417,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 1003.7181919758159,
+          "vy": 85.16820647950604,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 1005.9801871034396,
+          "vy": 93.13527243583621,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 1008.4413090899587,
+          "vy": 101.09935111587342,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 1011.1014832721348,
+          "vy": 109.06044363970625,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 1013.9606350147247,
+          "vy": 117.01855112700332,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 1017.01868971047,
+          "vy": 124.9736746970134,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 1020.2755727800863,
+          "vy": 132.9258154685656,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 1023.7312096722533,
+          "vy": 140.87497456006952,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 1027.3855258636036,
+          "vy": 148.82115308951546,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 1031.2384468587127,
+          "vy": 156.76435217447445,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 1035.2898981900885,
+          "vy": 164.7045729320985,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 1039.5398054181605,
+          "vy": 172.64181647912076,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 1043.9880941312697,
+          "vy": 180.57608393185572,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 1048.6346899456582,
+          "vy": 188.50737640619917,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 1053.479518505458,
+          "vy": 196.4356950176286,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 1058.5225054826813,
+          "vy": 204.36104088120322,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 1063.7635765772097,
+          "vy": 212.2834151115641,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 1069.2026575167845,
+          "vy": 220.2028188229344,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 1074.839674056995,
+          "vy": 228.11925312911953,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 1080.6745519812687,
+          "vy": 236.03271914350722,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 1086.707217100861,
+          "vy": 243.94321797906778,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 1092.9375952548446,
+          "vy": 251.8507507483542,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 1099.3656123100986,
+          "vy": 259.75531856350227,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 1105.9911941612997,
+          "vy": 267.65692253623087,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 1112.8142667309094,
+          "vy": 275.55556377784194,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 1119.8347559691651,
+          "vy": 283.45124339922074,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 1127.0525878540702,
+          "vy": 291.3439625108361,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        },
+        {
+          "x": 928,
+          "y": 1134.4676883913817,
+          "vy": 299.2337222227404,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": false
+        }
+      ]
+    },
+    "events": [
+      {
+        "name": "pointerdown",
+        "trusted": true,
+        "type": "touch",
+        "control": "joystick"
+      },
+      {
+        "name": "pointerup",
+        "trusted": true,
+        "type": "touch",
+        "control": "joystick"
+      }
+    ],
+    "saveHash": "d9aec9856620de826d6704ac8aebbb92330a1159e99c33efe46899c1fba8ca01"
+  },
+  {
+    "stage": 58,
+    "source": "previous compatible checkpoint",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "status": "PASS",
+    "pageErrors": [],
+    "movement": {
+      "enter": {
+        "stage": 58,
+        "active": "p-mage",
+        "phase": "aim",
+        "round": 1,
+        "side": 0,
+        "shot": 0,
+        "flags": {},
+        "notice": "",
+        "actors": [
+          {
+            "id": "p-mage",
+            "cls": "mage",
+            "side": 0,
+            "x": 2780.0411461911017,
+            "y": 3458.9557962670997,
+            "vx": 0,
+            "vy": 0,
+            "hp": 1314.9,
+            "maxHp": 2050,
+            "shield": 0,
+            "r": 22,
+            "h": 92,
+            "ammo": null,
+            "loadout": [
+              "M01",
+              "M10",
+              "M07"
+            ],
+            "dead": false,
+            "actorsMoved": false,
+            "move": 3075,
+            "grounded": true,
+            "family": {
+              "x": 0,
+              "y": 320
+            },
+            "contact": "local-lower-08-body",
+            "normal": null
+          },
+          {
+            "id": "p-archer",
+            "cls": "archer",
+            "side": 0,
+            "x": 2645.071904787871,
+            "y": 3480.5154081688297,
+            "vx": 0,
+            "vy": 0,
+            "hp": 1407,
+            "maxHp": 1720,
+            "shield": 0,
+            "r": 22,
+            "h": 92,
+            "ammo": null,
+            "loadout": [
+              "A01",
+              "A14",
+              "A02",
+              "A05"
+            ],
+            "dead": false,
+            "actorsMoved": false,
+            "move": 2921,
+            "grounded": true,
+            "family": {
+              "x": 0,
+              "y": 320
+            },
+            "contact": "local-lower-08-body",
+            "normal": null
+          },
+          {
+            "id": "p-knight",
+            "cls": "knight",
+            "side": 0,
+            "x": 2876.9935676570512,
+            "y": 3430.808319067308,
+            "vx": 0,
+            "vy": 0,
+            "hp": 3688.1,
+            "maxHp": 3846,
+            "shield": 0,
+            "r": 22,
+            "h": 92,
+            "ammo": null,
+            "loadout": [
+              "S00",
+              "S01",
+              "S03"
+            ],
+            "dead": false,
+            "actorsMoved": false,
+            "move": 4081,
+            "grounded": true,
+            "family": {
+              "x": 0,
+              "y": 320
+            },
+            "contact": "local-lower-08-body",
+            "normal": null
+          },
+          {
+            "id": "p-occultist",
+            "cls": "occultist",
+            "side": 0,
+            "x": 2987.090305485276,
+            "y": 3399.1170555756353,
+            "vx": 0,
+            "vy": 0,
+            "hp": 2144.1,
+            "maxHp": 2304,
+            "shield": 0,
+            "r": 22,
+            "h": 92,
+            "ammo": null,
+            "loadout": [
+              "O01",
+              "O04",
+              "O03",
+              "O06"
+            ],
+            "dead": false,
+            "actorsMoved": false,
+            "move": 3132,
+            "grounded": true,
+            "family": {
+              "x": 0,
+              "y": 320
+            },
+            "contact": "local-lower-08-body",
+            "normal": null
+          },
+          {
+            "id": "a6-58-opening-1",
+            "cls": "knight",
+            "side": 1,
+            "x": 3220,
+            "y": 3329.3793103448274,
+            "vx": 0,
+            "vy": 0,
+            "hp": 655,
+            "maxHp": 655,
+            "shield": 0,
+            "r": 32,
+            "h": 88,
+            "ammo": null,
+            "loadout": [
+              "HBM01"
+            ],
+            "dead": false,
+            "actorsMoved": false,
+            "move": 550,
+            "grounded": true,
+            "family": {
+              "x": 0,
+              "y": 320
+            },
+            "contact": "local-lower-08-body",
+            "normal": null
+          },
+          {
+            "id": "a6-58-opening-2",
+            "cls": "occultist",
+            "side": 1,
+            "x": 3580,
+            "y": 3072.4666666666667,
+            "vx": 0,
+            "vy": 0,
+            "hp": 595,
+            "maxHp": 595,
+            "shield": 0,
+            "r": 22,
+            "h": 115,
+            "ammo": null,
+            "loadout": [
+              "HSH01",
+              "HSH02"
+            ],
+            "dead": false,
+            "actorsMoved": false,
+            "move": 550,
+            "grounded": true,
+            "family": {
+              "x": 0,
+              "y": 320
+            },
+            "contact": "m58-west-stone-step",
+            "normal": null
+          },
+          {
+            "id": "a6-58-opening-3",
+            "cls": "knight",
+            "side": 1,
+            "x": 3910,
+            "y": 3361.657142857143,
+            "vx": 0,
+            "vy": 0,
+            "hp": 755,
+            "maxHp": 755,
+            "shield": 0,
+            "r": 38,
+            "h": 116,
+            "ammo": null,
+            "loadout": [
+              "HBM03"
+            ],
+            "dead": false,
+            "actorsMoved": false,
+            "move": 550,
+            "grounded": true,
+            "family": {
+              "x": 0,
+              "y": 320
+            },
+            "contact": "local-lower-08-body",
+            "normal": null
+          },
+          {
+            "id": "a6-58-opening-4",
+            "cls": "occultist",
+            "side": 1,
+            "x": 4625,
+            "y": 3149,
+            "vx": 0,
+            "vy": 0,
+            "hp": 595,
+            "maxHp": 595,
+            "shield": 0,
+            "r": 22,
+            "h": 115,
+            "ammo": null,
+            "loadout": [
+              "HSH01",
+              "HSH02"
+            ],
+            "dead": false,
+            "actorsMoved": false,
+            "move": 550,
+            "grounded": true,
+            "family": {
+              "x": 0,
+              "y": 320
+            },
+            "contact": "local-lower-08-body",
+            "normal": null
+          }
+        ],
+        "landmarks": [
+          {
+            "id": "art-mumyeongsa-hall-sill",
+            "x": 0,
+            "y": 0,
+            "visual": 7
+          },
+          {
+            "id": "art-m58-timber-hall-rear",
+            "x": 0,
+            "y": 0,
+            "visual": 40
+          },
+          {
+            "id": "art-m58-suspended-hall",
+            "x": 0,
+            "y": 0,
+            "visual": 14
+          },
+          {
+            "id": "art-m58-tile-eaves",
+            "x": 0,
+            "y": 0,
+            "visual": 10
+          }
+        ]
+      },
+      "before": {
+        "id": "p-mage",
+        "cls": "mage",
+        "side": 0,
+        "x": 2780.0411461911017,
+        "y": 3458.9557962670997,
+        "vx": 0,
+        "vy": 0,
+        "hp": 1314.9,
+        "maxHp": 2050,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 3075,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "local-lower-08-body",
+        "normal": null
+      },
+      "after": {
+        "id": "p-mage",
+        "cls": "mage",
+        "side": 0,
+        "x": 2663.936620255053,
+        "y": 3484.5578471975114,
+        "vx": 0,
+        "vy": 0,
+        "hp": 1314.9,
+        "maxHp": 2050,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 2954.4000000000033,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "local-lower-08-body",
+        "normal": null
+      }
+    },
+    "events": [
+      {
+        "name": "pointerdown",
+        "trusted": true,
+        "type": "touch",
+        "control": "joystick"
+      },
+      {
+        "name": "pointerup",
+        "trusted": true,
+        "type": "touch",
+        "control": "joystick"
+      }
+    ],
+    "saveHash": "20d85584b437bf73c6061745ba16c3700dd0ca2cdafb7e69f5bc005c7f2ec4e8"
+  }
+]
