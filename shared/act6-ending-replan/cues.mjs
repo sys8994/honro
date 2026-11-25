@@ -3,7 +3,7 @@ export const intro=[
  ['휘겸','돌아가서 남길 이름들이 있소.']
 ];
 export const names=['곽진','박문돌','이만복'];
-export const cuts=[
+const authoredCuts=[
   {
     "id": "still_01",
     "alt": "마른 진목 뿌리와 돌문 앞에 놓인 진패와 붓대",
@@ -106,21 +106,36 @@ export const cuts=[
     ]
   },
   {
-    "id": "final",
-    "alt": "등불과 풀린 끈만 남은 무명사 석교",
+    "id": "still_08",
+    "alt": "푸른 안개에 잠긴 무명사 산문과 등불 하나",
     "motion": "still",
-    "duration": 35,
+    "duration": 20,
     "beats": [
-      "그날 이후 무명사의 산문은 닫히지 않았다. 날이 저물면 돌다리 난간에 등불 하나가 켜졌다. 불빛이 건너가는 이들의 발밑에 닿았다. 누구도 그들의 이름을 묻지 않았다.",
-      "끝까지 함께 걸어주셔서 감사합니다."
+      "그날 이후 무명사의 산문은 닫히지 않았다. 날이 저물면 돌다리 난간에 등불 하나가 켜졌다.",
+      "불빛은 건너가는 이들의 발밑까지 닿았다. 누구도 그들의 이름을 묻지 않았다."
     ],
-    "beatEnds": [
-      14,
-      29,
-      35
-    ]
+    "beatEnds": [10.5,20]
+  },
+  {
+    "id": "final",
+    "alt": "달빛 아래 마을로 이어지는 빈 산길",
+    "motion": "still",
+    "duration": 31,
+    "beats": ["", "끝까지 함께 걸어주셔서 감사합니다."],
+    "beatEnds": [6.5,24,31]
   }
 ];
+// Account for the fades, and give dense Korean passages longer than short ones.
+export const cuts=authoredCuts.map(c=>{
+ if(c.id==='final'||c.id==='still_08')return c;
+ let end=0;
+ const beatEnds=c.beats.map(text=>{
+  const glyphs=[...text.replace(/\s/g,'')].length;
+  end+=Math.max(6.5,Math.min(10,Math.ceil((2.8+glyphs/9.5)*2)/2));
+  return end;
+ });
+ return {...c,duration:end,beatEnds};
+});
 export const selectEndingCue=(cuts,ms)=>{
  const sec=Math.max(ms,0)/1000;
  let start=0;

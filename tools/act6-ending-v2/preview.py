@@ -1,4 +1,5 @@
 """Play the release-shaped site locally or test its deployed URL without touching a real save."""
+import subprocess
 import argparse
 import json
 import mimetypes
@@ -14,6 +15,7 @@ args=arg.parse_args()
 out=Path(args.out)
 out.mkdir(parents=True,exist_ok=True)
 root=Path.cwd()
+CUTS=json.loads(subprocess.check_output(['node','--input-type=module','-e',"import {cuts} from './shared/act6-ending-replan/cues.mjs';console.log(JSON.stringify(cuts))"]))
 origin='https://sys8994.github.io'
 errors=[]
 
@@ -69,9 +71,8 @@ with sync_playwright() as p:
         r=page.locator('.he-root')
         assert r.locator('[data-ending-action="walk"],[data-ending-action="record"]').count()==0
         if not wide:cd=c.new_cdp_session(page)
-        page.clock.run_for(1100)
+        page.clock.run_for(1000)
         displayed(page,'still_01',wide)
-        page.clock.run_for(450)
         page.screenshot(path=out/f'first-{width}.png')
         if not wide:
             old=r.get_attribute('data-ending-beat')
@@ -82,14 +83,22 @@ with sync_playwright() as p:
             page.set_viewport_size({'width':width,'height':height})
             page.clock.run_for(70)
             displayed(page,'still_01',False)
-        for key,ms in [('still_02',21000),('still_03',21000),('still_04',24000),('still_05',21000),('still_06a',25000),('still_06b',15000),('still_07',5000),('final',22000)]:
-            page.clock.fast_forward(ms)
+        elapsed=1000+(140 if not wide else 0)
+        start_ms=0
+        for previous,cut in zip(CUTS,CUTS[1:]):
+            start_ms+=round(previous['duration']*1000)
+            key=cut['id']
+            target=start_ms+1100
+            page.clock.fast_forward(target-elapsed);elapsed=target
             displayed(page,key,wide)
-            if key=='still_06a':
-                page.screenshot(path=out/f'{key}-{width}.png')
             if key=='still_06b':
-                page.clock.fast_forward(11000)
+                line=r.locator('.he-line')
+                style=line.evaluate("(n)=>[getComputedStyle(n).backgroundColor,getComputedStyle(n).fontWeight]")
+                assert style==['rgba(0, 0, 0, 0)','400'],style
+                target=start_ms+round(cut['beatEnds'][1]*1000)+1200
+                page.clock.fast_forward(target-elapsed);elapsed=target
                 assert r.get_attribute('data-ending-beat')=='2'
+            if key in ['still_06a','still_06b','still_08','final']:
                 page.screenshot(path=out/f'{key}-{width}.png')
         assert r.get_attribute('data-ending-beat')=='0'
         if wide:
@@ -125,4 +134,4 @@ with sync_playwright() as p:
         c.close()
     b.close()
 assert not errors,errors
-print(json.dumps({'debugDirectToStills':True,'debugStills':9,'pc':True,'mobile':True,'rotationStableBeat':True,'tapNextSmooth':True,'desktopEscHold':True,'mobileSkipHold':True,'previewSaveBytesUnchanged':True,'live':args.live}))
+print(json.dumps({'debugDirectToStills':True,'debugStills':len(CUTS),'pc':True,'mobile':True,'rotationStableBeat':True,'tapNextSmooth':True,'desktopEscHold':True,'mobileSkipHold':True,'previewSaveBytesUnchanged':True,'live':args.live}))
