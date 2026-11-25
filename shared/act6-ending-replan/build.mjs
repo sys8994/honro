@@ -2,77 +2,110 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import path from 'node:path';
+import sharp from 'sharp';
+import {cuts,intro,names,selectEndingCue} from './cues.mjs';
 const dir='shared/act6-ending-replan';
-const TEMP_TRACK_FILE='assets/bgm/main.mp3'; // Replace this with the owner's final registered audio asset.
+const TEMP_TRACK_FILE='assets/bgm/main.mp3';
 const TEMP_TRACK_SHA1='12fa25bef170b60de432272743efe44b16bdd50d';
-const scenes=['last-souls','bridge-record','later-return'];
-const officialActors={
- seol:['shared/assets/portraits/variants-v2-20261024/seoro-action-lower-bow.webp','portrait-seoro-action-lower_bow','349c5a541a01528ecbefd39b9e7d96cc309a6c69d0c1214c1aa30c8fd05e0843'],
- hwi:['shared/assets/portraits/variants-v2-20261024/hwigyeom-action-inspect-record.webp','portrait-hwigyeom-action-inspect_record','c719ee39c460ba5e2ef42096ea2c9fc8abbf259e074e8d24bf5c11e9c6af40d8'],
- yeonsil:['shared/assets/portraits/npc-game-tone-v3/yeonsil.webp','npc-portrait-yeonsil','6a79ba32cc70096d4726ca1bf184e5f626e414c6f40cf27b6f70403a839ba68c']
-};
-const envPins={
- 'dossier-room-m':'77ed2839388cb318b5a4ef4b885b3f783860481f7c9963d89ec4945f312d093f',
- 'dossier-room':'e08159f4c3344f180494d8a03f34489ee004937a3662da9238464bdf2e59a2bc',
- 'shore-dawn-m':'d0603378f1150f0ced4cb5f2f2cd7f9508408b40bde6a81bd40e8bed1ee4ebe7',
- 'shore-dawn':'e6f8994d4b1c76b5c7daadcd2da6090640ddffc1176a271e0d02ca60338b3f71'
-};
-function splice(src,anchor,addition){
+function splice(src,anchor,replacement){
  assert.equal(src.split(anchor).length,2,'Unreviewed Stage60 presentation anchor: '+anchor);
- return src.replace(anchor,()=>addition);
+ return src.replace(anchor,()=>replacement);
 }
 export async function prepareEndingReplan({root,emit,descriptor}){
  assert(descriptor.releaseEnabled&&descriptor.boundary&&descriptor.normalEndingAssets);
- const raw=path.join(root,TEMP_TRACK_FILE), bytes=await readFile(raw);
+ const read=(name,encoding)=>readFile(path.join(root,dir,name),encoding);
+ const base=descriptor.basePath;assert.equal(base,'/honro/');
+ const bytes=await readFile(path.join(root,TEMP_TRACK_FILE));
  const blob=createHash('sha1').update('blob '+bytes.length+'\0').update(bytes).digest('hex');
  assert.equal(blob,TEMP_TRACK_SHA1,'Temporary ending track must be the registered title track');
- const base=descriptor.basePath;
- assert.equal(base,'/honro/');
- const actor={}, places={};
- for(const [id,[file,stem,digest]] of Object.entries(officialActors)){
-  const art=await readFile(path.join(root,file));
-  assert.equal(createHash('sha256').update(art).digest('hex'),digest,'Approved Act6 actor derivative changed: '+id);
-  actor[id]=base+await emit('graphics',stem,'webp',art);
- }
- for(const scene of ['shore-dawn','dossier-room']){
-  places[scene]={};
-  for(const [v,s] of [['wide',''],['portrait','-m']]){
-   const plate=scene+s, art=await readFile(path.join(root,dir,plate+'.webp'));
-   assert(art.length>10000&&art.length<450000&&art.subarray(8,12).toString()==='WEBP','Act6 ending scene env drift: '+plate);
-   assert.equal(createHash('sha256').update(art).digest('hex'),envPins[plate],'Act6 ending environment edition drift: '+plate);
-   places[scene][v]=base+await emit('graphics','act6-ending-'+plate,'webp',art);
+ const done=await Promise.all(cuts.map(async ({id})=>{
+  const media={};
+  for(const [side,w,h] of [['land',1920,1080],['port',1080,1920]]){
+   const stem='ending_'+id+'_'+side, art=await read('stills/'+stem+'.webp');
+   const q=await sharp(art).metadata();
+   assert(q.format==='webp'&&q.width===w&&q.height===h&&art.length<(id==='still_06b'?600000:450000),'Invalid '+stem);
+   media[side]=base+await emit('graphics','act6-'+stem,'webp',art);
   }
+  return [id,media];
+ }));
+ const preview={};
+ for(const [side,key] of [['land','pc'],['port','m']]){
+  const stem='bridge-record-'+key, art=await read(stem+'.webp');
+  preview[side]=base+await emit('graphics','act6-ending-native-preview-'+key,'webp',art);
  }
- const viewAssets={};
- for(const [size,suffix,dawn] of [['Wide','pc','dawn-pc.webp'],['Portrait','m','dawn-mobile.webp']]){
-  const shots=viewAssets[size]={'daybreak':base+descriptor.normalEndingAssets[dawn]};
-  for(const scene of scenes){
-   const name=scene+'-'+suffix;
-   const media=await readFile(path.join(root,dir,name+'.webp'));
-   assert(media.length>1000&&media.length<50000&&media.subarray(8,12).toString()==='WEBP');
-   shots[scene]=base+await emit('graphics','act6-ending-preview-'+name,'webp',media);
-  }
- }
- const css=await readFile(path.join(root,'shared/act6-normal-ending-qa/ending-dom.css'),'utf8')+
-    '\n'+await readFile(path.join(root,dir,'presentation.css'),'utf8');
- return Object.freeze({code:await readFile(path.join(root,dir,'presentation.inc.js'),'utf8'),css,
-  assets:{preview:viewAssets,actor,places,track:base+TEMP_TRACK_FILE}});
+ const credit=JSON.parse(await read('credits.json','utf8'));
+ return Object.freeze({
+  code:await read('presentation.inc.js','utf8'),css:await read('presentation.css','utf8'),
+  walk:await read('walk.inc.js','utf8'),nativeHost:await read('native-host.inc.js','utf8'),
+  assets:{stills:Object.fromEntries(done),preview,track:base+TEMP_TRACK_FILE,credit},
+  timeline:{intro,names,cuts}
+ });
 }
 export function spliceEndingPresentation(proto,end){
  assert(proto.includes('const normal60Stock=true;')&&proto.includes('function createEndingDOM('));
- proto=splice(proto,'  const previousActive=doc.activeElement;',
-  '  const end6=act6EndingReplan.normal(app,{root,media,heading,script,controls,status});\n  const previousActive=doc.activeElement;');
- proto=splice(proto,"   if(copy[v.scene])script.append(el('p','',copy[v.scene]));",
-  "   const beatCopy=act6EndingReplan.lines[v.scene]?.[1]??copy[v.scene];if(beatCopy&&!v.line)script.append(el('p','',beatCopy));");
- proto=splice(proto,'      const result=await pending;',
-  '      const result=await pending;\n      if(current(s))end6.audioAfter(v,result);');
- proto=splice(proto,"s.result=true;controls.replaceChildren();status.textContent='여정의 끝을 기록했습니다.';onDone(app,engine,proof,result);return;",
-  "s.result=true;end6.done();onDone(app,engine,proof,result);return;");
- proto=splice(proto,'   controls.replaceChildren(b);b.focus({preventScroll:true});',
-  '   controls.replaceChildren(b);end6.controls();b.focus({preventScroll:true});');
- proto=splice(proto,"   s.renderSize=size;s.displayed=v.scene;root.dataset.cut=v.scene;",
-  "   s.renderSize=size;\n   if(end6.shouldHold(v)){s.displayed=null;clearMedia();end6.paint(show);return;}\n   s.displayed=v.scene;root.dataset.cut=v.scene;");
- proto=splice(proto,'s.load?.abort();clearMedia();root.remove();refs.delete(app);',
-  's.load?.abort();end6.close();clearMedia();root.remove();refs.delete(app);');
- return 'const act6EndingReplan=('+end.code+')(G,'+JSON.stringify(end.assets)+','+JSON.stringify(end.css)+');\n'+proto;
+ // The released chapter boundary fingerprints the base module before this splice.
+ // The new presentation consumes the same authorized outcome and storage port.
+ proto=splice(proto,'const dom=createEndingDOM({','const dom=createEndingDOMV2({');
+ proto=splice(proto,'async function renderNative(app,e,proof,scene,size,{signal}={}){',
+  'async function renderNative(app,e,proof,scene,size,{signal,endingV2=false}={}){');
+ proto=splice(proto,"  const portrait=size.w/size.h<.95,node=doc.createElement('canvas');",
+  "  if(endingV2){const gate=gateShadow(b,cfg,C.topAt);if(gate?.collisionIds.length===0){b.honroLandmarks=b.honroLandmarks.filter(i=>i.id!=='act6-10-main-gate-footings-r1');b.honroLandmarks.push(warmGate(gate));}}\n"+
+  "  const portrait=size.w/size.h<.95,node=doc.createElement('canvas');");
+ proto=splice(proto,'  const snap=witnesses(b), geom=terrainSeal(b);',
+  '  const paint=()=>{sc.render(fork,0,"",.5,false,0);applyQuietPigment(node,sc,{...frame,core:C},scene,portrait);};\n'+
+  '  const walked=endingV2?endingV2Walk({frame,b,node,sc,fork,size,stage:e.stage,paint,sample}):null;\n'+
+  '  if(endingV2&&!walked){sc._releaseDomainTiles?.();return null;}\n  let keep=false;\n  const snap=witnesses(b), geom=terrainSeal(b);');
+ proto=splice(proto,"   try {sc.render(fork,0,'',.5,false,0);applyQuietPigment(node,sc,{...frame,core:C},scene,portrait);}",
+  '   try {paint();}');
+ proto=splice(proto,'   const result=Object.freeze({node,native:Object.freeze({})});',
+  '   const result=Object.freeze({node,native:Object.freeze({}),...(walked?{walk:walked.walk,walked:walked.walked,dispose:()=>sc._releaseDomainTiles?.()}:{} )});');
+ proto=splice(proto,'tickets.set(result.native,{app,e,proof,scene,node,world:canvas,size:{...size},pixels,nativePixels,counts,cert:',
+  'tickets.set(result.native,{app,e,proof,scene,node,world:canvas,size:{...size},pixels,walked,nativePixels,counts,cert:');
+ proto=splice(proto,'   return result;\n  }finally{sc._releaseDomainTiles?.();}',
+  '   keep=!!walked;return result;\n  }finally{if(!keep)sc._releaseDomainTiles?.();}');
+ proto=splice(proto,'try{return ticket.pixels===sample(node);}',
+  'try{return (ticket.walked?.signature()??ticket.pixels)===sample(node);}');
+ const mountStart=proto.indexOf('      function mountEndingNormal60(a,s,terminal){'), prior=proto.slice(0,mountStart);
+ assert(mountStart>-1);
+ let mount=proto.slice(mountStart);
+ mount=splice(mount,'        const panel=new WeakMap();',
+  "        const panel=new WeakMap();\n        if(s.owner60.endingView(1440,900)?.scene==='last-souls')void s.owner60.advanceScene('last-souls');");
+ mount=splice(mount,`          const v=s.owner60.endingView(w,h);
+          if(v?.scene!=='daybreak')return v;
+          const card=w/h<.95?normal60Cards.Portrait:normal60Cards.Wide;
+          return {...v,asset:card};`,
+  "          const v=s.owner60.endingView(w,h);return v?{...v,scene:'bridge-record'}:null;");
+ const from="            if(kind==='record'){", until="            finally{s.writing60=null;}";
+ const i=mount.indexOf(from),j=mount.indexOf(until,i);
+ assert(i>-1&&j>i);
+ mount=mount.slice(0,i)+`            if(kind==='record'){
+              const ok=s.owner60.nativeInteraction('name-the-bridge-guard',e.unit(p.guard.actor));
+              return {ok};
+            }
+            if(kind!=='depart'||f.raw.walked()!==1||s.writing60)return {ok:false,reason:'normal-60-departure-not-ready'};
+            s.writing60=f.raw;
+            try{
+              let q=s.owner60.endingView(f.viewport.w,f.viewport.h);
+              if(q?.scene==='bridge-record'){
+                if(!(await s.owner60.advanceScene('bridge-record')).ok)return {ok:false};
+                q=s.owner60.endingView(f.viewport.w,f.viewport.h);
+              }
+              if(q?.scene==='daybreak'){
+                if(!(await s.owner60.advanceScene('daybreak')).ok)return {ok:false};
+                q=s.owner60.endingView(f.viewport.w,f.viewport.h);
+              }
+              if(q?.scene!=='later-return')return {ok:false};
+              if(!s.final60Seal){
+                s.final60Seal=Object.freeze({});
+                if(!s.owner60.acceptFinalFrame(s.final60Seal)){s.final60Seal=null;return {ok:false,reason:'normal-60-final-frame-closed'};}
+              }
+              const result=await s.owner60.advanceScene('later-return');if(result.ok)panel.delete(frame);return result;
+            }
+`+mount.slice(j);
+ proto=prior+mount;
+ proto=splice(proto,"next.honroFlags={...(next.honroFlags??{}),[flag]:true};",
+  "next.honroFlags={...(next.honroFlags??{}),[flag]:true,game_completed:true,ending_act6_seen:true};");
+ return 'const endingTimeline='+JSON.stringify(end.timeline)+';endingTimeline.cueAt=ms=>('+selectEndingCue.toString()+')(endingTimeline.cuts,ms);\n'+
+  'const act6EndingReplan=('+end.code+')(G,'+JSON.stringify(end.assets)+','+JSON.stringify(end.css)+',endingTimeline);\n'+
+  end.walk+'\n'+end.nativeHost+'\n'+proto;
 }
