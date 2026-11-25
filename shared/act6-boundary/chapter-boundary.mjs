@@ -56,9 +56,10 @@ const captureFull=({engine:e})=>{
   return shapeRoles(full,combat)&&Object.values(full).every(u=>e.grounded(u))?full:null;
 };
 const deadAt58=(q,id)=>q?.id===id&&q.hp===0&&q.dead===true;
-const validate58=(r,p)=>withFlags(r,before58)&&exactRoster(r,p)&&same(r.guard,p.guard)&&same(r.association,p.association)&&
+const validate58=(r,p,_relay,_bridge,_eave,verifyReturn)=>withFlags(r,before58)&&exactRoster(r,p)&&same(r.guard,p.guard)&&same(r.association,p.association)&&
   p.guard?.ref==='local-07-gwakjin-return-keeper'&&p.guard.afterSide===2&&p.association.seamReady===true&&same(p.association.guard,p.guard)&&
-  deadAt58(p.boss,'a6-c08-boss')&&deadAt58(p.expansion,'a6-c08-expansion-node')&&typeof p.stakeId==='boolean'&&p.stakeId&&p.returned===true;
+  deadAt58(p.boss,'a6-c08-boss')&&deadAt58(p.expansion,'a6-c08-expansion-node')&&typeof p.stakeId==='boolean'&&p.stakeId&&p.returned===true&&
+  same(r.returnGate,p.returnGate)&&(!Object.hasOwn(r,'returnGate')||verifyReturn(r.returnGate,p.full));
 const solo=(r,p,exact)=>{
   const v=r.mage,u=p.mage;
   return takeRow(u,'mage')&&shapeRoles(p.external,outer)&&!Object.values(p.external).some(a=>a.id===u.id)&&
@@ -116,10 +117,10 @@ const recipes={
  59:{from:58,kind:'four-injured-exterior-with-real-defeat-and-node-stop',validate:validate58,
    capture(ctx){
     const full=captureFull(ctx),e=ctx.engine,t=ctx.terminal,project=e.b.honroState.flags;
-    if(!full||!same(t.guard,ctx.upstream?.boundary?.guard))return null;
+    if(!full||!t.returnGate||!same(t.guard,ctx.upstream?.boundary?.guard))return null;
     const role=id=>{const u=e.unit(id);return {id:u?.id,hp:u?.hp,dead:u?.dead};};
     return {full,guard:t.guard,association:t.association,boss:role('a6-c08-boss'),expansion:role('a6-c08-expansion-node'),
-      stakeId:project['place(correctedInnerStake)']===true,returned:project.localFourBodyExit===true};
+      stakeId:project['place(correctedInnerStake)']===true,returned:project.localFourBodyExit===true,returnGate:t.returnGate};
    }},
 
  56:{from:55,kind:'three-active-plus-original-parked-mage',validate:validate55,
@@ -136,7 +137,7 @@ const recipes={
    }}
 };
 const reject=reason=>({ok:false,reason,keepOriginal:true});
-export function createChapterBoundary({slot,key,storage,locks,normalize,hash,verifyOwner,verifyCold,releasePin,verifyRelay54,verifyBridge,verifyEave,ownedStore=(a,w)=>a?.profileStore===w,originalProfile=a=>a.profile}){
+export function createChapterBoundary({slot,key,storage,locks,normalize,hash,verifyOwner,verifyCold,releasePin,verifyRelay54,verifyBridge,verifyEave,verifyReturn=()=>false,ownedStore=(a,w)=>a?.profileStore===w,originalProfile=a=>a.profile}){
  if(!slot||!key||typeof locks?.request!=='function'||typeof hash!=='function'||!storage||typeof normalize!=='function'||typeof verifyOwner!=='function'||typeof verifyCold!=='function'||typeof releasePin!=='function'||typeof verifyRelay54!=='function'||typeof verifyBridge!=='function'||typeof verifyEave!=='function')return null;
  const written=new WeakSet(),booted=new WeakMap(),working=new WeakSet();
  const digest=v=>hash(JSON.stringify(v)), read=()=>storage.getItem(key), exclusive=f=>locks.request('honro:profile-slot:'+slot,{mode:'exclusive'},f);
@@ -164,7 +165,7 @@ export function createChapterBoundary({slot,key,storage,locks,normalize,hash,ver
   return !!(x&&r&&pinOkay(pin,id)&&x.schema===schema&&x.slot===slot&&x.runId===p?.equipment?.runId&&x.kind===r.kind&&x.from===r.from&&x.to===id&&
    x.profileSHA===digest(naked(p))&&same(pin,releasePin(id))&&pinCompatible(x.pin,pin,id)&&x.generation>=1&&Number.isSafeInteger(x.generation)&&x.parent&&(x.parent==='initial'&&x.generation===1||hash64(x.parent)&&x.generation>1)&&
    x.terminal?.stage===r.from&&([51,52].includes(r.from)?x.terminal.won===undefined:x.terminal.won===true)&&x.terminal.settlement===false&&x.terminalSHA===digest(x.terminal)&&x.custodySHA===digest(x.custody)&&
-   x.stageSeed?.id===r.from&&x.budget?.id===r.from&&r.validate(x.terminal,x.custody,verifyRelay54,verifyBridge,verifyEave)&&sha===digest(x));
+   x.stageSeed?.id===r.from&&x.budget?.id===r.from&&r.validate(x.terminal,x.custody,verifyRelay54,verifyBridge,verifyEave,verifyReturn)&&sha===digest(x));
  }
  async function checkpoint({app,engine:e,store,terminal,upstream,physical,stageSeed,budget,to,pin,expectedRaw}){
   const r=recipes[to];

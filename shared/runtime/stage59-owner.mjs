@@ -56,7 +56,7 @@ export async function createStage59Owner({C,packet,authorize,verifyIncoming,crea
    return !a||!u||a.id!==u.id||!alive(a)||u.acted||!bornSame(a,u)||Math.abs(u.x-x*k)>.001||!grounded(u,t);
   }))return (console.log('native59 deny 38'),null);
   const current=()=>e===app.engine&&e.b===b&&app.stage===s&&app.stageId===59&&b.terrain===terrain&&b.honroWorldTerrain===world&&(!b.honroGrowth||normalBudget(app,e,activation)===true)&&JSON.stringify(app.profile)===profileCopy&&units.every(u=>e.unit(u.id)===u);
-  const active=()=>current()&&!['won','lost','transition'].includes(b.phase);
+  const active=()=>current()&&!b.honroReturnGatePending&&!['won','lost','transition'].includes(b.phase);
   const local=(u,x,t,r=96)=>grounded(u,t)&&Math.abs(u.x-x*k)<r&&Math.abs(u.y-C.topAt(terrain.find(a=>a.id===t),x*k))<150;
   const isActor=(u)=>b.side===0&&e.canAct()&&e.active===u&&alive(u);
   const log=[], waves={epoch:null,rounds:[],closed:false}, walks=[];

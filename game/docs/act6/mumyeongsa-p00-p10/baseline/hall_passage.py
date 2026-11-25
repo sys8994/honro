@@ -13,6 +13,7 @@ from relay_live_chain import ready
 from second_pass import sample_walk
 
 MISSION = '[data-act6-qa-lookout]'
+D_APPROACH = ['m57-hall-approach','local-07-08-folded-ward-bridge','local-07-08-exact-receiving-slice','a6-c07-stationary-stone-ward']
 CONTACTS = """() => {
  const e=HonroApp.engine,b=e.b,C=HONRO_CORE;
  return {stage:b.honroStage,active:e.active?.id,phase:b.phase,round:b.round,side:b.side,shot:b.shot,
@@ -23,7 +24,7 @@ CONTACTS = """() => {
    const axis=h?.terrain?.id==='m58-apse-pier'?[u.x-u.h/2,u.y]:
        v?.terrain?.id==='m58-timber-soffit'?[u.x,u.y+u.h/2]:[u.x,u.y-u.h/2];
    const support=h?.terrain?.id==='m58-apse-pier'?h:v?.terrain?.id==='m58-timber-soffit'?v:null;
-   return {id:u.id,cls:u.cls,side:u.side,x:u.x,y:u.y,vx:u.vx,vy:u.vy,hp:u.hp,r:u.r,h:u.h,
+   return {id:u.id,cls:u.cls,side:u.side,x:u.x,y:u.y,vx:u.vx,vy:u.vy,hp:u.hp,maxHp:u.maxHp,shield:u.shield,r:u.r,h:u.h,
     ammo:u.ammo,loadout:u.loadout,dead:u.dead,actorsMoved:u.acted,move:u.moveLeft,grounded:e.grounded(u),
     family:C.environmentAt(b.physics,...axis,true).gravity,
     contact:support?.terrain?.id??e.contactSurface(u.x,u.y-4,u.y+5)?.t.id??null,normal:support?.n??null};
@@ -100,8 +101,14 @@ def march(page,target,cls=None,actor_id=None,tolerance=27,max_attempts=8):
             if abs(actor(page)['x']-target)<=tolerance and actor(page)['grounded']:
                 return actor(page)
         if abs(actor(page)['x']-u['x'])<35 and actor(page)['grounded']:
+            foot=actor(page)
             page.keyboard.press('Control')
-            sample_walk(page,1 if target>u['x'] else -1,target,700)
+            try:
+                page.wait_for_function('y=>HonroApp.engine.active.y<y-40',arg=foot['y'],timeout=1400)
+                sample_walk(page,1 if target>u['x'] else -1,target,680)
+                page.wait_for_function('HonroApp.engine.grounded(HonroApp.engine.active)',timeout=2800)
+            except Error:
+                pass
     raise AssertionError({'target':target,'actor':actor(page),'state':state(page)})
 
 def live_d(browser,out):
@@ -138,18 +145,31 @@ def live_d(browser,out):
         march(page,2028,actor_id='local-07-gwakjin-return-keeper',tolerance=39)
         mission_click(page,'receiveKeeperWatch','reuniteAtWard')
         steps['keeperParked']=state(page)
-        for cls,x in [('archer',5418),('knight',5385),('occultist',5315)]:
+        march(page,5260,cls='archer',tolerance=11)
+        page.keyboard.press('Control')
+        page.wait_for_function('HonroApp.engine.active.y<2940',timeout=4200)
+        sample_walk(page,1,5372,3700)
+        page.wait_for_function("""()=>{const e=HonroApp.engine,u=e.active;return e.grounded(u)&&
+          e.contactSurface(u.x,u.y-4,u.y+5)?.t.id==='a6-c07-stationary-stone-ward';}""",timeout=4300)
+        steps['archerOnWard']=actor(page)
+        for cls,x in [('knight',5385),('occultist',5290)]:
             march(page,x,cls=cls,tolerance=23)
         mission_click(page,'reuniteAtWard')
         page.wait_for_function("!!HonroApp.engine.unit('p-mage')",timeout=4100)
         steps['folded']=state(page)
         page.evaluate("window.dOriginals=new Map(HonroApp.engine.b.units.filter(u=>u.side===0&&!u.summoned).map(u=>[u.id,u]))")
-        for cls,x in [('occultist',6200),('knight',6090),('mage',5992)]:
-            march(page,x,cls=cls,tolerance=23)
-        march(page,5770,cls='archer',tolerance=12)
-        page.keyboard.press('Control')
-        page.wait_for_function('HonroApp.engine.active.y<2680',timeout=4000)
-        sample_walk(page,1,5872,4500)
+        for cls,x in [('occultist',6200),('knight',6090),('mage',5992),('archer',5872)]:
+            select(page,cls,advance=True)
+            if actor(page)['contact'] not in D_APPROACH:
+                march(page,5260,cls=cls,tolerance=12)
+                page.keyboard.press('Control')
+                page.wait_for_function("""ids=>{const e=HonroApp.engine,u=e.active;return e.grounded(u)&&
+                  ids.includes(e.contactSurface(u.x,u.y-4,u.y+5)?.t.id);}""",arg=D_APPROACH,timeout=5000)
+            steps['ramp-'+cls]=actor(page)
+            if cls=='archer':
+                sample_walk(page,1,x,4200)
+            else:
+                march(page,x,cls=cls,tolerance=23)
         page.wait_for_function("HonroApp.engine.b.phase==='won'&&HonroApp.done",timeout=7200)
         q['outgoing']=state(page)
         page.screenshot(path=out/'d-live-57.png')
@@ -232,7 +252,10 @@ def gallery(browser,out,hz,combat=False):
         page.screenshot(path=out/f'd-ceiling-{hz}.png')
         if combat:
             q['combat']=combat_from_ceiling(page,out,hz)
-            assert any(t['event']=='impact' and t['actor']=='p-mage' and t['shot']>0 and (t['target'] or t['terrain']) for t in q['combat']['trace']),q['combat']
+            enemies={u['id'] for u in q['manifestation']}
+            assert any(t['event']=='impact' and t['actor']=='p-mage' and t['shot']>0 and
+                       t['target'] in enemies and t['after']<t['before'] for t in q['combat']['trace']),q['combat']
+            assert not q['errors'] and q['seedHash']==storage_hash(base.saved_bytes(page)),q['errors']
             q['status']='PASS'
             return q
         hold(page,'ArrowLeft',"()=>{const e=HonroApp.engine;return e.active.x<3960;}",None,5400)
@@ -260,15 +283,20 @@ def gallery(browser,out,hz,combat=False):
 def combat_from_ceiling(page,out,hz):
     wall_trace(page)
     best=None
-    for x in [4070,4000]:
-        hold(page,'ArrowLeft','x=>HonroApp.engine.active.x<=x',x,4300)
+    for x,facing in [(4220,1),(4240,-1),(4290,-1),(4090,1)]:
+        if abs(x-actor(page)['x'])>5:
+            near(page,x,4)
+        if page.evaluate('HonroApp.engine.active.facing')!=facing:
+            hold(page,'ArrowRight' if facing>0 else 'ArrowLeft',
+                 'dir=>HonroApp.engine.active.facing===dir',facing,1200)
         options=page.evaluate("""()=>{
           const e=HonroApp.engine,u=e.active,results=[];
           for(const id of u.loadout)for(const power of [.74,.65,.83,.56,.46,.9,.39,.95]){
             const sk=HONRO_CORE.SKILLS[id];
-            for(let angle=94;angle<=262;angle+=2){
+            for(let angle=u.facing>0?-84:94;angle<=(u.facing>0?88:264);angle+=2){
               if(!e.canAfford(sk,u,power+.02))continue;
               const pos=e.predict(u,sk,angle,power,undefined,true);
+              if(pos.unit&&e.unit(pos.unit)?.side!==1)continue;
               if(!pos.terrain&&!pos.unit)continue;
               const zs=[-.85,0,.85].flatMap(d=>[.006,.022].map(p=>e.predict(u,sk,angle+d,power+p,undefined,true)));
               if(!zs.every(z=>z.unit===pos.unit&&z.terrain===pos.terrain))continue;

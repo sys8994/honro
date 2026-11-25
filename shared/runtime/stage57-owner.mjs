@@ -56,9 +56,11 @@ export function createStage57Owner({G,authorize,earlierResult,isDetachedFixture=
   }
   function reunite(actor){
    if(association||!guard||!native()||!mounted.has(actor)||e.active!==actor||!fallbackLive()||!propSafe()||!three.every(a=>e.grounded(a)&&Math.hypot(a.x-body.x,a.y-body.y)<pack.required.reunionRadius)||b.units.some(x=>x.id===m.id))return false;
+   const foldedTerrain=[...b.terrain,...pack.additions.terrain];
+   if(three.some(a=>!C.validTerrainContactPose(foldedTerrain,a)))return false;
    const orig=structuredClone(m),slot=b.units.indexOf(body);
    Object.assign(orig,{x:body.x,y:body.y,spawnX:body.x,spawnY:body.y,vx:0,vy:0,airborne:false,jumping:false,acted:false});
-   if(orig.side!==0||orig.summoned||!e.grounded(orig)||!C.validTerrainContactPose(b.terrain,orig))return false;
+   if(orig.side!==0||orig.summoned||!e.grounded(orig)||!C.validTerrainContactPose(foldedTerrain,orig))return false;
    b.units.splice(slot,1,orig);
    const opened=bridge.onEvent({type:'act6.07.reunion-completed'});
    if(!opened.accepted||!opened.applied){b.units.splice(slot,1,body);return false;}

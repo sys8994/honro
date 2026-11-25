@@ -1,0 +1,2300 @@
+{
+  "status": "PASS",
+  "steps": {
+    "initial": {
+      "stage": 57,
+      "active": "p-archer",
+      "phase": "aim",
+      "round": 1,
+      "side": 0,
+      "shot": 0,
+      "flags": {
+        "act6.firstGarmjinFailed": true
+      },
+      "notice": "",
+      "actors": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "side": 0,
+          "x": 2408,
+          "y": 3234.7586206896553,
+          "vx": 0,
+          "vy": 0,
+          "hp": 1407,
+          "maxHp": 1720,
+          "shield": 0,
+          "r": 22,
+          "h": 92,
+          "ammo": null,
+          "loadout": [
+            "A01",
+            "A14",
+            "A02",
+            "A05"
+          ],
+          "dead": false,
+          "actorsMoved": false,
+          "move": 2921,
+          "grounded": true,
+          "family": {
+            "x": 0,
+            "y": 320
+          },
+          "contact": "local-lower-07-west",
+          "normal": null
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "side": 0,
+          "x": 3584,
+          "y": 3271.1111111111113,
+          "vx": 0,
+          "vy": 0,
+          "hp": 3688.1,
+          "maxHp": 3846,
+          "shield": 0,
+          "r": 22,
+          "h": 92,
+          "ammo": null,
+          "loadout": [
+            "S00",
+            "S01",
+            "S03"
+          ],
+          "dead": false,
+          "actorsMoved": false,
+          "move": 4081,
+          "grounded": true,
+          "family": {
+            "x": 0,
+            "y": 320
+          },
+          "contact": "local-lower-07-west",
+          "normal": null
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "side": 0,
+          "x": 5024,
+          "y": 3099.1428571428573,
+          "vx": 0,
+          "vy": 0,
+          "hp": 2144.1,
+          "maxHp": 2304,
+          "shield": 0,
+          "r": 22,
+          "h": 92,
+          "ammo": null,
+          "loadout": [
+            "O01",
+            "O04",
+            "O03",
+            "O06"
+          ],
+          "dead": false,
+          "actorsMoved": false,
+          "move": 3132,
+          "grounded": true,
+          "family": {
+            "x": 0,
+            "y": 320
+          },
+          "contact": "local-lower-07-west",
+          "normal": null
+        },
+        {
+          "id": "a6-c07-optional-drift",
+          "cls": "occultist",
+          "side": 1,
+          "x": 5336,
+          "y": 2988,
+          "vx": 0,
+          "vy": 0,
+          "hp": 850,
+          "maxHp": 850,
+          "shield": 0,
+          "r": 21,
+          "h": 105,
+          "ammo": null,
+          "loadout": [
+            "LA01"
+          ],
+          "dead": false,
+          "actorsMoved": false,
+          "move": 550,
+          "grounded": true,
+          "family": {
+            "x": 0,
+            "y": 320
+          },
+          "contact": "a6-c07-stationary-stone-ward",
+          "normal": null
+        },
+        {
+          "id": "a6-c07-ward-pressure",
+          "cls": "occultist",
+          "side": 1,
+          "x": 5720,
+          "y": 2939.4285714285716,
+          "vx": 0,
+          "vy": 0,
+          "hp": 850,
+          "maxHp": 850,
+          "shield": 0,
+          "r": 21,
+          "h": 105,
+          "ammo": null,
+          "loadout": [
+            "HGS01",
+            "HGS02"
+          ],
+          "dead": false,
+          "actorsMoved": false,
+          "move": 550,
+          "grounded": true,
+          "family": {
+            "x": 0,
+            "y": 320
+          },
+          "contact": "local-lower-07-west",
+          "normal": null
+        },
+        {
+          "id": "a6-c07-original-darmheo-body",
+          "cls": "mage",
+          "side": 2,
+          "x": 5384,
+          "y": 2976,
+          "vx": 0,
+          "vy": 0,
+          "hp": 390,
+          "maxHp": 390,
+          "shield": 0,
+          "r": 21,
+          "h": 72,
+          "ammo": null,
+          "loadout": [],
+          "dead": false,
+          "actorsMoved": false,
+          "move": 0,
+          "grounded": true,
+          "family": {
+            "x": 0,
+            "y": 320
+          },
+          "contact": "a6-c07-stationary-stone-ward",
+          "normal": null
+        }
+      ],
+      "landmarks": []
+    },
+    "warnBell": {
+      "stage": 57,
+      "active": "p-occultist",
+      "phase": "aim",
+      "round": 1,
+      "side": 0,
+      "shot": 0,
+      "flags": {
+        "act6.firstGarmjinFailed": true
+      },
+      "notice": "종터 보호 받침 살피기",
+      "actors": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "side": 0,
+          "x": 2408,
+          "y": 3234.7586206896553,
+          "vx": 0,
+          "vy": 0,
+          "hp": 1407,
+          "maxHp": 1720,
+          "shield": 0,
+          "r": 22,
+          "h": 92,
+          "ammo": null,
+          "loadout": [
+            "A01",
+            "A14",
+            "A02",
+            "A05"
+          ],
+          "dead": false,
+          "actorsMoved": false,
+          "move": 2921,
+          "grounded": true,
+          "family": {
+            "x": 0,
+            "y": 320
+          },
+          "contact": "local-lower-07-west",
+          "normal": null
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "side": 0,
+          "x": 3584,
+          "y": 3271.1111111111113,
+          "vx": 0,
+          "vy": 0,
+          "hp": 3688.1,
+          "maxHp": 3846,
+          "shield": 0,
+          "r": 22,
+          "h": 92,
+          "ammo": null,
+          "loadout": [
+            "S00",
+            "S01",
+            "S03"
+          ],
+          "dead": false,
+          "actorsMoved": false,
+          "move": 4081,
+          "grounded": true,
+          "family": {
+            "x": 0,
+            "y": 320
+          },
+          "contact": "local-lower-07-west",
+          "normal": null
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "side": 0,
+          "x": 5024,
+          "y": 3099.1428571428573,
+          "vx": 0,
+          "vy": 0,
+          "hp": 2144.1,
+          "maxHp": 2304,
+          "shield": 0,
+          "r": 22,
+          "h": 92,
+          "ammo": null,
+          "loadout": [
+            "O01",
+            "O04",
+            "O03",
+            "O06"
+          ],
+          "dead": false,
+          "actorsMoved": false,
+          "move": 3132,
+          "grounded": true,
+          "family": {
+            "x": 0,
+            "y": 320
+          },
+          "contact": "local-lower-07-west",
+          "normal": null
+        },
+        {
+          "id": "a6-c07-optional-drift",
+          "cls": "occultist",
+          "side": 1,
+          "x": 5336,
+          "y": 2988,
+          "vx": 0,
+          "vy": 0,
+          "hp": 850,
+          "maxHp": 850,
+          "shield": 0,
+          "r": 21,
+          "h": 105,
+          "ammo": null,
+          "loadout": [
+            "LA01"
+          ],
+          "dead": false,
+          "actorsMoved": false,
+          "move": 550,
+          "grounded": true,
+          "family": {
+            "x": 0,
+            "y": 320
+          },
+          "contact": "a6-c07-stationary-stone-ward",
+          "normal": null
+        },
+        {
+          "id": "a6-c07-ward-pressure",
+          "cls": "occultist",
+          "side": 1,
+          "x": 5720,
+          "y": 2939.4285714285716,
+          "vx": 0,
+          "vy": 0,
+          "hp": 850,
+          "maxHp": 850,
+          "shield": 0,
+          "r": 21,
+          "h": 105,
+          "ammo": null,
+          "loadout": [
+            "HGS01",
+            "HGS02"
+          ],
+          "dead": false,
+          "actorsMoved": false,
+          "move": 550,
+          "grounded": true,
+          "family": {
+            "x": 0,
+            "y": 320
+          },
+          "contact": "local-lower-07-west",
+          "normal": null
+        },
+        {
+          "id": "a6-c07-original-darmheo-body",
+          "cls": "mage",
+          "side": 2,
+          "x": 5384,
+          "y": 2976,
+          "vx": 0,
+          "vy": 0,
+          "hp": 390,
+          "maxHp": 390,
+          "shield": 0,
+          "r": 21,
+          "h": 72,
+          "ammo": null,
+          "loadout": [],
+          "dead": false,
+          "actorsMoved": false,
+          "move": 0,
+          "grounded": true,
+          "family": {
+            "x": 0,
+            "y": 320
+          },
+          "contact": "a6-c07-stationary-stone-ward",
+          "normal": null
+        }
+      ],
+      "landmarks": []
+    },
+    "repairRelay": {
+      "stage": 57,
+      "active": "p-occultist",
+      "phase": "aim",
+      "round": 2,
+      "side": 0,
+      "shot": 2,
+      "flags": {
+        "act6.firstGarmjinFailed": true,
+        "bellSiteEmergencyStabilized": true
+      },
+      "notice": "보호 받침에 결속 잇기",
+      "actors": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "side": 0,
+          "x": 2408,
+          "y": 3234.7586206896553,
+          "vx": 0,
+          "vy": 0,
+          "hp": 1476,
+          "maxHp": 1720,
+          "shield": 0,
+          "r": 22,
+          "h": 92,
+          "ammo": null,
+          "loadout": [
+            "A01",
+            "A14",
+            "A02",
+            "A05"
+          ],
+          "dead": false,
+          "actorsMoved": false,
+          "move": 2921,
+          "grounded": true,
+          "family": {
+            "x": 0,
+            "y": 320
+          },
+          "contact": "local-lower-07-west",
+          "normal": null
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "side": 0,
+          "x": 3584,
+          "y": 3271.1111111111113,
+          "vx": 0,
+          "vy": 0,
+          "hp": 3842.1,
+          "maxHp": 3846,
+          "shield": 0,
+          "r": 22,
+          "h": 92,
+          "ammo": null,
+          "loadout": [
+            "S00",
+            "S01",
+            "S03"
+          ],
+          "dead": false,
+          "actorsMoved": false,
+          "move": 4081,
+          "grounded": true,
+          "family": {
+            "x": 0,
+            "y": 320
+          },
+          "contact": "local-lower-07-west",
+          "normal": null
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "side": 0,
+          "x": 5024,
+          "y": 3099.1428571428573,
+          "vx": 0,
+          "vy": 0,
+          "hp": 2236.1,
+          "maxHp": 2304,
+          "shield": 0,
+          "r": 22,
+          "h": 92,
+          "ammo": null,
+          "loadout": [
+            "O01",
+            "O04",
+            "O03",
+            "O06"
+          ],
+          "dead": false,
+          "actorsMoved": false,
+          "move": 3132,
+          "grounded": true,
+          "family": {
+            "x": 0,
+            "y": 320
+          },
+          "contact": "local-lower-07-west",
+          "normal": null
+        },
+        {
+          "id": "a6-c07-optional-drift",
+          "cls": "occultist",
+          "side": 1,
+          "x": 5336,
+          "y": 2988,
+          "vx": 0,
+          "vy": 0,
+          "hp": 850,
+          "maxHp": 850,
+          "shield": 0,
+          "r": 21,
+          "h": 105,
+          "ammo": null,
+          "loadout": [
+            "LA01"
+          ],
+          "dead": false,
+          "actorsMoved": false,
+          "move": 550,
+          "grounded": true,
+          "family": {
+            "x": 0,
+            "y": 320
+          },
+          "contact": "a6-c07-stationary-stone-ward",
+          "normal": null
+        },
+        {
+          "id": "a6-c07-ward-pressure",
+          "cls": "occultist",
+          "side": 1,
+          "x": 5720,
+          "y": 2939.4285714285716,
+          "vx": 0,
+          "vy": 0,
+          "hp": 850,
+          "maxHp": 850,
+          "shield": 0,
+          "r": 21,
+          "h": 105,
+          "ammo": null,
+          "loadout": [
+            "HGS01",
+            "HGS02"
+          ],
+          "dead": false,
+          "actorsMoved": false,
+          "move": 550,
+          "grounded": true,
+          "family": {
+            "x": 0,
+            "y": 320
+          },
+          "contact": "local-lower-07-west",
+          "normal": null
+        },
+        {
+          "id": "a6-c07-original-darmheo-body",
+          "cls": "mage",
+          "side": 2,
+          "x": 5384,
+          "y": 2976,
+          "vx": 0,
+          "vy": 0,
+          "hp": 390,
+          "maxHp": 390,
+          "shield": 0,
+          "r": 21,
+          "h": 72,
+          "ammo": null,
+          "loadout": [],
+          "dead": false,
+          "actorsMoved": true,
+          "move": 0,
+          "grounded": true,
+          "family": {
+            "x": 0,
+            "y": 320
+          },
+          "contact": "a6-c07-stationary-stone-ward",
+          "normal": null
+        }
+      ],
+      "landmarks": []
+    },
+    "retreat": {
+      "stage": 57,
+      "active": "p-knight",
+      "phase": "aim",
+      "round": 2,
+      "side": 0,
+      "shot": 2,
+      "flags": {
+        "act6.firstGarmjinFailed": true,
+        "bellSiteEmergencyStabilized": true,
+        "bridgeRetreatOpened": true
+      },
+      "notice": "안전한 뒤 석교 후퇴로 확보",
+      "actors": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "side": 0,
+          "x": 2408,
+          "y": 3234.7586206896553,
+          "vx": 0,
+          "vy": 0,
+          "hp": 1476,
+          "maxHp": 1720,
+          "shield": 0,
+          "r": 22,
+          "h": 92,
+          "ammo": null,
+          "loadout": [
+            "A01",
+            "A14",
+            "A02",
+            "A05"
+          ],
+          "dead": false,
+          "actorsMoved": false,
+          "move": 2921,
+          "grounded": true,
+          "family": {
+            "x": 0,
+            "y": 320
+          },
+          "contact": "local-lower-07-west",
+          "normal": null
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "side": 0,
+          "x": 3363.5139937533963,
+          "y": 3335.4254717115987,
+          "vx": 0,
+          "vy": 0,
+          "hp": 3842.1,
+          "maxHp": 3846,
+          "shield": 0,
+          "r": 22,
+          "h": 92,
+          "ammo": null,
+          "loadout": [
+            "S00",
+            "S01",
+            "S03"
+          ],
+          "dead": false,
+          "actorsMoved": false,
+          "move": 3839.5,
+          "grounded": true,
+          "family": {
+            "x": 0,
+            "y": 320
+          },
+          "contact": "local-lower-07-west",
+          "normal": null
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "side": 0,
+          "x": 5024,
+          "y": 3099.1428571428573,
+          "vx": 0,
+          "vy": 0,
+          "hp": 2236.1,
+          "maxHp": 2304,
+          "shield": 0,
+          "r": 22,
+          "h": 92,
+          "ammo": null,
+          "loadout": [
+            "O01",
+            "O04",
+            "O03",
+            "O06"
+          ],
+          "dead": false,
+          "actorsMoved": false,
+          "move": 3132,
+          "grounded": true,
+          "family": {
+            "x": 0,
+            "y": 320
+          },
+          "contact": "local-lower-07-west",
+          "normal": null
+        },
+        {
+          "id": "a6-c07-optional-drift",
+          "cls": "occultist",
+          "side": 1,
+          "x": 5336,
+          "y": 2988,
+          "vx": 0,
+          "vy": 0,
+          "hp": 850,
+          "maxHp": 850,
+          "shield": 0,
+          "r": 21,
+          "h": 105,
+          "ammo": null,
+          "loadout": [
+            "LA01"
+          ],
+          "dead": false,
+          "actorsMoved": false,
+          "move": 550,
+          "grounded": true,
+          "family": {
+            "x": 0,
+            "y": 320
+          },
+          "contact": "a6-c07-stationary-stone-ward",
+          "normal": null
+        },
+        {
+          "id": "a6-c07-ward-pressure",
+          "cls": "occultist",
+          "side": 1,
+          "x": 5720,
+          "y": 2939.4285714285716,
+          "vx": 0,
+          "vy": 0,
+          "hp": 850,
+          "maxHp": 850,
+          "shield": 0,
+          "r": 21,
+          "h": 105,
+          "ammo": null,
+          "loadout": [
+            "HGS01",
+            "HGS02"
+          ],
+          "dead": false,
+          "actorsMoved": false,
+          "move": 550,
+          "grounded": true,
+          "family": {
+            "x": 0,
+            "y": 320
+          },
+          "contact": "local-lower-07-west",
+          "normal": null
+        },
+        {
+          "id": "a6-c07-original-darmheo-body",
+          "cls": "mage",
+          "side": 2,
+          "x": 5384,
+          "y": 2976,
+          "vx": 0,
+          "vy": 0,
+          "hp": 390,
+          "maxHp": 390,
+          "shield": 0,
+          "r": 21,
+          "h": 72,
+          "ammo": null,
+          "loadout": [],
+          "dead": false,
+          "actorsMoved": true,
+          "move": 0,
+          "grounded": true,
+          "family": {
+            "x": 0,
+            "y": 320
+          },
+          "contact": "a6-c07-stationary-stone-ward",
+          "normal": null
+        },
+        {
+          "id": "a6-c07-optional-pressure",
+          "cls": "archer",
+          "side": 1,
+          "x": 4416,
+          "y": 3204.190476190476,
+          "vx": 0,
+          "vy": 0,
+          "hp": 1200,
+          "maxHp": 1200,
+          "shield": 0,
+          "r": 21,
+          "h": 91,
+          "ammo": null,
+          "loadout": [
+            "LA01",
+            "LA02"
+          ],
+          "dead": false,
+          "actorsMoved": false,
+          "move": 550,
+          "grounded": true,
+          "family": {
+            "x": 0,
+            "y": 320
+          },
+          "contact": "local-lower-07-west",
+          "normal": null
+        }
+      ],
+      "landmarks": []
+    },
+    "keeperAvailable": {
+      "stage": 57,
+      "active": "p-archer",
+      "phase": "aim",
+      "round": 3,
+      "side": 0,
+      "shot": 4,
+      "flags": {
+        "act6.firstGarmjinFailed": true,
+        "bellSiteEmergencyStabilized": true,
+        "bridgeRetreatOpened": true,
+        "relayMovedToFallback": true,
+        "act6.fallbackRelaySecured": true
+      },
+      "notice": "곽진의 귀환 매듭 인수 시작",
+      "actors": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "side": 0,
+          "x": 2041.0287394964232,
+          "y": 3201.4367827132637,
+          "vx": 0,
+          "vy": 0,
+          "hp": 1545,
+          "maxHp": 1720,
+          "shield": 0,
+          "r": 22,
+          "h": 92,
+          "ammo": null,
+          "loadout": [
+            "A01",
+            "A14",
+            "A02",
+            "A05"
+          ],
+          "dead": false,
+          "actorsMoved": false,
+          "move": 2538.499999999985,
+          "grounded": true,
+          "family": {
+            "x": 0,
+            "y": 320
+          },
+          "contact": "local-lower-07-west",
+          "normal": null
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "side": 0,
+          "x": 1958.8050277587897,
+          "y": 3163.888587290737,
+          "vx": 0,
+          "vy": 0,
+          "hp": 3846,
+          "maxHp": 3846,
+          "shield": 0,
+          "r": 22,
+          "h": 92,
+          "ammo": null,
+          "loadout": [
+            "S00",
+            "S01",
+            "S03"
+          ],
+          "dead": false,
+          "actorsMoved": false,
+          "move": 2572.4999999999923,
+          "grounded": true,
+          "family": {
+            "x": 0,
+            "y": 320
+          },
+          "contact": "local-lower-07-west",
+          "normal": null
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "side": 0,
+          "x": 1904.2190607467394,
+          "y": 3132.696606140994,
+          "vx": 0,
+          "vy": 0,
+          "hp": 2304,
+          "maxHp": 2304,
+          "shield": 0,
+          "r": 22,
+          "h": 92,
+          "ammo": null,
+          "loadout": [
+            "O01",
+            "O04",
+            "O03",
+            "O06"
+          ],
+          "dead": false,
+          "actorsMoved": false,
+          "move": 2875.466666666665,
+          "grounded": true,
+          "family": {
+            "x": 0,
+            "y": 320
+          },
+          "contact": "local-lower-07-west",
+          "normal": null
+        },
+        {
+          "id": "a6-c07-optional-drift",
+          "cls": "occultist",
+          "side": 1,
+          "x": 5336,
+          "y": 2988,
+          "vx": 0,
+          "vy": 0,
+          "hp": 850,
+          "maxHp": 850,
+          "shield": 0,
+          "r": 21,
+          "h": 105,
+          "ammo": null,
+          "loadout": [
+            "LA01"
+          ],
+          "dead": false,
+          "actorsMoved": false,
+          "move": 550,
+          "grounded": true,
+          "family": {
+            "x": 0,
+            "y": 320
+          },
+          "contact": "a6-c07-stationary-stone-ward",
+          "normal": null
+        },
+        {
+          "id": "a6-c07-ward-pressure",
+          "cls": "occultist",
+          "side": 1,
+          "x": 5720,
+          "y": 2939.4285714285716,
+          "vx": 0,
+          "vy": 0,
+          "hp": 850,
+          "maxHp": 850,
+          "shield": 0,
+          "r": 21,
+          "h": 105,
+          "ammo": null,
+          "loadout": [
+            "HGS01",
+            "HGS02"
+          ],
+          "dead": false,
+          "actorsMoved": false,
+          "move": 550,
+          "grounded": true,
+          "family": {
+            "x": 0,
+            "y": 320
+          },
+          "contact": "local-lower-07-west",
+          "normal": null
+        },
+        {
+          "id": "a6-c07-original-darmheo-body",
+          "cls": "mage",
+          "side": 2,
+          "x": 5384,
+          "y": 2976,
+          "vx": 0,
+          "vy": 0,
+          "hp": 390,
+          "maxHp": 390,
+          "shield": 0,
+          "r": 21,
+          "h": 72,
+          "ammo": null,
+          "loadout": [],
+          "dead": false,
+          "actorsMoved": true,
+          "move": 0,
+          "grounded": true,
+          "family": {
+            "x": 0,
+            "y": 320
+          },
+          "contact": "a6-c07-stationary-stone-ward",
+          "normal": null
+        },
+        {
+          "id": "a6-c07-optional-pressure",
+          "cls": "archer",
+          "side": 1,
+          "x": 4416,
+          "y": 3204.190476190476,
+          "vx": 0,
+          "vy": 0,
+          "hp": 1200,
+          "maxHp": 1200,
+          "shield": 0,
+          "r": 21,
+          "h": 91,
+          "ammo": null,
+          "loadout": [
+            "LA01",
+            "LA02"
+          ],
+          "dead": false,
+          "actorsMoved": false,
+          "move": 550,
+          "grounded": true,
+          "family": {
+            "x": 0,
+            "y": 320
+          },
+          "contact": "local-lower-07-west",
+          "normal": null
+        },
+        {
+          "id": "local-07-gwakjin-return-keeper",
+          "cls": "archer",
+          "side": 0,
+          "x": 1712,
+          "y": 3091.310344827586,
+          "vx": 0,
+          "vy": 0,
+          "hp": 365,
+          "maxHp": 365,
+          "shield": 0,
+          "r": 21,
+          "h": 72,
+          "ammo": null,
+          "loadout": [
+            "A01"
+          ],
+          "dead": false,
+          "actorsMoved": false,
+          "move": 1100,
+          "grounded": true,
+          "family": {
+            "x": 0,
+            "y": 320
+          },
+          "contact": "local-lower-07-west",
+          "normal": null
+        }
+      ],
+      "landmarks": []
+    },
+    "keeperParked": {
+      "stage": 57,
+      "active": "p-archer",
+      "phase": "aim",
+      "round": 3,
+      "side": 0,
+      "shot": 4,
+      "flags": {
+        "act6.firstGarmjinFailed": true,
+        "bellSiteEmergencyStabilized": true,
+        "bridgeRetreatOpened": true,
+        "relayMovedToFallback": true,
+        "act6.fallbackRelaySecured": true
+      },
+      "notice": "곽진으로 서쪽 귀환 매듭 인수",
+      "actors": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "side": 0,
+          "x": 2041.0287394964232,
+          "y": 3201.4367827132637,
+          "vx": 0,
+          "vy": 0,
+          "hp": 1545,
+          "maxHp": 1720,
+          "shield": 0,
+          "r": 22,
+          "h": 92,
+          "ammo": null,
+          "loadout": [
+            "A01",
+            "A14",
+            "A02",
+            "A05"
+          ],
+          "dead": false,
+          "actorsMoved": false,
+          "move": 2538.499999999985,
+          "grounded": true,
+          "family": {
+            "x": 0,
+            "y": 320
+          },
+          "contact": "local-lower-07-west",
+          "normal": null
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "side": 0,
+          "x": 1958.8050277587897,
+          "y": 3163.888587290737,
+          "vx": 0,
+          "vy": 0,
+          "hp": 3846,
+          "maxHp": 3846,
+          "shield": 0,
+          "r": 22,
+          "h": 92,
+          "ammo": null,
+          "loadout": [
+            "S00",
+            "S01",
+            "S03"
+          ],
+          "dead": false,
+          "actorsMoved": false,
+          "move": 2572.4999999999923,
+          "grounded": true,
+          "family": {
+            "x": 0,
+            "y": 320
+          },
+          "contact": "local-lower-07-west",
+          "normal": null
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "side": 0,
+          "x": 1904.2190607467394,
+          "y": 3132.696606140994,
+          "vx": 0,
+          "vy": 0,
+          "hp": 2304,
+          "maxHp": 2304,
+          "shield": 0,
+          "r": 22,
+          "h": 92,
+          "ammo": null,
+          "loadout": [
+            "O01",
+            "O04",
+            "O03",
+            "O06"
+          ],
+          "dead": false,
+          "actorsMoved": false,
+          "move": 2875.466666666665,
+          "grounded": true,
+          "family": {
+            "x": 0,
+            "y": 320
+          },
+          "contact": "local-lower-07-west",
+          "normal": null
+        },
+        {
+          "id": "a6-c07-optional-drift",
+          "cls": "occultist",
+          "side": 1,
+          "x": 5336,
+          "y": 2988,
+          "vx": 0,
+          "vy": 0,
+          "hp": 850,
+          "maxHp": 850,
+          "shield": 0,
+          "r": 21,
+          "h": 105,
+          "ammo": null,
+          "loadout": [
+            "LA01"
+          ],
+          "dead": false,
+          "actorsMoved": false,
+          "move": 550,
+          "grounded": true,
+          "family": {
+            "x": 0,
+            "y": 320
+          },
+          "contact": "a6-c07-stationary-stone-ward",
+          "normal": null
+        },
+        {
+          "id": "a6-c07-ward-pressure",
+          "cls": "occultist",
+          "side": 1,
+          "x": 5720,
+          "y": 2939.4285714285716,
+          "vx": 0,
+          "vy": 0,
+          "hp": 850,
+          "maxHp": 850,
+          "shield": 0,
+          "r": 21,
+          "h": 105,
+          "ammo": null,
+          "loadout": [
+            "HGS01",
+            "HGS02"
+          ],
+          "dead": false,
+          "actorsMoved": false,
+          "move": 550,
+          "grounded": true,
+          "family": {
+            "x": 0,
+            "y": 320
+          },
+          "contact": "local-lower-07-west",
+          "normal": null
+        },
+        {
+          "id": "a6-c07-original-darmheo-body",
+          "cls": "mage",
+          "side": 2,
+          "x": 5384,
+          "y": 2976,
+          "vx": 0,
+          "vy": 0,
+          "hp": 390,
+          "maxHp": 390,
+          "shield": 0,
+          "r": 21,
+          "h": 72,
+          "ammo": null,
+          "loadout": [],
+          "dead": false,
+          "actorsMoved": true,
+          "move": 0,
+          "grounded": true,
+          "family": {
+            "x": 0,
+            "y": 320
+          },
+          "contact": "a6-c07-stationary-stone-ward",
+          "normal": null
+        },
+        {
+          "id": "a6-c07-optional-pressure",
+          "cls": "archer",
+          "side": 1,
+          "x": 4416,
+          "y": 3204.190476190476,
+          "vx": 0,
+          "vy": 0,
+          "hp": 1200,
+          "maxHp": 1200,
+          "shield": 0,
+          "r": 21,
+          "h": 91,
+          "ammo": null,
+          "loadout": [
+            "LA01",
+            "LA02"
+          ],
+          "dead": false,
+          "actorsMoved": false,
+          "move": 550,
+          "grounded": true,
+          "family": {
+            "x": 0,
+            "y": 320
+          },
+          "contact": "local-lower-07-west",
+          "normal": null
+        },
+        {
+          "id": "local-07-gwakjin-return-keeper",
+          "cls": "archer",
+          "side": 2,
+          "x": 2030.6097790989013,
+          "y": 3198.4599368854006,
+          "vx": 0,
+          "vy": 0,
+          "hp": 365,
+          "maxHp": 365,
+          "shield": 0,
+          "r": 21,
+          "h": 72,
+          "ammo": null,
+          "loadout": [
+            "A01"
+          ],
+          "dead": false,
+          "actorsMoved": true,
+          "move": 741.4876755294034,
+          "grounded": true,
+          "family": {
+            "x": 0,
+            "y": 320
+          },
+          "contact": "local-lower-07-west",
+          "normal": null
+        }
+      ],
+      "landmarks": []
+    },
+    "archerOnWard": {
+      "id": "p-archer",
+      "cls": "archer",
+      "side": 0,
+      "x": 5381.926577117149,
+      "y": 2976,
+      "vx": 0,
+      "vy": 0,
+      "hp": 1614,
+      "maxHp": 1720,
+      "shield": 0,
+      "r": 22,
+      "h": 92,
+      "ammo": null,
+      "loadout": [
+        "A01",
+        "A14",
+        "A02",
+        "A05"
+      ],
+      "dead": false,
+      "actorsMoved": false,
+      "move": 1708.2652725072244,
+      "grounded": true,
+      "family": {
+        "x": 0,
+        "y": 320
+      },
+      "contact": "a6-c07-stationary-stone-ward",
+      "normal": null
+    },
+    "folded": {
+      "stage": 57,
+      "active": "p-occultist",
+      "phase": "aim",
+      "round": 5,
+      "side": 0,
+      "shot": 9,
+      "flags": {
+        "act6.firstGarmjinFailed": true,
+        "bellSiteEmergencyStabilized": true,
+        "bridgeRetreatOpened": true,
+        "relayMovedToFallback": true,
+        "act6.fallbackRelaySecured": true,
+        "act6.local.07.bridge-v3.open": true
+      },
+      "notice": "네 사람을 원래 돌단에서 모으기",
+      "actors": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "side": 0,
+          "x": 5371.369794702866,
+          "y": 2976,
+          "vx": 0,
+          "vy": 0,
+          "hp": 1683,
+          "maxHp": 1720,
+          "shield": 0,
+          "r": 22,
+          "h": 92,
+          "ammo": null,
+          "loadout": [
+            "A01",
+            "A14",
+            "A02",
+            "A05"
+          ],
+          "dead": false,
+          "actorsMoved": false,
+          "move": 2921,
+          "grounded": true,
+          "family": {
+            "x": 0,
+            "y": 320
+          },
+          "contact": "a6-c07-stationary-stone-ward",
+          "normal": null
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "side": 0,
+          "x": 5377.7531790411185,
+          "y": 2976,
+          "vx": 0,
+          "vy": 0,
+          "hp": 3846,
+          "maxHp": 3846,
+          "shield": 0,
+          "r": 22,
+          "h": 92,
+          "ammo": null,
+          "loadout": [
+            "S00",
+            "S01",
+            "S03"
+          ],
+          "dead": false,
+          "actorsMoved": false,
+          "move": 4081,
+          "grounded": true,
+          "family": {
+            "x": 0,
+            "y": 320
+          },
+          "contact": "a6-c07-stationary-stone-ward",
+          "normal": null
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "side": 0,
+          "x": 5299.692882660502,
+          "y": 3045.5387338918167,
+          "vx": 0,
+          "vy": 0,
+          "hp": 2304,
+          "maxHp": 2304,
+          "shield": 0,
+          "r": 22,
+          "h": 92,
+          "ammo": null,
+          "loadout": [
+            "O01",
+            "O04",
+            "O03",
+            "O06"
+          ],
+          "dead": false,
+          "actorsMoved": false,
+          "move": 2516.1176515342804,
+          "grounded": true,
+          "family": {
+            "x": 0,
+            "y": 320
+          },
+          "contact": "local-lower-07-west",
+          "normal": null
+        },
+        {
+          "id": "a6-c07-optional-drift",
+          "cls": "occultist",
+          "side": 1,
+          "x": 5336,
+          "y": 2988,
+          "vx": 0,
+          "vy": 0,
+          "hp": 850,
+          "maxHp": 850,
+          "shield": 0,
+          "r": 21,
+          "h": 105,
+          "ammo": null,
+          "loadout": [
+            "LA01"
+          ],
+          "dead": false,
+          "actorsMoved": false,
+          "move": 550,
+          "grounded": true,
+          "family": {
+            "x": 0,
+            "y": 320
+          },
+          "contact": "a6-c07-stationary-stone-ward",
+          "normal": null
+        },
+        {
+          "id": "a6-c07-ward-pressure",
+          "cls": "occultist",
+          "side": 1,
+          "x": 5720,
+          "y": 2939.4285714285716,
+          "vx": 0,
+          "vy": 0,
+          "hp": 850,
+          "maxHp": 850,
+          "shield": 0,
+          "r": 21,
+          "h": 105,
+          "ammo": null,
+          "loadout": [
+            "HGS01",
+            "HGS02"
+          ],
+          "dead": false,
+          "actorsMoved": false,
+          "move": 550,
+          "grounded": true,
+          "family": {
+            "x": 0,
+            "y": 320
+          },
+          "contact": "local-lower-07-west",
+          "normal": null
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "side": 0,
+          "x": 5384,
+          "y": 2976,
+          "vx": 0,
+          "vy": 0,
+          "hp": 1314.9,
+          "maxHp": 2050,
+          "shield": 0,
+          "r": 22,
+          "h": 92,
+          "ammo": null,
+          "loadout": [
+            "M01",
+            "M10",
+            "M07"
+          ],
+          "dead": false,
+          "actorsMoved": false,
+          "move": 2474.939932089323,
+          "grounded": true,
+          "family": {
+            "x": 0,
+            "y": 320
+          },
+          "contact": "a6-c07-stationary-stone-ward",
+          "normal": null
+        },
+        {
+          "id": "a6-c07-optional-pressure",
+          "cls": "archer",
+          "side": 1,
+          "x": 4416,
+          "y": 3204.190476190476,
+          "vx": 0,
+          "vy": 0,
+          "hp": 1200,
+          "maxHp": 1200,
+          "shield": 0,
+          "r": 21,
+          "h": 91,
+          "ammo": null,
+          "loadout": [
+            "LA01",
+            "LA02"
+          ],
+          "dead": false,
+          "actorsMoved": false,
+          "move": 550,
+          "grounded": true,
+          "family": {
+            "x": 0,
+            "y": 320
+          },
+          "contact": "local-lower-07-west",
+          "normal": null
+        },
+        {
+          "id": "local-07-gwakjin-return-keeper",
+          "cls": "archer",
+          "side": 2,
+          "x": 2030.6097790989013,
+          "y": 3198.4599368854006,
+          "vx": 0,
+          "vy": 0,
+          "hp": 365,
+          "maxHp": 365,
+          "shield": 0,
+          "r": 21,
+          "h": 72,
+          "ammo": null,
+          "loadout": [
+            "A01"
+          ],
+          "dead": false,
+          "actorsMoved": false,
+          "move": 1100,
+          "grounded": true,
+          "family": {
+            "x": 0,
+            "y": 320
+          },
+          "contact": "local-lower-07-west",
+          "normal": null
+        }
+      ],
+      "landmarks": [
+        {
+          "id": "art-mumyeongsa-hall-sill",
+          "x": 3200,
+          "y": -758,
+          "visual": 7
+        }
+      ]
+    },
+    "ramp-occultist": {
+      "id": "p-occultist",
+      "cls": "occultist",
+      "side": 0,
+      "x": 5259.626420878406,
+      "y": 2992.4175762002096,
+      "vx": 0,
+      "vy": 0,
+      "hp": 2304,
+      "maxHp": 2304,
+      "shield": 0,
+      "r": 22,
+      "h": 92,
+      "ammo": null,
+      "loadout": [
+        "O01",
+        "O04",
+        "O03",
+        "O06"
+      ],
+      "dead": false,
+      "actorsMoved": false,
+      "move": 2399.5176515342814,
+      "grounded": true,
+      "family": {
+        "x": 0,
+        "y": 320
+      },
+      "contact": "m57-hall-approach",
+      "normal": null
+    },
+    "ramp-knight": {
+      "id": "p-knight",
+      "cls": "knight",
+      "side": 0,
+      "x": 5377.7531790411185,
+      "y": 2976,
+      "vx": 0,
+      "vy": 0,
+      "hp": 3846,
+      "maxHp": 3846,
+      "shield": 0,
+      "r": 22,
+      "h": 92,
+      "ammo": null,
+      "loadout": [
+        "S00",
+        "S01",
+        "S03"
+      ],
+      "dead": false,
+      "actorsMoved": false,
+      "move": 4081,
+      "grounded": true,
+      "family": {
+        "x": 0,
+        "y": 320
+      },
+      "contact": "a6-c07-stationary-stone-ward",
+      "normal": null
+    },
+    "ramp-mage": {
+      "id": "p-mage",
+      "cls": "mage",
+      "side": 0,
+      "x": 5384,
+      "y": 2976,
+      "vx": 0,
+      "vy": 0,
+      "hp": 1314.9,
+      "maxHp": 2050,
+      "shield": 0,
+      "r": 22,
+      "h": 92,
+      "ammo": null,
+      "loadout": [
+        "M01",
+        "M10",
+        "M07"
+      ],
+      "dead": false,
+      "actorsMoved": false,
+      "move": 2474.939932089323,
+      "grounded": true,
+      "family": {
+        "x": 0,
+        "y": 320
+      },
+      "contact": "a6-c07-stationary-stone-ward",
+      "normal": null
+    },
+    "ramp-archer": {
+      "id": "p-archer",
+      "cls": "archer",
+      "side": 0,
+      "x": 5371.369794702866,
+      "y": 2976,
+      "vx": 0,
+      "vy": 0,
+      "hp": 1683,
+      "maxHp": 1720,
+      "shield": 0,
+      "r": 22,
+      "h": 92,
+      "ammo": null,
+      "loadout": [
+        "A01",
+        "A14",
+        "A02",
+        "A05"
+      ],
+      "dead": false,
+      "actorsMoved": false,
+      "move": 2921,
+      "grounded": true,
+      "family": {
+        "x": 0,
+        "y": 320
+      },
+      "contact": "a6-c07-stationary-stone-ward",
+      "normal": null
+    }
+  },
+  "errors": [],
+  "outgoing": {
+    "stage": 57,
+    "active": "p-archer",
+    "phase": "won",
+    "round": 5,
+    "side": 0,
+    "shot": 9,
+    "flags": {
+      "act6.firstGarmjinFailed": true,
+      "bellSiteEmergencyStabilized": true,
+      "bridgeRetreatOpened": true,
+      "relayMovedToFallback": true,
+      "act6.fallbackRelaySecured": true,
+      "act6.local.07.bridge-v3.open": true
+    },
+    "notice": "다음 길이 열렸습니다.",
+    "actors": [
+      {
+        "id": "p-archer",
+        "cls": "archer",
+        "side": 0,
+        "x": 5845.337234196182,
+        "y": 2722.57226447061,
+        "vx": 0,
+        "vy": 0,
+        "hp": 1683,
+        "maxHp": 1720,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "A01",
+          "A14",
+          "A02",
+          "A05"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 2360.752491243667,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "local-07-08-exact-receiving-slice",
+        "normal": null
+      },
+      {
+        "id": "p-knight",
+        "cls": "knight",
+        "side": 0,
+        "x": 6091.060380254216,
+        "y": 2668.724405732647,
+        "vx": 0,
+        "vy": 0,
+        "hp": 3846,
+        "maxHp": 3846,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "S00",
+          "S01",
+          "S03"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 3271.910912671145,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "local-07-08-exact-receiving-slice",
+        "normal": null
+      },
+      {
+        "id": "p-occultist",
+        "cls": "occultist",
+        "side": 0,
+        "x": 6204.572835996789,
+        "y": 2636.1220468580605,
+        "vx": 0,
+        "vy": 0,
+        "hp": 2304,
+        "maxHp": 2304,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "O01",
+          "O04",
+          "O03",
+          "O06"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 1352.103985765276,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "local-07-08-exact-receiving-slice",
+        "normal": null
+      },
+      {
+        "id": "a6-c07-optional-drift",
+        "cls": "occultist",
+        "side": 1,
+        "x": 5336,
+        "y": 2988,
+        "vx": 0,
+        "vy": 0,
+        "hp": 850,
+        "maxHp": 850,
+        "shield": 0,
+        "r": 21,
+        "h": 105,
+        "ammo": null,
+        "loadout": [
+          "LA01"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 550,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "a6-c07-stationary-stone-ward",
+        "normal": null
+      },
+      {
+        "id": "a6-c07-ward-pressure",
+        "cls": "occultist",
+        "side": 1,
+        "x": 5720,
+        "y": 2939.4285714285716,
+        "vx": 0,
+        "vy": 0,
+        "hp": 850,
+        "maxHp": 850,
+        "shield": 0,
+        "r": 21,
+        "h": 105,
+        "ammo": null,
+        "loadout": [
+          "HGS01",
+          "HGS02"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 550,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "local-lower-07-west",
+        "normal": null
+      },
+      {
+        "id": "p-mage",
+        "cls": "mage",
+        "side": 0,
+        "x": 5996.126945489223,
+        "y": 2696.285725503129,
+        "vx": 0,
+        "vy": 0,
+        "hp": 1314.9,
+        "maxHp": 2050,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 1770.9510085245713,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "local-07-08-exact-receiving-slice",
+        "normal": null
+      },
+      {
+        "id": "a6-c07-optional-pressure",
+        "cls": "archer",
+        "side": 1,
+        "x": 4416,
+        "y": 3204.190476190476,
+        "vx": 0,
+        "vy": 0,
+        "hp": 1200,
+        "maxHp": 1200,
+        "shield": 0,
+        "r": 21,
+        "h": 91,
+        "ammo": null,
+        "loadout": [
+          "LA01",
+          "LA02"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 550,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "local-lower-07-west",
+        "normal": null
+      },
+      {
+        "id": "local-07-gwakjin-return-keeper",
+        "cls": "archer",
+        "side": 2,
+        "x": 2030.6097790989013,
+        "y": 3198.4599368854006,
+        "vx": 0,
+        "vy": 0,
+        "hp": 365,
+        "maxHp": 365,
+        "shield": 0,
+        "r": 21,
+        "h": 72,
+        "ammo": null,
+        "loadout": [
+          "A01"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 1100,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "local-lower-07-west",
+        "normal": null
+      }
+    ],
+    "landmarks": [
+      {
+        "id": "art-mumyeongsa-hall-sill",
+        "x": 3200,
+        "y": -758,
+        "visual": 7
+      }
+    ]
+  },
+  "live": {
+    "stage": 58,
+    "active": "p-mage",
+    "phase": "aim",
+    "round": 1,
+    "side": 0,
+    "shot": 0,
+    "flags": {},
+    "notice": "다음 길이 열렸습니다.",
+    "actors": [
+      {
+        "id": "p-mage",
+        "cls": "mage",
+        "side": 0,
+        "x": 2796.1269454892226,
+        "y": 3454.285725503129,
+        "vx": 0,
+        "vy": 0,
+        "hp": 1314.9,
+        "maxHp": 2050,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 3075,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "local-lower-08-body",
+        "normal": null
+      },
+      {
+        "id": "p-archer",
+        "cls": "archer",
+        "side": 0,
+        "x": 2645.337234196182,
+        "y": 3480.5722644706107,
+        "vx": 0,
+        "vy": 0,
+        "hp": 1683,
+        "maxHp": 1720,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "A01",
+          "A14",
+          "A02",
+          "A05"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 2921,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "local-lower-08-body",
+        "normal": null
+      },
+      {
+        "id": "p-knight",
+        "cls": "knight",
+        "side": 0,
+        "x": 2891.0603802542164,
+        "y": 3426.724405732647,
+        "vx": 0,
+        "vy": 0,
+        "hp": 3846,
+        "maxHp": 3846,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "S00",
+          "S01",
+          "S03"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 4081,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "local-lower-08-body",
+        "normal": null
+      },
+      {
+        "id": "p-occultist",
+        "cls": "occultist",
+        "side": 0,
+        "x": 3004.572835996789,
+        "y": 3394.1220468580605,
+        "vx": 0,
+        "vy": 0,
+        "hp": 2304,
+        "maxHp": 2304,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "O01",
+          "O04",
+          "O03",
+          "O06"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 3132,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "local-lower-08-body",
+        "normal": null
+      }
+    ],
+    "landmarks": [
+      {
+        "id": "art-mumyeongsa-hall-sill",
+        "x": 0,
+        "y": 0,
+        "visual": 7
+      },
+      {
+        "id": "art-m58-timber-hall-rear",
+        "x": 0,
+        "y": 0,
+        "visual": 40
+      },
+      {
+        "id": "art-m58-suspended-hall",
+        "x": 0,
+        "y": 0,
+        "visual": 14
+      },
+      {
+        "id": "art-m58-tile-eaves",
+        "x": 0,
+        "y": 0,
+        "visual": 10
+      }
+    ]
+  },
+  "sameObjects": true,
+  "newCold": {
+    "stage": 58,
+    "active": "p-mage",
+    "phase": "aim",
+    "round": 1,
+    "side": 0,
+    "shot": 0,
+    "flags": {},
+    "notice": "",
+    "actors": [
+      {
+        "id": "p-mage",
+        "cls": "mage",
+        "side": 0,
+        "x": 2796.1269454892226,
+        "y": 3454.285725503129,
+        "vx": 0,
+        "vy": 0,
+        "hp": 1314.9,
+        "maxHp": 2050,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 3075,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "local-lower-08-body",
+        "normal": null
+      },
+      {
+        "id": "p-archer",
+        "cls": "archer",
+        "side": 0,
+        "x": 2645.337234196182,
+        "y": 3480.5722644706107,
+        "vx": 0,
+        "vy": 0,
+        "hp": 1683,
+        "maxHp": 1720,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "A01",
+          "A14",
+          "A02",
+          "A05"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 2921,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "local-lower-08-body",
+        "normal": null
+      },
+      {
+        "id": "p-knight",
+        "cls": "knight",
+        "side": 0,
+        "x": 2891.0603802542164,
+        "y": 3426.724405732647,
+        "vx": 0,
+        "vy": 0,
+        "hp": 3846,
+        "maxHp": 3846,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "S00",
+          "S01",
+          "S03"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 4081,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "local-lower-08-body",
+        "normal": null
+      },
+      {
+        "id": "p-occultist",
+        "cls": "occultist",
+        "side": 0,
+        "x": 3004.572835996789,
+        "y": 3394.1220468580605,
+        "vx": 0,
+        "vy": 0,
+        "hp": 2304,
+        "maxHp": 2304,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "O01",
+          "O04",
+          "O03",
+          "O06"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 3132,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "local-lower-08-body",
+        "normal": null
+      }
+    ],
+    "landmarks": [
+      {
+        "id": "art-mumyeongsa-hall-sill",
+        "x": 0,
+        "y": 0,
+        "visual": 7
+      },
+      {
+        "id": "art-m58-timber-hall-rear",
+        "x": 0,
+        "y": 0,
+        "visual": 40
+      },
+      {
+        "id": "art-m58-suspended-hall",
+        "x": 0,
+        "y": 0,
+        "visual": 14
+      },
+      {
+        "id": "art-m58-tile-eaves",
+        "x": 0,
+        "y": 0,
+        "visual": 10
+      }
+    ]
+  }
+}

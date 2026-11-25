@@ -72,7 +72,8 @@ export function stage57Adapter(G,{normalPort=null}={}){
     if(e.unit(k.id)!==k||k.id!=='local-07-gwakjin-return-keeper'||k.side!==2||!k.fixed||!k.honroVisualOnly||k.honroAlly!==true)throw Error('Stage57 visual keeper custody changed');
     k.honroAlly=false;
    }
-   return {ok:ret===true||ret==='warned',label:route[key][0]};
+   const ok=ret===true||ret==='warned';
+   return {ok,label:route[key][0],reason:!ok&&key==='reuniteAtWard'?'돌단 주변에서 새 석교에 걸리지 않는 곳에 세 동행을 세우십시오.':undefined};
   }
   function project(){
    const key=act(),row=route[key],complete=ready?.won===true,failed=ready?.won===false;

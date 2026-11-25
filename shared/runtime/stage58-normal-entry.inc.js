@@ -68,7 +68,7 @@
       function bindNormal58(a,e,s){
         s.engine=e;mounted58.set(e,s);
         check(scope58(a,e,s),'Native 58 scope changed');
-        s.owner58=adapter58.attach({app:a,engine:e,prepared:s.prepared58});
+        s.owner58=adapter58.attach({app:a,engine:e,prepared:s.prepared58,returnRoute:()=>s.return58});
         check(s.owner58,'Native 58 owner refused');e.checkEnd=()=>a.checkMission(e);return true;
       }
       function mountHallB58(a,s){
@@ -80,8 +80,10 @@
         const H=hallB58(),near=H.terrain.map(t=>G.HonroGeometry.terrain(t,b.height));
         b.terrain=[...b.terrain,...near];b.honroWorldTerrain=[...b.honroWorldTerrain,...near];
         e.invalidateTerrainCollisionIndex();
-        installHallArt(e,a.scene,[hallSillArt(from),...H.visual]);
-        s.axis58=installHallAxes({C,e,scene:a.scene,crew:s.prepared58.units.slice()});
+        installHallArt(e,a.scene,[hallSillArt(from),...H.visual,returnGateArt()]);
+        const crew=s.prepared58.units.slice();
+        installHallAxes({C,e,scene:a.scene,crew});
+        s.return58=watchReturnGate(e,C,crew);
       }
       function stage58UI(a,s,e){
         if(!scope58(a,e,s))return;

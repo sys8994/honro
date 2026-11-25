@@ -189,10 +189,12 @@ export async function createAct6WebQa(project,repoRoot,env=process.env,release=n
   packets.push({...seventh,schema:'honro-act6-normal-57-source/v1',trace:{stageId:57,authoredId:seventh.authoredId,mapSHA256:hash(JSON.stringify(seventh.map)),assetSHA256:hash(JSON.stringify(seventh.library))}});
   const code57=await Promise.all(['bridge','owner','emergency','mission','adapter'].map(q=>readFile(new URL('./runtime/stage57-'+q+'.mjs',import.meta.url),'utf8')));
   const hallCode=await readFile(new URL('./act6-mumyeongsa/hall-b.mjs',import.meta.url),'utf8');
-  const hallExports='hallSill,hallSillArt,installHallArt,hallB58,installHallAxes';
+  const hallExports='hallSill,hallSillArt,installHallArt,hallLead57,hallB58,installHallAxes';
+  const returnCode=await readFile(new URL('./act6-mumyeongsa/return-gate.mjs',import.meta.url),'utf8');
+  const returnExports='returnGateArt,verifyReturnGate,watchReturnGate,mountReturnGate';
   const wrap57=(name,i)=>'const {'+name+'}='+mod(code57[i],name);
   source=replaceOne(source,'      const declared53=',
-    'const {'+hallExports+'}='+mod(hallCode,hallExports)+['bindOwnedBridge','createStage57Owner','mountEmergency57','createStage57Mission','stage57Adapter'].map(wrap57).join('')+
+    'const {'+hallExports+'}='+mod(hallCode,hallExports)+'const {'+returnExports+'}='+mod(returnCode,returnExports)+['bindOwnedBridge','createStage57Owner','mountEmergency57','createStage57Mission','stage57Adapter'].map(wrap57).join('')+
     (await readFile(new URL('./runtime/stage57-entry.inc.js',import.meta.url),'utf8'))+'\n      const declared53=');
   source=replaceOne(source,'const stages=new Set([51,52,53,54,55,56])','const stages=new Set([51,52,53,54,55,56,57])');
   source=replaceOne(source,'        if(id===56)return eligible56(app,s);','        if(id===57)return eligible57(app,s);\n        if(id===56)return eligible56(app,s);');

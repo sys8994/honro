@@ -2,7 +2,7 @@
 // The same local vectors are translated into chapter 57's coordinate frame.
 export const hallSill=Object.freeze({
  id:'mumyeongsa-hall-sill',source:'local-07-08-exact-receiving-slice',offset:{x:3200,y:-758},
- from:2600,to:3050,clearWidth:408,destination:'local-lower-08-body'
+ from:2600,to:3050,clearWidth:408,destination:'local-lower-08-body',approach:'m57-hall-approach'
 });
 const pt=([x,y])=>({x,y});
 const face=(fill,points)=>({fill,points:points.map(pt)});
@@ -13,6 +13,15 @@ function art(id,visual,bounds,layer='prop'){
   visualRole:'scenery',kind:'canonical-element',collisionIds:[],asset};
 }
 const band=(edge,depth)=>[...edge,...edge.slice().reverse().map(([x,y])=>[x,y+depth])];
+export function hallLead57(bridge){
+ const id=hallSill.approach,first=bridge.vertices[0];
+ const edge=[[5240,2995],[5278,2990],[5320,2979],[5352,2974],[first.x,first.y]];
+ const terrain={id,type:'platform',oneWay:true,baseMaterial:'rock',breakable:false,control:edge.map(pt),thickness:21,
+  detail:{interpolation:'linear',roughness:0,optimizeEpsilon:0}};
+ const landmark=art(id,[face('#8d7861',band(edge,11)),face('#61564c',band(edge.map(([x,y])=>[x,y+11]),10))],
+  {x:5240,y:2974,w:first.x-5240,h:42});
+ return {terrain,landmark};
+}
 export function hallSillArt(slice,source=false){
  const D=hallSill,x=source?D.offset.x:0,y=source?D.offset.y:0;
  const edge=slice.vertices.slice(0,4).map(v=>[v.x-D.offset.x,v.y-D.offset.y]);
@@ -39,6 +48,7 @@ export function installHallArt(e,scene,assets){
 export const hallUpper=Object.freeze({
  sill:'m58-upper-deck',wall:'m58-apse-pier',ceiling:'m58-timber-soffit',
  xIn:4168,wallX:4380,floorY:3080,plane:2570,left:3890,dismount:3960,turnY:2716,
+ slotLeft:4200,slotRight:4292,
  gravity:320
 });
 export function hallB58(){
@@ -50,7 +60,8 @@ export function hallB58(){
  const terrain=[
   ...access.map(({id,points})=>({id,name:id,type:'platform',oneWay:true,baseMaterial:'wood',breakable:false,control:points.map(pt),
    thickness:25,detail:{interpolation:'linear',roughness:0,optimizeEpsilon:0}})),
-  solid(A.sill,'상층 교전 마루',[[4128,A.floorY],[A.wallX,A.floorY],[A.wallX,3117],[4128,3117]],'wood'),
+  solid(A.sill,'상층 교전 마루',[[4128,A.floorY],[A.slotLeft,A.floorY],[A.slotLeft,3117],[4128,3117]],'wood'),
+  solid('m58-east-deck','내부 동쪽 마루',[[A.slotRight,A.floorY],[A.wallX,A.floorY],[A.wallX,3117],[A.slotRight,3117]],'wood'),
   solid(A.wall,'동쪽 벽 교전 기둥',[[A.wallX,2500],[4415,2482],[4422,2792],[4410,3117],[A.wallX,3117]],'wood'),
   solid(A.ceiling,'법당 위쪽 처마',[[A.left,2482],[4032,2444],[4220,2452],[4380,2422],[4440,2460],[4440,A.plane],[A.left,A.plane]],'wood')
  ];
@@ -58,7 +69,9 @@ export function hallB58(){
  const attic=art('m58-suspended-hall',[
   ...terrain.filter(t=>t.type==='solid').map(t=>face(t.id===A.wall?'#6a4939':'#5d4a3e',t.points.map(p=>[p.x,p.y]))),
   ...access.map(t=>face('#826b54',band(t.points,15))),
-  beam(3890,2557,545,13,'#b6986f'),beam(4130,3080,250,8,'#a48968'),
+  beam(3890,2557,545,13,'#b6986f'),
+  face('#a48968',[[4130,3080],[A.slotLeft,3080],[A.slotLeft,3088],[4130,3088]]),
+  face('#a48968',[[A.slotRight,3080],[A.wallX,3080],[A.wallX,3088],[A.slotRight,3088]]),
   beam(4380,2570,14,510,'#8c6b54'),beam(4540,2515,1100,32,'#4b3d34'),
   beam(4622,2536,42,378,'#5b4235'),beam(4900,2504,53,471,'#6c4939'),beam(5390,2482,53,457,'#5b4031')
  ],{x:3315,y:2410,w:2310,h:800});
@@ -84,7 +97,7 @@ export function hallB58(){
 // The upper gallery is independent of the boss's lower hull contacts. A body
 // changes stance only after standing on its deck, then touching each actual face.
 export function installHallAxes({C,e,scene,crew}){
- const A=hallUpper,b=e.b,actors=new Set(crew),stances=new WeakMap(),exited=new WeakSet(),log=[];
+ const A=hallUpper,b=e.b,actors=new Set(crew),stances=new WeakMap(),exited=new WeakSet();
  const methods=['integrateBody','grounded','walk','jump','canDrop','origin','projectileOrigin','damageAim','damageDistance','collision','setEnvironment'];
  const stock=Object.fromEntries(methods.map(k=>[k,e[k].bind(e)])),draw=scene.unitBody,embedded=e.honroBBodyEmbedded;
  const wall=b.terrain.find(t=>t.id===A.wall),ceiling=b.terrain.find(t=>t.id===A.ceiling);
@@ -107,8 +120,6 @@ export function installHallAxes({C,e,scene,crew}){
  const centered=(v,mode,n=.5)=>mode==='wall'?pt([v.x-v.h*n,v.y]):pt([v.x,v.y+v.h*n]);
  const stop=(v,mode)=>!v.dead&&!v.jumping&&v.vx===0&&v.vy===0&&
   (mode==='wall'?v.x===A.wallX:v.y===A.plane)&&face(v,mode);
- const mark=(u,mode)=>log.push({actor:u.id,mode,x:u.x,y:u.y,round:b.round,grounded:e.grounded(u),
-  support:mode==='wall'?A.wall:A.ceiling,normal:mode==='wall'?{x:-1,y:0}:{x:0,y:1}});
  e.grounded=v=>stances.has(v)?stop(v,stances.get(v)):stock.grounded(v);
  e.canDrop=v=>!stances.has(v??e.active)&&stock.canDrop(v);
  e.honroBBodyEmbedded=v=>{
@@ -117,9 +128,9 @@ export function installHallAxes({C,e,scene,crew}){
   const [x,y,w,h]=pose(v,mode);
   return b.terrain.some(t=>!t.broken&&!t.oneWay&&C.terrainRectIntersects(t,x+.1,y+.1,w-.2,h-.2,.1));
  };
- function normal(u,x,y){
+ function normal(u,x,y,vy=0){
   stances.delete(u);exited.add(u);
-  Object.assign(u,{x,y,vx:0,vy:0,airborne:true,jumping:false,fallApexY:y,moveTarget:undefined});
+  Object.assign(u,{x,y,vx:0,vy,airborne:true,jumping:false,fallApexY:y,moveTarget:undefined});
  }
  e.integrateBody=(u,dt,silent=false)=>{
   let mode=stances.get(u);
@@ -131,7 +142,6 @@ export function installHallAxes({C,e,scene,crew}){
    mode='wall';stances.set(u,mode);
    Object.assign(u,{x:u.x+u.h/2,y:u.y-u.h/2,vx:0,vy:0,airborne:true,jumping:false});
   }
-  const wasGrounded=stop(u,mode);
   const center=centered(u,mode),g=C.environmentAt(b.physics,center.x,center.y,true).gravity;
   if(mode==='wall'){
    const next=C.advanceLinear(u.x,u.y,u.vx,u.vy,g.x*(u.jumping?2:1),0,.015,dt);
@@ -145,14 +155,13 @@ export function installHallAxes({C,e,scene,crew}){
    else{u.y=next.y;u.vy=next.vy;}
   }
   const now=stop(u,mode);u.airborne=!now&&!u.jumping;
-  if(now&&!wasGrounded&&!silent)mark(u,mode);
   return now;
  };
  e.walk=(u,dir,dt,requireSupport=false)=>{
   const mode=stances.get(u);
   if(!mode)return stock.walk(u,dir,dt,requireSupport);
   if(!dir||u.dead||u.moveLeft<=0||(!u.jumping||requireSupport)&&!stop(u,mode))return false;
-  const step=Math.sign(dir)*Math.min(u.moveLeft,u.walkSpeed*dt),key=mode==='wall'?'y':'x';
+  const facing=Math.sign(dir),step=facing*Math.min(u.moveLeft,u.walkSpeed*dt),key=mode==='wall'?'y':'x';
   let next=mode==='wall'?Math.max(A.turnY,Math.min(A.floorY-u.h/2,u.y-step)):
    Math.max(A.left+u.r,Math.min(A.wallX-u.r,u.x+step));
   for(const v of b.units){
@@ -161,14 +170,16 @@ export function installHallAxes({C,e,scene,crew}){
    if(next<u[key]&&v[key]<u[key])next=Math.min(u[key],Math.max(next,v[key]+gap));
    if(next>u[key]&&v[key]>u[key])next=Math.max(u[key],Math.min(next,v[key]-gap));
   }
-  u.moveLeft-=Math.abs(next-u[key]);u[key]=next;u.facing=Math.sign(dir);u.moving=.08;
+  const travel=Math.abs(next-u[key]);
+  u.moveLeft-=travel;u[key]=next;u.moving=.08;u.walkPhase=(u.walkPhase||0)+travel*.038;
+  if(u.facing!==facing){u.facing=facing;u.angle=C.clamp(180-u.angle,C.AIM_MIN??-85,C.AIM_MAX??265);}
   if(mode==='wall'&&u.y===A.turnY&&stop(u,mode)){
    stances.set(u,'ceiling');
    Object.assign(u,{x:u.x-u.h/2,y:u.y-u.h/2,vx:0,vy:0,jumping:false,airborne:true});
   }else if(mode==='wall'&&step<0&&u.y===A.floorY-u.h/2&&stop(u,mode)){
    normal(u,u.x-u.h/2,A.floorY);
-  }else if(mode==='ceiling'&&u.x<A.dismount&&stop(u,mode)){
-   normal(u,u.x,u.y+u.h);
+  }else if(mode==='ceiling'&&u.x<A.dismount){
+   normal(u,u.x,u.y+u.h,u.vy);
   }
   return true;
  };
@@ -219,5 +230,4 @@ export function installHallAxes({C,e,scene,crew}){
   c.translate(-u.x,-u.y);
   try{return draw.call(this,c,u,...args);}finally{c.restore();}
  };
- return {mode:v=>stances.get(v),log};
 }

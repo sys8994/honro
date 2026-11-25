@@ -1,0 +1,240 @@
+{
+  "60": {
+    "manifestation": [
+      {
+        "id": "a6-c08-boss",
+        "x": 4480,
+        "y": 3194.769230769231,
+        "hp": 10500,
+        "maxHp": 10500,
+        "rig": "boss_daedosa",
+        "supported": true
+      },
+      {
+        "id": "a6-c08-vessel-a",
+        "x": 4300,
+        "y": 3241.5172413793102,
+        "hp": 1100,
+        "maxHp": 1100,
+        "rig": null,
+        "supported": true
+      },
+      {
+        "id": "a6-c08-vessel-b",
+        "x": 5000,
+        "y": 2977.8285714285716,
+        "hp": 1100,
+        "maxHp": 1100,
+        "rig": null,
+        "supported": true
+      }
+    ],
+    "collision": {
+      "candidate": {
+        "id": "M01",
+        "angle": 264,
+        "power": 0.65,
+        "x": 4278.7457001309685,
+        "y": 3130.5172413793102,
+        "target": "a6-c08-vessel-a",
+        "terrain": null,
+        "weight": 1000
+      },
+      "trace": [
+        {
+          "event": "fire",
+          "skill": "M01",
+          "angle": 263.55840000006935,
+          "power": 0.670062146963778,
+          "actor": "p-mage",
+          "grounded": true,
+          "x": 4233.499999999989,
+          "y": 2570,
+          "prediction": {
+            "x": 4273,
+            "y": 3147.32838084062,
+            "unit": "a6-c08-vessel-a",
+            "terrain": null
+          },
+          "shot": 1,
+          "gravity": {
+            "x": 5.4855199003295345,
+            "y": -368.5860341590356
+          }
+        },
+        {
+          "event": "impact",
+          "skill": "M01",
+          "actor": "p-mage",
+          "target": "a6-c08-vessel-a",
+          "terrain": null,
+          "x": 4273,
+          "y": 3147.32838084062,
+          "normal": {
+            "x": -1,
+            "y": 0
+          },
+          "radius": 6,
+          "shot": 1,
+          "before": 1100,
+          "after": 809,
+          "shieldBefore": 0,
+          "shieldAfter": 0
+        }
+      ]
+    },
+    "stageEnemyHit": true,
+    "body": {
+      "id": "p-mage",
+      "cls": "mage",
+      "side": 0,
+      "x": 4334,
+      "y": 2570,
+      "vx": 0,
+      "vy": 0,
+      "hp": 1314.9,
+      "maxHp": 2050,
+      "shield": 0,
+      "r": 22,
+      "h": 92,
+      "ammo": null,
+      "loadout": [
+        "M01",
+        "M10",
+        "M07"
+      ],
+      "dead": false,
+      "actorsMoved": false,
+      "move": 352.28002181212094,
+      "grounded": true,
+      "family": {
+        "x": 0,
+        "y": -320
+      },
+      "contact": "m58-timber-soffit",
+      "normal": {
+        "x": 0,
+        "y": 1
+      }
+    }
+  },
+  "120": {
+    "manifestation": [
+      {
+        "id": "a6-c08-boss",
+        "x": 4480,
+        "y": 3194.769230769231,
+        "hp": 10500,
+        "maxHp": 10500,
+        "rig": "boss_daedosa",
+        "supported": true
+      },
+      {
+        "id": "a6-c08-vessel-a",
+        "x": 4300,
+        "y": 3241.5172413793102,
+        "hp": 1100,
+        "maxHp": 1100,
+        "rig": null,
+        "supported": true
+      },
+      {
+        "id": "a6-c08-vessel-b",
+        "x": 5000,
+        "y": 2977.8285714285716,
+        "hp": 1100,
+        "maxHp": 1100,
+        "rig": null,
+        "supported": true
+      }
+    ],
+    "collision": {
+      "candidate": {
+        "id": "M01",
+        "angle": 264,
+        "power": 0.65,
+        "x": 4273,
+        "y": 3133.811944410344,
+        "target": "a6-c08-vessel-a",
+        "terrain": null,
+        "weight": 1000
+      },
+      "trace": [
+        {
+          "event": "fire",
+          "skill": "M01",
+          "angle": 264.12879999990764,
+          "power": 0.6667632762467096,
+          "actor": "p-mage",
+          "grounded": true,
+          "x": 4226.799999999988,
+          "y": 2570,
+          "prediction": {
+            "x": 4273,
+            "y": 3147.1949950475905,
+            "unit": "a6-c08-vessel-a",
+            "terrain": null
+          },
+          "shot": 1,
+          "gravity": {
+            "x": 4.976940835093066,
+            "y": -368.39877866149084
+          }
+        },
+        {
+          "event": "impact",
+          "skill": "M01",
+          "actor": "p-mage",
+          "target": "a6-c08-vessel-a",
+          "terrain": null,
+          "x": 4273,
+          "y": 3147.1949950475905,
+          "normal": {
+            "x": -1,
+            "y": 0
+          },
+          "radius": 6,
+          "shot": 1,
+          "before": 1100,
+          "after": 809,
+          "shieldBefore": 0,
+          "shieldAfter": 0
+        }
+      ]
+    },
+    "stageEnemyHit": true,
+    "body": {
+      "id": "p-mage",
+      "cls": "mage",
+      "side": 0,
+      "x": 4334,
+      "y": 2570,
+      "vx": 0,
+      "vy": 0,
+      "hp": 1314.9,
+      "maxHp": 2050,
+      "shield": 0,
+      "r": 22,
+      "h": 92,
+      "ammo": null,
+      "loadout": [
+        "M01",
+        "M10",
+        "M07"
+      ],
+      "dead": false,
+      "actorsMoved": false,
+      "move": 372.38264701358935,
+      "grounded": true,
+      "family": {
+        "x": 0,
+        "y": -320
+      },
+      "contact": "m58-timber-soffit",
+      "normal": {
+        "x": 0,
+        "y": 1
+      }
+    }
+  }
+}

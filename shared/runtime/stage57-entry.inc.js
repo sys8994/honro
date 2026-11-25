@@ -77,10 +77,14 @@
         if(!s.hallSill57&&e.b.honroState.flags[s.packet.bridge.required.marker]){
           const slice=s.packet.bridge.additions.terrain.find(t=>t.id===hallSill.source);
           check(slice&&same(e.b.terrain.find(t=>t.id===hallSill.source),slice),'Folded receiving slice was revised');
-          installHallArt(e,a.scene,[hallSillArt(slice,true)]);
+          const bridge=s.packet.bridge.additions.terrain.find(t=>t.id==='local-07-08-folded-ward-bridge');
+          const lead=hallLead57(bridge),approach=G.HonroGeometry.terrain(lead.terrain,e.b.height);
+          e.b.terrain=[...e.b.terrain,approach];e.b.honroWorldTerrain=[...e.b.honroWorldTerrain,approach];
+          e.invalidateTerrainCollisionIndex();
+          installHallArt(e,a.scene,[hallSillArt(slice,true),lead.landmark]);
           s.hallSill57=true;
         }
-        if(s.button){s.button.textContent=r.summary;s.button.disabled=r.complete||r.failed;s.button.dataset.act6Mission=r.appActions?.mission??'';}
+        if(s.button){s.button.textContent=s.hallSill57&&!r.complete&&!r.failed&&!r.appActions?.mission?'서쪽 징검석에 뛰어올라 네 사람이 산문을 건너십시오.':r.summary;s.button.disabled=r.complete||r.failed;s.button.dataset.act6Mission=r.appActions?.mission??'';}
         if(s.alt){s.alt.hidden=!r.appActions?.alt;s.alt.disabled=s.alt.hidden;}
         if((r.complete||r.failed)&&!a.done)e.checkEnd();
       }
