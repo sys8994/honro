@@ -1,0 +1,7318 @@
+{
+  "status": "PASS",
+  "bridgeShots": [
+    {
+      "before": {
+        "x": 3230,
+        "y": 2217.7027027027025,
+        "hp": 659,
+        "round": 4
+      },
+      "spec": {
+        "id": "A02",
+        "angle": 22,
+        "power": 0.57
+      }
+    }
+  ],
+  "descent": [
+    {
+      "role": "occultist",
+      "expected": "landing-1",
+      "pose": {
+        "id": "p-occultist",
+        "cls": "occultist",
+        "side": 0,
+        "x": 3651.937959812572,
+        "y": 2445.468121628828,
+        "vx": 0,
+        "vy": 0,
+        "hp": 2202,
+        "maxHp": 2304,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "O01",
+          "O04",
+          "O03",
+          "O06"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 263.72202325621134,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "landing-1",
+        "normal": null
+      }
+    },
+    {
+      "role": "occultist",
+      "expected": "landing-2",
+      "pose": {
+        "id": "p-occultist",
+        "cls": "occultist",
+        "side": 0,
+        "x": 3796.6079108697872,
+        "y": 2790.411376265551,
+        "vx": 0,
+        "vy": 0,
+        "hp": 2202,
+        "maxHp": 2304,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "O01",
+          "O04",
+          "O03",
+          "O06"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 97.3012961736531,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "landing-2",
+        "normal": null
+      }
+    },
+    {
+      "role": "occultist",
+      "expected": "landing-3",
+      "pose": {
+        "id": "p-occultist",
+        "cls": "occultist",
+        "side": 0,
+        "x": 3657.411019052255,
+        "y": 3136.688119616681,
+        "vx": 0,
+        "vy": 0,
+        "hp": 2294,
+        "maxHp": 2304,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "O01",
+          "O04",
+          "O03",
+          "O06"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 3059.1999999999994,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "landing-3",
+        "normal": null
+      }
+    },
+    {
+      "role": "occultist",
+      "expected": "landing-4",
+      "pose": {
+        "id": "p-occultist",
+        "cls": "occultist",
+        "side": 0,
+        "x": 3791.717366924229,
+        "y": 3475.3856941286563,
+        "vx": 0,
+        "vy": 0,
+        "hp": 2294,
+        "maxHp": 2304,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "O01",
+          "O04",
+          "O03",
+          "O06"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 2882.357525141156,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "landing-4",
+        "normal": null
+      }
+    },
+    {
+      "role": "occultist",
+      "expected": "landing-5",
+      "pose": {
+        "id": "p-occultist",
+        "cls": "occultist",
+        "side": 0,
+        "x": 4185.9884418857755,
+        "y": 3726.6056427775693,
+        "vx": 0,
+        "vy": 0,
+        "hp": 2294,
+        "maxHp": 2304,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "O01",
+          "O04",
+          "O03",
+          "O06"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 2466.347298241848,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "landing-5",
+        "normal": null
+      }
+    },
+    {
+      "role": "occultist",
+      "expected": "east-return-buttress",
+      "pose": {
+        "id": "p-occultist",
+        "cls": "occultist",
+        "side": 0,
+        "x": 4400.045680991038,
+        "y": 3876.7243991255546,
+        "vx": 0,
+        "vy": 0,
+        "hp": 2294,
+        "maxHp": 2304,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "O01",
+          "O04",
+          "O03",
+          "O06"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 2251.3542124412747,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "east-return-buttress",
+        "normal": null
+      }
+    },
+    {
+      "role": "knight",
+      "expected": "landing-1",
+      "pose": {
+        "id": "p-knight",
+        "cls": "knight",
+        "side": 0,
+        "x": 3665.9660307490867,
+        "y": 2445.7544087907977,
+        "vx": 0,
+        "vy": 0,
+        "hp": 3846,
+        "maxHp": 3846,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "S00",
+          "S01",
+          "S03"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 3576.999999999995,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "landing-1",
+        "normal": null
+      }
+    },
+    {
+      "role": "knight",
+      "expected": "landing-2",
+      "pose": {
+        "id": "p-knight",
+        "cls": "knight",
+        "side": 0,
+        "x": 3791.0522268341356,
+        "y": 2790.3798993021765,
+        "vx": 0,
+        "vy": 0,
+        "hp": 3846,
+        "maxHp": 3846,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "S00",
+          "S01",
+          "S03"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 3429.9659488830603,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "landing-2",
+        "normal": null
+      }
+    },
+    {
+      "role": "knight",
+      "expected": "landing-3",
+      "pose": {
+        "id": "p-knight",
+        "cls": "knight",
+        "side": 0,
+        "x": 3657.7232086877752,
+        "y": 3136.690083073508,
+        "vx": 0,
+        "vy": 0,
+        "hp": 3846,
+        "maxHp": 3846,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "S00",
+          "S01",
+          "S03"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 3272.4659488830603,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "landing-3",
+        "normal": null
+      }
+    },
+    {
+      "role": "knight",
+      "expected": "landing-4",
+      "pose": {
+        "id": "p-knight",
+        "cls": "knight",
+        "side": 0,
+        "x": 3793.3438769888685,
+        "y": 3475.3937661389027,
+        "vx": 0,
+        "vy": 0,
+        "hp": 3846,
+        "maxHp": 3846,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "S00",
+          "S01",
+          "S03"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 3114.9091597694255,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "landing-4",
+        "normal": null
+      }
+    },
+    {
+      "role": "knight",
+      "expected": "landing-5",
+      "pose": {
+        "id": "p-knight",
+        "cls": "knight",
+        "side": 0,
+        "x": 4180.937185560775,
+        "y": 3726.587698705367,
+        "vx": 0,
+        "vy": 0,
+        "hp": 3846,
+        "maxHp": 3846,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "S00",
+          "S01",
+          "S03"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 2705.37671928944,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "landing-5",
+        "normal": null
+      }
+    },
+    {
+      "role": "knight",
+      "expected": "east-return-buttress",
+      "pose": {
+        "id": "p-knight",
+        "cls": "knight",
+        "side": 0,
+        "x": 4403.9657234963415,
+        "y": 3873.2655380914634,
+        "vx": 0,
+        "vy": 0,
+        "hp": 3846,
+        "maxHp": 3846,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "S00",
+          "S01",
+          "S03"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 2294.2958122567425,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "east-return-buttress",
+        "normal": null
+      }
+    },
+    {
+      "role": "archer",
+      "expected": "landing-1",
+      "pose": {
+        "id": "p-archer",
+        "cls": "archer",
+        "side": 0,
+        "x": 3652.5700392593308,
+        "y": 2445.481021209374,
+        "vx": 0,
+        "vy": 0,
+        "hp": 1696,
+        "maxHp": 1720,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "A01",
+          "A14",
+          "A02",
+          "A05"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 2187.5340363238442,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "landing-1",
+        "normal": null
+      }
+    },
+    {
+      "role": "archer",
+      "expected": "landing-2",
+      "pose": {
+        "id": "p-archer",
+        "cls": "archer",
+        "side": 0,
+        "x": 3789.8049063791427,
+        "y": 2790.37283233076,
+        "vx": 0,
+        "vy": 0,
+        "hp": 1696,
+        "maxHp": 1720,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "A01",
+          "A14",
+          "A02",
+          "A05"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 2028.0985247933572,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "landing-2",
+        "normal": null
+      }
+    },
+    {
+      "role": "archer",
+      "expected": "landing-3",
+      "pose": {
+        "id": "p-archer",
+        "cls": "archer",
+        "side": 0,
+        "x": 3654.8508682131874,
+        "y": 3136.6720180390766,
+        "vx": 0,
+        "vy": 0,
+        "hp": 1696,
+        "maxHp": 1720,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "A01",
+          "A14",
+          "A02",
+          "A05"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 1868.7235247933568,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "landing-3",
+        "normal": null
+      }
+    },
+    {
+      "role": "archer",
+      "expected": "landing-4",
+      "pose": {
+        "id": "p-archer",
+        "cls": "archer",
+        "side": 0,
+        "x": 3792.056871256315,
+        "y": 3475.387379013679,
+        "vx": 0,
+        "vy": 0,
+        "hp": 1696,
+        "maxHp": 1720,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "A01",
+          "A14",
+          "A02",
+          "A05"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 1709.3313441299679,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "landing-4",
+        "normal": null
+      }
+    },
+    {
+      "role": "archer",
+      "expected": "landing-5",
+      "pose": {
+        "id": "p-archer",
+        "cls": "archer",
+        "side": 0,
+        "x": 4184.258348798954,
+        "y": 3726.5994967985753,
+        "vx": 0,
+        "vy": 0,
+        "hp": 1696,
+        "maxHp": 1720,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "A01",
+          "A14",
+          "A02",
+          "A05"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 1294.9407188304126,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "landing-5",
+        "normal": null
+      }
+    },
+    {
+      "role": "archer",
+      "expected": "east-return-buttress",
+      "pose": {
+        "id": "p-archer",
+        "cls": "archer",
+        "side": 0,
+        "x": 4406.457914639455,
+        "y": 3871.066545906363,
+        "vx": 0,
+        "vy": 0,
+        "hp": 1696,
+        "maxHp": 1720,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "A01",
+          "A14",
+          "A02",
+          "A05"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 1071.8052953781498,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "east-return-buttress",
+        "normal": null
+      }
+    },
+    {
+      "role": "mage",
+      "expected": "landing-1",
+      "pose": {
+        "id": "p-mage",
+        "cls": "mage",
+        "side": 0,
+        "x": 3650.0219072881778,
+        "y": 2445.4290185160853,
+        "vx": 0,
+        "vy": 0,
+        "hp": 1957,
+        "maxHp": 2050,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 544.2777708394166,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "landing-1",
+        "normal": null
+      }
+    },
+    {
+      "role": "mage",
+      "expected": "landing-2",
+      "pose": {
+        "id": "p-mage",
+        "cls": "mage",
+        "side": 0,
+        "x": 3789.7717063907403,
+        "y": 2790.3726442288425,
+        "vx": 0,
+        "vy": 0,
+        "hp": 1957,
+        "maxHp": 2050,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 383.47679674169564,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "landing-2",
+        "normal": null
+      }
+    },
+    {
+      "role": "mage",
+      "expected": "landing-3",
+      "pose": {
+        "id": "p-mage",
+        "cls": "mage",
+        "side": 0,
+        "x": 3652.242667691929,
+        "y": 3136.6556142622135,
+        "vx": 0,
+        "vy": 0,
+        "hp": 1957,
+        "maxHp": 2050,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 222.67679674169966,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "landing-3",
+        "normal": null
+      }
+    },
+    {
+      "role": "mage",
+      "expected": "landing-4",
+      "pose": {
+        "id": "p-mage",
+        "cls": "mage",
+        "side": 0,
+        "x": 3792.045063289808,
+        "y": 3475.387320413349,
+        "vx": 0,
+        "vy": 0,
+        "hp": 1957,
+        "maxHp": 2050,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 61.83817193986522,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "landing-4",
+        "normal": null
+      }
+    },
+    {
+      "role": "mage",
+      "expected": "landing-5",
+      "pose": {
+        "id": "p-mage",
+        "cls": "mage",
+        "side": 0,
+        "x": 4184.44582315765,
+        "y": 3726.6001627820874,
+        "vx": 0,
+        "vy": 0,
+        "hp": 2039,
+        "maxHp": 2050,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 2652.8760729855253,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "landing-5",
+        "normal": null
+      }
+    },
+    {
+      "role": "mage",
+      "expected": "east-return-buttress",
+      "pose": {
+        "id": "p-mage",
+        "cls": "mage",
+        "side": 0,
+        "x": 4395.426080287168,
+        "y": 3880.8005173936754,
+        "vx": 0,
+        "vy": 0,
+        "hp": 2039,
+        "maxHp": 2050,
+        "shield": 0,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 2388.2023480879,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "east-return-buttress",
+        "normal": null
+      }
+    }
+  ],
+  "errors": [],
+  "warnings": [],
+  "controlledRng": 31717,
+  "cliffShots": [
+    {
+      "input": {
+        "id": "A01",
+        "angle": 74,
+        "power": 0.44
+      },
+      "before": 155,
+      "after": 155
+    },
+    {
+      "input": {
+        "id": "A01",
+        "angle": -4,
+        "power": 0.57
+      },
+      "before": 155,
+      "after": 22
+    },
+    {
+      "input": {
+        "id": "A01",
+        "angle": -1,
+        "power": 0.44
+      },
+      "before": 22,
+      "after": 0
+    }
+  ],
+  "cliffReapproaches": [
+    {
+      "requested": 1148,
+      "actual": {
+        "id": "p-archer",
+        "cls": "archer",
+        "side": 0,
+        "x": 1145.0883526258674,
+        "y": 1185.6875831099894,
+        "vx": 0,
+        "vy": 0,
+        "hp": 1720,
+        "maxHp": 1720,
+        "shield": 206,
+        "r": 22,
+        "h": 92,
+        "ammo": null,
+        "loadout": [
+          "A01",
+          "A14",
+          "A02",
+          "A05"
+        ],
+        "dead": false,
+        "actorsMoved": false,
+        "move": 2853.708333333335,
+        "grounded": true,
+        "family": {
+          "x": 0,
+          "y": 320
+        },
+        "contact": "west-watch-and-descent",
+        "normal": null
+      }
+    }
+  ],
+  "bridge": {
+    "id": "p-knight",
+    "cls": "knight",
+    "side": 0,
+    "x": 3292.9129286222746,
+    "y": 2173.4936177248883,
+    "vx": 0,
+    "vy": 0,
+    "hp": 3747,
+    "maxHp": 3846,
+    "shield": 0,
+    "r": 22,
+    "h": 92,
+    "ammo": null,
+    "loadout": [
+      "S00",
+      "S01",
+      "S03"
+    ],
+    "dead": false,
+    "actorsMoved": false,
+    "move": 1695.761263092971,
+    "grounded": true,
+    "family": {
+      "x": 0,
+      "y": 320
+    },
+    "contact": "broken-arch-west",
+    "normal": null
+  },
+  "bellShots": [
+    {
+      "foe": {
+        "hp": 684,
+        "x": 4028.0840347622243,
+        "y": 3726.044703498267
+      },
+      "input": {
+        "id": "M01",
+        "angle": 158,
+        "power": 0.84
+      }
+    },
+    {
+      "foe": {
+        "hp": 418,
+        "x": 3817.821232413204,
+        "y": 3725.297766367365
+      },
+      "input": {
+        "id": "M01",
+        "angle": 163,
+        "power": 0.96
+      }
+    }
+  ],
+  "thresholdPose": {
+    "id": "p-mage",
+    "cls": "mage",
+    "side": 0,
+    "x": 4495.877110866028,
+    "y": 3792.167255118211,
+    "vx": 0,
+    "vy": 0,
+    "hp": 1826,
+    "maxHp": 2050,
+    "shield": 0,
+    "r": 22,
+    "h": 92,
+    "ammo": null,
+    "loadout": [
+      "M01",
+      "M10",
+      "M07"
+    ],
+    "dead": false,
+    "actorsMoved": false,
+    "move": 2954.399999999987,
+    "grounded": true,
+    "family": {
+      "x": 0,
+      "y": 320
+    },
+    "contact": "east-return-buttress",
+    "normal": null
+  },
+  "seal": {
+    "schema": "honro-act6-boundary/v2",
+    "slot": "honro-campaign-act6-boundary-v2:eq-mwuu06k6-y7h4w7qc",
+    "runId": "eq-mwuu06k6-y7h4w7qc",
+    "from": 52,
+    "to": 53,
+    "kind": "four-actual-source-rows-split-to-sole-mage",
+    "generation": 2,
+    "parent": "e336e2a1984607ca5150ccf12f9c1652a7c45c4dc07d4d8b9f676a7311854f27",
+    "pin": {
+      "from": 52,
+      "to": 53,
+      "build": "85aba26bb2b20df5ee9f8138c44211f988252272c1dade482c060e67b21768e2",
+      "fromPacket": "3e35d12c62d32164643d48a58a772161912cb889f438049bd480d78ed4ac96e9",
+      "toPacket": "8f046099facbcca3e715115256795f8252434d5cf42066606fea372cbe141830",
+      "owner": "096426a7139a18f1ea1138ad890216d14ac90d66aa125bcc8fca1458747d53f4",
+      "play": "7345f1f279e017690f6b3809c5d0b6ca3fc887f333378744c0c7c4d5ea8c8259",
+      "world": "211183da82e0a34f9d9591c924877d987a31d2edb9671db44376436500f88ac5"
+    },
+    "profileSHA": "624977606fd1a5b7c23ca6ca492fec8aee57a04e9b2a0a25bd358bcc64a8747b",
+    "terminal": {
+      "stage": 52,
+      "flags": {
+        "act6.outerSitesPrepared": true,
+        "act6.darmheoInTemple": true
+      },
+      "actors": [
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "hp": 1720,
+          "maxHp": 1720,
+          "focus": 404,
+          "maxFocus": 404,
+          "shield": 206,
+          "level": 25,
+          "loadout": [
+            "A01",
+            "A14",
+            "A02",
+            "A05"
+          ],
+          "tune": 0.5,
+          "ranks": {
+            "A01": 1,
+            "A14": 4,
+            "A02": 4,
+            "A05": 4
+          },
+          "h": 92,
+          "r": 22,
+          "equipmentState": {
+            "version": 1
+          },
+          "dead": false
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "hp": 3846,
+          "maxHp": 3846,
+          "focus": 477,
+          "maxFocus": 477,
+          "shield": 0,
+          "level": 25,
+          "loadout": [
+            "S00",
+            "S01",
+            "S03"
+          ],
+          "tune": 0.5,
+          "ranks": {
+            "S00": 1,
+            "S01": 4,
+            "S03": 4
+          },
+          "h": 92,
+          "r": 22,
+          "equipmentState": {
+            "version": 1
+          },
+          "dead": false
+        },
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "hp": 1826,
+          "maxHp": 2050,
+          "focus": 724,
+          "maxFocus": 724,
+          "shield": 0,
+          "level": 25,
+          "loadout": [
+            "M01",
+            "M10",
+            "M07"
+          ],
+          "tune": 0.5,
+          "ranks": {
+            "M01": 1,
+            "M07": 4,
+            "M10": 3
+          },
+          "h": 92,
+          "r": 22,
+          "equipmentState": {
+            "version": 1
+          },
+          "dead": false
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "hp": 2304,
+          "maxHp": 2304,
+          "focus": 751,
+          "maxFocus": 751,
+          "shield": 0,
+          "level": 25,
+          "loadout": [
+            "O01",
+            "O04",
+            "O03",
+            "O06"
+          ],
+          "tune": 0.5,
+          "ranks": {
+            "O01": 1,
+            "O06": 5,
+            "O02": 4,
+            "O03": 3,
+            "O04": 2
+          },
+          "h": 92,
+          "r": 22,
+          "equipmentState": {
+            "version": 1
+          },
+          "dead": false
+        }
+      ],
+      "events": [
+        {
+          "key": "archerCliffDirectImpact",
+          "role": "p-archer",
+          "round": 2
+        },
+        {
+          "key": "act6-local-objective:cliff",
+          "role": "p-archer",
+          "round": 4
+        },
+        {
+          "key": "act6-local-objective:bridge",
+          "role": "p-knight",
+          "round": 4
+        },
+        {
+          "key": "act6-local-objective:bell",
+          "role": "p-occultist",
+          "round": 6
+        },
+        {
+          "key": "act6-local-objective:threshold",
+          "role": "p-mage",
+          "round": 8
+        }
+      ],
+      "settlement": false
+    },
+    "terminalSHA": "0113151f483447adef408943eb1722adad835cf7b7e0dc09ed6b788528edcf76",
+    "custody": {
+      "full": {
+        "archer": {
+          "id": "p-archer",
+          "name": "설오",
+          "role": "archer",
+          "cls": "archer",
+          "side": 0,
+          "x": 4416.464796223245,
+          "y": 3862.2369445089016,
+          "vx": 0,
+          "vy": 0,
+          "hp": 1720,
+          "maxHp": 1720,
+          "r": 22,
+          "h": 92,
+          "focus": 404,
+          "maxFocus": 404,
+          "regen": 28,
+          "level": 25,
+          "attack": 11.98825,
+          "armor": 0.42800000000000005,
+          "shield": 206,
+          "bound": 0,
+          "mark": 0,
+          "breaks": 0,
+          "acted": true,
+          "moveLeft": 2921,
+          "maxMove": 2921,
+          "walkSpeed": 425,
+          "angle": 21.679999999999893,
+          "lastPower": 0.5828790399639804,
+          "loadout": [
+            "A01",
+            "A14",
+            "A02",
+            "A05"
+          ],
+          "tune": 0.5,
+          "facing": 1,
+          "hurt": 0,
+          "anim": 0,
+          "airborne": false,
+          "fixed": false,
+          "spawnX": 1200,
+          "spawnY": 1224.5833333333333,
+          "intent": "",
+          "dead": false,
+          "ranks": {
+            "A01": 1,
+            "A14": 4,
+            "A02": 4,
+            "A05": 4
+          },
+          "group": 0,
+          "awake": true,
+          "lastAct": 0,
+          "aggroUntil": 0,
+          "xpBudget": 0,
+          "xpGranted": 0,
+          "killRewarded": false,
+          "damageBy": {},
+          "honroAlly": false,
+          "honroCivilian": false,
+          "critChance": 0.28400000000000003,
+          "critMultiplier": 3.085,
+          "cooldowns": {},
+          "eaterSwallow": 0,
+          "moving": 0,
+          "landing": 0,
+          "impactCooldown": 0,
+          "salheunFlash": 0,
+          "walkPhase": 147.8253737997505,
+          "honroShieldSources": {
+            "": 0,
+            "p-archer": 206
+          },
+          "jumping": false,
+          "equipmentState": {
+            "version": 1
+          },
+          "shieldUntil": 8,
+          "jucheon": 0,
+          "jucheonReady": false
+        },
+        "mage": {
+          "id": "p-mage",
+          "name": "담허",
+          "role": "mage",
+          "cls": "mage",
+          "side": 0,
+          "x": 4495.877110866028,
+          "y": 3792.167255118211,
+          "vx": 0,
+          "vy": 0,
+          "hp": 1826,
+          "maxHp": 2050,
+          "r": 22,
+          "h": 92,
+          "focus": 724,
+          "maxFocus": 724,
+          "regen": 28,
+          "level": 25,
+          "attack": 11.4116,
+          "armor": 0.472,
+          "shield": 0,
+          "bound": 0,
+          "mark": 0,
+          "breaks": 0,
+          "acted": false,
+          "moveLeft": 2954.399999999987,
+          "maxMove": 3075,
+          "walkSpeed": 402,
+          "angle": 17.13539999999722,
+          "lastPower": 0.972272252464914,
+          "loadout": [
+            "M01",
+            "M10",
+            "M07"
+          ],
+          "tune": 0.5,
+          "facing": 1,
+          "hurt": 0,
+          "anim": 0,
+          "airborne": false,
+          "fixed": false,
+          "spawnX": 1290,
+          "spawnY": 1258.75,
+          "intent": "",
+          "dead": false,
+          "ranks": {
+            "M01": 1,
+            "M07": 4,
+            "M10": 3
+          },
+          "group": 0,
+          "awake": true,
+          "lastAct": 0,
+          "aggroUntil": 0,
+          "xpBudget": 0,
+          "xpGranted": 0,
+          "killRewarded": false,
+          "damageBy": {},
+          "honroAlly": false,
+          "honroCivilian": false,
+          "critChance": 0.174,
+          "critMultiplier": 2.51,
+          "cooldowns": {},
+          "eaterSwallow": 0,
+          "moving": 0,
+          "landing": 0,
+          "impactCooldown": 0,
+          "salheunFlash": 0,
+          "honroShieldSources": {
+            "p-mage": 0
+          },
+          "equipmentState": {
+            "version": 1
+          },
+          "jumping": false,
+          "walkPhase": 145.1812602389453,
+          "jucheon": 0,
+          "jucheonReady": false
+        },
+        "knight": {
+          "id": "p-knight",
+          "name": "휘겸",
+          "role": "knight",
+          "cls": "knight",
+          "side": 0,
+          "x": 4414.852727902338,
+          "y": 3863.659357733231,
+          "vx": 0,
+          "vy": 0,
+          "hp": 3846,
+          "maxHp": 3846,
+          "r": 22,
+          "h": 92,
+          "focus": 477,
+          "maxFocus": 477,
+          "regen": 28,
+          "level": 25,
+          "attack": 9.98515,
+          "armor": 0.7,
+          "shield": 0,
+          "bound": 0,
+          "mark": 0,
+          "breaks": 0,
+          "acted": false,
+          "moveLeft": 4081,
+          "maxMove": 4081,
+          "walkSpeed": 420,
+          "angle": 44,
+          "lastPower": 0.55,
+          "loadout": [
+            "S00",
+            "S01",
+            "S03"
+          ],
+          "tune": 0.5,
+          "facing": 1,
+          "hurt": 0,
+          "anim": 0,
+          "airborne": false,
+          "fixed": false,
+          "spawnX": 1080,
+          "spawnY": 1166.111111111111,
+          "intent": "",
+          "dead": false,
+          "ranks": {
+            "S00": 1,
+            "S01": 4,
+            "S03": 4
+          },
+          "group": 0,
+          "awake": true,
+          "lastAct": 0,
+          "aggroUntil": 0,
+          "xpBudget": 0,
+          "xpGranted": 0,
+          "killRewarded": false,
+          "damageBy": {},
+          "honroAlly": false,
+          "honroCivilian": false,
+          "critChance": 0.1648,
+          "critMultiplier": 2.5330000000000004,
+          "cooldowns": {},
+          "equipmentState": {
+            "version": 1
+          },
+          "eaterSwallow": 0,
+          "moving": 0,
+          "landing": 0,
+          "impactCooldown": 0,
+          "salheunFlash": 0,
+          "honroShieldSources": {
+            "p-knight": 309
+          },
+          "jumping": false,
+          "walkPhase": 155.68383113671118,
+          "jucheon": 0,
+          "jucheonReady": false
+        },
+        "occultist": {
+          "id": "p-occultist",
+          "name": "소단",
+          "role": "occultist",
+          "cls": "occultist",
+          "side": 0,
+          "x": 4412.302366420309,
+          "y": 3865.9096766879625,
+          "vx": 0,
+          "vy": 0,
+          "hp": 2304,
+          "maxHp": 2304,
+          "r": 22,
+          "h": 92,
+          "focus": 751,
+          "maxFocus": 751,
+          "regen": 32,
+          "level": 25,
+          "attack": 11.170800000000002,
+          "armor": 0.487,
+          "shield": 0,
+          "bound": 0,
+          "mark": 0,
+          "breaks": 0,
+          "acted": false,
+          "moveLeft": 3132,
+          "maxMove": 3132,
+          "walkSpeed": 416,
+          "angle": 44,
+          "lastPower": 0.55,
+          "loadout": [
+            "O01",
+            "O04",
+            "O03",
+            "O06"
+          ],
+          "tune": 0.5,
+          "facing": 1,
+          "hurt": 0,
+          "anim": 0,
+          "airborne": false,
+          "fixed": false,
+          "spawnX": 1000,
+          "spawnY": 1151.888888888889,
+          "intent": "",
+          "dead": false,
+          "spiritSight": true,
+          "ranks": {
+            "O01": 1,
+            "O06": 5,
+            "O02": 4,
+            "O03": 3,
+            "O04": 2
+          },
+          "group": 0,
+          "awake": true,
+          "lastAct": 0,
+          "aggroUntil": 0,
+          "xpBudget": 0,
+          "xpGranted": 0,
+          "killRewarded": false,
+          "damageBy": {},
+          "honroAlly": false,
+          "honroCivilian": false,
+          "critChance": 0.20700000000000002,
+          "critMultiplier": 2.4855,
+          "cooldowns": {},
+          "eaterSwallow": 0,
+          "moving": 0,
+          "landing": 0,
+          "impactCooldown": 0,
+          "salheunFlash": 0,
+          "honroShieldSources": {
+            "p-occultist": 194
+          },
+          "equipmentState": {
+            "version": 1
+          },
+          "jumping": false,
+          "walkPhase": 152.48053992723183,
+          "jucheon": 0,
+          "jucheonReady": false
+        }
+      }
+    },
+    "custodySHA": "ece5ff6145bc64d8977d339cd3897eec6509a6653a8c91d92aab10f67821eac8",
+    "stageSeed": {
+      "id": 52,
+      "local": 52,
+      "region": 6,
+      "act": 6,
+      "actStage": 2,
+      "active": 4,
+      "requires": [
+        51
+      ],
+      "name": "세 곳의 바깥자리",
+      "goal": "사격으로 확보한 높은 암벽 확인",
+      "objective": "act6-native",
+      "w": 6250,
+      "h": 6250,
+      "story": [],
+      "outro": [],
+      "wind": [
+        0
+      ],
+      "victoryRule": {
+        "kind": "scripted",
+        "target": "act6-owned-52"
+      }
+    },
+    "budget": {
+      "id": 52,
+      "act": 6,
+      "entryLevel": 25,
+      "exitLevel": 25,
+      "rewardCurve": "current",
+      "balanceStatus": "detached-zero-increment-horizon"
+    }
+  },
+  "new53": {
+    "snapshot": {
+      "stageId": 53,
+      "honroStage": 53,
+      "mode": "campaign",
+      "authoredId": "stage-53",
+      "round": 1,
+      "phase": "aim",
+      "side": 0,
+      "shot": 0,
+      "rng": 19388,
+      "active": "p-mage",
+      "dialogue": false,
+      "isolatedStore": false,
+      "play": [
+        3540,
+        3000
+      ],
+      "terrainBounds": {
+        "left": -305,
+        "top": -320,
+        "right": 3845,
+        "bottom": 3450
+      },
+      "playBounds": {
+        "left": 0,
+        "top": 0,
+        "right": 3540,
+        "bottom": 3000
+      },
+      "camera": {
+        "x": 1365.5,
+        "y": 1966.7032268945359,
+        "zoom": null
+      },
+      "gravity": {
+        "x": 0,
+        "y": 320
+      },
+      "fieldFlags": [],
+      "terrain": [
+        {
+          "id": "south",
+          "vertices": 33,
+          "oneWay": false
+        },
+        {
+          "id": "library-balcony",
+          "vertices": 8,
+          "oneWay": true
+        },
+        {
+          "id": "sanctuary-beam",
+          "vertices": 8,
+          "oneWay": true
+        },
+        {
+          "id": "west",
+          "vertices": 11,
+          "oneWay": false
+        },
+        {
+          "id": "north",
+          "vertices": 21,
+          "oneWay": false
+        },
+        {
+          "id": "east",
+          "vertices": 4,
+          "oneWay": false
+        },
+        {
+          "id": "b-entry-sill",
+          "vertices": 4,
+          "oneWay": false
+        },
+        {
+          "id": "b-inner-jamb",
+          "vertices": 4,
+          "oneWay": false
+        },
+        {
+          "id": "b-outer-jamb",
+          "vertices": 4,
+          "oneWay": false
+        },
+        {
+          "id": "b-shaft-cap",
+          "vertices": 4,
+          "oneWay": false
+        },
+        {
+          "id": "b-dummy-north",
+          "vertices": 4,
+          "oneWay": false
+        },
+        {
+          "id": "b-dummy-west",
+          "vertices": 5,
+          "oneWay": false
+        },
+        {
+          "id": "b-dummy-east",
+          "vertices": 4,
+          "oneWay": false
+        },
+        {
+          "id": "b-dummy-south",
+          "vertices": 5,
+          "oneWay": false
+        },
+        {
+          "id": "upper-threshold-footing",
+          "vertices": 15,
+          "oneWay": false
+        }
+      ],
+      "worldTerrain": [
+        {
+          "id": "south",
+          "vertices": 33
+        },
+        {
+          "id": "library-balcony",
+          "vertices": 8
+        },
+        {
+          "id": "sanctuary-beam",
+          "vertices": 8
+        },
+        {
+          "id": "west",
+          "vertices": 11
+        },
+        {
+          "id": "north",
+          "vertices": 21
+        },
+        {
+          "id": "east",
+          "vertices": 4
+        },
+        {
+          "id": "b-entry-sill",
+          "vertices": 4
+        },
+        {
+          "id": "b-inner-jamb",
+          "vertices": 4
+        },
+        {
+          "id": "b-outer-jamb",
+          "vertices": 4
+        },
+        {
+          "id": "b-shaft-cap",
+          "vertices": 4
+        },
+        {
+          "id": "b-dummy-north",
+          "vertices": 4
+        },
+        {
+          "id": "b-dummy-west",
+          "vertices": 5
+        },
+        {
+          "id": "b-dummy-east",
+          "vertices": 4
+        },
+        {
+          "id": "b-dummy-south",
+          "vertices": 5
+        },
+        {
+          "id": "upper-threshold-footing",
+          "vertices": 15
+        }
+      ],
+      "enemies": [
+        "a6-53-opening-1"
+      ],
+      "units": [
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "side": 0,
+          "level": 25,
+          "hp": 1826,
+          "maxHp": 2050,
+          "loadout": [
+            "M01",
+            "M10",
+            "M07"
+          ],
+          "pos": [
+            425,
+            2477
+          ],
+          "h": 92,
+          "r": 22,
+          "awake": true,
+          "dead": false,
+          "airborne": false,
+          "grounded": true,
+          "validContact": true,
+          "support": "south",
+          "fixed": false,
+          "objective": false,
+          "role": "mage",
+          "summoned": false,
+          "ally": false
+        },
+        {
+          "id": "draft-lower-lane-guard",
+          "cls": "occultist",
+          "side": 1,
+          "level": 1,
+          "hp": 290,
+          "maxHp": 290,
+          "loadout": [
+            "HGS01",
+            "HGS02"
+          ],
+          "pos": [
+            1100,
+            1992.8
+          ],
+          "h": 105,
+          "r": 21,
+          "awake": false,
+          "dead": false,
+          "airborne": false,
+          "grounded": true,
+          "validContact": true,
+          "support": "library-balcony",
+          "fixed": false,
+          "objective": false,
+          "role": "fire",
+          "summoned": false,
+          "ally": false
+        },
+        {
+          "id": "draft-upper-side-guard",
+          "cls": "occultist",
+          "side": 1,
+          "level": 1,
+          "hp": 598,
+          "maxHp": 598,
+          "loadout": [
+            "HSH02"
+          ],
+          "pos": [
+            2905,
+            1060
+          ],
+          "h": 137,
+          "r": 24,
+          "awake": false,
+          "dead": false,
+          "airborne": false,
+          "grounded": true,
+          "validContact": true,
+          "support": "south",
+          "fixed": false,
+          "objective": false,
+          "role": "ice",
+          "summoned": false,
+          "ally": false
+        },
+        {
+          "id": "a6-53-opening-1",
+          "cls": "knight",
+          "side": 1,
+          "level": 25,
+          "hp": 655,
+          "maxHp": 655,
+          "loadout": [
+            "HBM01"
+          ],
+          "pos": [
+            740,
+            2386.28
+          ],
+          "h": 88,
+          "r": 32,
+          "awake": true,
+          "dead": false,
+          "airborne": false,
+          "grounded": true,
+          "validContact": true,
+          "support": "south",
+          "fixed": false,
+          "objective": false,
+          "role": "leaper",
+          "summoned": false,
+          "ally": false
+        },
+        {
+          "id": "a6-53-opening-2",
+          "cls": "occultist",
+          "side": 1,
+          "level": 25,
+          "hp": 595,
+          "maxHp": 595,
+          "loadout": [
+            "HSH01",
+            "HSH02"
+          ],
+          "pos": [
+            1320,
+            1917.07
+          ],
+          "h": 115,
+          "r": 22,
+          "awake": false,
+          "dead": false,
+          "airborne": false,
+          "grounded": true,
+          "validContact": true,
+          "support": "library-balcony",
+          "fixed": false,
+          "objective": false,
+          "role": "ice",
+          "summoned": false,
+          "ally": false
+        },
+        {
+          "id": "a6-53-opening-3",
+          "cls": "knight",
+          "side": 1,
+          "level": 25,
+          "hp": 755,
+          "maxHp": 755,
+          "loadout": [
+            "HBM03"
+          ],
+          "pos": [
+            1985,
+            1587.5
+          ],
+          "h": 116,
+          "r": 38,
+          "awake": false,
+          "dead": false,
+          "airborne": false,
+          "grounded": true,
+          "validContact": true,
+          "support": "south",
+          "fixed": false,
+          "objective": false,
+          "role": "leaper",
+          "summoned": false,
+          "ally": false
+        }
+      ]
+    },
+    "savedBytesBefore": "ad7e1e4cdf2e4985eda787e5365c985b3d2343fcfeab699422db71143115418b",
+    "savedBytesAfter": "ad7e1e4cdf2e4985eda787e5365c985b3d2343fcfeab699422db71143115418b"
+  },
+  "cliffProjectiles": [
+    {
+      "event": "fire",
+      "skill": "A01",
+      "angle": 73.97079999999997,
+      "power": 0.6430018340984036,
+      "actor": "p-archer",
+      "grounded": true,
+      "x": 1200,
+      "y": 1224.5833333333333,
+      "prediction": {
+        "x": 1912.5464741854546,
+        "y": 1857,
+        "unit": "a6-52-opening-2",
+        "terrain": null
+      },
+      "shot": 1,
+      "gravity": {
+        "x": -5.6343470783467975,
+        "y": 339.61157601442466
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "A01",
+      "actor": "p-archer",
+      "target": "a6-52-opening-2",
+      "terrain": null,
+      "x": 1912.5464741854546,
+      "y": 1857,
+      "normal": {
+        "x": 0,
+        "y": -1
+      },
+      "radius": 3,
+      "shot": 1,
+      "before": 595,
+      "after": 457,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "HSH02",
+      "angle": 108.56676666403655,
+      "power": 0.6867001555522438,
+      "actor": "a6-52-opening-2",
+      "grounded": true,
+      "x": 1802.9999999999973,
+      "y": 1858.9999999999964,
+      "prediction": {
+        "x": 1028,
+        "y": 1055.730052283705,
+        "unit": "p-occultist",
+        "terrain": null
+      },
+      "shot": 2,
+      "gravity": {
+        "x": 13.090231108396942,
+        "y": 166.97159605561794
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HSH02",
+      "actor": "a6-52-opening-2",
+      "target": "p-occultist",
+      "terrain": null,
+      "x": 1028,
+      "y": 1055.730052283705,
+      "normal": {
+        "x": 1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 2,
+      "before": 2304,
+      "after": 2304,
+      "shieldBefore": 276,
+      "shieldAfter": 237
+    },
+    {
+      "event": "fire",
+      "skill": "A01",
+      "angle": -4.149200000000017,
+      "power": 0.5613859090653832,
+      "actor": "p-archer",
+      "grounded": true,
+      "x": 1171.0991329609828,
+      "y": 1204.1118858473628,
+      "prediction": {
+        "x": 1507.1823336565355,
+        "y": 1221.896551724138,
+        "unit": "cliff-stone",
+        "terrain": null
+      },
+      "shot": 3,
+      "gravity": {
+        "x": -17.768219475526887,
+        "y": 318.71102124217754
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "A01",
+      "actor": "p-archer",
+      "target": "cliff-stone",
+      "terrain": null,
+      "x": 1507.1823336565355,
+      "y": 1221.896551724138,
+      "normal": {
+        "x": 0,
+        "y": -1
+      },
+      "radius": 3,
+      "shot": 3,
+      "before": 155,
+      "after": 22,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "HSH02",
+      "angle": 100.0364033326041,
+      "power": 0.6137682146432345,
+      "actor": "a6-52-opening-2",
+      "grounded": true,
+      "x": 1715.9999999999945,
+      "y": 1755.9999999999945,
+      "prediction": {
+        "x": 1281.4979836396863,
+        "y": 1160.75,
+        "unit": "p-mage",
+        "terrain": null
+      },
+      "shot": 4,
+      "gravity": {
+        "x": 6.726030618667624,
+        "y": 166.00400210348718
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HSH02",
+      "actor": "a6-52-opening-2",
+      "target": "p-mage",
+      "terrain": null,
+      "x": 1281.4979836396863,
+      "y": 1160.75,
+      "normal": {
+        "x": 0,
+        "y": -1
+      },
+      "radius": 6,
+      "shot": 4,
+      "before": 2050,
+      "after": 2050,
+      "shieldBefore": 246,
+      "shieldAfter": 203
+    },
+    {
+      "event": "fire",
+      "skill": "A01",
+      "angle": -1.049200000000017,
+      "power": 0.42551365075239905,
+      "actor": "p-archer",
+      "grounded": true,
+      "x": 1171.0991329609828,
+      "y": 1204.1118858473628,
+      "prediction": {
+        "x": 1483,
+        "y": 1226.9495194520614,
+        "unit": "cliff-stone",
+        "terrain": null
+      },
+      "shot": 5,
+      "gravity": {
+        "x": -13.500904060424634,
+        "y": 319.7527438809274
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "A01",
+      "actor": "p-archer",
+      "target": "cliff-stone",
+      "terrain": null,
+      "x": 1483,
+      "y": 1226.9495194520614,
+      "normal": {
+        "x": -1,
+        "y": 0
+      },
+      "radius": 3,
+      "shot": 5,
+      "before": 22,
+      "after": 0,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "HSH02",
+      "angle": 100.44381856895052,
+      "power": 0.6175133571173066,
+      "actor": "a6-52-opening-2",
+      "grounded": true,
+      "x": 1628.9999999999918,
+      "y": 1668.9999999999918,
+      "prediction": {
+        "x": 1169.5399091016159,
+        "y": 1097.914301105553,
+        "unit": null,
+        "terrain": null
+      },
+      "shot": 6,
+      "gravity": {
+        "x": 7.019521463170639,
+        "y": 166.0823091591272
+      }
+    },
+    {
+      "event": "fire",
+      "skill": "A02",
+      "angle": 21.67999999999989,
+      "power": 0.5828790399639804,
+      "actor": "p-archer",
+      "grounded": true,
+      "x": 2997.3904725979332,
+      "y": 2345.7349768560275,
+      "prediction": {
+        "x": 3228.4164879858627,
+        "y": 2215.1488184787145,
+        "unit": "bridge-keeper",
+        "terrain": "broken-arch-west"
+      },
+      "shot": 7,
+      "gravity": {
+        "x": -18.919022377690364,
+        "y": 327.52114465440275
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "A02",
+      "actor": "p-archer",
+      "target": "bridge-keeper",
+      "terrain": null,
+      "x": 3201.9825252965506,
+      "y": 2220.7027027027025,
+      "normal": {
+        "x": 0,
+        "y": 1
+      },
+      "radius": 3,
+      "shot": 7,
+      "before": 659,
+      "after": 0,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "impact",
+      "skill": "A02",
+      "actor": "p-archer",
+      "target": null,
+      "terrain": "broken-arch-west",
+      "x": 3228.4164879858627,
+      "y": 2215.1488184787145,
+      "normal": {
+        "x": -0.5749455167129004,
+        "y": -0.818191696860666
+      },
+      "radius": 3,
+      "shot": 7,
+      "before": null,
+      "after": null,
+      "shieldBefore": null,
+      "shieldAfter": null
+    },
+    {
+      "event": "fire",
+      "skill": "HSH01",
+      "angle": 168.9468116316954,
+      "power": 0.7964339646832439,
+      "actor": "a6-52-opening-4",
+      "grounded": true,
+      "x": 3990,
+      "y": 2285.8571428571427,
+      "prediction": {
+        "x": 3320.9129286222746,
+        "y": 2119.5482389340077,
+        "unit": "p-knight",
+        "terrain": null
+      },
+      "shot": 8,
+      "gravity": {
+        "x": 38.73627220203634,
+        "y": 71.56689334098392
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HSH01",
+      "actor": "a6-52-opening-4",
+      "target": "p-knight",
+      "terrain": null,
+      "x": 3320.9129286222746,
+      "y": 2119.5482389340077,
+      "normal": {
+        "x": 1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 8,
+      "before": 3846,
+      "after": 3846,
+      "shieldBefore": 462,
+      "shieldAfter": 444
+    },
+    {
+      "event": "fire",
+      "skill": "HCW01",
+      "angle": 128.2458064086968,
+      "power": 0.6901076864812058,
+      "actor": "watch-range",
+      "grounded": true,
+      "x": 4351.148528722661,
+      "y": 2485.4306982709977,
+      "prediction": {
+        "x": 3304.1569586896917,
+        "y": 2108.0602695094813,
+        "unit": "p-knight",
+        "terrain": null
+      },
+      "shot": 9,
+      "gravity": {
+        "x": 11.112637243902183,
+        "y": 206.09843544802115
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HCW01",
+      "actor": "watch-range",
+      "target": "p-knight",
+      "terrain": null,
+      "x": 3304.1569586896917,
+      "y": 2108.0602695094813,
+      "normal": {
+        "x": 1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 9,
+      "before": 3846,
+      "after": 3846,
+      "shieldBefore": 444,
+      "shieldAfter": 411
+    },
+    {
+      "event": "fire",
+      "skill": "HBM01",
+      "angle": 0,
+      "power": 0.5,
+      "actor": "a6-52-opening-3",
+      "grounded": true,
+      "x": 2923.0106969376425,
+      "y": 2383.5941166842968,
+      "prediction": {
+        "x": 2969.3904725979332,
+        "y": 2328.342502492341,
+        "unit": "p-archer",
+        "terrain": null
+      },
+      "shot": 10,
+      "gravity": null
+    },
+    {
+      "event": "fire",
+      "skill": "HSH01",
+      "angle": 28.338690071718094,
+      "power": 0.12396656675933497,
+      "actor": "a6-52-cliff-watch-2",
+      "grounded": true,
+      "x": 2365,
+      "y": 2456.25,
+      "prediction": {
+        "x": 2969.3904725979332,
+        "y": 2281.763280460518,
+        "unit": "p-archer",
+        "terrain": null
+      },
+      "shot": 11,
+      "gravity": {
+        "x": -16.784122365349447,
+        "y": 73.05194381240275
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HSH01",
+      "actor": "a6-52-cliff-watch-2",
+      "target": "p-archer",
+      "terrain": null,
+      "x": 2969.3904725979332,
+      "y": 2281.763280460518,
+      "normal": {
+        "x": -1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 11,
+      "before": 1720,
+      "after": 1696,
+      "shieldBefore": 9,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "HSH01",
+      "angle": -22.203105537337805,
+      "power": 0.7325950950177738,
+      "actor": "a6-52-bell-approach-1",
+      "grounded": true,
+      "x": 4028.0840347622243,
+      "y": 3726.044703498267,
+      "prediction": {
+        "x": 4372.045680991038,
+        "y": 3794.651413590699,
+        "unit": "p-occultist",
+        "terrain": null
+      },
+      "shot": 12,
+      "gravity": {
+        "x": -34.74891898165457,
+        "y": 49.81703166365597
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HSH01",
+      "actor": "a6-52-bell-approach-1",
+      "target": "p-occultist",
+      "terrain": null,
+      "x": 4372.045680991038,
+      "y": 3794.651413590699,
+      "normal": {
+        "x": -1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 12,
+      "before": 2304,
+      "after": 2304,
+      "shieldBefore": 276,
+      "shieldAfter": 276
+    },
+    {
+      "event": "fire",
+      "skill": "HSH01",
+      "angle": 260.6014834389451,
+      "power": 0.7176479650964376,
+      "actor": "a6-52-opening-4",
+      "grounded": true,
+      "x": 3990,
+      "y": 2285.8571428571427,
+      "prediction": {
+        "x": 3819.4221936368235,
+        "y": 3377.387320413349,
+        "unit": "p-mage",
+        "terrain": null
+      },
+      "shot": 13,
+      "gravity": {
+        "x": 6.054933309905924,
+        "y": 27.419235023967317
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HSH01",
+      "actor": "a6-52-opening-4",
+      "target": "p-mage",
+      "terrain": null,
+      "x": 3819.4221936368235,
+      "y": 3377.387320413349,
+      "normal": {
+        "x": 0,
+        "y": -1
+      },
+      "radius": 6,
+      "shot": 13,
+      "before": 2039,
+      "after": 2039,
+      "shieldBefore": 246,
+      "shieldAfter": 246
+    },
+    {
+      "event": "fire",
+      "skill": "HSH02",
+      "angle": 41.87772803917961,
+      "power": 0.8164776882882538,
+      "actor": "a6-52-opening-6",
+      "grounded": true,
+      "x": 3425.9166666666456,
+      "y": 4485.173076923082,
+      "prediction": {
+        "x": 4372.045680991038,
+        "y": 3842.966316212373,
+        "unit": "p-occultist",
+        "terrain": null
+      },
+      "shot": 14,
+      "gravity": {
+        "x": -33.94470098002926,
+        "y": 158.43302897553463
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HSH02",
+      "actor": "a6-52-opening-6",
+      "target": "p-occultist",
+      "terrain": null,
+      "x": 4372.045680991038,
+      "y": 3842.966316212373,
+      "normal": {
+        "x": -1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 14,
+      "before": 2304,
+      "after": 2304,
+      "shieldBefore": 276,
+      "shieldAfter": 218
+    },
+    {
+      "event": "fire",
+      "skill": "HBM01",
+      "angle": 180,
+      "power": 0.5,
+      "actor": "a6-52-bell-approach-2",
+      "grounded": true,
+      "x": 4418.855995298277,
+      "y": 3860.1270629721084,
+      "prediction": {
+        "x": 4390.855995298277,
+        "y": 3804.6870629721084,
+        "unit": "p-archer",
+        "terrain": null
+      },
+      "shot": 15,
+      "gravity": null
+    },
+    {
+      "event": "fire",
+      "skill": "HSH02",
+      "angle": 131.1770725378301,
+      "power": 0.3543829741834197,
+      "actor": "a6-52-bell-approach-3",
+      "grounded": true,
+      "x": 4710,
+      "y": 3606.6666666666665,
+      "prediction": {
+        "x": 3796.428303033126,
+        "y": 3377.387320413349,
+        "unit": "p-mage",
+        "terrain": null
+      },
+      "shot": 16,
+      "gravity": {
+        "x": 19.517178122118835,
+        "y": 150.31230188217697
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HSH02",
+      "actor": "a6-52-bell-approach-3",
+      "target": "p-mage",
+      "terrain": null,
+      "x": 3796.428303033126,
+      "y": 3377.387320413349,
+      "normal": {
+        "x": 0,
+        "y": -1
+      },
+      "radius": 6,
+      "shot": 16,
+      "before": 2039,
+      "after": 2039,
+      "shieldBefore": 246,
+      "shieldAfter": 203
+    },
+    {
+      "event": "fire",
+      "skill": "M01",
+      "angle": 157.69380000000132,
+      "power": 0.8500462967533498,
+      "actor": "p-mage",
+      "grounded": true,
+      "x": 4395.426080287168,
+      "y": 3880.8005173936754,
+      "prediction": {
+        "x": 4058.0840347622243,
+        "y": 3716.1245702372744,
+        "unit": "a6-52-bell-approach-1",
+        "terrain": null
+      },
+      "shot": 17,
+      "gravity": {
+        "x": 57.3865831781404,
+        "y": 343.5432076964832
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "M01",
+      "actor": "p-mage",
+      "target": "a6-52-bell-approach-1",
+      "terrain": null,
+      "x": 4058.0840347622243,
+      "y": 3716.1245702372744,
+      "normal": {
+        "x": 1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 17,
+      "before": 684,
+      "after": 418,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "HBM01",
+      "angle": 180,
+      "power": 0.5,
+      "actor": "a6-52-bell-approach-2",
+      "grounded": true,
+      "x": 4418.855995298277,
+      "y": 3860.1270629721084,
+      "prediction": {
+        "x": 4390.855995298277,
+        "y": 3804.6870629721084,
+        "unit": "p-archer",
+        "terrain": null
+      },
+      "shot": 18,
+      "gravity": null
+    },
+    {
+      "event": "fire",
+      "skill": "HSH02",
+      "angle": 50.85005962029965,
+      "power": 0.42219380189355327,
+      "actor": "a6-52-opening-6",
+      "grounded": true,
+      "x": 3757.0093393702764,
+      "y": 4326.389575611163,
+      "prediction": {
+        "x": 4367.426080287168,
+        "y": 3830.0823508923495,
+        "unit": "p-mage",
+        "terrain": null
+      },
+      "shot": 19,
+      "gravity": {
+        "x": -20.19306895050946,
+        "y": 152.80336256848582
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HSH02",
+      "actor": "a6-52-opening-6",
+      "target": "p-mage",
+      "terrain": null,
+      "x": 4367.426080287168,
+      "y": 3830.0823508923495,
+      "normal": {
+        "x": -1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 19,
+      "before": 2039,
+      "after": 1980,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "HSH01",
+      "angle": -13.191109927930471,
+      "power": 0.7483857673723008,
+      "actor": "a6-52-bell-approach-1",
+      "grounded": true,
+      "x": 3817.821232413204,
+      "y": 3725.297766367365,
+      "prediction": {
+        "x": 4371.410686862672,
+        "y": 3805.4792370809887,
+        "unit": "p-mage",
+        "terrain": null
+      },
+      "shot": 20,
+      "gravity": {
+        "x": -37.007964491548286,
+        "y": 55.32591816011248
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HSH01",
+      "actor": "a6-52-bell-approach-1",
+      "target": "p-mage",
+      "terrain": null,
+      "x": 4371.410686862672,
+      "y": 3805.4792370809887,
+      "normal": {
+        "x": -1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 20,
+      "before": 1980,
+      "after": 1949,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "HSH02",
+      "angle": 209,
+      "power": 0.6100000000000001,
+      "actor": "a6-52-bell-approach-3",
+      "grounded": true,
+      "x": 4710,
+      "y": 3606.6666666666665,
+      "prediction": {
+        "x": 4344.355562195692,
+        "y": 3759.152152103811,
+        "unit": null,
+        "terrain": "landing-5"
+      },
+      "shot": 21,
+      "gravity": {
+        "x": 33.64187532174133,
+        "y": 109.35200400131325
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HSH02",
+      "actor": "a6-52-bell-approach-3",
+      "target": null,
+      "terrain": "landing-5",
+      "x": 4344.355562195692,
+      "y": 3759.152152103811,
+      "normal": {
+        "x": 0.8702568550714597,
+        "y": 0.4925982198517696
+      },
+      "radius": 6,
+      "shot": 21,
+      "before": null,
+      "after": null,
+      "shieldBefore": null,
+      "shieldAfter": null
+    },
+    {
+      "event": "fire",
+      "skill": "M01",
+      "angle": 162.86460000000278,
+      "power": 0.972272252464914,
+      "actor": "p-mage",
+      "grounded": true,
+      "x": 4401.249240030618,
+      "y": 3875.6624352671015,
+      "prediction": {
+        "x": 3847.821232413204,
+        "y": 3715.3321068105774,
+        "unit": "a6-52-bell-approach-1",
+        "terrain": null
+      },
+      "shot": 22,
+      "gravity": {
+        "x": 67.79785968283352,
+        "y": 340.90320690020053
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "M01",
+      "actor": "p-mage",
+      "target": "a6-52-bell-approach-1",
+      "terrain": null,
+      "x": 3847.821232413204,
+      "y": 3715.3321068105774,
+      "normal": {
+        "x": 1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 22,
+      "before": 418,
+      "after": 0,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "HBM01",
+      "angle": 180,
+      "power": 0.5,
+      "actor": "a6-52-bell-approach-2",
+      "grounded": true,
+      "x": 4424.089448438265,
+      "y": 3855.5093102015308,
+      "prediction": {
+        "x": 4396.089448438265,
+        "y": 3800.0693102015307,
+        "unit": "p-archer",
+        "terrain": null
+      },
+      "shot": 23,
+      "gravity": null
+    },
+    {
+      "event": "fire",
+      "skill": "HSH02",
+      "angle": 49.177895228571515,
+      "power": 0.42434608303680843,
+      "actor": "a6-52-opening-6",
+      "grounded": true,
+      "x": 3757.0093393702764,
+      "y": 4326.389575611163,
+      "prediction": {
+        "x": 4373.249240030618,
+        "y": 3846.3814485007997,
+        "unit": "p-mage",
+        "terrain": null
+      },
+      "shot": 24,
+      "gravity": {
+        "x": -20.956798739722913,
+        "y": 152.2597568468499
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HSH02",
+      "actor": "a6-52-opening-6",
+      "target": "p-mage",
+      "terrain": null,
+      "x": 4373.249240030618,
+      "y": 3846.3814485007997,
+      "normal": {
+        "x": -1,
+        "y": 0
+      },
+      "radius": 6,
+      "shot": 24,
+      "before": 1917,
+      "after": 1858,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    },
+    {
+      "event": "fire",
+      "skill": "HSH02",
+      "angle": 209,
+      "power": 0.6100000000000001,
+      "actor": "a6-52-bell-approach-3",
+      "grounded": true,
+      "x": 4710,
+      "y": 3606.6666666666665,
+      "prediction": {
+        "x": 4344.355562195692,
+        "y": 3759.152152103811,
+        "unit": null,
+        "terrain": "landing-5"
+      },
+      "shot": 25,
+      "gravity": {
+        "x": 33.64187532174133,
+        "y": 109.35200400131325
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "HSH02",
+      "actor": "a6-52-bell-approach-3",
+      "target": null,
+      "terrain": "landing-5",
+      "x": 4344.355562195692,
+      "y": 3759.152152103811,
+      "normal": {
+        "x": 0.8702568550714597,
+        "y": 0.4925982198517696
+      },
+      "radius": 6,
+      "shot": 25,
+      "before": null,
+      "after": null,
+      "shieldBefore": null,
+      "shieldAfter": null
+    },
+    {
+      "event": "fire",
+      "skill": "HBM03",
+      "angle": 0,
+      "power": 0.5,
+      "actor": "a6-52-bell-approach-4",
+      "grounded": true,
+      "x": 4407.600634252098,
+      "y": 3870.058263895208,
+      "prediction": {
+        "x": 4435.600634252098,
+        "y": 3782.4882638952076,
+        "unit": "p-archer",
+        "terrain": null
+      },
+      "shot": 26,
+      "gravity": null
+    }
+  ],
+  "trace": [
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2"
+      ],
+      "newIds": [
+        "watch-range",
+        "bridge-keeper",
+        "return-guard",
+        "cliff-stone",
+        "a6-52-opening-1",
+        "a6-52-opening-2",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6"
+      ]
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 0,
+      "phase": "flight",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2",
+        "a6-52-opening-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2",
+        "a6-52-opening-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 0,
+      "phase": "transition",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 1,
+      "phase": "enemy",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 1,
+      "phase": "review",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 1,
+      "phase": "enemy",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "fire",
+      "round": 1,
+      "owner": "a6-52-opening-2",
+      "skill": "HSH02"
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 1,
+      "phase": "flight",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "hit",
+      "round": 1,
+      "owner": "a6-52-opening-2",
+      "target": "p-knight",
+      "loss": 18
+    },
+    {
+      "type": "hit",
+      "round": 1,
+      "owner": "a6-52-opening-2",
+      "target": "p-occultist",
+      "loss": 39
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 1,
+      "phase": "review",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 1,
+      "phase": "transition",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 0,
+      "phase": "flight",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2",
+        "a6-52-opening-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2",
+        "a6-52-opening-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 0,
+      "phase": "transition",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 1,
+      "phase": "enemy",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "fire",
+      "round": 2,
+      "owner": "a6-52-opening-2",
+      "skill": "HSH02"
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 1,
+      "phase": "flight",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "hit",
+      "round": 2,
+      "owner": "a6-52-opening-2",
+      "target": "p-mage",
+      "loss": 43
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 1,
+      "phase": "review",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 1,
+      "phase": "enemy",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 1,
+      "phase": "review",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 1,
+      "phase": "transition",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 0,
+      "phase": "flight",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2",
+        "a6-52-opening-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2",
+        "a6-52-opening-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 0,
+      "phase": "transition",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 1,
+      "phase": "enemy",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "fire",
+      "round": 3,
+      "owner": "a6-52-opening-2",
+      "skill": "HSH02"
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 1,
+      "phase": "flight",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 1,
+      "phase": "review",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 1,
+      "phase": "enemy",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 1,
+      "phase": "review",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 1,
+      "phase": "transition",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2",
+        "a6-52-opening-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "bridge-keeper",
+        "a6-52-opening-1",
+        "a6-52-opening-2",
+        "a6-52-opening-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "bridge-keeper",
+        "a6-52-opening-1",
+        "a6-52-opening-2",
+        "a6-52-opening-3",
+        "a6-52-opening-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 0,
+      "phase": "flight",
+      "active": [
+        "bridge-keeper",
+        "a6-52-opening-1",
+        "a6-52-opening-2",
+        "a6-52-opening-3",
+        "a6-52-opening-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 0,
+      "phase": "flight",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2",
+        "a6-52-opening-3",
+        "a6-52-opening-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2",
+        "a6-52-opening-3",
+        "a6-52-opening-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2",
+        "a6-52-opening-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2",
+        "a6-52-opening-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2",
+        "a6-52-opening-3",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2"
+      ],
+      "newIds": [
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2"
+      ]
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2",
+        "a6-52-opening-3",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3"
+      ],
+      "newIds": [
+        "a6-52-cliff-watch-3"
+      ]
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "watch-range",
+        "a6-52-opening-1",
+        "a6-52-opening-2",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "watch-range",
+        "a6-52-opening-1",
+        "a6-52-opening-2",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "watch-range",
+        "a6-52-opening-1",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "watch-range",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2",
+        "a6-52-cliff-watch-1"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2",
+        "a6-52-opening-3",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2",
+        "a6-52-opening-3",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "watch-range",
+        "a6-52-opening-1",
+        "a6-52-opening-2",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "watch-range",
+        "a6-52-opening-1",
+        "a6-52-opening-2",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "watch-range",
+        "a6-52-opening-1",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "watch-range",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "watch-range",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "watch-range",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2",
+        "a6-52-opening-3",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "watch-range",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2",
+        "a6-52-opening-3",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "watch-range",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2",
+        "a6-52-opening-3",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "watch-range",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2",
+        "a6-52-opening-3",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2",
+        "a6-52-opening-3",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "watch-range",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "watch-range",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 0,
+      "phase": "transition",
+      "active": [
+        "watch-range",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 1,
+      "phase": "enemy",
+      "active": [
+        "watch-range",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "fire",
+      "round": 4,
+      "owner": "a6-52-opening-4",
+      "skill": "HSH01"
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 1,
+      "phase": "flight",
+      "active": [
+        "watch-range",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "hit",
+      "round": 4,
+      "owner": "a6-52-opening-4",
+      "target": "p-knight",
+      "loss": 18
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 1,
+      "phase": "review",
+      "active": [
+        "watch-range",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 1,
+      "phase": "enemy",
+      "active": [
+        "watch-range",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "fire",
+      "round": 4,
+      "owner": "watch-range",
+      "skill": "HCW01"
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 1,
+      "phase": "flight",
+      "active": [
+        "watch-range",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "hit",
+      "round": 4,
+      "owner": "watch-range",
+      "target": "p-knight",
+      "loss": 33
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 1,
+      "phase": "review",
+      "active": [
+        "watch-range",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 1,
+      "phase": "enemy",
+      "active": [
+        "watch-range",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "fire",
+      "round": 4,
+      "owner": "a6-52-opening-3",
+      "skill": "HBM01"
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 1,
+      "phase": "flight",
+      "active": [
+        "watch-range",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "hit",
+      "round": 4,
+      "owner": "a6-52-opening-3",
+      "target": "p-archer",
+      "loss": 112
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 1,
+      "phase": "review",
+      "active": [
+        "watch-range",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 1,
+      "phase": "enemy",
+      "active": [
+        "watch-range",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 1,
+      "phase": "review",
+      "active": [
+        "watch-range",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 1,
+      "phase": "enemy",
+      "active": [
+        "watch-range",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "fire",
+      "round": 4,
+      "owner": "a6-52-cliff-watch-2",
+      "skill": "HSH01"
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 1,
+      "phase": "flight",
+      "active": [
+        "watch-range",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "hit",
+      "round": 4,
+      "owner": "a6-52-cliff-watch-2",
+      "target": "p-archer",
+      "loss": 33
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 1,
+      "phase": "review",
+      "active": [
+        "watch-range",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 1,
+      "phase": "enemy",
+      "active": [
+        "watch-range",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 1,
+      "phase": "review",
+      "active": [
+        "watch-range",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 1,
+      "phase": "transition",
+      "active": [
+        "watch-range",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "watch-range",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "watch-range",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "watch-range",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "watch-range",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "watch-range",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-cliff-watch-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-cliff-watch-3",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2"
+      ],
+      "newIds": [
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2"
+      ]
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-cliff-watch-3",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": [
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ]
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "watch-range",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "watch-range",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "watch-range",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "watch-range",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "watch-range",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "watch-range",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "watch-range",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-cliff-watch-3",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-cliff-watch-3",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "watch-range",
+        "a6-52-opening-1",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "watch-range",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "watch-range",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "watch-range",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "watch-range",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "watch-range",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-cliff-watch-3",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-cliff-watch-3",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2",
+        "a6-52-opening-3",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2",
+        "a6-52-opening-3",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-2",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "a6-52-opening-1",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "watch-range",
+        "a6-52-opening-1",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "watch-range",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "watch-range",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "watch-range",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "watch-range",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "watch-range",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-cliff-watch-1",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "watch-range",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-cliff-watch-2",
+        "a6-52-cliff-watch-3",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "watch-range",
+        "a6-52-opening-3",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-cliff-watch-3",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-cliff-watch-3",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "transition",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 1,
+      "phase": "enemy",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "fire",
+      "round": 5,
+      "owner": "a6-52-bell-approach-1",
+      "skill": "HSH01"
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 1,
+      "phase": "flight",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 1,
+      "phase": "review",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 1,
+      "phase": "enemy",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "fire",
+      "round": 5,
+      "owner": "a6-52-opening-4",
+      "skill": "HSH01"
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 1,
+      "phase": "flight",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 1,
+      "phase": "review",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 1,
+      "phase": "enemy",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "fire",
+      "round": 5,
+      "owner": "a6-52-opening-6",
+      "skill": "HSH02"
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 1,
+      "phase": "flight",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "hit",
+      "round": 5,
+      "owner": "a6-52-opening-6",
+      "target": "p-archer",
+      "loss": 59
+    },
+    {
+      "type": "hit",
+      "round": 5,
+      "owner": "a6-52-opening-6",
+      "target": "p-knight",
+      "loss": 32
+    },
+    {
+      "type": "hit",
+      "round": 5,
+      "owner": "a6-52-opening-6",
+      "target": "p-occultist",
+      "loss": 58
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 1,
+      "phase": "review",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 1,
+      "phase": "enemy",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "fire",
+      "round": 5,
+      "owner": "a6-52-bell-approach-2",
+      "skill": "HBM01"
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 1,
+      "phase": "flight",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "hit",
+      "round": 5,
+      "owner": "a6-52-bell-approach-2",
+      "target": "p-knight",
+      "loss": 57
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 1,
+      "phase": "review",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 1,
+      "phase": "enemy",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "fire",
+      "round": 5,
+      "owner": "a6-52-bell-approach-3",
+      "skill": "HSH02"
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 1,
+      "phase": "flight",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "hit",
+      "round": 5,
+      "owner": "a6-52-bell-approach-3",
+      "target": "p-mage",
+      "loss": 43
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 1,
+      "phase": "review",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 1,
+      "phase": "enemy",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 1,
+      "phase": "review",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 1,
+      "phase": "transition",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 6,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 6,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 6,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 6,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 6,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 6,
+      "side": 0,
+      "phase": "flight",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 6,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 6,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 6,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 6,
+      "side": 0,
+      "phase": "transition",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 6,
+      "side": 1,
+      "phase": "enemy",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "fire",
+      "round": 6,
+      "owner": "a6-52-bell-approach-2",
+      "skill": "HBM01"
+    },
+    {
+      "type": "sample",
+      "round": 6,
+      "side": 1,
+      "phase": "flight",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "hit",
+      "round": 6,
+      "owner": "a6-52-bell-approach-2",
+      "target": "p-knight",
+      "loss": 55
+    },
+    {
+      "type": "sample",
+      "round": 6,
+      "side": 1,
+      "phase": "review",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 6,
+      "side": 1,
+      "phase": "enemy",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 6,
+      "side": 1,
+      "phase": "review",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 6,
+      "side": 1,
+      "phase": "enemy",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "fire",
+      "round": 6,
+      "owner": "a6-52-opening-6",
+      "skill": "HSH02"
+    },
+    {
+      "type": "sample",
+      "round": 6,
+      "side": 1,
+      "phase": "flight",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "hit",
+      "round": 6,
+      "owner": "a6-52-opening-6",
+      "target": "p-archer",
+      "loss": 56
+    },
+    {
+      "type": "hit",
+      "round": 6,
+      "owner": "a6-52-opening-6",
+      "target": "p-mage",
+      "loss": 59
+    },
+    {
+      "type": "hit",
+      "round": 6,
+      "owner": "a6-52-opening-6",
+      "target": "p-knight",
+      "loss": 30
+    },
+    {
+      "type": "hit",
+      "round": 6,
+      "owner": "a6-52-opening-6",
+      "target": "p-occultist",
+      "loss": 53
+    },
+    {
+      "type": "sample",
+      "round": 6,
+      "side": 1,
+      "phase": "review",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 6,
+      "side": 1,
+      "phase": "enemy",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "fire",
+      "round": 6,
+      "owner": "a6-52-bell-approach-1",
+      "skill": "HSH01"
+    },
+    {
+      "type": "sample",
+      "round": 6,
+      "side": 1,
+      "phase": "flight",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "hit",
+      "round": 6,
+      "owner": "a6-52-bell-approach-1",
+      "target": "p-archer",
+      "loss": 33
+    },
+    {
+      "type": "hit",
+      "round": 6,
+      "owner": "a6-52-bell-approach-1",
+      "target": "p-mage",
+      "loss": 31
+    },
+    {
+      "type": "hit",
+      "round": 6,
+      "owner": "a6-52-bell-approach-1",
+      "target": "p-knight",
+      "loss": 18
+    },
+    {
+      "type": "hit",
+      "round": 6,
+      "owner": "a6-52-bell-approach-1",
+      "target": "p-occultist",
+      "loss": 30
+    },
+    {
+      "type": "sample",
+      "round": 6,
+      "side": 1,
+      "phase": "review",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 6,
+      "side": 1,
+      "phase": "enemy",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "fire",
+      "round": 6,
+      "owner": "a6-52-bell-approach-3",
+      "skill": "HSH02"
+    },
+    {
+      "type": "sample",
+      "round": 6,
+      "side": 1,
+      "phase": "flight",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "hit",
+      "round": 6,
+      "owner": "a6-52-bell-approach-3",
+      "target": "p-archer",
+      "loss": 35
+    },
+    {
+      "type": "hit",
+      "round": 6,
+      "owner": "a6-52-bell-approach-3",
+      "target": "p-mage",
+      "loss": 32
+    },
+    {
+      "type": "hit",
+      "round": 6,
+      "owner": "a6-52-bell-approach-3",
+      "target": "p-knight",
+      "loss": 18
+    },
+    {
+      "type": "hit",
+      "round": 6,
+      "owner": "a6-52-bell-approach-3",
+      "target": "p-occultist",
+      "loss": 31
+    },
+    {
+      "type": "sample",
+      "round": 6,
+      "side": 1,
+      "phase": "review",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 6,
+      "side": 1,
+      "phase": "enemy",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 6,
+      "side": 1,
+      "phase": "review",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 6,
+      "side": 1,
+      "phase": "transition",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 7,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 7,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 7,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 7,
+      "side": 0,
+      "phase": "flight",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-1",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 7,
+      "side": 0,
+      "phase": "flight",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 7,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 7,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 7,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 7,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 7,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 7,
+      "side": 0,
+      "phase": "transition",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 7,
+      "side": 1,
+      "phase": "enemy",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "fire",
+      "round": 7,
+      "owner": "a6-52-bell-approach-2",
+      "skill": "HBM01"
+    },
+    {
+      "type": "sample",
+      "round": 7,
+      "side": 1,
+      "phase": "flight",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "hit",
+      "round": 7,
+      "owner": "a6-52-bell-approach-2",
+      "target": "p-knight",
+      "loss": 58
+    },
+    {
+      "type": "sample",
+      "round": 7,
+      "side": 1,
+      "phase": "review",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 7,
+      "side": 1,
+      "phase": "enemy",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 7,
+      "side": 1,
+      "phase": "review",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 7,
+      "side": 1,
+      "phase": "enemy",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 7,
+      "side": 1,
+      "phase": "review",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 7,
+      "side": 1,
+      "phase": "enemy",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "fire",
+      "round": 7,
+      "owner": "a6-52-opening-6",
+      "skill": "HSH02"
+    },
+    {
+      "type": "sample",
+      "round": 7,
+      "side": 1,
+      "phase": "flight",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "hit",
+      "round": 7,
+      "owner": "a6-52-opening-6",
+      "target": "p-archer",
+      "loss": 53
+    },
+    {
+      "type": "hit",
+      "round": 7,
+      "owner": "a6-52-opening-6",
+      "target": "p-mage",
+      "loss": 59
+    },
+    {
+      "type": "hit",
+      "round": 7,
+      "owner": "a6-52-opening-6",
+      "target": "p-knight",
+      "loss": 29
+    },
+    {
+      "type": "hit",
+      "round": 7,
+      "owner": "a6-52-opening-6",
+      "target": "p-occultist",
+      "loss": 51
+    },
+    {
+      "type": "sample",
+      "round": 7,
+      "side": 1,
+      "phase": "review",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 7,
+      "side": 1,
+      "phase": "enemy",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "fire",
+      "round": 7,
+      "owner": "a6-52-bell-approach-3",
+      "skill": "HSH02"
+    },
+    {
+      "type": "sample",
+      "round": 7,
+      "side": 1,
+      "phase": "flight",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "hit",
+      "round": 7,
+      "owner": "a6-52-bell-approach-3",
+      "target": "p-archer",
+      "loss": 35
+    },
+    {
+      "type": "hit",
+      "round": 7,
+      "owner": "a6-52-bell-approach-3",
+      "target": "p-mage",
+      "loss": 32
+    },
+    {
+      "type": "hit",
+      "round": 7,
+      "owner": "a6-52-bell-approach-3",
+      "target": "p-knight",
+      "loss": 18
+    },
+    {
+      "type": "hit",
+      "round": 7,
+      "owner": "a6-52-bell-approach-3",
+      "target": "p-occultist",
+      "loss": 31
+    },
+    {
+      "type": "sample",
+      "round": 7,
+      "side": 1,
+      "phase": "review",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 7,
+      "side": 1,
+      "phase": "enemy",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "fire",
+      "round": 7,
+      "owner": "a6-52-bell-approach-4",
+      "skill": "HBM03"
+    },
+    {
+      "type": "sample",
+      "round": 7,
+      "side": 1,
+      "phase": "flight",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "hit",
+      "round": 7,
+      "owner": "a6-52-bell-approach-4",
+      "target": "p-knight",
+      "loss": 48
+    },
+    {
+      "type": "sample",
+      "round": 7,
+      "side": 1,
+      "phase": "review",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 7,
+      "side": 1,
+      "phase": "transition",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 8,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 8,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 8,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 8,
+      "side": 0,
+      "phase": "won",
+      "active": [
+        "watch-range",
+        "return-guard",
+        "a6-52-opening-4",
+        "a6-52-opening-5",
+        "a6-52-opening-6",
+        "a6-52-bell-approach-2",
+        "a6-52-bell-approach-3",
+        "a6-52-bell-approach-4"
+      ],
+      "newIds": []
+    }
+  ],
+  "last": {
+    "stageId": 53,
+    "honroStage": 53,
+    "mode": "campaign",
+    "authoredId": "stage-53",
+    "round": 1,
+    "phase": "aim",
+    "side": 0,
+    "shot": 0,
+    "rng": 19388,
+    "active": "p-mage",
+    "dialogue": false,
+    "isolatedStore": false,
+    "play": [
+      3540,
+      3000
+    ],
+    "terrainBounds": {
+      "left": -305,
+      "top": -320,
+      "right": 3845,
+      "bottom": 3450
+    },
+    "playBounds": {
+      "left": 0,
+      "top": 0,
+      "right": 3540,
+      "bottom": 3000
+    },
+    "camera": {
+      "x": 595,
+      "y": 2293,
+      "zoom": null
+    },
+    "gravity": {
+      "x": 0,
+      "y": 320
+    },
+    "fieldFlags": [],
+    "terrain": [
+      {
+        "id": "south",
+        "vertices": 33,
+        "oneWay": false
+      },
+      {
+        "id": "library-balcony",
+        "vertices": 8,
+        "oneWay": true
+      },
+      {
+        "id": "sanctuary-beam",
+        "vertices": 8,
+        "oneWay": true
+      },
+      {
+        "id": "west",
+        "vertices": 11,
+        "oneWay": false
+      },
+      {
+        "id": "north",
+        "vertices": 21,
+        "oneWay": false
+      },
+      {
+        "id": "east",
+        "vertices": 4,
+        "oneWay": false
+      },
+      {
+        "id": "b-entry-sill",
+        "vertices": 4,
+        "oneWay": false
+      },
+      {
+        "id": "b-inner-jamb",
+        "vertices": 4,
+        "oneWay": false
+      },
+      {
+        "id": "b-outer-jamb",
+        "vertices": 4,
+        "oneWay": false
+      },
+      {
+        "id": "b-shaft-cap",
+        "vertices": 4,
+        "oneWay": false
+      },
+      {
+        "id": "b-dummy-north",
+        "vertices": 4,
+        "oneWay": false
+      },
+      {
+        "id": "b-dummy-west",
+        "vertices": 5,
+        "oneWay": false
+      },
+      {
+        "id": "b-dummy-east",
+        "vertices": 4,
+        "oneWay": false
+      },
+      {
+        "id": "b-dummy-south",
+        "vertices": 5,
+        "oneWay": false
+      },
+      {
+        "id": "upper-threshold-footing",
+        "vertices": 15,
+        "oneWay": false
+      }
+    ],
+    "worldTerrain": [
+      {
+        "id": "south",
+        "vertices": 33
+      },
+      {
+        "id": "library-balcony",
+        "vertices": 8
+      },
+      {
+        "id": "sanctuary-beam",
+        "vertices": 8
+      },
+      {
+        "id": "west",
+        "vertices": 11
+      },
+      {
+        "id": "north",
+        "vertices": 21
+      },
+      {
+        "id": "east",
+        "vertices": 4
+      },
+      {
+        "id": "b-entry-sill",
+        "vertices": 4
+      },
+      {
+        "id": "b-inner-jamb",
+        "vertices": 4
+      },
+      {
+        "id": "b-outer-jamb",
+        "vertices": 4
+      },
+      {
+        "id": "b-shaft-cap",
+        "vertices": 4
+      },
+      {
+        "id": "b-dummy-north",
+        "vertices": 4
+      },
+      {
+        "id": "b-dummy-west",
+        "vertices": 5
+      },
+      {
+        "id": "b-dummy-east",
+        "vertices": 4
+      },
+      {
+        "id": "b-dummy-south",
+        "vertices": 5
+      },
+      {
+        "id": "upper-threshold-footing",
+        "vertices": 15
+      }
+    ],
+    "enemies": [
+      "a6-53-opening-1",
+      "a6-53-gate-timber-1"
+    ],
+    "units": [
+      {
+        "id": "p-mage",
+        "cls": "mage",
+        "side": 0,
+        "level": 25,
+        "hp": 1826,
+        "maxHp": 2050,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "pos": [
+          425,
+          2477
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "south",
+        "fixed": false,
+        "objective": false,
+        "role": "mage",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "draft-lower-lane-guard",
+        "cls": "occultist",
+        "side": 1,
+        "level": 1,
+        "hp": 290,
+        "maxHp": 290,
+        "loadout": [
+          "HGS01",
+          "HGS02"
+        ],
+        "pos": [
+          1100,
+          1992.8
+        ],
+        "h": 105,
+        "r": 21,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "library-balcony",
+        "fixed": false,
+        "objective": false,
+        "role": "fire",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "draft-upper-side-guard",
+        "cls": "occultist",
+        "side": 1,
+        "level": 1,
+        "hp": 598,
+        "maxHp": 598,
+        "loadout": [
+          "HSH02"
+        ],
+        "pos": [
+          2905,
+          1060
+        ],
+        "h": 137,
+        "r": 24,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "south",
+        "fixed": false,
+        "objective": false,
+        "role": "ice",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-53-opening-1",
+        "cls": "knight",
+        "side": 1,
+        "level": 25,
+        "hp": 655,
+        "maxHp": 655,
+        "loadout": [
+          "HBM01"
+        ],
+        "pos": [
+          740,
+          2386.28
+        ],
+        "h": 88,
+        "r": 32,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "south",
+        "fixed": false,
+        "objective": false,
+        "role": "leaper",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-53-opening-2",
+        "cls": "occultist",
+        "side": 1,
+        "level": 25,
+        "hp": 595,
+        "maxHp": 595,
+        "loadout": [
+          "HSH01",
+          "HSH02"
+        ],
+        "pos": [
+          1320,
+          1917.07
+        ],
+        "h": 115,
+        "r": 22,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "library-balcony",
+        "fixed": false,
+        "objective": false,
+        "role": "ice",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-53-opening-3",
+        "cls": "knight",
+        "side": 1,
+        "level": 25,
+        "hp": 755,
+        "maxHp": 755,
+        "loadout": [
+          "HBM03"
+        ],
+        "pos": [
+          1985,
+          1587.5
+        ],
+        "h": 116,
+        "r": 38,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "south",
+        "fixed": false,
+        "objective": false,
+        "role": "leaper",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-53-gate-timber-1",
+        "cls": "knight",
+        "side": 1,
+        "level": 25,
+        "hp": 655,
+        "maxHp": 655,
+        "loadout": [
+          "HBM01"
+        ],
+        "pos": [
+          970,
+          2208.04
+        ],
+        "h": 88,
+        "r": 32,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "south",
+        "fixed": false,
+        "objective": false,
+        "role": "leaper",
+        "summoned": false,
+        "ally": false
+      }
+    ]
+  }
+}

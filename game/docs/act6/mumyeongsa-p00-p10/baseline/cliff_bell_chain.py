@@ -7,9 +7,10 @@ from playwright.sync_api import Error, sync_playwright
 
 import browser as base
 from cold_resume import seeded_context, storage_hash
-from courtyard_combat import shot
-from hall_passage import march, select
+from courtyard_combat import FORECAST, shot
+from hall_passage import actor, march, select
 from legacy54_live import resume
+from native_b import aim, wall_trace
 from relay_live_chain import boundary_of, cold_new, ready
 from second_pass import sample_walk
 
@@ -46,6 +47,35 @@ def bridge_fight(page,q):
 def e_round(page):
     return page.evaluate('HonroApp.engine.b.round')
 
+
+def cliff_shot(page):
+    foot = actor(page,'archer')
+    if page.evaluate('HonroApp.engine.active.facing') < 0:
+        sample_walk(page,1,foot['x']+12,700)
+    spec = page.evaluate(FORECAST, {'skills':['A01'],'actor':'cliff-stone'})
+    if not spec:
+        return None
+    page.locator('[data-action="combat-skill"][data-skill="A01"]').first.click(timeout=5500)
+    aim(page,spec,charge=False)
+    baseline = page.evaluate('HonroApp.engine.b.shot')
+    page.keyboard.down('Space')
+    try:
+        page.wait_for_function("""()=>{
+            const a=HonroApp,e=a.engine,u=e.active,t=e.unit('cliff-stone');
+            if(!a.charging||a.power<.16)return false;
+            return [0,.012,.024].every(d=>e.predict(u,HONRO_CORE.SKILLS.A01,u.angle,
+                Math.min(1,a.power+d),t,true).unit===t.id);
+        }""",timeout=3900,polling=8)
+    except Error:
+        page.keyboard.press('Escape')
+        page.keyboard.up('Space')
+        page.keyboard.press('Escape')
+        assert page.evaluate('n=>HonroApp.engine.b.shot===n',baseline)
+        return None
+    page.keyboard.up('Space')
+    return spec
+
+
 def finish(browser,args,session=None):
     ctx,page=session if session else (seeded_context(browser,52),None)
     if page is None:
@@ -63,23 +93,30 @@ def finish(browser,args,session=None):
             page.evaluate('seed=>{HonroApp.engine.b.rng=seed;}',args.rng)
             r['controlledRng']=args.rng
         page.evaluate(base.TRACE)
+        wall_trace(page)
         r['cliffShots']=[]
         for attempt in range(6):
             if page.evaluate("HonroApp.engine.unit('cliff-stone')?.dead"):
                 break
             pass_until(page,"HonroApp.engine.active?.cls==='archer'")
             if attempt>0 and r['cliffShots'][-1]['after']==r['cliffShots'][-1]['before']:
-                march(page,1190+(attempt%3)*28,cls='archer',tolerance=14)
+                target = (1148, 1200, 1115)[(attempt - 1) % 3]
+                try:
+                    foot = march(page,target,cls='archer',tolerance=28,max_attempts=3)
+                except AssertionError:
+                    foot = actor(page,'archer')
+                    assert foot['grounded'] and foot['contact']=='west-watch-and-descent' and 1020<=foot['x']<=1390,foot
+                r.setdefault('cliffReapproaches',[]).append({'requested':target,'actual':foot})
             before=page.evaluate("HonroApp.engine.unit('cliff-stone').hp")
             shot_before=page.evaluate('HonroApp.engine.b.shot')
-            spec=shot(page,{'skills':['A01'],'actor':'cliff-stone'})
+            spec=(cliff_shot(page) if attempt else shot(page, {'skills':['A01'],'actor':'cliff-stone'}))
             if spec:
                 page.wait_for_function('n=>HonroApp.engine.b.shot>n',arg=shot_before,timeout=5200)
                 page.wait_for_function("!['flight','resolve','volley'].includes(HonroApp.engine.b.phase)",timeout=16000)
             else:
                 page.keyboard.press('f')
             r['cliffShots'].append({'input':spec,'before':before,'after':page.evaluate("HonroApp.engine.unit('cliff-stone').hp")})
-        assert page.evaluate("HonroApp.engine.unit('cliff-stone')?.dead")
+        assert page.evaluate("HonroApp.engine.unit('cliff-stone')?.dead"),r['cliffShots']
         pass_until(page,"HonroApp.engine.active?.cls==='archer'")
         march(page,1200,cls='archer',tolerance=70)
         page.locator(MARK).filter(has_text='높은 암벽').click(timeout=6000)
@@ -136,6 +173,7 @@ def finish(browser,args,session=None):
             r['committedTo']=boundary_of(base.saved_bytes(page))['to']
         page.screenshot(path=args.out/'native-52-failure.png')
     finally:
+        r['cliffProjectiles']=page.evaluate('window.nativeWall??[]')
         r['trace']=page.evaluate('window.act6BaselineEvents??[]')
         if page.evaluate('!!HonroApp.engine'):
             r['last']=page.evaluate(base.SNAPSHOT)

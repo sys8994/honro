@@ -51,7 +51,7 @@ DUMMY_MASKS="""() => {
  });
 }"""
 
-def aim(page,spec,world=False):
+def aim(page,spec,world=False,charge=True):
     for _ in range(4):
         state=page.evaluate("()=>({angle:HonroApp.engine.active.angle,facing:HonroApp.engine.active.facing})")
         delta=spec['angle']-state['angle']
@@ -62,7 +62,8 @@ def aim(page,spec,world=False):
         hold(page,"ArrowUp" if up else "ArrowDown",
              "([want,inc])=>inc?HonroApp.engine.active.angle>=want-.55:HonroApp.engine.active.angle<=want+.55",
              [spec['angle'],increase],4500)
-    hold(page,"Space","power=>HonroApp.charging&&HonroApp.power>=power",spec["power"],4000)
+    if charge:
+        hold(page,"Space","power=>HonroApp.charging&&HonroApp.power>=power",spec["power"],4000)
     return spec
 
 def m09_hall(page):
