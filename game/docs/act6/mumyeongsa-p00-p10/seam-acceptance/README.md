@@ -28,3 +28,11 @@ node game/docs/act6/mumyeongsa-p00-p10/baseline/seam_limits.mjs
 ```bash
 python game/docs/act6/mumyeongsa-p00-p10/baseline/hall_passage.py --build "$PWD" --out /tmp/honro-gallery-force --case gallery-force
 ```
+
+### 수정 빌드에서 실제 포격
+
+충격량 진단과 별도로 58에서 실제 이동과 도약으로 벽·천장에 닿고, 발점 흔들림이 가라앉은 후 실제 일반 M01을 쐈다. 60·120Hz 모두 발점 y2570, 위쪽 중력, 공식 증원 둘째 배우의 실제 충돌을 기록했다. 체력은 각각 595→299와 595→367이다. 먼저 실행한 120Hz 판은 접선 이동 직후 조준해서 바닥에 맞았다. 검사기는 접선 속도가 멈춘 다음 사선을 계산한다. 이 절차에서 기존 저장은 바이트가 같다. [60Hz](gallery-live-60.json) · [120Hz](gallery-live-120.json) · [먼저 나온 지형 충돌](gallery-live-120-first.json)
+
+```bash
+python game/docs/act6/mumyeongsa-p00-p10/baseline/hall_passage.py --build "$PWD" --out /tmp/honro-gallery-force-native-settled --case gallery-combat --rates 60 120
+```

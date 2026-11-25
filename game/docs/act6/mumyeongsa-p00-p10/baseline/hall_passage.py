@@ -485,6 +485,7 @@ def combat_from_ceiling(page,out,hz):
         if page.evaluate('HonroApp.engine.active.facing')!=facing:
             hold(page,'ArrowRight' if facing>0 else 'ArrowLeft',
                  'dir=>HonroApp.engine.active.facing===dir',facing,1200)
+        page.wait_for_function('Math.abs(HonroApp.engine.active.vx)<.25',timeout=4500)
         options=page.evaluate("""()=>{
           const e=HonroApp.engine,u=e.active,results=[];
           for(const id of u.loadout)for(const power of [.74,.65,.83,.56,.46,.9,.39,.95]){
