@@ -1,5 +1,5 @@
 // Each row identifies an exposed authored contact face and one stock combat role.
-function installExteriorEncounters(app,e,paused=()=>false){
+function installExteriorEncounters(app,e,paused=()=>false,admit=()=>true){
  const b=e.b,stage=b.honroStage;
  const chapters={
   51:{active:8,attacks:5,sites:{
@@ -25,6 +25,13 @@ function installExteriorEncounters(app,e,paused=()=>false){
     {id:'gate-timber',label:'산문 뒤에서 바닥을 긁는 소리가 납니다.',at:[670,2390],units:[['hound','floor',970,2200],['shade','floor',1140,2075],['shade','library',1005,2040]]},
     {id:'archive-balcony',label:'서고 양편에서 혼이 움직입니다.',at:[1320,1960],units:[['hound','floor',1480,1880],['shade','floor',1620,1845],['hound','beam',1700,1650]]},
     {id:'lost-sanctuary',label:'파손 난간 앞에서 마지막 그림자가 갈라집니다.',at:[2020,1480],units:[['shade','beam',2090,1420],['hound','floor',2200,1375],['stag','floor',2380,1205]]},
+   ]},
+  54:{active:6,attacks:4,sites:{floor:'foothill',first:'gallery-outer-balcony',second:'gallery-observation-beam'},
+   initial:[['hound','floor',680,2610],['shade','first',817,2484],['hound','floor',1060,2535],['shade','second',1280,2385]],
+   waves:[
+    {id:'pillar-base',label:'돌기둥 양쪽에서 적이 내려옵니다.',at:[665,2640],units:[['shade','first',730,2477],['hound','floor',900,2595]]},
+    {id:'observatory-beam',label:'관측 회랑의 들보 위가 흔들립니다.',at:[1100,2500],units:[['hound','second',1170,2390],['shade','floor',1330,2505]]},
+    {id:'return-corner',label:'되돌아가는 돌턱에 뒤처진 혼이 모입니다.',at:[1400,2460],units:[['hound','floor',1510,2400],['shade','floor',1645,2370]]},
    ]},
   56:{active:7,attacks:5,sites:{veranda:'A-upper-veranda',ascent:'B-01-center-stone-ascent',descent:'B-02-center-lower-short-climb',
     lower:'B-central-lower-floor',return:'E-joined-ordinary-floor'},
@@ -55,6 +62,7 @@ function installExteriorEncounters(app,e,paused=()=>false){
   const hp=({hound:655,shade:595,stag:755})[kind];
   Object.assign(u,{hp,maxHp:hp,combatBaseHp:hp,attack:2.7,combatBaseAttack:2.7,group:700+b.units.length,
    spawnX:x,spawnY:y,awake:false,honroSpawnSource:name,honroEncounterSupport:support});
+  if(!admit(u))return false;
   b.units.push(u);
   return true;
  };

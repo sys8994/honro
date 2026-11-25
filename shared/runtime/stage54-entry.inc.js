@@ -98,8 +98,16 @@
         const guard=C.makeUnit('archer',1,x,y,{id:'mumyeongsa-b-wall-guard',name:'기둥그림자',h:88,r:23,hp:600,maxHp:600,
           focus:140,maxFocus:140,loadout:['LA01'],ranks:{LA01:1},awake:true,role:'bow',attack:.9,walkSpeed:290,maxMove:420,moveLeft:420});
         check(s.owner54.admitGuard(app,e,s,guard),'The signed wall guard was refused');
-        b.honroActiveLimit=1;b.enemyLimit=1;
-        if(b.honroCounters)b.honroCounters.initialEnemies=1;
+        const company=[
+          ['occultist','mumyeongsa-b-aperture-ghost','처마 구멍의 잔향',128,'HGS01','ghost'],
+          ['occultist','mumyeongsa-b-rear-shade','뒤쪽 매듭귀',548,'HSH01','shade'],
+          ['archer','mumyeongsa-b-rear-guard','아랫 돌턱 순라',661,'LA01','marksman']
+        ].map(([kind,id,name,y,skill,honroType])=>C.makeUnit(kind,1,x,y,{id,name,h:78,r:19,hp:325,maxHp:325,
+          focus:170,maxFocus:170,loadout:[skill],ranks:{[skill]:1},honroType,awake:true,role:kind==='archer'?'bow':'fire',
+          attack:.85,walkSpeed:250,maxMove:280,moveLeft:280}));
+        for(const u of company){check(s.owner54.admitCompany(app,e,s,u,'wall'),'Unverified B support foe');b.units.push(u);}
+        b.honroActiveLimit=b.enemyLimit=4;
+        if(b.honroCounters)b.honroCounters.initialEnemies=4;
         const layout={terrain:data.terrain,honroWorldTerrain:data.worldTerrain,honroLandmarks:data.landmarks,honroElements:data.elements,
           honroSurfaceZones:data.materials,honroPlayBounds:rail.playBounds,honroTerrainBounds:rail.terrainBounds,width:rail.width,height:rail.height};
         s.foothill54={origin,layout:Object.fromEntries(Object.keys(layout).map(k=>[k,b[k]]))};
@@ -107,8 +115,8 @@
         Object.assign(hero,{x:to.x,y:to.y,vx:to.vx,vy:to.vy,airborne:false,jumping:false,spawnX:to.x,spawnY:to.y});
         s.guardB=guard;
         s.wallAxis=installBrokenRail({C,e,scene:app.scene,B,hero,foe:guard});
-        s.wallAxis.adopt(hero);s.wallAxis.adopt(guard);
-        guard.airborne=true;
+        s.wallAxis.adopt(hero);
+        for(const u of [guard,...company]){s.wallAxis.adopt(u);u.airborne=true;}
         e.refreshActivation();focusChart54(app,hero,view);
       }
       function focusChart54(app,u,view){
@@ -152,6 +160,7 @@
         Object.assign(u,{x,y,spawnX:x,spawnY:y,vx:0,vy:0,airborne:false,jumping:false});
         check(e.grounded(u)&&C.validTerrainContactPose(e.b.terrain,u),'Unmatched foothill receiving face');
         check(s.owner54.beginGallery(app,e,s),'Gallery owner did not receive the wall passage');
+        s.exterior=installExteriorEncounters(app,e,()=>s.owner54.inspect(app,e)?.frame!=='N',u=>s.owner54.admitCompany(app,e,s,u,'gallery'));
         focusChart54(app,u);
         if(s.button){s.button.disabled=true;s.button.textContent='회랑 끝 관측턱으로';}
         app.updateHUD(true);
@@ -186,7 +195,8 @@
       }
       function attachSodanSpirit(app,s,body,previous,stage){
         const e=s.engine,hero=e.active;
-        s.spirit=mountSodanSpirit({C,e,scene:app.scene,hero,body,previous,stage,isWall:u=>s.wallAxis?.isWall(u)===true});
+        s.spirit=mountSodanSpirit({C,e,scene:app.scene,hero,body,previous,stage,isWall:u=>s.wallAxis?.isWall(u)===true,
+          preferredTarget:()=>s.wallAxis&&s.guardB?.id});
         const btn=document.createElement('button');btn.type='button';btn.dataset.act6SodanSpirit='';styleAction(btn);
         btn.textContent='소단의 혼 · 주박부';
         btn.addEventListener('click',event=>{

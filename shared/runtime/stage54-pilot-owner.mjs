@@ -36,7 +36,8 @@ export async function createStage54ChartOwner({C,domain,charts,gallery=null,obse
   const s=owned.get(e),units=e?.b.units;
   return s&&safe(a)&&s.app===a&&a.engine===e&&s.b===e.b&&a.stage===s.stage&&a.stageId===54&&s.b.honroAuthoredId===ids.N&&
     units[0]===s.u&&s.u.side===0&&s.u.cls==='mage'&&s.u.hp>0&&!s.u.dead&&
-    (s.foe?units.length===2&&units[1]===s.foe&&s.foe.side===1:units.length===1)&&
+    (!s.foe||units[1]===s.foe&&s.foe.side===1)&&new Set(units.map(u=>u.id)).size===units.length&&
+    units.slice(s.foe?2:1).every(u=>s.company.has(u)&&u.side===1&&!u.summoned&&!u.honroAlly)&&
     s.b.honroGrowth?.limit.total===0&&s.b.honroGrowth?.limit.combat===0&&verifyMounted(a,e,s.ticket)?s:null;
  };
  const support=(e,a)=>e.contactSurface(a.x,a.y-4,a.y+4)?.t.id;
@@ -49,7 +50,7 @@ export async function createStage54ChartOwner({C,domain,charts,gallery=null,obse
   const prev=verifyIncoming(a,e,ticket), u=b.units[0];
   if(b.units.length!==1||u.side!==0||u.cls!=='mage'||!e.grounded(u)||!C.validTerrainContactPose(b.terrain,u)||prev?.stage!==53||!prev.won||
       prev.flags?.['act6.innerStakeAReady']!==true||sig(row(u))!==sig(row(prev.mage??{})))return false;
-  const g={ticket,app:a,stage:s,b,u,external:structuredClone(prev.external),frame:'N',order:[],pending:null,m09:null,shot:null,terminal:false,cameraEvents:[]};
+  const g={ticket,app:a,stage:s,b,u,external:structuredClone(prev.external),frame:'N',order:[],pending:null,m09:null,shot:null,terminal:false,cameraEvents:[],company:new Map()};
   owned.set(e,g);
   const impact=e.impact.bind(e);
   e.impact=(p,h)=>{
@@ -89,6 +90,7 @@ export async function createStage54ChartOwner({C,domain,charts,gallery=null,obse
   const v=m.v({x:u.vx,y:u.vy}), aim=m.v({x:Math.cos(u.angle*Math.PI/180),y:-Math.sin(u.angle*Math.PI/180)});
   let angle=Math.atan2(-aim.y,aim.x)*180/Math.PI;if(angle<-90)angle+=360;
   const spawn=m.p({x:u.spawnX,y:u.spawnY});
+  if(g.frame==='N'&&g.gallery)leaveCompany(g,e,'gallery');
   const tile={terrain:structuredClone(next.terrain),honroWorldTerrain:structuredClone(next.world),honroLandmarks:structuredClone(next.landmarks),honroElements:structuredClone(next.elements),
    honroPlayBounds:structuredClone(next.play),honroTerrainBounds:structuredClone(next.terra)};
   Object.assign(b,tile,{width:next.width,height:next.height,honroTerrainDomainVersion:1,sceneVersion:(b.sceneVersion??0)+1});
@@ -110,9 +112,27 @@ export async function createStage54ChartOwner({C,domain,charts,gallery=null,obse
  }
  function beginGallery(a,e,ticket){
   const g=get(a,e);
-  if(!g||g.ticket!==ticket||g.gallery||!g.foe?.dead||!galleryGeometry(e.b))return false;
+  if(!g||g.ticket!==ticket||g.gallery||!g.foe?.dead||!galleryGeometry(e.b)||!noTransients(e.b))return false;
+  leaveCompany(g,e,'wall');
   g.gallery=true;
   return true;
+ }
+ function admitCompany(a,e,ticket,u,area){
+  const g=get(a,e);
+  if(!g||g.ticket!==ticket||u?.side!==1||u.dead||u.summoned||u.honroAlly||!u.loadout?.length||e.unit(u.id))return false;
+  if(area==='wall'){
+   const expected={'mumyeongsa-b-aperture-ghost':'HGS01','mumyeongsa-b-rear-shade':'HSH01','mumyeongsa-b-rear-guard':'LA01'};
+   if(!g.foe||g.gallery||!geometry(e.b,'N')||u.loadout[0]!==expected[u.id])return false;
+  }else if(area==='gallery'){
+   if(!g.gallery||g.frame!=='N'||!galleryGeometry(e.b)||!u.id.startsWith('a6-54-')||!C.validTerrainContactPose(e.b.terrain,u))return false;
+  }else return false;
+  g.company.set(u,area);return true;
+ }
+ function leaveCompany(g,e,area){
+  const removed=new Set([...g.company].filter(([,room])=>room===area).map(([u])=>u));
+  for(const u of removed)g.company.delete(u);
+  g.b.units=g.b.units.filter(u=>!removed.has(u));
+  g.b.queue=g.b.queue.filter(id=>e.unit(id));
  }
  function observeGallery(a,e){
   const g=get(a,e),u=g?.u,q=observatory;
@@ -174,6 +194,6 @@ export async function createStage54ChartOwner({C,domain,charts,gallery=null,obse
    ...(g.gallery?{gallery:{observed:structuredClone(g.observed),guard:g.foe.id}}:{}),settlement:false};
  }
  function inspect(a,e){const g=get(a,e);return g&&structuredClone({frame:g.frame,pending:g.pending,chart:g.order,m09:g.m09,camera:g.cameraEvents});}
- return Object.freeze({mount,admitGuard,beginGallery,observeGallery,enterEave,recordEave,chart,observe,relay,project,terminal,inspect,
+ return Object.freeze({mount,admitGuard,admitCompany,beginGallery,observeGallery,enterEave,recordEave,chart,observe,relay,project,terminal,inspect,
   readyAfterGuard:(a,e)=>{const g=get(a,e);return !!g?.foe&&g.foe.dead===true&&g.foe.hp===0&&noTransients(g.b);},releaseEnabled:false});
 }

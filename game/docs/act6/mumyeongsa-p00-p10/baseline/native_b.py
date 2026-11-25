@@ -244,7 +244,7 @@ def run(browser,out,hz,forks=False,mobile=False,spirit=False):
         record=base.saved_bytes(page)
         report['to54']=boundary_of(record)
         report['newContext54']=cold_new(browser,record,54)
-        page.wait_for_function("HonroApp.engine.grounded(HonroApp.engine.unit('mumyeongsa-b-wall-guard'))",timeout=6000)
+        page.wait_for_function("HonroApp.engine.b.units.every(u=>HonroApp.engine.grounded(u))",timeout=6000)
         report['guardContact']=page.evaluate(POSE)
         assert all(u['grounded'] and u['support']=='b-inner-jamb' and not u['embedded'] for u in report['guardContact']['actors'])
         assert not report['guardContact']['actionReason'].startswith('지형에 걸림')
@@ -255,12 +255,13 @@ def run(browser,out,hz,forks=False,mobile=False,spirit=False):
         report['wallWalk']=page.evaluate('window.nativeWallWalk')
         wall_hits=[row for row in report['wallTrace'] if row['event']=='impact' and row['target'] and row['actor']!='p-occultist']
         wall_fires={row['shot']:row for row in report['wallTrace'] if row['event']=='fire' and row['actor']!='p-occultist'}
-        assert {row['target'] for row in wall_hits}=={'p-mage',GUARD}
+        assert {'p-mage',GUARD}<={row['target'] for row in wall_hits}
         assert all(row['grounded'] and row['gravity']['x']>0 for row in wall_fires.values())
         for hit in wall_hits:
             prediction=wall_fires[hit['shot']]['prediction']
             assert prediction['unit']==hit['target'] and math.dist((prediction['x'],prediction['y']),(hit['x'],hit['y']))<2
-            assert hit['after']<hit['before'] or hit['shieldAfter']<hit['shieldBefore']
+        damaging={row['target'] for row in wall_hits if row['after']<row['before'] or row['shieldAfter']<row['shieldBefore']}
+        assert {'p-mage',GUARD}<=damaging,wall_hits
         expected={GUARD} if spirit else {'p-mage',GUARD}
         assert expected<={row['id'] for row in report['wallWalk'] if row['grounded']}
         if page.locator('[data-act6-qa-lookout]').is_disabled():

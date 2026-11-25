@@ -67,7 +67,7 @@ export function debitSodanThread(body,record,through,after){
  body.focus-=cost;
  return true;
 }
-export function mountSodanSpirit({C,e,scene,hero,body,previous,stage,isWall=()=>false}){
+export function mountSodanSpirit({C,e,scene,hero,body,previous,stage,isWall=()=>false,preferredTarget=()=>null}){
  const record=previous?structuredClone(previous):{version:1,body:body.id,casts:[]};
  if(!validSodanThread(record,body,stage-1))throw Error('Unverified Sodan thread carry');
  const after=stage===56?54:0;
@@ -88,14 +88,18 @@ export function mountSodanSpirit({C,e,scene,hero,body,previous,stage,isWall=()=>
  }
  function target(){
   const foes=new Set(e.b.units.filter(u=>u.side===1&&u.hp>0&&!u.dead).map(u=>u.id));
+  const preferred=preferredTarget();
+  let other=null;
   for(const power of [.42,.61,.29,.78]){
    if(!e.canAfford(skill,spirit,power))continue;
    for(let angle=-80;angle<=260;angle+=5){
     const hits=e.predict(spirit,skill,angle,power,undefined,true);
-    if(foes.has(hits.unit))return {angle,power};
+    if(!foes.has(hits.unit))continue;
+    if(!foes.has(preferred)||hits.unit===preferred)return {angle,power};
+    other??={angle,power};
    }
   }
-  return null;
+  return other;
  }
  function cast(){
   if(!canCast())return false;

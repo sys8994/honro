@@ -156,22 +156,24 @@ export function installBrokenRail({C,e,scene,B,hero,canTurn=()=>false,afterLand=
   }
   return best;
  };
- let guardRound=0,guardWalk=0;
+ const guardPacing=new WeakMap();
  e.enemyAction=()=>{
-  if(!foe||e.active!==foe)return stock.enemyAction();
-  if(!e.grounded(foe))return;
-  if(guardRound!==b.round){guardRound=b.round;guardWalk=0;}
-  if(guardWalk<28){
-   const y=foe.y;
-   if(e.walk(foe,Math.sign(foe.y-hero.y),C.STEP,true)){guardWalk+=Math.abs(foe.y-y);return;}
+  const enemy=e.active;
+  if(!foe||enemy?.side!==1||!wallBody(enemy))return stock.enemyAction();
+  if(!e.grounded(enemy))return;
+  let pace=guardPacing.get(enemy);
+  if(pace?.round!==b.round){pace={round:b.round,walk:0};guardPacing.set(enemy,pace);}
+  if(pace.walk<28){
+   const y=enemy.y;
+   if(e.walk(enemy,Math.sign(enemy.y-hero.y),C.STEP,true)){pace.walk+=Math.abs(enemy.y-y);return;}
   }
   if(b.turnAge<.22)return;
-  const skill=C.SKILLS.LA01;
-  const a=e.damageAim(foe),z=e.damageAim(hero);
+  const skill=C.SKILLS[enemy.loadout[0]];
+  const a=e.damageAim(enemy),z=e.damageAim(hero);
   const angle=Math.atan2(a.y-z.y,z.x-a.x)*180/Math.PI;
   for(const power of [.62,.82,.95])for(const delta of [0,12,-12,24,-24,36,-36,48,-48]){
    const aim=within((angle+delta+450)%360-90,C.AIM_MIN,C.AIM_MAX);
-   if(e.predict(foe,skill,aim,power,hero,false).unit===hero.id&&e.fire(skill.id,aim,power,true))return;
+   if(skill&&e.predict(enemy,skill,aim,power,hero,false).unit===hero.id&&e.fire(skill.id,aim,power,true))return;
   }
   e.finishAction();
  };
