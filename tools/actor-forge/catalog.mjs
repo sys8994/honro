@@ -9,6 +9,6 @@ export const actorCatalog=[
  {id:'stretcher',name:'부상자 운반대',family:'object',unit:{side:2,honroType:'civilian',cls:'knight',honroCivilian:true,id:'objective',name:'부상자 운반대'}},
  {id:'gate',name:'피란문',family:'object',unit:{side:2,honroType:'gate',cls:'knight',honroCivilian:true}},
  {id:'boss_daedosa',name:'대도사',family:'human',role:'daedosa',unit:{side:1,honroType:'human',cls:'mage',honroRigAsset:'boss_daedosa',name:'대도사'}},
- ...[['grot_hanging','거꾸로 매달린 상주'],['grot_hands','천수귀'],['grot_door','입 벌린 문짝'],['wonhon','넘쳐온 원혼'],['gate_armor','문턱 갑주'],['forepaw','혼류의 앞발']].map(([id,name])=>({id,name,family:'grotesque',unit:{side:1,honroType:'ghost',cls:'occultist',honroRigAsset:id,name}})),
+ ...[['grot_hanging','거꾸로 매달린 상주'],['grot_hands','천수귀'],['grot_door','입 벌린 문짝'],['wonhon','넘쳐온 원혼'],['gate_armor','문턱 꼭두'],['forepaw','혼류의 앞발']].map(([id,name])=>({id,name,family:'grotesque',unit:{side:1,honroType:'ghost',cls:'occultist',honroRigAsset:id,name}})),
  {id:'colossus',name:'봉인 거신 (구 보스 호환)',family:'monster',unit:{side:1,boss:1,cls:'knight',honroType:'boss'}}
 ];

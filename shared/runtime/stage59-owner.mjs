@@ -12,7 +12,7 @@ const auth=['act6.garmjinCompleted','act6.finalThreatResolved'];
 // round ahead on its own entry, holds (never drops) a squad when its own cap is full, and puts a
 // new squad on a rear line while the front line still stands.
 export const FRONTS59=Object.freeze({
- perFrontCap:5,totalCap:12,soften:{hp:.85,attack:.75},warn:1,period:1,forward:900,rear:420,breachLimit:3,guard:260,
+ perFrontCap:6,totalCap:16,soften:{hp:.85,attack:.75},warn:1,period:1,forward:900,rear:420,breachLimit:3,guard:260,
  posts:[{id:'west-cleat',x:522*7800/2172,label:'서쪽 지지석',radius:170},{id:'bell-path',x:1490*7800/2172,label:'종터 혼길',radius:170}],
  fronts:[
   {id:'west-return',dir:1,offset:2,line:'서쪽 높은 단과 아래 퇴각 경로로 원혼이 맺힙니다.',squads:[
@@ -73,7 +73,7 @@ export async function createStage59Owner({C,packet,authorize,verifyIncoming,crea
   }
   const threat=reserve(special.bridge);
   if(!threat||threat.fixed||!threat.loadout?.includes('HWD01'))return (console.log('native59 deny 56'),null);
-  threat.honroRigAsset='gate_armor';threat.name='교각의 문턱 갑주';
+  threat.honroRigAsset='gate_armor';threat.name='교각의 문턱 꼭두';
   const origin=threat.x; const add=v=>b.units.push(v);add(threat);
   const repelled=()=>retreatOrder!==null&&retreatOrder.walked>0&&grounded(threat,near)&&threat.x-retreatOrder.from>=240&&threat.x-witness.x>=500;
   const resolved=()=>down(threat)||repelled();
@@ -93,14 +93,14 @@ export async function createStage59Owner({C,packet,authorize,verifyIncoming,crea
     if(f.warned!==key){f.warned=key;b.honroState.localFinaleIncoming={front:f.id,squad:f.next,round:due,line:f.line};e.message(f.line);note('front-warned',{front:f.id,squad:f.next,due});}
     if(round<due||waves.rounds.some(o=>o.round===round&&o.front===f.id))continue;
     f.left??=f.squads[f.next].slice();
-    const room=Math.min(FRONTS59.perFrontCap-frontAlive(f),FRONTS59.totalCap-walks.filter(z=>alive(z.unit)).length);
+    const room=Math.min(FRONTS59.perFrontCap-frontAlive(f)+(giant?1:0),FRONTS59.totalCap-walks.filter(z=>alive(z.unit)).length);
     if(room<=0){f.held++;waves.rounds.push({round,action:'held',front:f.id,squad:f.next});note('wave-held',{front:f.id,squad:f.next,room});continue;}
     // Partial entry: as many bodies as the front has room for come now, the rest next round.
     const bodies=f.left.splice(0,room);
     const cap=frontAlive(f)>=2?FRONTS59.rear:FRONTS59.forward,id='finale-'+f.id+'-s'+f.next+'-r'+round,picked=[];
     for(const [suffix,kind,x,t] of bodies){const v=reserve([id+'-'+suffix,kind,x,t==='high'?high:near]);if(!v)return;
      // Courtyard bodies are knotted fragments of the dead, lighter than a whole possessed body.
-     if(kind!=='warden'){v.maxHp=v.hp=Math.round(v.maxHp*FRONTS59.soften.hp);v.attack*=FRONTS59.soften.attack;v.honroRigAsset='wonhon';v.name=kind==='shade'?'맺힌 원혼':'넘쳐온 원혼';}else{v.name='문턱 갑주';v.armor=Math.max(v.armor,.2);v.honroRigAsset='gate_armor';}
+     if(kind!=='warden'){v.maxHp=v.hp=Math.round(v.maxHp*FRONTS59.soften.hp);v.attack*=FRONTS59.soften.attack;v.honroRigAsset='wonhon';v.name=kind==='shade'?'맺힌 원혼':'넘쳐온 원혼';}else{v.name='문턱 꼭두';v.armor=Math.max(v.armor,.2);v.honroRigAsset='gate_armor';}
      picked.push({v,t:t==='high'?high:near});}
     const want={round,action:'spawn',front:f.id,squad:f.next,line:f.line,id,cap,squadActors:picked.map(({v,t})=>({id:v.id,kind:v.honroType,entry:[v.x,v.y],deck:t}))};
     for(const [i,{v,t}] of picked.entries()){add(v);walks.push({unit:v,cap:cap+i*40,front:f.id,dir:f.dir,t,delay:i*7,ticks:0,walked:0,steps:0,wave:want});}

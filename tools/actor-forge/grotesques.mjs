@@ -2,7 +2,7 @@ import {asset,part,shape,line,oval,track,react,sway} from './shapes.mjs';
 // Act 6 grotesques, revision 2: dark-fantasy bodies of the overlapped temple (6-8) and of the
 // dead that knotted into flesh (6-9). Emaciated anatomy, torn hemp, wet ink shadow and hollow
 // faces carry the dread; no cartoon outlines, no Western horns, sigils or tentacles.
-const pal={void:'#08090A',wet:'#111416',rot:'#2B2925',rotShade:'#1A1917',flesh:'#7A7265',fleshShade:'#4A443C',fleshLight:'#A39A88',pale:'#C8C1AD',bone:'#D9D2BF',boneShade:'#9C9583',hemp:'#857A5F',hempShade:'#544B3A',hempLight:'#A99D7E',blood:'#4E2621',rust:'#6A4335',iron:'#3D4442',ironLight:'#6E7774',moss:'#344037',mist:'#8C9F99',mistShade:'#566661',glint:'#E9E3CC',talisman:'#B8A877',cord:'#7A3029'};
+const pal={void:'#08090A',wet:'#111416',rot:'#2B2925',rotShade:'#1A1917',flesh:'#7A7265',fleshShade:'#4A443C',fleshLight:'#A39A88',pale:'#C8C1AD',bone:'#D9D2BF',boneShade:'#9C9583',hemp:'#857A5F',hempShade:'#544B3A',hempLight:'#A99D7E',blood:'#4E2621',rust:'#6A4335',iron:'#3D4442',ironLight:'#6E7774',moss:'#344037',mist:'#8C9F99',mistShade:'#566661',glint:'#E9E3CC',talisman:'#B8A877',cord:'#7A3029',danGreen:'#4C6656',danRed:'#7A3B2F',indigo:'#2E3847',straw:'#94845A',strawShade:'#6A5D3E',shroud:'#BDB6A1',shroudShade:'#8E8876',lacquer:'#3A2622',paint:'#B9AE92'};
 // Deterministic jitter so torn edges are irregular but stable between builds.
 let seed=7;const rnd=()=>(seed=(seed*16807)%2147483647)/2147483647;
 const n=v=>Math.round(v*10)/10;
@@ -26,7 +26,7 @@ function hanging(d){
  const a=asset(d,170,[-74,-196,148,202]);Object.assign(a.palette,pal);seed=11;part(a,'root',[0,-100]);
  const rope=part(a,'rope',[0,-190],'root');line(rope,'M-3 -198 Q5 -184 -1 -172 Q-6 -162 1 -152','hempShade',2.6,0);line(rope,'M-2 -196 Q4 -184 0 -172','hempLight',.7,1);
  shape(rope,'M-7 -156 Q0 -162 7 -156 L5 -150 Q0 -153 -5 -150Z','hempShade','void',.4);
- const legs=part(a,'legs',[0,-142],'root');shape(legs,'M-8 -152 Q-10 -146 -9 -134 L-5 -134 Q-4 -146 -3 -152Z M3 -152 Q4 -146 5 -134 L9 -134 Q10 -146 8 -152Z','flesh','void',.5);line(legs,'M-7 -146 L-6 -138 M6 -146 L7 -138','fleshShade',.6,1);
+ const legs=part(a,'legs',[0,-142],'root');shape(legs,'M-8 -152 Q-10 -146 -9 -134 L-5 -134 Q-4 -146 -3 -152Z M3 -152 Q4 -146 5 -134 L9 -134 Q10 -146 8 -152Z','flesh','void',.5);line(legs,'M-7 -146 L-6 -138 M6 -146 L7 -138','fleshShade',.6,1);for(const y of [-148,-144,-140])line(legs,`M-10 ${y} L-3 ${y} M3 ${y} L10 ${y}`,'hemp',1.2,0);
  const robe=part(a,'robe',[0,-118],'root');
  shape(robe,`M-14 -138 Q0 -142 14 -138 Q20 -122 26 -100${torn(26,-100,-26,-100,9,7)} Q-20 -122 -14 -138Z`,'hemp','void',.6);
  shape(robe,'M-4 -136 Q2 -120 8 -104 L1 -98 Q-4 -116 -9 -133Z','hempShade');shape(robe,'M12 -134 Q18 -118 22 -104 L16 -100 Q14 -118 9 -132Z','hempLight');
@@ -37,6 +37,8 @@ function hanging(d){
  const head=part(a,'head',[0,-32],'neck');hollowFace(head,0,-28,1.7,{mouth:2.8,tilt:-1.5});
  shape(head,'M-8 -36 Q0 -44 8 -36 Q9 -31 7 -27 Q3 -34 0 -34 Q-3 -34 -7 -27 Q-9 -31 -8 -36Z','void');
  strands(head,0,-22,26,46,24,'void',.9,0);strands(head,0,-20,10,54,16,'rotShade',.6,0);
+ shape(head,'M-11 -44 L11 -44 9 -36 -9 -36Z','hemp','void',.5);for(const x of [-6,-2,2,6])line(head,`M${x} -44 L${x} -36`,'hempShade',.6,1);line(head,'M-12 -40 L12 -40','straw',1.2,0);
+ const staff=part(a,'staff',[20,-27],'torso');line(staff,'M18 -40 L26 8','lacquer',2,0);for(const y of [-30,-14,0])line(staff,`M${20+((y+40)/48)*6} ${y} l3 1`.replace(/l3 1/,'L'+(23+((y+40)/48)*6)+' '+(y+1)),'hempLight',.6,1);sway(a,'staff',4);
  for(const s of [-1,1]){const arm=part(a,(s<0?'l':'r')+'-arm',[s*10,-96],'torso');
   shape(arm,`M${s*9} -98 Q${s*15} -92 ${s*17} -74 Q${s*19} -52 ${s*21} -28 L${s*18} -27 Q${s*15} -52 ${s*13} -72 Q${s*11} -88 ${s*7} -94Z`,'flesh','void',.4);
   oval(arm,s*16,-70,1.6,2,'fleshLight');line(arm,`M${s*13} -88 Q${s*16} -70 ${s*19} -36`,'fleshShade',.6,1);hand(arm,s*20,-27,Math.PI/2+s*.12,18,'flesh');
@@ -63,7 +65,7 @@ function hands(d){
  reach.forEach(([deg,len],i)=>{const r=deg*Math.PI/180,bx=n(Math.cos(r)*30),by=n(-98+Math.sin(r)*24),mx=n(bx+Math.cos(r+.18)*len*.55),my=n(by+Math.sin(r+.18)*len*.55),ex=n(bx+Math.cos(r)*len),ey=n(by+Math.sin(r)*len);
   const arm=part(a,'arm'+i,[bx,by],'heap'),f=i%3===1?'fleshShade':'flesh';
   shape(arm,`M${bx-2.4} ${by} Q${mx-2} ${my} ${ex-1.4} ${ey} L${ex+1.4} ${ey} Q${mx+2.4} ${my+1} ${bx+2.4} ${by+1}Z`,f,'void',.35);oval(arm,mx,my,1.6,1.6,'fleshLight');
-  hand(arm,ex,ey,r,10,f);
+  hand(arm,ex,ey,r,10,f);if(i%2===0)shape(arm,`M${mx-2} ${my} L${mx+3} ${my} ${mx+2} ${my+9} ${mx-1} ${my+8}Z`,'talisman','void',.3);
   track(a,'idle',arm.id,'rotate',[[0,0],[.3,(i%2?4:-4)],[.65,(i%2?-3:3)],[1,0]]);track(a,'attack',arm.id,'rotate',[[0,0],[.3,(i%2?-18:18)],[.6,(i%2?12:-12)],[1,0]]);});
  track(a,'idle','heap','scaleY',[[0,1],[.4,1.03],[.75,.985],[1,1]]);react(a,'faces',5);return a;
 }
@@ -77,7 +79,7 @@ function door(d){
   track(a,'move',leg.id,'rotate',[[0,0],[.25,s*(k?10:-10)],[.75,s*(k?-10:10)],[1,0]]);}
  for(const s of [-1,1]){const leaf=part(a,(s<0?'l':'r')+'-leaf',[s*2,-104],'root');
   shape(leaf,`M${s*2} -168 L${s*27} -165 Q${s*29} -110 ${s*27} -46 L${s*3} -44 ${s*5} -60 ${s*2} -74 ${s*6} -92 ${s*2} -108 ${s*6} -126 ${s*2} -144Z`,'rust','void',.8);
-  shape(leaf,`M${s*22} -163 L${s*27} -165 Q${s*29} -110 ${s*27} -46 L${s*22} -48Z`,'rotShade');
+  shape(leaf,`M${s*22} -163 L${s*27} -165 Q${s*29} -110 ${s*27} -46 L${s*22} -48Z`,'rotShade');shape(leaf,`M${s*3} -167 L${s*26} -164 ${s*26} -160 ${s*3} -162Z`,'danGreen');for(const x of [7,13,19])oval(leaf,s*x,-163,1.4,1.4,'danRed');
   for(const [y0,y1] of [[-160,-136],[-130,-106],[-100,-76],[-70,-52]]){shape(leaf,`M${s*8} ${y0} L${s*21} ${y0} ${s*21} ${y1} ${s*8} ${y1}Z`,'hempLight','void',.4);
    shape(leaf,`M${s*8} ${y0+(y1-y0)*.4}${torn(s*8,y0+(y1-y0)*.4,s*21,y0+(y1-y0)*.7,5,3)} L${s*21} ${y1} ${s*8} ${y1}Z`,'wet');
    line(leaf,`M${s*14.5} ${y0} L${s*14.5} ${y1} M${s*8} ${(y0+y1)/2} L${s*21} ${(y0+y1)/2}`,'rust',1,1);}
@@ -99,7 +101,7 @@ function wonhon(d){
  shape(trail,'M-14 -40 Q-24 -24 -40 -12 Q-26 -16 -20 -8 Q-14 -24 -8 -40Z','mistShade');
  for(const [x,y] of [[-34,-14],[-14,-10],[4,-10]]){shape(trail,`M${x-1} ${y-4} Q${x+2} ${y-6} ${x+5} ${y-4} Q${x+6} ${y+4} ${x+2} ${y+9} Q${x-2} ${y+4} ${x-1} ${y-4}Z`,'mistShade');oval(trail,x+.6,y-1.5,.9,2.2,'void');oval(trail,x+3.6,y-1.5,.9,2.2,'void');oval(trail,x+2.1,y+4,1.2,3,'void');}
  track(a,'move','trail','scaleX',[[0,1],[.5,1.14],[1,1]]);track(a,'idle','trail','scaleX',[[0,1],[.5,1.05],[1,1]]);
- const body=part(a,'body',[0,-78],'root');shape(body,'M-22 -48 Q-30 -80 -18 -100 Q-4 -114 12 -104 Q26 -92 22 -48 Q0 -40 -22 -48Z','rot','void',.6);
+ const body=part(a,'body',[0,-78],'root');shape(body,'M-22 -48 Q-30 -80 -18 -100 Q-4 -114 12 -104 Q26 -92 22 -48 Q0 -40 -22 -48Z','shroud','void',.6);shape(body,'M-22 -48 Q-28 -78 -18 -96 L-10 -92 Q-16 -70 -12 -48Z','shroudShade');for(const y of [-92,-78,-62])line(body,`M-24 ${y} Q0 ${y+5} 22 ${y}`,'hempShade',1.4,0);for(const y of [-92,-78,-62])shape(body,`M-2 ${y+1} L2 ${y+1} 3 ${y+8} 0 ${y+5} -3 ${y+8}Z`,'hempShade');
  shape(body,'M-14 -52 Q-18 -80 -6 -98 Q4 -86 2 -52Z','rotShade');ribs(body,0,-92,4,12,7,'fleshShade');
  const head=part(a,'head',[-2,-90],'body');shape(head,'M-14 -98 Q-12 -110 -2 -112 Q10 -112 12 -100 Q8 -88 -2 -86 Q-12 -88 -14 -98Z','wet');
  hollowFace(head,-2,-98,1.1,{mouth:3,tilt:1.5});strands(head,-2,-108,10,18,20,'void',.8,-3);
@@ -109,26 +111,40 @@ function wonhon(d){
  track(a,'idle','body','scaleY',[[0,1],[.4,1.04],[.75,.98],[1,1]]);sway(a,'head',2.5);track(a,'move','body','rotate',[[0,0],[.5,-7],[1,0]]);return a;
 }
 function gateArmor(d){
- // 문턱 갑주: lamellar armour of a temple guardian with nothing inside. Its face is a gate,
- // planked shut and papered with seals; darkness and one eye show through the seams.
- const a=asset(d,166,[-76,-182,152,186]);Object.assign(a.palette,pal);seed=71;part(a,'root',[0,-56]);
- for(const s of [-1,1]){const leg=part(a,(s<0?'l':'r')+'-leg',[s*14,-58],'root');
-  shape(leg,`M${s*6} -62 L${s*25} -62 Q${s*28} -30 ${s*27} -2 L${s*4} 0 Q${s*3} -30 ${s*6} -62Z`,'iron','void',.7);
-  for(const y of [-54,-44,-34,-24,-14])shape(leg,`M${s*6} ${y} L${s*26} ${y} ${s*25} ${y+7} ${s*6} ${y+7}Z`,y%20?'ironLight':'iron','void',.3);
-  shape(leg,`M${s*2} -4 L${s*30} -4 ${s*31} 2 ${s*1} 2Z`,'rotShade');track(a,'move',leg.id,'rotate',[[0,0],[.25,s*7],[.75,-s*7],[1,0]]);}
- const body=part(a,'body',[0,-108],'root');shape(body,'M-36 -160 Q0 -166 36 -160 Q44 -128 40 -98 L32 -60 -32 -60 -40 -98 Q-44 -128 -36 -160Z','iron','void',1);
- for(let r=0;r<7;r++)for(let c=0;c<7;c++){const x=-34+c*10+(r%2?5:0),y=-156+r*13;if(x>30)continue;shape(body,`M${x} ${y} L${x+9} ${y} ${x+9} ${y+11} Q${x+4.5} ${y+13} ${x} ${y+11}Z`,(r+c)%3?'ironLight':'iron','void',.3);}
- shape(body,'M-16 -160 L16 -160 15 -62 -15 -62Z','rust','void',.8);for(const x of [-10,-3,4,11])line(body,`M${x} -158 L${x} -64`,'void',.7,1);
- for(const y of [-146,-112,-80])shape(body,`M-17 ${y} L17 ${y} 17 ${y+5} -17 ${y+5}Z`,'rotShade','void',.3);for(const [x,y] of [[-12,-144],[12,-144],[-12,-110],[12,-110],[-12,-78],[12,-78]])oval(body,x,y,1.4,1.4,'ironLight','void',.3);
- shape(body,'M-1 -132 L1 -132 1 -96 -1 -96Z','void');oval(body,0,-118,2.4,1.5,'pale');oval(body,0,-118,.9,1.3,'void');
- for(const [x,y,h] of [[-30,-150,26],[24,-140,30],[-26,-104,22]]){shape(body,`M${x} ${y} L${x+7} ${y} ${x+6} ${y+h} ${x+3.5} ${y+h-4} ${x+1} ${y+h}Z`,'talisman','void',.3);line(body,`M${x+2} ${y+4} L${x+5} ${y+7} ${x+2} ${y+10} ${x+5} ${y+14}`,'cord',.6,1);}
- const helm=part(a,'helm',[0,-166],'body');shape(helm,'M-22 -158 Q-24 -182 0 -186 Q24 -182 22 -158Z','iron','void',.8);
- shape(helm,'M-14 -180 L14 -180 14 -160 -14 -160Z','rust','void',.6);for(const x of [-7,0,7])line(helm,`M${x} -180 L${x} -160`,'void',.6,1);
- line(helm,'M-16 -184 Q0 -194 16 -184','cord',1.6,0);strands(helm,8,-186,6,26,6,'cord',.7,8);
- for(const s of [-1,1]){const arm=part(a,(s<0?'l':'r')+'-arm',[s*38,-150],'body');
-  shape(arm,`M${s*34} -156 Q${s*54} -152 ${s*56} -128 L${s*58} -90 ${s*44} -86 ${s*42} -128Z`,'iron','void',.7);for(const y of [-140,-126,-112,-98])line(arm,`M${s*42} ${y} L${s*57} ${y}`,'void',.6,1);
-  shape(arm,`M${s*42} -90 L${s*60} -90 Q${s*62} -76 ${s*56} -70 L${s*44} -72Z`,'rotShade','void',.5);for(let f=0;f<4;f++)line(arm,`M${s*(45+f*4)} -71 L${s*(46+f*4)} -62`,'iron',2,0);react(a,arm.id,s*16);}
- track(a,'idle','body','scaleY',[[0,1],[.5,1.012],[1,1]]);return a;
+ // 문턱 꼭두: a funeral bier's wooden guardian figure (무사 꼭두) grown to a man's height and a half.
+ // Faded red-and-indigo paint over split wood, a felt 전립 with a red tassel, a carved face with
+ // painted eyes, pegged joints, and a hollow back stuffed with paper seals. It guards a threshold
+ // the way it once guarded a coffin: by standing in the way.
+ const a=asset(d,170,[-74,-190,148,194]);Object.assign(a.palette,pal);seed=71;part(a,'root',[0,-56]);
+ const base=part(a,'base',[0,-6],'root');shape(base,'M-26 -10 L26 -10 30 0 -30 0Z','lacquer','void',.6);line(base,'M-24 -6 L24 -6','danRed',1,1);
+ for(const s of [-1,1]){const leg=part(a,(s<0?'l':'r')+'-leg',[s*9,-58],'root');
+  shape(leg,`M${s*3} -62 L${s*17} -62 Q${s*19} -34 ${s*16} -10 L${s*4} -10 Q${s*2} -34 ${s*3} -62Z`,'indigo','void',.6);
+  line(leg,`M${s*5} -40 L${s*16} -40 M${s*5} -24 L${s*16} -24`,'straw',1.1,1);shape(leg,`M${s*2} -14 L${s*19} -14 ${s*20} -10 ${s*1} -10Z`,'lacquer');
+  for(let k=0;k<3;k++)line(leg,`M${s*(7+k*3)} -60 Q${s*(8+k*3)} -46 ${s*(7+k*3)} -30`,'void',.4,1);
+  track(a,'move',leg.id,'rotate',[[0,0],[.25,s*6],[.75,-s*6],[1,0]]);}
+ const body=part(a,'body',[0,-104],'root');
+ shape(body,'M-24 -150 Q0 -156 24 -150 Q32 -120 30 -92 Q34 -74 26 -58 L-26 -58 Q-34 -74 -30 -92 Q-32 -120 -24 -150Z','danRed','void',.9);
+ shape(body,'M-24 -150 L-8 -150 -12 -58 -26 -58 Q-34 -74 -30 -92 Q-32 -120 -24 -150Z','lacquer');shape(body,'M8 -150 L24 -150 Q32 -120 30 -92 L22 -96 Q22 -124 8 -146Z','paint');
+ shape(body,'M-30 -96 L30 -96 30 -88 -30 -88Z','indigo','void',.4);for(const x of [-22,-11,0,11,22])oval(body,x,-92,1.6,1.6,'paint');
+ for(const [x,y] of [[-6,-140],[6,-120],[-10,-110],[8,-78]])line(body,`M${x} ${y} Q${x+3} ${y+10} ${x-1} ${y+20}`,'void',.8,1);
+ shape(body,'M-4 -130 Q-2 -118 -5 -104 L1 -104 Q3 -118 2 -130Z','void');for(const [x,y,h] of [[-3,-128,10],[0,-116,9]])shape(body,`M${x} ${y} L${x+3} ${y} ${x+3} ${y+h} ${x+1.5} ${y+h-2} ${x} ${y+h}Z`,'talisman');
+ line(body,'M-22 -146 Q-26 -120 -28 -96','danGreen',1.4,1);line(body,'M22 -146 Q26 -120 28 -96','danGreen',1.4,1);
+ const head=part(a,'head',[0,-160],'body');
+ shape(head,'M-11 -170 Q-12 -156 -8 -150 L8 -150 Q12 -156 11 -170 Q0 -176 -11 -170Z','paint','void',.6);
+ shape(head,'M-8 -164 Q-4 -167 -1 -164 L-2 -162 -7 -162Z M1 -164 Q4 -167 8 -164 L7 -162 2 -162Z','void');oval(head,-4.5,-163,.6,.6,'glint');oval(head,4.5,-163,.6,.6,'glint');
+ line(head,'M-7 -167 L-2 -166 M2 -166 L7 -167','void',.9,0);shape(head,'M-1 -162 L1 -162 1.5 -158 -1.5 -158Z','danRed');
+ shape(head,'M-7 -156 Q-4 -153 0 -155 Q4 -153 7 -156 Q4 -151 0 -152 Q-4 -151 -7 -156Z','void');
+ line(head,'M-9 -158 L-11 -150 M9 -158 L11 -150','void',.6,1);
+ shape(head,'M-18 -170 Q0 -176 18 -170 L14 -168 Q0 -172 -14 -168Z','lacquer','void',.5);shape(head,'M-10 -170 Q-10 -184 0 -186 Q10 -184 10 -170Z','lacquer','void',.6);
+ shape(head,'M-3 -186 Q0 -194 3 -186 Q6 -180 2 -176 L-2 -176 Q-6 -180 -3 -186Z','danRed');line(head,'M0 -186 Q4 -178 8 -172 M0 -186 Q-3 -178 -6 -172','cord',.8,0);
+ for(const s of [-1,1]){const arm=part(a,(s<0?'l':'r')+'-arm',[s*26,-146],'body');
+  shape(arm,`M${s*22} -150 Q${s*38} -146 ${s*40} -124 L${s*42} -98 ${s*32} -96 ${s*30} -124 Q${s*28} -138 ${s*20} -142Z`,s<0?'danRed':'indigo','void',.6);
+  oval(arm,s*35,-124,2,2,'paint','void',.4);line(arm,`M${s*33} -108 L${s*41} -108`,'straw',1,1);
+  shape(arm,`M${s*31} -98 L${s*43} -98 Q${s*44} -90 ${s*38} -86 L${s*32} -88Z`,'paint','void',.4);react(a,arm.id,s*14);}
+ const spear=part(a,'spear',[40,-92],'r-arm');line(spear,'M40 -10 L40 -184','lacquer',2.4,0);shape(spear,'M37 -184 L40 -200 43 -184Z M33 -186 L37 -192 37 -182Z M47 -186 L43 -192 43 -182Z','ironLight','void',.4);
+ shape(spear,'M37 -180 L43 -180 44 -172 36 -172Z','danRed');strands(spear,40,-172,5,14,4,'danRed',.7,2);
+ track(a,'attack','spear','rotate',[[0,0],[.3,-20],[.55,30],[.8,8],[1,0]]);
+ track(a,'idle','body','rotate',[[0,0],[.5,.8],[1,0]]);track(a,'hit','head','rotate',[[0,-8],[.5,3],[1,0]]);return a;
 }
 function forepaw(d){
  // 혼류의 앞발: one limb longer than the whole shoulder, risen from below. Bone shows through
@@ -143,6 +159,7 @@ function forepaw(d){
  shape(arm,'M-18 -84 Q8 -130 46 -166 L54 -162 Q22 -130 -4 -78Z','fleshShade');line(arm,'M-12 -96 Q16 -138 50 -168','bone',2.4,0);line(arm,'M-6 -90 Q22 -132 56 -162','boneShade',1,1);
  for(const [x,y] of [[0,-112],[18,-134],[34,-152]]){line(arm,`M${x-6} ${y+4} Q${x} ${y-6} ${x+8} ${y-2}`,'void',2.2,0);strands(arm,x,y,5,14,6,'void',.6,4);}
  for(const [x,y] of [[10,-128],[44,-160]]){shape(arm,`M${x} ${y} L${x+7} ${y-2} ${x+8} ${y+16} ${x+4} ${y+13} ${x+1} ${y+17}Z`,'talisman','void',.3);line(arm,`M${x+2} ${y+3} L${x+5} ${y+6} ${x+2} ${y+9}`,'cord',.6,1);}
+ for(const [x,y] of [[-2,-104],[26,-142]]){line(arm,`M${x-8} ${y+6} Q${x+2} ${y-4} ${x+12} ${y-2}`,'straw',2.6,0);for(let k=0;k<3;k++)shape(arm,`M${x-4+k*5} ${y+2-k*2} L${x-1+k*5} ${y+2-k*2} ${x-2+k*5} ${y+10-k*2}Z`,'shroud');}
  const paw=part(a,'paw',[74,-180],'arm');shape(paw,'M60 -192 Q80 -202 96 -188 Q100 -176 92 -168 Q78 -172 64 -170Z','flesh','void',.7);
  for(let i=0;i<5;i++){const ang=-1.15+i*.42,bx=88+i*1.5,by=-188+i*5;finger(paw,bx,by,ang,30-i*2,'bone',2.4);}
  track(a,'idle','arm','rotate',[[0,0],[.4,-2.5],[.8,2],[1,0]]);track(a,'attack','arm','rotate',[[0,0],[.3,-16],[.55,24],[.8,7],[1,0]]);track(a,'attack','paw','rotate',[[0,0],[.5,18],[1,0]]);

@@ -1,11 +1,11 @@
 {
   "version": 1,
-  "baseHeight": 166,
+  "baseHeight": 170,
   "viewBox": [
-    -76,
-    -182,
-    152,
-    186
+    -74,
+    -190,
+    148,
+    194
   ],
   "parts": [
     {
@@ -17,9 +17,17 @@
       "parent": null
     },
     {
+      "id": "base",
+      "pivot": [
+        0,
+        -6
+      ],
+      "parent": "root"
+    },
+    {
       "id": "l-leg",
       "pivot": [
-        -14,
+        -9,
         -58
       ],
       "parent": "root"
@@ -27,7 +35,7 @@
     {
       "id": "r-leg",
       "pivot": [
-        14,
+        9,
         -58
       ],
       "parent": "root"
@@ -36,33 +44,41 @@
       "id": "body",
       "pivot": [
         0,
-        -108
+        -104
       ],
       "parent": "root"
     },
     {
-      "id": "helm",
+      "id": "head",
       "pivot": [
         0,
-        -166
+        -160
       ],
       "parent": "body"
     },
     {
       "id": "l-arm",
       "pivot": [
-        -38,
-        -150
+        -26,
+        -146
       ],
       "parent": "body"
     },
     {
       "id": "r-arm",
       "pivot": [
-        38,
-        -150
+        26,
+        -146
       ],
       "parent": "body"
+    },
+    {
+      "id": "spear",
+      "pivot": [
+        40,
+        -92
+      ],
+      "parent": "r-arm"
     }
   ]
 }
