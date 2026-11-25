@@ -32,13 +32,15 @@ def hold(page,key,condition,arg,timeout=3600):
         page.keyboard.up(key)
 
 def m09(page,report,attempt=0):
-    for _ in range(3):
+    for _ in range(8):
         pose=page.evaluate(FOOT)
-        if 2336<=pose['x']<=2340 and page.evaluate('HonroApp.engine.active.facing')<0:
+        if 2334<=pose['x']<=2340 and page.evaluate('HonroApp.engine.active.facing')<0:
             break
-        if pose['x']<2341:
-            walk_nudge(page,2341,1,9)
-        walk_nudge(page,2339,-1,9)
+        if pose['x']<2334 or pose['x']<=2340 and page.evaluate('HonroApp.engine.active.facing')>=0:
+            walk_nudge(page,2343,1,8)
+        walk_nudge(page,2338,-1,8)
+    else:
+        raise AssertionError({'relayPose':page.evaluate(FOOT)})
     skill=page.locator('[data-action="combat-skill"][data-skill="M09"]')
     skill.first.click(timeout=3600)
     candidates=page.evaluate("""() => {
@@ -245,6 +247,15 @@ def play54(page,out,results,touch_context=None,on_chart=None):
     if on_chart:
         on_chart(page,'54-C')
     results["C_L"]=chart(page)
+    for x in (2884,2881,2886,2878):
+        if results['C_L']['changed'] or results['C_L']['notice'] not in ('destination blocked','destination not supported'):
+            break
+        results.setdefault('C_LRefused',[]).append(results['C_L'])
+        at=page.evaluate(FOOT)
+        if abs(at['x']-x)>1:
+            walk_nudge(page,x,1 if x>at['x'] else -1,8)
+        page.wait_for_function('HonroApp.engine.grounded(HonroApp.engine.active)',timeout=3500)
+        results['C_L']=chart(page)
     assert results["C_L"]["changed"],results['C_L']['notice']
     if on_chart:
         on_chart(page,'54-C-return-L')
@@ -254,7 +265,7 @@ def play54(page,out,results,touch_context=None,on_chart=None):
         results["relayAttempt"]={}
         try:
             results["relay"]=m09(page,results["relayAttempt"],attempt)
-        except Error as error:
+        except (AssertionError,Error) as error:
             results['previousRelayAttempts'].append({**results['relayAttempt'],'error':str(error),'pose':page.evaluate(FOOT)})
             page.wait_for_function('HonroApp.canInput()&&HonroApp.engine.grounded(HonroApp.engine.active)',timeout=12000)
             hit=page.evaluate("""()=>{const b=HonroApp.engine.b;return b.stakes?.some(s=>s.skill==='M09'&&s.shot===b.shot&&s.x<2325)?

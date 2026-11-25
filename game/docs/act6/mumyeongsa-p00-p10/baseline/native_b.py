@@ -66,21 +66,44 @@ def aim(page,spec,world=False):
     return spec
 
 def m09_hall(page):
-    walk_nudge(page,2627,-1)
-    page.locator('[data-action="combat-skill"][data-skill="M09"]').first.click(timeout=5000)
-    spec=page.evaluate("""() => {
-      const e=HonroApp.engine,u=e.active,s=HONRO_CORE.SKILLS.M09;
-      const hit=(a,p)=>{const z=e.predict(u,s,a,p,undefined,true);return z.terrain==='upper-threshold-footing'&&z.x>=2458&&z.x<=2592;};
-      for(const power of [.62,.74,.50,.86,.38])for(let angle=95;angle<=260;angle++){
-        if([-.9,0,.9].every(d=>[0,.025].every(k=>hit(angle+d,power+k))))return {angle,power};
-      }
-      return null;
-    }""")
-    assert spec,'No supported M09 forecast in the upper room'
-    aim(page,spec)
-    page.wait_for_function("HonroApp.engine.b.stakes?.some(s=>s.skill==='M09'&&s.shot>0&&s.x>=2450&&s.x<=2600)",timeout=9000)
-    page.wait_for_function("HonroApp.canInput()",timeout=18000)
-    return {"input":spec,"stakes":page.evaluate("HonroApp.engine.b.stakes")}
+    trials=[]
+    for x in (2627,2636,2622):
+        pose=page.evaluate(FOOT)
+        if pose['x']<=x:
+            walk_nudge(page,x+12,1)
+        walk_nudge(page,x,-1)
+        page.locator('[data-action="combat-skill"][data-skill="M09"]').first.click(timeout=6200)
+        spec=page.evaluate("""() => {
+          const e=HonroApp.engine,u=e.active,s=HONRO_CORE.SKILLS.M09;
+          const hit=(a,p)=>{const z=e.predict(u,s,a,p,undefined,true);return z.terrain==='upper-threshold-footing'&&z.x>=2458&&z.x<=2592;};
+          for(const power of [.62,.74,.50,.86,.38])for(let angle=95;angle<=260;angle++){
+            if([-.9,0,.9].every(d=>[0,.025].every(k=>hit(angle+d,power+k))))return {angle,power};
+          }return null;
+        }""")
+        trials.append({'pose':page.evaluate(FOOT),'target':spec})
+        if not spec:
+            continue
+        angle=page.evaluate('HonroApp.engine.active.angle')
+        if abs(spec['angle']-angle)>0.8:
+            increase=spec['angle']>angle
+            hold(page,'ArrowDown' if increase else 'ArrowUp',
+                 '([x,d])=>d?HonroApp.engine.active.angle>=x-.5:HonroApp.engine.active.angle<=x+.5',
+                 [spec['angle'],increase],4500)
+        try:
+            hold(page,'Space',"""minimum=>{
+              const a=HonroApp,e=a.engine,u=e.active,s=HONRO_CORE.SKILLS.M09;
+              return a.charging&&a.power>=minimum-.08&&[0,.018,.032].every(d=>{
+                const p=e.predict(u,s,u.angle,Math.min(1,a.power+d),undefined,true);
+                return p.terrain==='upper-threshold-footing'&&p.x>=2458&&p.x<=2592;
+              });
+            }""",spec['power'],3500)
+            page.wait_for_function("HonroApp.engine.b.stakes?.some(s=>s.skill==='M09'&&s.shot>0&&s.x>=2450&&s.x<=2600)",timeout=10000)
+            page.wait_for_function('HonroApp.canInput()',timeout=22000)
+            return {'input':spec,'stakes':page.evaluate('HonroApp.engine.b.stakes'),'trials':trials}
+        except Error as error:
+            trials[-1]['error']=str(error)
+            page.wait_for_function('HonroApp.canInput()',timeout=30000)
+    raise AssertionError({'upperRelayTrials':trials})
 
 def wall_trace(page):
     page.evaluate("""() => {
