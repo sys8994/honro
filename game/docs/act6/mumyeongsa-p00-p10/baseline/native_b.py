@@ -29,13 +29,26 @@ POSE="""() => {
  const e=HonroApp.engine,u=e.active,b=e.b;
  const a=b.units.find(u=>u.cls==='mage'&&u.side===0);
  const gravity=HONRO_CORE.environmentAt(b.physics,a.x-a.h*.5,a.y,true).gravity;
- return {stage:b.honroStage,round:b.round,phase:b.phase,active:u.id,gravity,enemyLimit:b.enemyLimit,queue:b.queue,
+ const actionReason=document.querySelector('#combat-action-reason')?.textContent??null;
+ return {stage:b.honroStage,round:b.round,phase:b.phase,active:u.id,gravity,enemyLimit:b.enemyLimit,queue:b.queue,actionReason,
    actors:b.units.map(v=>{
      const wall=gravity.x!==0&&e.grounded(v)&&e.projectileCollision({x:v.x-2,y:v.y},{x:v.x+2,y:v.y},0,v.id,[],false);
      const embedded=gravity.x!==0&&b.terrain.some(t=>!t.oneWay&&HONRO_CORE.terrainRectIntersects(t,v.x-v.h+.1,v.y-v.r+.1,v.h-.2,v.r*2-.2,.1));
      return {id:v.id,x:v.x,y:v.y,vx:v.vx,vy:v.vy,hp:v.hp,dead:v.dead,embedded,
         grounded:e.grounded(v),support:wall?.terrain?.id??e.contactSurface(v.x,v.y-4,v.y+5)?.t.id??null};
    })};
+}"""
+DUMMY_MASKS="""() => {
+ const b=HonroApp.engine.b;
+ const asset=b.honroLandmarks.find(v=>v.asset?.id==='mumyeongsa-broken-rail').asset;
+ const key=points=>JSON.stringify(points.map(p=>[p.x,p.y]).sort(([x,y],[a,z])=>x-a||y-z));
+ const paint=new Set(asset.visual.map(p=>key(p.points)));
+ const side=t=>t.id.startsWith('b-dummy-');
+ return b.honroWorldTerrain.filter(side).map(t=>{
+  const points=HONRO_CORE.poly(t),play=b.terrain.find(s=>s.id===t.id);
+  const mask=key(points);
+  return {id:t.id,points,exactPaint:paint.has(mask),exactCollision:!!play&&key(HONRO_CORE.poly(play))===mask};
+ });
 }"""
 
 def aim(page,spec,world=False):
@@ -193,6 +206,7 @@ def run(browser,out,hz,forks=False,mobile=False):
     try:
         resume(page,53,True)
         page.wait_for_function("HonroApp.canInput()")
+        normal=base.saved_bytes(page)['honro-first-act-profile-1']
         report['start']=page.evaluate(POSE)
         page.evaluate("window.originalDamheo=HonroApp.engine.active")
         page.screenshot(path=out/'native-53-start.png')
@@ -213,9 +227,13 @@ def run(browser,out,hz,forks=False,mobile=False):
         report['bank']=sample_walk(page,1,2940,6000)
         page.wait_for_function("HonroApp.engine.active.x===3240&&HonroApp.canInput()",timeout=5000)
         report['wall53']=page.evaluate(POSE)
+        report['dummies53']=page.evaluate(DUMMY_MASKS)
         page.screenshot(path=out/'native-53-b-wall.png')
         hold(page,'ArrowRight',"HonroApp.engine?.b.honroStage===54",None,11000)
         report['live54']=page.evaluate(POSE)
+        report['dummies54']=page.evaluate(DUMMY_MASKS)
+        assert report['dummies53']==report['dummies54'] and len(report['dummies54'])==4
+        assert all(q['exactPaint'] and q['exactCollision'] for q in report['dummies54'])
         assert page.evaluate("HonroApp.engine.active===originalDamheo"),'Found a replacement Damheo object'
         record=base.saved_bytes(page)
         report['to54']=boundary_of(record)
@@ -223,14 +241,20 @@ def run(browser,out,hz,forks=False,mobile=False):
         page.wait_for_function("HonroApp.engine.grounded(HonroApp.engine.unit('mumyeongsa-b-wall-guard'))",timeout=6000)
         report['guardContact']=page.evaluate(POSE)
         assert all(u['grounded'] and u['support']=='b-inner-jamb' and not u['embedded'] for u in report['guardContact']['actors'])
+        assert not report['guardContact']['actionReason'].startswith('지형에 걸림')
         page.screenshot(path=out/'native-54-both-contact.png')
         finish_wall(page,report)
         page.screenshot(path=out/'native-54-foothill.png')
         report['wallTrace']=page.evaluate('window.nativeWall')
         report['wallWalk']=page.evaluate('window.nativeWallWalk')
         wall_hits=[row for row in report['wallTrace'] if row['event']=='impact' and row['target']]
+        wall_fires={row['shot']:row for row in report['wallTrace'] if row['event']=='fire'}
         assert {row['target'] for row in wall_hits}=={'p-mage',GUARD}
         assert all(row['grounded'] and row['gravity']['x']>0 for row in report['wallTrace'] if row['event']=='fire')
+        for hit in wall_hits:
+            prediction=wall_fires[hit['shot']]['prediction']
+            assert prediction['unit']==hit['target'] and math.dist((prediction['x'],prediction['y']),(hit['x'],hit['y']))<2
+            assert hit['after']<hit['before'] or hit['shieldAfter']<hit['shieldBefore']
         assert {row['id'] for row in report['wallWalk'] if row['grounded']}=={'p-mage',GUARD}
         if page.locator('[data-act6-qa-lookout]').is_disabled():
             if forks:
@@ -246,6 +270,8 @@ def run(browser,out,hz,forks=False,mobile=False):
             assert page.locator('[data-act6-qa-lookout]').is_enabled()
         play54(page,out,report)
         after=base.saved_bytes(page)
+        report['ordinarySaveUnchanged']=after['honro-first-act-profile-1']==normal
+        assert report['ordinarySaveUnchanged']
         report['to55']=boundary_of(after)
         report['newContext55']=cold_new(browser,after,55)
         if mobile:
@@ -281,3 +307,4 @@ if __name__=='__main__':
             result=run(browser,args.out,args.hz,args.forks,args.mobile)
     (args.out/'native-b.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
     print(result['status'],result.get('error',''),flush=True)
+    raise SystemExit(0 if result['status']=='PASS' else 1)

@@ -253,10 +253,6 @@ export async function buildWeb({vector=true,destination=path.join(root,'HONRO.ht
         const art=Buffer.from(await read('shared/act6-b-slice/threshold.svg'));
         descriptors.bProof={layout,art:{path:'/'+await emit('graphics','act6-b-threshold','svg',art),bytes:art.length,sha:hash(art)}};
         debugStages+='\n'+await read('shared/act6-b-slice/browser.inc.js');
-        const status=entries.find(e=>e.name==='shared/runtime/combat-status.js');
-        const test='if(embedded(b,u))';
-        assert.equal(status.code.split(test).length,2,'Unexpected body-status probe callsite');
-        status.code=status.code.replace(test,'if(e.honroBBodyEmbedded?.(u)??embedded(b,u))');
       }
     }
     mains[0].code=makeQaMain(mains[0].code,qaAct6.source,descriptors,terrainArt,journeyArt,endingReplan,debugStages);

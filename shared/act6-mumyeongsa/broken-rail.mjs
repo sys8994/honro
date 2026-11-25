@@ -5,10 +5,19 @@ export function createBrokenRail(spec){
  const [floor,wall,jamb,cap]=solids;
  const plain=([x,y])=>({x,y});
  const outlines=solids.map(t=>({...t,points:[[t.left,t.top],[t.right,t.top],[t.right,t.bottom],[t.left,t.bottom]]}));
- const terrain=outlines.map(({id,points})=>({id,name:id,points:points.map(plain),type:'solid',baseMaterial:'rock',breakable:false}));
+ // The blocks behind the entry and outside the frame share the near silhouette
+ // on both sides. They sit away from the playable lane and its outgoing ledge.
+ const dummies=[
+  {id:'b-dummy-north',paint:'#51483e',points:[[cap.left,-320],[wall.right,-320],[wall.right,cap.top],[cap.left,cap.top]]},
+  {id:'b-dummy-west',paint:'#53473a',points:[[2632,cap.top-28],[cap.left,cap.top],[jamb.left,188],[2789,170],[2698,126]]},
+  {id:'b-dummy-east',paint:'#4b473e',points:[[wall.right,wall.top],[wall.right+305,wall.top-44],[wall.right+305,wall.bottom+115],[wall.right,wall.bottom]]},
+  {id:'b-dummy-south',paint:'#4f473d',points:[[wall.left,wall.bottom],[wall.right,wall.bottom],[wall.right+305,wall.bottom+115],[wall.right+305,wall.bottom+274],[3220,wall.bottom+227]]}
+ ];
+ const terrain=[...outlines,...dummies].map(({id,points})=>({id,name:id,points:points.map(plain),type:'solid',baseMaterial:'rock',breakable:false}));
  const crossY=spec.seamY+y;
  const courses=[0,112,218,331,462,581];
  const art=[
+  ...dummies.map(t=>[t.paint,t.points]),
   ['#555048',outlines[0].points],['#514c43',outlines[1].points],['#483d32',outlines[2].points],['#615142',outlines[3].points],
   ...courses.flatMap((offset,i)=>{
    const ax=wall.left,ay=wall.top+offset,by=ay+104;
@@ -22,7 +31,7 @@ export function createBrokenRail(spec){
   ['#746c55',[[floor.left,floor.top],[floor.right,floor.top],[floor.right,floor.top+14],[floor.left,floor.top+12]]]
  ].map(([fill,points])=>({fill,points:points.map(plain)}));
  const asset={id:spec.id,renderer:'vector',category:'terrain',layer:'prop',anchor:{x:0,y:0},
-  bounds:{x:entryX,y:cap.top,w:wall.right-entryX,h:wall.bottom-cap.top},collision:[],visual:art,sockets:[],params:{}};
+  bounds:{x:2632,y:-320,w:wall.right+305-2632,h:wall.bottom+274+320},collision:[],visual:art,sockets:[],params:{}};
  const element={id:'art-'+spec.id,assetId:spec.id,x:0,y:0,scale:1,rotation:0,snap:false,layer:'prop',depthLayer:'L1',visualRole:'scenery'};
  const rear={...asset,id:spec.id+'-rear',layer:'back',bounds:{x:2792,y:-150,w:748,h:900},visual:[
   ['#302e2c',[[2860,-150],[3540,-150],[3540,768],[2780,768],[2796,212]]],
@@ -50,6 +59,7 @@ export function installBrokenRail({C,e,scene,B,hero,canTurn=()=>false,afterLand=
  const original=Object.fromEntries(names.map(k=>[k,e[k]]));
  const stock=Object.fromEntries(names.map(k=>[k,original[k].bind(e)]));
  const originalDraw=scene.unit,physicsBefore=structuredClone(b.physics),wallX=B.wall.left;
+ const stockEmbedded=e.honroBBodyEmbedded;
  const wallBody=u=>wallBodies.has(u);
  const minY=u=>B.cap.bottom+u.r;
  const maxY=u=>B.floor.top-u.r;
@@ -58,6 +68,8 @@ export function installBrokenRail({C,e,scene,B,hero,canTurn=()=>false,afterLand=
  const minX=u=>u.y-u.r<B.jamb.bottom?B.jamb.right+u.h:B.turnX;
  let enabled=false;
  e.grounded=u=>wallBody(u)?!u.dead&&!u.jumping&&u.x===wallX&&u.y>=minY(u)&&u.y<=maxY(u)&&Math.abs(u.vx)<2&&Math.abs(u.vy)<2:stock.grounded(u);
+ e.honroBBodyEmbedded=u=>wallBody(u)?b.terrain.some(t=>!t.broken&&!t.oneWay&&
+  C.terrainRectIntersects(t,u.x-u.h+.1,u.y-u.r+.1,u.h-.2,u.r*2-.2,.1)):stockEmbedded?.call(e,u);
  e.canDrop=(u=e.active)=>!wallBody(u)&&stock.canDrop(u);
  e.walk=(u,dir,dt,needSupport=false)=>{
   if(!wallBody(u))return stock.walk(u,dir,dt,needSupport);
@@ -172,6 +184,8 @@ export function installBrokenRail({C,e,scene,B,hero,canTurn=()=>false,afterLand=
  return {adopt,isWall:wallBody,contact,dispose(){
   b.physics=physicsBefore;
   for(const name of names)e[name]=original[name];
+  if(stockEmbedded)e.honroBBodyEmbedded=stockEmbedded;
+  else delete e.honroBBodyEmbedded;
   scene.unit=originalDraw;
  }};
 }

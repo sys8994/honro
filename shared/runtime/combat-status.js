@@ -184,7 +184,7 @@ function reason(e,u,skill){
  if(b.phase==='flight')return b.projectiles.length||b.volley?'공격 처리 중':e.settleBusy()?'착지 대기 중':'공격 마무리 중';
  if(u.stunnedRound===b.round&&u.acted)return '기절로 이번 턴 행동 불가 · 다른 동행을 선택하세요';
  if(u.acted)return '행동 완료 · 다른 동행을 선택하세요';
- if(embedded(b,u))return '지형에 걸림 · 전투를 이어 불러오면 위치를 복구합니다';
+ if(e.honroBBodyEmbedded?.(u)??embedded(b,u))return '지형에 걸림 · 전투를 이어 불러오면 위치를 복구합니다';
  if(!e.grounded(u))return '공중 이동 중 · 착지 후 발사·도약 가능';
  if(skill){const cd=e.cooldownLeft(u,skill.id),cost=e.manaCost(skill,u);
   if(cd>0)return `재사용 대기 ${cd}턴 · 다른 기예를 선택하세요`;
