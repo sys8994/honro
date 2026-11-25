@@ -15,9 +15,11 @@ FOOT = """() => {
       chart:[e.b.width,e.b.height],gravity:e.b.physics.gravity};
 }"""
 
-def enter(browser, stage, mobile=False):
-    viewport = {"width":390,"height":844} if mobile else {"width":1440,"height":960}
+def enter(browser, stage, mobile=False, init_script=None, proof=False, viewport=None):
+    viewport = viewport or ({"width":390,"height":844} if mobile else {"width":1440,"height":960})
     ctx = browser.new_context(viewport=viewport, is_mobile=mobile, has_touch=mobile, device_scale_factor=1)
+    if init_script:
+        ctx.add_init_script(init_script)
     ctx.route("**/*", lambda r: local_route(r) if r.request.url.startswith(BASE) else r.abort())
     page = ctx.new_page()
     errors = []
@@ -38,8 +40,12 @@ def enter(browser, stage, mobile=False):
         press(action(page,"journey-select",f'[data-id="{stage}"]'))
         page.wait_for_timeout(450)
         protected = saved_bytes(page)
-        press(action(page,"journey-travel",f'[data-id="{stage}"]'))
-        page.wait_for_function("id => HonroApp.engine?.b?.honroStage===id && !!HonroApp.scene", arg=stage, timeout=14000)
+        if proof:
+            press(page.locator('[data-act6-b-proof]'))
+            page.wait_for_function("HonroApp.engine?.b?.honroBProof?.chapter===53 && !!HonroApp.scene",timeout=14000)
+        else:
+            press(action(page,"journey-travel",f'[data-id="{stage}"]'))
+            page.wait_for_function("id => HonroApp.engine?.b?.honroStage===id && !!HonroApp.scene", arg=stage, timeout=14000)
         dismiss_dialogue(page)
         page.wait_for_timeout(500)
         return ctx,page,protected,errors

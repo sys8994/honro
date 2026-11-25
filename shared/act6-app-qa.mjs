@@ -330,6 +330,7 @@ export function makeQaMain(main,source,descriptor,terrainArt=null,journeyArt=nul
   proto=replaceOne(proto,'      function boundarySession(app){','      function boundarySession(app){if(stageDebug.has(app))return null;');
   proto=replaceOne(proto,'      function mountEndingNormal60(a,s,terminal){','      function mountEndingNormal60(a,s,terminal){if(stageDebug.has(a))return false;');
   proto=replaceOne(proto,'active:app=>active.has(app),','active:app=>active.has(app)||stageDebug.has(app),travelDebug,returnDebugStage,debugStageOutcome,restoreDebug,');
+  if(descriptor.bProof)proto=replaceOne(proto,'travelDebug,returnDebugStage,','travelDebug,offerBProof,adjustBProofAngle,returnDebugStage,');
  }
  assert.equal(source.split('/* SIGNED_ASSET */').length,2);
  const edits=[
@@ -359,6 +360,9 @@ export function makeQaMain(main,source,descriptor,terrainArt=null,journeyArt=nul
  if(debugStages)edits.push(
   ['G.HonroRestJourney.travel(this,id);','if(!(this.debugMode&&this.journeyAct===6)){G.HonroRestJourney.travel(this,id);}else if(!e.isTrusted||performance.now()<(this.journeyInputAfter||0))return;else qa51.travelDebug(this,Number(id),e,el);'],
   ['        resultContinue(){','        resultContinue(){if(qa51.returnDebugStage(this))return;']);
+ if(descriptor.bProof)edits.push(
+  ['G.HonroRestJourney.selectBook(this,id);','G.HonroRestJourney.selectBook(this,id);qa51.offerBProof(this);'],
+  ['        adjustAngle(u, v) {','        adjustAngle(u, v) { if(qa51.adjustBProofAngle(this,u,v))return;']);
  if(endingReplan)edits.push(
   ['qa51.offer(this); if(this.profileStore.locked','qa51.offer(this); act6EndingReplan.installDebug(this); if(this.profileStore.locked'],
   ['this.audio?.update(inBattle&&!this.engine.noncombatWalk()', 'if(act6EndingReplan.silenceStock(this)){this.audio?.music?.setPaused(true);this.updateMusicLabel();return;}\n            this.audio?.update(inBattle&&!this.engine.noncombatWalk()']);

@@ -1,0 +1,17 @@
+{
+  "id": "mumyeongsa-broken-rail",
+  "width": 1060,
+  "height": 1120,
+  "seamY": 710,
+  "clearWidth": 224,
+  "gravityStartX": 440,
+  "gravity": 320,
+  "start": [148, 970],
+  "enemy": [675, 360],
+  "solids": [
+    {"id":"b-entry-sill","left":0,"top":970,"right":760,"bottom":1120},
+    {"id":"b-inner-jamb","left":760,"top":206,"right":1060,"bottom":1120},
+    {"id":"b-outer-jamb","left":416,"top":206,"right":536,"bottom":786},
+    {"id":"b-shaft-cap","left":416,"top":130,"right":1060,"bottom":206}
+  ]
+}

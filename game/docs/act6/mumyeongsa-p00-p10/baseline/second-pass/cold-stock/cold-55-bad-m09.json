@@ -1,0 +1,20 @@
+{
+  "stage": 55,
+  "negativeM09": true,
+  "errors": [],
+  "warnings": [
+    "Error: 이어가기 checkpoint-integrity-or-revision\n    at HTMLButtonElement.<anonymous> (https://sys8994.github.io/honro/web/runtime/ordered-game-24-normal51.42cfecb2c105a859.js:1:132694)",
+    "Error: 이어가기 checkpoint-integrity-or-revision\n    at HTMLButtonElement.<anonymous> (https://sys8994.github.io/honro/web/runtime/ordered-game-24-normal51.42cfecb2c105a859.js:1:132694)"
+  ],
+  "first": {
+    "digestBefore": "806c149798972f8b9418b5ce5b106eabe474562b67b57692940bf9642b3aa0ec",
+    "held": true,
+    "digestAfter": "806c149798972f8b9418b5ce5b106eabe474562b67b57692940bf9642b3aa0ec"
+  },
+  "reload": {
+    "digestBefore": "806c149798972f8b9418b5ce5b106eabe474562b67b57692940bf9642b3aa0ec",
+    "held": true,
+    "digestAfter": "806c149798972f8b9418b5ce5b106eabe474562b67b57692940bf9642b3aa0ec"
+  },
+  "status": "PASS"
+}

@@ -1,0 +1,606 @@
+{
+  "requestHz": 60,
+  "viewport": {
+    "width": 1024,
+    "height": 720
+  },
+  "errors": [],
+  "before": {
+    "phase": "aim",
+    "round": 1,
+    "shot": 0,
+    "chapter": 53,
+    "units": [
+      {
+        "id": "p-mage",
+        "x": 148,
+        "y": 970,
+        "vx": 0,
+        "vy": 0,
+        "h": 92,
+        "r": 22,
+        "grounded": true,
+        "hp": 2050,
+        "move": 3075,
+        "jumping": null,
+        "embedded": false,
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      }
+    ]
+  },
+  "firstLand": {
+    "phase": "aim",
+    "round": 1,
+    "shot": 0,
+    "chapter": 53,
+    "units": [
+      {
+        "id": "p-mage",
+        "x": 760,
+        "y": 924,
+        "vx": 0,
+        "vy": 0,
+        "h": 92,
+        "r": 22,
+        "grounded": true,
+        "hp": 2050,
+        "move": 2780.200000000008,
+        "jumping": false,
+        "embedded": false,
+        "gravity": {
+          "x": 320,
+          "y": 0
+        }
+      }
+    ]
+  },
+  "seam": {
+    "before": {
+      "id": "p-mage",
+      "x": 760,
+      "y": 712.9499999999986,
+      "vx": 0,
+      "vy": 0,
+      "h": 92,
+      "r": 22,
+      "grounded": true,
+      "normal": [
+        -1,
+        0
+      ],
+      "support": "b-inner-jamb"
+    },
+    "after": {
+      "id": "p-mage",
+      "x": 760,
+      "y": 709.5999999999985,
+      "vx": 0,
+      "vy": 0,
+      "h": 92,
+      "r": 22,
+      "grounded": true,
+      "normal": [
+        -1,
+        0
+      ],
+      "support": "b-inner-jamb"
+    },
+    "gravity": [
+      320,
+      0
+    ],
+    "clearWidth": 224,
+    "heroSameObject": true
+  },
+  "bothLanded": {
+    "phase": "aim",
+    "round": 1,
+    "shot": 0,
+    "chapter": 54,
+    "units": [
+      {
+        "id": "p-mage",
+        "x": 760,
+        "y": 702.8999999999985,
+        "vx": 0,
+        "vy": 0,
+        "h": 92,
+        "r": 22,
+        "grounded": true,
+        "hp": 2050,
+        "move": 2559.100000000014,
+        "jumping": false,
+        "embedded": false,
+        "gravity": {
+          "x": 320,
+          "y": 0
+        }
+      },
+      {
+        "id": "b-wall-guard",
+        "x": 760,
+        "y": 360,
+        "vx": 0,
+        "vy": 0,
+        "h": 88,
+        "r": 23,
+        "grounded": true,
+        "hp": 600,
+        "move": 420,
+        "jumping": false,
+        "embedded": false,
+        "gravity": {
+          "x": 320,
+          "y": 0
+        }
+      }
+    ]
+  },
+  "jump": {
+    "phase": "aim",
+    "round": 1,
+    "shot": 0,
+    "chapter": 54,
+    "units": [
+      {
+        "id": "p-mage",
+        "x": 738.5609620579837,
+        "y": 702.8999999999985,
+        "vx": -626.3450810975364,
+        "vy": 0,
+        "h": 92,
+        "r": 22,
+        "grounded": false,
+        "hp": 2050,
+        "move": 2484.100000000014,
+        "jumping": true,
+        "embedded": false,
+        "gravity": {
+          "x": 320,
+          "y": 0
+        }
+      },
+      {
+        "id": "b-wall-guard",
+        "x": 760,
+        "y": 360,
+        "vx": 0,
+        "vy": 0,
+        "h": 88,
+        "r": 23,
+        "grounded": true,
+        "hp": 600,
+        "move": 420,
+        "jumping": false,
+        "embedded": false,
+        "gravity": {
+          "x": 320,
+          "y": 0
+        }
+      }
+    ]
+  },
+  "reLand": {
+    "phase": "aim",
+    "round": 1,
+    "shot": 0,
+    "chapter": 54,
+    "units": [
+      {
+        "id": "p-mage",
+        "x": 760,
+        "y": 702.8999999999985,
+        "vx": 0,
+        "vy": 0,
+        "h": 92,
+        "r": 22,
+        "grounded": true,
+        "hp": 2050,
+        "move": 2484.100000000014,
+        "jumping": false,
+        "embedded": false,
+        "gravity": {
+          "x": 320,
+          "y": 0
+        }
+      },
+      {
+        "id": "b-wall-guard",
+        "x": 760,
+        "y": 360,
+        "vx": 0,
+        "vy": 0,
+        "h": 88,
+        "r": 23,
+        "grounded": true,
+        "hp": 600,
+        "move": 420,
+        "jumping": false,
+        "embedded": false,
+        "gravity": {
+          "x": 320,
+          "y": 0
+        }
+      }
+    ]
+  },
+  "playerAim": {
+    "angle": 91,
+    "power": 0.65
+  },
+  "wallAim": {
+    "angle": 65,
+    "power": 0.65
+  },
+  "end": {
+    "phase": "flight",
+    "round": 2,
+    "shot": 3,
+    "chapter": 54,
+    "units": [
+      {
+        "id": "p-mage",
+        "x": 760,
+        "y": 702.1500937421865,
+        "vx": 0,
+        "vy": -44.98875140613282,
+        "h": 92,
+        "r": 22,
+        "grounded": false,
+        "hp": 1987.8,
+        "move": 3075,
+        "jumping": false,
+        "embedded": false,
+        "gravity": {
+          "x": 320,
+          "y": 0
+        }
+      },
+      {
+        "id": "b-wall-guard",
+        "x": 760,
+        "y": 257.9999999999999,
+        "vx": 0,
+        "vy": 0,
+        "h": 88,
+        "r": 23,
+        "grounded": true,
+        "hp": 373,
+        "move": 420,
+        "jumping": false,
+        "embedded": false,
+        "gravity": {
+          "x": 320,
+          "y": 0
+        }
+      }
+    ]
+  },
+  "status": "PASS",
+  "shots": [
+    {
+      "type": "fire",
+      "id": "M01",
+      "owner": "p-mage",
+      "angle": 91.15099999999998,
+      "power": 0.6576494469782005,
+      "shot": 1,
+      "grounded": true,
+      "prediction": {
+        "x": 733.3419749143826,
+        "y": 389,
+        "unit": "b-wall-guard",
+        "terrain": null
+      },
+      "start": {
+        "x": 701.1561549034664,
+        "y": 658.9088779656001,
+        "vx": -11.340857482287394,
+        "vy": -564.4620844021921,
+        "gravity": {
+          "x": 320.96397288599445,
+          "y": 47.97927717418633
+        }
+      }
+    },
+    {
+      "type": "impact",
+      "id": "M01",
+      "owner": "p-mage",
+      "shot": 1,
+      "x": 733.3419749143826,
+      "y": 389,
+      "hit": "b-wall-guard",
+      "terrain": null,
+      "normal": {
+        "x": 0,
+        "y": 1
+      },
+      "hpBefore": 600,
+      "hpAfter": 373
+    },
+    {
+      "type": "fire",
+      "id": "LA01",
+      "owner": "b-wall-guard",
+      "angle": 265,
+      "power": 0.62,
+      "shot": 2,
+      "grounded": true,
+      "prediction": {
+        "x": 710.3907212785957,
+        "y": 677.8999999999985,
+        "unit": "p-mage",
+        "terrain": null
+      },
+      "start": {
+        "x": 700.8994588045985,
+        "y": 299.8401773198532,
+        "vx": -64.50318080585714,
+        "vy": 737.2747303054181,
+        "gravity": {
+          "x": 322.19310814739913,
+          "y": -25.067340830384218
+        }
+      }
+    },
+    {
+      "type": "impact",
+      "id": "LA01",
+      "owner": "b-wall-guard",
+      "shot": 2,
+      "x": 710.3907212785957,
+      "y": 677.8999999999985,
+      "hit": "p-mage",
+      "terrain": null,
+      "normal": {
+        "x": 0,
+        "y": -1
+      },
+      "hpBefore": 2050,
+      "hpAfter": 2028
+    },
+    {
+      "type": "fire",
+      "id": "M01",
+      "owner": "p-mage",
+      "angle": 65.09859999998845,
+      "power": 0.6602214478761435,
+      "shot": 3,
+      "grounded": true,
+      "prediction": {
+        "x": 754,
+        "y": 597.3524108828558,
+        "unit": null,
+        "terrain": "b-inner-jamb"
+      },
+      "start": {
+        "x": 720.566550966365,
+        "y": 662.9905160483024,
+        "vx": 238.6489241573343,
+        "vy": -514.0922034564411,
+        "gravity": {
+          "x": 340.27484144662657,
+          "y": 43.6978372937975
+        }
+      }
+    },
+    {
+      "type": "impact",
+      "id": "M01",
+      "owner": "p-mage",
+      "shot": 3,
+      "x": 754,
+      "y": 597.3524108828558,
+      "hit": null,
+      "terrain": "b-inner-jamb",
+      "normal": {
+        "x": -1,
+        "y": -0.0
+      },
+      "hpBefore": null,
+      "hpAfter": null
+    }
+  ],
+  "tangentialWalk": [
+    {
+      "id": "p-mage",
+      "grounded": true,
+      "x": 760,
+      "y": 709.5999999999985,
+      "after": [
+        760,
+        706.2499999999985
+      ]
+    },
+    {
+      "id": "p-mage",
+      "grounded": true,
+      "x": 760,
+      "y": 706.2499999999985,
+      "after": [
+        760,
+        702.8999999999985
+      ]
+    },
+    {
+      "id": "b-wall-guard",
+      "grounded": true,
+      "x": 760,
+      "y": 229,
+      "after": [
+        760,
+        231.41666666666666
+      ]
+    },
+    {
+      "id": "b-wall-guard",
+      "grounded": true,
+      "x": 760,
+      "y": 231.41666666666666,
+      "after": [
+        760,
+        233.83333333333331
+      ]
+    },
+    {
+      "id": "b-wall-guard",
+      "grounded": true,
+      "x": 760,
+      "y": 233.83333333333331,
+      "after": [
+        760,
+        236.24999999999997
+      ]
+    },
+    {
+      "id": "b-wall-guard",
+      "grounded": true,
+      "x": 760,
+      "y": 236.24999999999997,
+      "after": [
+        760,
+        238.66666666666663
+      ]
+    },
+    {
+      "id": "b-wall-guard",
+      "grounded": true,
+      "x": 760,
+      "y": 238.66666666666663,
+      "after": [
+        760,
+        241.0833333333333
+      ]
+    },
+    {
+      "id": "b-wall-guard",
+      "grounded": true,
+      "x": 760,
+      "y": 241.0833333333333,
+      "after": [
+        760,
+        243.49999999999994
+      ]
+    },
+    {
+      "id": "b-wall-guard",
+      "grounded": true,
+      "x": 760,
+      "y": 243.49999999999994,
+      "after": [
+        760,
+        245.9166666666666
+      ]
+    },
+    {
+      "id": "b-wall-guard",
+      "grounded": true,
+      "x": 760,
+      "y": 245.9166666666666,
+      "after": [
+        760,
+        248.33333333333326
+      ]
+    },
+    {
+      "id": "b-wall-guard",
+      "grounded": true,
+      "x": 760,
+      "y": 248.33333333333326,
+      "after": [
+        760,
+        250.74999999999991
+      ]
+    },
+    {
+      "id": "b-wall-guard",
+      "grounded": true,
+      "x": 760,
+      "y": 250.74999999999991,
+      "after": [
+        760,
+        253.16666666666657
+      ]
+    },
+    {
+      "id": "b-wall-guard",
+      "grounded": true,
+      "x": 760,
+      "y": 253.16666666666657,
+      "after": [
+        760,
+        255.58333333333323
+      ]
+    },
+    {
+      "id": "b-wall-guard",
+      "grounded": true,
+      "x": 760,
+      "y": 255.58333333333323,
+      "after": [
+        760,
+        257.9999999999999
+      ]
+    }
+  ],
+  "contacts": [
+    {
+      "id": "p-mage",
+      "x": 760,
+      "y": 924,
+      "vx": 0,
+      "vy": 0,
+      "h": 92,
+      "r": 22,
+      "grounded": true,
+      "normal": [
+        -1,
+        0
+      ],
+      "support": "b-inner-jamb"
+    },
+    {
+      "id": "b-wall-guard",
+      "x": 760,
+      "y": 360,
+      "vx": 0,
+      "vy": 0,
+      "h": 88,
+      "r": 23,
+      "grounded": true,
+      "normal": [
+        -1,
+        0
+      ],
+      "support": "b-inner-jamb"
+    },
+    {
+      "id": "p-mage",
+      "x": 760,
+      "y": 702.8999999999985,
+      "vx": 0,
+      "vy": 0,
+      "h": 92,
+      "r": 22,
+      "grounded": true,
+      "normal": [
+        -1,
+        0
+      ],
+      "support": "b-inner-jamb"
+    }
+  ],
+  "clock": {
+    "medianFrameMs": 16.600000000093132,
+    "frames": 300,
+    "solverDt": [
+      0.008333333333333333
+    ]
+  },
+  "normalSaveUnchanged": true,
+  "chromium": "154.0.8037.57"
+}

@@ -244,6 +244,20 @@ export async function buildWeb({vector=true,destination=path.join(root,'HONRO.ht
       assert(bytes.length<400000);
       descriptors.debugFixtures={path:'/'+await emit('data','act6-debug-stages','json',bytes),bytes:bytes.length,sha256:hash(bytes)};
       debugStages=await read('shared/act6-debug-stages/journey-entry.inc.js');
+      if(process.env.HONRO_ACT6_B_SLICE==='1'){
+        const layout=JSON.parse(await read('shared/act6-b-slice/layout.json'));
+        const near=layout.solids.find(t=>t.id==='b-inner-jamb');
+        const far=layout.solids.find(t=>t.id==='b-outer-jamb');
+        assert.equal(near.left-far.right,layout.clearWidth);
+        assert(layout.seamY>near.top&&layout.seamY<far.bottom);
+        const art=Buffer.from(await read('shared/act6-b-slice/threshold.svg'));
+        descriptors.bProof={layout,art:{path:'/'+await emit('graphics','act6-b-threshold','svg',art),bytes:art.length,sha:hash(art)}};
+        debugStages+='\n'+await read('shared/act6-b-slice/browser.inc.js');
+        const status=entries.find(e=>e.name==='shared/runtime/combat-status.js');
+        const test='if(embedded(b,u))';
+        assert.equal(status.code.split(test).length,2,'Unexpected body-status probe callsite');
+        status.code=status.code.replace(test,'if(e.honroBBodyEmbedded?.(u)??embedded(b,u))');
+      }
     }
     mains[0].code=makeQaMain(mains[0].code,qaAct6.source,descriptors,terrainArt,journeyArt,endingReplan,debugStages);
   }
