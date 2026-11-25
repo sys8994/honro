@@ -103,7 +103,7 @@ def walk_nudge(page,target,direction):
         page.mouse.up()
     page.wait_for_timeout(120)
 
-def run(browser,out):
+def run(browser,out,after_live=None):
     context=seeded_context(browser,54)
     page=context.new_page()
     results={"status":"FAIL","traces":{},"errors":[],"warnings":[]}
@@ -147,12 +147,15 @@ def run(browser,out):
         after=base.saved_bytes(page)
         results["writtenSlots"]=[k for k in after if before.get(k)!=after[k]]
         results["afterLiveDigest"]=storage_hash(after)
-        resume(page,55)
-        results["reload55"]=page.evaluate(base.SNAPSHOT)
-        results["afterReloadDigest"]=storage_hash(base.saved_bytes(page))
-        assert results["afterReloadDigest"]==results["afterLiveDigest"]
         assert all("act6-boundary" in k for k in results["writtenSlots"])
         assert len(results["writtenSlots"])==1
+        if after_live:
+            after_live(page,results,after)
+        else:
+            resume(page,55)
+            results["reload55"]=page.evaluate(base.SNAPSHOT)
+            results["afterReloadDigest"]=storage_hash(base.saved_bytes(page))
+            assert results["afterReloadDigest"]==results["afterLiveDigest"]
         results["status"]="PASS"
     except (Error,AssertionError) as error:
         results["error"]=str(error) or "Chart/receipt did not advance at the requested contact"

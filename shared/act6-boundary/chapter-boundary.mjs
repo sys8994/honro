@@ -100,8 +100,10 @@ const recipes={
 
  54:{from:53,kind:'mage-with-real-M09-plus-three-parked',capture:ctx=>captureRelay(ctx,'stake'),
    validate:(r,p)=>withFlags(r,['act6.innerStakeAReady'])&&solo(r,p,false)&&relay(r,p,'stake')},
- 55:{from:54,kind:'three-exterior-plus-mage-with-complete-native-chart-relay',capture:ctx=>captureRelay(ctx,'relay'),
-   validate:(r,p)=>withFlags(r,['act6.invertedGalleryCrossed'])&&solo(r,p,true)&&relay(r,p,'relay')&&p.witness.y===2930&&r.chart?.length===3&&
+ 55:{from:54,kind:'three-exterior-plus-mage-with-complete-native-chart-relay',
+   capture:ctx=>ctx.terminal.relay?.support&&ctx.terminal.relay?.impact?captureRelay(ctx,'relay'):null,
+   validate:(r,p,verifyRelay54)=>withFlags(r,['act6.invertedGalleryCrossed'])&&solo(r,p,true)&&relay(r,p,'relay')&&
+     p.witness.id===r.relay.id&&verifyRelay54(r.relay)&&r.chart?.length===3&&
      ['N>L','L>C','C>L'].every((id,i)=>r.chart[i].id===id&&r.chart[i].actor===p.mage.id&&r.chart[i].grounded===true)},
 
  52:{from:51,kind:'four-live-exterior-carry',
@@ -130,8 +132,8 @@ const recipes={
    }}
 };
 const reject=reason=>({ok:false,reason,keepOriginal:true});
-export function createChapterBoundary({slot,key,storage,locks,normalize,hash,verifyOwner,verifyCold,releasePin,ownedStore=(a,w)=>a?.profileStore===w,originalProfile=a=>a.profile}){
- if(!slot||!key||typeof locks?.request!=='function'||typeof hash!=='function'||!storage||typeof normalize!=='function'||typeof verifyOwner!=='function'||typeof verifyCold!=='function'||typeof releasePin!=='function')return null;
+export function createChapterBoundary({slot,key,storage,locks,normalize,hash,verifyOwner,verifyCold,releasePin,verifyRelay54,ownedStore=(a,w)=>a?.profileStore===w,originalProfile=a=>a.profile}){
+ if(!slot||!key||typeof locks?.request!=='function'||typeof hash!=='function'||!storage||typeof normalize!=='function'||typeof verifyOwner!=='function'||typeof verifyCold!=='function'||typeof releasePin!=='function'||typeof verifyRelay54!=='function')return null;
  const written=new WeakSet(),booted=new WeakMap(),working=new WeakSet();
  const digest=v=>hash(JSON.stringify(v)), read=()=>storage.getItem(key), exclusive=f=>locks.request('honro:profile-slot:'+slot,{mode:'exclusive'},f);
  function pinOkay(pin,id){
@@ -158,7 +160,7 @@ export function createChapterBoundary({slot,key,storage,locks,normalize,hash,ver
   return !!(x&&r&&pinOkay(pin,id)&&x.schema===schema&&x.slot===slot&&x.runId===p?.equipment?.runId&&x.kind===r.kind&&x.from===r.from&&x.to===id&&
    x.profileSHA===digest(naked(p))&&same(pin,releasePin(id))&&pinCompatible(x.pin,pin,id)&&x.generation>=1&&Number.isSafeInteger(x.generation)&&x.parent&&(x.parent==='initial'&&x.generation===1||hash64(x.parent)&&x.generation>1)&&
    x.terminal?.stage===r.from&&([51,52].includes(r.from)?x.terminal.won===undefined:x.terminal.won===true)&&x.terminal.settlement===false&&x.terminalSHA===digest(x.terminal)&&x.custodySHA===digest(x.custody)&&
-   x.stageSeed?.id===r.from&&x.budget?.id===r.from&&r.validate(x.terminal,x.custody)&&sha===digest(x));
+   x.stageSeed?.id===r.from&&x.budget?.id===r.from&&r.validate(x.terminal,x.custody,verifyRelay54)&&sha===digest(x));
  }
  async function checkpoint({app,engine:e,store,terminal,upstream,physical,stageSeed,budget,to,pin,expectedRaw}){
   const r=recipes[to];

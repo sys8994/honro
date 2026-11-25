@@ -19,8 +19,8 @@ const rect=({x,y},m)=>Number.isFinite(x)&&Number.isFinite(y)&&Math.abs(x-m.x)<=m
 const bytes=x=>JSON.stringify(x);
 const sha=async x=>[...new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(x)))].map(n=>n.toString(16).padStart(2,'0')).join('');
 const carryKeys=['id','cls','hp','maxHp','focus','maxFocus','shield','loadout','equipmentState','h','r','tune','level','ranks','dead'];
-export async function createStage55EmptyBell({C,packet,verifyMounted,verifyIncoming,verifyImpact}){
- if(!C?.Engine||typeof verifyImpact!=='function'||typeof verifyMounted!=='function'||typeof verifyIncoming!=='function')throw Error('stage55 trusted host required');
+export async function createStage55EmptyBell({C,packet,verifyMounted,verifyIncoming,verifyImpact,verifyRelay}){
+ if(!C?.Engine||typeof verifyImpact!=='function'||typeof verifyMounted!=='function'||typeof verifyIncoming!=='function'||typeof verifyRelay!=='function')throw Error('stage55 trusted host required');
  const owners=new WeakMap(),releases=new WeakMap(),hits=new WeakSet(),settled=new WeakSet();
  const D=STAGE55,playBytes=bytes(packet?.terrain),worldBytes=bytes(packet?.world);
  if(!Array.isArray(packet?.terrain)||!Array.isArray(packet?.world)||await sha(playBytes)!==D.shape.playSHA||await sha(worldBytes)!==D.shape.worldSHA)throw Error('stage55 authoritative terrain mismatch');
@@ -31,7 +31,7 @@ export async function createStage55EmptyBell({C,packet,verifyMounted,verifyIncom
   if(!safe(app)||app.engine!==e||app.stageId!==55||!(e instanceof C.Engine)||s?.id!==55||s?.act!==6||s?.actStage!==5||s?.objective!==D.objective||b?.phase!=='aim'||b.honroJourneyReplay||owners.has(e)||!shape(b)||!contextOrigin(b)||!verifyMounted(app,e,source,D))return false;
   const carry=verifyIncoming(app,e,source,55); // returns notarized owner data, never raw message JSON
   const path=carry?.chart, m=carry?.mage;
-  if(carry?.stage!==54||carry.won!==true||carry.settlement!==false||carry.flags?.['act6.invertedGalleryCrossed']!==true||!Array.isArray(path)||!eq(path.map(c=>c.id),['N>L','L>C','C>L'])||!path.every(c=>c.grounded===true&&c.actor===m?.id)||!Number.isInteger(carry.relay?.shot)||carry.relay?.y!==2930||m?.cls!=='mage'||typeof m.id!=='string'||!m.id||!alive(m))return false;
+  if(carry?.stage!==54||carry.won!==true||carry.settlement!==false||carry.flags?.['act6.invertedGalleryCrossed']!==true||!Array.isArray(path)||!eq(path.map(c=>c.id),['N>L','L>C','C>L'])||!path.every(c=>c.grounded===true&&c.actor===m?.id)||!verifyRelay(carry.relay)||m?.cls!=='mage'||typeof m.id!=='string'||!m.id||!alive(m))return false;
   const r=party(b),g=e.unit(D.gate.id);
   if(!eq(r.map(u=>u.cls).sort(),D.playerClasses)||new Set(r.map(x=>x.id)).size!==3||!r.every(alive)||b.units.some(v=>v.side===0&&v.cls==='mage')||b.round!==1||b.side!==0||b.active!==r.find(u=>u.cls==='knight')?.id||b.projectiles?.length||r.some(u=>u.acted))return false;
   for(const u of r){

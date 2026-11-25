@@ -31,6 +31,9 @@ def seeded_context(browser,stage,negative=False):
     fixture=base.ROOT/"shared/act6-debug-stages/fixtures.json"
     seed=json.loads(subprocess.check_output(["node","-e",NODE,str(fixture),str(stage),
                                              "bad-m09" if negative else "exact"],text=True))
+    return saved_context(browser,seed)
+
+def saved_context(browser,seed):
     context=browser.new_context(viewport={"width":1280,"height":900})
     context.route("**/*",lambda r:base.local_route(r) if r.request.url.startswith(base.BASE) else r.abort())
     context.add_init_script("""(() => {

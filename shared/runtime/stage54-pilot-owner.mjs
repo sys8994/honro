@@ -10,6 +10,17 @@ const map={
 const steps=Object.keys(map);
 const row=u=>Object.fromEntries(['id','cls','hp','maxHp','focus','maxFocus','h','r','tune','level','ranks','loadout','shield','equipmentState'].map(k=>[k,u[k]]));
 const response=(ok,reason)=>({ok,...(reason?{reason}:{})});
+// The native sweep returns the center of the padded projectile. Keep that
+// center and the real stake, and independently identify the unpadded face.
+export function verifyStage54Relay(C,sill,relay,allowLegacy=false){
+ if(!sill||sill.id!=='mid-contact'||!Number.isInteger(relay?.shot)||relay.shot<1||!Number.isFinite(relay.x))return false;
+ const faces=C.terrainSurfaces(sill,relay.x);
+ if(!relay.impact&&!relay.support)return allowLegacy&&relay.y===2930&&faces.some(f=>f.y===relay.y&&f.slope===0);
+ const {impact,support:s}=relay;
+ return !!(impact&&s&&impact.x===relay.x&&impact.y===relay.y&&impact.radius===6&&
+  impact.normal?.x===0&&impact.normal?.y===-1&&s.terrain===sill.id&&s.x===impact.x&&s.y===2930&&
+  s.y===impact.y-impact.normal.y*impact.radius&&faces.some(f=>f.edge===s.edge&&f.y===s.y&&f.slope===0));
+}
 export async function createStage54ChartOwner({C,domain,charts,verifyMounted,verifyIncoming,fireMissionSkill}){
  const digest=async x=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(sig(x)))),v=>v.toString(16).padStart(2,'0')).join('');
  const pages=structuredClone(charts);
@@ -35,13 +46,19 @@ export async function createStage54ChartOwner({C,domain,charts,verifyMounted,ver
   owned.set(e,g);
   const impact=e.impact.bind(e);
   e.impact=(p,h)=>{
-   const valid=get(a,e)===g&&g.shot&&p?.shot===g.shot.shot&&p.owner===u.id&&p.skill==='M09'&&b.projectiles.includes(p)&&
+   const valid=get(a,e)===g&&g.frame==='L'&&g.shot&&p?.shot===g.shot.shot&&p.owner===u.id&&p.skill==='M09'&&b.projectiles.includes(p)&&
      h?.terrain===b.terrain.find(t=>t.id==='mid-contact')&&span(h.x,g.shot.minX,g.shot.maxX);
+   const supportY=valid&&h.y-(h.n?.y??0)*p.radius;
+   const sill=valid&&e.contactSurface(h.x,h.y,supportY);
    const before=new Set(b.stakes??[]);
    const out=impact(p,h);
-   if(valid)for(const stake of b.stakes??[])if(!before.has(stake)&&stake.owner===u.id&&stake.shot===p.shot&&stake.skill==='M09'&&
-    Math.abs(stake.x-h.x)<=4&&Math.abs(stake.y-h.y)<=12&&e.contactSurface(stake.x,stake.y-12,stake.y+12)?.t.id==='mid-contact'){
-      g.m09={id:stake.id,shot:stake.shot,x:stake.x,y:stake.y,round:b.round};break;
+   if(sill&&sill.t===h.terrain&&sill.y===supportY&&geometry(b,'L')){
+    const face=C.terrainSurfaces(sill.t,h.x).find(f=>f.y===sill.y&&f.slope===0);
+    if(face)for(const stake of b.stakes??[])if(!before.has(stake)&&stake.owner===u.id&&stake.shot===p.shot&&stake.skill==='M09'){
+     const proof={id:stake.id,shot:stake.shot,x:stake.x,y:stake.y,round:b.round,
+      impact:{x:h.x,y:h.y,radius:p.radius,normal:{...h.n}},support:{terrain:sill.t.id,edge:face.edge,x:h.x,y:sill.y}};
+     if(verifyStage54Relay(C,sill.t,proof)){g.m09=proof;break;}
+    }
    }
    return out;
   };

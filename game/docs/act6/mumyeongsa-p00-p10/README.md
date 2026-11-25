@@ -1,6 +1,6 @@
 # 무명사 P00 기준선과 P10 시안·경계 설계
 
-[B 수직 슬라이스](proof-slice/README.md) · [P00 보강·선택안 보정](second-pass.md) · [실행·검수 계약](../ACT6_MUMYEONGSA_REBUILD_20261125.md) · [추가 경계 검수 계약](../ACT6_MUMYEONGSA_SEAM_CHECKS_20261125.md) · [A→B→C→D 연결 설계](continuity.md)
+[54→55→56 실제 M09 및 저장 수정](relay-fix/README.md) · [B 수직 슬라이스](proof-slice/README.md) · [P00 보강·선택안 보정](second-pass.md) · [실행·검수 계약](../ACT6_MUMYEONGSA_REBUILD_20261125.md) · [추가 경계 검수 계약](../ACT6_MUMYEONGSA_SEAM_CHECKS_20261125.md) · [A→B→C→D 연결 설계](continuity.md)
 
 기준 앱은 master `dd409de2e635c5c0b16877266c1bb233d5a00fd7`의 추적된 `HONRO.html`과 `web/`이다. 작업 브랜치의 고정본 `b51c9ad5757c6e6913daf2d3c0dcbdda87b9b863`과 추가 요구 `4eca508af2c8a44868e1c04669950b7baf341a53`은 각각 문서 한 개를 추가했다. 아래 브라우저 증거는 로컬에서 재생한 그 앱 파일을 사용했다.
 
@@ -110,3 +110,5 @@ git ls-tree HEAD web/data/chapter-01-assets.088719e10e63d482.json web/data/chapt
 | 2026-11-25 13:44 UTC / 22:44 KST | P00 / P10 1차 | 기준선 표본·시안·경계 설계 기록, 전체 게이트 대기 | 0% | [`ba543671d11013ac5f3ed790c23b673d41f17fbd`](https://github.com/sys8994/honro/commit/ba543671d11013ac5f3ed790c23b673d41f17fbd) | 위 FAIL·NOT RUN 및 [경계 검수표](continuity.md#연속성과-입력-증거-요구) |
 | 2026-11-25 13:55 UTC / 22:55 KST | P00 보강 | 모바일 10장·외부 국소 표본, 기존 54 전환 거부·검수 재로드, 선택안 보정 | 게이트 대기 | [e58e1c6c](https://github.com/sys8994/honro/commit/e58e1c6cd2d9ce8429abf57f956a9656d0974530) | [보강 기록](second-pass.md) |
 | 2026-11-25 14:15 UTC / 23:15 KST | 첫 B 수직 슬라이스 | 로컬 60/120 Hz 접지·이동·점프·실제 사격 PASS, 54~56 캡처 기록 재로드 PASS | 전체 게이트 대기 | [934b1a04](https://github.com/sys8994/honro/commit/934b1a048ef64ad5c56ccb3f82acb32c65f49be6) | [검수 실행·화면·누락](proof-slice/README.md) |
+
+54→55의 원본 저장 차단을 고쳤다. [실제 54→55→56·새/기존 저장·거부 검수](relay-fix/README.md). 이어 53-B·54-A 본편의 네 방, 양쪽 분기와 재합류, 공용 B 물리 통과, 접촉면과 외곽 더미, 터치 동선을 검수한다. C는 승인된 56 본체의 수신 보호 범위만 사용한다. 후속으로 57→58 원본 네 몸 수신, 58-B 법당/대도사/실제 지지면, 58→59 수동 문턱과 외부·소단 동선, 58·59의 출현/활성/실제 공격 로스터가 남아 있다.

@@ -102,9 +102,12 @@ export async function createAct6WebQa(project,repoRoot,env=process.env,release=n
   const mapText54=JSON.stringify(fourth.map),assets54=JSON.stringify(fourth.library);
   packets.push({...fourth,schema:'honro-act6-normal-54-source/v1',trace:{stageId:54,authoredId:'stage-54',mapSHA256:hash(mapText54),assetSHA256:hash(assets54)}});
   const charts54=(await readFile(new URL('./runtime/chart-packet.mjs',import.meta.url),'utf8')).split('// Author-time.')[0].replaceAll('export ','');
-  const owner54=(await readFile(new URL('./runtime/stage54-pilot-owner.mjs',import.meta.url),'utf8')).split('\n').slice(1).join('\n').replace('export async function','async function');
+  const owner54=(await readFile(new URL('./runtime/stage54-pilot-owner.mjs',import.meta.url),'utf8')).split('\n').slice(1).join('\n').replaceAll('export ','');
   const mount54=await readFile(new URL('./runtime/stage54-entry.inc.js',import.meta.url),'utf8');
-  const code54='const createStage54ChartOwner=(()=>{'+charts54+owner54+'\nreturn createStage54ChartOwner;})();\n'+mount54;
+  const relaySill54=fourth.charts.L.terrain.find(t=>t.id==='mid-contact');
+  assert(relaySill54?.vertices.length);
+  const code54='const {createStage54ChartOwner,verifyStage54Relay}=(()=>{'+charts54+owner54+'\nreturn {createStage54ChartOwner,verifyStage54Relay};})();\n'+
+   'const relaySill54='+JSON.stringify(relaySill54)+';\n'+mount54;
   const fifthRaw=await readFile(new URL('./data/act6-qa/fifth.json',import.meta.url));
   assert.equal(hash(fifthRaw),'3ae91543525a09093da52ee1dd2bff8ab8324a7e7858996c363afdd10e066b8f');
   const fifth=JSON.parse(fifthRaw);assert(fifth.id===55&&fifth.authoredId==='stage-55'&&fifth.runtimeReleaseEnabled===false&&fifth.map.units.length===0);

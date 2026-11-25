@@ -5,6 +5,7 @@
         s.terminal?.stage===54&&s.terminal.flags?.['act6.invertedGalleryCrossed']===true&&s.terminal.settlement===false;
       async function prepareNormal55(packet,known,compiled){
         const bell=await createNormalBellOwner({C,packet:{terrain:compiled.terrain,world:compiled.worldTerrain},
+          verifyRelay:r=>verifyStage54Relay(C,relaySill54,r,true),
           verifyMounted:(a,e,s)=>scope55(a,e,s)&&s.owner55===bell,
           verifyIncoming:(a,e,s)=>scope55(a,e,s)&&s.owner55===bell?s.previous:null,
           verifyImpact:(a,e,p,h,before,after)=>{
@@ -19,7 +20,8 @@
         check(eligible55(a,prev)&&active.get(a)===prev&&a.profile===a.normalProfile&&e.stage.id===54&&normal51Provider.content(e.b)===e.stage&&
           t.mage.id===u?.id&&u.cls==='mage'&&e.grounded(u)&&u.hp>0&&!u.dead&&same(t.mage,u)&&same(t.external,prev.previous.external)&&
           ['N>L','L>C','C>L'].every((id,i)=>t.chart[i]?.id===id&&t.chart[i].actor===u.id&&t.chart[i].grounded===true)&&
-          e.b.stakes.some(v=>v.owner===u.id&&v.shot===t.relay.shot&&v.skill==='M09'&&v.y===2930),'Actual 54 completed chart required');
+          verifyStage54Relay(C,e.b.terrain.find(v=>v.id==='mid-contact'),t.relay)&&
+          e.b.stakes.some(v=>v.id===t.relay.id&&v.owner===u.id&&v.shot===t.relay.shot&&v.skill==='M09'&&v.x===t.relay.x&&v.y===t.relay.y),'Actual 54 completed chart required');
         return mountFrom54(a,grant,t,e.stage,normal51Provider.budget(e.b));
       }
       function mountCold55(a,grant,data,stays,key){

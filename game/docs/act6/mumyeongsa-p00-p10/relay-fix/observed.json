@@ -1,0 +1,1289 @@
+{
+  "status": "PASS",
+  "chromium": "154.0.8037.57",
+  "errors": [],
+  "warnings": [],
+  "traces": {
+    "N_walk": {
+      "direction": 1,
+      "goal": 510,
+      "reached": true,
+      "end": {
+        "id": "p-mage",
+        "x": 519.1576385036584,
+        "y": 2673.885715352801,
+        "vx": 0,
+        "vy": 0,
+        "move": 2796.8441481096074,
+        "grounded": true,
+        "support": "foothill",
+        "phase": "aim",
+        "round": 1,
+        "chart": [
+          3200,
+          3000
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      },
+      "points": [
+        [
+          250,
+          2655.6363636363635,
+          true
+        ],
+        [
+          256.61833677256357,
+          2654.5934742055356,
+          true
+        ],
+        [
+          266.5458419314089,
+          2653.0291400592932,
+          true
+        ],
+        [
+          276.47334709025426,
+          2651.464805913051,
+          true
+        ],
+        [
+          286.4008522490996,
+          2649.9004717668086,
+          true
+        ],
+        [
+          299.63752579422675,
+          2647.8146929051522,
+          true
+        ],
+        [
+          306.2558625667903,
+          2646.771803474324,
+          true
+        ],
+        [
+          316.18336772563566,
+          2645.2074693280815,
+          true
+        ],
+        [
+          329.4200412707628,
+          2643.121690466425,
+          true
+        ],
+        [
+          336.03837804332636,
+          2642.0788010355973,
+          true
+        ],
+        [
+          345.9658832021717,
+          2640.514466889355,
+          true
+        ],
+        [
+          359.20255674729884,
+          2638.428688027698,
+          true
+        ],
+        [
+          365.8208935198624,
+          2637.3857985968702,
+          true
+        ],
+        [
+          375.74839867870776,
+          2635.821464450628,
+          true
+        ],
+        [
+          385.6759038375531,
+          2634.2571303043856,
+          true
+        ],
+        [
+          395.60340899639846,
+          2632.692796158143,
+          true
+        ],
+        [
+          405.3821753023322,
+          2633.8919161668805,
+          true
+        ],
+        [
+          418.0238934358129,
+          2638.3356716319827,
+          true
+        ],
+        [
+          424.34475250255326,
+          2640.5575493645338,
+          true
+        ],
+        [
+          433.8260411026638,
+          2643.8903659633606,
+          true
+        ],
+        [
+          443.3073297027743,
+          2647.2231825621875,
+          true
+        ],
+        [
+          452.78861830288486,
+          2650.555999161014,
+          true
+        ],
+        [
+          462.2699069029954,
+          2653.888815759841,
+          true
+        ],
+        [
+          471.7511955031059,
+          2657.2216323586676,
+          true
+        ],
+        [
+          481.23248410321645,
+          2660.554448957494,
+          true
+        ],
+        [
+          490.713772703327,
+          2663.887265556321,
+          true
+        ],
+        [
+          500.1950613034375,
+          2667.220082155148,
+          true
+        ],
+        [
+          509.67634990354804,
+          2670.5528987539747,
+          true
+        ],
+        [
+          519.1576385036584,
+          2673.885715352801,
+          true
+        ],
+        [
+          519.1576385036584,
+          2673.885715352801,
+          true
+        ],
+        [
+          519.1576385036584,
+          2673.885715352801,
+          true
+        ],
+        [
+          519.1576385036584,
+          2673.885715352801,
+          true
+        ],
+        [
+          519.1576385036584,
+          2673.885715352801,
+          true
+        ],
+        [
+          519.1576385036584,
+          2673.885715352801,
+          true
+        ],
+        [
+          519.1576385036584,
+          2673.885715352801,
+          true
+        ],
+        [
+          519.1576385036584,
+          2673.885715352801,
+          true
+        ],
+        [
+          519.1576385036584,
+          2673.885715352801,
+          true
+        ]
+      ]
+    },
+    "L_fall": {
+      "direction": -1,
+      "goal": 2387,
+      "reached": true,
+      "end": {
+        "id": "p-mage",
+        "x": 2378.4271537427558,
+        "y": 2589.1160486631507,
+        "vx": 0,
+        "vy": 217.94326587633373,
+        "move": 2424.836675979026,
+        "grounded": false,
+        "support": null,
+        "phase": "aim",
+        "round": 1,
+        "chart": [
+          3000,
+          3200
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      },
+      "points": [
+        [
+          2639.7271537427487,
+          2761.9383364715572,
+          false
+        ],
+        [
+          2629.677153742749,
+          2746.4900439141943,
+          false
+        ],
+        [
+          2619.627153742749,
+          2731.6724656206866,
+          false
+        ],
+        [
+          2609.5771537427495,
+          2717.4853651027493,
+          false
+        ],
+        [
+          2599.5271537427498,
+          2703.9285059607687,
+          false
+        ],
+        [
+          2589.47715374275,
+          2691.00165188377,
+          false
+        ],
+        [
+          2579.4271537427503,
+          2678.7045666493846,
+          false
+        ],
+        [
+          2569.3771537427506,
+          2667.037014123815,
+          false
+        ],
+        [
+          2559.327153742751,
+          2655.998758261804,
+          false
+        ],
+        [
+          2549.277153742751,
+          2645.5895631066005,
+          false
+        ],
+        [
+          2539.2271537427514,
+          2635.8091927899245,
+          false
+        ],
+        [
+          2529.1771537427517,
+          2626.6574115319368,
+          false
+        ],
+        [
+          2519.127153742752,
+          2618.133983641204,
+          false
+        ],
+        [
+          2509.077153742752,
+          2610.2386735146665,
+          false
+        ],
+        [
+          2499.0271537427525,
+          2602.971245637604,
+          false
+        ],
+        [
+          2488.9771537427528,
+          2596.3314645836044,
+          false
+        ],
+        [
+          2478.927153742753,
+          2590.3190950145286,
+          false
+        ],
+        [
+          2468.8771537427533,
+          2584.933901680478,
+          false
+        ],
+        [
+          2458.8271537427536,
+          2580.1756494197625,
+          false
+        ],
+        [
+          2448.777153742754,
+          2576.0441031588666,
+          false
+        ],
+        [
+          2438.727153742754,
+          2572.539027912415,
+          false
+        ],
+        [
+          2428.6771537427544,
+          2569.6601887831425,
+          false
+        ],
+        [
+          2418.6271537427547,
+          2567.4073509618593,
+          false
+        ],
+        [
+          2408.577153742755,
+          2565.7802797274167,
+          false
+        ],
+        [
+          2398.527153742755,
+          2564.7787404466762,
+          false
+        ],
+        [
+          2388.4771537427555,
+          2564.4024985744763,
+          false
+        ],
+        [
+          2378.4271537427558,
+          2564.651319653598,
+          false
+        ],
+        [
+          2378.4271537427558,
+          2565.524969314733,
+          false
+        ],
+        [
+          2378.4271537427558,
+          2567.0232132764513,
+          false
+        ],
+        [
+          2378.4271537427558,
+          2569.145817345166,
+          false
+        ],
+        [
+          2378.4271537427558,
+          2571.8925474151038,
+          false
+        ],
+        [
+          2378.4271537427558,
+          2575.2631694682677,
+          false
+        ],
+        [
+          2378.4271537427558,
+          2579.2574495744084,
+          false
+        ],
+        [
+          2378.4271537427558,
+          2583.8751538909883,
+          false
+        ],
+        [
+          2378.4271537427558,
+          2589.1160486631507,
+          false
+        ]
+      ],
+      "landed": {
+        "id": "p-mage",
+        "x": 2378.4271537427558,
+        "y": 2938.072635155682,
+        "vx": 0,
+        "vy": 0,
+        "move": 2424.836675979026,
+        "grounded": true,
+        "support": "mid-contact",
+        "phase": "aim",
+        "round": 1,
+        "chart": [
+          3000,
+          3200
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      }
+    },
+    "L_exit": {
+      "direction": -1,
+      "goal": 2324,
+      "reached": true,
+      "end": {
+        "id": "p-mage",
+        "x": 2323.6400000000003,
+        "y": 2930,
+        "vx": 0,
+        "vy": 0,
+        "move": 3061.6000000000004,
+        "grounded": true,
+        "support": "mid-contact",
+        "phase": "won",
+        "round": 2,
+        "chart": [
+          3000,
+          3200
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      },
+      "points": [
+        [
+          2337.04,
+          2930,
+          true
+        ],
+        [
+          2337.04,
+          2930,
+          true
+        ],
+        [
+          2337.04,
+          2930,
+          true
+        ],
+        [
+          2337.04,
+          2930,
+          true
+        ],
+        [
+          2337.04,
+          2930,
+          true
+        ],
+        [
+          2337.04,
+          2930,
+          true
+        ],
+        [
+          2337.04,
+          2930,
+          true
+        ],
+        [
+          2337.04,
+          2930,
+          true
+        ],
+        [
+          2337.04,
+          2930,
+          true
+        ],
+        [
+          2337.04,
+          2930,
+          true
+        ],
+        [
+          2337.04,
+          2930,
+          true
+        ],
+        [
+          2337.04,
+          2930,
+          true
+        ],
+        [
+          2337.04,
+          2930,
+          true
+        ],
+        [
+          2337.04,
+          2930,
+          true
+        ],
+        [
+          2337.04,
+          2930,
+          true
+        ],
+        [
+          2337.04,
+          2930,
+          true
+        ],
+        [
+          2330.34,
+          2930,
+          true
+        ],
+        [
+          2323.6400000000003,
+          2930,
+          true
+        ],
+        [
+          2323.6400000000003,
+          2930,
+          true
+        ],
+        [
+          2323.6400000000003,
+          2930,
+          true
+        ],
+        [
+          2323.6400000000003,
+          2930,
+          true
+        ],
+        [
+          2323.6400000000003,
+          2930,
+          true
+        ],
+        [
+          2323.6400000000003,
+          2930,
+          true
+        ],
+        [
+          2323.6400000000003,
+          2930,
+          true
+        ],
+        [
+          2323.6400000000003,
+          2930,
+          true
+        ],
+        [
+          2323.6400000000003,
+          2930,
+          true
+        ]
+      ]
+    }
+  },
+  "groundedArclength": {
+    "N_walk": 277.85,
+    "L_fall": 0,
+    "L_exit": 13.4
+  },
+  "negative55": {
+    "surface": true,
+    "skill": true
+  },
+  "afterLiveDigest": "1aa77e0559add1b7babb4c58b4edb07022ec56d57a36b9dd6cf9ede3fdc7f3dc",
+  "battle55Actions": [
+    {
+      "approach": {
+        "id": "p-knight",
+        "x": 2670.615779784754,
+        "y": 1694.958701472232,
+        "grounded": true,
+        "hp": 3688.1,
+        "acted": false,
+        "move": 1328.5,
+        "support": "arrival-core-terrace",
+        "facing": 1,
+        "angle": 44
+      }
+    },
+    {
+      "defend": "p-archer",
+      "binding": "stable"
+    },
+    {
+      "defend": "p-occultist",
+      "binding": "stable"
+    },
+    {
+      "rebind": {
+        "id": "p-occultist",
+        "x": 2709.0470625382977,
+        "y": 1706.7837115502455,
+        "grounded": true,
+        "hp": 2236.1,
+        "acted": false,
+        "move": 3132,
+        "support": "arrival-core-terrace",
+        "facing": 1,
+        "angle": 44
+      }
+    },
+    {
+      "archerShot": {
+        "id": "A01",
+        "angle": -21,
+        "power": 0.75
+      },
+      "priorGate": {
+        "id": "draft-pressure-0",
+        "x": 2118.8883017825715,
+        "y": 1506.44709149172,
+        "grounded": false,
+        "hp": 480,
+        "acted": false,
+        "move": 550,
+        "support": null,
+        "facing": 1,
+        "angle": -15.575783059577173
+      }
+    },
+    {
+      "defend": "p-knight",
+      "binding": "secured"
+    },
+    {
+      "sodanShot": {
+        "id": "O04",
+        "angle": 114,
+        "power": 0.75
+      },
+      "priorGate": {
+        "id": "draft-pressure-0",
+        "x": 2398.8883017825715,
+        "y": 1506.44709149172,
+        "grounded": false,
+        "hp": 371,
+        "acted": false,
+        "move": 550,
+        "support": null,
+        "facing": 1,
+        "angle": -31.80038639455327
+      }
+    },
+    {
+      "align": {
+        "id": "p-knight",
+        "x": 2658.285858113565,
+        "y": 1691.1648794195585,
+        "grounded": true,
+        "hp": 3846,
+        "acted": false,
+        "move": 4007.5,
+        "support": "arrival-core-terrace",
+        "facing": -1,
+        "angle": 136
+      }
+    }
+  ],
+  "live55": {
+    "stageId": 55,
+    "phase": "aim",
+    "round": 1,
+    "active": "p-knight",
+    "units": [
+      {
+        "id": "p-knight",
+        "cls": "knight",
+        "side": 0,
+        "hp": 3688.1,
+        "pos": [
+          176,
+          586.91
+        ],
+        "grounded": true,
+        "validContact": true,
+        "support": "west-ring-descent"
+      },
+      {
+        "id": "p-archer",
+        "cls": "archer",
+        "side": 0,
+        "hp": 1651,
+        "pos": [
+          1232,
+          1162.91
+        ],
+        "grounded": true,
+        "validContact": true,
+        "support": "west-ring-descent"
+      },
+      {
+        "id": "p-occultist",
+        "cls": "occultist",
+        "side": 0,
+        "hp": 2144.1,
+        "pos": [
+          2688,
+          1700.31
+        ],
+        "grounded": true,
+        "validContact": true,
+        "support": "arrival-core-terrace"
+      },
+      {
+        "id": "draft-pressure-0",
+        "cls": "occultist",
+        "side": 1,
+        "hp": 480,
+        "pos": [
+          2112,
+          1523.08
+        ],
+        "grounded": true,
+        "validContact": true,
+        "support": "arrival-core-terrace"
+      },
+      {
+        "id": "draft-pressure-1",
+        "cls": "occultist",
+        "side": 1,
+        "hp": 409,
+        "pos": [
+          912,
+          2590.33
+        ],
+        "grounded": true,
+        "validContact": true,
+        "support": "west-lower-branch"
+      },
+      {
+        "id": "draft-pressure-2",
+        "cls": "knight",
+        "side": 1,
+        "hp": 409,
+        "pos": [
+          1624,
+          1372.92
+        ],
+        "grounded": true,
+        "validContact": true,
+        "support": "arrival-core-terrace"
+      },
+      {
+        "id": "draft-pressure-3",
+        "cls": "archer",
+        "side": 1,
+        "hp": 796,
+        "pos": [
+          1264,
+          1180.36
+        ],
+        "grounded": true,
+        "validContact": true,
+        "support": "west-ring-descent"
+      }
+    ],
+    "normalGravity": {
+      "x": 0,
+      "y": 320
+    }
+  },
+  "stage55Outcome": {
+    "stageId": 55,
+    "phase": "won",
+    "round": 3,
+    "active": "p-knight",
+    "units": [
+      {
+        "id": "p-knight",
+        "cls": "knight",
+        "side": 0,
+        "hp": 3846,
+        "pos": [
+          2658.29,
+          1691.16
+        ],
+        "grounded": true,
+        "validContact": true,
+        "support": "arrival-core-terrace"
+      },
+      {
+        "id": "p-archer",
+        "cls": "archer",
+        "side": 0,
+        "hp": 1623,
+        "pos": [
+          1816.38,
+          1432.12
+        ],
+        "grounded": true,
+        "validContact": true,
+        "support": "arrival-core-terrace"
+      },
+      {
+        "id": "p-occultist",
+        "cls": "occultist",
+        "side": 0,
+        "hp": 2236.1,
+        "pos": [
+          2503.88,
+          1643.65
+        ],
+        "grounded": true,
+        "validContact": true,
+        "support": "arrival-core-terrace"
+      },
+      {
+        "id": "draft-pressure-0",
+        "cls": "occultist",
+        "side": 1,
+        "hp": 0,
+        "pos": [
+          2398.89,
+          1506.45
+        ],
+        "grounded": false,
+        "validContact": false,
+        "support": null
+      },
+      {
+        "id": "draft-pressure-1",
+        "cls": "occultist",
+        "side": 1,
+        "hp": 409,
+        "pos": [
+          832.74,
+          2527.58
+        ],
+        "grounded": true,
+        "validContact": true,
+        "support": "west-lower-branch"
+      },
+      {
+        "id": "draft-pressure-2",
+        "cls": "knight",
+        "side": 1,
+        "hp": 409,
+        "pos": [
+          1745.36,
+          1410.27
+        ],
+        "grounded": true,
+        "validContact": true,
+        "support": "arrival-core-terrace"
+      },
+      {
+        "id": "draft-pressure-3",
+        "cls": "archer",
+        "side": 1,
+        "hp": 796,
+        "pos": [
+          1133.71,
+          1109.3
+        ],
+        "grounded": true,
+        "validContact": true,
+        "support": "west-ring-descent"
+      }
+    ],
+    "normalGravity": {
+      "x": 0,
+      "y": 320
+    }
+  },
+  "live56": {
+    "stageId": 56,
+    "phase": "aim",
+    "round": 1,
+    "active": "p-mage",
+    "units": [
+      {
+        "id": "p-mage",
+        "cls": "mage",
+        "side": 0,
+        "hp": 1708.9,
+        "pos": [
+          928,
+          1136
+        ],
+        "grounded": true,
+        "validContact": true,
+        "support": "A-upper-veranda"
+      },
+      {
+        "id": "draft-pressure-0",
+        "cls": "knight",
+        "side": 1,
+        "hp": 409,
+        "pos": [
+          1936,
+          3784.07
+        ],
+        "grounded": true,
+        "validContact": true,
+        "support": "C-03-west-refuge-lower"
+      },
+      {
+        "id": "draft-pressure-1",
+        "cls": "occultist",
+        "side": 1,
+        "hp": 987,
+        "pos": [
+          3456,
+          2247.2
+        ],
+        "grounded": true,
+        "validContact": true,
+        "support": "B-01-center-stone-ascent"
+      },
+      {
+        "id": "draft-pressure-2",
+        "cls": "occultist",
+        "side": 1,
+        "hp": 409,
+        "pos": [
+          5872,
+          3694.83
+        ],
+        "grounded": true,
+        "validContact": true,
+        "support": "E-joined-ordinary-floor"
+      }
+    ],
+    "normalGravity": {
+      "x": 0,
+      "y": 320
+    }
+  },
+  "newContext55": {
+    "stageId": 55,
+    "phase": "aim",
+    "round": 1,
+    "active": "p-knight",
+    "units": [
+      {
+        "id": "p-knight",
+        "cls": "knight",
+        "side": 0,
+        "hp": 3688.1,
+        "pos": [
+          176,
+          586.91
+        ],
+        "grounded": true,
+        "validContact": true,
+        "support": "west-ring-descent"
+      },
+      {
+        "id": "p-archer",
+        "cls": "archer",
+        "side": 0,
+        "hp": 1651,
+        "pos": [
+          1232,
+          1162.91
+        ],
+        "grounded": true,
+        "validContact": true,
+        "support": "west-ring-descent"
+      },
+      {
+        "id": "p-occultist",
+        "cls": "occultist",
+        "side": 0,
+        "hp": 2144.1,
+        "pos": [
+          2688,
+          1700.31
+        ],
+        "grounded": true,
+        "validContact": true,
+        "support": "arrival-core-terrace"
+      },
+      {
+        "id": "draft-pressure-0",
+        "cls": "occultist",
+        "side": 1,
+        "hp": 480,
+        "pos": [
+          2112,
+          1523.08
+        ],
+        "grounded": true,
+        "validContact": true,
+        "support": "arrival-core-terrace"
+      },
+      {
+        "id": "draft-pressure-1",
+        "cls": "occultist",
+        "side": 1,
+        "hp": 409,
+        "pos": [
+          912,
+          2590.33
+        ],
+        "grounded": true,
+        "validContact": true,
+        "support": "west-lower-branch"
+      },
+      {
+        "id": "draft-pressure-2",
+        "cls": "knight",
+        "side": 1,
+        "hp": 409,
+        "pos": [
+          1624,
+          1372.92
+        ],
+        "grounded": true,
+        "validContact": true,
+        "support": "arrival-core-terrace"
+      },
+      {
+        "id": "draft-pressure-3",
+        "cls": "archer",
+        "side": 1,
+        "hp": 796,
+        "pos": [
+          1264,
+          1180.36
+        ],
+        "grounded": true,
+        "validContact": true,
+        "support": "west-ring-descent"
+      }
+    ],
+    "normalGravity": {
+      "x": 0,
+      "y": 320
+    }
+  },
+  "newContext56": {
+    "stageId": 56,
+    "phase": "aim",
+    "round": 1,
+    "active": "p-mage",
+    "units": [
+      {
+        "id": "p-mage",
+        "cls": "mage",
+        "side": 0,
+        "hp": 1708.9,
+        "pos": [
+          928,
+          1136
+        ],
+        "grounded": true,
+        "validContact": true,
+        "support": "A-upper-veranda"
+      },
+      {
+        "id": "draft-pressure-0",
+        "cls": "knight",
+        "side": 1,
+        "hp": 409,
+        "pos": [
+          1936,
+          3784.07
+        ],
+        "grounded": true,
+        "validContact": true,
+        "support": "C-03-west-refuge-lower"
+      },
+      {
+        "id": "draft-pressure-1",
+        "cls": "occultist",
+        "side": 1,
+        "hp": 987,
+        "pos": [
+          3456,
+          2247.2
+        ],
+        "grounded": true,
+        "validContact": true,
+        "support": "B-01-center-stone-ascent"
+      },
+      {
+        "id": "draft-pressure-2",
+        "cls": "occultist",
+        "side": 1,
+        "hp": 409,
+        "pos": [
+          5872,
+          3694.83
+        ],
+        "grounded": true,
+        "validContact": true,
+        "support": "E-joined-ordinary-floor"
+      }
+    ],
+    "normalGravity": {
+      "x": 0,
+      "y": 320
+    }
+  },
+  "checkpoint55": {
+    "from": 54,
+    "to": 55,
+    "generation": 4,
+    "parent": "ea0cf00d76a9aade2ab07e1bf9889ac332c6aa50b37652dc51c23b07ac994429",
+    "terminalSHA": "c812be31aa6407b353b4393a82c80665d8b34fac6319dddd90ce902fa15c7249",
+    "custodySHA": "94460b504ba4635233820f6dbe644ba330b2d0c3d21f068d0a6d765f3d43cb3f",
+    "relay": {
+      "id": 3,
+      "shot": 1,
+      "x": 2311.28610963249,
+      "y": 2924,
+      "round": 1,
+      "impact": {
+        "x": 2311.28610963249,
+        "y": 2924,
+        "radius": 6,
+        "normal": {
+          "x": 0,
+          "y": -1
+        }
+      },
+      "support": {
+        "terrain": "mid-contact",
+        "edge": 49,
+        "x": 2311.28610963249,
+        "y": 2930
+      }
+    },
+    "chart": [
+      {
+        "id": "N>L",
+        "frame": "L",
+        "drop": 84.86206896551766,
+        "expected": "foothill",
+        "actor": "p-mage",
+        "round": 1,
+        "grounded": true,
+        "x": 2639.7271537427487,
+        "y": 2778.017579869767
+      },
+      {
+        "id": "L>C",
+        "frame": "C",
+        "drop": 21.983589942626168,
+        "expected": "mid-contact",
+        "actor": "p-mage",
+        "round": 1,
+        "grounded": true,
+        "x": 2884,
+        "y": 708.96
+      },
+      {
+        "id": "C>L",
+        "frame": "L",
+        "drop": 0,
+        "expected": "mid-contact",
+        "actor": "p-mage",
+        "round": 1,
+        "grounded": true,
+        "x": 2337.04,
+        "y": 2930
+      }
+    ],
+    "witness": {
+      "attackSide": 0,
+      "damageRoll": 1,
+      "id": 3,
+      "skill": "M09",
+      "owner": "p-mage",
+      "side": 0,
+      "x": 2311.28610963249,
+      "y": 2924,
+      "rank": 1,
+      "damage": 0,
+      "shot": 1,
+      "effectBoost": 0,
+      "expires": 7
+    }
+  },
+  "checkpoint56": {
+    "from": 55,
+    "to": 56,
+    "generation": 5,
+    "parent": "2a1319de897bdf440d087623f4f3c923840d8df17405c2c5ce77e72ffa6940f1",
+    "terminalSHA": "79b06a68b34b5f02f5562c0285d1cbd81e11fc40167b2c4ad4c2db330c0de664",
+    "custodySHA": "364751a0ec95c6eb2ef252ca7adb539e4e61e69cb2015ad7259d856794f316c7",
+    "bellEvents": [
+      {
+        "id": "trustedInnerStakeAndReturnReceived",
+        "round": 1,
+        "detail": null
+      },
+      {
+        "id": "hwigyeomBellTerraceReached",
+        "round": 1,
+        "detail": "p-knight"
+      },
+      {
+        "id": "bellLinkFrayedByNativeImpact",
+        "round": 1,
+        "detail": {
+          "projectile": 2,
+          "target": "p-knight",
+          "x": 2642.615779784754,
+          "y": 1628.147187574756
+        }
+      },
+      {
+        "id": "sodanGroundedBellLinkRebound",
+        "round": 2,
+        "detail": "p-occultist"
+      },
+      {
+        "id": "bellAlignedAfterGateDefeat",
+        "round": 3,
+        "detail": "p-knight"
+      }
+    ]
+  },
+  "historical": {
+    "cold-54": {
+      "stage": 54,
+      "errors": [],
+      "warnings": [],
+      "status": "PASS"
+    },
+    "cold-55-bad-m09": {
+      "stage": 55,
+      "errors": [],
+      "warnings": [
+        "Error: 이어가기 checkpoint-integrity-or-revision\n    at HTMLButtonElement.<anonymous> (https://sys8994.github.io/honro/web/runtime/ordered-game-24-normal51.706227efd1dd7a31.js:1:132935)",
+        "Error: 이어가기 checkpoint-integrity-or-revision\n    at HTMLButtonElement.<anonymous> (https://sys8994.github.io/honro/web/runtime/ordered-game-24-normal51.706227efd1dd7a31.js:1:132935)"
+      ],
+      "status": "PASS"
+    },
+    "cold-55": {
+      "stage": 55,
+      "errors": [],
+      "warnings": [],
+      "status": "PASS"
+    },
+    "cold-56": {
+      "stage": 56,
+      "errors": [],
+      "warnings": [],
+      "status": "PASS"
+    }
+  }
+}
