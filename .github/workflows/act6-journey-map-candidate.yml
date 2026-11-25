@@ -40,7 +40,7 @@ jobs:
           git -c core.hooksPath=/dev/null worktree add --detach "$RUNNER_TEMP/act6-stock" "$OFF"
           cd "$R"
           git checkout "$GITHUB_SHA" -- shared/act6-journey shared/act6-app-qa.mjs shared/runtime/{rest-journey,journey-images}.js shared/web-build.mjs game/src/journey.css game/docs/planning/act6-finale-20261125/HONRO-ACT6-JOURNEY-MAP.ko.md tools/act6-journey/witness.py
-          node tools/release/retain-published-web.mjs "$BASE" --published-at 2026-11-24T23:07:48Z --evidence https://github.com/sys8994/honro/actions/runs/45506884705 > "$OUT/RETENTION.log" 2>&1
+          node tools/release/retain-published-web.mjs "$BASE" --published-at 2026-11-24T23:07:29Z --evidence https://github.com/sys8994/honro/actions/runs/45506884705 > "$OUT/RETENTION.log" 2>&1
           npm ci --no-audit --no-fund > "$OUT/NPM.log" 2>&1
           npm ci --prefix game --include=dev --no-audit --no-fund > "$OUT/NPM-GAME.log" 2>&1
           npm run build > "$OUT/BUILD.log" 2>&1
@@ -85,9 +85,9 @@ jobs:
           s=p.read_text()
           mappings={
           'from normal52_witness import stage52':'from witness import witness\nfrom normal52_witness import stage52',
-          "            original=page.evaluate(\"key=>localStorage.getItem(key)\",KEY)":"            if kind=='fresh-pending': witness(page,state,mobile,tap,out,key,51)\n            original=page.evaluate(\"key=>localStorage.getItem(key)\",KEY)",
-          "        t.locator(selector).evaluate(\"e=>e.click()\")":"        witness(t,state,mobile,tap,out,case,stage)\n        t.locator(selector).evaluate(\"e=>e.click()\")",
-          "                    state['lastBoundaryBytes']=len(last.encode())":"                    state['lastBoundaryBytes']=len(last.encode())\n                    page.clock.resume()\n                    witness(page,state,mobile,tap,out,key,'done')"
+          "            original=page.evaluate(\"key=>localStorage.getItem(key)\",KEY)":"            if kind=='fresh-pending': run_journey_witness(page,state,mobile,tap,out,key,51)\n            original=page.evaluate(\"key=>localStorage.getItem(key)\",KEY)",
+          "        t.locator(selector).evaluate(\"e=>e.click()\")":"        run_journey_witness(t,state,mobile,tap,out,case,stage)\n        t.locator(selector).evaluate(\"e=>e.click()\")",
+          "                    state['lastBoundaryBytes']=len(last.encode())":"                    state['lastBoundaryBytes']=len(last.encode())\n                    page.clock.resume()\n                    run_journey_witness(page,state,mobile,tap,out,key,'done')"
           }
           for before,after in mappings.items():
               assert s.count(before)==1,before
@@ -120,7 +120,7 @@ jobs:
           git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' -c core.hooksPath=/dev/null commit -m 'feat(journey): chart the folded paths of Act 6'
           test "$(git rev-parse HEAD^)" = "$BASE"
           test "$(git ls-remote origin refs/heads/master | cut -f1)" = "$BASE"
-          git push origin HEAD:refs/heads/release/act6-journey-map-20261125-r3
+          git push origin HEAD:refs/heads/release/act6-journey-map-20261125-r4
           git rev-parse HEAD > "$OUT/CANDIDATE.txt"
       - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
         if: always()
