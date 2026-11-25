@@ -1,0 +1,77 @@
+name: Capture live Act 6 combat in an isolated browser
+on:
+  push:
+    branches: ['qa/act6-finale-gameplay-readonly-20261125']
+    paths: ['.github/workflows/act6-finale-gameplay-readonly.yml']
+permissions:
+  contents: read
+jobs:
+  candidate:
+    if: github.repository == 'sys8994/honro' && github.ref == 'refs/heads/qa/act6-finale-gameplay-readonly-20261125'
+    runs-on: ubuntu-22.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 4
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c
+        with:
+          python-version: '3.12'
+      - name: Rebuild exact source and preserve the published game graph
+        shell: bash
+        run: |
+          set -euo pipefail
+          BASE=cee13d8db3bf9a6cc8bd3da834fbe97f5c82d3d4
+          PROOF=027052f5831180f42e24762b910cddc7fd0178f5
+          OFF=b607164fd31da526373efb12d06063c2b564719d
+          test "$(git merge-base HEAD "$BASE")" = "$BASE"
+          readarray -t HISTORY < <(git show "$BASE:web/manifest.json" | node -e 'let x="";process.stdin.on("data",c=>x+=c);process.stdin.on("end",()=>console.log([...new Set(JSON.parse(x).publishedGenerations.map(r=>r.sourceSha))].join("\n")));')
+          git fetch --depth=1 origin "$PROOF" "$OFF" "${HISTORY[@]}"
+          R="$(realpath "$(mktemp -d /tmp/honro-act6-web-qa-XXXXXXXX)")"
+          OUT="$RUNNER_TEMP/act6-finale-gameplay-proof"
+          mkdir -p "$OUT"
+          echo "CANDIDATE_ROOT=$R" >> "$GITHUB_ENV"
+          git -c core.hooksPath=/dev/null worktree add --detach "$R" "$BASE"
+          git -c core.hooksPath=/dev/null worktree add --detach "$RUNNER_TEMP/act6-stock" "$OFF"
+          cd "$R"
+          git fetch --depth=1 origin 2cd0382d8484e024389455d8c6f52f6560ccfc54
+          git checkout 2cd0382d8484e024389455d8c6f52f6560ccfc54 -- tools/act6-ending-qa
+          cp "$GITHUB_WORKSPACE/tools/act6-finale-audit/instrument.py" "$RUNNER_TEMP/act6-combat-instrument.py"
+          mkdir -p "$RUNNER_TEMP/act6-ending-test"
+          cp tools/act6-ending-qa/*.py "$RUNNER_TEMP/act6-ending-test/"
+          # No writes to the production tree or branch. The witness build is below.
+          node tools/release/retain-published-web.mjs "$BASE" --published-at 2026-11-25T03:52:00Z --evidence https://github.com/sys8994/honro/actions/runs/45542958921 > "$OUT/RETENTION.log" 2>&1
+          npm ci --no-audit --no-fund > "$OUT/NPM.log" 2>&1
+          npm ci --prefix game --include=dev --no-audit --no-fund > "$OUT/NPM-GAME.log" 2>&1
+          npm run build > "$OUT/BUILD.log" 2>&1
+          W="$(realpath "$(mktemp -d /tmp/honro-act6-web-qa-XXXXXXXX)")"
+          echo "WITNESS_ROOT=$W" >> "$GITHUB_ENV"
+          git -c core.hooksPath=/dev/null worktree add --detach "$W" "$BASE"
+          git -C "$W" checkout "$GITHUB_SHA" -- shared/act6-ending-replan shared/{act6-app-qa,web-build}.mjs
+          ln -s "$R/node_modules" "$W/node_modules"
+          ln -s "$R/game/node_modules" "$W/game/node_modules"
+          cd "$W"
+          git archive "$PROOF" tools/act6-qa/rest-51 | tar -x
+          cp "$RUNNER_TEMP/act6-ending-test/debug_ui.py" tools/act6-qa/rest-51/
+          python "$RUNNER_TEMP/act6-ending-test/patch-witness.py" tools/act6-qa/rest-51
+          python tools/act6-qa/rest-51/normal-late-readbacks.py shared/act6-app-qa.mjs
+          python "$RUNNER_TEMP/act6-combat-instrument.py" tools/act6-qa/rest-51
+          HONRO_ACT6_QA_NORMAL_LATE_WITNESS=1 HONRO_ACT6_RELEASE_HOST_TEST=1 HONRO_ACT6_QA_NORMAL_BOUNDARY=1 HONRO_ACT6_QA_QUIET_MATTE_WITNESS=1 HONRO_ACT6_QA_PAGES_SHAPE=1 HONRO_ACT6_QA_NORMAL_FAR=1 HONRO_ACT6_QA_NORMAL_LATE_FAR=1 HONRO_ACT6_QA_NORMAL_FINAL_FAR=1 HONRO_ACT6_QA_NORMAL_ENDING_STOCK=1 HONRO_ACT6_QA_WEB_ROOT="$W" npm run build > "$OUT/WITNESS-BUILD.log" 2>&1
+          # Late stage witness probes enable extra instrumentation. The release
+          # candidate is independently built and compared above, never deployed by this workflow.
+      - name: Test the real normal ending and debug route in Chromium
+        run: |
+          set -euo pipefail
+          python -m pip install 'playwright==1.58.0' 'Pillow==11.3.0'
+          python -m playwright install --with-deps chromium
+          cd "$WITNESS_ROOT"
+          HONRO_ACT6_TERRAIN_PROOF=1 HONRO_ACT6_RELEASE_HOST_TEST=1 HONRO_ACT6_QA_NORMAL_BOUNDARY=1 HONRO_ACT6_QA_QUIET_MATTE_WITNESS=1 HONRO_ACT6_QA_PAGES_SHAPE=1 HONRO_ACT6_QA_NORMAL_FAR=1 HONRO_ACT6_QA_NORMAL_LATE_FAR=1 HONRO_ACT6_QA_NORMAL_FINAL_FAR=1 HONRO_ACT6_QA_NORMAL_ENDING_STOCK=1 python tools/act6-qa/rest-51/smoke.py "$RUNNER_TEMP/act6-stock" "$WITNESS_ROOT" "$RUNNER_TEMP/act6-finale-gameplay-proof" > "$RUNNER_TEMP/act6-finale-gameplay-proof/PLAYWRIGHT.log" 2>&1
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: act6-finale-gameplay-proof
+          path: ${{ runner.temp }}/act6-finale-gameplay-proof/
+          retention-days: 7
