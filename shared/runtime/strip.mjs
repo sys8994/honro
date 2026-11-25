@@ -1,18 +1,19 @@
 const assert=(v,m='invalid native sweep surface')=>{if(!v)throw Error(m);};
-export function buildStrip(e,C){
+export function buildStrip(e,C,{owner='qa-immediate-bridge-threat',start=3295,direction=-1,length=252}={}){
  const t=e.b.terrain.find(v=>v.id==='finale-cutout-near-body');
  assert(t&&!t.broken);
  const radius=13, footprint=[];
- for(let x=3295;x>=3043;x-=12){
+ for(let step=0;step<=length;step+=12){
+  const x=start+step*direction;
   const top=C.topAt(t,x), support=e.contactSurface(x,top-2,top+2);
   assert(support?.t.id===t.id&&Math.abs(top-support.y)<1e-5);
   footprint.push({x,y:support.y-22,ground:support.y,support:t.id});
  }
  for(let i=1;i<footprint.length;i++){
   const a=footprint[i-1],z=footprint[i];
-  assert(e.projectileCollision(a,z,radius,'qa-immediate-bridge-threat',[],false)==null,'sweep intersects terrain '+JSON.stringify([a,z]));
+  assert(e.projectileCollision(a,z,radius,owner,[],false)==null,'sweep intersects terrain '+JSON.stringify([a,z]));
  }
- return {owner:'qa-immediate-bridge-threat',footprint,radius};
+ return {owner,footprint,radius};
 }
 export function contacts(e,strip){
  const out=[];

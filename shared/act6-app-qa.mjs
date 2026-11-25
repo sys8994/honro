@@ -59,7 +59,7 @@ export async function createAct6WebQa(project,repoRoot,env=process.env,release=n
  assert.equal(first.split('export function createFirstMissionOwner').length,2);
  if(env.HONRO_ACT6_QA_NORMAL51==='1'){
   const normal=await readFile(new URL('./runtime/stage51-entry.inc.js',import.meta.url),'utf8');
-  const outsideEncounters=await readFile(new URL('./act6-mumyeongsa/exterior-encounters.mjs',import.meta.url),'utf8');
+  const outsideEncounters=(await readFile(new URL('./act6-mumyeongsa/exterior-encounters.mjs',import.meta.url),'utf8')).replace(/^export /gm,'');
   source=replaceOne(source,'      function enter(app,id,ticket){',outsideEncounters+'\n'+normal+'\n      function enter(app,id,ticket){');
   source=replaceOne(source,'try{return enter(app,51,null);}finally{restGrants.delete(app);}', 'try{return enterNormal51(app,grant,carried);}finally{restGrants.delete(app);}');
   source=replaceOne(source,'        permits.delete(app);\n        const {packet,compiled,known}=grant','        permits.delete(app);\n        if(id===52&&active.get(app)?.normal51===true)return enterNormal52(app,grant,active.get(app));\n        const {packet,compiled,known}=grant');
@@ -208,6 +208,8 @@ export async function createAct6WebQa(project,repoRoot,env=process.env,release=n
   source=replaceOne(source,'function goalState(app,e){if(e?.b?.honroStage===56)','function goalState(app,e){if(e?.b?.honroStage===57)return active.get(app)?.owner57?.project();if(e?.b?.honroStage===56)');
   source=replaceOne(source,'        if(e.b.honroStage===56){stage56UI','        if(e.b.honroStage===57){stage57UI(app,s,e);return true;}\n        if(e.b.honroStage===56){stage56UI');
   source=replaceOne(source,'const terminal=s.b.honroStage===56?', 'const terminal=s.b.honroStage===57?terminalNormal57(app,s):s.b.honroStage===56?');
+  const normalOutcome='        app.done=true;app.cancelInput();';
+  source=replaceOne(source,normalOutcome,normalOutcome+'\n        if(s.b.honroStage===57&&presentNormal57Loss(app,s))return true;');
   source=replaceOne(source,'        if(terminal?.stage===55&&s.normal51)',"        if(terminal?.stage===56&&s.normal51){const btn=document.createElement('button');btn.type='button';btn.dataset.act6QaNext='57';styleAction(btn);btn.textContent='무너지는 세 자리로';appUI(app)?.append(btn);issue(app,btn,57); }\n        if(terminal?.stage===55&&s.normal51)");
   source=replaceOne(source,'release,context53,release53,tick54,tick55,tick56,keepAction:', 'release,context53,release53,tick54,tick55,tick56,tick57,keepAction:');
 
@@ -402,8 +404,8 @@ export function makeQaMain(main,source,descriptor,terrainArt=null,journeyArt=nul
  if(source.includes('function defend59('))edits.push(['this.engine.finishAction();this.updateHUD(true); }\n        displayAngle(u)',
   'qa51.defend59(this,()=>this.engine.finishAction());this.updateHUD(true); }\n        displayAngle(u)']);
  if(source.includes('function enterNormal58('))edits.push(
-  ['if (!heroes.length || objective?.dead || rescuedResidentLost || channelerLost || act2Failure)', 'if (!heroes.length || objective?.dead || rescuedResidentLost || channelerLost || act2Failure || ([55,58,59].includes(b.honroStage)&&qa51.goalState(this,e)?.failed===true))'],
-  ['b.winnerReason = (act2Failure===', "b.winnerReason = (b.honroStage===55&&qa51.goalState(this,e)?.failed?qa51.goalState(this,e).summary:null) || (act2Failure==="]);
+  ['if (!heroes.length || objective?.dead || rescuedResidentLost || channelerLost || act2Failure)', 'if (!heroes.length || objective?.dead || rescuedResidentLost || channelerLost || act2Failure || ([55,57,58,59].includes(b.honroStage)&&qa51.goalState(this,e)?.failed===true))'],
+  ['b.winnerReason = (act2Failure===', "b.winnerReason = ([55,57,59].includes(b.honroStage)&&qa51.goalState(this,e)?.failed?qa51.goalState(this,e).summary:null) || (act2Failure==="]);
  if(source.includes('function mountNormalFar('))edits.push([
   "this.scene = new G.HonroScene($('battlecanvas')); const u = e.active;",
   "this.scene = new G.HonroScene($('battlecanvas')); "+(terrainArt?'qa51.mountAct6TerrainArt(this,e); ':'')+"qa51.mountNormalFar(this,e); const u = e.active;"]);

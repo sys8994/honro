@@ -1,5 +1,6 @@
 import {assets,giant} from './normal-giant-forepaw.mjs';
 const key='terrain-following-forepaw-01';
+const repeatKey='giant-forepaw-reach';
 const terminal=b=>['won','lost','transition'].includes(b.phase);
 const finite=Number.isFinite;
 const noDebug=s=>!s.editorView&&!s.viewOptions?.debugTerrainOutline;
@@ -13,9 +14,18 @@ export function attachStage59Forepaw({G,app,e,scene,owner,owns}={}){
  function verify(q){
   const t=b.terrain.find(g=>g.id==='finale-cutout-near-body');
   const strip=q?.strip, path=strip?.footprint;
-  if(q?.kind!=='real local sweep strip'||q.id!==key||q.status!=='armed'||!t||t.broken||
-   strip.owner!=='qa-immediate-bridge-threat'||strip.radius!==13||!Array.isArray(path)||path.length!==22)return null;
-  if(!path.every((p,i)=>p.x===3295-i*12&&p.support===t.id&&finite(p.ground)&&finite(p.y)&&Math.abs(p.ground-p.y-22)<1e-6&&Math.abs(C.topAt(t,p.x)-p.ground)<1e-5))return null;
+  if(q?.kind!=='real local sweep strip'||q.status!=='armed'||!t||t.broken||strip?.radius!==13||!Array.isArray(path))return null;
+  let start=3295,step=-12;
+  if(q.id===key){
+   if(strip.owner!=='qa-immediate-bridge-threat'||path.length!==22)return null;
+  }else if(q.id===repeatKey){
+   const live=owner.inspect()?.giantSweep,actor=e.unit('finale-giant-forepaw');
+   if(!actor||actor.dead||actor.side!==1||actor.honroRigAsset!=='forepaw'||strip.owner!==actor.id||!live||
+    live.sequence!==q.sequence||JSON.stringify(live.strip)!==JSON.stringify(strip)||JSON.stringify(live.lane)!==JSON.stringify(q.lane)||
+    ![-1,1].includes(q.lane.direction)||q.lane.length<252||q.lane.length>1104||path.length!==Math.floor(q.lane.length/12)+1)return null;
+   start=q.lane.start;step=q.lane.direction*12;
+  }else return null;
+  if(!path.every((p,i)=>p.x===start+i*step&&p.support===t.id&&finite(p.ground)&&finite(p.y)&&Math.abs(p.ground-p.y-22)<1e-6&&Math.abs(C.topAt(t,p.x)-p.ground)<1e-5))return null;
   return path;
  }
  function read(){
@@ -29,9 +39,13 @@ export function attachStage59Forepaw({G,app,e,scene,owner,owns}={}){
   }
   if(seen){
    const observed=owner.inspect();
-   if(observed?.warning?.status==='resolved'&&Number.isInteger(observed?.clash?.round)&&
+   const repeated=observed?.lastGiantSweep;
+   const nativeRelease=seen.source.id===key&&observed?.warning?.status==='resolved'&&Number.isInteger(observed?.clash?.round)&&
     observed.clash.round>=seen.round&&observed.clash.round<=b.round&&b.round-observed.clash.round<=1&&
-    observed.warning.turn===seen.source.turn&&JSON.stringify(observed.warning.strip)===JSON.stringify(seen.source.strip)){
+    observed.warning.turn===seen.source.turn&&JSON.stringify(observed.warning.strip)===JSON.stringify(seen.source.strip);
+   const repeatedRelease=seen.source.id===repeatKey&&repeated?.sequence===seen.source.sequence&&
+    repeated.round>=seen.round&&repeated.round<=b.round&&b.round-repeated.round<=1&&JSON.stringify(repeated.strip)===JSON.stringify(seen.source.strip);
+   if(nativeRelease||repeatedRelease){
     release={path:seen.path,time:now};
    }else{release=null;stats.clears++;}
    seen=null;
@@ -54,8 +68,8 @@ export function attachStage59Forepaw({G,app,e,scene,owner,owns}={}){
    raw.beginPath();for(let j=0;j<path.length;j++)raw[j?'lineTo':'moveTo'](path[j].x,path[j].y);raw.stroke();
    raw.globalAlpha=Math.min(1,faint);raw.strokeStyle=armed?'#ddaf78':'#f1cdaa';raw.lineWidth=Math.max(2,2.25/z);
    raw.stroke();
-   // The exact existing right-facing arm is reflected so the claw follows 3295→3043.
-   raw.translate(x+104,y-(armed?39:4));raw.scale(-.87,.87);
+   const direction=Math.sign(path.at(-1).x-path[0].x);
+   raw.translate(x-104*direction,y-(armed?39:4));raw.scale(.87*direction,.87);
    raw.globalAlpha=armed?.87:.91*(1-p);
    renderer.draw(raw,giant.id,{time:scene.time,state:{attack:armed?.36:.64+Math.min(.24,p*.24)},pixels:giant.baseHeight*z*.87,mode:'paint'});
   }finally{raw.restore();}

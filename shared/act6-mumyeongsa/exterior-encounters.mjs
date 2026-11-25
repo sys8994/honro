@@ -1,7 +1,5 @@
 // Each row identifies an exposed authored contact face and one stock combat role.
-function installExteriorEncounters(app,e,paused=()=>false,admit=()=>true){
- const b=e.b,stage=b.honroStage;
- const chapters={
+export const ACT6_EXTERIOR_ENCOUNTERS=Object.freeze({
   51:{active:8,attacks:5,sites:{
    lower:'mountain-main',ledge:'terrace-continuous'},
    initial:[['hound','lower',874,4655],['shade','lower',1330,4405],['stag','ledge',1740,4000],['shade','ledge',3210,3280]],
@@ -10,7 +8,11 @@ function installExteriorEncounters(app,e,paused=()=>false,admit=()=>true){
     {id:'split-ledge',label:'중턱 반대편에서 지키던 혼이 움직입니다.',at:[2850,3780],units:[['stag','lower',3885,3310],['hound','lower',3748,3405],['shade','ledge',3655,3130]]},
     {id:'crest',label:'전망대 방어선에 새 혼들이 모입니다.',at:[5140,2400],units:[['shade','ledge',5515,2090],['hound','lower',5578,2470],['stag','ledge',6060,1660]]},
    ]},
-  52:{active:9,attacks:6,sites:{
+  52:{active:9,attacks:6,
+   // The western patrol defends the descent. The bridge garrison holds its own height and approach.
+   groundFronts:{'a6-52-opening-1':[0,2840],'a6-52-opening-2':[0,2840],
+    'a6-52-cliff-watch-1':[0,2840],'a6-52-cliff-watch-2':[0,3100]},
+   sites:{
    descent:'west-watch-and-descent',westArch:'broken-arch-west',eastArch:'broken-arch-east',return:'east-return-buttress',lowBridge:'return-lower-crossing'},
    initial:[['hound','descent',1725,1770],['shade','descent',1890,1980],['hound','westArch',2500,2475],
     ['shade','eastArch',3990,2290],['stag','eastArch',4650,2489],['shade','lowBridge',3090,4560]],
@@ -70,13 +72,17 @@ function installExteriorEncounters(app,e,paused=()=>false,admit=()=>true){
     {id:'reverse-bank',label:'가름진 아래의 낮은 받침이 흔들립니다.',at:[4930,4000],units:[['hound','return',4480,4050],['shade','return',4810,4050],['hound','return',5340,3970],['shade','return',5560,3860]]},
    ]},
   57:{active:9,attacks:6,sites:{west:'local-lower-07-west',east:'local-lower-07-east'},
+   // The western watch and cut-off force defend opposite faces of the grounded crest at x4096.
+   groundFronts:{'a6-57-opening-1':[-840,3888],'a6-57-opening-2':[-840,4096],
+    'a6-57-folding-ridge-1':[-840,4096],'a6-57-folding-ridge-2':[-840,4096],
+    'a6-57-folding-ridge-3':[-840,4264],'a6-57-folding-ridge-4':[-840,4432]},
    initial:[['hound','west',2220,3240],['hound','west',2770,3305],['shade','west',3170,3330],['stag','west',3920,3250],['shade','east',6700,2840,true]],
    waves:[
     {id:'folding-ridge',label:'부서진 난간 아래에서 추격대가 다가옵니다.',at:[3010,3290],units:[
      ['shade','west',2645,3285],['hound','west',2870,3295],['hound','west',3480,3320],
      [['shade','west',3720,3276],['shade','west',3570,3278],['shade','west',3095,3358]]]},
     {id:'relay-cutoff',label:'보호 받침을 향한 길 양편에서 적이 올라옵니다.',at:[4200,3100],units:[
-     ['shade','west',3880,3260],[['hound','west',4120,3258],['hound','west',4050,3265],['hound','west',3950,3304]],
+     ['shade','west',3880,3260],[['hound','west',4288,3302],['hound','west',4120,3258],['hound','west',4050,3265]],
      [['shade','west',4510,3130],['shade','west',4360,3250]],
      [['stag','west',4800,3213],['stag','west',4702,3186]]]},
     {id:'occluded-bank',label:'석교 앞 돌턱과 동쪽 암반에서 마지막 감시대가 섭니다.',at:[5300,3010],units:[
@@ -85,18 +91,29 @@ function installExteriorEncounters(app,e,paused=()=>false,admit=()=>true){
    ]},
   58:{active:9,attacks:6,roomReach:950,priority:'a6-c08-boss',sites:{hull:'local-lower-08-body',entryDeck:'m58-west-stone-step',
    gallery:'m58-rising-gallery',apse:'m58-east-deck'},
+   // The entrance guards cover the stair and ledge. Behind the east pier,
+   // the apse and lower floor detach from their fire and have their own defenders.
+   groundFronts:{'a6-58-opening-1':[0,4128],'a6-58-opening-2':[0,4292],
+    'a6-58-entrance-columns-1':[0,4128],'a6-58-entrance-columns-2':[0,4200],
+    'a6-58-entrance-columns-3':[0,4380]},
    initial:[['hound','hull',3220,3330],['shade','entryDeck',3580,3072],['stag','hull',3910,3362],['shade','hull',4625,3150]],
    waves:[
     {id:'entrance-columns',label:'첫 기둥의 술식 뒤에서 잔향이 올라옵니다.',at:[3470,3250],units:[['shade','hull',3340,3260],['hound','hull',3475,3230],['shade','gallery',3730,3070]]},
-    {id:'apse-lower',label:'상층 들보와 아래 기둥 양쪽에서 발소리가 들립니다.',phase:2,at:[4450,3020],
-     units:[['shade','apse',4335,3080],['hound','gallery',3975,3075],['stag','hull',4500,3185]]},
-    {id:'folded-rear',label:'먹선을 지키는 혼들이 양쪽 돌턱으로 다가옵니다.',phase:3,at:[4920,3090],
-     units:[['hound','hull',4770,3180],['shade','hull',5150,2940],['stag','hull',5660,2925]]},
+    {id:'apse-lower',label:'윗마루에서 술식이, 아래 기둥 뒤에서 발소리가 다가옵니다.',phase:2,at:[4300,3070],
+     units:[[['shade','apse',4335,3080],['shade','apse',4312,3080]],
+      [['hound','gallery',3975,3075],['hound','gallery',3890,3070]],['stag','hull',4500,3185]]},
+    {id:'folded-rear',label:'먹선 왼편의 마루와 오른편 돌턱에서 유지점을 가로막습니다.',phase:3,at:[4680,3090],
+     units:[[['shade','apse',4348,3080],['shade','gallery',4070,3077],['shade','hull',4470,3200]],
+      [['hound','hull',4770,3180],['hound','hull',4880,3090]],
+      [['stag','hull',5200,2926],['stag','hull',5350,2806]]]},
    ]},
- };
- const plan=chapters[stage];
+});
+
+export function installExteriorEncounters(app,e,paused=()=>false,admit=()=>true,G=globalThis){
+ const b=e.b,stage=b.honroStage,plan=ACT6_EXTERIOR_ENCOUNTERS[stage],C=G.HONRO_CORE;
  if(!plan||b.mode!=='campaign'||app.engine!==e||b.honroAuthoredId!==`stage-${stage}`)return null;
- const alive=u=>u.side===1&&!u.dead&&u.hp>0&&!u.summoned&&!u.honroShotTarget&&!u.honroObjectiveTarget;
+ const alive=u=>u.side===1&&!u.dead&&u.hp>0&&!u.summoned&&!u.honroShotTarget&&!u.honroObjectiveTarget&&
+  (u.loadout?.length>0||stage===58&&u.id===plan.priority);
  const entryState={mode:'campaign',honroStage:50,honroMapOrigin:'campaign',honroCanonical:true};
  const campaign=G.HONRO_CONTENT.stages[49];
  const markers=plan.waves.map(wave=>({wave,next:0,warning:null}));

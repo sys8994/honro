@@ -41,10 +41,15 @@
           });}},
           verifyOwner(a,e,t,to){const s=active.get(a);return a===app&&owned()&&tx?.to===to&&tx.owns()&&
             a.engine===e&&s?.engine===e&&s.b===e.b&&s.normal51&&s.terminal===t&&eligible(a,to);},
-          verifyCold(a,w,to){return a===app&&owned()&&w===shadow&&cold?.id===to&&cold.still()&&!a.engine&&a.screen==='rest';}
+          verifyCold(a,w,to){return a===app&&owned()&&w===shadow&&cold?.id===to&&cold.still()&&!a.engine&&a.screen==='rest';},
+          verifyRetry57(a,w){return a===app&&owned()&&w===shadow&&failedNormal57(a,active.get(a));}
         });
         const item={owned,stored,proxy,shadow,port,transact(spec){tx=spec;},restoring(spec){cold=spec;},slot};
         boundarySessions.set(app,item);return item;
+      }
+      function retryBoundary57(app){
+        const cx=boundarySession(app);
+        return cx?.port.permitFailed57Retry(app,cx.shadow)===true;
       }
       async function beforeBoundaryAdvance(app,id,grant,owns){
         if(!descriptor.boundary||!boundaryAllowed(id))return true;

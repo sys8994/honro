@@ -10,31 +10,31 @@ const auth=['act6.garmjinCompleted','act6.finalThreatResolved'];
 // The four forward groups on each wing contest the anchors. Later groups reinforce a
 // stalled line until the garmjin is joined. Leaving the field is a physical retreat.
 export const FRONTS59=Object.freeze({
- perFrontCap:6,totalCap:14,soften:{hp:.85,attack:.75},warn:1,period:2,forward:630,rear:340,breachLimit:3,guard:260,anchorGroups:4,
+ perFrontCap:6,totalCap:14,attackCap:8,soften:{hp:.85,attack:.75},warn:1,period:2,forward:630,rear:340,breachLimit:3,guard:260,anchorGroups:4,
  posts:[{id:'west-cleat',x:522*7800/2172,label:'서쪽 지지석',radius:170},{id:'bell-path',x:1490*7800/2172,label:'종터 혼길',radius:170}],
  fronts:[
   {id:'west-return',dir:1,offset:2,line:'서쪽 높은 단과 아래 퇴각 경로로 원혼이 맺힙니다.',squads:[
-   [['lead','mourner',430,'high'],['lower','shade',505,'near'],['rear','mourner',366,'high']],
-   [['lead','mourner',565,'near'],['knot','shade',452,'high'],['rear','mourner',465,'near']],
-   [['lead','mourner',392,'high'],['lower','mourner',595,'near']],
-   [['lead','shade',510,'high'],['lower','mourner',555,'near'],['rear','mourner',420,'high']],
+   [['lead','mourner',430,'high'],['lower','shade',505,'near'],['rear','mourner',366,'high'],['brace','warden',625,'near']],
+   [['lead','mourner',565,'near'],['knot','shade',452,'high'],['rear','mourner',465,'near'],['high-watch','shade',580,'high']],
+   [['lead','mourner',392,'high'],['lower','mourner',595,'near'],['talus','shade',420,'near']],
+   [['lead','shade',510,'high'],['lower','mourner',555,'near'],['rear','mourner',420,'high'],['bridge-ward','warden',651,'near']],
    [['heavy','warden',300,'near'],['lead','mourner',340,'high']],
-   [['lead','mourner',330,'near'],['knot','shade',290,'high'],['rear','mourner',260,'near']]]},
+   [['lead','mourner',330,'near'],['knot','shade',290,'high']]]},
   {id:'east-fault',dir:-1,offset:3,line:'동쪽 파열의 낮은 굽이와 암반 이음에서 원혼이 밀려 나옵니다.',squads:[
-   [['lead','mourner',1720,'near'],['knot','shade',1805,'near'],['rear','mourner',1860,'near']],
+   [['lead','mourner',1720,'near'],['knot','shade',1805,'near'],['rear','mourner',1860,'near'],['bell-ward','warden',1628,'near']],
    [['lead','mourner',1660,'near'],['knot','shade',1730,'near'],['rear','shade',1880,'near']],
-   [['lead','mourner',1760,'near'],['rear','mourner',1852,'near']],
-   [['lead','shade',1690,'near'],['rear','mourner',1820,'near']],
+   [['lead','mourner',1760,'near'],['rear','mourner',1852,'near'],['bank-watch','shade',1638,'near']],
+   [['lead','shade',1690,'near'],['rear','mourner',1820,'near'],['outer-return','mourner',1945,'near']],
    [['heavy','warden',1900,'near'],['lead','mourner',1820,'near']],
-   [['lead','mourner',1800,'near'],['knot','shade',1870,'near'],['rear','mourner',1990,'near']],
-   [['lead','shade',1830,'near'],['rear','mourner',2010,'near']]]}
+   [['lead','mourner',1800,'near'],['knot','shade',1870,'near']],
+   [['lead','shade',1830,'near']]]}
  ]});
-const sentries59=[
+export const sentries59=Object.freeze([
  ['west-ledge','mourner',323,high],['west-talus','shade',361,near],['west-bank','warden',485,near],
  ['west-turn','mourner',583,high],['bridge-foot','mourner',740,near],
  ['east-bell','shade',1585,near],['east-bend','mourner',1790,near],
  ['east-stone','shade',1860,near],['east-ward','warden',1960,near]
-];
+]);
 const eq=(a,b)=>JSON.stringify(a)===JSON.stringify(b), copy=structuredClone;
 const alive=u=>u&&Number.isFinite(u.hp)&&u.hp>0&&!u.dead;
 const down=u=>u?.hp===0&&u.dead===true;
@@ -55,6 +55,7 @@ export async function createStage59Owner({C,packet,authorize,verifyIncoming,crea
   const terrain=b.terrain,world=b.honroWorldTerrain,profileCopy=JSON.stringify(app.profile);
   const units=b.units.filter(u=>u.side===0&&!u.summoned&&!u.honroAlly), actor=Object.fromEntries(units.map(u=>[u.cls,u]));
   const grounded=(u,id)=>alive(u)&&e.grounded(u)&&C.validTerrainContactPose(b.terrain,u)&&e.contactSurface(u.x,u.y-4,u.y+5)?.t.id===id;
+  const crewGrounded=()=>units.every(u=>alive(u)&&e.grounded(u)&&C.validTerrainContactPose(b.terrain,u));
   if(units.length!==4||new Set(units.map(u=>u.id)).size!==4||Object.entries(seats).some(([cls,[x,t]])=>{
    const u=actor[cls], a=receipt.actors.find(v=>v.cls===cls);
    return !a||!u||a.id!==u.id||!alive(a)||u.acted||!bornSame(a,u)||Math.abs(u.x-x*k)>.001||!grounded(u,t);
@@ -84,7 +85,7 @@ export async function createStage59Owner({C,packet,authorize,verifyIncoming,crea
   const repelled=()=>retreatOrder!==null&&retreatOrder.walked>0&&grounded(threat,near)&&threat.x-retreatOrder.from>=240&&threat.x-witness.x>=500;
   const resolved=()=>down(threat)||repelled();
   const fronts=FRONTS59.fronts.map(f=>({...f,next:0,warned:null,held:0,spawned:0}));
-  let breach=0,breachRound=null,recoverRound=null,giant=null,giantGuard=null,giantAttack=null,lostReason=null;
+  let breach=0,breachRound=null,recoverRound=null,giant=null,giantGuard=null,giantAttack=null,lostReason=null,giantSweep=null,lastGiantSweep=null,giantSweeps=0;
   const frontAlive=f=>[...walks.values()].filter(z=>z.front===f&&alive(z.unit)&&!z.departed&&z.wave).length;
   const bothApproaches=()=>fronts.every(f=>f.next>=FRONTS59.anchorGroups);
   const canJoin=()=>state.mage&&state.cliff&&state.bridge&&state.soul&&state.bell&&state.forepaw&&bothApproaches();
@@ -104,9 +105,30 @@ export async function createStage59Owner({C,packet,authorize,verifyIncoming,crea
   }
   function answerForepaw(reason,details){
    if(state.forepaw||!alive(giant))return;
+   clearGiantSweep();
    state.forepaw=reason;note('forepaw-answered',{id:giant.id,reason,...details});
    e.message(reason==='guard'?'휘겸: 앞발을 받아냈다. 놈이 교각에서 물러난다.':'혼류의 앞발이 물러납니다. 두 전선의 지지점을 확보하십시오.');
    retreat(walks.get(giant.id),reason);
+  }
+  function clearGiantSweep(){
+   if(!giantSweep)return;
+   giantSweep=null;
+   if(b.honroState.localFinaleGiantTelegraph?.id==='giant-forepaw-reach')delete b.honroState.localFinaleGiantTelegraph;
+  }
+  function showGiantSweep(){
+   if(!alive(giant)||state.forepaw||giantSweep||warning?.status==='armed'||b.side!==0||!grounded(giant,near))return;
+   const preferred=giantSweeps%2?1:-1;
+   for(const direction of [preferred,-preferred]){
+    const start=Math.round(giant.x+direction*72);
+    const length=direction<0?Math.max(252,Math.round((start-3385)/12)*12):420;
+    const lane={owner:giant.id,start,direction,length};
+    let strip;try{strip=buildStrip(e,C,lane);}catch{continue;}
+    const label=direction<0?'앞발이 교각 쪽 낮은 돌길을 훑습니다.':'앞발이 동쪽 파열 앞의 낮은 돌길을 훑습니다.';
+    giantSweep={lane,strip,x:giant.x,status:'armed',sequence:giantSweeps+1};
+    b.honroState.localFinaleGiantTelegraph={kind:'real local sweep strip',id:'giant-forepaw-reach',...copy(giantSweep)};
+    note('giant-sweep-warned',{direction,x:giant.x,owner:giant.id});e.message(label+' 높은 단으로 피하거나 앞발을 막으십시오.');
+    break;
+   }
   }
   const enemyAlive=()=>b.units.filter(u=>u.side===1&&alive(u)).length;
   let opening=false;
@@ -204,6 +226,10 @@ export async function createStage59Owner({C,packet,authorize,verifyIncoming,crea
   }
   function poll(){
    if(!active())return false;
+   if(lostReason||units.some(u=>!alive(u))){
+    if(!lostReason){lostReason=alive(actor.occultist)?'companion-fallen':'sodan-fallen';note(lostReason);}
+    waves.closed=true;clearGiantSweep();return false;
+   }
    openFronts();
    if(!state.retreat&&local(actor.knight,900,near)){
     upper=reserve(special.cliff);if(!upper)return false;
@@ -233,9 +259,9 @@ export async function createStage59Owner({C,packet,authorize,verifyIncoming,crea
     answerForepaw('guard',{actor:actor.knight.id,attackRound:giantAttack+1});
    }
    if(state.cleared)return true;
-   state.cleared=state.activated&&resolved();
+   state.cleared=state.activated&&resolved()&&b.side===0&&b.phase==='aim'&&crewGrounded();
    if(state.cleared){waves.closed=true;e.message('설오: 올라오던 것들이 멈췄습니다.');e.message('휘겸: 길은 남겼군.');note('final-threat-resolved',{actor:threat.id,dead:down(threat),distance:threat.x-origin,retreat:retreatOrder&&{...retreatOrder}});}
-   posts();wave();
+   posts();if(!lostReason){wave();showGiantSweep();}
    b.honroState.localFinaleProgress={...copy(state),soulPending:!!soulPending,breach,breachLimit:FRONTS59.breachLimit,lost:lostReason,fronts:fronts.map(f=>({id:f.id,next:f.next,of:f.squads.length,held:f.held,alive:frontAlive(f),spawned:f.spawned})),giant:giant?{id:giant.id,alive:alive(giant)&&!walks.get(giant.id).departed,attackRound:giantAttack===null?null:giantAttack+1}:null,approachesSecured:bothApproaches()};
    return state.cleared;
   }
@@ -294,7 +320,7 @@ export async function createStage59Owner({C,packet,authorize,verifyIncoming,crea
     if(attacker)selected.push(attacker.id);
    }
    const booked=b.queue.filter(id=>available(e.unit(id))&&!selected.includes(id));
-   b.queue=[...selected,...booked].slice(0,b.enemyLimit);
+   b.queue=[...selected,...booked].slice(0,Math.min(b.enemyLimit,FRONTS59.attackCap));
    if(b.queue.length)b.active=b.queue[0];
    for(const u of e.actors(1))u.acted=!b.queue.includes(u.id);
    return out;
@@ -317,7 +343,7 @@ export async function createStage59Owner({C,packet,authorize,verifyIncoming,crea
    if(body&&target.hp+target.shield<before){
     if(target===giant){
      if(alive(giant))answerForepaw('strike',{actor:owner,shot:b.shot,damage:before-target.hp-target.shield});
-     else if(!state.forepaw){state.forepaw='defeated';note('forepaw-answered',{id:giant.id,reason:'defeated',actor:owner,shot:b.shot});}
+     else if(!state.forepaw){clearGiantSweep();state.forepaw='defeated';note('forepaw-answered',{id:giant.id,reason:'defeated',actor:owner,shot:b.shot});}
     }else retreat(body,'driven-back');
    }
    if(was&&alive(threat)&&threat.hp+threat.shield<hp){retreatOrder={actor:owner,shot:b.shot,from:threat.x,walked:0,ticks:0};
@@ -365,6 +391,21 @@ export async function createStage59Owner({C,packet,authorize,verifyIncoming,crea
   const sweep=e.enemyActionSteps=function* (...args){
    if(active()&&retreatOrder&&retreatOrder.ticks<150&&e.active===threat&&threat.moveLeft>=8&&grounded(threat,near)&&!resolved()&&b.side===1){yield;return;}
    if(active()&&walks.get(e.active?.id)?.out&&b.side===1){e.finishAction();return;}
+   if(active()&&b.side===1&&e.active===giant&&giantSweep&&!state.forepaw){
+    const pending=giantSweep;clearGiantSweep();
+    if(grounded(giant,near)&&Math.abs(giant.x-pending.x)<=160){
+     const damage=e.effective(C.SKILLS.HWD01,giant).damage,hits=[];
+     for(const a of contacts(e,pending.strip)){
+      const before=[a.u.hp,a.u.shield];e.hurt(a.u,damage,giant.id,false,undefined,a.contact,'normal','HWD01');
+      hits.push({id:a.u.id,before,after:[a.u.hp,a.u.shield]});
+     }
+     giantAttack=b.teamEnds[1];giantSweeps++;
+     lastGiantSweep={sequence:pending.sequence,strip:pending.strip,round:b.round};
+     note('giant-sweep-resolved',{direction:pending.lane.direction,hits,damage});
+     e.fx('ring',pending.strip.footprint.at(-1).x,pending.strip.footprint.at(-1).y,'#b67458',62);
+     e.finishAction();return;
+    }
+   }
    if(active()&&warning?.status==='armed'&&!clash&&b.side===1&&e.active===threat&&warning.responded===true&&grounded(threat,near)){
     const strip=buildStrip(e,C);
     if(eq(strip,warning.strip)){
@@ -380,8 +421,10 @@ export async function createStage59Owner({C,packet,authorize,verifyIncoming,crea
   const flags=()=>Object.fromEntries(auth.map(k=>[k,true]));
   return Object.freeze({poll,interact:instance.interact,defend:base=>proveDefend(e.active,base),project(){
    if(!current()||everDisposed)return null;
-   return {complete:state.cleared,objectiveReady:state.cleared,failed:!units.some(alive)||!!lostReason,breach,breachLimit:FRONTS59.breachLimit,
-    summary:(lostReason?'거점이 모두 밀렸습니다.':state.cleared?'가름진을 세웠습니다. 산문 길이 열렸습니다.':state.activated?'교각을 막는 마지막 위협을 물리치십시오.':giant&&!state.forepaw?'교각의 앞발을 맞서 막거나 쳐서 물리치십시오.':!bothApproaches()&&state.mage&&state.cliff?'되밀리는 두 전선에서 지지점을 유지하십시오.':'서쪽 지지석, 종터 혼길, 동쪽 파열을 복구하십시오.')+(state.retreat&&!state.cleared?` · 거점 붕괴 ${breach}/${FRONTS59.breachLimit}`:''),
+   const failure=!alive(actor.occultist)?'혼길을 잇던 소단을 지키지 못했습니다.':units.some(u=>!alive(u))?'네 사람이 함께 돌아갈 길을 지키지 못했습니다.':'거점이 모두 밀렸습니다.';
+   const failed=units.some(u=>!alive(u))||!!lostReason;
+   return {complete:!failed&&state.cleared,objectiveReady:!failed&&state.cleared,failed,breach,breachLimit:FRONTS59.breachLimit,
+    summary:(failed?failure:state.cleared?'가름진을 세웠습니다. 산문 길이 열렸습니다.':state.activated?(resolved()?'네 사람이 돌길에 안전하게 내려서십시오.':'교각을 막는 마지막 위협을 물리치십시오.'):giant&&!state.forepaw?'교각의 앞발을 맞서 막거나 쳐서 물리치십시오.':!bothApproaches()&&state.mage&&state.cliff?'되밀리는 두 전선에서 지지점을 유지하십시오.':'서쪽 지지석, 종터 혼길, 동쪽 파열을 복구하십시오.')+(state.retreat&&!state.cleared?` · 거점 붕괴 ${breach}/${FRONTS59.breachLimit}`:''),
     targets:[...(!state.retreat?[{id:'return-guard',kind:'route',x:900*k,y:C.topAt(terrain[0],900*k),label:'휘겸: 퇴각한 곳의 수비대 확인'}]:[]),
      ...(state.retreat&&!state.cliff?[{id:'cliff-cleat',kind:'target',x:522*k,y:1871.8947026324342,label:'설오: 서쪽 지지석 정밀 사격'}]:[]),
      ...(state.retreat&&!state.bridge?[{id:'bridge-hold',kind:'route',x:958*k,y:C.topAt(terrain[0],958*k),label:'휘겸: 교각에서 방어 후 적 턴 버티기'}]:[]),
@@ -390,12 +433,12 @@ export async function createStage59Owner({C,packet,authorize,verifyIncoming,crea
      ...(giant&&!state.forepaw?[{id:'forepaw',kind:'target',x:giant.x,y:giant.y-giant.h*.5,label:'혼류의 앞발 · 교각 방어 또는 직접 타격'}]:[]),
      ...(canJoin()&&!state.activated?[{id:'activateGarmjin',kind:'interaction',x:1755*k,y:C.topAt(terrain[0],1755*k),label:'소단: 가름진 연결'}]:[])],
     states:copy(state),survivors:b.units.filter(u=>u.side===1&&alive(u)).length};
-  },inspect:()=>copy({state,log,waves,warning,clash}), renderRole(ctx,scene,u){
+  },inspect:()=>copy({state,log,waves,warning,clash,giantSweep,lastGiantSweep,giantSweeps,lostReason}), renderRole(ctx,scene,u){
    if(!active()||!paint||!alive(u)||u.side!==1||e.unit(u.id)!==u||!(u===bell||walks.get(u.id)?.unit===u))return false;
    const ledger=copy(waves);ledger.currentRound=b.round;
    return paint(ctx,scene,copy(u),Object.freeze({stage:59,ledger,front:b.honroState.localFinaleFront?.id}));
   },terminal(){
-   if(!current()||terminalIssued||everDisposed||!state.cleared||b.phase!=='won'||JSON.stringify(b.terrain)!==p||JSON.stringify(b.honroWorldTerrain)!==w)return null;
+   if(!current()||terminalIssued||everDisposed||lostReason||!crewGrounded()||!state.cleared||b.phase!=='won'||JSON.stringify(b.terrain)!==p||JSON.stringify(b.honroWorldTerrain)!==w)return null;
    terminalIssued=true;
    return {stage:59,won:true,flags:flags(),actors:copy(units),profile:copy(app.profile),round:b.round,settlement:false};
   },physicalBoundary(){

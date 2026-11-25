@@ -77,7 +77,8 @@
         e.checkEnd=()=>a.checkMission(e);return true;
       }
       function stage57UI(a,s,e,split=false){
-        if(!scope57(a,e,s)||a.done||a.dialogue||a.modal.classList.contains('open'))return;
+        if(!scope57(a,e,s)||a.dialogue||a.modal.classList.contains('open'))return;
+        if(a.done){presentNormal57Loss(a,s);return;}
         const actions=s.owner57.project()?.appActions,id=split?actions?.alt:actions?.mission;if(!id)return;
         const q=s.owner57.interact(id);a.notify(q.ok?q.label:q.reason);e.checkEnd();tick57(a);a.updateHUD(true);
       }
@@ -104,7 +105,12 @@
           }
           s.hallSill57=true;
         }
-        if(s.button){s.button.textContent=s.hallSill57&&!r.complete&&!r.failed&&!r.appActions?.mission?'서쪽 징검석에 뛰어올라 네 사람이 산문을 건너십시오.':r.summary;s.button.disabled=r.complete||r.failed;s.button.dataset.act6Mission=r.appActions?.mission??'';}
+        if(s.button){
+          const retry=r.failed&&a.done;
+          s.button.textContent=retry?'결과와 다시 걷기':s.hallSill57&&!r.complete&&!r.appActions?.mission?'서쪽 징검석에 뛰어올라 네 사람이 산문을 건너십시오.':r.summary;
+          s.button.disabled=r.complete||(r.failed&&!retry);
+          s.button.dataset.act6Mission=r.appActions?.mission??'';
+        }
         if(s.alt){s.alt.hidden=!r.appActions?.alt;s.alt.disabled=s.alt.hidden;}
         if((r.complete||r.failed)&&!a.done)e.checkEnd();
       }
@@ -115,4 +121,21 @@
         if(active.length!==4||Object.keys(full).length!==4||!r.body.every(row=>{const u=e.unit(row.id);return u?.cls===row.role&&u.x-3200===row.receiving[0]&&u.y+758===row.receiving[1]&&e.grounded(u)&&
           e.contactSurface(u.x,u.y-4,u.y+5)?.t.id==='local-07-08-exact-receiving-slice';}))return null;
         return {stage:57,won:true,settlement:false,flags:r.flags,crew:full,boundary:{full,receiving:Object.fromEntries(r.body.map(row=>[row.role,{x:row.receiving[0],y:row.receiving[1]}])),guard:r.guard,association:r.association,...(s.interiorD?{interiorD:structuredClone(s.interiorD)}:{})}};
+      }
+      function failedNormal57(a,s){
+        return !!(s&&scope57(a,s.engine,s)&&a.done&&s.b.phase==='lost'&&s.owner57.project().failed);
+      }
+      function presentNormal57Loss(a,s){
+        if(!failedNormal57(a,s))return false;
+        a.open('<header class="result-fixed"><div class="result-title">길에서 물러났다</div></header><div class="result-body"><p data-act6-loss-57></p><p>쉼터에서 6막 7장 기록을 다시 이어갈 수 있습니다.</p></div><div class="actions result-actions"><button type="button" class="primary" data-act6-retry-57>쉼터에서 다시 걷기</button></div>','result');
+        a.modal.querySelector('[data-act6-loss-57]').textContent=s.b.winnerReason;
+        a.modal.querySelector('[data-act6-retry-57]').addEventListener('click',event=>{
+          if(!event.isTrusted||!failedNormal57(a,s))return;
+          if(typeof retryBoundary57==='function'&&!retryBoundary57(a)){
+            a.notify('6막 7장 기록을 확인할 수 없습니다.');return;
+          }
+          a.showRest();
+        });
+        a.audio?.play('lose');
+        return true;
       }

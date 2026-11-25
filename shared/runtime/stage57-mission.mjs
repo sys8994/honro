@@ -10,7 +10,8 @@ export function createStage57Mission({G,authorize,earlierResult,isDetachedFixtur
   const trusted=earlierResult(previous,b,pack);
   if(!trusted?.won||!trusted.flags?.['act6.temporaryPassageEscaped']||JSON.stringify(trusted.profile)!==JSON.stringify(carriedProfile))return null;
   const authority=Object.freeze({engine,b});
-  const early=mountEmergency57({G,engine,authority,authorize:(v,e)=>v===authority&&e===engine&&e.b===b,heroes,foes,observe:cfg.observe});
+  const early=mountEmergency57({G,engine,authority,authorize:(v,e)=>v===authority&&e===engine&&e.b===b,
+   heroes,foes,bodyReunited:()=>b.honroState.flags[pack.required.marker]===true,observe:cfg.observe});
   if(!early)return null;
   privateWrite.add(engine);
   let physical=null;

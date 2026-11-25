@@ -84,7 +84,9 @@ export function stage57Adapter(G,{normalPort=null}={}){
   }
   function project(){
    const key=act(),row=route[key],complete=ready?.won===true,failed=ready?.won===false;
-   const summary=failed?'귀환 통로가 무너졌습니다.':complete?'네 사람의 실체가 이어졌습니다.':row?.[0]??'같은 길을 밟고 실체 전원을 안쪽 받침으로 이동시키십시오.';
+   const failure=ready?.reason==='parked-darmheo-fallen'?'돌단에 남은 담허의 육신을 잃었습니다.'
+    :ready?.reason==='stationary-ward-broken'?'담허의 육신을 받치던 돌단이 무너졌습니다.':'귀환 통로가 무너졌습니다.';
+   const summary=failed?failure:complete?'네 사람의 실체가 이어졌습니다.':row?.[0]??'같은 길을 밟고 실체 전원을 안쪽 받침으로 이동시키십시오.';
    const safe=key==='openRetreat'?mission.read().emergency.railing?.approach:null;
    return {complete,objectiveReady:complete,failed,summary,targets:row?[{id:key,kind:'route',x:safe?.x??row[1],y:safe?.y,label:row[0]}]:[],appActions:{mission:key,alt:key==='repairRelay'?'splitRepair':null}};
   }

@@ -26,7 +26,7 @@ export function createStage57Owner({G,authorize,earlierResult,isDetachedFixture=
   const players=()=>b.units.filter(x=>x.side===0&&!x.summoned&&x!==physicalKeeper);
   const three=players().filter(x=>x.cls!=='mage'),body=e.unit(oldBody),present=e.unit(m.id);
   if(!roleSet(three,classes.slice(0,3))||typeof m.id!=='string'||!m.id||m.cls!=='mage'||m.equipmentState?.version!==1||!alive(m))return releaseDenial('parked original identity or detached outer bodies invalid');
-  if(!afterFold&&(!body?.honroVisualOnly||body.side!==2||!e.grounded(body)||body.x!==5384||body.y!==2976||present))return releaseDenial('intact original body required');
+  if(!afterFold&&(!alive(body)||!body.honroVisualOnly||body.side!==2||!e.grounded(body)||body.x!==5384||body.y!==2976||present))return releaseDenial('intact original body required');
   if(afterFold&&(body||!alive(present)||present.cls!=='mage'||present.side!==0||!e.grounded(present)||present.summoned||checkpoint.association?.id!==m.id||!b.honroState.flags[pack.required.marker]))return releaseDenial('actual restored original body required');
   if(!resumed&&(!keeper||keeper.id!==keeperId||keeper.side!==0||!alive(keeper)||!e.grounded(keeper)||!C.validTerrainContactPose(b.terrain,keeper)||b.units.includes(keeper)||b.units.some(x=>x.id===keeperId)))return releaseDenial('known real keeper spawn missing');
   if(resumed&&(!physicalKeeper||physicalKeeper.side!==2||!physicalKeeper.fixed||!e.grounded(physicalKeeper)||checkpoint.guard?.ref!==keeperId||!b.honroState.flags[fallback]||
@@ -41,7 +41,7 @@ export function createStage57Owner({G,authorize,earlierResult,isDetachedFixture=
   const preserve=()=>JSON.stringify(carriedProfile)===profileBaseline;
   const native=()=>preserve()&&b.phase==='aim'&&b.side===0&&!b.projectiles.length&&e.canAct();
   const fallbackLive=()=>b.honroState.flags[fallback]===true&&three.every(alive);
-  const propSafe=()=>e.unit(oldBody)===body&&!b.terrain.find(t=>t.id===pack.required.wardId)?.broken&&e.grounded(body);
+  const propSafe=()=>e.unit(oldBody)===body&&alive(body)&&!b.terrain.find(t=>t.id===pack.required.wardId)?.broken&&e.grounded(body);
   function startKeeper(){
    if(entered||guard||!native()||!fallbackLive()||!propSafe())return false;
    entered=watchPose(keeper);

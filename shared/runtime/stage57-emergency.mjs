@@ -4,14 +4,16 @@ const phaseRows=[
 const approachRange=115;
 const ids={gate:'a6-c07-railing',relay:'a6-c07-protective-relay',ward:'a6-c07-stationary-stone-ward'};
 const once=new WeakSet();
-export function mountEmergency57({G,engine:e,authorize,authority,heroes,foes,observe=()=>{},replayLoss=false}){
+export function mountEmergency57({G,engine:e,authorize,authority,heroes,foes,bodyReunited,observe=()=>{},replayLoss=false}){
  const b=e?.b,C=G?.HONRO_CORE;
  if(!C||!(e instanceof C.Engine)||once.has(e)||typeof authorize!=='function'||!authorize(authority,e)||!b.honroState?.flags['act6.firstGarmjinFailed'])return null;
  const activeParty=b.units.filter(x=>x.side===0&&!x.summoned);
  if(heroes.length!==3||activeParty.length!==3||!heroes.every(x=>activeParty.includes(x))||new Set(heroes.map(x=>x.cls)).size!==3||heroes.some(x=>!['knight','archer','occultist'].includes(x.cls))||foes.length!==3)return null;
  const get=id=>b.terrain.find(t=>t.id===id);
  const gate=get(ids.gate),relay=get(ids.relay),ward=get(ids.ward),flags=b.honroState.flags;
- if(!gate||!relay||!ward||Object.values(ids).some(id=>!b.honroWorldTerrain.some(t=>t.id===id)))return null;
+ const body=e.unit('a6-c07-original-darmheo-body');
+ if(!gate||!relay||!ward||!body||typeof bodyReunited!=='function'||
+    Object.values(ids).some(id=>!b.honroWorldTerrain.some(t=>t.id===id)))return null;
  if(foes.some(x=>x.side!==1||!e.grounded(x))||b.units.some(x=>x.id===foes[1].id))return null;
  const approved={},ai=[],structure=[],events=[];
  let seconds=0,ticks=0,bellStart=false,repair=false,warningAt=null,ready=false,loss=null;
@@ -30,9 +32,12 @@ export function mountEmergency57({G,engine:e,authorize,authority,heroes,foes,obs
  }
  function inspect(){
   if(loss)return;
-  const bodyStillPresent=b.units.some(u=>u.id==='a6-c07-original-darmheo-body');
-  if((!ready&&relay.broken)||(bodyStillPresent&&ward.broken)||heroes.some(a=>a.dead||a.hp<=0)){
-   loss=!ready&&relay.broken?'protective-relay-broken':bodyStillPresent&&ward.broken?'stationary-ward-broken':'fallen';
+  const parked=!bodyReunited();
+  if(parked&&(!b.units.includes(body)||body.dead||body.hp<=0))loss='parked-darmheo-fallen';
+  else if(parked&&ward.broken)loss='stationary-ward-broken';
+  else if(!ready&&relay.broken)loss='protective-relay-broken';
+  else if(heroes.some(a=>a.dead||a.hp<=0))loss='fallen';
+  if(loss){
    stamp('emergency-failed',{loss});if(replayLoss)b.phase='lost';return;
   }
   if(!ready&&phaseRows.every(([flag])=>flags[flag])&&heroes.every(a=>grounded(a,1968,124))){
