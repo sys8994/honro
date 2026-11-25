@@ -415,10 +415,10 @@ index 0000000..6fa1ea6
 + return Object.freeze({mountEnding,readPanelFrame,trustedUIAction,writeEnding});
 +}
 diff --git a/shared/act6-ending-replan/presentation.css b/shared/act6-ending-replan/presentation.css
-index 04ed2ea..90a7b01 100644
+index 04ed2ea..468a173 100644
 --- a/shared/act6-ending-replan/presentation.css
 +++ b/shared/act6-ending-replan/presentation.css
-@@ -1,48 +1,67 @@
+@@ -1,48 +1,74 @@
 -.honro-ending-60-controls{display:flex;align-items:center;justify-content:center;gap:.5rem;flex-wrap:wrap}
 -.honro-ending-60-controls button[hidden]{display:none}
 -.honro-ending-60 .h6ending-naru,.honro-ending-60 .h6ending-ledger{position:relative;isolation:isolate;overflow:hidden;box-sizing:border-box;border:1px solid #4d4a41;max-width:62rem}
@@ -515,11 +515,7 @@ index 04ed2ea..90a7b01 100644
 + .he-root[data-ending-still="final"] .he-veil{background:linear-gradient(180deg,#b4bdd859,transparent 50%)}
 + .he-root[data-ending-still="final"] .he-copy{left:50%;width:85%;top:max(12%,calc(env(safe-area-inset-top) + 57px))}
 + .he-root[data-ending-motion="lamp"] .he-fx i{top:61%;left:82%}
- }
--@media(prefers-reduced-motion:reduce){.honro-ending-60 *{animation:none!important;transition:none!important}}
--
--.h6ending-preparing{visibility:hidden!important}
--.h6ending-preparing *{animation-play-state:paused!important}
++}
 +@media(prefers-reduced-motion:reduce){.he-still.he-drift,.he-names span,.he-fx i{animation:none!important}}
 +/* Sodan's road is part of the shot. Keep the ground visible, not vignetted. */
 +.he-root[data-ending-still="still_06b"] .he-veil{background:none}
@@ -533,6 +529,17 @@ index 04ed2ea..90a7b01 100644
 + .he-root[data-ending-still="still_06b"] .he-copy{left:31%;width:min(47%,720px);bottom:max(7%,env(safe-area-inset-bottom))}
 +}
 +.he-root[data-ending-still="still_06b"] .he-fx{display:none}
++/* This composition depends on seeing the hat brim and both bases at once. */
++@media(orientation:portrait){
++ .he-root[data-ending-still="still_06b"] .he-media{bottom:clamp(110px,15%,138px)}
++ .he-root[data-ending-still="still_06b"] .he-still{object-fit:contain;object-position:center top;animation:none}
++ .he-root[data-ending-still="still_06b"] .he-copy{bottom:max(2.5%,calc(env(safe-area-inset-bottom) + 5px))}
++ .he-root[data-ending-still="still_06b"] .he-line{background:none;padding:0}
+ }
+-@media(prefers-reduced-motion:reduce){.honro-ending-60 *{animation:none!important;transition:none!important}}
+-
+-.h6ending-preparing{visibility:hidden!important}
+-.h6ending-preparing *{animation-play-state:paused!important}
 diff --git a/shared/act6-ending-replan/presentation.inc.js b/shared/act6-ending-replan/presentation.inc.js
 index 9c88124..1635380 100644
 --- a/shared/act6-ending-replan/presentation.inc.js
@@ -1279,10 +1286,10 @@ index 0000000..da77c32
 + b.close()
 diff --git a/tools/act6-ending-v2/preview.py b/tools/act6-ending-v2/preview.py
 new file mode 100644
-index 0000000..6fded9d
+index 0000000..4153b73
 --- /dev/null
 +++ b/tools/act6-ending-v2/preview.py
-@@ -0,0 +1,133 @@
+@@ -0,0 +1,142 @@
 +"""Play the release-shaped site locally or test its deployed URL without touching a real save."""
 +import argparse
 +import json
@@ -1407,7 +1414,16 @@ index 0000000..6fded9d
 +            assert r.count()==1
 +            page.keyboard.down('Escape');page.clock.run_for(2020);page.keyboard.up('Escape')
 +        else:
-+            page.clock.fast_forward(27000)
++            skip=r.locator('[data-ending-action="skip"]')
++            box=skip.bounding_box()
++            pt={'x':box['x']+box['width']/2,'y':box['y']+box['height']/2}
++            cd.send('Input.dispatchTouchEvent',{'type':'touchStart','touchPoints':[pt]})
++            page.clock.run_for(850)
++            cd.send('Input.dispatchTouchEvent',{'type':'touchEnd','touchPoints':[]})
++            assert r.count()==1
++            cd.send('Input.dispatchTouchEvent',{'type':'touchStart','touchPoints':[pt]})
++            page.clock.run_for(2020)
++            cd.send('Input.dispatchTouchEvent',{'type':'touchEnd','touchPoints':[]})
 +        assert r.count()==0
 +        assert page.evaluate("HonroApp.modal.classList.contains('open')&&HonroApp.settingsPage==='debug'")
 +        assert before==snapshot(page)
@@ -1415,4 +1431,4 @@ index 0000000..6fded9d
 +        c.close()
 +    b.close()
 +assert not errors,errors
-+print(json.dumps({'debugStills':9,'pc':True,'mobile':True,'rotationStableBeat':True,'tapNextSmooth':True,'desktopEscHold':True,'naturalEnd':True,'previewSaveBytesUnchanged':True,'live':args.live}))
++print(json.dumps({'debugStills':9,'pc':True,'mobile':True,'rotationStableBeat':True,'tapNextSmooth':True,'desktopEscHold':True,'mobileSkipHold':True,'previewSaveBytesUnchanged':True,'live':args.live}))
