@@ -114,7 +114,9 @@ export async function createStage59Owner({C,packet,authorize,verifyIncoming,crea
     if(f.warned!==key){f.warned=key;b.honroState.localFinaleIncoming={front:f.id,squad:f.next,round:due,line:f.line};e.message(f.line);note('front-warned',{front:f.id,squad:f.next,due});}
     if(round<due||waves.rounds.some(o=>o.round===round&&o.front===f.id))continue;
     f.left??=f.squads[f.next].slice();
-    const room=Math.min(FRONTS59.perFrontCap-frontAlive(f)+(giant?1:0),FRONTS59.totalCap-enemyAlive()-Number(!bell)-Number(!giant));
+    // Let both fronts make first contact, even when the opening line still stands.
+    const otherWaiting=fronts.some(z=>z!==f&&z.spawned===0);
+    const room=Math.min(FRONTS59.perFrontCap-frontAlive(f)+(giant?1:0),FRONTS59.totalCap-enemyAlive()-Number(!bell)-Number(otherWaiting));
     if(room<=0){f.held++;waves.rounds.push({round,action:'held',front:f.id,squad:f.next});note('wave-held',{front:f.id,squad:f.next,room});continue;}
     // Partial entry: as many bodies as the front has room for come now, the rest next round.
     const bodies=f.left.splice(0,room);
@@ -129,7 +131,7 @@ export async function createStage59Owner({C,packet,authorize,verifyIncoming,crea
     waves.rounds.push(want);f.spawned+=picked.length;if(!f.left.length){f.next++;f.left=null;}note('wave-spawn',{front:f.id,count:picked.length,cap});
    }
    // The giant forepaw body joins once both fronts have pushed (a bent line, not a timer).
-   if(!giant&&fronts.every(f=>f.next>=1)){
+   if(!giant&&enemyAlive()<FRONTS59.totalCap&&fronts.every(f=>f.next>=1)){
     const v=reserve(['finale-giant-forepaw','warden',1180,near]);
     if(v){Object.assign(v,{name:'혼류의 앞발',honroRigAsset:'forepaw',maxHp:Math.round(v.maxHp*2.6),hp:Math.round(v.maxHp*2.6),armor:Math.max(v.armor,.18),h:Math.round(v.h*1.9),r:Math.round(v.r*1.8)});giant=v;add(v);e.message('교각 아래에서 거대한 앞발이 몸째로 올라옵니다.');note('giant-arrived',{id:v.id,hp:v.hp});}
    }
