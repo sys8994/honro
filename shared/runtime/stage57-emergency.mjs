@@ -58,7 +58,7 @@ export function mountEmergency57({G,engine:e,authorize,authority,heroes,foes,obs
    if(railing().blocked.length)return false;
    if(b.units.some(x=>x.id===foes[1].id))return false;
    const before=gate.hp;e.damageTerrain(gate,gate.hp+1,0,a.id);if(!gate.broken)return false;
-   copyBroken(gate);b.units.push(foes[1]);stamp('retreatReached(bridge)',{spawned:foes[1].id});
+   copyBroken(gate);b.units.push(foes[1]);e.refreshActivation();stamp('retreatReached(bridge)',{spawned:foes[1].id});
    structure.push({id:gate.id,kind:'guard-collapse',before,after:gate.hp,warning:true,tick:ticks});
   }
   if(f===phaseRows[2][0]&&!repair)return false;

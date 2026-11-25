@@ -132,16 +132,35 @@ def approach_reunion(page,cls,target,tolerance):
             return
     except AssertionError:
         pass
-    lip=march(page,5185,cls=cls,tolerance=60)
+    jump_onto_ward(page,cls)
+
+
+def jump_onto_ward(page,cls,context=None):
+    left=page.evaluate("""()=>{
+        const terrain=HonroApp.engine.b.terrain;
+        return (terrain.find(t=>t.id==='local-07-08-folded-ward-bridge')??
+                terrain.find(t=>t.id==='a6-c07-stationary-stone-ward')).x;
+    }""")
+    lip=march(page,left-105,cls=cls,tolerance=45)
     if not page.locator('#jump').is_enabled():
         page.keyboard.press('f')
         ready(page,45000)
-        lip=march(page,5185,cls=cls,tolerance=60)
+        lip=march(page,left-105,cls=cls,tolerance=45)
     assert page.locator('#jump').is_enabled(),lip
-    page.keyboard.press('Control')
-    page.wait_for_function('start=>HonroApp.engine.active.y<=start-36',arg=lip['y'],timeout=4000)
-    sample_walk(page,1,5296,2600)
-    page.wait_for_function('HonroApp.engine.grounded(HonroApp.engine.active)',timeout=5500)
+    if context:
+        from mobile_seams import move
+        page.locator('#jump').tap(timeout=5000)
+    else:
+        page.keyboard.press('Control')
+    page.wait_for_function('start=>HonroApp.engine.active.y<=start-72',arg=lip['y'],timeout=4000)
+    goal=left+39
+    if context:
+        move(context,page,1,'x=>HonroApp.engine.active.x>=x',goal,timeout=4500)
+    else:
+        sample_walk(page,1,goal,3200)
+    landing=actor(page)
+    page.wait_for_function('HonroApp.engine.grounded(HonroApp.engine.active)',timeout=6500)
+    return {'takeoff':lip,'afterTraverse':landing,'landed':actor(page)}
 
 def touch_send_d(context,page,steps):
     from mobile_seams import POINTER_EVENTS, move
@@ -162,10 +181,8 @@ def touch_send_d(context,page,steps):
             raise AssertionError(f'No remaining movement for {identity} on D')
         steps['touch-start-'+cls]=foot
         if foot['contact'] not in D_APPROACH:
-            march(page,5260,cls=cls,tolerance=25)
-            page.locator('#jump').tap(timeout=5000)
-            page.wait_for_function("""ids=>{const e=HonroApp.engine,u=e.active;return e.grounded(u)&&
-                ids.includes(e.contactSurface(u.x,u.y-4,u.y+5)?.t.id);}""",arg=D_APPROACH,timeout=5000)
+            steps['jump-'+cls]=jump_onto_ward(page,cls,context)
+            assert steps['jump-'+cls]['landed']['contact'] in D_APPROACH,steps['jump-'+cls]
         steps['ramp-'+cls]=actor(page)
         for _ in range(6):
             foot=actor(page)
@@ -199,7 +216,7 @@ def relay_defense(page):
     return trials
 
 
-def live_d(browser,out,sodan=False,session=None,touch_d=False,pressure=False,check_clearance=False):
+def live_d(browser,out,sodan=False,session=None,touch_d=False,pressure=False,check_clearance=False,rng=None):
     ctx,page=session if session else (seeded_context(browser,57,mobile=touch_d),None)
     if page is None:
         page=ctx.new_page()
@@ -211,6 +228,9 @@ def live_d(browser,out,sodan=False,session=None,touch_d=False,pressure=False,che
             resume(page,57,True,mobile=touch_d)
         else:
             base.dismiss_dialogue(page)
+        if rng is not None:
+            page.evaluate('seed=>{HonroApp.engine.b.rng=seed;}',rng)
+            q['controlledRng']=rng
         if pressure:
             from exterior_combat import TRACE
             page.evaluate(TRACE)
@@ -273,7 +293,7 @@ def live_d(browser,out,sodan=False,session=None,touch_d=False,pressure=False,che
         page.wait_for_function("""()=>{const e=HonroApp.engine,u=e.active;return e.grounded(u)&&
           e.contactSurface(u.x,u.y-4,u.y+5)?.t.id==='a6-c07-stationary-stone-ward';}""",timeout=4300)
         steps['archerOnWard']=actor(page)
-        for cls,x,tolerance in [('occultist',5285,18),('knight',5385,19),('archer',5315,13)]:
+        for cls,x,tolerance in [('knight',5385,19),('occultist',5285,18),('archer',5315,13)]:
             approach_reunion(page,cls,x,tolerance)
         steps['reunionFeet']=reunion_feet(page)
         assert set(steps['reunionFeet'])=={'archer','knight','occultist'} and all(v['ready'] for v in steps['reunionFeet'].values()),steps['reunionFeet']
@@ -310,10 +330,8 @@ def live_d(browser,out,sodan=False,session=None,touch_d=False,pressure=False,che
             for cls,x in [('occultist',6200),('knight',6090),('mage',5992),('archer',5872)]:
                 select(page,cls,advance=True)
                 if actor(page)['contact'] not in D_APPROACH:
-                    march(page,5260,cls=cls,tolerance=25)
-                    page.keyboard.press('Control')
-                    page.wait_for_function("""ids=>{const e=HonroApp.engine,u=e.active;return e.grounded(u)&&
-                      ids.includes(e.contactSurface(u.x,u.y-4,u.y+5)?.t.id);}""",arg=D_APPROACH,timeout=5000)
+                    steps['jump-'+cls]=jump_onto_ward(page,cls)
+                    assert steps['jump-'+cls]['landed']['contact'] in D_APPROACH,steps['jump-'+cls]
                 steps['ramp-'+cls]=actor(page)
                 if cls=='archer':
                     sample_walk(page,1,x,4200)
@@ -523,13 +541,14 @@ def main():
     p.add_argument('--touch-d',action='store_true')
     p.add_argument('--pressure',action='store_true')
     p.add_argument('--check-clearance',action='store_true')
+    p.add_argument('--rng',type=int)
     opts=p.parse_args()
     base.ROOT=opts.build.resolve()
     opts.out.mkdir(parents=True,exist_ok=True)
     with sync_playwright() as pw:
         browser=pw.chromium.launch(executable_path='/usr/bin/chromium',headless=True,
                                    args=['--no-sandbox','--disable-dev-shm-usage'])
-        entries=[(f'{opts.case}-{hz}',gallery(browser,opts.out,hz,opts.case=='gallery-combat',opts.case=='gallery-force')) for hz in opts.rates] if opts.case!='live-d' else [('live-d',live_d(browser,opts.out,opts.sodan,touch_d=opts.touch_d,pressure=opts.pressure,check_clearance=opts.check_clearance))]
+        entries=[(f'{opts.case}-{hz}',gallery(browser,opts.out,hz,opts.case=='gallery-combat',opts.case=='gallery-force')) for hz in opts.rates] if opts.case!='live-d' else [('live-d',live_d(browser,opts.out,opts.sodan,touch_d=opts.touch_d,pressure=opts.pressure,check_clearance=opts.check_clearance,rng=opts.rng))]
         for label,result in entries:
             (opts.out/f'{label}.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
             print(label,result['status'],result.get('error',''),flush=True)

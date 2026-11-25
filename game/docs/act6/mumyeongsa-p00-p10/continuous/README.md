@@ -29,3 +29,7 @@ python game/docs/act6/mumyeongsa-p00-p10/baseline/continuous.py --build "$PWD" -
 ```bash
 python game/docs/act6/mumyeongsa-p00-p10/baseline/hall_passage.py --build "$PWD" --out /tmp/honro-57-grounded-rail --case live-d --check-clearance
 ```
+
+다음 연속 판은 실제 복구 뒤 56까지 같은 원본 바이트와 다섯 경계 해시를 기록했다. 56의 역류를 재현했고, 보통축 E에서 방어 후 다음 조작을 기다린 22초 한계에 걸렸다. 중단 화면에는 라운드 5의 담허가 E에 접지하고 입력 단계로 돌아와 있었다. 후속 실행은 방어 직전 상태와 좌표를 기록하며 실제 적 포격이 끝날 때까지 60초를 허용한다. [첫 중단과 다섯 경계](reflow-flight-first.json)
+
+57 독립 정상 판은 휘겸이 돌단과 접힌 하단 앞을 실제로 다시 도약했다. 안전 난간과 곽진 관련 절차, 네 원본의 D 발접촉, 58 라이브와 새 일반 기록까지 확인했다. 57의 로스터는 7/17, 최대 활성/공격 9/6, 7라운드로 누적·라운드 하한은 남았다. [57 독립 원자료](../encounters/57-native-capped.json)

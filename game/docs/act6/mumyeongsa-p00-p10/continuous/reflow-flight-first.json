@@ -1,0 +1,682 @@
+{
+  "status": "FAIL",
+  "boundaries": [
+    {
+      "from": 51,
+      "to": 52,
+      "storageHash": "b2e5b0a7f7f5ef99e10b1f9a67b64a4b8dab2ca6831037d5ce4f4bd3da18aa48"
+    },
+    {
+      "from": 52,
+      "to": 53,
+      "storageHash": "c66d9326b10de5c4ce2876a24c7a3b42a7610a19e7f832824895692eb26dda66"
+    },
+    {
+      "from": 53,
+      "to": 54,
+      "storageHash": "dfb83b874c73c185c09feab934020d26a1eb66665cdf589ebc6c65dbe6a289e1"
+    },
+    {
+      "from": 54,
+      "to": 55,
+      "storageHash": "903e43295db69d78a967c6e5010bac9558d7b234eaadc5ea55102c99944af3cc"
+    },
+    {
+      "from": 55,
+      "to": 56,
+      "storageHash": "9c5cec41fea03c23854689f4ef2e108f39f5882c94aaaaec0334d5f91f8f3125"
+    }
+  ],
+  "errors": [],
+  "error": "Page.wait_for_function: Timeout 22000ms exceeded.",
+  "last": {
+    "stageId": 56,
+    "honroStage": 56,
+    "mode": "campaign",
+    "authoredId": "stage-56",
+    "round": 5,
+    "phase": "aim",
+    "side": 0,
+    "shot": 12,
+    "rng": 42126033087,
+    "active": "p-mage",
+    "dialogue": false,
+    "isolatedStore": false,
+    "play": [
+      6720,
+      5040
+    ],
+    "terrainBounds": {
+      "left": -4528,
+      "top": -1992,
+      "right": 11488,
+      "bottom": 13776
+    },
+    "playBounds": {
+      "left": 0,
+      "top": 0,
+      "right": 6720,
+      "bottom": 5040
+    },
+    "camera": {
+      "x": 5443.136137423583,
+      "y": 3763.6757481530767,
+      "zoom": null
+    },
+    "gravity": {
+      "x": 0,
+      "y": 320
+    },
+    "fieldFlags": [
+      {
+        "id": "act6-06-local-failure-reflow",
+        "gravity": {
+          "x": 0,
+          "y": 320
+        },
+        "projectileOnly": true
+      }
+    ],
+    "terrain": [
+      {
+        "id": "A-01-upper-entry",
+        "vertices": 4,
+        "oneWay": false
+      },
+      {
+        "id": "C-01-west-upper-descent",
+        "vertices": 4,
+        "oneWay": false
+      },
+      {
+        "id": "C-02-west-shaft-descent",
+        "vertices": 8,
+        "oneWay": false
+      },
+      {
+        "id": "C-03-west-refuge-lower",
+        "vertices": 7,
+        "oneWay": false
+      },
+      {
+        "id": "B-01-center-stone-ascent",
+        "vertices": 4,
+        "oneWay": false
+      },
+      {
+        "id": "B-02-center-lower-short-climb",
+        "vertices": 6,
+        "oneWay": false
+      },
+      {
+        "id": "A-upper-veranda",
+        "vertices": 4,
+        "oneWay": false
+      },
+      {
+        "id": "B-left-broken-balcony",
+        "vertices": 4,
+        "oneWay": false
+      },
+      {
+        "id": "B-central-lower-floor",
+        "vertices": 6,
+        "oneWay": false
+      },
+      {
+        "id": "E-joined-ordinary-floor",
+        "vertices": 8,
+        "oneWay": false
+      },
+      {
+        "id": "west-extension-prototype",
+        "vertices": 4,
+        "oneWay": false
+      }
+    ],
+    "worldTerrain": [
+      {
+        "id": "A-01-upper-entry",
+        "vertices": 4
+      },
+      {
+        "id": "C-01-west-upper-descent",
+        "vertices": 4
+      },
+      {
+        "id": "C-02-west-shaft-descent",
+        "vertices": 8
+      },
+      {
+        "id": "C-03-west-refuge-lower",
+        "vertices": 7
+      },
+      {
+        "id": "B-01-center-stone-ascent",
+        "vertices": 4
+      },
+      {
+        "id": "B-02-center-lower-short-climb",
+        "vertices": 6
+      },
+      {
+        "id": "A-upper-veranda",
+        "vertices": 4
+      },
+      {
+        "id": "B-left-broken-balcony",
+        "vertices": 4
+      },
+      {
+        "id": "B-central-lower-floor",
+        "vertices": 6
+      },
+      {
+        "id": "E-joined-ordinary-floor",
+        "vertices": 8
+      },
+      {
+        "id": "west-extension-prototype",
+        "vertices": 14
+      }
+    ],
+    "enemies": [
+      "draft-pressure-2",
+      "a6-56-deep-drop-2",
+      "a6-56-deep-drop-3",
+      "a6-56-reverse-bank-1",
+      "a6-56-reverse-bank-2",
+      "a6-56-reverse-bank-3",
+      "a6-56-reverse-bank-4"
+    ],
+    "units": [
+      {
+        "id": "p-mage",
+        "cls": "mage",
+        "side": 0,
+        "level": 25,
+        "hp": 1550.9,
+        "maxHp": 2050,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "pos": [
+          5178.91,
+          4048.1
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "E-joined-ordinary-floor",
+        "fixed": false,
+        "objective": false,
+        "role": "mage",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "draft-pressure-0",
+        "cls": "knight",
+        "side": 1,
+        "level": 8,
+        "hp": 409,
+        "maxHp": 409,
+        "loadout": [
+          "HBM01"
+        ],
+        "pos": [
+          1936,
+          3784.07
+        ],
+        "h": 88,
+        "r": 32,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "C-03-west-refuge-lower",
+        "fixed": false,
+        "objective": false,
+        "role": "leaper",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "draft-pressure-1",
+        "cls": "occultist",
+        "side": 1,
+        "level": 12,
+        "hp": 440,
+        "maxHp": 987,
+        "loadout": [
+          "HLN01",
+          "HLN02"
+        ],
+        "pos": [
+          3437.97,
+          2229.17
+        ],
+        "h": 92,
+        "r": 25,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": false,
+        "validContact": false,
+        "support": null,
+        "fixed": true,
+        "objective": false,
+        "role": "fire",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "draft-pressure-2",
+        "cls": "occultist",
+        "side": 1,
+        "level": 8,
+        "hp": 409,
+        "maxHp": 409,
+        "loadout": [
+          "HGS01",
+          "HGS02"
+        ],
+        "pos": [
+          5959,
+          3649.11
+        ],
+        "h": 88,
+        "r": 32,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "E-joined-ordinary-floor",
+        "fixed": false,
+        "objective": false,
+        "role": "fire",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-56-opening-1",
+        "cls": "occultist",
+        "side": 1,
+        "level": 25,
+        "hp": 684,
+        "maxHp": 684,
+        "loadout": [
+          "HSH01",
+          "HSH02"
+        ],
+        "pos": [
+          1512,
+          1136
+        ],
+        "h": 137,
+        "r": 24,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "A-upper-veranda",
+        "fixed": false,
+        "objective": false,
+        "role": "ice",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-56-opening-2",
+        "cls": "knight",
+        "side": 1,
+        "level": 25,
+        "hp": 655,
+        "maxHp": 655,
+        "loadout": [
+          "HBM01"
+        ],
+        "pos": [
+          3038,
+          1136
+        ],
+        "h": 88,
+        "r": 32,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "A-upper-veranda",
+        "fixed": false,
+        "objective": false,
+        "role": "leaper",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-56-upper-veranda-1",
+        "cls": "occultist",
+        "side": 1,
+        "level": 25,
+        "hp": 684,
+        "maxHp": 684,
+        "loadout": [
+          "HSH01",
+          "HSH02"
+        ],
+        "pos": [
+          1850,
+          1136
+        ],
+        "h": 137,
+        "r": 24,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "A-upper-veranda",
+        "fixed": false,
+        "objective": false,
+        "role": "ice",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-56-upper-veranda-2",
+        "cls": "knight",
+        "side": 1,
+        "level": 25,
+        "hp": 655,
+        "maxHp": 655,
+        "loadout": [
+          "HBM01"
+        ],
+        "pos": [
+          2050,
+          1136
+        ],
+        "h": 88,
+        "r": 32,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "A-upper-veranda",
+        "fixed": false,
+        "objective": false,
+        "role": "leaper",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-56-upper-veranda-3",
+        "cls": "occultist",
+        "side": 1,
+        "level": 25,
+        "hp": 684,
+        "maxHp": 684,
+        "loadout": [
+          "HSH01",
+          "HSH02"
+        ],
+        "pos": [
+          2883,
+          1136
+        ],
+        "h": 137,
+        "r": 24,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "A-upper-veranda",
+        "fixed": false,
+        "objective": false,
+        "role": "ice",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-56-deep-drop-1",
+        "cls": "knight",
+        "side": 1,
+        "level": 25,
+        "hp": 655,
+        "maxHp": 655,
+        "loadout": [
+          "HBM01"
+        ],
+        "pos": [
+          3120,
+          2460
+        ],
+        "h": 88,
+        "r": 32,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "B-01-center-stone-ascent",
+        "fixed": false,
+        "objective": false,
+        "role": "leaper",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-56-deep-drop-2",
+        "cls": "occultist",
+        "side": 1,
+        "level": 25,
+        "hp": 684,
+        "maxHp": 684,
+        "loadout": [
+          "HSH01",
+          "HSH02"
+        ],
+        "pos": [
+          4044.11,
+          3164.15
+        ],
+        "h": 137,
+        "r": 24,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "B-02-center-lower-short-climb",
+        "fixed": false,
+        "objective": false,
+        "role": "ice",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-56-deep-drop-3",
+        "cls": "knight",
+        "side": 1,
+        "level": 25,
+        "hp": 755,
+        "maxHp": 755,
+        "loadout": [
+          "HBM03"
+        ],
+        "pos": [
+          3970,
+          3222.27
+        ],
+        "h": 116,
+        "r": 38,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "B-02-center-lower-short-climb",
+        "fixed": false,
+        "objective": false,
+        "role": "leaper",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-56-reverse-bank-1",
+        "cls": "knight",
+        "side": 1,
+        "level": 25,
+        "hp": 655,
+        "maxHp": 655,
+        "loadout": [
+          "HBM01"
+        ],
+        "pos": [
+          5234.39,
+          4029.93
+        ],
+        "h": 88,
+        "r": 32,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "E-joined-ordinary-floor",
+        "fixed": false,
+        "objective": false,
+        "role": "leaper",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-56-reverse-bank-2",
+        "cls": "occultist",
+        "side": 1,
+        "level": 25,
+        "hp": 684,
+        "maxHp": 684,
+        "loadout": [
+          "HSH01",
+          "HSH02"
+        ],
+        "pos": [
+          4723,
+          4050.29
+        ],
+        "h": 137,
+        "r": 24,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "E-joined-ordinary-floor",
+        "fixed": false,
+        "objective": false,
+        "role": "ice",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-56-reverse-bank-3",
+        "cls": "knight",
+        "side": 1,
+        "level": 25,
+        "hp": 630,
+        "maxHp": 655,
+        "loadout": [
+          "HBM01"
+        ],
+        "pos": [
+          5138.74,
+          4048.29
+        ],
+        "h": 88,
+        "r": 32,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "E-joined-ordinary-floor",
+        "fixed": false,
+        "objective": false,
+        "role": "leaper",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-56-reverse-bank-4",
+        "cls": "occultist",
+        "side": 1,
+        "level": 25,
+        "hp": 684,
+        "maxHp": 684,
+        "loadout": [
+          "HSH01",
+          "HSH02"
+        ],
+        "pos": [
+          5564.33,
+          3856.53
+        ],
+        "h": 137,
+        "r": 24,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "E-joined-ordinary-floor",
+        "fixed": false,
+        "objective": false,
+        "role": "ice",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "draft-pressure-3",
+        "cls": "occultist",
+        "side": 1,
+        "level": 12,
+        "hp": 255,
+        "maxHp": 255,
+        "loadout": [
+          "HLN01",
+          "HLN02"
+        ],
+        "pos": [
+          2969.37,
+          3823.03
+        ],
+        "h": 92,
+        "r": 25,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": false,
+        "validContact": false,
+        "support": null,
+        "fixed": true,
+        "objective": false,
+        "role": "fire",
+        "summoned": false,
+        "ally": false
+      }
+    ]
+  }
+}

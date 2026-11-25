@@ -74,3 +74,7 @@ python game/docs/act6/mumyeongsa-p00-p10/baseline/exterior_combat.py --build "$P
 ```bash
 python game/docs/act6/mumyeongsa-p00-p10/baseline/interior_join.py --build "$PWD" --out /tmp/honro-56-approved-reserve --combat-account --check-pressure
 ```
+
+57의 원본 난간 예비 적도 들어온 즉시 활성 한도를 다시 계산한다. 실제 난간·후퇴·곽진·네 배우의 접촉과 D에서 원본 객체·새 저장이 모두 통과했다. 7명 시작, 누적 17명, 최대 활성 9명·공격 순서 6명, 7라운드였다. 29발과 27건의 실제 피해 처리도 관측했다. 중간 보호받침 증원 4자리 중 첫 자리만 이 판에 나타났다. 누적 18명과 9라운드 하한은 남았다. [57 실제 교전·합류·새 저장](57-native-capped.json)
+
+55 결속 붕괴 시험은 새 배치에서도 다시 실행했다. 실제 공격이 연결을 끊었고 패배했으며 이 흐름에서 다음 장을 열지 않았다. [붕괴 · 현재 배치](bell-lane/alternate-collapse.json)
