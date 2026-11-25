@@ -39,7 +39,10 @@
           for(const k of exactFields){if(Object.hasOwn(old,k))u[k]=structuredClone(old[k]);else delete u[k];}
           u.moveLeft=u.maxMove;party.push(u);
         }
-        const foes=grant.packet.foes.map(({origin,...u})=>C.makeUnit(u.cls,1,u.x,u.y,{...structuredClone(u),spawnX:u.x,spawnY:u.y,vx:0,vy:0,airborne:false,jumping:false,awake:true,acted:false}));
+        const foes=grant.packet.foes.map(({origin,...u})=>C.makeUnit(u.cls,1,u.x,u.y,{
+          ...structuredClone(u),spawnX:u.x,spawnY:u.y,vx:0,vy:0,airborne:false,jumping:false,awake:true,acted:false,
+          ...(u.id===D55.gate.id?{groundedSentry:true}:{})
+        }));
         check(party.length===3&&party[0].cls==='knight'&&new Set(party.map(v=>v.id)).size===3&&foes.length===4,'Invalid bell formation');
         const st={...m,metadata:{stageId:55,campaign:true,act:6,actStage:5},
           units:[...party,...foes].map(q=>({id:q.id,kind:q.cls,team:q.side?'enemy':'player',x:q.x,y:q.y}))};

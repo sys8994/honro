@@ -56,3 +56,5 @@ python tools/act6-ending-v2/normal.py --chromium /usr/bin/chromium --from-courty
 ```
 
 [58 대도사 전 구간 실전과 활성 상한 초과 실측](hall-pressure/README.md)
+
+[55 빈종각귀의 접지·사선과 실제 복구](bell-lane/README.md)

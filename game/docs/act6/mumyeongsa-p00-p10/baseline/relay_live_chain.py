@@ -85,7 +85,7 @@ def can_choose(page,actor):
 def aim_at_gate(page,actor,strong=False):
     select(page,actor)
     u=pose(page,actor)
-    want_left=u["x"]>2112
+    want_left=u["x"]>pose(page,GATE)["x"]
     if want_left!=(u["facing"]<0):
         sample_walk(page,-1 if want_left else 1,u["x"]+(-18 if want_left else 18),600)
         u=pose(page,actor)
@@ -140,6 +140,7 @@ def finish_bell(page,out,report,route='repair'):
     report["battle55Actions"]=[]
     actions=report["battle55Actions"]
     ready(page)
+    report['keeperEntry']=pose(page,GATE)
     seated=page.evaluate("HonroApp.engine.unit('p-occultist').fixed===true")
     if seated:
         report['seatedEntry']=pose(page,'p-occultist')
@@ -180,6 +181,8 @@ def finish_bell(page,out,report,route='repair'):
         binding=page.locator(BELL).get_attribute("data-act6-binding")
         foe=pose(page,GATE)
         actor=active(page)
+        if len(actions)%4==0:
+            print('55',binding,actor,'keeper HP',foe['hp'],flush=True)
         if route=='collapse':
             page.keyboard.press('f')
             continue
@@ -209,6 +212,12 @@ def finish_bell(page,out,report,route='repair'):
             actions.append({"sodanShot":spec,"priorGate":foe})
             if spec is None:
                 page.keyboard.press("f")
+        elif binding=='secured' and 0<foe['hp']<180 and can_choose(page,'p-knight'):
+            move(page,'p-knight',2190,25)
+            spec=aim_at_gate(page,'p-knight',True)
+            actions.append({'guardFinish':spec,'priorGate':foe})
+            if spec is None:
+                page.keyboard.press('f')
         elif binding=="secured" and foe["hp"]>0 and can_choose(page,"p-archer"):
             move(page,"p-archer",1810,110)
             spec=aim_at_gate(page,"p-archer")
@@ -224,6 +233,8 @@ def finish_bell(page,out,report,route='repair'):
         keys=('id','x','y','support')
         assert all(report['seatedEntry'][k]==report['seatedExit'][k] for k in keys)
     report["bellTrace"]=page.evaluate("window.bellTrace")
+    report['keeperExit']=pose(page,GATE)
+    (out/'bell-attempt.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
     page.screenshot(path=out/"relay-stage55-outcome.png")
     if route=='collapse':
         assert report['stage55Outcome']['phase']=='lost'

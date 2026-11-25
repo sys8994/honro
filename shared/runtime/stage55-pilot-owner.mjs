@@ -40,7 +40,8 @@ export async function createStage55EmptyBell({C,packet,verifyMounted,verifyIncom
   }
   if(!g||g.side!==1||g.h!==D.gate.h||g.r!==D.gate.r||g.hp!==D.gate.hp||g.maxHp!==D.gate.maxHp||g.x!==D.gate.x||Math.abs(g.y-D.gate.y)>.001||g.honroRigAsset!==D.gate.asset||!g.loadout?.includes(D.gate.skill)||!e.grounded(g)||e.contactSurface(g.x,g.y-4,g.y+4)?.t.id!==D.bell.support)return false;
   if(!r.every(v=>e.grounded(v)&&C.validTerrainContactPose(b.terrain,v)))return false;
-  const k={app,e,b,s,r,g,source,carry:structuredClone(carry),status:'stable',frayedAt:null,arrived:false,aligned:false,allowMute:true,muted:false,ordered:[]};
+  const k={app,e,b,s,r,g,source,carry:structuredClone(carry),normalSpells:g.loadout.slice(),
+   status:'stable',frayedAt:null,arrived:false,aligned:false,allowMute:true,muted:false,ordered:[]};
   owners.set(e,k);note(k,'trustedInnerStakeAndReturnReceived',null);
   return true;
  }
@@ -76,7 +77,9 @@ export async function createStage55EmptyBell({C,packet,verifyMounted,verifyIncom
   const k=get(app,e),a=e?.active;const reject=reason=>({ok:false,reason});
   if(!k||k.b.phase!=='aim'||!k.r.includes(a)||!alive(a)||!e.canAct()||k.status==='failed')return reject('현재 행동 가능한 담당 인물만 사용할 수 있습니다.');
   if(id==='reach-bell'&&a.cls==='knight'&&!k.arrived&&at(e,a,D.bell.approach)){
-   k.arrived=true;note(k,'hwigyeomBellTerraceReached',a.id);return {ok:true};
+   // The wind-up targets the exposed tether with its real orb until it is secured.
+   k.arrived=true;k.g.loadout=[D.gate.skill];
+   note(k,'hwigyeomBellTerraceReached',a.id);return {ok:true};
   }
   const seated=k.r.find(u=>u.cls==='occultist'&&u.fixed);
   if(id==='rebind-bell'&&k.status==='frayed'&&(seated?
@@ -84,7 +87,8 @@ export async function createStage55EmptyBell({C,packet,verifyMounted,verifyIncom
    const round=k.b.round;
    e.wait(); // native in-combat defend, consumes actual action; do not replace it
    if(k.b.round===round&&e.active===a&&e.canAct()&&!a.acted)return reject('방어 행동이 실제로 소비되지 않았습니다.');
-   k.status='secured';note(k,'sodanGroundedBellLinkRebound',seated?{actor:seated.id,guard:a.id,x:seated.x,y:seated.y}:a.id);return {ok:true,label:'소단이 돌단에서 혼줄을 다시 묶었습니다.'};
+   k.status='secured';k.g.loadout=k.normalSpells.slice();
+   note(k,'sodanGroundedBellLinkRebound',seated?{actor:seated.id,guard:a.id,x:seated.x,y:seated.y}:a.id);return {ok:true,label:'소단이 돌단에서 혼줄을 다시 묶었습니다.'};
   }
   if(id==='align-bell'&&a.cls==='knight'&&k.arrived&&!k.aligned&&['stable','secured'].includes(k.status)&&death(k.g)&&at(e,a,D.bell.approach)){
    k.aligned=true;

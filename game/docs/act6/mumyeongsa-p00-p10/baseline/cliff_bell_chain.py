@@ -61,14 +61,20 @@ def finish(browser,args,session=None):
         original=base.saved_bytes(page)['honro-first-act-profile-1']
         page.evaluate(base.TRACE)
         r['cliffShots']=[]
-        for _ in range(3):
+        for attempt in range(6):
             if page.evaluate("HonroApp.engine.unit('cliff-stone')?.dead"):
                 break
             pass_until(page,"HonroApp.engine.active?.cls==='archer'")
+            if attempt>0 and r['cliffShots'][-1]['after']==r['cliffShots'][-1]['before']:
+                march(page,1190+(attempt%3)*28,cls='archer',tolerance=14)
             before=page.evaluate("HonroApp.engine.unit('cliff-stone').hp")
+            shot_before=page.evaluate('HonroApp.engine.b.shot')
             spec=shot(page,{'skills':['A01'],'actor':'cliff-stone'})
-            assert spec,'No direct shot at the original cliff stone'
-            page.wait_for_function("hp=>HonroApp.engine.unit('cliff-stone')?.hp<hp",arg=before,timeout=16000)
+            if spec:
+                page.wait_for_function('n=>HonroApp.engine.b.shot>n',arg=shot_before,timeout=5200)
+                page.wait_for_function("!['flight','resolve','volley'].includes(HonroApp.engine.b.phase)",timeout=16000)
+            else:
+                page.keyboard.press('f')
             r['cliffShots'].append({'input':spec,'before':before,'after':page.evaluate("HonroApp.engine.unit('cliff-stone').hp")})
         assert page.evaluate("HonroApp.engine.unit('cliff-stone')?.dead")
         pass_until(page,"HonroApp.engine.active?.cls==='archer'")

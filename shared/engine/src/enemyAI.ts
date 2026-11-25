@@ -56,7 +56,7 @@ function* queueShotReadySteps(e:Engine,u:Unit,target:Unit):Generator<void,boolea
 }
 
 export const FLY_MOVE_BUDGET=280;
-export function flyingEnemy(u:Unit){return u.side===1&&u.fixed&&['bat','crow','lantern'].includes((u as any).honroType);}
+export function flyingEnemy(u:Unit){return u.side===1&&u.fixed&&!u.groundedSentry&&['bat','crow','lantern'].includes((u as any).honroType);}
 // Only the authored alternative-exit guards defend this local territory.
 // This limits voluntary pursuit, never the player's knockback or projectiles.
 export function routeGuardAllows(e:Engine,u:Unit,p:Vec){

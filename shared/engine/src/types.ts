@@ -293,6 +293,7 @@ export interface Unit {
     anim: number;
     airborne: boolean;
     fixed: boolean;
+    groundedSentry?: boolean;
     boss?: number;
     honroMidboss?: boolean;
     /** Stationary hostile quest device; never an AI actor or a kill quota. */

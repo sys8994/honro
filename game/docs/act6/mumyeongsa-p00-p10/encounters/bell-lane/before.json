@@ -1,0 +1,416 @@
+{
+  "unanchored": {
+    "error": "Bell mission incomplete",
+    "boundaries": [
+      {
+        "from": 51,
+        "to": 52,
+        "storageHash": "8cbd5dafc88747d0935ae1205e5ff67dac4fe374fafb762d5e62466a3f0f1386"
+      },
+      {
+        "from": 52,
+        "to": 53,
+        "storageHash": "4e97ccb90ce27f8aa671bf8abcd1e25491f9a39867a5af085490016657398d7e"
+      },
+      {
+        "from": 53,
+        "to": 54,
+        "storageHash": "839941c73454ed8a377a8c02fe6aade5cd5bb68aa44c594b94daadece5de8a3a"
+      },
+      {
+        "from": 54,
+        "to": 55,
+        "storageHash": "5401d9d33793ae0779366eb2f5ca3ec145903230501a62773ea672b9f69af7ea"
+      }
+    ],
+    "keeper": {
+      "id": "draft-pressure-0",
+      "cls": "occultist",
+      "side": 1,
+      "level": 12,
+      "hp": 60,
+      "maxHp": 480,
+      "loadout": [
+        "HLN01",
+        "HLN02"
+      ],
+      "pos": [
+        2440,
+        785.75
+      ],
+      "h": 92,
+      "r": 25,
+      "awake": true,
+      "dead": false,
+      "airborne": false,
+      "grounded": false,
+      "validContact": false,
+      "support": null,
+      "fixed": true,
+      "objective": false,
+      "role": "fire",
+      "summoned": false,
+      "ally": false
+    }
+  },
+  "anchored-stock": {
+    "keeper": {
+      "id": "draft-pressure-0",
+      "x": 2112,
+      "y": 1523.076923076923,
+      "grounded": true,
+      "hp": 480,
+      "acted": false,
+      "move": 550,
+      "support": "arrival-core-terrace",
+      "facing": 1,
+      "angle": 34.658231309691445
+    },
+    "attacks": [
+      {
+        "type": "fire",
+        "id": "HLN02",
+        "owner": "draft-pressure-0",
+        "angle": 34.658231309691445,
+        "power": 0.16379596550083073,
+        "shot": 1,
+        "round": 1
+      },
+      {
+        "type": "impact",
+        "id": "HLN02",
+        "owner": "draft-pressure-0",
+        "target": "p-occultist",
+        "x": 2660,
+        "y": 1608.075646132311,
+        "before": 2144.1,
+        "after": 2109.1,
+        "round": 1
+      },
+      {
+        "type": "fire",
+        "id": "HLN02",
+        "owner": "draft-pressure-0",
+        "angle": 34.658231309691445,
+        "power": 0.16379596550083073,
+        "shot": 7,
+        "round": 2
+      },
+      {
+        "type": "impact",
+        "id": "HLN02",
+        "owner": "draft-pressure-0",
+        "target": "p-occultist",
+        "x": 2660,
+        "y": 1608.075646132311,
+        "before": 2062.1,
+        "after": 2027.1,
+        "round": 2
+      },
+      {
+        "type": "fire",
+        "id": "HLN02",
+        "owner": "draft-pressure-0",
+        "angle": 34.658231309691445,
+        "power": 0.16379596550083073,
+        "shot": 13,
+        "round": 3
+      },
+      {
+        "type": "impact",
+        "id": "HLN02",
+        "owner": "draft-pressure-0",
+        "target": "p-occultist",
+        "x": 2660,
+        "y": 1608.075646132311,
+        "before": 2027.1,
+        "after": 1992.1,
+        "round": 3
+      },
+      {
+        "type": "fire",
+        "id": "HLN02",
+        "owner": "draft-pressure-0",
+        "angle": 34.658231309691445,
+        "power": 0.16379596550083073,
+        "shot": 18,
+        "round": 4
+      },
+      {
+        "type": "impact",
+        "id": "HLN02",
+        "owner": "draft-pressure-0",
+        "target": "p-occultist",
+        "x": 2660,
+        "y": 1608.075646132311,
+        "before": 1992.1,
+        "after": 1957.1,
+        "round": 4
+      },
+      {
+        "type": "fire",
+        "id": "HLN02",
+        "owner": "draft-pressure-0",
+        "angle": 34.658231309691445,
+        "power": 0.16379596550083073,
+        "shot": 25,
+        "round": 5
+      },
+      {
+        "type": "impact",
+        "id": "HLN02",
+        "owner": "draft-pressure-0",
+        "target": "p-occultist",
+        "x": 2660,
+        "y": 1608.075646132311,
+        "before": 1957.1,
+        "after": 1922.1,
+        "round": 5
+      },
+      {
+        "type": "fire",
+        "id": "HLN02",
+        "owner": "draft-pressure-0",
+        "angle": 34.658231309691445,
+        "power": 0.16379596550083073,
+        "shot": 32,
+        "round": 6
+      },
+      {
+        "type": "impact",
+        "id": "HLN02",
+        "owner": "draft-pressure-0",
+        "target": "p-occultist",
+        "x": 2660,
+        "y": 1608.075646132311,
+        "before": 1922.1,
+        "after": 1887.1,
+        "round": 6
+      },
+      {
+        "type": "fire",
+        "id": "HLN02",
+        "owner": "draft-pressure-0",
+        "angle": 34.658231309691445,
+        "power": 0.16379596550083073,
+        "shot": 39,
+        "round": 7
+      },
+      {
+        "type": "impact",
+        "id": "HLN02",
+        "owner": "draft-pressure-0",
+        "target": "p-occultist",
+        "x": 2660,
+        "y": 1608.075646132311,
+        "before": 1887.1,
+        "after": 1852.1,
+        "round": 7
+      },
+      {
+        "type": "fire",
+        "id": "HLN02",
+        "owner": "draft-pressure-0",
+        "angle": 34.658231309691445,
+        "power": 0.16379596550083073,
+        "shot": 46,
+        "round": 8
+      },
+      {
+        "type": "impact",
+        "id": "HLN02",
+        "owner": "draft-pressure-0",
+        "target": "p-occultist",
+        "x": 2660,
+        "y": 1608.075646132311,
+        "before": 1852.1,
+        "after": 1817.1,
+        "round": 8
+      },
+      {
+        "type": "fire",
+        "id": "HLN02",
+        "owner": "draft-pressure-0",
+        "angle": 34.658231309691445,
+        "power": 0.16379596550083073,
+        "shot": 53,
+        "round": 9
+      },
+      {
+        "type": "impact",
+        "id": "HLN02",
+        "owner": "draft-pressure-0",
+        "target": "p-occultist",
+        "x": 2660,
+        "y": 1608.075646132311,
+        "before": 1817.1,
+        "after": 1782.1,
+        "round": 9
+      },
+      {
+        "type": "fire",
+        "id": "HLN02",
+        "owner": "draft-pressure-0",
+        "angle": 34.658231309691445,
+        "power": 0.16379596550083073,
+        "shot": 60,
+        "round": 10
+      },
+      {
+        "type": "impact",
+        "id": "HLN02",
+        "owner": "draft-pressure-0",
+        "target": "p-occultist",
+        "x": 2660,
+        "y": 1608.075646132311,
+        "before": 1782.1,
+        "after": 1747.1,
+        "round": 10
+      },
+      {
+        "type": "fire",
+        "id": "HLN02",
+        "owner": "draft-pressure-0",
+        "angle": 34.658231309691445,
+        "power": 0.16379596550083073,
+        "shot": 67,
+        "round": 11
+      },
+      {
+        "type": "impact",
+        "id": "HLN02",
+        "owner": "draft-pressure-0",
+        "target": "p-occultist",
+        "x": 2660,
+        "y": 1608.075646132311,
+        "before": 1747.1,
+        "after": 1712.1,
+        "round": 11
+      },
+      {
+        "type": "fire",
+        "id": "HLN02",
+        "owner": "draft-pressure-0",
+        "angle": 34.658231309691445,
+        "power": 0.16379596550083073,
+        "shot": 74,
+        "round": 12
+      },
+      {
+        "type": "impact",
+        "id": "HLN02",
+        "owner": "draft-pressure-0",
+        "target": "p-occultist",
+        "x": 2660,
+        "y": 1608.075646132311,
+        "before": 1668.1,
+        "after": 1633.1,
+        "round": 12
+      },
+      {
+        "type": "fire",
+        "id": "HLN02",
+        "owner": "draft-pressure-0",
+        "angle": 34.658231309691445,
+        "power": 0.16379596550083073,
+        "shot": 81,
+        "round": 13
+      },
+      {
+        "type": "impact",
+        "id": "HLN02",
+        "owner": "draft-pressure-0",
+        "target": "p-occultist",
+        "x": 2660,
+        "y": 1608.075646132311,
+        "before": 1583.1,
+        "after": 1548.1,
+        "round": 13
+      },
+      {
+        "type": "fire",
+        "id": "HLN02",
+        "owner": "draft-pressure-0",
+        "angle": 34.658231309691445,
+        "power": 0.16379596550083073,
+        "shot": 88,
+        "round": 14
+      },
+      {
+        "type": "impact",
+        "id": "HLN02",
+        "owner": "draft-pressure-0",
+        "target": "p-occultist",
+        "x": 2660,
+        "y": 1608.075646132311,
+        "before": 1500.1,
+        "after": 1465.1,
+        "round": 14
+      },
+      {
+        "type": "fire",
+        "id": "HLN02",
+        "owner": "draft-pressure-0",
+        "angle": 34.658231309691445,
+        "power": 0.16379596550083073,
+        "shot": 95,
+        "round": 15
+      },
+      {
+        "type": "impact",
+        "id": "HLN02",
+        "owner": "draft-pressure-0",
+        "target": "p-occultist",
+        "x": 2660,
+        "y": 1608.075646132311,
+        "before": 1419.1,
+        "after": 1384.1,
+        "round": 15
+      }
+    ]
+  },
+  "blocked-orb": {
+    "keeper": {
+      "id": "draft-pressure-0",
+      "x": 2112,
+      "y": 1523.076923076923,
+      "grounded": true,
+      "hp": 480,
+      "acted": false,
+      "move": 550,
+      "support": "arrival-core-terrace",
+      "facing": -1,
+      "angle": 136
+    },
+    "opposingFireCount": 0,
+    "firstForecast": {
+      "searchedDirectHits": 0,
+      "keeper": [
+        2112,
+        1523.076923076923
+      ],
+      "seatedTarget": {
+        "x": 2688,
+        "y": 1700.3076923076924,
+        "h": 92
+      },
+      "firstContacts": [
+        {
+          "x": 2236,
+          "y": 1499.8388577725668,
+          "unit": "a6-55-thread-pressure-3"
+        },
+        {
+          "x": 2236,
+          "y": 1497.7069425502252,
+          "unit": "a6-55-thread-pressure-3"
+        },
+        {
+          "x": 2236,
+          "y": 1494.3324100019652,
+          "unit": "a6-55-thread-pressure-3"
+        }
+      ]
+    }
+  }
+}
