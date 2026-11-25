@@ -74,6 +74,12 @@
       function tick57(a){
         const s=active.get(a),e=a.engine;if(e?.b?.honroStage!==57||!scope57(a,e,s)||!s.owner57)return;
         s.owner57.tick();const r=s.owner57.project();
+        if(!s.hallSill57&&e.b.honroState.flags[s.packet.bridge.required.marker]){
+          const slice=s.packet.bridge.additions.terrain.find(t=>t.id===hallSill.source);
+          check(slice&&same(e.b.terrain.find(t=>t.id===hallSill.source),slice),'Folded receiving slice was revised');
+          installHallArt(e,a.scene,[hallSillArt(slice,true)]);
+          s.hallSill57=true;
+        }
         if(s.button){s.button.textContent=r.summary;s.button.disabled=r.complete||r.failed;s.button.dataset.act6Mission=r.appActions?.mission??'';}
         if(s.alt){s.alt.hidden=!r.appActions?.alt;s.alt.disabled=s.alt.hidden;}
         if((r.complete||r.failed)&&!a.done)e.checkEnd();

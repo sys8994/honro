@@ -1,0 +1,684 @@
+{
+  "60": {
+    "hz": 60,
+    "status": "PASS",
+    "errors": [],
+    "seedHash": "20d85584b437bf73c6061745ba16c3700dd0ca2cdafb7e69f5bc005c7f2ec4e8",
+    "initial": {
+      "stage": 58,
+      "active": "p-mage",
+      "phase": "aim",
+      "round": 1,
+      "side": 0,
+      "shot": 0,
+      "flags": {},
+      "notice": "",
+      "actors": [
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "side": 0,
+          "x": 2780.0411461911017,
+          "y": 3458.9557962670997,
+          "vx": 0,
+          "vy": 0,
+          "hp": 1314.9,
+          "r": 22,
+          "h": 92,
+          "ammo": null,
+          "loadout": [
+            "M01",
+            "M10",
+            "M07"
+          ],
+          "dead": false,
+          "actorsMoved": false,
+          "move": 3075,
+          "grounded": true,
+          "family": {
+            "x": 0,
+            "y": 320
+          },
+          "contact": "local-lower-08-body",
+          "normal": null
+        },
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "side": 0,
+          "x": 2645.071904787871,
+          "y": 3480.5154081688297,
+          "vx": 0,
+          "vy": 0,
+          "hp": 1407,
+          "r": 22,
+          "h": 92,
+          "ammo": null,
+          "loadout": [
+            "A01",
+            "A14",
+            "A02",
+            "A05"
+          ],
+          "dead": false,
+          "actorsMoved": false,
+          "move": 2921,
+          "grounded": true,
+          "family": {
+            "x": 0,
+            "y": 320
+          },
+          "contact": "local-lower-08-body",
+          "normal": null
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "side": 0,
+          "x": 2876.9935676570512,
+          "y": 3430.808319067308,
+          "vx": 0,
+          "vy": 0,
+          "hp": 3688.1,
+          "r": 22,
+          "h": 92,
+          "ammo": null,
+          "loadout": [
+            "S00",
+            "S01",
+            "S03"
+          ],
+          "dead": false,
+          "actorsMoved": false,
+          "move": 4081,
+          "grounded": true,
+          "family": {
+            "x": 0,
+            "y": 320
+          },
+          "contact": "local-lower-08-body",
+          "normal": null
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "side": 0,
+          "x": 2987.090305485276,
+          "y": 3399.1170555756353,
+          "vx": 0,
+          "vy": 0,
+          "hp": 2144.1,
+          "r": 22,
+          "h": 92,
+          "ammo": null,
+          "loadout": [
+            "O01",
+            "O04",
+            "O03",
+            "O06"
+          ],
+          "dead": false,
+          "actorsMoved": false,
+          "move": 3132,
+          "grounded": true,
+          "family": {
+            "x": 0,
+            "y": 320
+          },
+          "contact": "local-lower-08-body",
+          "normal": null
+        }
+      ],
+      "landmarks": [
+        {
+          "id": "art-mumyeongsa-hall-sill",
+          "x": 0,
+          "y": 0,
+          "visual": 7
+        },
+        {
+          "id": "art-m58-timber-hall-rear",
+          "x": 0,
+          "y": 0,
+          "visual": 40
+        },
+        {
+          "id": "art-m58-suspended-hall",
+          "x": 0,
+          "y": 0,
+          "visual": 12
+        },
+        {
+          "id": "art-m58-tile-eaves",
+          "x": 0,
+          "y": 0,
+          "visual": 10
+        }
+      ]
+    },
+    "rampPre": {
+      "id": "p-mage",
+      "cls": "mage",
+      "side": 0,
+      "x": 3363.7255094760585,
+      "y": 3250.0824775304504,
+      "vx": 0,
+      "vy": 0,
+      "hp": 1314.9,
+      "r": 22,
+      "h": 92,
+      "ammo": null,
+      "loadout": [
+        "M01",
+        "M10",
+        "M07"
+      ],
+      "dead": false,
+      "actorsMoved": false,
+      "move": 2451.872774135793,
+      "grounded": true,
+      "family": {
+        "x": 0,
+        "y": 320
+      },
+      "contact": "local-lower-08-body",
+      "normal": null
+    },
+    "ramp": {
+      "id": "p-mage",
+      "cls": "mage",
+      "side": 0,
+      "x": 3363.7255094760585,
+      "y": 3110.7266272673387,
+      "vx": 0,
+      "vy": 0,
+      "hp": 1314.9,
+      "r": 22,
+      "h": 92,
+      "ammo": null,
+      "loadout": [
+        "M01",
+        "M10",
+        "M07"
+      ],
+      "dead": false,
+      "actorsMoved": false,
+      "move": 2376.872774135793,
+      "grounded": true,
+      "family": {
+        "x": 0,
+        "y": 320
+      },
+      "contact": "m58-west-stone-step",
+      "normal": null
+    },
+    "wall": {
+      "id": "p-mage",
+      "cls": "mage",
+      "side": 0,
+      "x": 4380,
+      "y": 3034,
+      "vx": 0,
+      "vy": 0,
+      "hp": 1314.9,
+      "r": 22,
+      "h": 92,
+      "ammo": null,
+      "loadout": [
+        "M01",
+        "M10",
+        "M07"
+      ],
+      "dead": false,
+      "actorsMoved": false,
+      "move": 1559.4701901178692,
+      "grounded": true,
+      "family": {
+        "x": 320,
+        "y": 0
+      },
+      "contact": "m58-apse-pier",
+      "normal": {
+        "x": -1,
+        "y": -0.0
+      }
+    },
+    "wallJump": {
+      "id": "p-mage",
+      "cls": "mage",
+      "side": 0,
+      "x": 4380,
+      "y": 3034,
+      "vx": 0,
+      "vy": 0,
+      "hp": 1314.9,
+      "r": 22,
+      "h": 92,
+      "ammo": null,
+      "loadout": [
+        "M01",
+        "M10",
+        "M07"
+      ],
+      "dead": false,
+      "actorsMoved": false,
+      "move": 1484.4701901178692,
+      "grounded": true,
+      "family": {
+        "x": 320,
+        "y": 0
+      },
+      "contact": "m58-apse-pier",
+      "normal": {
+        "x": -1,
+        "y": -0.0
+      }
+    },
+    "ceiling": {
+      "id": "p-mage",
+      "cls": "mage",
+      "side": 0,
+      "x": 4334,
+      "y": 2570,
+      "vx": 0,
+      "vy": 0,
+      "hp": 1314.9,
+      "r": 22,
+      "h": 92,
+      "ammo": null,
+      "loadout": [
+        "M01",
+        "M10",
+        "M07"
+      ],
+      "dead": false,
+      "actorsMoved": false,
+      "move": 1166.4701901178692,
+      "grounded": true,
+      "family": {
+        "x": 0,
+        "y": -320
+      },
+      "contact": "m58-timber-soffit",
+      "normal": {
+        "x": 0,
+        "y": 1
+      }
+    },
+    "dismount": {
+      "id": "p-mage",
+      "cls": "mage",
+      "side": 0,
+      "x": 3942.0499999999784,
+      "y": 3072.4857894736833,
+      "vx": 0,
+      "vy": 0,
+      "hp": 1314.9,
+      "r": 22,
+      "h": 92,
+      "ammo": null,
+      "loadout": [
+        "M01",
+        "M10",
+        "M07"
+      ],
+      "dead": false,
+      "actorsMoved": false,
+      "move": 774.5201901178475,
+      "grounded": true,
+      "family": {
+        "x": 0,
+        "y": 320
+      },
+      "contact": "m58-rising-gallery",
+      "normal": null
+    },
+    "frames": {
+      "count": 334,
+      "acceleratingWall": 55,
+      "jumpAway": 15,
+      "acceleratingCeiling": 29
+    }
+  },
+  "120": {
+    "hz": 120,
+    "status": "PASS",
+    "errors": [],
+    "seedHash": "20d85584b437bf73c6061745ba16c3700dd0ca2cdafb7e69f5bc005c7f2ec4e8",
+    "initial": {
+      "stage": 58,
+      "active": "p-mage",
+      "phase": "aim",
+      "round": 1,
+      "side": 0,
+      "shot": 0,
+      "flags": {},
+      "notice": "",
+      "actors": [
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "side": 0,
+          "x": 2780.0411461911017,
+          "y": 3458.9557962670997,
+          "vx": 0,
+          "vy": 0,
+          "hp": 1314.9,
+          "r": 22,
+          "h": 92,
+          "ammo": null,
+          "loadout": [
+            "M01",
+            "M10",
+            "M07"
+          ],
+          "dead": false,
+          "actorsMoved": false,
+          "move": 3075,
+          "grounded": true,
+          "family": {
+            "x": 0,
+            "y": 320
+          },
+          "contact": "local-lower-08-body",
+          "normal": null
+        },
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "side": 0,
+          "x": 2645.071904787871,
+          "y": 3480.5154081688297,
+          "vx": 0,
+          "vy": 0,
+          "hp": 1407,
+          "r": 22,
+          "h": 92,
+          "ammo": null,
+          "loadout": [
+            "A01",
+            "A14",
+            "A02",
+            "A05"
+          ],
+          "dead": false,
+          "actorsMoved": false,
+          "move": 2921,
+          "grounded": true,
+          "family": {
+            "x": 0,
+            "y": 320
+          },
+          "contact": "local-lower-08-body",
+          "normal": null
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "side": 0,
+          "x": 2876.9935676570512,
+          "y": 3430.808319067308,
+          "vx": 0,
+          "vy": 0,
+          "hp": 3688.1,
+          "r": 22,
+          "h": 92,
+          "ammo": null,
+          "loadout": [
+            "S00",
+            "S01",
+            "S03"
+          ],
+          "dead": false,
+          "actorsMoved": false,
+          "move": 4081,
+          "grounded": true,
+          "family": {
+            "x": 0,
+            "y": 320
+          },
+          "contact": "local-lower-08-body",
+          "normal": null
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "side": 0,
+          "x": 2987.090305485276,
+          "y": 3399.1170555756353,
+          "vx": 0,
+          "vy": 0,
+          "hp": 2144.1,
+          "r": 22,
+          "h": 92,
+          "ammo": null,
+          "loadout": [
+            "O01",
+            "O04",
+            "O03",
+            "O06"
+          ],
+          "dead": false,
+          "actorsMoved": false,
+          "move": 3132,
+          "grounded": true,
+          "family": {
+            "x": 0,
+            "y": 320
+          },
+          "contact": "local-lower-08-body",
+          "normal": null
+        }
+      ],
+      "landmarks": [
+        {
+          "id": "art-mumyeongsa-hall-sill",
+          "x": 0,
+          "y": 0,
+          "visual": 7
+        },
+        {
+          "id": "art-m58-timber-hall-rear",
+          "x": 0,
+          "y": 0,
+          "visual": 40
+        },
+        {
+          "id": "art-m58-suspended-hall",
+          "x": 0,
+          "y": 0,
+          "visual": 12
+        },
+        {
+          "id": "art-m58-tile-eaves",
+          "x": 0,
+          "y": 0,
+          "visual": 10
+        }
+      ]
+    },
+    "rampPre": {
+      "id": "p-mage",
+      "cls": "mage",
+      "side": 0,
+      "x": 3363.7255094760585,
+      "y": 3250.0824775304504,
+      "vx": 0,
+      "vy": 0,
+      "hp": 1314.9,
+      "r": 22,
+      "h": 92,
+      "ammo": null,
+      "loadout": [
+        "M01",
+        "M10",
+        "M07"
+      ],
+      "dead": false,
+      "actorsMoved": false,
+      "move": 2451.872774135793,
+      "grounded": true,
+      "family": {
+        "x": 0,
+        "y": 320
+      },
+      "contact": "local-lower-08-body",
+      "normal": null
+    },
+    "ramp": {
+      "id": "p-mage",
+      "cls": "mage",
+      "side": 0,
+      "x": 3363.7255094760585,
+      "y": 3110.7266272673387,
+      "vx": 0,
+      "vy": 0,
+      "hp": 1314.9,
+      "r": 22,
+      "h": 92,
+      "ammo": null,
+      "loadout": [
+        "M01",
+        "M10",
+        "M07"
+      ],
+      "dead": false,
+      "actorsMoved": false,
+      "move": 2376.872774135793,
+      "grounded": true,
+      "family": {
+        "x": 0,
+        "y": 320
+      },
+      "contact": "m58-west-stone-step",
+      "normal": null
+    },
+    "wall": {
+      "id": "p-mage",
+      "cls": "mage",
+      "side": 0,
+      "x": 4380,
+      "y": 3034,
+      "vx": 0,
+      "vy": 0,
+      "hp": 1314.9,
+      "r": 22,
+      "h": 92,
+      "ammo": null,
+      "loadout": [
+        "M01",
+        "M10",
+        "M07"
+      ],
+      "dead": false,
+      "actorsMoved": false,
+      "move": 1559.4701901178692,
+      "grounded": true,
+      "family": {
+        "x": 320,
+        "y": 0
+      },
+      "contact": "m58-apse-pier",
+      "normal": {
+        "x": -1,
+        "y": -0.0
+      }
+    },
+    "wallJump": {
+      "id": "p-mage",
+      "cls": "mage",
+      "side": 0,
+      "x": 4380,
+      "y": 3034,
+      "vx": 0,
+      "vy": 0,
+      "hp": 1314.9,
+      "r": 22,
+      "h": 92,
+      "ammo": null,
+      "loadout": [
+        "M01",
+        "M10",
+        "M07"
+      ],
+      "dead": false,
+      "actorsMoved": false,
+      "move": 1484.4701901178692,
+      "grounded": true,
+      "family": {
+        "x": 320,
+        "y": 0
+      },
+      "contact": "m58-apse-pier",
+      "normal": {
+        "x": -1,
+        "y": -0.0
+      }
+    },
+    "ceiling": {
+      "id": "p-mage",
+      "cls": "mage",
+      "side": 0,
+      "x": 4334,
+      "y": 2570,
+      "vx": 0,
+      "vy": 0,
+      "hp": 1314.9,
+      "r": 22,
+      "h": 92,
+      "ammo": null,
+      "loadout": [
+        "M01",
+        "M10",
+        "M07"
+      ],
+      "dead": false,
+      "actorsMoved": false,
+      "move": 1166.4701901178692,
+      "grounded": true,
+      "family": {
+        "x": 0,
+        "y": -320
+      },
+      "contact": "m58-timber-soffit",
+      "normal": {
+        "x": 0,
+        "y": 1
+      }
+    },
+    "dismount": {
+      "id": "p-mage",
+      "cls": "mage",
+      "side": 0,
+      "x": 3958.799999999978,
+      "y": 3073.0147368421044,
+      "vx": 0,
+      "vy": 0,
+      "hp": 1314.9,
+      "r": 22,
+      "h": 92,
+      "ammo": null,
+      "loadout": [
+        "M01",
+        "M10",
+        "M07"
+      ],
+      "dead": false,
+      "actorsMoved": false,
+      "move": 791.270190117847,
+      "grounded": true,
+      "family": {
+        "x": 0,
+        "y": 320
+      },
+      "contact": "m58-rising-gallery",
+      "normal": null
+    },
+    "frames": {
+      "count": 538,
+      "acceleratingWall": 87,
+      "jumpAway": 23,
+      "acceleratingCeiling": 56
+    }
+  }
+}

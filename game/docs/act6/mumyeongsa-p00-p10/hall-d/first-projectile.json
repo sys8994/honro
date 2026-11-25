@@ -1,0 +1,174 @@
+{
+  "60": {
+    "manifestation": [
+      {
+        "id": "a6-c08-boss",
+        "x": 4480,
+        "y": 3194.769230769231,
+        "hp": 10500,
+        "maxHp": 10500,
+        "rig": "boss_daedosa",
+        "supported": true
+      },
+      {
+        "id": "a6-c08-vessel-a",
+        "x": 4300,
+        "y": 3241.5172413793102,
+        "hp": 1100,
+        "maxHp": 1100,
+        "rig": null,
+        "supported": true
+      },
+      {
+        "id": "a6-c08-vessel-b",
+        "x": 5000,
+        "y": 2977.8285714285716,
+        "hp": 1100,
+        "maxHp": 1100,
+        "rig": null,
+        "supported": true
+      }
+    ],
+    "collision": {
+      "candidate": {
+        "id": "M01",
+        "angle": 184,
+        "power": 0.74,
+        "x": 2673.071904787871,
+        "y": 3413.869512842063,
+        "target": "p-archer",
+        "terrain": null,
+        "weight": 1000
+      },
+      "trace": [
+        {
+          "event": "fire",
+          "skill": "M01",
+          "angle": 184.21340000006927,
+          "power": 0.7525339148852788,
+          "actor": "p-mage",
+          "grounded": true,
+          "x": 4062.649999999975,
+          "y": 2570,
+          "prediction": {
+            "x": 2673.071904787871,
+            "y": 3403.4662211066084,
+            "unit": "p-archer",
+            "terrain": null
+          },
+          "shot": 1,
+          "gravity": {
+            "x": 54.76430856847997,
+            "y": -324.0345166769243
+          }
+        },
+        {
+          "event": "impact",
+          "skill": "M01",
+          "actor": "p-mage",
+          "target": "p-archer",
+          "terrain": null,
+          "x": 2673.071904787871,
+          "y": 3403.4662211066084,
+          "normal": {
+            "x": 1,
+            "y": 0
+          },
+          "radius": 6,
+          "shot": 1,
+          "before": 1407,
+          "after": 1346.7,
+          "shieldBefore": 0,
+          "shieldAfter": 0
+        }
+      ]
+    },
+    "stageEnemyHit": false
+  },
+  "120": {
+    "manifestation": [
+      {
+        "id": "a6-c08-boss",
+        "x": 4480,
+        "y": 3194.769230769231,
+        "hp": 10500,
+        "maxHp": 10500,
+        "rig": "boss_daedosa",
+        "supported": true
+      },
+      {
+        "id": "a6-c08-vessel-a",
+        "x": 4300,
+        "y": 3241.5172413793102,
+        "hp": 1100,
+        "maxHp": 1100,
+        "rig": null,
+        "supported": true
+      },
+      {
+        "id": "a6-c08-vessel-b",
+        "x": 5000,
+        "y": 2977.8285714285716,
+        "hp": 1100,
+        "maxHp": 1100,
+        "rig": null,
+        "supported": true
+      }
+    ],
+    "collision": {
+      "candidate": {
+        "id": "M01",
+        "angle": 184,
+        "power": 0.74,
+        "x": 2673.071904787871,
+        "y": 3418.155468026612,
+        "target": "p-archer",
+        "terrain": null,
+        "weight": 1000
+      },
+      "trace": [
+        {
+          "event": "fire",
+          "skill": "M01",
+          "angle": 184.07259999993067,
+          "power": 0.7473899130899136,
+          "actor": "p-mage",
+          "grounded": true,
+          "x": 4065.999999999975,
+          "y": 2570,
+          "prediction": {
+            "x": 2673.071904787871,
+            "y": 3404.0298167522024,
+            "unit": "p-archer",
+            "terrain": null
+          },
+          "shot": 1,
+          "gravity": {
+            "x": 54.39964555253652,
+            "y": -323.8732672942837
+          }
+        },
+        {
+          "event": "impact",
+          "skill": "M01",
+          "actor": "p-mage",
+          "target": "p-archer",
+          "terrain": null,
+          "x": 2673.071904787871,
+          "y": 3404.0298167522024,
+          "normal": {
+            "x": 1,
+            "y": 0
+          },
+          "radius": 6,
+          "shot": 1,
+          "before": 1407,
+          "after": 1346.1,
+          "shieldBefore": 0,
+          "shieldAfter": 0
+        }
+      ]
+    },
+    "stageEnemyHit": false
+  }
+}

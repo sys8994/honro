@@ -16,13 +16,13 @@
         const full=e.b.units.filter(u=>u.side===0&&!u.summoned);
         check(full.length===4&&full.every(u=>same(u,previous.boundary.full[u.cls])&&u.x-3200===previous.boundary.receiving[u.cls].x&&
           u.y+758===previous.boundary.receiving[u.cls].y&&e.grounded(u)),'Native 57 outgoing body/crossing changed');
-        return mountFrom57(a,grant,previous,e.stage,normal51Provider.budget(e.b),()=>eligible58(a,prev)&&active.get(a)===prev&&prev.terminal===previous,undefined);
+        return mountFrom57(a,grant,previous,e.stage,normal51Provider.budget(e.b),()=>eligible58(a,prev)&&active.get(a)===prev&&prev.terminal===previous,undefined,full);
       }
       async function mountCold58(a,grant,body,stays,key){
         if(!cold58.has(key)||!stays()||body.from!==57||body.to!==58)return false;
         try{return await mountFrom57(a,grant,body.terminal,body.stageSeed,body.budget,stays,key);}finally{cold58.delete(key);}
       }
-      async function mountFrom57(a,grant,previous,stageSeed,budget,stays,coldLease){
+      async function mountFrom57(a,grant,previous,stageSeed,budget,stays,coldLease,live=null){
         const {packet,compiled}=grant,m=packet.map,p=structuredClone(a.profile);
         mounting58.set(previous,{app:a,packet,stays,coldLease});let prepared;
         try{prepared=await adapter58.prepare({descriptor:descriptor58,packet,compiled,previous});}finally{mounting58.delete(previous);}
@@ -41,12 +41,20 @@
         b.units=prepared.units;b.active=prepared.units[0].id;b.queue=prepared.units.map(u=>u.id);
         b.honroActiveLimit=4;b.enemyLimit=4;b.honroJourneyReplay=false;b.honroGeometryReady=true;b.honroGeometryRevision=2;b.honroContactRevision=2;
         a.stopBattle();
+        if(live){
+          for(const [i,seat] of prepared.units.entries()){
+            const actor=live.find(u=>u.id===seat.id);
+            check(actor&&actor.cls===seat.cls,'Original body was not present at D');
+            prepared.units[i]=Object.assign(actor,seat);
+          }
+        }
         const old={profile:a.profile,stage:a.stage,stageId:a.stageId,training:a.training,selectedByUnit:a.selectedByUnit,done:a.done};
         const s={old,b,packet,previous,terminal:null,ordinaryRest:true,normal51:true,prepared58:prepared};
         a.close();active.set(a,s);Object.assign(a,{stageId:58,stage:content,training:false,selectedByUnit:{}});
         try{
           a.mount(b,{freshReport:true,reportScope:'custom'});
           check(scope58(a,a.engine,s)&&a.engine.stage===content&&a.scene&&a.screen==='battle','Native normal 58 mount failed');
+          mountHallB58(a,s);
           const ui=appUI(a);check(ui,'Normal 58 controls absent');const btn=document.createElement('button');
           btn.type='button';btn.dataset.act6QaLookout='';styleAction(btn);
           btn.addEventListener('click',event=>{if(event.isTrusted&&event.currentTarget===btn)action(a,event);});s.button=btn;ui.append(btn);
@@ -62,6 +70,18 @@
         check(scope58(a,e,s),'Native 58 scope changed');
         s.owner58=adapter58.attach({app:a,engine:e,prepared:s.prepared58});
         check(s.owner58,'Native 58 owner refused');e.checkEnd=()=>a.checkMission(e);return true;
+      }
+      function mountHallB58(a,s){
+        const e=s.engine,b=e.b,from=capturedHallSlice;
+        const base=b.terrain.find(t=>t.id===hallSill.destination);
+        check(base&&s.prepared58.units.every(u=>e.grounded(u)&&
+          e.contactSurface(u.x,u.y-3,u.y+4)?.t===base&&Math.abs(C.topAt(from,u.x+hallSill.offset.x)-hallSill.offset.y-u.y)<1e-8),
+          'D receiving faces do not coincide');
+        const H=hallB58(),near=H.terrain.map(t=>G.HonroGeometry.terrain(t,b.height));
+        b.terrain=[...b.terrain,...near];b.honroWorldTerrain=[...b.honroWorldTerrain,...near];
+        e.invalidateTerrainCollisionIndex();
+        installHallArt(e,a.scene,[hallSillArt(from),...H.visual]);
+        s.axis58=installHallAxes({C,e,scene:a.scene,crew:s.prepared58.units.slice()});
       }
       function stage58UI(a,s,e){
         if(!scope58(a,e,s))return;

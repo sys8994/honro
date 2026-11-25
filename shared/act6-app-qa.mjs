@@ -188,9 +188,11 @@ export async function createAct6WebQa(project,repoRoot,env=process.env,release=n
   assert(seventh.id===57&&seventh.authoredId==='a6-local-playable-07'&&seventh.runtimeReleaseEnabled===false&&seventh.map.units.length===0);
   packets.push({...seventh,schema:'honro-act6-normal-57-source/v1',trace:{stageId:57,authoredId:seventh.authoredId,mapSHA256:hash(JSON.stringify(seventh.map)),assetSHA256:hash(JSON.stringify(seventh.library))}});
   const code57=await Promise.all(['bridge','owner','emergency','mission','adapter'].map(q=>readFile(new URL('./runtime/stage57-'+q+'.mjs',import.meta.url),'utf8')));
+  const hallCode=await readFile(new URL('./act6-mumyeongsa/hall-b.mjs',import.meta.url),'utf8');
+  const hallExports='hallSill,hallSillArt,installHallArt,hallB58,installHallAxes';
   const wrap57=(name,i)=>'const {'+name+'}='+mod(code57[i],name);
   source=replaceOne(source,'      const declared53=',
-    ['bindOwnedBridge','createStage57Owner','mountEmergency57','createStage57Mission','stage57Adapter'].map(wrap57).join('')+
+    'const {'+hallExports+'}='+mod(hallCode,hallExports)+['bindOwnedBridge','createStage57Owner','mountEmergency57','createStage57Mission','stage57Adapter'].map(wrap57).join('')+
     (await readFile(new URL('./runtime/stage57-entry.inc.js',import.meta.url),'utf8'))+'\n      const declared53=');
   source=replaceOne(source,'const stages=new Set([51,52,53,54,55,56])','const stages=new Set([51,52,53,54,55,56,57])');
   source=replaceOne(source,'        if(id===56)return eligible56(app,s);','        if(id===57)return eligible57(app,s);\n        if(id===56)return eligible56(app,s);');
@@ -210,7 +212,9 @@ export async function createAct6WebQa(project,repoRoot,env=process.env,release=n
   packets.push({...eighth,schema:'honro-act6-normal-58-source/v1',trace:{stageId:58,authoredId:eighth.map.id,mapSHA256:hash(JSON.stringify(eighth.map)),assetSHA256:hash(JSON.stringify(eighth.library))}});
   const core58=await readFile(new URL('./runtime/stage58-owner.mjs',import.meta.url),'utf8');
   const normal58=await readFile(new URL('./runtime/stage58-normal-adapter.mjs',import.meta.url),'utf8');
-  source=replaceOne(source,'      const declared53=','const {createStage58Owner}='+mod(core58,'createStage58Owner')+'const {stage58Adapter}='+mod(normal58,'stage58Adapter')+
+  const slice57=seventh.bridge.additions.terrain.find(t=>t.id==='local-07-08-exact-receiving-slice');
+  assert(slice57?.vertices.length);
+  source=replaceOne(source,'      const declared53=','const capturedHallSlice='+JSON.stringify(slice57)+';\nconst {createStage58Owner}='+mod(core58,'createStage58Owner')+'const {stage58Adapter}='+mod(normal58,'stage58Adapter')+
     (await readFile(new URL('./runtime/stage58-normal-entry.inc.js',import.meta.url),'utf8'))+'\n      const declared53=');
   source=replaceOne(source,'const stages=new Set([51,52,53,54,55,56,57])','const stages=new Set([51,52,53,54,55,56,57,58])');
   source=replaceOne(source,'        if(id===57)return eligible57(app,s);','        if(id===58)return eligible58(app,s);\n        if(id===57)return eligible57(app,s);');

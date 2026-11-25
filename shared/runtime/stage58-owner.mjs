@@ -60,7 +60,8 @@ export function createStage58Owner({C,authorize,isolate=()=>false,preview=()=>fa
   const [boss,node,ledger,echo,vesselA,vesselB,inkA,inkB]=reserved;
   if(boss.maxHp!==BOSS58.hp||boss.honroRigAsset!=='boss_daedosa'||boss.loadout.length||boss.side!==1||node.side!==1||[ledger,echo].some(r=>r.side!==2||!r.honroVisualOnly||!r.localFieldAuthority||r.loadout.length)||[vesselA,vesselB,inkA,inkB].some(r=>r.side!==1||!r.loadout.length))return no('reserved role profile changed');
   const flags=b.honroState.flags, guard=JSON.stringify(carriedProfile);
-  const ground=x=>e.contactSurface(x,2100,3555);
+  const originalTerrain=b.terrain;
+  const ground=x=>C.terrainSurface(originalTerrain,x,2100,3555,Infinity);
   const sites=Object.fromEntries(Object.entries(points).map(([k,m])=>{const s=ground(m.x);return [k,s?{...m,y:s.y,support:s.t.id}:null]}));
   if(!flags||typeof flags!=='object')return no('missing author event storage');
   if(Object.values(sites).some(v=>!v)||Object.values(sites).some(v=>v.support!==hull))return no('grounded rites not present');

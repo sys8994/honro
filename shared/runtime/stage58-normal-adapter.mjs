@@ -64,7 +64,8 @@ export function stage58Adapter(G,{verifyPrevious,verifyAdmission}={}){
    const asked=!flags.column?'column':!flags.bossManifested?'threshold':flags.bossDead&&flags.nodeDead&&!flags.stake?'stake':
     p0.phase===3&&!flags.nodeDead&&!flags.ledgerSpent&&e.active?.cls==='occultist'?'ledger':null;
    const mark=asked?motifs[asked]:null;
-   const y=mark&&e.contactSurface(mark.x,2100,3555)?.y;
+   const hull=e.b.terrain.find(t=>t.id==='local-lower-08-body');
+   const y=mark&&hull&&C.terrainSurface([hull],mark.x,2100,3555,Infinity)?.y;
    const hint=p0.failed?'동행의 몸을 지키지 못했습니다.':p0.complete?'네 사람이 술법을 끊고 돌아왔습니다.':flags.stake?'네 사람이 직접 서쪽 문으로 돌아오십시오.':
     flags.bossDead&&!flags.nodeDead?'남은 확대 술법 유지점을 끊으십시오.':flags.nodeDead&&!flags.bossDead?'유지점이 끊겼습니다. 대도사를 쓰러뜨리십시오.':
     p0.phase===1?'접히는 사선을 피하고, 드러난 대도사를 치십시오.':p0.phase===2?'기울어진 바닥을 벗어나거나 담허의 진목으로 붙드십시오.':`유지점을 끊으십시오 · 저편 ${p0.charge}/3`;
