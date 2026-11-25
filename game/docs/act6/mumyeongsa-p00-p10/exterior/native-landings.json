@@ -1,0 +1,826 @@
+[
+  {
+    "stage": 51,
+    "interface": "keyboard",
+    "status": "PASS",
+    "errors": [],
+    "entry": {
+      "id": "p-archer",
+      "x": 97,
+      "y": 4761.792682926829,
+      "vx": 0,
+      "vy": 0,
+      "move": 2921,
+      "grounded": true,
+      "support": "mountain-main",
+      "phase": "aim",
+      "round": 1,
+      "chart": [
+        7200,
+        5400
+      ],
+      "gravity": {
+        "x": 0,
+        "y": 320
+      }
+    },
+    "before": {
+      "id": "p-archer",
+      "x": 1022.2581531279941,
+      "y": 4586.561249561123,
+      "vx": 0,
+      "vy": 0,
+      "move": 1960.7854130428555,
+      "grounded": true,
+      "support": "mountain-main",
+      "phase": "aim",
+      "round": 1,
+      "chart": [
+        7200,
+        5400
+      ],
+      "gravity": {
+        "x": 0,
+        "y": 320
+      }
+    },
+    "after": {
+      "id": "p-archer",
+      "x": 1306.4013255585394,
+      "y": 4410.005297808062,
+      "vx": 0,
+      "vy": 0,
+      "move": 1620.7540353583809,
+      "grounded": true,
+      "support": "mountain-main",
+      "phase": "aim",
+      "round": 1,
+      "chart": [
+        7200,
+        5400
+      ],
+      "gravity": {
+        "x": 0,
+        "y": 320
+      }
+    },
+    "storageUnchanged": true,
+    "frame": {
+      "left": {
+        "x": 453.21862823215565,
+        "y": 3970.9568847957034
+      },
+      "right": {
+        "x": 1875.4408504543778,
+        "y": 4825.609662573481
+      },
+      "scale": 0.9
+    },
+    "touches": []
+  },
+  {
+    "stage": 51,
+    "interface": "touch",
+    "status": "PASS",
+    "errors": [],
+    "entry": {
+      "id": "p-archer",
+      "x": 97,
+      "y": 4761.792682926829,
+      "vx": 0,
+      "vy": 0,
+      "move": 2921,
+      "grounded": true,
+      "support": "mountain-main",
+      "phase": "aim",
+      "round": 1,
+      "chart": [
+        7200,
+        5400
+      ],
+      "gravity": {
+        "x": 0,
+        "y": 320
+      }
+    },
+    "before": {
+      "id": "p-archer",
+      "x": 1038.3460048941772,
+      "y": 4579.160837748678,
+      "vx": 0,
+      "vy": 0,
+      "move": 1943.077079709522,
+      "grounded": true,
+      "support": "mountain-main",
+      "phase": "aim",
+      "round": 1,
+      "chart": [
+        7200,
+        5400
+      ],
+      "gravity": {
+        "x": 0,
+        "y": 320
+      }
+    },
+    "after": {
+      "id": "p-archer",
+      "x": 1323.78409808392,
+      "y": 4406.62531426146,
+      "vx": 0,
+      "vy": 0,
+      "move": 1603.045702025048,
+      "grounded": true,
+      "support": "mountain-main",
+      "phase": "aim",
+      "round": 1,
+      "chart": [
+        7200,
+        5400
+      ],
+      "gravity": {
+        "x": 0,
+        "y": 320
+      }
+    },
+    "storageUnchanged": true,
+    "frame": {
+      "left": {
+        "x": 943.2601734402681,
+        "y": 3998.0093107611665
+      },
+      "right": {
+        "x": 1418.869929537829,
+        "y": 4787.776841248971
+      },
+      "scale": 0.82
+    },
+    "touches": [
+      {
+        "name": "pointerdown",
+        "trusted": true,
+        "type": "touch",
+        "control": "joystick"
+      },
+      {
+        "name": "pointerup",
+        "trusted": true,
+        "type": "touch",
+        "control": "joystick"
+      },
+      {
+        "name": "pointerdown",
+        "trusted": true,
+        "type": "touch",
+        "control": "joystick"
+      },
+      {
+        "name": "pointerup",
+        "trusted": true,
+        "type": "touch",
+        "control": "joystick"
+      }
+    ]
+  },
+  {
+    "stage": 55,
+    "interface": "keyboard",
+    "status": "PASS",
+    "errors": [],
+    "entry": {
+      "id": "p-knight",
+      "x": 176,
+      "y": 586.9090909090909,
+      "vx": 0,
+      "vy": 0,
+      "move": 4081,
+      "grounded": true,
+      "support": "west-ring-descent",
+      "phase": "aim",
+      "round": 1,
+      "chart": [
+        6800,
+        3200
+      ],
+      "gravity": {
+        "x": 0,
+        "y": 320
+      }
+    },
+    "lift": {
+      "id": "p-knight",
+      "x": 1276.0031528617174,
+      "y": 1099.8948826658486,
+      "vx": 0,
+      "vy": -508.6758455609052,
+      "move": 2753,
+      "grounded": false,
+      "support": null,
+      "phase": "aim",
+      "round": 1,
+      "chart": [
+        6800,
+        3200
+      ],
+      "gravity": {
+        "x": 0,
+        "y": 320
+      }
+    },
+    "before": {
+      "id": "p-knight",
+      "x": 1276.0031528617174,
+      "y": 1186.9108106518458,
+      "vx": 0,
+      "vy": 0,
+      "move": 2828,
+      "grounded": true,
+      "support": "west-ring-descent",
+      "phase": "aim",
+      "round": 1,
+      "chart": [
+        6800,
+        3200
+      ],
+      "gravity": {
+        "x": 0,
+        "y": 320
+      }
+    },
+    "after": {
+      "id": "p-knight",
+      "x": 1496.5031528617174,
+      "y": 1333.6932778036053,
+      "vx": 0,
+      "vy": 0,
+      "move": 2532.5,
+      "grounded": true,
+      "support": "arrival-core-terrace",
+      "phase": "aim",
+      "round": 1,
+      "chart": [
+        6800,
+        3200
+      ],
+      "gravity": {
+        "x": 0,
+        "y": 320
+      }
+    },
+    "storageUnchanged": true,
+    "frame": {
+      "left": {
+        "x": 675.1420417506063,
+        "y": 732.9756553388368
+      },
+      "right": {
+        "x": 2097.3642639728287,
+        "y": 1587.6284331166146
+      },
+      "scale": 0.9
+    },
+    "touches": []
+  },
+  {
+    "stage": 55,
+    "interface": "touch",
+    "status": "PASS",
+    "errors": [],
+    "entry": {
+      "id": "p-knight",
+      "x": 176,
+      "y": 586.9090909090909,
+      "vx": 0,
+      "vy": 0,
+      "move": 4081,
+      "grounded": true,
+      "support": "west-ring-descent",
+      "phase": "aim",
+      "round": 1,
+      "chart": [
+        6800,
+        3200
+      ],
+      "gravity": {
+        "x": 0,
+        "y": 320
+      }
+    },
+    "lift": {
+      "id": "p-knight",
+      "x": 1319.0200359345217,
+      "y": 1088.3557434472314,
+      "vx": 0,
+      "vy": -433.14136034592394,
+      "move": 2704,
+      "grounded": false,
+      "support": null,
+      "phase": "aim",
+      "round": 1,
+      "chart": [
+        6800,
+        3200
+      ],
+      "gravity": {
+        "x": 0,
+        "y": 320
+      }
+    },
+    "before": {
+      "id": "p-knight",
+      "x": 1319.0200359345217,
+      "y": 1210.3745650551937,
+      "vx": 0,
+      "vy": 0,
+      "move": 2779,
+      "grounded": true,
+      "support": "west-ring-descent",
+      "phase": "aim",
+      "round": 1,
+      "chart": [
+        6800,
+        3200
+      ],
+      "gravity": {
+        "x": 0,
+        "y": 320
+      }
+    },
+    "after": {
+      "id": "p-knight",
+      "x": 1518.5200359345217,
+      "y": 1340.4677033644682,
+      "vx": 0,
+      "vy": 0,
+      "move": 2504.5,
+      "grounded": true,
+      "support": "arrival-core-terrace",
+      "phase": "aim",
+      "round": 1,
+      "chart": [
+        6800,
+        3200
+      ],
+      "gravity": {
+        "x": 0,
+        "y": 320
+      }
+    },
+    "storageUnchanged": true,
+    "frame": {
+      "left": {
+        "x": 1180.9651578857413,
+        "y": 780.5373689659286
+      },
+      "right": {
+        "x": 1656.5749139833022,
+        "y": 1570.3048994537335
+      },
+      "scale": 0.82
+    },
+    "touches": [
+      {
+        "name": "pointerdown",
+        "trusted": true,
+        "type": "touch",
+        "control": "joystick"
+      },
+      {
+        "name": "pointerup",
+        "trusted": true,
+        "type": "touch",
+        "control": "joystick"
+      },
+      {
+        "name": "pointerdown",
+        "trusted": true,
+        "type": "touch",
+        "control": "joystick"
+      },
+      {
+        "name": "pointerup",
+        "trusted": true,
+        "type": "touch",
+        "control": "joystick"
+      }
+    ]
+  },
+  {
+    "stage": 59,
+    "interface": "keyboard",
+    "status": "PASS",
+    "errors": [],
+    "entry": {
+      "id": "p-archer",
+      "x": 1404.1436464088397,
+      "y": 1452.259315857529,
+      "vx": 0,
+      "vy": 0,
+      "move": 2921,
+      "grounded": true,
+      "support": "finale-cutout-west-terrace",
+      "phase": "aim",
+      "round": 1,
+      "chart": [
+        7800,
+        4700
+      ],
+      "gravity": {
+        "x": 0,
+        "y": 320
+      }
+    },
+    "climbedBack": {
+      "id": "p-archer",
+      "x": 1504.82360532542,
+      "y": 1530.536068509819,
+      "vx": 0,
+      "vy": 0,
+      "move": 2219.5245220763427,
+      "grounded": true,
+      "support": "finale-cutout-west-terrace",
+      "phase": "aim",
+      "round": 1,
+      "chart": [
+        7800,
+        4700
+      ],
+      "gravity": {
+        "x": 0,
+        "y": 320
+      }
+    },
+    "before": {
+      "id": "p-archer",
+      "x": 1480.83901883514,
+      "y": 1509.3728910686036,
+      "vx": 0,
+      "vy": 0,
+      "move": 2825.375000000004,
+      "grounded": true,
+      "support": "finale-cutout-west-terrace",
+      "phase": "aim",
+      "round": 1,
+      "chart": [
+        7800,
+        4700
+      ],
+      "gravity": {
+        "x": 0,
+        "y": 320
+      }
+    },
+    "after": {
+      "id": "p-archer",
+      "x": 1708.8639327573912,
+      "y": 1731.7414675811378,
+      "vx": 0,
+      "vy": 0,
+      "move": 2506.3995220763304,
+      "grounded": true,
+      "support": "finale-cutout-west-terrace",
+      "phase": "aim",
+      "round": 1,
+      "chart": [
+        7800,
+        4700
+      ],
+      "gravity": {
+        "x": 0,
+        "y": 320
+      }
+    },
+    "storageUnchanged": true,
+    "frame": {
+      "left": {
+        "x": 883.7403646851546,
+        "y": 1093.2307904359818
+      },
+      "right": {
+        "x": 2305.962586907377,
+        "y": 1947.8835682137596
+      },
+      "scale": 0.9
+    },
+    "touches": []
+  },
+  {
+    "stage": 59,
+    "interface": "touch",
+    "status": "PASS",
+    "errors": [],
+    "entry": {
+      "id": "p-archer",
+      "x": 1404.1436464088397,
+      "y": 1452.259315857529,
+      "vx": 0,
+      "vy": 0,
+      "move": 2921,
+      "grounded": true,
+      "support": "finale-cutout-west-terrace",
+      "phase": "aim",
+      "round": 1,
+      "chart": [
+        7800,
+        4700
+      ],
+      "gravity": {
+        "x": 0,
+        "y": 320
+      }
+    },
+    "climbedBack": {
+      "id": "p-archer",
+      "x": 1486.7010005486115,
+      "y": 1513.7381965999123,
+      "vx": 0,
+      "vy": 0,
+      "move": 2138.066188743013,
+      "grounded": true,
+      "support": "finale-cutout-west-terrace",
+      "phase": "aim",
+      "round": 1,
+      "chart": [
+        7800,
+        4700
+      ],
+      "gravity": {
+        "x": 0,
+        "y": 320
+      }
+    },
+    "before": {
+      "id": "p-archer",
+      "x": 1519.4962149424232,
+      "y": 1545.90737382287,
+      "vx": 0,
+      "vy": 0,
+      "move": 2772.024522076319,
+      "grounded": true,
+      "support": "finale-cutout-west-terrace",
+      "phase": "aim",
+      "round": 1,
+      "chart": [
+        7800,
+        4700
+      ],
+      "gravity": {
+        "x": 0,
+        "y": 320
+      }
+    },
+    "after": {
+      "id": "p-archer",
+      "x": 1730.4324909545142,
+      "y": 1750.1146838231314,
+      "vx": 0,
+      "vy": 0,
+      "move": 2478.0661887429983,
+      "grounded": true,
+      "support": "finale-cutout-west-terrace",
+      "phase": "aim",
+      "round": 1,
+      "chart": [
+        7800,
+        4700
+      ],
+      "gravity": {
+        "x": 0,
+        "y": 320
+      }
+    },
+    "storageUnchanged": true,
+    "frame": {
+      "left": {
+        "x": 1387.1594748996883,
+        "y": 1153.1272635790983
+      },
+      "right": {
+        "x": 1862.7692309972492,
+        "y": 1942.8947940669032
+      },
+      "scale": 0.82
+    },
+    "touches": [
+      {
+        "name": "pointerdown",
+        "trusted": true,
+        "type": "touch",
+        "control": "joystick"
+      },
+      {
+        "name": "pointerup",
+        "trusted": true,
+        "type": "touch",
+        "control": "joystick"
+      },
+      {
+        "name": "pointerdown",
+        "trusted": true,
+        "type": "touch",
+        "control": "joystick"
+      },
+      {
+        "name": "pointerup",
+        "trusted": true,
+        "type": "touch",
+        "control": "joystick"
+      },
+      {
+        "name": "pointerdown",
+        "trusted": true,
+        "type": "touch",
+        "control": "joystick"
+      },
+      {
+        "name": "pointerup",
+        "trusted": true,
+        "type": "touch",
+        "control": "joystick"
+      }
+    ]
+  },
+  {
+    "stage": 60,
+    "interface": "keyboard",
+    "status": "PASS",
+    "errors": [],
+    "entry": {
+      "id": "p-archer",
+      "x": 4988.950276243094,
+      "y": 2846.84605047036,
+      "vx": 0,
+      "vy": 0,
+      "move": 2921,
+      "grounded": true,
+      "support": "return-cutout-near-body",
+      "phase": "aim",
+      "round": 1,
+      "chart": [
+        7200,
+        4100
+      ],
+      "gravity": {
+        "x": 0,
+        "y": 320
+      }
+    },
+    "before": {
+      "id": "p-archer",
+      "x": 5897.945207937926,
+      "y": 2678.2134948302596,
+      "vx": 0,
+      "vy": 0,
+      "move": 1975.3244050440314,
+      "grounded": true,
+      "support": "return-cutout-near-body",
+      "phase": "aim",
+      "round": 1,
+      "chart": [
+        7200,
+        4100
+      ],
+      "gravity": {
+        "x": 0,
+        "y": 320
+      }
+    },
+    "after": {
+      "id": "p-archer",
+      "x": 6192.249215771727,
+      "y": 2473.2742973665245,
+      "vx": 0,
+      "vy": 0,
+      "move": 1613.668062423577,
+      "grounded": true,
+      "support": "return-cutout-near-body",
+      "phase": "aim",
+      "round": 1,
+      "chart": [
+        7200,
+        4100
+      ],
+      "gravity": {
+        "x": 0,
+        "y": 320
+      }
+    },
+    "storageUnchanged": true,
+    "frame": {
+      "left": {
+        "x": 5333.986100743716,
+        "y": 2048.417507209503
+      },
+      "right": {
+        "x": 6756.208322965938,
+        "y": 2903.0702849872805
+      },
+      "scale": 0.9
+    },
+    "touches": []
+  },
+  {
+    "stage": 60,
+    "interface": "touch",
+    "status": "PASS",
+    "errors": [],
+    "entry": {
+      "id": "p-archer",
+      "x": 4988.950276243094,
+      "y": 2846.84605047036,
+      "vx": 0,
+      "vy": 0,
+      "move": 2921,
+      "grounded": true,
+      "support": "return-cutout-near-body",
+      "phase": "aim",
+      "round": 1,
+      "chart": [
+        7200,
+        4100
+      ],
+      "gravity": {
+        "x": 0,
+        "y": 320
+      }
+    },
+    "before": {
+      "id": "p-archer",
+      "x": 5918.345207937924,
+      "y": 2672.2634948302602,
+      "vx": 0,
+      "vy": 0,
+      "move": 1954.0744050440337,
+      "grounded": true,
+      "support": "return-cutout-near-body",
+      "phase": "aim",
+      "round": 1,
+      "chart": [
+        7200,
+        4100
+      ],
+      "gravity": {
+        "x": 0,
+        "y": 320
+      }
+    },
+    "after": {
+      "id": "p-archer",
+      "x": 6208.27344968431,
+      "y": 2459.3177065394357,
+      "vx": 0,
+      "vy": 0,
+      "move": 1592.418062423578,
+      "grounded": true,
+      "support": "return-cutout-near-body",
+      "phase": "aim",
+      "round": 1,
+      "chart": [
+        7200,
+        4100
+      ],
+      "gravity": {
+        "x": 0,
+        "y": 320
+      }
+    },
+    "storageUnchanged": true,
+    "frame": {
+      "left": {
+        "x": 5825.504450762337,
+        "y": 2070.9068354409455
+      },
+      "right": {
+        "x": 6301.114206859898,
+        "y": 2860.6743659287504
+      },
+      "scale": 0.82
+    },
+    "touches": [
+      {
+        "name": "pointerdown",
+        "trusted": true,
+        "type": "touch",
+        "control": "joystick"
+      },
+      {
+        "name": "pointerup",
+        "trusted": true,
+        "type": "touch",
+        "control": "joystick"
+      },
+      {
+        "name": "pointerdown",
+        "trusted": true,
+        "type": "touch",
+        "control": "joystick"
+      },
+      {
+        "name": "pointerup",
+        "trusted": true,
+        "type": "touch",
+        "control": "joystick"
+      }
+    ]
+  }
+]

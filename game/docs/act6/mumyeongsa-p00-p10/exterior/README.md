@@ -37,3 +37,20 @@ npm run build
 python game/docs/act6/mumyeongsa-p00-p10/baseline/exterior_audit.py --build "$PWD" --out /tmp/honro-exterior
 python tools/act6-ending-v2/normal.py --chromium /usr/bin/chromium
 ```
+
+## 급경사와 짧은 빈 틈의 실제 입력
+
+| 장 | 입력으로 확인한 위험 구간 | 실제 발점 결과 |
+|---|---|---|
+| 51 | 낮은 능선의 이중 굴곡을 앞서 있는 높이에 맞춰 걸었다. | PC y4586.56→4410.01, 터치 y4579.16→4406.63. 두 판 모두 원래 능선 같은 받침. |
+| 52 | 본편 암벽을 실제로 깨고 네 배우를 좁은 다섯 하강 단으로 내려 보냈다. | 네 배우의 landing-1…5 착지 원자료와 53 실제 도착이 있다. [다섯 단 발점](../encounters/cliff-bell-pressure-52.json) |
+| 55 | 서쪽의 끝과 중앙 석단 사이를 뛰었다. | PC x1276.00→1496.50, 터치 x1319.02→1518.52. 실제 비접지 상승 뒤 다른 은행에 착지. |
+| 57 | 설오가 돌단에 올라섰고 휘겸이 접힌 석교의 짧은 입구를 다시 뛰었다. | 돌단과 접힌 석교의 서로 다른 받침에서 실제 착지. 네 배우가 D를 PC·대표 터치로 밟았다. [PC 도약·착지](../encounters/57-native-capped.json) · [외부 D 실제 터치](../mobile-seams/README.md) |
+| 59 | 서쪽 높은 단의 급경사를 내려간 뒤 실제로 다시 올랐다. | PC y1509.37→1731.74→1530.54, 터치 y1545.91→1750.11→1513.74. 같은 윗단에 계속 접지. |
+| 60 | 현재 산길 동쪽의 두 오르막을 걸었다. | PC y2678.21→2473.27, 터치 y2672.26→2459.32. 실제 비전투 산길의 같은 받침. |
+
+51·55·59·60의 여덟 판은 일반 저장 바이트가 동일했고 화면 오류가 없었다. 터치에서는 조이스틱과 도약 버튼의 신뢰 이벤트를 기록했다. 52의 다섯 단은 PC 전수 경로이고, 모든 수직 벽에 대한 개별 기기 조합은 표본 범위 밖이다. [실제 발점과 입력](native-landings.json) · [PC 오버레이](screens/risky-landings-pc.webp) · [터치 오버레이](screens/risky-landings-touch.webp) · [55 착지 화면](screens/risky-bell-touch.webp)
+
+```bash
+python game/docs/act6/mumyeongsa-p00-p10/baseline/exterior_landings.py --build "$PWD" --out /tmp/honro-exterior-landings
+```
