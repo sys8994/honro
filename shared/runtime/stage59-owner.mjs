@@ -10,7 +10,7 @@ const auth=['act6.garmjinCompleted','act6.finalThreatResolved'];
 // The four forward groups on each wing contest the anchors. Later groups reinforce a
 // stalled line until the garmjin is joined. Leaving the field is a physical retreat.
 export const FRONTS59=Object.freeze({
- perFrontCap:6,totalCap:14,soften:{hp:.85,attack:.75},warn:1,period:1,forward:630,rear:340,breachLimit:3,guard:260,anchorGroups:4,
+ perFrontCap:6,totalCap:14,soften:{hp:.85,attack:.75},warn:1,period:2,forward:630,rear:340,breachLimit:3,guard:260,anchorGroups:4,
  posts:[{id:'west-cleat',x:522*7800/2172,label:'서쪽 지지석',radius:170},{id:'bell-path',x:1490*7800/2172,label:'종터 혼길',radius:170}],
  fronts:[
   {id:'west-return',dir:1,offset:2,line:'서쪽 높은 단과 아래 퇴각 경로로 원혼이 맺힙니다.',squads:[

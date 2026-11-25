@@ -83,9 +83,20 @@ def finish59(browser,page,args,q):
           return {round:b.round, progress:{...b.honroState.localFinaleProgress},
            bell:e.unit('qa-bell-shade')?.hp??null,threat:e.unit('qa-immediate-bridge-threat')?.x};}""")
         p=result['progress'];act={'round':result['round'],'actor':u['id'],'before':p}
+        if p.get('giant') and p['giant']['alive'] and 'forepawScreen' not in q:
+            page.locator('#turn-banner').wait_for(state='hidden',timeout=3500)
+            page.screenshot(path=args.out/'courtyard-forepaw.png')
+            q['forepawScreen']={'round':result['round'],'actor':u['id'],'file':'courtyard-forepaw.png'}
         q['actions'].append(act)
         if result['round']>args.rounds:
             break
+        forepaw=p.get('giant') and not p.get('forepaw') and getattr(args,'forepaw','guard')=='strike'
+        ranged_skills={'archer':['A02','A01'],'mage':['M01','M07'],'occultist':['O06','O04','O01']}
+        if forepaw and u['cls'] in ranged_skills:
+            response=shot(page,{'skills':ranged_skills[u['cls']],'actor':p['giant']['id']})
+            if response:
+                act['forepawStrike']=response
+                continue
         if u['cls']=='archer' and not p.get('cliff'):
             goal={'skills':['A01'],'surface':'finale-cutout-west-terrace','x':522*K,'y':1871.8947026324342,'radius':32}
             act['shot']=anchor_shot(page,'archer',(1645,1775,1960),goal,['A02','A01'],act)
@@ -107,7 +118,9 @@ def finish59(browser,page,args,q):
             giant=p['giant']['id']
             target=page.evaluate('id=>HonroApp.engine.unit(id)?.x',giant)
             if target:
-                act['forepawApproach']=march(page,target-100,cls='knight',tolerance=33)
+                goal=target-115
+                direction=1 if u['x']<goal else -1
+                act['forepawApproach']=sample_walk(page,direction,goal,2800)['end']
                 act['shot']=shot(page,{'skills':['S03','S00'],'actor':giant})
         elif u['cls']=='knight' and p.get('activated'):
             target=result['threat']
