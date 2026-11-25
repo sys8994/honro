@@ -20,4 +20,8 @@ python tools/act6-ending-v2/normal.py --chromium /usr/bin/chromium --from-courty
 
 ## 교대로 전진하는 방어 판
 
-전선별로 새 분대가 도착하는 순서를 서→동으로 교차했다. 진행 중인 분대는 다음 공격과 퇴각을 이어가며 가름진 연결 때까지 양쪽 사선이 남았다. 같은 시드 방어 판에서 시작 10, 누적 34, 최대 활성 12, 실제 공격 큐 최고 8, 승리 11라운드였다. 서쪽 증원 10발 중 8회, 동쪽 8발 중 8회가 아군에게 피해를 줬다. 앞발은 4라운드에 실제 HWD01을 맞혔고, 휘겸이 방어한 뒤 암반 위로 후퇴했다. 31개의 이동 퇴각을 기록했다. 새 60 기록, 두 화면비의 엔딩 및 타이틀 복귀가 통과했다. 이 표본의 브라우저는 동시에 돌린 다른 PC 검수가 있어, 프레임타임을 단독 성능으로 사용하지 않는다. [방어 원자료](courtyard-alternating-guard.json) · [화면](screens/courtyard-alternating-guard.webp) · [엔딩](courtyard-alternating-guard-ending.json)
+전선별로 새 분대가 도착하는 순서를 서→동으로 교차했다. 진행 중인 분대는 다음 공격과 퇴각을 이어가며 가름진 연결 때까지 양쪽 사선이 남았다. 같은 시드 방어 판에서 시작 10, 누적 34, 최대 활성 12, 실제 공격 큐 최고 8, 승리 11라운드였다. 서쪽 증원은 10발을 발사해 아군 피해 처리 8회를, 동쪽은 8발을 발사해 피해 처리 8회를 남겼다. 앞발은 4라운드에 실제 HWD01을 맞혔고, 휘겸이 방어한 뒤 암반 위로 후퇴했다. 31개의 이동 퇴각을 기록했다. 새 60 기록, 두 화면비의 엔딩 및 타이틀 복귀가 통과했다. 이 표본의 브라우저는 동시에 돌린 다른 PC 검수가 있어, 프레임타임을 단독 성능으로 사용하지 않는다. [방어 원자료](courtyard-alternating-guard.json) · [화면](screens/courtyard-alternating-guard.webp) · [엔딩](courtyard-alternating-guard-ending.json)
+
+## 짝을 이룬 직접 타격 판
+
+위 방어 판과 같은 빌드·체크포인트 해시 `71967cd69770cdf901a794fb976bdf3e4596f21314cfac364273fb1fe746dd1b`, 시드 `19388`이다. 4라운드에 휘겸을 교각 위 (4140.53,2909.93)로 전진시켜 실제 S03으로 앞발을 물렸다. 발점 (4237.57,2912.49)에서 같은 암반을 따라 300.68 px를 후퇴했다. 서쪽 증원 7발·아군 피해 처리 5회, 동쪽 증원 8발·아군 피해 처리 7회였다. 시작 10·누적 34·최대 활성 12·실제 공격 큐 최고 8을 유지했다. 11라운드 갑주 실제 퇴각으로 이겼고 새 60 저장·1440 PC와 390 모바일의 두 혼·추모·엔딩·타이틀이 모두 열렸다. 두 판 모두 원래 일반 저장을 보존했다. [직접 타격 원자료](courtyard-alternating-strike.json) · [실제 앞발](screens/courtyard-forepaw-visible.webp) · [승리 화면](screens/courtyard-alternating-strike.webp) · [엔딩](courtyard-alternating-strike-ending.json)

@@ -1,12 +1,13 @@
 """Play the opening of the native courtyard and measure both active fronts."""
 import argparse
 import json
+import subprocess
 from pathlib import Path
 
 from playwright.sync_api import Error, sync_playwright
 
 import browser as base
-from cold_resume import seeded_context, storage_hash
+from cold_resume import saved_context, seeded_context, storage_hash
 from exterior_combat import TRACE
 from hall_passage import actor, march, select
 from legacy54_live import resume
@@ -210,13 +211,40 @@ def expose(page,context,mobile,state):
         else:
             page.keyboard.press('f')
 
+DIFFICULTY_FIXTURE="""
+const fs=require('node:fs'),crypto=require('node:crypto');
+const {profile,body}=JSON.parse(fs.readFileSync(process.argv[1]))['59'];
+const hash=o=>crypto.createHash('sha256').update(JSON.stringify(o)).digest('hex');
+profile.settings.difficulty=process.argv[2];
+if(body.terminal.profile)body.terminal.profile=profile;
+body.profileSHA=hash(profile);
+body.terminalSHA=hash(body.terminal);
+console.log(JSON.stringify({'honro-first-act-profile-1':JSON.stringify(profile),
+ [body.slot]:JSON.stringify({...profile,honroAct6ChapterBoundary:{body,sha:hash(body)}})}));
+"""
+
+
 def fight(browser,args,mobile):
-    c=seeded_context(browser,59,mobile=mobile)
+    if args.difficulty:
+        path=base.ROOT/'shared/act6-debug-stages/fixtures.json'
+        records=json.loads(subprocess.check_output([
+            'node','-e',DIFFICULTY_FIXTURE,str(path),args.difficulty],text=True))
+        c=saved_context(browser,records,mobile=mobile)
+    else:
+        c=seeded_context(browser,59,mobile=mobile)
     page=c.new_page()
     q={'status':'FAIL','interface':'touch' if mobile else 'keyboard','route':f'finish-{args.forepaw}' if args.finish else 'advance' if args.advance else 'defend','errors':[],'turns':[]}
     page.on('pageerror',lambda e:q['errors'].append(str(e)))
     try:
         resume(page,59,True,mobile=mobile)
+        q['stockSeed']=page.evaluate('HonroApp.engine.b.rng')
+        if args.seed is not None:
+            # Isolated RNG sensitivity only. The checkpoint, bodies, turn and controls are unchanged.
+            page.evaluate('seed=>{HonroApp.engine.b.seed=HonroApp.engine.b.rng=seed;}',args.seed)
+        q['testSeed']=args.seed
+        q['difficulty']=page.evaluate('HonroApp.engine.b.difficulty')
+        if args.difficulty:
+            assert q['difficulty']==args.difficulty,q['difficulty']
         q['initialStorageHash']=storage_hash(base.saved_bytes(page))
         page.evaluate(TRACE)
         if mobile:
@@ -279,6 +307,8 @@ def main():
     p.add_argument('--touch',action='store_true')
     p.add_argument('--finish',action='store_true')
     p.add_argument('--forepaw',choices=['guard','strike'],default='guard')
+    p.add_argument('--difficulty',choices=['explorer','story','normal','veteran','nightmare'])
+    p.add_argument('--seed',type=int,help='Isolated battle RNG sensitivity; normal campaign uses its native fixed seed')
     p.add_argument('--check-defend',action='store_true')
     p.add_argument('--advance',action='store_true')
     args=p.parse_args()
