@@ -108,7 +108,8 @@ def finish(browser,args,session=None):
                 if not spec:
                     page.keyboard.press('f')
                 page.wait_for_timeout(370)
-        select(page,'mage',advance=True)
+        r['thresholdPose']=march(page,4480,cls='mage',tolerance=28)
+        assert r['thresholdPose']['contact']=='east-return-buttress',r['thresholdPose']
         page.locator(MARK).filter(has_text='담허').click(timeout=6500)
         page.wait_for_function("HonroApp.engine.b.phase==='won'",timeout=8000)
         page.screenshot(path=args.out/'native-52-bell.png')

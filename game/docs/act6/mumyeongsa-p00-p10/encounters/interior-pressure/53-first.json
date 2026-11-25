@@ -1,0 +1,1421 @@
+{
+  "stage": 53,
+  "status": "FAIL",
+  "errors": [],
+  "regions": [
+    {
+      "site": 860,
+      "wave": "gate-timber",
+      "actions": [
+        {
+          "attack": {
+            "id": "M01",
+            "angle": 15,
+            "power": 0.97,
+            "score": 655,
+            "target": "a6-53-gate-timber-1",
+            "x": 940.3417501836989,
+            "y": 2214.0434782608695
+          }
+        }
+      ],
+      "foot": {
+        "id": "p-mage",
+        "x": 880.269393996022,
+        "y": 2288.020757525285,
+        "vx": 0,
+        "vy": 0,
+        "move": 2561.5529910846913,
+        "grounded": true,
+        "support": "south",
+        "phase": "aim",
+        "round": 1,
+        "chart": [
+          3540,
+          3000
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      }
+    },
+    {
+      "site": 1375,
+      "wave": "archive-balcony",
+      "actions": [
+        {
+          "attack": {
+            "id": "M01",
+            "angle": 66,
+            "power": 0.72,
+            "score": 660.1591245926398,
+            "target": "a6-53-opening-3",
+            "x": 1941,
+            "y": 1486.7862499800306
+          }
+        }
+      ],
+      "foot": {
+        "id": "p-mage",
+        "x": 1378.0710992867462,
+        "y": 1949.7264282929054,
+        "vx": 0,
+        "vy": 0,
+        "move": 2455.152184378706,
+        "grounded": true,
+        "support": "south",
+        "phase": "aim",
+        "round": 2,
+        "chart": [
+          3540,
+          3000
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      }
+    },
+    {
+      "site": 2140,
+      "wave": "lost-sanctuary",
+      "actions": [
+        {
+          "attack": {
+            "id": "M01",
+            "angle": 48,
+            "power": 0.8,
+            "score": 598,
+            "target": "draft-upper-side-guard",
+            "x": 2875,
+            "y": 977.5456159127457
+          }
+        },
+        {
+          "attack": {
+            "id": "M01",
+            "angle": 48,
+            "power": 0.8,
+            "score": 304,
+            "target": "draft-upper-side-guard",
+            "x": 2885.5199030844724,
+            "y": 974.6559097929959
+          }
+        },
+        {
+          "attack": {
+            "id": "M01",
+            "angle": 48,
+            "power": 0.8,
+            "score": 99,
+            "target": "draft-upper-side-guard",
+            "x": 2889.6692956618417,
+            "y": 971.2379230900336
+          }
+        },
+        {
+          "defend": true
+        },
+        {
+          "defend": true
+        }
+      ],
+      "foot": {
+        "id": "p-mage",
+        "x": 2141.216608103796,
+        "y": 1438.3841468100131,
+        "vx": 0,
+        "vy": 0,
+        "move": 2126.1573816033238,
+        "grounded": true,
+        "support": "south",
+        "phase": "aim",
+        "round": 3,
+        "chart": [
+          3540,
+          3000
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      }
+    }
+  ],
+  "error": "Page.wait_for_function: Timeout 3500ms exceeded.",
+  "last": {
+    "stageId": 53,
+    "honroStage": 53,
+    "mode": "campaign",
+    "authoredId": "stage-53",
+    "round": 8,
+    "phase": "aim",
+    "side": 0,
+    "shot": 25,
+    "rng": 58610125404,
+    "active": "p-mage",
+    "dialogue": false,
+    "isolatedStore": false,
+    "play": [
+      3540,
+      3000
+    ],
+    "terrainBounds": {
+      "left": -305,
+      "top": -320,
+      "right": 3845,
+      "bottom": 3450
+    },
+    "playBounds": {
+      "left": 0,
+      "top": 0,
+      "right": 3540,
+      "bottom": 3000
+    },
+    "camera": {
+      "x": 2838.888185770393,
+      "y": 876,
+      "zoom": null
+    },
+    "gravity": {
+      "x": 0,
+      "y": 320
+    },
+    "fieldFlags": [],
+    "terrain": [
+      {
+        "id": "south",
+        "vertices": 16,
+        "oneWay": false
+      },
+      {
+        "id": "library-balcony",
+        "vertices": 8,
+        "oneWay": true
+      },
+      {
+        "id": "sanctuary-beam",
+        "vertices": 8,
+        "oneWay": true
+      },
+      {
+        "id": "west",
+        "vertices": 6,
+        "oneWay": false
+      },
+      {
+        "id": "north",
+        "vertices": 8,
+        "oneWay": false
+      },
+      {
+        "id": "east",
+        "vertices": 4,
+        "oneWay": false
+      },
+      {
+        "id": "b-entry-sill",
+        "vertices": 4,
+        "oneWay": false
+      },
+      {
+        "id": "b-inner-jamb",
+        "vertices": 4,
+        "oneWay": false
+      },
+      {
+        "id": "b-outer-jamb",
+        "vertices": 4,
+        "oneWay": false
+      },
+      {
+        "id": "b-shaft-cap",
+        "vertices": 4,
+        "oneWay": false
+      },
+      {
+        "id": "b-dummy-north",
+        "vertices": 4,
+        "oneWay": false
+      },
+      {
+        "id": "b-dummy-west",
+        "vertices": 5,
+        "oneWay": false
+      },
+      {
+        "id": "b-dummy-east",
+        "vertices": 4,
+        "oneWay": false
+      },
+      {
+        "id": "b-dummy-south",
+        "vertices": 5,
+        "oneWay": false
+      },
+      {
+        "id": "upper-threshold-footing",
+        "vertices": 15,
+        "oneWay": false
+      }
+    ],
+    "worldTerrain": [
+      {
+        "id": "south",
+        "vertices": 16
+      },
+      {
+        "id": "library-balcony",
+        "vertices": 8
+      },
+      {
+        "id": "sanctuary-beam",
+        "vertices": 8
+      },
+      {
+        "id": "west",
+        "vertices": 6
+      },
+      {
+        "id": "north",
+        "vertices": 8
+      },
+      {
+        "id": "east",
+        "vertices": 4
+      },
+      {
+        "id": "b-entry-sill",
+        "vertices": 4
+      },
+      {
+        "id": "b-inner-jamb",
+        "vertices": 4
+      },
+      {
+        "id": "b-outer-jamb",
+        "vertices": 4
+      },
+      {
+        "id": "b-shaft-cap",
+        "vertices": 4
+      },
+      {
+        "id": "b-dummy-north",
+        "vertices": 4
+      },
+      {
+        "id": "b-dummy-west",
+        "vertices": 5
+      },
+      {
+        "id": "b-dummy-east",
+        "vertices": 4
+      },
+      {
+        "id": "b-dummy-south",
+        "vertices": 5
+      },
+      {
+        "id": "upper-threshold-footing",
+        "vertices": 15
+      }
+    ],
+    "enemies": [
+      "a6-53-opening-2",
+      "a6-53-opening-3",
+      "a6-53-archive-balcony-1"
+    ],
+    "units": [
+      {
+        "id": "p-mage",
+        "cls": "mage",
+        "side": 0,
+        "level": 25,
+        "hp": 1001.8000000000002,
+        "maxHp": 2050,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "pos": [
+          2668.89,
+          1060
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "south",
+        "fixed": false,
+        "objective": false,
+        "role": "mage",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "draft-lower-lane-guard",
+        "cls": "occultist",
+        "side": 1,
+        "level": 1,
+        "hp": 290,
+        "maxHp": 290,
+        "loadout": [
+          "HGS01",
+          "HGS02"
+        ],
+        "pos": [
+          1163.75,
+          1968.43
+        ],
+        "h": 105,
+        "r": 21,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "library-balcony",
+        "fixed": false,
+        "objective": false,
+        "role": "fire",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "draft-upper-side-guard",
+        "cls": "occultist",
+        "side": 1,
+        "level": 1,
+        "hp": 0,
+        "maxHp": 598,
+        "loadout": [
+          "HSH02"
+        ],
+        "pos": [
+          2919.67,
+          1060
+        ],
+        "h": 137,
+        "r": 24,
+        "awake": true,
+        "dead": true,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "south",
+        "fixed": false,
+        "objective": false,
+        "role": "ice",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-53-opening-1",
+        "cls": "knight",
+        "side": 1,
+        "level": 25,
+        "hp": 655,
+        "maxHp": 655,
+        "loadout": [
+          "HBM01"
+        ],
+        "pos": [
+          827,
+          2329.9
+        ],
+        "h": 88,
+        "r": 32,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "south",
+        "fixed": false,
+        "objective": false,
+        "role": "leaper",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-53-opening-2",
+        "cls": "occultist",
+        "side": 1,
+        "level": 25,
+        "hp": 684,
+        "maxHp": 684,
+        "loadout": [
+          "HSH01",
+          "HSH02"
+        ],
+        "pos": [
+          1625.81,
+          1684.95
+        ],
+        "h": 137,
+        "r": 24,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "sanctuary-beam",
+        "fixed": false,
+        "objective": false,
+        "role": "ice",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-53-opening-3",
+        "cls": "knight",
+        "side": 1,
+        "level": 25,
+        "hp": 509,
+        "maxHp": 755,
+        "loadout": [
+          "HBM03"
+        ],
+        "pos": [
+          2050.42,
+          1440.78
+        ],
+        "h": 116,
+        "r": 38,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "sanctuary-beam",
+        "fixed": false,
+        "objective": false,
+        "role": "leaper",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-53-gate-timber-1",
+        "cls": "knight",
+        "side": 1,
+        "level": 25,
+        "hp": 347,
+        "maxHp": 655,
+        "loadout": [
+          "HBM01"
+        ],
+        "pos": [
+          892.14,
+          2277.44
+        ],
+        "h": 88,
+        "r": 32,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "south",
+        "fixed": false,
+        "objective": false,
+        "role": "leaper",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-53-archive-balcony-1",
+        "cls": "knight",
+        "side": 1,
+        "level": 25,
+        "hp": 655,
+        "maxHp": 655,
+        "loadout": [
+          "HBM01"
+        ],
+        "pos": [
+          2079.72,
+          1427.09
+        ],
+        "h": 88,
+        "r": 32,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "sanctuary-beam",
+        "fixed": false,
+        "objective": false,
+        "role": "leaper",
+        "summoned": false,
+        "ally": false
+      }
+    ]
+  },
+  "trace": {
+    "shots": [
+      {
+        "id": "a6-53-gate-timber-1",
+        "skill": "HBM01",
+        "round": 1
+      },
+      {
+        "id": "a6-53-opening-1",
+        "skill": "HBM01",
+        "round": 1
+      },
+      {
+        "id": "a6-53-opening-2",
+        "skill": "HSH01",
+        "round": 2
+      },
+      {
+        "id": "draft-lower-lane-guard",
+        "skill": "HGS02",
+        "round": 2
+      },
+      {
+        "id": "a6-53-archive-balcony-1",
+        "skill": "HBM01",
+        "round": 2
+      },
+      {
+        "id": "a6-53-opening-2",
+        "skill": "HSH01",
+        "round": 3
+      },
+      {
+        "id": "a6-53-opening-2",
+        "skill": "HSH02",
+        "round": 4
+      },
+      {
+        "id": "a6-53-opening-3",
+        "skill": "HBM03",
+        "round": 4
+      },
+      {
+        "id": "a6-53-archive-balcony-1",
+        "skill": "HBM01",
+        "round": 4
+      },
+      {
+        "id": "a6-53-archive-balcony-1",
+        "skill": "HBM01",
+        "round": 5
+      },
+      {
+        "id": "a6-53-opening-2",
+        "skill": "HSH02",
+        "round": 5
+      },
+      {
+        "id": "a6-53-opening-3",
+        "skill": "HBM03",
+        "round": 5
+      },
+      {
+        "id": "a6-53-archive-balcony-1",
+        "skill": "HBM01",
+        "round": 6
+      },
+      {
+        "id": "draft-lower-lane-guard",
+        "skill": "HGS02",
+        "round": 6
+      },
+      {
+        "id": "a6-53-opening-2",
+        "skill": "HSH01",
+        "round": 6
+      },
+      {
+        "id": "a6-53-opening-3",
+        "skill": "HBM03",
+        "round": 6
+      },
+      {
+        "id": "a6-53-archive-balcony-1",
+        "skill": "HBM01",
+        "round": 7
+      },
+      {
+        "id": "draft-lower-lane-guard",
+        "skill": "HGS02",
+        "round": 7
+      },
+      {
+        "id": "a6-53-opening-2",
+        "skill": "HSH01",
+        "round": 7
+      },
+      {
+        "id": "a6-53-opening-3",
+        "skill": "HBM03",
+        "round": 7
+      }
+    ],
+    "damage": [
+      {
+        "id": "a6-53-gate-timber-1",
+        "target": "p-mage",
+        "skill": "HBM01",
+        "before": 1670.8000000000002,
+        "after": 1577.8000000000002,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 182.50335288197294,
+        "round": 1
+      },
+      {
+        "id": "a6-53-opening-1",
+        "target": "p-mage",
+        "skill": "HBM01",
+        "before": 1577.8000000000002,
+        "after": 1478.8000000000002,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 182.50335288197294,
+        "round": 1
+      },
+      {
+        "id": "a6-53-opening-2",
+        "target": "p-mage",
+        "skill": "HSH01",
+        "before": 1478.8000000000002,
+        "after": 1447.8000000000002,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 64.29693181042863,
+        "round": 2
+      },
+      {
+        "id": "draft-lower-lane-guard",
+        "target": "p-mage",
+        "skill": "HGS02",
+        "before": 1447.8000000000002,
+        "after": 1438.8000000000002,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 22.402786465569555,
+        "round": 2
+      },
+      {
+        "id": "a6-53-archive-balcony-1",
+        "target": "p-mage",
+        "skill": "HBM01",
+        "before": 1438.8000000000002,
+        "after": 1335.8000000000002,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 182.50335288197294,
+        "round": 2
+      },
+      {
+        "id": "a6-53-opening-2",
+        "target": "p-mage",
+        "skill": "HSH01",
+        "before": 1335.8000000000002,
+        "after": 1304.8000000000002,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 64.29693181042863,
+        "round": 3
+      },
+      {
+        "id": "a6-53-opening-2",
+        "target": "p-mage",
+        "skill": "HSH02",
+        "before": 1304.8000000000002,
+        "after": 1246.8000000000002,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 120.26527357025687,
+        "round": 4
+      },
+      {
+        "id": "a6-53-opening-3",
+        "target": "p-mage",
+        "skill": "HBM03",
+        "before": 1246.8000000000002,
+        "after": 1152.8000000000002,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 177.36375803790185,
+        "round": 4
+      },
+      {
+        "id": "a6-53-archive-balcony-1",
+        "target": "p-mage",
+        "skill": "HBM01",
+        "before": 1152.8000000000002,
+        "after": 1058.8000000000002,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 182.50335288197294,
+        "round": 4
+      },
+      {
+        "id": "a6-53-archive-balcony-1",
+        "target": "p-mage",
+        "skill": "HBM01",
+        "before": 1058.8000000000002,
+        "after": 971.8000000000002,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 182.50335288197294,
+        "round": 5
+      },
+      {
+        "id": "a6-53-opening-2",
+        "target": "p-mage",
+        "skill": "HSH02",
+        "before": 971.8000000000002,
+        "after": 932.8000000000002,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 82.26320259684444,
+        "round": 5
+      },
+      {
+        "id": "a6-53-opening-3",
+        "target": "p-mage",
+        "skill": "HBM03",
+        "before": 932.8000000000002,
+        "after": 837.8000000000002,
+        "shieldBefore": 0,
+        "shieldAfter": 0,
+        "amount": 177.36375803790185,
+        "round": 5
+      },
+      {
+        "id": "a6-53-archive-balcony-1",
+        "target": "p-mage",
+        "skill": "HBM01",
+        "before": 919.8000000000002,
+        "after": 919.8000000000002,
+        "shieldBefore": 246,
+        "shieldAfter": 152,
+        "amount": 182.50335288197294,
+        "round": 6
+      },
+      {
+        "id": "draft-lower-lane-guard",
+        "target": "p-mage",
+        "skill": "HGS02",
+        "before": 919.8000000000002,
+        "after": 919.8000000000002,
+        "shieldBefore": 152,
+        "shieldAfter": 145,
+        "amount": 17.205019030732906,
+        "round": 6
+      },
+      {
+        "id": "a6-53-opening-3",
+        "target": "p-mage",
+        "skill": "HBM03",
+        "before": 919.8000000000002,
+        "after": 919.8000000000002,
+        "shieldBefore": 145,
+        "shieldAfter": 49,
+        "amount": 177.36375803790185,
+        "round": 6
+      },
+      {
+        "id": "a6-53-archive-balcony-1",
+        "target": "p-mage",
+        "skill": "HBM01",
+        "before": 1001.8000000000002,
+        "after": 1001.8000000000002,
+        "shieldBefore": 246,
+        "shieldAfter": 148,
+        "amount": 182.50335288197294,
+        "round": 7
+      },
+      {
+        "id": "draft-lower-lane-guard",
+        "target": "p-mage",
+        "skill": "HGS02",
+        "before": 1001.8000000000002,
+        "after": 1001.8000000000002,
+        "shieldBefore": 148,
+        "shieldAfter": 141,
+        "amount": 18.1144784646977,
+        "round": 7
+      },
+      {
+        "id": "a6-53-opening-2",
+        "target": "p-mage",
+        "skill": "HSH01",
+        "before": 1001.8000000000002,
+        "after": 1001.8000000000002,
+        "shieldBefore": 141,
+        "shieldAfter": 110,
+        "amount": 64.29693181042863,
+        "round": 7
+      },
+      {
+        "id": "a6-53-opening-3",
+        "target": "p-mage",
+        "skill": "HBM03",
+        "before": 1001.8000000000002,
+        "after": 1001.8000000000002,
+        "shieldBefore": 110,
+        "shieldAfter": 19,
+        "amount": 177.36375803790185,
+        "round": 7
+      }
+    ],
+    "impacts": [
+      {
+        "id": "a6-53-opening-2",
+        "target": "p-mage",
+        "skill": "HSH01",
+        "before": {
+          "hp": 1478.8000000000002,
+          "shield": 0
+        },
+        "after": {
+          "hp": 1447.8000000000002,
+          "shield": 0
+        },
+        "x": 1350.0710992867462,
+        "y": 1893.2561508597257,
+        "shot": 5,
+        "round": 2
+      },
+      {
+        "id": "draft-lower-lane-guard",
+        "target": "p-mage",
+        "skill": "HGS02",
+        "before": {
+          "hp": 1447.8000000000002,
+          "shield": 0
+        },
+        "after": {
+          "hp": 1438.8000000000002,
+          "shield": 0
+        },
+        "x": 1365.526108507445,
+        "y": 1847.833489861163,
+        "shot": 6,
+        "round": 2
+      },
+      {
+        "id": "a6-53-opening-2",
+        "target": "p-mage",
+        "skill": "HSH01",
+        "before": {
+          "hp": 1335.8000000000002,
+          "shield": 0
+        },
+        "after": {
+          "hp": 1304.8000000000002,
+          "shield": 0
+        },
+        "x": 2113.216608103796,
+        "y": 1419.1002982256625,
+        "shot": 9,
+        "round": 3
+      },
+      {
+        "id": "a6-53-opening-2",
+        "target": "p-mage",
+        "skill": "HSH02",
+        "before": {
+          "hp": 1304.8000000000002,
+          "shield": 0
+        },
+        "after": {
+          "hp": 1246.8000000000002,
+          "shield": 0
+        },
+        "x": 2117.100268378226,
+        "y": 1377.4750580280997,
+        "shot": 11,
+        "round": 4
+      },
+      {
+        "id": "a6-53-opening-2",
+        "target": "p-mage",
+        "skill": "HSH02",
+        "before": {
+          "hp": 971.8000000000002,
+          "shield": 0
+        },
+        "after": {
+          "hp": 932.8000000000002,
+          "shield": 0
+        },
+        "x": 2174.801180862734,
+        "y": 1333.1927187075435,
+        "shot": 16,
+        "round": 5
+      },
+      {
+        "id": "a6-53-opening-2",
+        "target": "p-mage",
+        "skill": "HSH01",
+        "before": {
+          "hp": 919.8000000000002,
+          "shield": 145
+        },
+        "after": {
+          "hp": 919.8000000000002,
+          "shield": 145
+        },
+        "x": 2099.2337180320387,
+        "y": 1447.378522490219,
+        "shot": 20,
+        "round": 6
+      },
+      {
+        "id": "a6-53-opening-2",
+        "target": "p-mage",
+        "skill": "HSH01",
+        "before": {
+          "hp": 1001.8000000000002,
+          "shield": 141
+        },
+        "after": {
+          "hp": 1001.8000000000002,
+          "shield": 110
+        },
+        "x": 2086.431651339264,
+        "y": 1445.203585476504,
+        "shot": 24,
+        "round": 7
+      }
+    ],
+    "enemyTurns": [
+      {
+        "id": "a6-53-gate-timber-1",
+        "round": 1,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 973.3224630107127,
+        "y": 2205.08215253393
+      },
+      {
+        "id": "draft-lower-lane-guard",
+        "round": 1,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1100,
+        "y": 1992.8
+      },
+      {
+        "id": "a6-53-opening-1",
+        "round": 1,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 740,
+        "y": 2386.28
+      },
+      {
+        "id": "a6-53-opening-2",
+        "round": 1,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1320,
+        "y": 1917.0666666666666
+      },
+      {
+        "id": "a6-53-opening-2",
+        "round": 2,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1238.9121721300671,
+        "y": 1939.70468087473
+      },
+      {
+        "id": "draft-lower-lane-guard",
+        "round": 2,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1121.2506057558098,
+        "y": 1984.677546244446
+      },
+      {
+        "id": "a6-53-opening-3",
+        "round": 2,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1981.4904573544534,
+        "y": 1590.85001797984
+      },
+      {
+        "id": "a6-53-archive-balcony-1",
+        "round": 2,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1480,
+        "y": 1876.111111111111
+      },
+      {
+        "id": "draft-upper-side-guard",
+        "round": 3,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 2915.5199030844724,
+        "y": 1060
+      },
+      {
+        "id": "a6-53-opening-2",
+        "round": 3,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1238.9121721300671,
+        "y": 1939.70468087473
+      },
+      {
+        "id": "a6-53-opening-3",
+        "round": 3,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1567.1784734700286,
+        "y": 1842.1869690276487
+      },
+      {
+        "id": "a6-53-archive-balcony-1",
+        "round": 3,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1397.7160583174095,
+        "y": 1935.5384023263152
+      },
+      {
+        "id": "draft-upper-side-guard",
+        "round": 4,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 2919.6692956618417,
+        "y": 1060
+      },
+      {
+        "id": "a6-53-opening-2",
+        "round": 4,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1619.8386091500329,
+        "y": 1687.7419823966513
+      },
+      {
+        "id": "a6-53-opening-3",
+        "round": 4,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1898.7669912722583,
+        "y": 1542.5571729700357
+      },
+      {
+        "id": "a6-53-archive-balcony-1",
+        "round": 4,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1729.367173799017,
+        "y": 1828.6420554188967
+      },
+      {
+        "id": "a6-53-archive-balcony-1",
+        "round": 5,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 2077.5264800809873,
+        "y": 1428.112623440408
+      },
+      {
+        "id": "draft-lower-lane-guard",
+        "round": 5,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1100,
+        "y": 1992.8
+      },
+      {
+        "id": "a6-53-opening-2",
+        "round": 5,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1619.8386091500329,
+        "y": 1687.7419823966513
+      },
+      {
+        "id": "a6-53-opening-3",
+        "round": 5,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 2070.122992184354,
+        "y": 1431.5729493051388
+      },
+      {
+        "id": "a6-53-archive-balcony-1",
+        "round": 6,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 2079.7158143264132,
+        "y": 1427.0893476517851
+      },
+      {
+        "id": "draft-lower-lane-guard",
+        "round": 6,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1121.2506057558098,
+        "y": 1984.677546244446
+      },
+      {
+        "id": "a6-53-opening-2",
+        "round": 6,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1706.8386091500356,
+        "y": 1647.14198239665
+      },
+      {
+        "id": "a6-53-opening-3",
+        "round": 6,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 2070.122992184354,
+        "y": 1431.5729493051388
+      },
+      {
+        "id": "a6-53-archive-balcony-1",
+        "round": 7,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 2079.7158143264132,
+        "y": 1427.0893476517851
+      },
+      {
+        "id": "draft-lower-lane-guard",
+        "round": 7,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1142.5012115116197,
+        "y": 1976.5550924888921
+      },
+      {
+        "id": "a6-53-opening-2",
+        "round": 7,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 1625.810733382127,
+        "y": 1684.9549910883406
+      },
+      {
+        "id": "a6-53-opening-3",
+        "round": 7,
+        "bossPhase": null,
+        "phase": "enemy",
+        "grounded": true,
+        "x": 2070.122992184354,
+        "y": 1431.5729493051388
+      }
+    ],
+    "joins": [
+      {
+        "id": "draft-lower-lane-guard",
+        "role": "fire",
+        "source": "original",
+        "round": 1,
+        "bossPhase": null,
+        "x": 1100,
+        "y": 1992.8,
+        "grounded": true,
+        "surface": "library-balcony"
+      },
+      {
+        "id": "draft-upper-side-guard",
+        "role": "ice",
+        "source": "original",
+        "round": 1,
+        "bossPhase": null,
+        "x": 2905,
+        "y": 1060,
+        "grounded": true,
+        "surface": "south"
+      },
+      {
+        "id": "a6-53-opening-1",
+        "role": "leaper",
+        "source": "opening",
+        "round": 1,
+        "bossPhase": null,
+        "x": 740,
+        "y": 2386.28,
+        "grounded": true,
+        "surface": "south"
+      },
+      {
+        "id": "a6-53-opening-2",
+        "role": "ice",
+        "source": "opening",
+        "round": 1,
+        "bossPhase": null,
+        "x": 1320,
+        "y": 1917.0666666666666,
+        "grounded": true,
+        "surface": "library-balcony"
+      },
+      {
+        "id": "a6-53-opening-3",
+        "role": "leaper",
+        "source": "opening",
+        "round": 1,
+        "bossPhase": null,
+        "x": 1985,
+        "y": 1587.5,
+        "grounded": true,
+        "surface": "south"
+      },
+      {
+        "id": "a6-53-gate-timber-1",
+        "role": "leaper",
+        "source": "gate-timber",
+        "round": 1,
+        "bossPhase": null,
+        "x": 970,
+        "y": 2208.0434782608695,
+        "grounded": true,
+        "surface": "south"
+      },
+      {
+        "id": "a6-53-archive-balcony-1",
+        "role": "leaper",
+        "source": "archive-balcony",
+        "round": 1,
+        "bossPhase": null,
+        "x": 1480,
+        "y": 1876.111111111111,
+        "grounded": true,
+        "surface": "south"
+      }
+    ],
+    "queues": [
+      {
+        "round": 1,
+        "queue": [
+          "a6-53-gate-timber-1",
+          "a6-53-opening-1",
+          "draft-lower-lane-guard",
+          "a6-53-opening-2"
+        ],
+        "fronts": []
+      },
+      {
+        "round": 2,
+        "queue": [
+          "a6-53-opening-2",
+          "a6-53-archive-balcony-1",
+          "draft-lower-lane-guard",
+          "a6-53-opening-3"
+        ],
+        "fronts": []
+      },
+      {
+        "round": 3,
+        "queue": [
+          "draft-upper-side-guard",
+          "a6-53-opening-2",
+          "a6-53-opening-3",
+          "a6-53-archive-balcony-1"
+        ],
+        "fronts": []
+      },
+      {
+        "round": 4,
+        "queue": [
+          "draft-upper-side-guard",
+          "a6-53-opening-3",
+          "a6-53-archive-balcony-1",
+          "a6-53-opening-2"
+        ],
+        "fronts": []
+      },
+      {
+        "round": 5,
+        "queue": [
+          "a6-53-archive-balcony-1",
+          "a6-53-opening-3",
+          "a6-53-opening-2",
+          "draft-lower-lane-guard"
+        ],
+        "fronts": []
+      },
+      {
+        "round": 6,
+        "queue": [
+          "a6-53-archive-balcony-1",
+          "a6-53-opening-3",
+          "a6-53-opening-2",
+          "draft-lower-lane-guard"
+        ],
+        "fronts": []
+      },
+      {
+        "round": 7,
+        "queue": [
+          "a6-53-archive-balcony-1",
+          "a6-53-opening-3",
+          "a6-53-opening-2",
+          "draft-lower-lane-guard"
+        ],
+        "fronts": []
+      }
+    ],
+    "peak": 6,
+    "initialRng": 19388,
+    "seed": 19388,
+    "peakWitness": {
+      "round": 1,
+      "bossPhase": null,
+      "phase": "aim",
+      "ids": [
+        "draft-lower-lane-guard",
+        "a6-53-opening-1",
+        "a6-53-opening-2",
+        "a6-53-opening-3",
+        "a6-53-gate-timber-1",
+        "a6-53-archive-balcony-1"
+      ]
+    },
+    "initial": 5,
+    "limit": 4,
+    "hostP95": 33.399999999999636
+  }
+}
