@@ -3,7 +3,7 @@
 // selected act passes the journal's existing unlock checks. Keep two decoded
 // nodes, reusing the node across selection redraws and journal revisits.
 const cache=new Map();
-const definition=act=>G.HONRO_JOURNEY_MAPS?.acts?.find(item=>item.act===Number(act))||null;
+const definition=act=>Number(act)===6?G.HonroAct6Journey?.map??null:G.HONRO_JOURNEY_MAPS?.acts?.find(item=>item.act===Number(act))||null;
 function entry(act){const def=definition(act);if(!def)return null;let item=cache.get(act);if(item){cache.delete(act);cache.set(act,item);return item;}
  const image=new Image();image.className='journey-map-image';image.alt='';image.draggable=false;image.decoding='async';item={image,state:'loading'};cache.set(act,item);
  while(cache.size>2){const key=cache.keys().next().value;cache.delete(key);}

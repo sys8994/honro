@@ -212,7 +212,18 @@ export async function buildWeb({vector=true,destination=path.join(root,'HONRO.ht
       }
       terrainArt=await read('shared/act6-terrain-art/paint-scene.inc.js');
     }
-    mains[0].code=makeQaMain(mains[0].code,qaAct6.source,descriptors,terrainArt);
+    let journeyArt=null;
+    if(descriptors.releaseEnabled&&descriptors.boundary){
+      const map=JSON.parse(await read('shared/act6-journey/map.json'));
+      assert.equal(map.act,6);
+      assert.deepEqual(map.stages.map(row=>row.stageNumber),Array.from({length:10},(_,i)=>51+i));
+      assert.equal(map.progressRoutes.length,9);
+      for(const row of map.stages)assert(row.x>0&&row.x<map.width&&row.y>0&&row.y<map.height);
+      const plate=await readFile(path.join(root,'shared/act6-journey/mumyeongsa.webp'));
+      descriptors.journeyMap={...map,path:'/'+await emit('graphics','journey-map-act6','webp',plate)};
+      journeyArt=await read('shared/act6-journey/journey.inc.js');
+    }
+    mains[0].code=makeQaMain(mains[0].code,qaAct6.source,descriptors,terrainArt,journeyArt);
   }
   const appStart=entries.findIndex(e=>e.name==='game/vendor/ui/fa.js');
   assert(appStart>0,'Game application boundary required');

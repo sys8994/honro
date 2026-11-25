@@ -16,7 +16,8 @@ function restNext(app){return data().at(app.debugMode&&app.debugRestStage||state
 function optionalLines(app,cls,id=restNext(app)?.stageId??null){const debugPreviewStage=app.debugMode&&app.debugRestStage===id?id:null;return data().optional(app.profile,id,cls,{debugPreviewStage});}
 const stage=id=>H.stages.find(s=>s.id===Number(id));
 const actOf=id=>stage(id)?.act||1;
-function actOpen(profile,act,debug=false){const previous=H.stages.filter(s=>(s.act||1)===act-1);return H.stages.some(s=>(s.act||1)===act)&&(debug||act===1||!!profile.cleared[previous.at(-1)?.id]);}
+const journal6=app=>G.HonroAct6Journey?.view(app)||null;
+function actOpen(profile,act,debug=false){if(act===6)return G.HonroApp?.profile===profile&&!!journal6(G.HonroApp);const previous=H.stages.filter(s=>(s.act||1)===act-1);return H.stages.some(s=>(s.act||1)===act)&&(debug||act===1||!!profile.cleared[previous.at(-1)?.id]);}
 function actPlaces(act){return data().places.filter(v=>actOf(v.stageId)===act);}
 // Urgent direct links and the uninterrupted split expedition have no rest stop.
 function hasRest(id){id=Number(id);return !!data().at(id)&&data().transitionAfter(id-1)!=='direct'&&!(id>=25&&id<=28);}
@@ -184,8 +185,28 @@ function bookRecords(app,id){
  const reviewed=G.HonroAct23V4Reviewed?.journals?.(app.profile,id)||[G.HonroAct23V4Reviewed?.journal(app.profile,id)].filter(Boolean),actions=(G.HonroClearReportUI?.journal(app,id)||'')+(G.HonroActEndings?.replayButton?.(app,id)||'')+reviewed.map(r=>`<p data-reviewed-row="${esc(r.rowId)}">${esc(r.text)}</p>`).join('');
  return actions?`<details class="journey-records"><summary aria-label="선택한 길목의 보고서와 막 엔딩 기록">기록</summary><div class="journey-record-menu">${actions}</div></details>`:'';
 }
+function book6Body(app,view,def){
+ const visible=def.stages.filter(row=>row.stageNumber<=view.through), selected=visible.find(row=>row.stageNumber===app.journeySelection)||visible.at(-1);
+ const reached=row=>view.finished||row.stageNumber<view.through;
+ const isInterior=row=>row.realm==='무명사 안';
+ const pins=visible.map(row=>{
+  const id=row.stageNumber, here=id===view.current, passed=reached(row), picked=id===selected.stageNumber;
+  return `<button type="button" class="journey-pin ${passed?'passed':''} ${here?'current':''} ${picked?'selected':''} ${isInterior(row)?'journey6-inner':'journey6-outer'}" data-action="journey-select" data-id="${id}" style="left:${row.x/def.width*100}%;top:${row.y/def.height*100}%;--label-side:${row.labelOffsetX}" aria-label="6막 ${id-50}장 ${esc(row.mapLabel)} · ${here?'현재 길목':passed?'지나온 길':'산문'}" aria-pressed="${picked}" ${here?'aria-current="location"':''}><i>${id-50}</i><span>${esc(row.mapLabel)}</span></button>`;
+ }).join('');
+ const routes=`<svg class="journey-progress" viewBox="0 0 ${def.width} ${def.height}" aria-hidden="true">${def.progressRoutes.slice(0,visible.length-1).map((d,i)=>{
+  const from=visible[i],to=visible[i+1],cross=isInterior(from)!==isInterior(to);
+  return `<path class="progress-underlay" d="${d}" vector-effect="non-scaling-stroke"/><path data-from="${from.stageNumber}" data-to="${to.stageNumber}" class="${reached(to)?'progress-complete':'progress-current'} ${cross?'journey6-fold':isInterior(to)?'journey6-inside':'journey6-outside'}" d="${d}" vector-effect="non-scaling-stroke"/>`;
+ }).join('')}</svg>`;
+ const fog=view.finished?'':`<svg class="journey-fog" viewBox="0 0 ${def.width} ${def.height}" aria-hidden="true"><defs><radialGradient id="journey6-reveal"><stop offset=".26" stop-color="black"/><stop offset="1" stop-color="black" stop-opacity="0"/></radialGradient><mask id="journey6-fog"><rect width="100%" height="100%" fill="white"/>${visible.map(v=>`<ellipse cx="${v.x}" cy="${v.y}" rx="285" ry="265" fill="url(#journey6-reveal)"/>`).join('')}</mask></defs><rect width="100%" height="100%" fill="#0a161a" opacity=".80" mask="url(#journey6-fog)"/></svg>`;
+ const here=selected.stageNumber===view.current, short=view.readable?here?'현재 길목':view.finished?'여정 완료':'지나온 길':'이어가기 기록 확인 필요';
+ // A destination's narrative annotation only becomes readable after the journey gets there.
+ const note=reached(selected)?esc(selected.note):'';
+ const action=here?'<button class="primary" data-action="rest">쉼터에서 이어가기</button>':'';
+ return {pins,routes,fog,details:`<div class="journey6-detail"><p>${esc(selected.realm)} · 6막 ${selected.stageNumber-50}장 · ${short}</p><h2>${esc(selected.mapLabel)}</h2>${note?`<p>${note}</p>`:''}</div>${action}`};
+}
 function bookMarkup(app){
  const p=app.profile,d=data(),act=app.journeyAct||actOf(currentId(p)),def=mapDefinition(act),finished=!active(p)&&!d.next(p),allowed=actOpen(p,act,app.debugMode),places=allowed?actPlaces(act):[],visible=places.filter(v=>unlocked(p,v,app.debugMode)),endSelected=app.journeySelection==='end'&&finished&&act===actOf(d.ending.stageId);
+ const special=act===6&&allowed&&def?book6Body(app,journal6(app),def):null;
  const selected=endSelected?d.ending:visible.find(v=>v.stageId===app.journeySelection)||null,current=currentId(p);
  const pins=visible.map(v=>{const anchor=mapAnchor(act,v.stageId);if(!anchor)return '';const passed=!!p.cleared[v.stageId],here=v.stageId===current,picked=endSelected?v.stageId===d.ending.stageId:selected?.stageId===v.stageId;return `<button class="journey-pin ${passed?'passed':''} ${here?'current':''} ${picked?'selected':''}" data-action="journey-select" data-id="${v.stageId}" style="left:${anchor.x/def.width*100}%;top:${anchor.y/def.height*100}%;--label-side:${anchor.labelOffsetX<0?-1:1}" aria-label="${v.stageId}장 ${esc(anchor.mapLabel)} · ${status(p,v)}" aria-pressed="${picked}" ${here?'aria-current="location"':''}><i>${v.stageId}</i><span>${passed?'✓ ':''}${esc(anchor.mapLabel)}</span></button>`;}).join('');
  // Fog reveals only already-authorized places; no locked names, disabled pins,
@@ -193,8 +214,8 @@ function bookMarkup(app){
  const fog=allowed&&visible.length<places.length?`<svg class="journey-fog" viewBox="0 0 ${def.width} ${def.height}" aria-hidden="true"><defs><radialGradient id="journey-reveal"><stop offset=".3" stop-color="black"/><stop offset="1" stop-color="black" stop-opacity="0"/></radialGradient><mask id="journey-fog-mask"><rect width="100%" height="100%" fill="white"/>${visible.map(v=>{const a=mapAnchor(act,v.stageId);return `<ellipse cx="${a.x}" cy="${a.y}" rx="280" ry="240" fill="url(#journey-reveal)"/>`;}).join('')}</mask></defs><rect width="100%" height="100%" fill="#081416" opacity=".92" mask="url(#journey-fog-mask)"/></svg>`:'';
  const routes=allowed&&def?routeMarkup(act,def,visible,p,current):'';
  const details=!selected?'<div><p>길목을 선택하세요.</p></div>':`<div><h2>${esc(selected.place)}</h2><p>${endSelected?'막 끝 · 휴식':status(p,selected)}</p></div>${bookRecords(app,selected.stageId)}<button class="primary" data-action="journey-travel" data-id="${endSelected?'end':selected.stageId}">${endSelected||hasRest(selected.stageId)?'휴식터로':'진입'}</button>`;
- const tabs=Array.from({length:6},(_,i)=>{const n=i+1,implemented=H.stages.some(s=>(s.act||1)===n),open=actOpen(p,n,app.debugMode);return `<button data-action="journey-act" data-id="${n}" aria-pressed="${act===n}" aria-label="${n}막${!implemented?' · 준비 중':!open?' · 잠김':''}" ${open?'':'disabled'}><span>${n}막</span></button>`;}).join('');
- return `<main class="screen journey-screen journey-image-screen journey-act-${act}"><header class="journey-heading" aria-label="여정첩"><button class="journey-exit" data-action="rest" aria-label="휴식터로 돌아가기" data-tooltip="휴식터로 돌아가기">‹</button><nav class="journey-acts" aria-label="막 선택">${tabs}</nav><button class="journey-fit" data-action="journey-fit" aria-label="지도 맞춤" aria-describedby="journey-help" data-tooltip="지도 맞춤 · 키보드: + / − 확대, 0 맞춤, 방향 키 이동">⛶</button><span id="journey-help" class="journey-sr-help">드래그·방향 키로 이동, 휠·두 손가락·더하기/빼기 키로 확대와 축소, 0 키로 지도 맞춤.</span></header><section class="journey-map-viewport" aria-label="${act}막 지리와 지나온 길">${allowed&&def?`<div class="journey-map-scroll" tabindex="0" aria-label="여정 지도" aria-describedby="journey-help"><div class="journey-map" style="--journey-zoom:${app.journeyZoom||1};aspect-ratio:${def.width}/${def.height}"><div class="journey-image-host" aria-hidden="true"></div>${fog}${routes}${pins}</div></div><p class="journey-image-status" role="status">지도를 불러오는 중입니다. 길목은 선택할 수 있습니다.</p>`:'<p>이전 막을 완료하면 지도가 열립니다.</p>'}</section><section class="journey-detail" aria-live="polite">${details}</section></main>`;
+ const tabs=Array.from({length:6},(_,i)=>{const n=i+1,implemented=n===6?!!G.HonroAct6Journey:H.stages.some(s=>(s.act||1)===n),open=actOpen(p,n,app.debugMode);return `<button data-action="journey-act" data-id="${n}" aria-pressed="${act===n}" aria-label="${n}막${!implemented?' · 준비 중':!open?' · 잠김':''}" ${open?'':'disabled'}><span>${n}막</span></button>`;}).join('');
+ return `<main class="screen journey-screen journey-image-screen journey-act-${act}"><header class="journey-heading" aria-label="여정첩"><button class="journey-exit" data-action="rest" aria-label="휴식터로 돌아가기" data-tooltip="휴식터로 돌아가기">‹</button><nav class="journey-acts" aria-label="막 선택">${tabs}</nav><button class="journey-fit" data-action="journey-fit" aria-label="지도 맞춤" aria-describedby="journey-help" data-tooltip="지도 맞춤 · 키보드: + / − 확대, 0 맞춤, 방향 키 이동">⛶</button><span id="journey-help" class="journey-sr-help">드래그·방향 키로 이동, 휠·두 손가락·더하기/빼기 키로 확대와 축소, 0 키로 지도 맞춤.</span></header><section class="journey-map-viewport" aria-label="${act}막 지리와 지나온 길">${special?`<aside class="journey6-legend"><strong>${esc(def.title)}</strong><span>실선 산길 · 점선 접힌 길</span></aside>`:''}${allowed&&def?`<div class="journey-map-scroll" tabindex="0" aria-label="여정 지도" aria-describedby="journey-help"><div class="journey-map" style="--journey-zoom:${app.journeyZoom||1};aspect-ratio:${def.width}/${def.height}"><div class="journey-image-host" aria-hidden="true"></div>${special?.fog??fog}${special?.routes??routes}${special?.pins??pins}</div></div><p class="journey-image-status" role="status">지도를 불러오는 중입니다. 길목은 선택할 수 있습니다.</p>`:'<p>이전 막을 완료하면 지도가 열립니다.</p>'}</section><section class="journey-detail" aria-live="polite">${special?.details??details}</section></main>`;
 }
 function captureBook(app){if(app.screen!=='journey')return null;const viewport=document.querySelector('.journey-map-scroll');viewport?._journeyCancel?.();return{node:app.root.firstElementChild,act:app.journeyAct,layer:app.journeyLayer,selection:app.journeySelection,zoom:app.journeyZoom,left:viewport?.scrollLeft||0,top:viewport?.scrollTop||0,focus:document.activeElement};}
 function restoreBook(app,book){app.screen='journey';app.journeyAct=book.act;app.journeyLayer=book.layer;app.journeySelection=book.selection;app.journeyZoom=book.zoom;app.root.replaceChildren(book.node);layoutBook(app);G.HonroJourneyImages.mount(app);const viewport=document.querySelector('.journey-map-scroll');if(viewport){viewport.scrollLeft=book.left;viewport.scrollTop=book.top;}layoutLabels();book.focus?.focus?.({preventScroll:true});app.journeyInputAfter=performance.now()+350;app.updateAudio();}
@@ -215,7 +236,7 @@ function layoutLabels(){
   label.style.transform=`translate(${best.dx}px,${best.dy}px)`;placed.push(best.rect);
  }
 }
-function layoutBook(app){const viewport=document.querySelector('.journey-map-scroll'),map=document.querySelector('.journey-map'),def=mapDefinition(app.journeyAct);if(!viewport||!map||!def)return;const base=Math.max(viewport.clientWidth||360,(viewport.clientHeight||400)*def.width/def.height,app.journeyAct===2?680:920);map.dataset.baseWidth=String(base);const minimum=Math.min(viewport.clientWidth/base,viewport.clientHeight*def.width/def.height/base);app.journeyZoom=Math.max(minimum,Math.min(1.8,app.journeyZoom||1));map.style.setProperty('--map-base-width',base+'px');map.style.setProperty('--journey-zoom',String(app.journeyZoom));layoutLabels();}
+function layoutBook(app){const viewport=document.querySelector('.journey-map-scroll'),map=document.querySelector('.journey-map'),def=mapDefinition(app.journeyAct);if(!viewport||!map||!def)return;const base=Math.max(viewport.clientWidth||360,(viewport.clientHeight||400)*def.width/def.height,app.journeyAct===6?Math.min(800,Math.max(410,Math.round((viewport.clientHeight||650)*.70))):app.journeyAct===2?680:920);map.dataset.baseWidth=String(base);const minimum=Math.min(viewport.clientWidth/base,viewport.clientHeight*def.width/def.height/base);app.journeyZoom=Math.max(minimum,Math.min(1.8,app.journeyZoom||1));map.style.setProperty('--map-base-width',base+'px');map.style.setProperty('--journey-zoom',String(app.journeyZoom));layoutLabels();}
 function revealBook(app){const viewport=document.querySelector('.journey-map-scroll'),map=document.querySelector('.journey-map'),id=app.journeySelection==='end'?data().ending.stageId:app.journeySelection,anchor=mapAnchor(app.journeyAct,id),def=mapDefinition(app.journeyAct);if(!viewport||!map||!anchor)return;viewport.scrollLeft=Math.max(0,map.offsetLeft+anchor.x/def.width*map.clientWidth-viewport.clientWidth/2);viewport.scrollTop=Math.max(0,map.offsetTop+anchor.y/def.height*map.clientHeight-viewport.clientHeight/2);layoutLabels();}
 function zoomBook(app,zoom,clientX,clientY,fromX=clientX,fromY=clientY){
  if(app.screen!=='journey'||!Number.isFinite(zoom))return;
@@ -258,14 +279,32 @@ function mountBook(app){
 function showBook(app,id,layer,act){
  if(G.HonroActEndings?.show(app))return;if(app.screen==='battle'&&app.engine)return requestRest(app);
  const d=data(),target=id==='end'?d.ending:d.at(+id)||d.at(app.journeySelection)||d.at(currentId(app.profile))||d.places[0];
- act=Number(act)||actOf(target.stageId);if(!actOpen(app.profile,act,app.debugMode))act=1;
+ const six=journal6(app);
+ act=Number(act)||(six&&app.screen==='rest'?6:actOf(target.stageId));
+ if(act===6&&six){
+  if(app.screen==='rest')app.stopBattle();
+  app.close();app.screen='journey';app.journeyAct=6;app.journeyLayer=null;app.journeyZoom=1;
+  app.journeySelection=six.current||six.through;
+  app.root.innerHTML=bookMarkup(app);mountBook(app);fitBook(app);app.updateAudio();return;
+ }
+ if(app.journeyAct===6)app.journeyZoom=1;
+ if(!actOpen(app.profile,act,app.debugMode))act=1;
  const places=actPlaces(act),layers=[...new Set(places.map(v=>v.layer))];layer=layers.includes(layer)?layer:places.find(v=>v.stageId===target.stageId)?.layer||layers[0];
  app.stopBattle();app.close();app.screen='journey';app.journeyAct=act;app.journeyLayer=layer;app.journeyZoom??=1;
  const visible=places.filter(v=>unlocked(app.profile,v,app.debugMode));
  app.journeySelection=id==='end'&&!active(app.profile)&&!d.next(app.profile)&&act===actOf(d.ending.stageId)?'end':visible.some(v=>v.stageId===target.stageId)?target.stageId:visible[0]?.stageId||null;
  app.root.innerHTML=bookMarkup(app);mountBook(app);revealBook(app);app.updateAudio();
 }
-function selectBook(app,id){if(app.screen!=='journey')return;const place=id==='end'?data().ending:data().at(+id);if(!place||actOf(place.stageId)!==app.journeyAct||!actOpen(app.profile,app.journeyAct,app.debugMode)||!unlocked(app.profile,place,app.debugMode))return;app.journeySelection=!active(app.profile)&&!data().next(app.profile)&&place.stageId===data().ending.stageId?'end':+id;app.root.innerHTML=bookMarkup(app);mountBook(app);revealBook(app);document.querySelector(`[data-action="journey-select"][data-id="${id}"]`)?.focus?.({preventScroll:true});}
+function selectBook(app,id){if(app.screen!=='journey')return;
+ if(app.journeyAct===6){
+  const view=journal6(app),def=mapDefinition(6),q=Number(id),el=document.querySelector('.journey-map-scroll');
+  if(!view||q>view.through||!def?.stages.some(row=>row.stageNumber===q))return;
+  const pos=[el?.scrollLeft||0,el?.scrollTop||0];app.journeySelection=q;
+  app.root.innerHTML=bookMarkup(app);mountBook(app);
+  const viewport=document.querySelector('.journey-map-scroll');if(viewport){[viewport.scrollLeft,viewport.scrollTop]=pos;layoutLabels();}
+  app.root.querySelector(`[data-action="journey-select"][data-id="${q}"]`)?.focus?.({preventScroll:true});return;
+ }
+ const place=id==='end'?data().ending:data().at(+id);if(!place||actOf(place.stageId)!==app.journeyAct||!actOpen(app.profile,app.journeyAct,app.debugMode)||!unlocked(app.profile,place,app.debugMode))return;app.journeySelection=!active(app.profile)&&!data().next(app.profile)&&place.stageId===data().ending.stageId?'end':+id;app.root.innerHTML=bookMarkup(app);mountBook(app);revealBook(app);document.querySelector(`[data-action="journey-select"][data-id="${id}"]`)?.focus?.({preventScroll:true});}
 function canTravel(app,id){const place=data().at(id);return !!place&&actOpen(app.profile,actOf(id),app.debugMode)&&unlocked(app.profile,place,app.debugMode);}
 function discardBattle(app){
  // The caller has explicit approval. Persist growth before severing both live
