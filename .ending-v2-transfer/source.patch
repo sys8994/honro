@@ -415,10 +415,10 @@ index 0000000..6fa1ea6
 + return Object.freeze({mountEnding,readPanelFrame,trustedUIAction,writeEnding});
 +}
 diff --git a/shared/act6-ending-replan/presentation.css b/shared/act6-ending-replan/presentation.css
-index 04ed2ea..86a0640 100644
+index 04ed2ea..90a7b01 100644
 --- a/shared/act6-ending-replan/presentation.css
 +++ b/shared/act6-ending-replan/presentation.css
-@@ -1,48 +1,66 @@
+@@ -1,48 +1,67 @@
 -.honro-ending-60-controls{display:flex;align-items:center;justify-content:center;gap:.5rem;flex-wrap:wrap}
 -.honro-ending-60-controls button[hidden]{display:none}
 -.honro-ending-60 .h6ending-naru,.honro-ending-60 .h6ending-ledger{position:relative;isolation:isolate;overflow:hidden;box-sizing:border-box;border:1px solid #4d4a41;max-width:62rem}
@@ -515,7 +515,11 @@ index 04ed2ea..86a0640 100644
 + .he-root[data-ending-still="final"] .he-veil{background:linear-gradient(180deg,#b4bdd859,transparent 50%)}
 + .he-root[data-ending-still="final"] .he-copy{left:50%;width:85%;top:max(12%,calc(env(safe-area-inset-top) + 57px))}
 + .he-root[data-ending-motion="lamp"] .he-fx i{top:61%;left:82%}
-+}
+ }
+-@media(prefers-reduced-motion:reduce){.honro-ending-60 *{animation:none!important;transition:none!important}}
+-
+-.h6ending-preparing{visibility:hidden!important}
+-.h6ending-preparing *{animation-play-state:paused!important}
 +@media(prefers-reduced-motion:reduce){.he-still.he-drift,.he-names span,.he-fx i{animation:none!important}}
 +/* Sodan's road is part of the shot. Keep the ground visible, not vignetted. */
 +.he-root[data-ending-still="still_06b"] .he-veil{background:none}
@@ -527,11 +531,8 @@ index 04ed2ea..86a0640 100644
 +}
 +@media(orientation:landscape){
 + .he-root[data-ending-still="still_06b"] .he-copy{left:31%;width:min(47%,720px);bottom:max(7%,env(safe-area-inset-bottom))}
- }
--@media(prefers-reduced-motion:reduce){.honro-ending-60 *{animation:none!important;transition:none!important}}
--
--.h6ending-preparing{visibility:hidden!important}
--.h6ending-preparing *{animation-play-state:paused!important}
++}
++.he-root[data-ending-still="still_06b"] .he-fx{display:none}
 diff --git a/shared/act6-ending-replan/presentation.inc.js b/shared/act6-ending-replan/presentation.inc.js
 index 9c88124..1635380 100644
 --- a/shared/act6-ending-replan/presentation.inc.js
