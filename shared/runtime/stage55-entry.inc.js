@@ -16,11 +16,11 @@
         return {packet,known,compiled,bell};
       }
       function enterNormal55(a,grant,prev){
-        const t=prev.terminal,e=prev.engine,u=e.active,m=grant.packet.map,p=structuredClone(a.profile);
+        const t=prev.terminal,e=prev.engine,u=e.active;
         check(eligible55(a,prev)&&active.get(a)===prev&&a.profile===a.normalProfile&&e.stage.id===54&&normal51Provider.content(e.b)===e.stage&&
           t.mage.id===u?.id&&u.cls==='mage'&&e.grounded(u)&&u.hp>0&&!u.dead&&same(t.mage,u)&&same(t.external,prev.previous.external)&&
           ['N>L','L>C','C>L'].every((id,i)=>t.chart[i]?.id===id&&t.chart[i].actor===u.id&&t.chart[i].grounded===true)&&
-          verifyStage54Relay(C,e.b.terrain.find(v=>v.id==='mid-contact'),t.relay)&&
+          validTornEave(u.id,t.eave)&&same(prev.eave54?.axis.sample(),t.eave.exit)&&verifyStage54Relay(C,relaySill54,t.relay)&&
           e.b.stakes.some(v=>v.id===t.relay.id&&v.owner===u.id&&v.shot===t.relay.shot&&v.skill==='M09'&&v.x===t.relay.x&&v.y===t.relay.y),'Actual 54 completed chart required');
         return mountFrom54(a,grant,t,e.stage,normal51Provider.budget(e.b));
       }
@@ -89,4 +89,10 @@
         const r=s.owner55.project(a,e);if(!r)return;
         if(s.button){s.button.textContent=r.summary;s.button.disabled=r.complete||r.failed;s.button.dataset.act6Binding=r.binding;s.button.dataset.act6Mark=r.targets?.[0]?.id??'';}
         if((r.complete||r.failed)&&!a.done)e.checkEnd();
+      }
+      function terminalNormal55(a,s){
+        const t=s.owner55.terminal(a,s.engine),proof=s.previous?.eave;
+        if(!t||!proof)return t;
+        check(validTornEave(t.parkedMage.id,proof)&&t.parkedMage.x===proof.exit.x&&t.parkedMage.y===proof.exit.y,'Parked ceiling witness changed');
+        return {...t,eave:structuredClone(proof)};
       }

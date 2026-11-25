@@ -8,8 +8,8 @@ from playwright.sync_api import Error, sync_playwright
 
 import browser as base
 from cold_resume import saved_context, storage_hash
-from legacy54_live import hold, resume, run
-from second_pass import sample_walk
+from legacy54_live import hold, resume, run, walk_eave
+from second_pass import FOOT, sample_walk
 
 BELL = "[data-act6-qa-lookout]"
 GATE = "draft-pressure-0"
@@ -182,6 +182,51 @@ def boundary_of(records):
     slot=next(k for k in records if 'act6-boundary' in k)
     return json.loads(records[slot])["honroAct6ChapterBoundary"]["body"]
 
+def reversal56(page,out,report):
+    actions=[]
+    report['gaereumjin56']=actions
+    def walk(target,margin=25):
+        for _ in range(5):
+            ready(page)
+            p=page.evaluate(FOOT)
+            if abs(p['x']-target)<=margin:
+                return p
+            if p['move']<max(110,min(abs(p['x']-target)+75,1000)):
+                page.keyboard.press('f')
+                page.wait_for_function('round=>HonroApp.engine.b.round>round&&HonroApp.canInput()',arg=p['round'],timeout=22000)
+            direction=1 if p['x']<target else -1
+            q=sample_walk(page,direction,target,3800)
+            actions.append({'walk':target,'end':q['end']})
+            page.wait_for_function('HonroApp.canInput() && HonroApp.engine.grounded(HonroApp.engine.active)',timeout=9000)
+            if abs(page.evaluate('HonroApp.engine.active.x')-p['x'])<35:
+                page.keyboard.press('Control')
+                sample_walk(page,direction,target,1200)
+                page.wait_for_function('HonroApp.canInput() && HonroApp.engine.grounded(HonroApp.engine.active)',timeout=7000)
+        return page.evaluate(FOOT)
+    def use(key,target,support):
+        point=walk(target)
+        assert point['support']==support and abs(point['x']-target)<80,(key,point)
+        page.locator(f'{BELL}[data-act6-mission="{key}"]').click(timeout=4500)
+        actions.append({'used':key,'pose':point})
+    use('stakeA',1872,'A-upper-veranda')
+    walk(3300)
+    use('stakeB',3600,'B-02-center-lower-short-climb')
+    walk(4250)
+    use('activate',5190,'E-joined-ordinary-floor')
+    def flow():
+        return page.evaluate("""() => {
+          const e=HonroApp.engine,r=e.b.physics.regions.find(t=>t.id==='act6-06-local-failure-reflow');
+          return {region:r,force:e.forceSample({x:5200,y:3940,drag:1,wind:0,gravityScale:0}),
+            foes:e.b.units.filter(u=>u.side===1).map(u=>u.id)};
+        }""")
+    report['flowForward56']=flow()
+    assert report['flowForward56']['force']['x']==145
+    use('readNarrowing',5030,'E-joined-ordinary-floor')
+    page.locator(f'{BELL}[data-act6-mission="warnShelf"]').wait_for(timeout=5000)
+    report['flowReverse56']=flow()
+    assert report['flowReverse56']['force']['x']==-145 and 'draft-pressure-3' in report['flowReverse56']['foes']
+    page.screenshot(path=out/'stage56-first-reversal.png')
+
 def cold_new(browser,records,stage):
     context=saved_context(browser,records)
     try:
@@ -203,6 +248,8 @@ def rejected(browser,records,bad):
     const hash=x=>crypto.createHash('sha256').update(JSON.stringify(x)).digest('hex');
     if(process.argv[1]==='skill'){
       b.custody.witness.skill='M01'; b.custodySHA=hash(b.custody);
+    } else if(process.argv[1]==='ceiling'){
+      b.terminal.eave.exit.normal.y=-1; b.terminalSHA=hash(b.terminal);
     } else {
       b.terminal.relay.support.terrain='west-continuation'; b.terminalSHA=hash(b.terminal);
     }
@@ -227,6 +274,7 @@ def main():
     parser.add_argument("--build",required=True,type=Path)
     parser.add_argument("--out",required=True,type=Path)
     parser.add_argument("--bell-only",action="store_true")
+    parser.add_argument("--reversal",action="store_true")
     args=parser.parse_args()
     base.ROOT=args.build.resolve()
     args.out.mkdir(parents=True,exist_ok=True)
@@ -236,7 +284,8 @@ def main():
         def chain(page,result,records):
             result["checkpoint55"]=boundary_of(records)
             result["newContext55"]=cold_new(browser,records,55)
-            result["negative55"]={key:rejected(browser,records,key) for key in ('surface','skill')}
+            cases=('surface','skill','ceiling') if result['checkpoint55']['terminal'].get('eave') else ('surface','skill')
+            result["negative55"]={key:rejected(browser,records,key) for key in cases}
             try:
                 finish_bell(page,args.out,result)
             finally:
@@ -245,6 +294,20 @@ def main():
             next_records=base.saved_bytes(page)
             result["checkpoint56"]=boundary_of(next_records)
             result["newContext56"]=cold_new(browser,next_records,56)
+            if result['checkpoint56']['terminal'].get('eave'):
+                eave=result['checkpoint55']['terminal']['eave']
+                assert result['checkpoint56']['terminal']['eave']==eave==result['checkpoint56']['custody']['eave']
+                context=saved_context(browser,next_records)
+                try:
+                    restored=context.new_page()
+                    resume(restored,56,True)
+                    result['eave56Cold']=walk_eave(restored,args.out,True,'-cold')
+                finally:
+                    context.close()
+                result['eave56Live']=walk_eave(page,args.out,True,'-live')
+                assert result['eave56Live']['ceiling']==result['eave56Cold']['ceiling']
+            if args.reversal:
+                reversal56(page,args.out,result)
         if args.bell_only:
             from cold_resume import seeded_context
             context=seeded_context(browser,55)

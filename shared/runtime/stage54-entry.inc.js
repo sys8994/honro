@@ -8,9 +8,14 @@
           playBounds:{left:0,top:0,right:B.width,bottom:B.height},terrainBounds:{left:-320,top:-320,right:B.width+320,bottom:B.height+320}};
         const data=G.HonroMaps.compile(rail,{library:B.assets});
         const source=composeGallery54(m,packet.library),gallery=G.HonroMaps.compile(source.map,{library:source.library});
-        rail54Assets.set(packet,{rail,data,gallery});
+        const eave=composeTornEave(m),eaveMap=G.HonroMaps.compile(eave.map,{library:eave.library});
+        rail54Assets.set(packet,{rail,data,gallery,eave,eaveMap});
         const chart=await createStage54ChartOwner({C,domain:G.HonroTerrainDomain,charts:packet.charts,
           gallery,observatory:observatory54,
+          verifyEave:(a,e,u,proof)=>{
+            const s=active.get(a);
+            return scope54(a,e,s)&&s.eave54?.axis&&e.b.terrain===eaveMap.terrain&&same(s.eave54.axis.sample(),proof.exit)&&validTornEave(u.id,proof);
+          },
           verifyMounted:(app,e,s)=>scope54(app,e,s)&&s.owner54===chart,
           verifyIncoming:(app,e,s)=>scope54(app,e,s)&&s.owner54===chart?s.previous:null,
           fireMissionSkill:(app,e,q)=>{
@@ -119,6 +124,23 @@
         const still=s.guardB.dead?'벽을 따라 위쪽 처마에 닿으세요.':'같은 벽에 선 수문지기를 쓰러뜨리세요.';
         return {complete:false,objectiveReady:false,summary:still,targets:[]};
       }
+      function mountEave54(app,e,s){
+        const {eave,eaveMap}=rail54Assets.get(s.packet),u=e.active;
+        swapTornEave(e,eave.map,eaveMap);
+        const room={landed:null,approach:null,exit:null,axis:null};
+        s.eave54=room;
+        room.axis=installTornEave({C,e,scene:app.scene,u,onContact:pose=>{
+          if(!scope54(app,e,s)||room.exit)return;
+          if(!room.landed&&pose.x===tornEave.start)room.landed=pose;
+          if(pose.x<tornEave.seam){room.approach=pose;return;}
+          if(pose.x!==tornEave.receive)return;
+          const proof={edge:tornEave.id,clearWidth:tornEave.clearWidth,gravity:{x:0,y:tornEave.gravity},landed:room.landed,approach:room.approach,exit:pose};
+          if(s.owner54.recordEave(app,e,s,proof))room.exit=pose;
+        }});
+        focusChart54(app,u,{x:u.x,y:u.y+95});
+        if(s.button){s.button.disabled=true;s.button.dataset.act6TornEave='send';s.button.textContent='처마 밑면을 따라 오른쪽으로 이동하세요.';}
+        app.updateHUD(true);
+      }
       function leaveBrokenReceive54(app,s){
         const e=s.engine,u=e.active,B=brokenRail;
         if(!scope54(app,e,s)||u?.cls!=='mage'||!e.canAct()||!s.wallAxis.isWall(u)||!e.grounded(u)||u.y>B.exitY||!s.owner54.readyAfterGuard(app,e))return;
@@ -135,7 +157,7 @@
         app.updateHUD(true);
       }
       function chart54Input(app,s,e){
-        if(s.wallAxis)return false;
+        if(s.wallAxis||s.eave54)return false;
         const i=s.owner54.inspect(app,e),id=charts54Steps[i?.chart.length];if(!id||i?.pending)return false;
         const q=s.owner54.chart(app,e,id);if(!q.ok)app.notify(q.reason);if(q.ok)app.updateHUD(true);return q.ok;
       }
@@ -148,6 +170,8 @@
         const s=active.get(app),e=app.engine;
         if(e?.b.honroStage!==54||!s?.owner54)return;
         if(s.wallAxis){leaveBrokenReceive54(app,s);return;}
+        if(s.eave54){if(s.eave54.exit&&!app.done)e.checkEnd();return;}
+        if(s.owner54.enterEave(app,e,s)){mountEave54(app,e,s);return;}
         if(s.owner54.observeGallery(app,e)&&s.button){s.button.disabled=false;s.button.textContent='첫 받침으로 돌아가 건너기';app.updateHUD(true);}
         const landed=s.owner54.observe(app,e), p=s.owner54.project(app,e),info=s.owner54.inspect(app,e);
         if(landed&&s.button)s.button.textContent=info.chart.length===3?'돌턱에 진목 놓기':'다음 받침에서 건너기';

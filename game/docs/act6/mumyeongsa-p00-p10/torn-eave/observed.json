@@ -1,0 +1,805 @@
+{
+  "status": "PASS",
+  "chromium": "154.0.8037.57",
+  "eave54": {
+    "entry": {
+      "stage": 54,
+      "id": "p-mage",
+      "x": 380,
+      "y": 900,
+      "vx": 0,
+      "vy": 0,
+      "gravity": {
+        "x": 0,
+        "y": -320
+      },
+      "grounded": true,
+      "support": "c-eave-soffit",
+      "normal": {
+        "x": 0,
+        "y": 1
+      },
+      "play": [
+        1400,
+        1440
+      ],
+      "health": 1708.9,
+      "focus": 692,
+      "loadout": [
+        "M01",
+        "M10",
+        "M07"
+      ],
+      "equipment": {
+        "version": 1
+      },
+      "others": []
+    },
+    "ceiling": {
+      "stage": 54,
+      "id": "p-mage",
+      "x": 380,
+      "y": 900,
+      "vx": 0,
+      "vy": 0,
+      "gravity": {
+        "x": 0,
+        "y": -320
+      },
+      "grounded": true,
+      "support": "c-eave-soffit",
+      "normal": {
+        "x": 0,
+        "y": 1
+      },
+      "play": [
+        1400,
+        1440
+      ],
+      "health": 1708.9,
+      "focus": 692,
+      "loadout": [
+        "M01",
+        "M10",
+        "M07"
+      ],
+      "equipment": {
+        "version": 1
+      },
+      "others": []
+    },
+    "exit": {
+      "stage": 54,
+      "id": "p-mage",
+      "x": 736,
+      "y": 900,
+      "vx": 0,
+      "vy": 0,
+      "gravity": {
+        "x": 0,
+        "y": -320
+      },
+      "grounded": true,
+      "support": "c-eave-soffit",
+      "normal": {
+        "x": 0,
+        "y": 1
+      },
+      "play": [
+        1400,
+        1440
+      ],
+      "health": 1708.9,
+      "focus": 692,
+      "loadout": [
+        "M01",
+        "M10",
+        "M07"
+      ],
+      "equipment": {
+        "version": 1
+      },
+      "others": []
+    }
+  },
+  "eave56Cold": {
+    "entry": {
+      "stage": 56,
+      "id": "p-mage",
+      "x": 736,
+      "y": 900,
+      "vx": 0,
+      "vy": 0,
+      "gravity": {
+        "x": 0,
+        "y": -320
+      },
+      "grounded": true,
+      "support": "c-eave-soffit",
+      "normal": {
+        "x": 0,
+        "y": 1
+      },
+      "play": [
+        1400,
+        1440
+      ],
+      "health": 1708.9,
+      "focus": 692,
+      "loadout": [
+        "M01",
+        "M10",
+        "M07"
+      ],
+      "equipment": {
+        "version": 1
+      },
+      "others": []
+    },
+    "ceiling": {
+      "stage": 56,
+      "id": "p-mage",
+      "x": 736,
+      "y": 900,
+      "vx": 0,
+      "vy": 0,
+      "gravity": {
+        "x": 0,
+        "y": -320
+      },
+      "grounded": true,
+      "support": "c-eave-soffit",
+      "normal": {
+        "x": 0,
+        "y": 1
+      },
+      "play": [
+        1400,
+        1440
+      ],
+      "health": 1708.9,
+      "focus": 692,
+      "loadout": [
+        "M01",
+        "M10",
+        "M07"
+      ],
+      "equipment": {
+        "version": 1
+      },
+      "others": []
+    },
+    "exit": {
+      "stage": 56,
+      "id": "p-mage",
+      "x": 928,
+      "y": 1136,
+      "vx": 0,
+      "vy": 0,
+      "gravity": {
+        "x": 0,
+        "y": 320
+      },
+      "grounded": true,
+      "support": "A-upper-veranda",
+      "normal": {
+        "x": 0,
+        "y": -1
+      },
+      "play": [
+        6720,
+        5040
+      ],
+      "health": 1708.9,
+      "focus": 692,
+      "loadout": [
+        "M01",
+        "M10",
+        "M07"
+      ],
+      "equipment": {
+        "version": 1
+      },
+      "others": [
+        {
+          "id": "draft-pressure-0",
+          "x": 1936,
+          "y": 3784.0650406504064
+        },
+        {
+          "id": "draft-pressure-1",
+          "x": 3456,
+          "y": 2247.2
+        },
+        {
+          "id": "draft-pressure-2",
+          "x": 5872,
+          "y": 3694.8321167883214
+        }
+      ]
+    }
+  },
+  "eave56Live": {
+    "entry": {
+      "stage": 56,
+      "id": "p-mage",
+      "x": 736,
+      "y": 900,
+      "vx": 0,
+      "vy": 0,
+      "gravity": {
+        "x": 0,
+        "y": -320
+      },
+      "grounded": true,
+      "support": "c-eave-soffit",
+      "normal": {
+        "x": 0,
+        "y": 1
+      },
+      "play": [
+        1400,
+        1440
+      ],
+      "health": 1708.9,
+      "focus": 692,
+      "loadout": [
+        "M01",
+        "M10",
+        "M07"
+      ],
+      "equipment": {
+        "version": 1
+      },
+      "others": []
+    },
+    "ceiling": {
+      "stage": 56,
+      "id": "p-mage",
+      "x": 736,
+      "y": 900,
+      "vx": 0,
+      "vy": 0,
+      "gravity": {
+        "x": 0,
+        "y": -320
+      },
+      "grounded": true,
+      "support": "c-eave-soffit",
+      "normal": {
+        "x": 0,
+        "y": 1
+      },
+      "play": [
+        1400,
+        1440
+      ],
+      "health": 1708.9,
+      "focus": 692,
+      "loadout": [
+        "M01",
+        "M10",
+        "M07"
+      ],
+      "equipment": {
+        "version": 1
+      },
+      "others": []
+    },
+    "exit": {
+      "stage": 56,
+      "id": "p-mage",
+      "x": 928,
+      "y": 1136,
+      "vx": 0,
+      "vy": 0,
+      "gravity": {
+        "x": 0,
+        "y": 320
+      },
+      "grounded": true,
+      "support": "A-upper-veranda",
+      "normal": {
+        "x": 0,
+        "y": -1
+      },
+      "play": [
+        6720,
+        5040
+      ],
+      "health": 1708.9,
+      "focus": 692,
+      "loadout": [
+        "M01",
+        "M10",
+        "M07"
+      ],
+      "equipment": {
+        "version": 1
+      },
+      "others": [
+        {
+          "id": "draft-pressure-0",
+          "x": 1936,
+          "y": 3784.0650406504064
+        },
+        {
+          "id": "draft-pressure-1",
+          "x": 3456,
+          "y": 2247.2
+        },
+        {
+          "id": "draft-pressure-2",
+          "x": 5872,
+          "y": 3694.8321167883214
+        }
+      ]
+    }
+  },
+  "negative55": {
+    "surface": true,
+    "skill": true,
+    "ceiling": true
+  },
+  "gaereumjin56": [
+    {
+      "walk": 1872,
+      "end": {
+        "id": "p-mage",
+        "x": 1879.3999999999774,
+        "y": 1136,
+        "vx": 0,
+        "vy": 0,
+        "move": 2123.600000000026,
+        "grounded": true,
+        "support": "A-upper-veranda",
+        "phase": "aim",
+        "round": 1,
+        "chart": [
+          6720,
+          5040
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      }
+    },
+    {
+      "used": "stakeA",
+      "pose": {
+        "id": "p-mage",
+        "x": 1879.3999999999774,
+        "y": 1136,
+        "vx": 0,
+        "vy": 0,
+        "move": 2123.600000000026,
+        "grounded": true,
+        "support": "A-upper-veranda",
+        "phase": "aim",
+        "round": 1,
+        "chart": [
+          6720,
+          5040
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      }
+    },
+    {
+      "walk": 3300,
+      "end": {
+        "id": "p-mage",
+        "x": 3309.8499999999385,
+        "y": 1202.5225054826815,
+        "vx": 0,
+        "vy": 204.36104088120322,
+        "move": 693.1500000000647,
+        "grounded": false,
+        "support": null,
+        "phase": "aim",
+        "round": 1,
+        "chart": [
+          6720,
+          5040
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      }
+    },
+    {
+      "walk": 3600,
+      "end": {
+        "id": "p-mage",
+        "x": 3601.429031377862,
+        "y": 2232.157251550919,
+        "vx": 0,
+        "vy": 138.2255860916643,
+        "move": 361.50000000007464,
+        "grounded": false,
+        "support": null,
+        "phase": "aim",
+        "round": 1,
+        "chart": [
+          6720,
+          5040
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      }
+    },
+    {
+      "used": "stakeB",
+      "pose": {
+        "id": "p-mage",
+        "x": 3601.429031377862,
+        "y": 3511.868683492526,
+        "vx": 0,
+        "vy": 0,
+        "move": 361.50000000007464,
+        "grounded": true,
+        "support": "B-02-center-lower-short-climb",
+        "phase": "aim",
+        "round": 1,
+        "chart": [
+          6720,
+          5040
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      }
+    },
+    {
+      "walk": 4250,
+      "end": {
+        "id": "p-mage",
+        "x": 4255.370296842783,
+        "y": 3207.7635765772093,
+        "vx": 0,
+        "vy": 212.2834151115641,
+        "move": 2291.100000000023,
+        "grounded": false,
+        "support": null,
+        "phase": "aim",
+        "round": 2,
+        "chart": [
+          6720,
+          5040
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      }
+    },
+    {
+      "walk": 5190,
+      "end": {
+        "id": "p-mage",
+        "x": 5196.709417894066,
+        "y": 4048.0158201062786,
+        "vx": 0,
+        "vy": 0,
+        "move": 1349.7499999999209,
+        "grounded": true,
+        "support": "E-joined-ordinary-floor",
+        "phase": "aim",
+        "round": 2,
+        "chart": [
+          6720,
+          5040
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      }
+    },
+    {
+      "used": "activate",
+      "pose": {
+        "id": "p-mage",
+        "x": 5196.709417894066,
+        "y": 4048.0158201062786,
+        "vx": 0,
+        "vy": 0,
+        "move": 1349.7499999999209,
+        "grounded": true,
+        "support": "E-joined-ordinary-floor",
+        "phase": "aim",
+        "round": 2,
+        "chart": [
+          6720,
+          5040
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      }
+    },
+    {
+      "walk": 5030,
+      "end": {
+        "id": "p-mage",
+        "x": 5025.861392365186,
+        "y": 4048.837204844398,
+        "vx": 0,
+        "vy": 0,
+        "move": 1178.8999999999023,
+        "grounded": true,
+        "support": "E-joined-ordinary-floor",
+        "phase": "aim",
+        "round": 2,
+        "chart": [
+          6720,
+          5040
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      }
+    },
+    {
+      "used": "readNarrowing",
+      "pose": {
+        "id": "p-mage",
+        "x": 5025.861392365186,
+        "y": 4048.837204844398,
+        "vx": 0,
+        "vy": 0,
+        "move": 1178.8999999999023,
+        "grounded": true,
+        "support": "E-joined-ordinary-floor",
+        "phase": "aim",
+        "round": 2,
+        "chart": [
+          6720,
+          5040
+        ],
+        "gravity": {
+          "x": 0,
+          "y": 320
+        }
+      }
+    }
+  ],
+  "flowForward56": {
+    "region": {
+      "id": "act6-06-local-failure-reflow",
+      "x": 4910,
+      "y": 3800,
+      "w": 510,
+      "h": 380,
+      "gravity": {
+        "x": 0,
+        "y": 320
+      },
+      "flow": {
+        "x": 145,
+        "y": 0
+      },
+      "dragScale": 1,
+      "projectileOnly": true
+    },
+    "force": {
+      "x": 145,
+      "y": 0,
+      "k": 1
+    },
+    "foes": [
+      "draft-pressure-0",
+      "draft-pressure-1",
+      "draft-pressure-2"
+    ]
+  },
+  "flowReverse56": {
+    "region": {
+      "id": "act6-06-local-failure-reflow",
+      "x": 4910,
+      "y": 3800,
+      "w": 510,
+      "h": 380,
+      "gravity": {
+        "x": 0,
+        "y": 320
+      },
+      "flow": {
+        "x": -145,
+        "y": 0
+      },
+      "dragScale": 1,
+      "projectileOnly": true
+    },
+    "force": {
+      "x": -145,
+      "y": 0,
+      "k": 1
+    },
+    "foes": [
+      "draft-pressure-0",
+      "draft-pressure-1",
+      "draft-pressure-2",
+      "draft-pressure-3"
+    ]
+  },
+  "checkpoint55": {
+    "eave": {
+      "edge": "mumyeongsa-torn-eave",
+      "clearWidth": 236,
+      "gravity": {
+        "x": 0,
+        "y": -320
+      },
+      "landed": {
+        "id": "p-mage",
+        "x": 380,
+        "y": 900,
+        "vx": 0,
+        "vy": 0,
+        "grounded": true,
+        "support": "c-eave-soffit",
+        "normal": {
+          "x": 0,
+          "y": 1
+        }
+      },
+      "approach": {
+        "id": "p-mage",
+        "x": 718.3500000000023,
+        "y": 900,
+        "vx": 0,
+        "vy": 0,
+        "grounded": true,
+        "support": "c-eave-soffit",
+        "normal": {
+          "x": 0,
+          "y": 1
+        }
+      },
+      "exit": {
+        "id": "p-mage",
+        "x": 736,
+        "y": 900,
+        "vx": 0,
+        "vy": 0,
+        "grounded": true,
+        "support": "c-eave-soffit",
+        "normal": {
+          "x": 0,
+          "y": 1
+        }
+      }
+    },
+    "relay": {
+      "id": 3,
+      "shot": 1,
+      "x": 2309.059348910452,
+      "y": 2924,
+      "round": 1,
+      "impact": {
+        "x": 2309.059348910452,
+        "y": 2924,
+        "radius": 6,
+        "normal": {
+          "x": 0,
+          "y": -1
+        }
+      },
+      "support": {
+        "terrain": "mid-contact",
+        "edge": 49,
+        "x": 2309.059348910452,
+        "y": 2930
+      }
+    }
+  },
+  "checkpoint56": {
+    "eave": {
+      "edge": "mumyeongsa-torn-eave",
+      "clearWidth": 236,
+      "gravity": {
+        "x": 0,
+        "y": -320
+      },
+      "landed": {
+        "id": "p-mage",
+        "x": 380,
+        "y": 900,
+        "vx": 0,
+        "vy": 0,
+        "grounded": true,
+        "support": "c-eave-soffit",
+        "normal": {
+          "x": 0,
+          "y": 1
+        }
+      },
+      "approach": {
+        "id": "p-mage",
+        "x": 718.3500000000023,
+        "y": 900,
+        "vx": 0,
+        "vy": 0,
+        "grounded": true,
+        "support": "c-eave-soffit",
+        "normal": {
+          "x": 0,
+          "y": 1
+        }
+      },
+      "exit": {
+        "id": "p-mage",
+        "x": 736,
+        "y": 900,
+        "vx": 0,
+        "vy": 0,
+        "grounded": true,
+        "support": "c-eave-soffit",
+        "normal": {
+          "x": 0,
+          "y": 1
+        }
+      }
+    },
+    "events": [
+      {
+        "id": "trustedInnerStakeAndReturnReceived",
+        "round": 1,
+        "detail": null
+      },
+      {
+        "id": "hwigyeomBellTerraceReached",
+        "round": 1,
+        "detail": "p-knight"
+      },
+      {
+        "id": "bellLinkFrayedByNativeImpact",
+        "round": 1,
+        "detail": {
+          "projectile": 2,
+          "target": "p-knight",
+          "x": 2633.663514479486,
+          "y": 1625.5193965470182
+        }
+      },
+      {
+        "id": "sodanGroundedBellLinkRebound",
+        "round": 2,
+        "detail": "p-occultist"
+      },
+      {
+        "id": "bellAlignedAfterGateDefeat",
+        "round": 3,
+        "detail": "p-knight"
+      }
+    ]
+  },
+  "newContext55": {
+    "savedBytesBefore": "b24539905c51fde68fa49701fee4b9c8eedf66ff23ba987b3afcbbc987c1dddb",
+    "savedBytesAfter": "b24539905c51fde68fa49701fee4b9c8eedf66ff23ba987b3afcbbc987c1dddb"
+  },
+  "newContext56": {
+    "savedBytesBefore": "f649b179d62698a36b183b4b255748ade8f8a378845def4ae128b0bc4876d297",
+    "savedBytesAfter": "f649b179d62698a36b183b4b255748ade8f8a378845def4ae128b0bc4876d297"
+  },
+  "nativeB120": {
+    "status": "PASS",
+    "clock": {
+      "medianMs": 8.599999999627471,
+      "solverSteps": [
+        0.008333333333333333
+      ]
+    },
+    "ordinarySaveUnchanged": true
+  }
+}

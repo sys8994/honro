@@ -32,9 +32,13 @@ def hold(page,key,condition,arg,timeout=3600):
         page.keyboard.up(key)
 
 def m09(page,report,attempt=0):
-    if page.evaluate('HonroApp.engine.active.facing')>0:
-        walk_nudge(page,2345,1,10)
-        walk_nudge(page,2338,-1,10)
+    for _ in range(3):
+        pose=page.evaluate(FOOT)
+        if 2336<=pose['x']<=2340 and page.evaluate('HonroApp.engine.active.facing')<0:
+            break
+        if pose['x']<2341:
+            walk_nudge(page,2341,1,9)
+        walk_nudge(page,2339,-1,9)
     skill=page.locator('[data-action="combat-skill"][data-skill="M09"]')
     skill.first.click(timeout=3600)
     candidates=page.evaluate("""() => {
@@ -122,6 +126,63 @@ def walk_nudge(page,target,direction,distance=14):
         page.mouse.up()
     page.wait_for_timeout(120)
 
+EAVE_POSE="""() => {
+ const a=HonroApp,e=a.engine,u=e.active,b=e.b,k=HONRO_CORE;
+ const gravity=k.environmentAt(b.physics,u.x,u.y+u.h/2,true).gravity;
+ const ceiling=e.projectileCollision({x:u.x,y:u.y+2},{x:u.x,y:u.y-2},0,u.id,[],false);
+ const floor=e.contactSurface(u.x,u.y-3,u.y+4);
+ return {stage:b.honroStage,id:u.id,x:u.x,y:u.y,vx:u.vx,vy:u.vy,gravity,grounded:e.grounded(u),
+   support:gravity.y<0?ceiling?.terrain?.id??null:floor?.t.id??null,
+   normal:gravity.y<0?ceiling?.n??null:floor?{x:0,y:-1}:null,play:[b.width,b.height],
+   health:u.hp,focus:u.focus,loadout:u.loadout,equipment:u.equipmentState,
+   others:b.units.filter(v=>v!==u&&!v.dead).map(v=>({id:v.id,x:v.x,y:v.y}))};
+}"""
+
+def watch_eave(page):
+    page.evaluate("""() => {
+      const a=HonroApp,e=a.engine,u=e.active,key='mumyeongsa-torn-eave';
+      window.eaveFlight=[];
+      const watch=()=>{
+        if(a.engine!==e||e.b.phase==='won')return;
+        if(e.b.terrain.some(t=>t.id==='c-eave-soffit')){
+          const field=e.b.physics.regions.some(v=>v.id===key);
+          const gravity=HONRO_CORE.environmentAt(e.b.physics,u.x,u.y+(field?1:-1)*u.h/2,true).gravity;
+          if(window.eaveFlight.length<950)eaveFlight.push({x:u.x,y:u.y,vy:u.vy,gravity,grounded:e.grounded(u)});
+        }
+        requestAnimationFrame(watch);
+      };
+      requestAnimationFrame(watch);
+    }""")
+
+def walk_eave(page,out,receiving=False,suffix=''):
+    direction='receive' if receiving else 'send'
+    page.wait_for_selector(f'[data-act6-torn-eave="{direction}"]',timeout=4500)
+    first=page.evaluate(EAVE_POSE)
+    if not receiving:
+        page.wait_for_function("HonroApp.engine.grounded(HonroApp.engine.active)",timeout=4500)
+    page.wait_for_function('HonroApp.canInput()',timeout=5500)
+    ceiling=page.evaluate(EAVE_POSE)
+    assert ceiling['y']==900 and ceiling['grounded'] and ceiling['support']=='c-eave-soffit'
+    assert ceiling['gravity']=={'x':0,'y':-320} and ceiling['normal']=={'x':0,'y':1}
+    page.screenshot(path=out/f'eave-{direction}{suffix}-ceiling.png')
+    if receiving:
+        watch_eave(page)
+        hold(page,'ArrowRight',"!HonroApp.engine.b.physics.regions.some(s=>s.id==='mumyeongsa-torn-eave')",None,5500)
+        page.wait_for_function("!document.querySelector('[data-act6-torn-eave=receive]')",timeout=5500)
+    else:
+        hold(page,'ArrowRight',"HonroApp.engine.b.phase==='won'",None,6500)
+    exit_pose=page.evaluate(EAVE_POSE)
+    if receiving:
+        assert [exit_pose['x'],exit_pose['y']]==[928,1136] and exit_pose['support']=='A-upper-veranda',exit_pose
+        assert exit_pose['gravity']=={'x':0,'y':320} and exit_pose['grounded'],exit_pose
+        assert not ceiling['others'] and [v['x'] for v in exit_pose['others']]==[1936,3456,5872],exit_pose
+    else:
+        assert exit_pose['x']==736 and exit_pose['y']==900 and exit_pose['grounded'],exit_pose
+    page.screenshot(path=out/f'eave-{direction}{suffix}-exit.png')
+    flight=page.evaluate('window.eaveFlight??[]')
+    moving=[q for q in flight if q['vy']>0] if receiving else [q for q in flight if q['vy']<0]
+    return {'entry':first,'ceiling':ceiling,'exit':exit_pose,'moving':moving}
+
 def play54(page,out,results):
     traces=results.setdefault("traces",{})
     page.wait_for_function('HonroApp.canInput() && HonroApp.engine.grounded(HonroApp.engine.active)',timeout=3500)
@@ -157,6 +218,7 @@ def play54(page,out,results):
     results["C_L"]=chart(page)
     assert results["C_L"]["changed"],results['C_L']['notice']
     results['previousRelayAttempts']=[]
+    watch_eave(page)
     for attempt in range(3):
         results["relayAttempt"]={}
         results["relay"]=m09(page,results["relayAttempt"],attempt)
@@ -166,13 +228,15 @@ def play54(page,out,results):
         if page.evaluate("HonroApp.engine.b.phase==='aim'&&HonroApp.engine.active.x>2324"):
             walk_nudge(page,2318,-1,10)
         try:
-            page.wait_for_function("HonroApp.engine.b.phase==='won'",timeout=2200)
+            page.wait_for_function("HonroApp.engine.b.phase==='won'||document.querySelector('[data-act6-torn-eave=send]')",timeout=2200)
             break
         except Error:
             results['previousRelayAttempts'].append({**results['relayAttempt'],'stakes':results['relay']['stakes'],'exit':traces['L_exit']['end']})
             if attempt==2:
                 raise
             walk_nudge(page,2336,1,10)
+    if page.locator('[data-act6-torn-eave="send"]').count():
+        results['eave54']=walk_eave(page,out)
     results["won"]=page.evaluate(base.SNAPSHOT)
     page.locator('[data-act6-qa-next="55"]').click(timeout=5000)
     page.wait_for_function("HonroApp.engine?.b?.honroStage===55",timeout=10000)

@@ -1,6 +1,6 @@
 # 무명사 P00 기준선과 P10 시안·경계 설계
 
-[53→54 본편 B와 첫 벽 교전](native-b/README.md) · [54→55→56 실제 M09 및 저장 수정](relay-fix/README.md) · [B 수직 슬라이스](proof-slice/README.md) · [P00 보강·선택안 보정](second-pass.md) · [실행·검수 계약](../ACT6_MUMYEONGSA_REBUILD_20261125.md) · [추가 경계 검수 계약](../ACT6_MUMYEONGSA_SEAM_CHECKS_20261125.md) · [A→B→C→D 연결 설계](continuity.md)
+[54→55→56 C 천장과 첫 가름진 역류](torn-eave/README.md) · [53→54 본편 B와 첫 벽 교전](native-b/README.md) · [54→55→56 실제 M09 및 저장 수정](relay-fix/README.md) · [B 수직 슬라이스](proof-slice/README.md) · [P00 보강·선택안 보정](second-pass.md) · [실행·검수 계약](../ACT6_MUMYEONGSA_REBUILD_20261125.md) · [추가 경계 검수 계약](../ACT6_MUMYEONGSA_SEAM_CHECKS_20261125.md) · [A→B→C→D 연결 설계](continuity.md)
 
 기준 앱은 master `dd409de2e635c5c0b16877266c1bb233d5a00fd7`의 추적된 `HONRO.html`과 `web/`이다. 작업 브랜치의 고정본 `b51c9ad5757c6e6913daf2d3c0dcbdda87b9b863`과 추가 요구 `4eca508af2c8a44868e1c04669950b7baf341a53`은 각각 문서 한 개를 추가했다. 아래 브라우저 증거는 로컬에서 재생한 그 앱 파일을 사용했다.
 
@@ -115,3 +115,7 @@ git ls-tree HEAD web/data/chapter-01-assets.088719e10e63d482.json web/data/chapt
 | 2026-11-25 15:12 UTC / 26일 00:12 KST | B 네 방향 연장과 상태 HUD | 양편 그래픽·콜라이더·월드 마스크 일치, 잘못된 접지 경고 해소, 최종 60/120 Hz와 모바일·저장 재검수 PASS | 하위 검수 | [af21bcb5](https://github.com/sys8994/honro/commit/af21bcb5e8ac38ebd404bb03755c33196ade74d7) | [실측](native-b/observed.json) |
 
 54→55의 원본 저장 차단을 고쳤고 53·54 본편의 분기·재합류, 공용 B 문턱·벽 교전과 실제 터치를 검수했다. C는 승인된 56 본체의 수신 보호 범위만 사용한다. 다음 항목은 57→58 원본 네 몸 수신, 58-B 법당·대도사·실제 지지면, 58→59 수동 문턱과 외부·소단 동선, 58·59의 출현·활성·실제 공격 로스터다. [실제 54→55→56·새/기존 저장·거부 검수](relay-fix/README.md) · [본편 B](native-b/README.md)
+
+## P60 체크리스트
+
+- 같은 이전 54·55·56 정상 기록 중 하나를 일반 여정첩에서 열고, 현재 장 표시와 이어가기 동작이 쉼터와 일치하는지 재현한다. `journey.inc.js` 14–27은 현재 pin 전체를 요구하지만 경계 codec과 쉼터는 같은 fromPacket과 완전한 증거를 검증한 이전 빌드 및 도착 pin을 허용한다. 차이가 확인되면 공통 읽기 전용 분류를 적용한다. 원본 패킷 변경으로 retired 된 기록, 훼손된 기록의 스포일러 방지, 완료 receipt와 기존 프로필 바이트를 보호한다. 이 항목은 등록했다.

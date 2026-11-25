@@ -21,7 +21,7 @@ export function verifyStage54Relay(C,sill,relay,allowLegacy=false){
   impact.normal?.x===0&&impact.normal?.y===-1&&s.terrain===sill.id&&s.x===impact.x&&s.y===2930&&
   s.y===impact.y-impact.normal.y*impact.radius&&faces.some(f=>f.edge===s.edge&&f.y===s.y&&f.slope===0));
 }
-export async function createStage54ChartOwner({C,domain,charts,gallery=null,observatory=null,verifyMounted,verifyIncoming,fireMissionSkill}){
+export async function createStage54ChartOwner({C,domain,charts,gallery=null,observatory=null,verifyMounted,verifyIncoming,fireMissionSkill,verifyEave=null}){
  const digest=async x=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(sig(x)))),v=>v.toString(16).padStart(2,'0')).join('');
  const pages=structuredClone(charts);
  for(const [k,c] of Object.entries(pages)){
@@ -141,11 +141,27 @@ export async function createStage54ChartOwner({C,domain,charts,gallery=null,obse
       !b.projectiles.some(p=>p.owner===u.id&&p.skill==='M09'&&p.shot===b.shot))return response(false,'stock release refused');
   g.shot={shot:b.shot,minX,maxX};return {ok:true,shot:b.shot,forecast:[z.x,z.y]};
  }
+ function relayExit(g,e){
+  const u=g.u;
+  return g.order.length===3&&!g.pending&&!!g.m09&&geometry(g.b,'L')&&span(u.x,2308,2324)&&span(u.y,2926,2934)&&
+    e.grounded(u)&&C.validTerrainContactPose(g.b.terrain,u)&&support(e,u)==='mid-contact';
+ }
+ function enterEave(a,e,ticket){
+  const g=get(a,e);
+  if(!g||g.ticket!==ticket||!verifyEave||g.eaveRoom||!relayExit(g,e)||!e.canAct()||g.b.projectiles.length||g.b.volley)return false;
+  g.eaveRoom=true;
+  return true;
+ }
+ function recordEave(a,e,ticket,proof){
+  const g=get(a,e);
+  if(!g?.eaveRoom||g.ticket!==ticket||g.eave||!verifyEave(a,e,g.u,proof)||!e.grounded(g.u))return false;
+  g.eave=structuredClone(proof);
+  return true;
+ }
  function project(a,e){
   const g=get(a,e);if(!g)return {complete:false,objectiveReady:false,blocked:true};
-  const u=g.u;
-  const complete=g.order.length===3&&!g.pending&&!!g.m09&&geometry(g.b,'L')&&span(u.x,2308,2324)&&span(u.y,2926,2934)&&
-    e.grounded(u)&&C.validTerrainContactPose(g.b.terrain,u)&&support(e,u)==='mid-contact';
+  const complete=verifyEave?!!g.eave&&verifyEave(a,e,g.u,g.eave):relayExit(g,e);
+  if(g.eaveRoom)return {complete,objectiveReady:complete,summary:complete?'처마 밑 이음을 확인했습니다.':'처마 밑에 붙어 오른쪽 문턱까지 이동하세요.',targets:[]};
   const observing=g.frame==='N'&&g.gallery&&!g.observed;
   const targets=observing?[{kind:'route',id:'observatory',label:'회랑 끝 관측턱',x:observatory.x,y:C.topAt(g.b.terrain.find(t=>t.id===observatory.support),observatory.x)}]:[];
   const missed=g.shot&&!g.m09&&g.b.phase==='aim'&&!g.b.projectiles.length;
@@ -154,9 +170,10 @@ export async function createStage54ChartOwner({C,domain,charts,gallery=null,obse
  function terminal(a,e){
   const g=get(a,e);if(!g||g.terminal||e.b.phase!=='won'||!project(a,e).complete)return null;
   g.terminal=true;return {stage:54,won:true,flags:{'act6.invertedGalleryCrossed':true},mage:structuredClone(g.u),external:structuredClone(g.external),
-   chart:structuredClone(g.order),relay:structuredClone(g.m09),...(g.gallery?{gallery:{observed:structuredClone(g.observed),guard:g.foe.id}}:{}),settlement:false};
+   chart:structuredClone(g.order),relay:structuredClone(g.m09),...(g.eave?{eave:structuredClone(g.eave)}:{}),
+   ...(g.gallery?{gallery:{observed:structuredClone(g.observed),guard:g.foe.id}}:{}),settlement:false};
  }
  function inspect(a,e){const g=get(a,e);return g&&structuredClone({frame:g.frame,pending:g.pending,chart:g.order,m09:g.m09,camera:g.cameraEvents});}
- return Object.freeze({mount,admitGuard,beginGallery,observeGallery,chart,observe,relay,project,terminal,inspect,
+ return Object.freeze({mount,admitGuard,beginGallery,observeGallery,enterEave,recordEave,chart,observe,relay,project,terminal,inspect,
   readyAfterGuard:(a,e)=>{const g=get(a,e);return !!g?.foe&&g.foe.dead===true&&g.foe.hp===0&&noTransients(g.b);},releaseEnabled:false});
 }

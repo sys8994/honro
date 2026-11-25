@@ -16,13 +16,13 @@
         const fullOuter=Object.fromEntries(t.actors.map(row=>[row.cls,row]));
         check(Object.keys(fullOuter).length===3&&Object.entries(fullOuter).every(([role,row])=>same(row,e.b.units.find(u=>u.id===row.id&&u.cls===role)))&&
           same(t.parkedMage,prev.previous.mage)&&!e.b.units.some(u=>u.id===t.parkedMage.id),'55 carry contacts or parked row drift');
-        const previous=Object.freeze({stage:55,won:true,flags:t.flags,crew:{...fullOuter,mage:t.parkedMage},boundary:{fullParkedMage:t.parkedMage,fullOuter}});
+        const previous=Object.freeze({stage:55,won:true,flags:t.flags,crew:{...fullOuter,mage:t.parkedMage},boundary:{fullParkedMage:t.parkedMage,fullOuter},eave:t.eave});
         return mountFrom55(a,grant,previous,e.stage,normal51Provider.budget(e.b),()=>eligible56(a,prev)&&active.get(a)===prev,undefined);
       }
       async function mountCold56(a,grant,body,stays,key){
         if(!cold56.has(key)||!stays()||body.from!==55||body.to!==56)return false;
         const t=body.terminal,{outer:fullOuter,mage:fullParkedMage}=body.custody;
-        const previous=Object.freeze({stage:55,won:true,flags:t.flags,crew:{...fullOuter,mage:fullParkedMage},boundary:{fullParkedMage,fullOuter}});
+        const previous=Object.freeze({stage:55,won:true,flags:t.flags,crew:{...fullOuter,mage:fullParkedMage},boundary:{fullParkedMage,fullOuter},eave:t.eave});
         cold56.set(key,{a,p:previous,stays});
         try{return await mountFrom55(a,grant,previous,body.stageSeed,body.budget,stays,key);}
         finally{cold56.delete(key);}
@@ -57,6 +57,7 @@
         try{
           a.mount(b,{freshReport:true,reportScope:'custom'});
           check(scope56(a,a.engine,s)&&a.engine.stage===content&&a.scene&&a.screen==='battle','Native normal 56 mount failed');
+          if(previous.eave)mountEave56(a,s,previous.eave);
           const ui=appUI(a);check(ui,'Normal 56 controls absent');const btn=document.createElement('button');
           btn.type='button';btn.dataset.act6QaLookout='';styleAction(btn);
           btn.addEventListener('click',event=>{if(event.isTrusted&&event.currentTarget===btn)action(a,event);});s.button=btn;ui.append(btn);tick56(a);return true;
@@ -68,13 +69,44 @@
         s.owner56=adapter56.attach({app:a,engine:e,prepared:s.prepared56,receipt:s.previous,packet:s.packet,compiled:s.compiled56,grant:s.lease56});
         check(s.owner56,'Native 56 owner refused');e.checkEnd=()=>a.checkMission(e);return true;
       }
+      function mountEave56(a,s,proof){
+        const e=s.engine,u=e.active,room=composeTornEave(s.packet.map);
+        check(validTornEave(u.id,proof),'Invalid shared C receiving contact');
+        const compiled=G.HonroMaps.compile(room.map,{library:room.library});
+        const received={normal:null,restore:swapTornEave(e,room.map,compiled),units:e.b.units,axis:null};
+        // Bodies in the approved main hall are kept on their own map until it
+        // opens. The temporary chamber never updates or normalizes their poses.
+        e.b.units=[u];
+        s.eave56=received;
+        received.axis=installTornEave({C,e,scene:a.scene,u,receiving:proof,onReturn:pose=>{received.normal=pose;}});
+        check(e.grounded(u)&&same(received.axis.sample(),proof.exit),'C landed contact differs from 54');
+        focusChart54(a,u,{x:u.x,y:u.y+95});
+      }
+      function projectNormal56(a,e,s){
+        if(!s?.eave56)return s?.owner56?.project();
+        return {complete:false,objectiveReady:false,summary:'같은 처마를 따라 오른쪽으로 이동해 난간에 내려서세요.',targets:[]};
+      }
       function stage56UI(a,s,e){
-        if(!scope56(a,e,s))return;
+        if(!scope56(a,e,s)||s.eave56)return;
         const id=s.owner56.project()?.appActions?.mission;if(!id)return;
         const q=s.owner56.interact(id);a.notify(q.ok?q.label:q.reason);e.checkEnd();tick56(a);a.updateHUD(true);
       }
       function tick56(a){
         const s=active.get(a),e=a.engine;if(e?.b?.honroStage!==56||!scope56(a,e,s)||!s.owner56)return;
+        if(s.eave56){
+          const r=s.eave56,u=e.active;
+          if(!r.normal){
+            if(s.button){s.button.disabled=true;s.button.dataset.act6TornEave='receive';s.button.textContent=projectNormal56(a,e,s).summary;}
+            return;
+          }
+          r.axis.dispose();r.restore();e.b.units=r.units;s.eave56=null;
+          const support=e.contactSurface(u.x,u.y-3,u.y+4);
+          check(u.x===928&&u.y===1136&&e.grounded(u)&&support?.t.id==='A-upper-veranda'&&
+            fingerprints.get(JSON.stringify(e.b.terrain))===owner56.playSHA&&fingerprints.get(JSON.stringify(e.b.honroWorldTerrain))===owner56.worldSHA,
+            'The approved veranda contact or mask changed');
+          if(s.button)delete s.button.dataset.act6TornEave;
+          focusChart54(a,u);a.updateHUD(true);
+        }
         s.owner56.tick();const r=s.owner56.project();
         if(s.button){s.button.textContent=r.summary;s.button.disabled=r.complete||r.failed;s.button.dataset.act6Mission=r.appActions?.mission??'';}
         if((r.complete||r.failed)&&!a.done)e.checkEnd();

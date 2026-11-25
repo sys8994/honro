@@ -93,6 +93,7 @@ export async function createAct6WebQa(project,repoRoot,env=process.env,release=n
   const b53=await readFile(new URL('./runtime/stage53-entry.inc.js',import.meta.url),'utf8');
   const hallSource53=await readFile(new URL('./act6-mumyeongsa/stage53.mjs',import.meta.url),'utf8');
   const railCode=await readFile(new URL('./act6-mumyeongsa/broken-rail.mjs',import.meta.url),'utf8');
+  const eaveCode=await readFile(new URL('./act6-mumyeongsa/torn-eave.mjs',import.meta.url),'utf8');
   const railSource=await readFile(new URL('./act6-b-slice/layout.json',import.meta.url),'utf8');
   let mission53=await readFile(new URL('./runtime/act6-inner-missions.mjs',import.meta.url),'utf8');
   mission53=mission53.replaceAll('!g.b.honroGrowth','(!g.b.honroGrowth||g.quotedZeroPilot)')
@@ -120,7 +121,9 @@ export async function createAct6WebQa(project,repoRoot,env=process.env,release=n
   const mount55=await readFile(new URL('./runtime/stage55-entry.inc.js',import.meta.url),'utf8');
   const code55='const {createNormalBellOwner,D55}=(()=>{'+owner55.replaceAll('export ','')+'\nreturn {createNormalBellOwner:createStage55EmptyBell,D55:STAGE55};})();\n'+mount55;
   const bindRail='const {createBrokenRail,validBrokenRailCrossing,installBrokenRail}=(()=>{'+railCode.replaceAll('export ','')+'\nreturn {createBrokenRail,validBrokenRailCrossing,installBrokenRail};})();\nconst brokenRail=createBrokenRail('+railSource+');\n';
-  const bind53=bindRail+'const createInnerMissionOwner=(()=>{'+mission53.replace('export function','function')+'\nreturn createInnerMissionOwner;})();\n'+
+  const eaveExports='tornEave,validTornEave,composeTornEave,swapTornEave,installTornEave';
+  const bindEave='const {'+eaveExports+'}=(()=>{'+eaveCode.replaceAll('export ','')+'\nreturn {'+eaveExports+'};})();\n';
+  const bind53=bindRail+bindEave+'const createInnerMissionOwner=(()=>{'+mission53.replace('export function','function')+'\nreturn createInnerMissionOwner;})();\n'+
     'const createStage53PhysicalActions=(()=>{'+actions53.replace('export function','function')+'\nreturn createStage53PhysicalActions;})();\n'+
     'const {hall53,composeHall53}=(()=>{'+hallSource53.replaceAll('export ','')+'\nreturn {hall53,composeHall53};})();\n'+b53+code54+code55;
   source=replaceOne(source,'      function enter(app,id,ticket){',bind53+'\n      function enter(app,id,ticket){');
@@ -155,7 +158,7 @@ export async function createAct6WebQa(project,repoRoot,env=process.env,release=n
   source=replaceOne(source,'        if(e.b.honroStage===54&&s.owner54)','        if(e.b.honroStage===55&&s.owner55)return bindNormal55(app,e,s);\n        if(e.b.honroStage===54&&s.owner54)');
   source=replaceOne(source,'function goalState(app,e){if(e?.b?.honroStage===54)','function goalState(app,e){if(e?.b?.honroStage===55)return active.get(app)?.owner55?.project(app,e);if(e?.b?.honroStage===54)');
   source=replaceOne(source,'        if(e.b.honroStage===54){chart54Input','        if(e.b.honroStage===55){bell55UI(app,s,e);return true;}\n        if(e.b.honroStage===54){chart54Input');
-  source=replaceOne(source,'const terminal=s.b.honroStage===54?', 'const terminal=s.b.honroStage===55?s.owner55.terminal(app,s.engine):s.b.honroStage===54?');
+  source=replaceOne(source,'const terminal=s.b.honroStage===54?', 'const terminal=s.b.honroStage===55?terminalNormal55(app,s):s.b.honroStage===54?');
   source=replaceOne(source,'        if(terminal?.stage===53&&s.normal51)',"        if(terminal?.stage===54&&s.normal51){const btn=document.createElement('button');btn.type='button';btn.dataset.act6QaNext='55';styleAction(btn);btn.textContent='빈 종터로 돌아간다';appUI(app)?.append(btn);issue(app,btn,55);}\n        if(terminal?.stage===53&&s.normal51)");
   source=replaceOne(source,'release,keepAction:', 'release,context53,release53,tick54,tick55,keepAction:');
 
@@ -173,7 +176,7 @@ export async function createAct6WebQa(project,repoRoot,env=process.env,release=n
   source=replaceOne(source,"            check(app.launch(id,false,null,ticket)===true", "            check(await app.launch(id,false,null,ticket)===true");
   source=replaceOne(source,'        if(id===55&&active.get(app)?.normal51===true)','        if(id===56&&active.get(app)?.normal51===true)return enterNormal56(app,grant,active.get(app));\n        if(id===55&&active.get(app)?.normal51===true)');
   source=replaceOne(source,'        if(e.b.honroStage===55&&s.owner55)','        if(e.b.honroStage===56&&s.prepared56)return bindNormal56(app,e,s);\n        if(e.b.honroStage===55&&s.owner55)');
-  source=replaceOne(source,'function goalState(app,e){if(e?.b?.honroStage===55)','function goalState(app,e){if(e?.b?.honroStage===56)return active.get(app)?.owner56?.project();if(e?.b?.honroStage===55)');
+  source=replaceOne(source,'function goalState(app,e){if(e?.b?.honroStage===55)','function goalState(app,e){if(e?.b?.honroStage===56)return projectNormal56(app,e,active.get(app));if(e?.b?.honroStage===55)');
   source=replaceOne(source,'        if(e.b.honroStage===55){bell55UI','        if(e.b.honroStage===56){stage56UI(app,s,e);return true;}\n        if(e.b.honroStage===55){bell55UI');
   source=replaceOne(source,'const terminal=s.b.honroStage===55?', 'const terminal=s.b.honroStage===56?terminalNormal56(app,s):s.b.honroStage===55?');
   source=replaceOne(source,'        if(terminal?.stage===53&&s.normal51)',"        if(terminal?.stage===55&&s.normal51){const btn=document.createElement('button');btn.type='button';btn.dataset.act6QaNext='56';styleAction(btn);btn.textContent='깊은 경계로 들어간다';appUI(app)?.append(btn);issue(app,btn,56); }\n        if(terminal?.stage===53&&s.normal51)");
