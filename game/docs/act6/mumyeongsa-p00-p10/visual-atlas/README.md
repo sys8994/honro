@@ -26,7 +26,7 @@
 
 [다섯 접점의 전후 발췌](seam-detail-review.webp) · [이전 프레임 좌표·화면 크기·저장 해시](before-seams.json) · [변경 후 같은 프레임 좌표·화면 크기·저장 해시](after-seams.json)
 
-위 다섯 컷의 카메라 월드 좌표·배율·저장 해시는 전후 정확히 같다. 같은 수정의 다섯 대조 지점이다. SOP의 본편 미술 수정·재검수 5회와 54의 L/C/뒤 다시 L 전 영역 외곽, 58의 live R 모바일 송신은 남아 있다.
+위 다섯 컷의 카메라 월드 좌표·배율·저장 해시는 전후 정확히 같다. 같은 수정의 다섯 대조 지점이다. 이는 첫 수정의 전후 기록이다. 두 번째부터 다섯 번째 수정과 L/C/뒤 다시 L의 전체 외곽은 아래에 기록했다. [58 실제 R 모바일 송신](../return-r/README.md)
 
 ```bash
 npm run build
@@ -57,3 +57,9 @@ python game/docs/act6/mumyeongsa-p00-p10/baseline/visual_edges.py --build "$PWD"
 54 동쪽의 기존 직선은 앞에 색을 덮으면 안쪽에 옛 절단선이 남았다. 플레이 영역 x3200 바깥에서 원래 `foothill`의 월드 윤곽과 원본 BODY 미술에 같은 아홉 꼭짓점을 넣고 겹쳐 놓았던 앞쪽 면을 제거했다. 전후 화면의 카메라·플레이 충돌·B 네 마스크는 동일하며, 월드 충돌은 54의 `foothill` 윤곽만 바뀌었다. 53은 산문 기단·서고 선반·파손 들보를 나누었고 58은 첫 석단 띠와 위 마루 두께를 실제 윗변에 붙였다. [53 전체](core-and-eave-53-world-plain.webp) · [54 동쪽](core-and-eave-54-native-N-world-plain.webp) · [58 전체](core-and-eave-58-world-plain.webp) · [모서리·마스크](core-and-eave-world.json)
 
 변경 빌드에서 53 진목, 54 B 실제 교전, N→L→C→L, 실제 M09 `(y=2924, 반경 6)`과 C를 순서대로 밟았다. 새 55를 독립 일반 쉼터에서 열었고 기존 저장 바이트는 같다. [실제 장 경계](core-and-eave-proof.json)
+
+## 다섯 번째 수정과 화면 대조
+
+59의 첫 산문에서 양쪽 장이 공유하는 돌턱의 발 닿는 윗변은 그대로 두고, 동쪽 암면 아래에 녹청색 절리 세 면을 그렸다. 이 벡터에는 충돌이 없다. 좁은 화면에서 지지면 윗변 아래로 어두운 암면이 이어지고 바탕의 적갈색 대비가 줄었다. x3400에 실제 지지면이 끝나는 가는 수직선은 남는다. 58의 R 송신 문틀과 그래픽은 그대로다.
+
+동일한 정상 저장·카메라·화면 크기로 B 터치, B PC, 58 천장, 58 R 송신, 59 R 수신을 다시 캡처했다. 58 천장 컷은 전후 픽셀까지 일치했다. 카메라 좌표와 저장 바이트 해시는 다섯 쌍이 모두 같다. [59 수신 전](return-apron-before-plain.webp) · [수신 후](return-apron-after-plain.webp) · [충돌선 전](return-apron-before-outline.webp) · [충돌선 후](return-apron-after-outline.webp) · [다섯 시점 원자료](return-apron-seams.json)

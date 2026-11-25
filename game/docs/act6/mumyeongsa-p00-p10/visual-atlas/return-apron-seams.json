@@ -1,0 +1,106 @@
+{
+  "matchingFrames": [
+    {
+      "name": "B-touch",
+      "stage": 54,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "frame": {
+        "left": {
+          "x": 2922.1951219512193,
+          "y": 95.11623475609753
+        },
+        "right": {
+          "x": 3397.8048780487807,
+          "y": 884.8837652439024
+        },
+        "scale": 0.82
+      },
+      "saveSHA256": "54f7c884306e187b183693b3ce101c00f8e443ab1d01680d51d81bf465456b9e"
+    },
+    {
+      "name": "B-wall",
+      "stage": 54,
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "frame": {
+        "left": {
+          "x": 2546.9387755102043,
+          "y": -12.442602040816325
+        },
+        "right": {
+          "x": 3853.0612244897957,
+          "y": 772.4426020408164
+        },
+        "scale": 0.98
+      },
+      "saveSHA256": "54f7c884306e187b183693b3ce101c00f8e443ab1d01680d51d81bf465456b9e"
+    },
+    {
+      "name": "58-soffit-touch",
+      "stage": 58,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "frame": {
+        "left": {
+          "x": 3962.1951219512193,
+          "y": 2155.1162347560976
+        },
+        "right": {
+          "x": 4437.804878048781,
+          "y": 2944.8837652439024
+        },
+        "scale": 0.82
+      },
+      "saveSHA256": "cd9320fa2d15a43f53096f1b91d392941ca64fa89df80174a94f8832095c234d"
+    },
+    {
+      "name": "R-58-send",
+      "stage": 58,
+      "viewport": {
+        "width": 1280,
+        "height": 900
+      },
+      "frame": {
+        "left": {
+          "x": 2548.8888888888887,
+          "y": 2802.6736111111113
+        },
+        "right": {
+          "x": 3971.1111111111113,
+          "y": 3657.3263888888887
+        },
+        "scale": 0.9
+      },
+      "saveSHA256": "cd9320fa2d15a43f53096f1b91d392941ca64fa89df80174a94f8832095c234d"
+    },
+    {
+      "name": "R-59-receive-touch",
+      "stage": 59,
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "frame": {
+        "left": {
+          "x": 3022.1951219512193,
+          "y": 2835.1162347560976
+        },
+        "right": {
+          "x": 3497.8048780487807,
+          "y": 3624.8837652439024
+        },
+        "scale": 0.82
+      },
+      "saveSHA256": "eaeb1fcbdfe385cedeebc3f4e8804ae25e89e5c2b1ba4c8796c9a5c34a5bbec7"
+    }
+  ],
+  "before": "54b06d27",
+  "difference": "R receiver apron only"
+}

@@ -58,6 +58,23 @@ function receivingRock(){
  return {id:'art-'+id,assetId:id,x:0,y:0,scale:1,rotation:0,layer:'back',depthLayer:'L0',
   visualRole:'scenery',kind:'canonical-element',collisionIds:[],asset};
 }
+function receivingApron(){
+ const {right}=returnGate,id='m59-return-apron',y=grade(right);
+ // These faces overlap the outside of the receiving slab below the actual
+ // threshold. The contact edge and its collider remain the common section.
+ const visual=[
+  polygon('#273736',[[right-99,y+106],[right,y+48],[right+72,y+111],[right+147,y+180],
+   [right+97,y+299],[right+164,y+454],[right+32,y+588],[right-139,y+513],[right-124,y+278]]),
+  polygon('#33403c',[[right-99,y+106],[right,y+48],[right+72,y+111],[right+147,y+180],
+   [right+58,y+216],[right+4,y+166],[right-81,y+183]]),
+  polygon('#2b3b3a',[[right-124,y+278],[right-52,y+251],[right+26,y+291],[right+97,y+299],
+   [right+164,y+454],[right+32,y+588],[right-92,y+484]])
+ ];
+ const asset={id,renderer:'vector',category:'terrain-art',layer:'prop',anchor:{x:0,y:0},
+  bounds:{x:right-145,y:y+42,w:315,h:552},collision:[],visual,sockets:[],params:{}};
+ return {id:'art-'+id,assetId:id,x:0,y:0,scale:1,rotation:0,layer:'prop',depthLayer:'L1',
+  visualRole:'scenery',kind:'canonical-element',collisionIds:[],asset};
+}
 export function verifyReturnGate(proof,crew){
  const R=returnGate;
  return proof?.id===R.id&&proof.floor===R.floor&&proof.sill===R.sill&&proof.gravity?.x===0&&proof.gravity?.y===320&&
@@ -108,7 +125,7 @@ export function mountReturnGate({G,e,scene,crew,proof,installArt,onExit}){
  b.honroElements=[];b.honroLandmarks=[];
  b.physics={...physics,gravity:{...R.gravity},regions:[]};
  for(const {u,pose} of incoming)Object.assign(u,pose,{vx:0,vy:0,airborne:false,jumping:false});
- e.invalidateTerrainCollisionIndex();installArt(e,scene,[receivingRock(),art]);
+ e.invalidateTerrainCollisionIndex();installArt(e,scene,[receivingRock(),receivingApron(),art]);
  e.noncombatWalk=()=>true;
  const left=new Set();
  e.walk=function(u,dir,...args){
