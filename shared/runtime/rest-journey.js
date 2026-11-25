@@ -228,7 +228,14 @@ function layoutLabels(){
  for(const a of anchors){const label=a.pin.querySelector('span'),w=label.offsetWidth,h=label.offsetHeight,left=[-24-w,-h/2],right=[24,-h/2],side=Number(a.pin.style.getPropertyValue('--label-side'));
   const candidates=[...(side<0?[left,right]:[right,left]),[-w/2,-26-h],[-w/2,26],[24,22],[-24-w,22],[24,-22-h],[-24-w,-22-h]];
   const visible=a.x>=vr.left&&a.x<=vr.right&&a.y>=vr.top&&a.y<=vr.bottom;
-  let best=null;for(const [dx,dy] of candidates){const rect={left:a.x+dx,top:a.y+dy,right:a.x+dx+w,bottom:a.y+dy+h};let score=0;
+  let best=null;for(let [dx,dy] of candidates){
+   // On the 6막 atlas a visible pin's label must fit before overlap scoring.
+   // Otherwise a long label near the frame can be selected half offscreen.
+   if(visible&&viewport.closest('.journey-act-6')&&w<=vr.width-8&&h<=vr.height-8){
+    dx=Math.min(vr.right-4-w-a.x,Math.max(vr.left+4-a.x,dx));
+    dy=Math.min(vr.bottom-4-h-a.y,Math.max(vr.top+4-a.y,dy));
+   }
+   const rect={left:a.x+dx,top:a.y+dy,right:a.x+dx+w,bottom:a.y+dy+h};let score=0;
    if(visible)score+=100*(Math.max(0,vr.left+3-rect.left)+Math.max(0,rect.right-vr.right+3)+Math.max(0,vr.top+3-rect.top)+Math.max(0,rect.bottom-vr.bottom+3));
    for(const b of anchors)score+=overlap(rect,{left:b.x-20,right:b.x+20,top:b.y-20,bottom:b.y+20})*10;
    for(const b of placed)score+=overlap(rect,b)*4;

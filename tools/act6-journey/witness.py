@@ -39,6 +39,15 @@ def witness(page,state,mobile,tap,out,case,stage):
         return {left:m.left-v.left, top:m.top-v.top,right:v.right-m.right,bottom:v.bottom-m.bottom};
     }''')
     assert all(x>=-2.0 for x in bounds.values()),(case,stage,bounds)
+    labels=page.evaluate('''()=>{
+        const viewport=document.querySelector('.journey-act-6 .journey-map-scroll');
+        const v=viewport.getBoundingClientRect();
+        return [...viewport.querySelectorAll('.journey-pin span,.journey6-realm')].map(e=>{
+            const r=e.getBoundingClientRect(), label=e.textContent;
+            return {label,left:r.left-v.left,top:r.top-v.top,right:v.right-r.right,bottom:v.bottom-r.bottom};
+        });
+    }''')
+    assert all(all(v>=-1.5 for k,v in row.items() if k!='label') for row in labels),(case,stage,labels)
     page.screenshot(path=out/f'{case}-journey6-{stage}.png')
     if stage=='done':
         row=page.locator('[data-action="journey-select"][data-id="59"]')
