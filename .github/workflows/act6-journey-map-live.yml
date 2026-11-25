@@ -32,3 +32,5 @@ jobs:
           retention-days: 7
 
 # Bind the product check to the boot-safe globalThis predicate.
+
+# Capture public HTTP and module startup failure details.

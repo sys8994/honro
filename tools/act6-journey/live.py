@@ -42,10 +42,18 @@ with sync_playwright() as pw:
         with b.new_context(viewport={'width':w,'height':h},is_mobile=mobile,has_touch=mobile,device_scale_factor=1) as cx:
             cfg=json.dumps([site,stock,raw])
             cx.add_init_script(f"""(()=>{{const [url,k,value]={cfg};if(location.href.startsWith(url)&&!localStorage.getItem(k))localStorage.setItem(k,value);}})()""")
-            tab=cx.new_page(); errors=[]
+            tab=cx.new_page(); errors=[]; traces=[]
+            tab.on('response',lambda res:traces.append(['response',res.status,res.url]))
+            tab.on('requestfailed',lambda req:traces.append(['requestfailed',req.failure,req.url]))
+            tab.on('console',lambda ev:traces.append(['console',ev.type,ev.text]) if ev.type in ('error','warning') else None)
             tab.on('pageerror',lambda err:errors.append(str(err)))
             tab.goto(site+'HONRO.html',wait_until='domcontentloaded',timeout=30000)
-            tab.wait_for_function("globalThis.HonroApp?.screen==='title'&&!!globalThis.HONRO_READY",timeout=40000)
+            try:
+                tab.wait_for_function("globalThis.HonroApp?.screen==='title'&&!!globalThis.HONRO_READY",timeout=65000)
+            except Exception:
+                print(json.dumps({'url':tab.url,'js':errors,'log':traces,'body':tab.locator('body').inner_text()[:1500]},ensure_ascii=False,indent=2),flush=True)
+                tab.screenshot(path=out/f'{case}-boot-failure.png')
+                raise
             tab.evaluate('async()=>await HONRO_READY')
             tap(tab,'.title-actions button.primary[data-action="rest"]',mobile)
             tab.wait_for_function("HonroApp.screen==='rest'",timeout=20000)
