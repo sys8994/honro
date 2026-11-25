@@ -1,0 +1,126 @@
+{
+  "scope": "New authored polygon fills only. Hard play ROI clip, binary alpha. Original body and engine compositing excluded.",
+  "sourceCommit": "d01cba3fb865acc081ba81f7b4170e87bc5e3e81",
+  "rows": [
+    {
+      "overlay": "53 halls and balconies",
+      "roi": {
+        "left": 0,
+        "top": 0,
+        "right": 3540,
+        "bottom": 3000
+      },
+      "assetIds": [
+        "m53-walk-fascia",
+        "m53-retained-timber"
+      ],
+      "withinROIPolygonEndpoints": 148,
+      "sourcePolygonFaces": 23,
+      "normalizedBytes": 3767,
+      "gzipBytes": 894,
+      "measurements": [
+        {
+          "scale": 0.21176470588235294,
+          "worldArea": 374941.82,
+          "rasterSHA256": "40aedd02ce6dc3df431721b5b21df5eb59e7aefb3e5753427d4c0f1f9d92dc38"
+        },
+        {
+          "scale": 0.4235294117647059,
+          "worldArea": 363206.77,
+          "rasterSHA256": "1d29df17e2874616aaa3259fc1448a2373b0e856d532903c374291e1e4109d05"
+        }
+      ],
+      "endpointsPerMillionWorldSquared1x": 394.73
+    },
+    {
+      "overlay": "53/54 shared B playable clip",
+      "roi": {
+        "left": 0,
+        "top": 0,
+        "right": 3540,
+        "bottom": 3000
+      },
+      "assetIds": [
+        "mumyeongsa-broken-rail",
+        "mumyeongsa-broken-rail-rear"
+      ],
+      "withinROIPolygonEndpoints": 130,
+      "sourcePolygonFaces": 28,
+      "normalizedBytes": 4163,
+      "gzipBytes": 898,
+      "measurements": [
+        {
+          "scale": 0.21176470588235294,
+          "worldArea": 745267.67,
+          "rasterSHA256": "a39249e304eb0257746429958aa6ecdda3f74748bf569fa052c75462a1809692"
+        },
+        {
+          "scale": 0.4235294117647059,
+          "worldArea": 740155.54,
+          "rasterSHA256": "612ec66225e6650e72e79dbaf0276b57a6453535ffaddf614499d204e4c6eac3"
+        }
+      ],
+      "endpointsPerMillionWorldSquared1x": 174.43
+    },
+    {
+      "overlay": "54 N gallery balconies",
+      "roi": {
+        "left": 0,
+        "top": 0,
+        "right": 3200,
+        "bottom": 3000
+      },
+      "assetIds": [
+        "m54-observation-balconies"
+      ],
+      "withinROIPolygonEndpoints": 40,
+      "sourcePolygonFaces": 4,
+      "normalizedBytes": 947,
+      "gzipBytes": 275,
+      "measurements": [
+        {
+          "scale": 0.21176470588235294,
+          "worldArea": 15877.16,
+          "rasterSHA256": "14f58af4874a2edf8b925129f8d84af3b902faa6e0724c72539ac3035252ccbf"
+        },
+        {
+          "scale": 0.4235294117647059,
+          "worldArea": 15509.22,
+          "rasterSHA256": "6aa534e92b00e2a5976c30fdd0287699e4ede514678d9dbc472b84a01d105139"
+        }
+      ],
+      "endpointsPerMillionWorldSquared1x": 2519.34
+    },
+    {
+      "overlay": "58 upper hall, structure and roof",
+      "roi": {
+        "left": 0,
+        "top": 0,
+        "right": 7200,
+        "bottom": 3600
+      },
+      "assetIds": [
+        "m58-timber-hall-rear",
+        "m58-suspended-hall",
+        "m58-tile-eaves"
+      ],
+      "withinROIPolygonEndpoints": 310,
+      "sourcePolygonFaces": 64,
+      "normalizedBytes": 8256,
+      "gzipBytes": 1854,
+      "measurements": [
+        {
+          "scale": 0.21176470588235294,
+          "worldArea": 4918151.16,
+          "rasterSHA256": "99424d3f449f9a8286a2d85471fc742bbe056d8fcabb4ed30698ddf70afbcc20"
+        },
+        {
+          "scale": 0.4235294117647059,
+          "worldArea": 4907910.17,
+          "rasterSHA256": "c94d375bffb92fb7d4a28feec7eaf65222c4a776e66c9328574066f329d3ce4d"
+        }
+      ],
+      "endpointsPerMillionWorldSquared1x": 63.03
+    }
+  ]
+}

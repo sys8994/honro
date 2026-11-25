@@ -13,3 +13,7 @@ python "$probe" --build "$PWD" --out /tmp/honro-59-guard --rounds 21 --finish --
 python "$probe" --build "$PWD" --out /tmp/honro-59-strike --rounds 21 --finish --forepaw strike
 python tools/act6-ending-v2/normal.py --chromium /usr/bin/chromium --from-courtyard-proof /tmp/honro-59-guard/court.json
 ```
+
+## 첫 승리 판
+
+같은 체크포인트의 방어 판에서 시작 10, 누적 34, 최대 활성 14, 공격 큐 상한 8이었다. 서쪽 3라운드 HMO01은 휘겸 실드 `462→437`, 동쪽 4라운드 HMO01은 담허 실드 `246→189`, 실제 앞발 4라운드 HWD01은 교각의 휘겸 실드 `462→431`을 줄였다. 양쪽의 입장과 퇴각을 확인한 뒤 9라운드에 실제로 승리했다. 11라운드 페이스 목표와 전진 공략의 별도 승리는 당시 미달·미검수다. 60 새 기록과 그 기록의 PC·모바일 엔딩, 일반 저장 바이트, 자연 타이틀 복귀는 통과했다. [실제 방어 판](courtyard-rotation-guard.json) · [승리 화면](screens/courtyard-rotation-guard.webp) · [실제 승리 기록의 엔딩](courtyard-rotation-ending.json)
