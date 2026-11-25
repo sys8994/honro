@@ -6,7 +6,7 @@ from pathlib import Path
 from playwright.sync_api import Error, sync_playwright
 
 import browser as base
-from daedosa_return import CANDIDATE
+from daedosa_return import CANDIDATE, MENDING
 from exterior_combat import TRACE
 from legacy54_live import hold, play54, resume
 from native_b import aim, finish_wall, m09_hall
@@ -15,22 +15,9 @@ from second_pass import FOOT, sample_walk
 from visual_edges import scene_context
 
 
-HEAL = """() => {
- const e=HonroApp.engine,u=e.active,skill=HONRO_CORE.SKILLS.M10;
- if(u.hp>=u.maxHp*.72||!u.loadout.includes('M10')||!e.canAfford(skill,u,.50)||e.b.stakes?.some(s=>s.skill==='M10'&&Math.abs(s.x-u.x)<100))return null;
- for(const power of [.27,.36,.45,.56,.65])for(let i=0;i<14;i++){
-  const angle=u.facing>0?86-i*2:94+i*2;
-  const hit=(angle,power)=>{const z=e.predict(u,skill,angle,power,undefined,true);
-   return z.terrain&&Math.abs(z.x-u.x)<100&&Math.abs(z.y-u.y)<44;};
-  if([-.8,0,.8].every(d=>[0,.025].every(p=>hit(angle+d,power+p))))return {id:'M10',angle,power};
- }
- return null;
-}"""
-
-
 def fire_or_cover(page):
     ready(page, 36000)
-    spec=page.evaluate(HEAL) or page.evaluate(CANDIDATE)
+    spec=page.evaluate(MENDING) or page.evaluate(CANDIDATE)
     if not spec:
         page.keyboard.press('f')
         return {'defend':True}
@@ -77,6 +64,28 @@ def trace(page):
     return row
 
 
+def hold_sanctuary_front(page,report):
+    report['sanctuaryDefense']=[]
+    for step in range(8):
+        ready(page, 38000)
+        before=page.evaluate(FOOT)
+        if before['round']>=8:
+            break
+        target=2250 if step%2 else 2110
+        sample_walk(page,1 if target>before['x'] else -1,target,4700)
+        addressed=page.evaluate(CANDIDATE)
+        if not addressed:
+            facing=page.evaluate('HonroApp.engine.active.facing')
+            actual=page.evaluate(FOOT)
+            sample_walk(page,-facing,actual['x']-facing*32,800)
+            addressed=page.evaluate(CANDIDATE)
+        if not addressed:
+            break
+        page.locator(f'[data-action="combat-skill"][data-skill="{addressed["id"]}"]').first.click(timeout=5200)
+        aim(page,addressed)
+        report['sanctuaryDefense'].append({'round':before['round'],'shot':addressed})
+
+
 def run(browser,args):
     stage=args.stage
     proof=(args.b_proof,'checkpoint54') if stage==54 else None
@@ -89,6 +98,8 @@ def run(browser,args):
             page.evaluate(TRACE)
             if stage==53:
                 fight_along(page,[(860,'gate-timber',None),(1375,'archive-balcony',None),(2140,'lost-sanctuary',None)],q)
+                if args.sanctuary_defense:
+                    hold_sanctuary_front(page,q)
                 ready(page, 36000)
                 end=sample_walk(page,1,2690,6200)
                 assert end['reached'],end['end']
@@ -107,9 +118,13 @@ def run(browser,args):
                 ready(page, 36000)
                 end=sample_walk(page,-1,550,8000)
                 assert end['reached'] and page.locator('[data-act6-qa-lookout]').is_enabled(),end['end']
+                q['stakesBeforeChart']=page.evaluate('()=>HonroApp.engine.b.stakes?.map(({id,skill,shot})=>({id,skill,shot}))??[]')
                 play54(page,args.out,q)
             saved=base.saved_bytes(page)
             q['boundary']=boundary_of(saved)
+            if stage==54:
+                q['settledAtChart']=q['boundary']['terminal']['chart'][0].get('settledStakes',[])
+                assert q['settledAtChart']==q['stakesBeforeChart']
             q['cold']=cold_new(browser,saved,stage+1)
             assert not q['errors'],q['errors']
             q['status']='PASS_ROUTE'
@@ -128,6 +143,7 @@ if __name__=='__main__':
     parser.add_argument('--out',type=Path,required=True)
     parser.add_argument('--stage',type=int,choices=(53,54),required=True)
     parser.add_argument('--b-proof',type=Path)
+    parser.add_argument('--sanctuary-defense',action='store_true')
     args=parser.parse_args()
     assert args.stage!=54 or args.b_proof
     base.ROOT=args.build.resolve()

@@ -13,9 +13,9 @@ from second_pass import FOOT, sample_walk
 
 TRACE = """() => {
   const e=HonroApp.engine,b=e.b;
-  const data=window.a6Exterior={shots:[],damage:[],impacts:[],enemyTurns:[],joins:[],queues:[],frames:[],peak:0,
+  const data=window.a6Exterior={shots:[],damage:[],impacts:[],knockbacks:[],enemyTurns:[],joins:[],queues:[],frames:[],peak:0,
     initialRng:b.rng,seed:b.seed};
-  const seen=new Set(),rounds=new Set(),fire=e.fire,hurt=e.hurt,impact=e.impact;
+  const seen=new Set(),rounds=new Set(),fire=e.fire,hurt=e.hurt,impact=e.impact,impulse=e.impulse;
   let previousActive=null;
   const standing=u=>({hp:u.hp,shield:u.shield??0});
   e.fire=function(skill,...rest){
@@ -35,6 +35,13 @@ TRACE = """() => {
     const out=impact.call(this,projectile,contact,...rest);
     if(enemy)data.impacts.push({id:projectile.owner,target:t.id,skill:projectile.skill,
       before,after:standing(t),x:contact.x,y:contact.y,shot:projectile.shot,round:b.round});
+    return out;
+  };
+  e.impulse=function(target,vx,vy,...rest){
+    const inspect=target?.side===0&&b.honroStage===54,before=inspect&&[target.vx,target.vy];
+    const out=impulse.call(this,target,vx,vy,...rest);
+    if(inspect&&(target.vx!==before[0]||target.vy!==before[1]))data.knockbacks.push({
+      id:target.id,round:b.round,chart:[b.width,b.height],position:[target.x,target.y],before,after:[target.vx,target.vy]});
     return out;
   };
   const observe=()=>{

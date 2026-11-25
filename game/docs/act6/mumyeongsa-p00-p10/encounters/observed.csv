@@ -29,3 +29,6 @@ stage,scenario,input,initial_rng,reported_opening,reported_cumulative,peak_awake
 53,all three pressure sites before upper passage,desktop,19388,5,7,6,4,,8,,0,,FAIL_ROUTE,interior-pressure/53-first.json,"Real combat, seven entered. Upper passage attempt did not land."
 53,three rooms with their fixed passages,desktop,19388,5,12,6,4,,4,,0,,PASS_ROUTE,interior-pressure/53-retained-route.json,"Retained M09 pair had no combat TTL, native M09 and B; below proposed round floor."
 54,native B and two upper walks with field M10,desktop,19388,4,12,6,4,,15,1408.3,0,,PASS_ROUTE,interior-pressure/54-support-release.json,"Real M10 left in N, all chart legs, exact M09 and C, fresh 55; below cumulative floor."
+53,native three rooms and defended sanctuary,desktop,19388,5,12,6,4,,8,,0,,PASS_ROUTE,interior-pressure/53-sanctuary.json,"Real shots across rounds 4–7; fixed passage, M09, B, fresh 54."
+54,upper gallery and real reach-aware alternate landings,desktop,19388,4,14,6,4,,13,1351.3,0,,PASS_ROUTE,interior-pressure/54-local-pressure.json,"19 genuine knockbacks; M10 safely ended at N, M09 same face, C, fresh 55."
+55,reachable approach fronts after bell repair,desktop,19388,8,20,10,7,,7,,0,,FAIL_NUMERIC_FLOOR,bell-lane/approaching-fronts.json,"Three approach groups deal damage; native repair, three counterattacks and fresh 56. Below proposed totals."

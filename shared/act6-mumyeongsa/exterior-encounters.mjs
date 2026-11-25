@@ -26,20 +26,29 @@ function installExteriorEncounters(app,e,paused=()=>false,admit=()=>true){
     {id:'archive-balcony',label:'서고 양편에서 혼이 움직입니다.',at:[1320,1960],units:[['hound','floor',1480,1880],['shade','floor',1620,1845],['hound','beam',1700,1650]]},
     {id:'lost-sanctuary',label:'파손 난간 앞에서 마지막 그림자가 갈라집니다.',at:[2020,1480],units:[['shade','beam',2090,1420],['hound','floor',2200,1375],['stag','floor',2380,1205]]},
    ]},
-  54:{active:6,attacks:4,sites:{floor:'foothill',first:'gallery-outer-balcony',second:'gallery-observation-beam'},
+  54:{active:6,attacks:4,roomReach:820,sites:{floor:'foothill',first:'gallery-outer-balcony',second:'gallery-observation-beam'},
    initial:[['hound','floor',680,2610],['shade','first',817,2484],['hound','floor',1060,2535],['shade','second',1280,2385]],
    waves:[
     {id:'pillar-base',label:'돌기둥 양쪽에서 적이 내려옵니다.',at:[665,2640],units:[['shade','first',730,2477],['hound','floor',900,2595]]},
-    {id:'observatory-beam',label:'관측 회랑의 들보 위가 흔들립니다.',at:[1100,2500],units:[['hound','second',1170,2390],['shade','floor',1330,2505]]},
-    {id:'return-corner',label:'되돌아가는 돌턱에 뒤처진 혼이 모입니다.',at:[1400,2460],units:[['hound','floor',1510,2400],['shade','floor',1645,2370]]},
+    {id:'observatory-beam',label:'관측 회랑의 들보 위가 흔들립니다.',at:[1100,2500],
+     units:[['hound','second',1170,2390],[['shade','floor',1330,2505],['shade','floor',1418,2440]]]},
+    {id:'return-corner',label:'되돌아가는 돌턱에 뒤처진 혼이 모입니다.',at:[1400,2460],
+     units:[['hound','floor',1510,2400],[['shade','floor',1645,2370],['shade','floor',1718,2330]]]},
    ]},
-  55:{active:10,attacks:7,priority:'draft-pressure-0',sites:{west:'west-ring-descent',court:'arrival-core-terrace',low:'west-lower-branch'},
+  55:{active:10,attacks:7,roomReach:975,priority:'draft-pressure-0',sites:{west:'west-ring-descent',court:'arrival-core-terrace',low:'west-lower-branch'},
    initial:[['hound','west',640,840],['shade','west',920,1000],['shade','court',1470,1325],['stag','court',2794,1732]],
    waves:[
     {id:'west-bank',label:'서쪽 돌벽 너머에서 수의귀들이 내려옵니다.',at:[850,930],units:[['shade','west',460,740],['hound','west',545,780],['hound','west',1070,1075],['shade','west',1170,1125]]},
-    {id:'bell-descent',label:'종터로 내려가는 돌턱 양옆에서 기척이 납니다.',at:[1520,1320],units:[['hound','west',775,915],['hound','court',1765,1420],['shade','court',1890,1455],['stag','west',1110,1096]]},
-    {id:'outer-ward',label:'돌단을 바라보는 낮은 암반에서 적이 밀려옵니다.',at:[2040,1490],units:[['shade','low',794,2497],['hound','court',1520,1340],['shade','court',2010,1490],['hound','west',1240,1158]]},
-    {id:'thread-pressure',label:'종터 뒤 돌턱과 서쪽 비탈에서 적이 더 다가옵니다.',at:[2500,1640],units:[['shade','court',1805,1429],['hound','court',1960,1476],['stag','low',860,2540],['shade','court',2842,1748]]},
+    {id:'bell-descent',label:'종터로 내려가는 돌턱 양옆에서 기척이 납니다.',at:[1520,1320],units:[
+     ['hound','west',775,915],[['hound','court',1765,1420],['hound','west',1290,1220]],
+     [['shade','court',1890,1455],['shade','west',1162,1124]],['stag','west',1110,1096]]},
+    {id:'outer-ward',label:'돌단을 바라보는 낮은 암반에서 적이 밀려옵니다.',at:[2040,1490],units:[
+     ['shade','low',794,2497],[['hound','court',1520,1340],['hound','court',1647,1380]],
+     [['shade','court',2010,1490],['shade','court',1831,1432]],['hound','west',1240,1158]]},
+    {id:'thread-pressure',label:'종터 뒤 돌턱과 서쪽 비탈에서 적이 더 다가옵니다.',at:[2500,1640],units:[
+     ['shade','court',1805,1429],['hound','court',1960,1476],
+     [['stag','low',860,2540],['stag','west',1214,1155]],
+     [['shade','court',2842,1748],['shade','court',1664,1385]]]},
    ]},
   56:{active:7,attacks:5,sites:{veranda:'A-upper-veranda',ascent:'B-01-center-stone-ascent',descent:'B-02-center-lower-short-climb',
     lower:'B-central-lower-floor',return:'E-joined-ordinary-floor'},
@@ -72,6 +81,7 @@ function installExteriorEncounters(app,e,paused=()=>false,admit=()=>true){
  const markers=plan.waves.map(wave=>({wave,next:0,warning:null}));
  const issued=new WeakSet();
  const spawn=(slot,name,index)=>{
+  if(Array.isArray(slot[0]))return slot.some(pose=>spawn(pose,name,index));
   const [kind,site,x,reference,fixed=false]=slot,support=plan.sites[site];
   const host=b.terrain.find(t=>t.id===support&&x>=t.x&&x<=t.x+t.w);
   if(!host)return false;

@@ -135,7 +135,21 @@ def fray_or_turn(page):
         e.b.phase==='aim'&&e.active?.side===0&&e.canAct();
     }""",timeout=19000)
 
-def finish_bell(page,out,report,route='repair'):
+def alternate_bell_fronts(page, report, approach):
+    from daedosa_return import CANDIDATE
+    front=report.setdefault('frontActions',[])
+    ready(page, 40000)
+    actor='p-knight' if can_choose(page,'p-knight') else 'p-archer'
+    pose_after=move(page,actor,approach,80)
+    plan=page.evaluate(CANDIDATE)
+    if plan:
+        from native_b import aim
+        page.locator(f'[data-action="combat-skill"][data-skill="{plan["id"]}"]').first.click(timeout=5000)
+        aim(page,plan)
+    front.append({'position':pose_after,'actualInput':plan})
+    return plan is not None
+
+def finish_bell(page,out,report,route='repair',pressure=False):
     stage55_trace(page)
     report["battle55Actions"]=[]
     actions=report["battle55Actions"]
@@ -208,6 +222,11 @@ def finish_bell(page,out,report,route='repair'):
             actions.append({"rebind":sodan})
             fray_or_turn(page)
         elif binding in ('secured','stable') and foe["hp"]<=0 and can_choose(page,"p-knight"):
+            if pressure and not report.get('frontBlocked') and len(report.get('frontActions',[]))<6:
+                lanes=(1495,1850,2175,1615,1810,2280)
+                if alternate_bell_fronts(page,report,lanes[len(report.get('frontActions',[]))]):
+                    continue
+                report['frontBlocked']=True
             knight=move(page,"p-knight",2660)
             page.locator(BELL).click(timeout=3500)
             actions.append({"align":knight})
@@ -384,6 +403,7 @@ def main():
     parser.add_argument("--bell-case",choices=['repair','intact','collapse'],default='repair')
     parser.add_argument("--reversal",action="store_true")
     parser.add_argument("--deep-thread",action="store_true")
+    parser.add_argument("--pressure",action="store_true")
     args=parser.parse_args()
     base.ROOT=args.build.resolve()
     args.out.mkdir(parents=True,exist_ok=True)
@@ -448,7 +468,10 @@ def main():
             report={}
             try:
                 resume(page,55,True)
-                finish_bell(page,args.out,report,args.bell_case)
+                if args.pressure:
+                    from exterior_combat import TRACE
+                    page.evaluate(TRACE)
+                finish_bell(page,args.out,report,args.bell_case,pressure=args.pressure)
                 if args.bell_case!='collapse':
                     records=base.saved_bytes(page)
                     report['checkpoint56']=boundary_of(records)
@@ -466,6 +489,11 @@ def main():
                 page.screenshot(path=args.out/'relay-stage55-failure.png')
             finally:
                 report['bellTrace']=page.evaluate("window.bellTrace??[]")
+                if args.pressure:
+                    trace=page.evaluate('window.a6Exterior??null')
+                    if trace:
+                        trace.pop('frames')
+                        report['pressure']=trace
                 context.close()
         else:
             report=run(browser,args.out,chain)
