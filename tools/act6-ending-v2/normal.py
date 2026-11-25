@@ -1,8 +1,10 @@
+import subprocess
 import hashlib,json,os,argparse,mimetypes
 from pathlib import Path
 from urllib.parse import urlparse
 from playwright.sync_api import sync_playwright
 r=Path.cwd()
+CUTS=json.loads(subprocess.check_output(['node','--input-type=module','-e',"import {cuts} from './shared/act6-ending-replan/cues.mjs';console.log(JSON.stringify(cuts))"]))
 arg=argparse.ArgumentParser()
 arg.add_argument('--chromium',required=True)
 arg.add_argument('--live',action='store_true')
@@ -78,7 +80,7 @@ with sync_playwright() as p:
   assert all(finale['honroFlags'][k] is True for k in ('act6.endingCompleted','game_completed','ending_act6_seen')) and finale['honroEndingReceipt']['winner']=='p-knight'
   assert page.evaluate("localStorage.getItem('honro-first-act-profile-1')")==boot
   assert main.get_attribute('data-ending-still')=='still_01'
-  page.clock.fast_forward(201000)
+  page.clock.fast_forward(1000+int(1000*sum(c['duration'] for c in CUTS)))
   assert page.evaluate("HonroApp.screen==='title'&&!HonroApp.endingGallery")
   print(jsonstr({'normalStage60DirectHandoff':True,'width':width,'noExtraWalkOrCameraFork':True,'liveRosterUnchanged':True,'verifiedFinaleReceipt':True,'baseSaveByteExact':True,'naturalTitleReturn':True,'live':args.live}))
   c.close()

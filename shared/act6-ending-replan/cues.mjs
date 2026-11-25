@@ -3,7 +3,7 @@ export const intro=[
  ['휘겸','돌아가서 남길 이름들이 있소.']
 ];
 export const names=['곽진','박문돌','이만복'];
-export const cuts=[
+const authoredCuts=[
   {
     "id": "still_01",
     "alt": "마른 진목 뿌리와 돌문 앞에 놓인 진패와 붓대",
@@ -107,7 +107,7 @@ export const cuts=[
   },
   {
     "id": "final",
-    "alt": "등불과 풀린 끈만 남은 무명사 석교",
+    "alt": "푸른 안개에 잠긴 무명사 산문과 등불 하나",
     "motion": "still",
     "duration": 35,
     "beats": [
@@ -121,6 +121,17 @@ export const cuts=[
     ]
   }
 ];
+// Account for the fades, and give dense Korean passages longer than short ones.
+export const cuts=authoredCuts.map(c=>{
+ if(c.id==='final')return {...c,duration:39,beatEnds:[17,32,39]};
+ let end=0;
+ const beatEnds=c.beats.map(text=>{
+  const glyphs=[...text.replace(/\s/g,'')].length;
+  end+=Math.max(6.5,Math.min(10,Math.ceil((2.8+glyphs/9.5)*2)/2));
+  return end;
+ });
+ return {...c,duration:end,beatEnds};
+});
 export const selectEndingCue=(cuts,ms)=>{
  const sec=Math.max(ms,0)/1000;
  let start=0;
