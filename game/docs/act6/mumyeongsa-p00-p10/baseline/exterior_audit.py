@@ -31,6 +31,39 @@ GEOMETRY = """() => {
  const colliders=b.terrain.map(t=>({id:t.id,type:t.oneWay?'platform':'solid',faces:C.poly(t).map((_,i)=>face(t,i)).filter(Boolean)}));
  const mapping={59:{nearGround:'finale-cutout-near-body',westTraversal:'finale-cutout-west-terrace'},
                 60:{nearGround:'return-cutout-near-body',westTraversal:'return-cutout-upper-ledges'}}[b.honroStage];
+ const stage=b.honroStage, landmarks=b.honroLandmarks??[];
+ const art=landmarks.flatMap(l=>{
+   if(!l.asset?.visual?.length)return [];
+   return HonroGeometry.shapes(l.asset,l).flatMap((p,index)=>p.points.map((v,i)=>{
+     const next=p.points[(i+1)%p.points.length];
+     const left=v.x<next.x?v:next,right=v.x<next.x?next:v;
+     return {landmark:l.id,shape:p.id??index,left,right};
+   }));
+ });
+ const source=(id,line)=>{
+   if(stage===51||stage===52)return line.landmark===id;
+   if(stage===55)return line.landmark==='ch05-v2-local-native-art';
+   if(stage===57)return id.startsWith('local-lower-07-')&&/-body$/.test(line.landmark);
+   const role=String(line.shape).match(/^[A-Za-z]+/)?.[0];
+   return line.landmark==='authored-contact-rim'&&mapping?.[role]===id;
+ };
+ const samples=colliders.flatMap(t=>{
+   const candidates=art.filter(line=>source(t.id,line));
+   const nativePaint=stage===57&&t.id.startsWith('a6-c07-')&&HonroTerrainDomain.render(b).some(row=>row.id===t.id);
+   return t.faces.filter(face=>face.walkable).flatMap(face=>face.claims.map(p=>{
+     if(!p.visibleToSolver)return {...p,host:t.id,comparison:'occluded',nearest:null};
+     if(nativePaint)return {...p,host:t.id,comparison:'native terrain renderer',nearest:null};
+     let nearest=null;
+     for(const {left,right,landmark,shape} of candidates){
+       if(right.x-left.x<1e-6||p.x<left.x||p.x>right.x)continue;
+       const slope=(right.y-left.y)/(right.x-left.x);
+       if(Math.abs(slope-face.slope)>.15)continue;
+       const y=left.y+(p.x-left.x)*slope,delta=y-p.y;
+       if(!nearest||Math.abs(delta)<Math.abs(nearest.delta))nearest={landmark,shape,y,delta};
+     }
+     return {...p,host:t.id,comparison:stage===55||stage===57?'nearby authored polygon':'paired authored asset',nearest};
+   }));
+ });
  const rims=[];
  if(mapping){
    const rim=b.honroLandmarks.find(l=>l.id==='authored-contact-rim');
@@ -47,7 +80,7 @@ GEOMETRY = """() => {
     rims.push({id:p.id,host:t.id,measured});
    }
  }
- return {stage:b.honroStage,bounds,colliders,rims,active:e.active?.id};
+ return {stage,bounds,colliders,rims,samples,active:e.active?.id};
 }"""
 CAPTURE = """camera=>{
  const a=HonroApp,e=a.engine,s=a.scene,cv=document.querySelector('#battlecanvas'),r=cv.getBoundingClientRect();
@@ -123,6 +156,12 @@ def audit(browser,out,stage,mobile):
         before=storage_hash(base.saved_bytes(page))
         page.wait_for_timeout(740)
         result['geometry']=page.evaluate(GEOMETRY)
+        measured=[abs(p['nearest']['delta']) for p in result['geometry']['samples'] if p['nearest']]
+        result['contactComparison']={'measured':len(measured),'meanWorldPx':sum(measured)/len(measured) if measured else None,
+                                     'maxWorldPx':max(measured,default=None),'overFour':sum(d>4 for d in measured),
+                                     'nativeDrawn':sum(p['comparison']=='native terrain renderer' for p in result['geometry']['samples']),
+                                     'unmatched':sum(p['visibleToSolver'] and p['nearest'] is None and p['comparison']!='native terrain renderer'
+                                                     for p in result['geometry']['samples'])}
         result['start']=capture(page,out,tag+'-start')
         result['movement']=movement(context,page,mobile)
         bounds=result['geometry']['bounds']
