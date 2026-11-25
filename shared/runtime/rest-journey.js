@@ -198,11 +198,12 @@ function book6Body(app,view,def){
   return `<path class="progress-underlay${to.stageNumber===60?' journey6-return-underlay':''}" d="${d}" vector-effect="non-scaling-stroke"/><path data-from="${from.stageNumber}" data-to="${to.stageNumber}" class="${reached(to)?'progress-complete':'progress-current'} ${cross?'journey6-fold':to.stageNumber===60?'journey6-return':isInterior(to)?'journey6-inside':'journey6-outside'}" d="${d}" vector-effect="non-scaling-stroke"/>`;
  }).join('')}</svg>`;
  const fog=view.finished?'':`<svg class="journey-fog" viewBox="0 0 ${def.width} ${def.height}" aria-hidden="true"><defs><radialGradient id="journey6-reveal"><stop offset=".26" stop-color="black"/><stop offset="1" stop-color="black" stop-opacity="0"/></radialGradient><mask id="journey6-fog"><rect width="100%" height="100%" fill="white"/>${visible.map(v=>`<ellipse cx="${v.x}" cy="${v.y}" rx="285" ry="265" fill="url(#journey6-reveal)"/>`).join('')}</mask></defs><rect width="100%" height="100%" fill="#0a161a" opacity=".80" mask="url(#journey6-fog)"/></svg>`;
+ const tags=(def.realms||[]).filter(r=>r.first<=view.through).map(r=>`<span class="journey6-realm ${r.first===51?'outside':'inside'}" aria-hidden="true" style="left:${r.x/def.width*100}%;top:${r.y/def.height*100}%">${esc(r.label)}</span>`).join('');
  const here=selected.stageNumber===view.current, short=view.readable?here?'현재 길목':view.finished?'여정 완료':'지나온 길':'이어가기 기록 확인 필요';
  // A destination's narrative annotation only becomes readable after the journey gets there.
  const note=reached(selected)?esc(selected.note):'';
  const action=here?'<button class="primary" data-action="rest">쉼터에서 이어가기</button>':'';
- return {pins,routes,fog,details:`<div class="journey6-detail"><p>${esc(selected.realm)} · 6막 ${selected.stageNumber-50}장 · ${short}</p><h2>${esc(selected.mapLabel)}</h2>${note?`<p>${note}</p>`:''}</div>${action}`};
+ return {pins:tags+pins,routes,fog,details:`<div class="journey6-detail"><p>${esc(selected.realm)} · 6막 ${selected.stageNumber-50}장 · ${short}</p><h2>${esc(selected.mapLabel)}</h2>${note?`<p>${note}</p>`:''}</div>${action}`};
 }
 function bookMarkup(app){
  const p=app.profile,d=data(),act=app.journeyAct||actOf(currentId(p)),def=mapDefinition(act),finished=!active(p)&&!d.next(p),allowed=actOpen(p,act,app.debugMode),places=allowed?actPlaces(act):[],visible=places.filter(v=>unlocked(p,v,app.debugMode)),endSelected=app.journeySelection==='end'&&finished&&act===actOf(d.ending.stageId);

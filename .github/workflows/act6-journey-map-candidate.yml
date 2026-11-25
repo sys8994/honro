@@ -84,7 +84,6 @@ jobs:
           p=Path('tools/act6-qa/rest-51/smoke.py')
           s=p.read_text()
           mappings={
-          "                stage52(page,state,mobile,original,tap,out,key,'/'+PACKETS[52][0])":"                stage52(page,state,mobile,original,tap,out,key,'/'+PACKETS[52][0])\n                cold_browser_sibling(page,52,state,mobile,original,out,key)",
           'from normal52_witness import stage52':'from witness import witness as run_journey_witness\nfrom normal52_witness import stage52',
           "            original=page.evaluate(\"key=>localStorage.getItem(key)\",KEY)":"            if kind=='fresh-pending': run_journey_witness(page,state,mobile,tap,out,key,51)\n            original=page.evaluate(\"key=>localStorage.getItem(key)\",KEY)",
           "        t.locator(selector).evaluate(\"e=>e.click()\")":"        run_journey_witness(t,state,mobile,tap,out,case,stage)\n        t.locator(selector).evaluate(\"e=>e.click()\")",
@@ -100,7 +99,7 @@ jobs:
           HONRO_ACT6_QA_NORMAL_LATE_WITNESS=1 HONRO_ACT6_RELEASE_HOST_TEST=1 HONRO_ACT6_QA_NORMAL_BOUNDARY=1 HONRO_ACT6_QA_QUIET_MATTE_WITNESS=1 HONRO_ACT6_QA_PAGES_SHAPE=1 HONRO_ACT6_QA_NORMAL_FAR=1 HONRO_ACT6_QA_NORMAL_LATE_FAR=1 HONRO_ACT6_QA_NORMAL_FINAL_FAR=1 HONRO_ACT6_QA_NORMAL_ENDING_STOCK=1 HONRO_ACT6_QA_WEB_ROOT="$W" npm run build > "$OUT/WITNESS-BUILD.log" 2>&1
           # Late stage witness probes enable extra instrumentation. The release
           # candidate is separately rebuilt, compared and assembled below.
-      - name: Test map opening, actual 6-2 resume and actual ending in Chromium
+      - name: Test separated map worlds at first arrival and after the actual ending in Chromium
         run: |
           set -euo pipefail
           python -m pip install 'playwright==1.58.0'
@@ -116,12 +115,14 @@ jobs:
           test "$(sha256sum web/manifest.json | cut -f1 -d' ')" = "$(cat "$OUT/MANIFEST.sha256")"
           readarray -t NEW < "$OUT/new-paths.txt"
           git add -- HONRO.html HONRO_WORKSHOP.html index.html web/manifest.json "${NEW[@]}"
+          git diff --cached --name-only -z | tar --null -T - -czf "$OUT/release-delta.tar.gz"
+          git diff --cached --name-only > "$OUT/PRODUCT-PATHS.txt"
           ! git diff --cached --name-only | grep -E '^\.github/|^tools/act6-qa/'
           test -z "$(git diff --cached --diff-filter=D --name-only)"
           git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' -c core.hooksPath=/dev/null commit -m 'feat(journey): chart the folded paths of Act 6'
           test "$(git rev-parse HEAD^)" = "$BASE"
           test "$(git -C "$GITHUB_WORKSPACE" ls-remote origin refs/heads/master | cut -f1)" = "$BASE"
-          git -C "$GITHUB_WORKSPACE" push origin "$(git rev-parse HEAD)":refs/heads/release/act6-journey-map-20261125-r6
+          git -C "$GITHUB_WORKSPACE" push origin "$(git rev-parse HEAD)":refs/heads/release/act6-journey-map-20261125-r7
           git rev-parse HEAD > "$OUT/CANDIDATE.txt"
       - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
         if: always()

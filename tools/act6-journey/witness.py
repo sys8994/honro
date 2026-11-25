@@ -16,6 +16,10 @@ def witness(page,state,mobile,tap,out,case,stage):
     ids=page.locator('.journey-act-6 .journey-pin').evaluate_all("rows=>rows.map(el=>+el.dataset.id)")
     end=60 if stage=='done' else stage
     assert ids==list(range(51,end+1)),(case,stage,ids)
+    realms=page.locator('.journey-act-6 .journey6-realm').all_text_contents()
+    assert realms==(['무명사 외부','무명사 내부'] if end>=53 else ['무명사 외부']),(case,stage,realms)
+    art=page.locator('.journey-map-image').evaluate("im=>[im.naturalWidth,im.naturalHeight]")
+    assert art==[1024,1536],art
     assert page.locator('.journey-act-6 .journey-progress path[data-to]').count()==end-51
     assert bool(page.locator('.journey-act-6 .journey-fog').count())==(stage!='done')
     assert page.locator('.journey-act-6 .journey-pin[aria-current="location"]').count()==(0 if stage=='done' else 1)
