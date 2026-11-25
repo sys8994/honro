@@ -101,7 +101,7 @@ jobs:
           git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Replace the Act 6 finale with nine responsive ending stills'
           test "$(git rev-parse HEAD^)" = "$BASE"
           test "$(git ls-remote origin refs/heads/master | cut -f1)" = "$BASE"
-          git -C "$GITHUB_WORKSPACE" push origin "$(git rev-parse HEAD)":refs/heads/release/act6-ending-v2-20261125
+          git -C "$GITHUB_WORKSPACE" push origin "$(git rev-parse HEAD)":refs/heads/release/act6-ending-v2-final-20261125
           git rev-parse HEAD > "$ENDING_EVIDENCE/CANDIDATE.txt"
       - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
         if: always()
