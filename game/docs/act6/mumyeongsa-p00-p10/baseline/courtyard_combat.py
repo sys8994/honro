@@ -6,7 +6,7 @@ from pathlib import Path
 from playwright.sync_api import Error, sync_playwright
 
 import browser as base
-from cold_resume import seeded_context
+from cold_resume import seeded_context, storage_hash
 from exterior_combat import TRACE
 from hall_passage import actor, march, select
 from legacy54_live import resume
@@ -27,6 +27,12 @@ FORECAST="""goal=>{
    const stable=[-.65,0,.65].every(da=>[.003,.021].every(dp=>match(e.predict(u,s,angle+da,power+dp,t??undefined,true))));
    if(stable)return {id,angle,power};
   }
+ }
+ if(t&&u.cls==='knight'){
+  const dx=t.x-u.x,dy=t.y-t.h*.55-(u.y-u.h*.55),s=HONRO_CORE.SKILLS.S03;
+  let angle=Math.atan2(-dy,dx)*180/Math.PI;if(angle<-90)angle+=360;
+  if(u.loadout.includes(s.id)&&Math.hypot(dx,dy)<=s.radius*1.10+t.r&&e.canAfford(s,u,.95))
+    return {id:s.id,angle,power:.95};
  }
  return null;
 }"""
@@ -63,8 +69,20 @@ def finish59(browser,page,args,q):
         if result['round']>args.rounds:
             break
         if u['cls']=='archer' and not p.get('cliff'):
-            march(page,1645,cls='archer',tolerance=36)
-            act['shot']=shot(page,{'skills':['A01'],'surface':'finale-cutout-west-terrace','x':522*K,'y':1871.8947026324342,'radius':32})
+            goal={'skills':['A01'],'surface':'finale-cutout-west-terrace','x':522*K,'y':1871.8947026324342,'radius':32}
+            for x in (1645,1775,1960):
+                march(page,x,cls='archer',tolerance=40)
+                act['shot']=shot(page,goal)
+                if act['shot']:
+                    break
+            if not act['shot']:
+                blocked=page.evaluate("""() => {const e=HonroApp.engine,u=e.active;
+                  return e.combatEnemies().filter(v=>Math.hypot(v.x-u.x,v.y-u.y)<520).sort((a,c)=>Math.abs(a.x-u.x)-Math.abs(c.x-u.x)).map(x=>x.id);}""")
+                for name in blocked[:3]:
+                    act['shot']=shot(page,{'skills':['A02','A01'],'actor':name})
+                    if act['shot']:
+                        act['clearLane']=name
+                        break
         elif u['cls']=='mage' and not p.get('mage'):
             march(page,5900,cls='mage',tolerance=45)
             act['shot']=shot(page,{'skills':['M01'],'surface':'finale-cutout-near-body','x':1710*K,'y':2291.3294746996403,'radius':28})
@@ -105,27 +123,64 @@ def finish59(browser,page,args,q):
     q['new60']=cold_new(browser,records,60)
     q['seal60']=boundary_of(records)
 
-def touch_to_guard(page,context,target=3185):
-    card=page.locator('[data-action="select-hero"][data-id="p-knight"]:visible').first
-    card.tap(timeout=6500)
+def touch_move(page,context,target):
+    here=actor(page)['x']
+    if abs(target-here)<20:
+        return
+    direction=1 if target>here else -1
     session=context.new_cdp_session(page)
     box=page.locator('#joystick').bounding_box()
     assert box
     x,y=box['x']+box['width']/2,box['y']+box['height']/2
     touch(page,session,x,y,'touchStart')
     try:
-        touch(page,session,x+35,y,'touchMove')
-        page.wait_for_function('x=>HonroApp.engine.active.x>x',arg=target,timeout=4500)
+        touch(page,session,x+35*direction,y,'touchMove')
+        page.wait_for_function('([x,d])=>(HonroApp.engine.active.x-x)*d>=0',arg=[target,direction],timeout=5300)
     finally:
-        touch(page,session,x+35,y,'touchEnd')
+        touch(page,session,x+35*direction,y,'touchEnd')
+
+def touch_to_guard(page,context,target=3185):
+    card=page.locator('[data-action="select-hero"][data-id="p-knight"]:visible').first
+    card.tap(timeout=6500)
+    touch_move(page,context,target)
+
+def expose(page,context,mobile,state):
+    u=actor(page)
+    targets={'knight':3900,'mage':6150,'occultist':5700,'archer':1890}
+    target=targets[u['cls']]
+    if abs(u['x']-target)>85 and u['move']>120 and u['grounded']:
+        boundary=u['x']+max(-780,min(780,target-u['x']))
+        try:
+            if mobile:
+                touch_move(page,context,boundary)
+            else:
+                sample_walk(page,1 if boundary>u['x'] else -1,boundary,3300)
+        except Error:
+            state['movementStopped']=True
+    state['exposedPose']=actor(page)
+    before=page.evaluate('HonroApp.engine.b.shot')
+    if mobile:
+        fire=page.locator('#fire')
+        if fire.is_enabled():
+            fire.tap(timeout=3500)
+    else:
+        page.keyboard.press('Space')
+    page.wait_for_timeout(450)
+    if before==page.evaluate('HonroApp.engine.b.shot') and page.evaluate('HonroApp.canInput()'):
+        state['noRelease']=True
+        if mobile:
+            page.locator('button[data-action="defend"]:visible').first.tap(timeout=6500)
+        else:
+            page.keyboard.press('f')
 
 def fight(browser,args,mobile):
     c=seeded_context(browser,59,mobile=mobile)
     page=c.new_page()
-    q={'status':'FAIL','interface':'touch' if mobile else 'keyboard','errors':[],'turns':[]}
+    q={'status':'FAIL','interface':'touch' if mobile else 'keyboard','route':'advance' if args.advance else 'defend','errors':[],'turns':[]}
     page.on('pageerror',lambda e:q['errors'].append(str(e)))
     try:
         resume(page,59,True,mobile=mobile)
+        q['initialStorageHash']=storage_hash(base.saved_bytes(page))
         page.evaluate(TRACE)
         if mobile:
             touch_to_guard(page,c)
@@ -153,7 +208,9 @@ def fight(browser,args,mobile):
             q['turns'].append(state)
             if state['done'] or state['round']>args.rounds:
                 break
-            if mobile:
+            if args.advance:
+                expose(page,c,mobile,state)
+            elif mobile:
                 page.locator('button[data-action="defend"]:visible').first.tap(timeout=6500)
             else:
                 page.keyboard.press('f')
@@ -185,6 +242,7 @@ def main():
     p.add_argument('--touch',action='store_true')
     p.add_argument('--finish',action='store_true')
     p.add_argument('--check-defend',action='store_true')
+    p.add_argument('--advance',action='store_true')
     args=p.parse_args()
     base.ROOT=args.build.resolve()
     args.out.mkdir(parents=True,exist_ok=True)

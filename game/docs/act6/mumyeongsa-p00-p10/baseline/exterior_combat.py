@@ -13,17 +13,28 @@ from second_pass import FOOT, sample_walk
 
 TRACE = """() => {
   const e=HonroApp.engine,b=e.b;
-  const data=window.a6Exterior={shots:[],damage:[],joins:[],queues:[],frames:[],peak:0};
-  const seen=new Set(),rounds=new Set(),fire=e.fire,hurt=e.hurt;
+  const data=window.a6Exterior={shots:[],damage:[],impacts:[],enemyTurns:[],joins:[],queues:[],frames:[],peak:0,
+    initialRng:b.rng,seed:b.seed};
+  const seen=new Set(),rounds=new Set(),fire=e.fire,hurt=e.hurt,impact=e.impact;
+  let previousActive=null;
+  const standing=u=>({hp:u.hp,shield:u.shield??0});
   e.fire=function(skill,...rest){
     const u=e.active,accepted=fire.call(this,skill,...rest);
     if(accepted&&u?.side===1)data.shots.push({id:u.id,skill,round:b.round});
     return accepted;
   };
   e.hurt=function(target,amount,id,...rest){
-    const before=target.hp,out=hurt.call(this,target,amount,id,...rest);
-    if(target.side===0&&target.hp<before&&e.unit(id)?.side===1)
-      data.damage.push({id,target:target.id,before,after:target.hp,round:b.round});
+    const enemy=target.side===0&&e.unit(id)?.side===1,before=enemy&&standing(target);
+    const out=hurt.call(this,target,amount,id,...rest);
+    if(enemy)data.damage.push({id,target:target.id,skill:rest.find(x=>x?.owner===id)?.skill??null,
+      before:before.hp,after:target.hp,shieldBefore:before.shield,shieldAfter:target.shield??0,amount,round:b.round});
+    return out;
+  };
+  e.impact=function(projectile,contact,...rest){
+    const t=contact?.unit,enemy=t?.side===0&&e.unit(projectile.owner)?.side===1,before=enemy&&standing(t);
+    const out=impact.call(this,projectile,contact,...rest);
+    if(enemy)data.impacts.push({id:projectile.owner,target:t.id,skill:projectile.skill,
+      before,after:standing(t),x:contact.x,y:contact.y,shot:projectile.shot,round:b.round});
     return out;
   };
   const observe=()=>{
@@ -34,7 +45,24 @@ TRACE = """() => {
       data.joins.push({id:u.id,role:u.role,source:u.honroSpawnSource??'original',round:b.round,
        x:u.x,y:u.y,grounded:e.grounded(u),surface:e.contactSurface(u.x,u.y-4,u.y+5)?.t.id??null});
     }
-    if(b.side===1&&!rounds.has(b.round)){rounds.add(b.round);data.queues.push({round:b.round,queue:b.queue.slice()});}
+    const side=b.side===1;
+    if(side&&!rounds.has(b.round)){
+      rounds.add(b.round);
+      const eligible=new Set(e.combatEnemies());
+      const fronts=combat.filter(u=>/^finale-(west-return|east-fault)-/.test(u.id)).map(u=>{
+        const plan=e.enemyQueuePriority?.(u);
+        return {id:u.id,grounded:e.grounded(u),awake:u.awake,dead:u.dead,eligible:eligible.has(u),
+          support:e.contactSurface(u.x,u.y-4,u.y+5)?.t.id??null,rangeTier:plan?.tier??null,
+          distance:plan?.distance??null,queued:b.queue.includes(u.id)};
+      });
+      data.queues.push({round:b.round,queue:b.queue.slice(),fronts});
+    }
+    const action=side&&e.active?.side===1?`${b.round}/${e.active.id}`:null;
+    if(action&&action!==previousActive){
+      const u=e.active;
+      data.enemyTurns.push({id:u.id,round:b.round,phase:b.phase,grounded:e.grounded(u),x:u.x,y:u.y});
+    }
+    previousActive=action;
   };
   observe();data.initial=data.joins.length;data.limit=b.enemyLimit;
   let prior=performance.now();
