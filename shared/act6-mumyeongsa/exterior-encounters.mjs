@@ -33,6 +33,14 @@ function installExteriorEncounters(app,e,paused=()=>false,admit=()=>true){
     {id:'observatory-beam',label:'관측 회랑의 들보 위가 흔들립니다.',at:[1100,2500],units:[['hound','second',1170,2390],['shade','floor',1330,2505]]},
     {id:'return-corner',label:'되돌아가는 돌턱에 뒤처진 혼이 모입니다.',at:[1400,2460],units:[['hound','floor',1510,2400],['shade','floor',1645,2370]]},
    ]},
+  55:{active:10,attacks:7,priority:'draft-pressure-0',sites:{west:'west-ring-descent',court:'arrival-core-terrace',low:'west-lower-branch'},
+   initial:[['hound','west',640,840],['shade','west',920,1000],['shade','court',1470,1325],['stag','court',2465,1630]],
+   waves:[
+    {id:'west-bank',label:'서쪽 돌벽 너머에서 수의귀들이 내려옵니다.',at:[850,930],units:[['shade','west',460,740],['hound','west',545,780],['hound','west',1070,1075],['shade','west',1170,1125]]},
+    {id:'bell-descent',label:'종터로 내려가는 돌턱 양옆에서 기척이 납니다.',at:[1520,1320],units:[['hound','west',775,915],['hound','court',1765,1420],['shade','court',1890,1455],['stag','court',2235,1560]]},
+    {id:'outer-ward',label:'돌단을 바라보는 낮은 암반에서 적이 밀려옵니다.',at:[2040,1490],units:[['shade','low',794,2497],['hound','court',1520,1340],['shade','court',2010,1490],['hound','court',2340,1595]]},
+    {id:'thread-pressure',label:'혼줄을 지키는 돌단 앞에 마지막 압박이 몰립니다.',at:[2500,1640],units:[['shade','court',1805,1429],['hound','court',1960,1476],['stag','court',2280,1575],['shade','court',2790,1731]]},
+   ]},
   56:{active:7,attacks:5,sites:{veranda:'A-upper-veranda',ascent:'B-01-center-stone-ascent',descent:'B-02-center-lower-short-climb',
     lower:'B-central-lower-floor',return:'E-joined-ordinary-floor'},
    initial:[['shade','veranda',1512,1136],['hound','veranda',2545,1136]],
@@ -41,6 +49,13 @@ function installExteriorEncounters(app,e,paused=()=>false,admit=()=>true){
     {id:'deep-drop',label:'두 번째 진목 아래로 다시 적이 모입니다.',at:[3420,2300],units:[['hound','ascent',3120,2460],['shade','descent',3790,3360],['stag','descent',3970,3220]]},
     {id:'reverse-bank',label:'가름진 아래의 낮은 받침이 흔들립니다.',at:[4930,4000],units:[['hound','return',4480,4050],['shade','return',4810,4050],['hound','return',5340,3970],['shade','return',5560,3860]]},
    ]},
+  58:{active:9,attacks:6,priority:'a6-c08-boss',sites:{hull:'local-lower-08-body',entryDeck:'m58-west-stone-step',gallery:'m58-rising-gallery'},
+   initial:[['hound','hull',3220,3330],['shade','entryDeck',3580,3072],['stag','hull',3910,3362],['shade','hull',4625,3150]],
+   waves:[
+    {id:'entrance-columns',label:'첫 기둥의 술식 뒤에서 잔향이 올라옵니다.',at:[3470,3250],units:[['shade','hull',3340,3260],['hound','hull',3475,3230],['shade','gallery',3730,3070]]},
+    {id:'apse-lower',label:'상층 마루와 낮은 기둥 양편에서 짐승 혼이 나타납니다.',at:[4220,3210],units:[['hound','gallery',3880,3070],['shade','hull',4110,3280],['stag','hull',4500,3185]]},
+    {id:'folded-rear',label:'대도사 뒤 석단이 흔들리며 혼이 밀려옵니다.',at:[4920,3090],units:[['hound','hull',4770,3180],['shade','hull',5150,2940],['stag','hull',5660,2925]]},
+   ]},
  };
  const plan=chapters[stage];
  if(!plan||b.mode!=='campaign'||app.engine!==e||b.honroAuthoredId!==`stage-${stage}`)return null;
@@ -48,6 +63,7 @@ function installExteriorEncounters(app,e,paused=()=>false,admit=()=>true){
  const entryState={mode:'campaign',honroStage:50,honroMapOrigin:'campaign',honroCanonical:true};
  const campaign=G.HONRO_CONTENT.stages[49];
  const markers=plan.waves.map(wave=>({wave,next:0,warning:null}));
+ const issued=new WeakSet();
  const spawn=(slot,name,index)=>{
   const [kind,site,x,reference]=slot,support=plan.sites[site];
   const host=b.terrain.find(t=>t.id===support&&x>=t.x&&x<=t.x+t.w);
@@ -63,17 +79,19 @@ function installExteriorEncounters(app,e,paused=()=>false,admit=()=>true){
   Object.assign(u,{hp,maxHp:hp,combatBaseHp:hp,attack:2.7,combatBaseAttack:2.7,group:700+b.units.length,
    spawnX:x,spawnY:y,awake:false,honroSpawnSource:name,honroEncounterSupport:support});
   if(!admit(u))return false;
+  issued.add(u);
   b.units.push(u);
   return true;
  };
- const refreshNormal=e.refreshActivation.bind(e),combatNormal=e.combatEnemies.bind(e);
+ const refreshNormal=e.refreshActivation.bind(e),combatNormal=e.combatEnemies.bind(e),switchNormal=e.switchTeam.bind(e);
  let anchor=e.active,eligible=new Set();
  function refresh(){
   refreshNormal();
   if(e.active?.side===0&&!e.active.summoned)anchor=e.active;
   const dist=u=>anchor?Math.hypot(u.x-anchor.x,(u.y-anchor.y)*.85):Infinity;
-  const near=paused()?[]:b.units.filter(alive).filter(u=>dist(u)<1250||u.aggroUntil>=b.round&&dist(u)<1600);
-  near.sort((a,z)=>dist(a)-dist(z)||a.id.localeCompare(z.id));
+  const priority=e.unit(plan.priority),localBoss=priority&&e.heroesAlive().some(u=>Math.hypot(u.x-priority.x,(u.y-priority.y)*.8)<1250);
+  const near=paused()?[]:b.units.filter(alive).filter(u=>u===priority&&localBoss||dist(u)<1250||u.aggroUntil>=b.round&&dist(u)<1600);
+  near.sort((a,z)=>Number(z===priority)-Number(a===priority)||dist(a)-dist(z)||a.id.localeCompare(z.id));
   eligible=new Set(near.slice(0,plan.active));
   for(const u of b.units.filter(alive))u.awake=eligible.has(u);
  }
@@ -81,6 +99,13 @@ function installExteriorEncounters(app,e,paused=()=>false,admit=()=>true){
  plan.initial.forEach((row,i)=>spawn(row,'opening',i));
  e.refreshActivation=refresh;
  e.combatEnemies=()=>paused()?[]:combatNormal().filter(u=>eligible.has(u));
+ if(plan.priority)e.switchTeam=(...args)=>{
+  const from=b.side,out=switchNormal(...args),u=e.unit(plan.priority);
+  if(from!==0||b.side!==1||b.phase!=='enemy'||!eligible.has(u)||u.stunnedRound===b.round||u.stun>0)return out;
+  b.queue=[u.id,...b.queue.filter(id=>id!==u.id)].slice(0,b.enemyLimit);
+  for(const foe of e.actors(1))foe.acted=!b.queue.includes(foe.id);
+  b.active=u.id;e.emit('change');return out;
+ };
  refresh();
  let clock=0,lastX=anchor?.x,lastY=anchor?.y,lastRound=b.round;
  function tick(dt){
@@ -104,5 +129,5 @@ function installExteriorEncounters(app,e,paused=()=>false,admit=()=>true){
    }
   }
  }
- return Object.freeze({tick});
+ return Object.freeze({tick,owns:u=>issued.has(u)});
 }

@@ -38,7 +38,7 @@ const alive=u=>u&&u.hp>0&&!u.dead;
 const death=u=>u?.hp===0&&u.dead===true;
 const vital=['id','cls','hp','maxHp','focus','maxFocus','shield','loadout','equipmentState','h','r','ranks','level','attack','armor','regen','walkSpeed','maxMove','tune','dead'];
 const no=reason=>Object.freeze({accepted:false,reason});
-export function createStage58Owner({C,authorize,isolate=()=>false,preview=()=>false,normalBudget=()=>false,readPrevious,fingerprint}){
+export function createStage58Owner({C,authorize,isolate=()=>false,preview=()=>false,normalBudget=()=>false,readPrevious,fingerprint,vanguard=()=>false}){
  if(!C?.Engine||typeof authorize!=='function'||typeof readPrevious!=='function'||typeof fingerprint!=='function')throw TypeError('trusted native host required');
  return function mount({engine:e,activation,previous,carriedProfile,reserved}={}){
   const b=e?.b;
@@ -250,7 +250,7 @@ export function createStage58Owner({C,authorize,isolate=()=>false,preview=()=>fa
     if(flags.localColumnSealAligned||flags.localBossManifested)return false;
     flags.localColumnSealAligned=true;flags.localThresholdGravityNormalized=true;sync();say('column');
    }else if(k==='threshold'){
-    if(!flags.localColumnSealAligned||!flags.localThresholdGravityNormalized||flags.localBossManifested||b.units.some(x=>x.side===1))return false;
+    if(!flags.localColumnSealAligned||!flags.localThresholdGravityNormalized||flags.localBossManifested||b.units.some(x=>x.side===1&&!vanguard(x,e)))return false;
     flags.localBossManifested=true;b.units.push(boss,vesselA,vesselB);b.honroConvoyActors=[...(b.honroConvoyActors??[]),ledger,echo];
     rec.phase=1;rec.shadowOffset=-90;say('manifest');sync();
    }else if(k==='ledger'){

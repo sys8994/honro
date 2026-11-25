@@ -42,7 +42,7 @@ export function stage58Adapter(G,{verifyPrevious,verifyAdmission}={}){
   return Object.freeze({units,reserved,story:stage58,previous,full,receiving,
    fingerprint:value=>eq(value,compiled.terrain)?descriptor.playSHA:eq(value,compiled.worldTerrain)?descriptor.worldSHA:null});
  }
- function attach({app,engine:e,prepared,returnRoute}){
+ function attach({app,engine:e,prepared,returnRoute,isVanguard}){
   if(!safe(app)||!verifyAdmission(app,e,prepared)||attached.has(e)||prepared.units.length!==4||!eq(e.b.units.map(u=>u.id),prepared.units.map(u=>u.id)))return null;
   const p=prepared.previous, carried=app.profile, e0=e;
   const activation=Object.freeze({enabled:true,integerStageKey:58,debug:false,embedded:false,training:false,custom:false});
@@ -51,7 +51,8 @@ export function stage58Adapter(G,{verifyPrevious,verifyAdmission}={}){
   const mount=createStage58Owner({C,fingerprint:prepared.fingerprint,
    authorize:({engine,activation:a})=>a===activation&&e0===engine&&app.engine===e0&&safe(app),
    normalBudget:(a,eng)=>a===activation&&eng===e0&&verifyAdmission(app,e,prepared),
-   readPrevious:(q,eng)=>q===proof&&eng===e0?prev:null});
+   readPrevious:(q,eng)=>q===proof&&eng===e0?prev:null,
+   vanguard:(u,eng)=>eng===e0&&isVanguard?.(u)===true});
   const owner=mount({engine:e,activation,previous:proof,carriedProfile:carried,reserved:prepared.reserved});
   if(!owner.accepted)return null;
   attached.add(e);let ticks=0;

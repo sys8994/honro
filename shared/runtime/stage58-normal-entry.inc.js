@@ -55,6 +55,7 @@
           a.mount(b,{freshReport:true,reportScope:'custom'});
           check(scope58(a,a.engine,s)&&a.engine.stage===content&&a.scene&&a.screen==='battle','Native normal 58 mount failed');
           mountHallB58(a,s);
+          s.exterior=installExteriorEncounters(a,a.engine,()=>s.owner58.project()?.skipReturn===true);
           const ui=appUI(a);check(ui,'Normal 58 controls absent');const btn=document.createElement('button');
           btn.type='button';btn.dataset.act6QaLookout='';styleAction(btn);
           btn.addEventListener('click',event=>{if(event.isTrusted&&event.currentTarget===btn)action(a,event);});s.button=btn;ui.append(btn);
@@ -68,7 +69,8 @@
       function bindNormal58(a,e,s){
         s.engine=e;mounted58.set(e,s);
         check(scope58(a,e,s),'Native 58 scope changed');
-        s.owner58=adapter58.attach({app:a,engine:e,prepared:s.prepared58,returnRoute:()=>s.return58});
+        s.owner58=adapter58.attach({app:a,engine:e,prepared:s.prepared58,returnRoute:()=>s.return58,
+          isVanguard:u=>scope58(a,e,s)&&s.exterior?.owns(u)===true});
         check(s.owner58,'Native 58 owner refused');e.checkEnd=()=>a.checkMission(e);return true;
       }
       function mountHallB58(a,s){

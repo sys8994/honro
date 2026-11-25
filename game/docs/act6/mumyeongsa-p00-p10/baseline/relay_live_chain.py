@@ -161,6 +161,8 @@ def finish_bell(page,out,report,route='repair'):
         actions.append({'intactOpening':spec})
         assert spec,'No actual opening shot'
     else:
+        if route=='repair':
+            actions.append({'guardAtWest':move(page,'p-knight',1480,95)})
         page.keyboard.press("f")
     for _ in range(30):
         base.dismiss_dialogue(page)
@@ -174,7 +176,7 @@ def finish_bell(page,out,report,route='repair'):
             if page.evaluate("HonroApp.engine.b.phase==='lost'"):
                 break
         else:
-            ready(page)
+            ready(page,42000)
         binding=page.locator(BELL).get_attribute("data-act6-binding")
         foe=pose(page,GATE)
         actor=active(page)

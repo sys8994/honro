@@ -67,6 +67,7 @@
           const body=party.find(u=>u.cls==='occultist');
           check(debitSodanThread(body,t.sodanThread,54,0),'Inner support cost exceeds the seated body reserve');
           s.seated55=mountSeatedSodan({C,e:a.engine,scene:a.scene,body});
+          s.exterior=installExteriorEncounters(a,a.engine);
           const ui=appUI(a);check(ui,'Normal 55 controls absent');const btn=document.createElement('button');
           btn.type='button';btn.dataset.act6QaLookout='';styleAction(btn);btn.textContent=s.owner55.project(a,a.engine).summary;
           btn.addEventListener('click',event=>{if(event.isTrusted&&event.currentTarget===btn)action(a,event);});s.button=btn;ui.append(btn);

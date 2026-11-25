@@ -155,7 +155,7 @@ def live_d(browser,out,sodan=False):
           e.contactSurface(u.x,u.y-4,u.y+5)?.t.id==='a6-c07-stationary-stone-ward';}""",timeout=4300)
         steps['archerOnWard']=actor(page)
         for cls,x in [('knight',5385),('occultist',5290)]:
-            march(page,x,cls=cls,tolerance=23)
+            march(page,x,cls=cls,tolerance=10)
         mission_click(page,'reuniteAtWard')
         page.wait_for_function("!!HonroApp.engine.unit('p-mage')",timeout=4100)
         steps['folded']=state(page)
@@ -234,8 +234,9 @@ def gallery(browser,out,hz,combat=False):
         resume(page,58,True)
         q['seedHash']=storage_hash(base.saved_bytes(page))
         q['initial']=state(page)
-        assert all(u['contact']=='local-lower-08-body' for u in q['initial']['actors']),q['initial']
-        assert len(q['initial']['actors'])==4,q['initial']
+        crew=[u for u in q['initial']['actors'] if u['side']==0]
+        assert len(crew)==4 and all(u['contact']=='local-lower-08-body' for u in crew),q['initial']
+        assert not any(u['id']=='a6-c08-boss' for u in q['initial']['actors']),q['initial']
         page.wait_for_timeout(700)
         page.screenshot(path=out/f'd-cold-{hz}.png')
         if combat:
@@ -245,7 +246,7 @@ def gallery(browser,out,hz,combat=False):
             mission_click(page,'threshold')
             base.dismiss_dialogue(page)
             q['manifestation']=page.evaluate("""()=>{const e=HonroApp.engine,C=HONRO_CORE;
-              return e.b.units.filter(u=>u.side===1).map(u=>({id:u.id,x:u.x,y:u.y,hp:u.hp,maxHp:u.maxHp,rig:u.honroRigAsset,
+              return e.b.units.filter(u=>u.side===1&&u.id.startsWith('a6-c08-')).map(u=>({id:u.id,x:u.x,y:u.y,hp:u.hp,maxHp:u.maxHp,rig:u.honroRigAsset,
                 supported:C.validTerrainContactPose(e.b.terrain,u)}));}""")
             assert len(q['manifestation'])==3 and all(u['supported'] for u in q['manifestation']),q['manifestation']
             assert q['manifestation'][0]['rig']=='boss_daedosa' and q['manifestation'][0]['maxHp']==10500,q['manifestation']
@@ -274,7 +275,8 @@ def gallery(browser,out,hz,combat=False):
         page.screenshot(path=out/f'd-ceiling-{hz}.png')
         if combat:
             q['combat']=combat_from_ceiling(page,out,hz)
-            enemies={u['id'] for u in q['manifestation']}
+            enemies={u['id'] for u in q['manifestation']} | set(page.evaluate("""() => HonroApp.engine.b.units
+              .filter(u=>u.side===1&&u.honroSpawnSource).map(u=>u.id)"""))
             assert any(t['event']=='impact' and t['actor']=='p-mage' and t['shot']>0 and
                        t['target'] in enemies and t['after']<t['before'] for t in q['combat']['trace']),q['combat']
             assert not q['errors'] and q['seedHash']==storage_hash(base.saved_bytes(page)),q['errors']
