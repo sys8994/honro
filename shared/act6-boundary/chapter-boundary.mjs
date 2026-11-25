@@ -157,7 +157,9 @@ export function createChapterBoundary({slot,key,storage,locks,normalize,hash,ver
  // the retired stamp becomes the audited parent of the next checkpoint.
  function retired(stamp,p){
   const x=stamp?.body,id=x?.to,r=recipes[id];
-  if(!x||!r||x.schema!==schema||x.slot!==slot||x.runId!==p?.equipment?.runId||!pinOkay(x.pin,id))return false;
+  if(!x||!r||x.schema!==schema||x.slot!==slot||x.runId!==p?.equipment?.runId||!pinOkay(x.pin,id)||
+   x.from!==r.from||x.kind!==r.kind||x.profileSHA!==digest(naked(p))||x.terminalSHA!==digest(x.terminal)||
+   x.custodySHA!==digest(x.custody)||stamp.sha!==digest(x))return false;
   const now=releasePin(id);return !!now&&!pinCompatible(x.pin,now,id);
  }
  function shape(stamp,p,pin,id){
@@ -207,11 +209,16 @@ export function createChapterBoundary({slot,key,storage,locks,normalize,hash,ver
     booted.set(app,Object.freeze({to,sha:stamp.sha}));return {ok:true,sha:stamp.sha};
   });}catch{return reject('lock-or-native-entry-failed');}finally{working.delete(app);}
  }
- function status(){
-  try{const loaded=normalize(read()),stamp=loaded?.[keyField];if(!stamp)return 'none';
-   if(retired(stamp,loaded))return 'retired';
-   const id=stamp.body?.to,pin=releasePin(id);return pin&&shape(stamp,loaded,pin,id)?'restorable':'invalid';
-  }catch{return 'invalid';}
+ function inspect(app){
+  try{
+   const loaded=normalize(read()),committed=originalProfile(app),stamp=loaded?.[keyField];
+   if(priorUnsafe(loaded)||priorUnsafe(committed)||committed.honroCampPending||committed.honroJourney?.pendingDirect||
+      committed.honroJourney?.restStageId||!compatibleLegacy(loaded,committed))return {kind:'invalid'};
+   if(!stamp)return {kind:'none'};
+   if(retired(stamp,loaded))return {kind:'retired'};
+   const id=stamp.body?.to,pin=releasePin(id);
+   return pin&&shape(stamp,loaded,pin,id)?{kind:'restorable',to:id}:{kind:'invalid'};
+  }catch{return {kind:'invalid'};}
  }
- return Object.freeze({checkpoint,restore,status});
+ return Object.freeze({checkpoint,restore,inspect});
 }

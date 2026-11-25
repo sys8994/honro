@@ -99,7 +99,8 @@
         }
         const cx=boundarySession(app),raw=cx?.stored();if(!raw)return false;
         // A stamp from a revised source chapter is retired: offer Act 6 chapter 1 again.
-        if(cx.port?.status?.()==='retired'){
+        const checkpoint=cx.port?.inspect(app);
+        if(checkpoint?.kind==='retired'){
           const note=app.root.querySelector('.rest-actions [data-act6-boundary-retired]');
           if(!note){const n=document.createElement('p');n.dataset.act6BoundaryRetired='';n.className='rest-note';n.textContent='6막이 개정되어 이전 장 기록은 이어갈 수 없습니다. 성장과 장비는 그대로이며 6막 1장부터 다시 걷습니다.';app.root.querySelector('.rest-actions')?.prepend(n);}
           return false;
@@ -109,7 +110,7 @@
         let id;try{id=JSON.parse(raw)[markerKey]?.body?.to;}catch{}
         if(!boundaryAllowed(id)){place.setAttribute('aria-label','이전 기록을 확인할 수 없습니다');return true;}
         const button=document.createElement('button');button.type='button';button.className='primary rest-next';
-        button.textContent='6막 '+(id-50)+'장 이어가기 →';
+        button.textContent=checkpoint?.kind==='restorable'?'6막 '+(id-50)+'장 이어가기 →':'이어가기 기록 확인';
         button.dataset.act6BoundaryResume=String(id);boundaryButton.set(app,button);place.replaceWith(button);
         button.addEventListener('click',async event=>{
           const still=()=>cx.owned()&&cx.stored()===raw&&app.screen==='rest'&&!app.engine&&button.isConnected&&boundaryButton.get(app)===button&&!app.dialogue;

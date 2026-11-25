@@ -14,14 +14,12 @@
           if(normal60Surface?.completed(app))return {current:null,through:60,finished:true,readable:true};
           if(app.profile.honroFlags?.['act6.endingCompleted']===true)return null;
           try{
-            const slot='honro-campaign-act6-boundary-v2:'+run;
-            const raw=G.localStorage.getItem(slot);
+            const session=boundarySession(app),raw=session?.stored();
             if(raw===null)return {current:51,through:51,finished:false,readable:true};
-            const stamp=raw.length<=160000&&JSON.parse(raw)?.[markerKey],x=stamp?.body;
-            if(x&&stageIds.includes(x.to)&&boundaryAllowed(x.to)&&x.from===x.to-1&&x.slot===slot&&x.runId===run&&
-               JSON.stringify(x.pin)===JSON.stringify(routePins(x.to))&&x.terminal?.stage===x.from&&
-               sha256Boundary(JSON.stringify(x))===stamp.sha)
-              return {current:x.to,through:x.to,finished:false,readable:true};
+            const state=typeof raw==='string'&&raw.length<=160000?session.port?.inspect(app):null;
+            if(state?.kind==='retired')return {current:51,through:51,finished:false,readable:true};
+            if(state?.kind==='restorable'&&stageIds.includes(state.to))
+              return {current:state.to,through:state.to,finished:false,readable:true};
           }catch{}
           // A damaged/stale record never reveals story or mounts a battle.
           return {current:null,through:51,finished:false,readable:false};
