@@ -1,0 +1,43 @@
+{
+  "status": "FAIL",
+  "boundaries": [
+    {
+      "from": 51,
+      "to": 52,
+      "storageHash": "6f609110d4bd012abd5cf2459e78c8fbc55094a7891eeb4901fbed04dbae908c"
+    },
+    {
+      "from": 52,
+      "to": 53,
+      "storageHash": "07fa96fa8ecd19b68b78abd7ef51cfa39ded3022829bdbb225ca0ef8a3eca55b"
+    },
+    {
+      "from": 53,
+      "to": 54,
+      "storageHash": "aa5454edd1b45bcf4f9cda6ffc840f42aefb5c449cab807e101b4c8ba8f9b8c2"
+    },
+    {
+      "from": 54,
+      "to": 55,
+      "storageHash": "2d873b9c1acb27fbbee319a7002bc74329349e30e377b4a85d7669ac6b10ee4e"
+    },
+    {
+      "from": 55,
+      "to": 56,
+      "storageHash": "9923a66792ebe3708053c4724decb51b74a20ca46b35bde73be7299c512cf98b"
+    }
+  ],
+  "errors": [],
+  "error": "{'stage': 56, 'id': 'p-mage', 'x': 928, 'y': 1136, 'vx': 0, 'vy': 0, 'gravity': {'x': 0, 'y': 320}, 'grounded': True, 'support': 'A-upper-veranda', 'normal': {'x': 0, 'y': -1}, 'play': [6720, 5040], 'health': 1639.2, 'focus': 708, 'loadout': ['M01', 'M10', 'M07'], 'equipment': {'version': 1}, 'others': [{'id': 'draft-pressure-0', 'x': 1936, 'y': 3784.0650406504064}, {'id': 'draft-pressure-1', 'x': 3456, 'y': 2247.2}, {'id': 'draft-pressure-2', 'x': 5872, 'y': 3694.8321167883214}, {'id': 'a6-56-opening-1', 'x': 1512, 'y': 1136}, {'id': 'a6-56-opening-2', 'x': 2545, 'y': 1136}]}",
+  "last": {
+    "honroStage": 56,
+    "round": 1,
+    "phase": "aim",
+    "active": "p-mage",
+    "gravity": {
+      "x": 0,
+      "y": 320
+    }
+  },
+  "classification": "STALE_HARNESS_ASSERTION_AFTER_VALID_WARM_56_AND_VERANDA_LANDING"
+}

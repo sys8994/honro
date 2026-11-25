@@ -9,3 +9,5 @@ npm run build
 python game/docs/act6/mumyeongsa-p00-p10/baseline/continuous.py --build "$PWD" --out /tmp/honro-act6-intact --engage-bell
 python game/docs/act6/mumyeongsa-p00-p10/baseline/continuous.py --build "$PWD" --out /tmp/honro-act6-repair --engage-bell --bell-case repair
 ```
+
+같은 쉼터에서 새로 시작한 복구 판은 실제 55 결속을 수리해 56까지 라이브로 열었다. C를 걸어 원래 (928,1136) 난간에 착지했다. 이후 검수기가 구판의 원본 적 3명만 예상해 중단됐다. 원본 3명의 ID와 발점을 계속 엄격히 확인하고, 승인된 신규 시작 적 2명의 ID와 발점도 명시했다. 이후 장을 이 판의 결과에 포함하지 않았다. [중단 기록](repair-first.json)

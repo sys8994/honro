@@ -175,7 +175,11 @@ def walk_eave(page,out,receiving=False,suffix=''):
     if receiving:
         assert [exit_pose['x'],exit_pose['y']]==[928,1136] and exit_pose['support']=='A-upper-veranda',exit_pose
         assert exit_pose['gravity']=={'x':0,'y':320} and exit_pose['grounded'],exit_pose
-        assert not ceiling['others'] and [v['x'] for v in exit_pose['others']]==[1936,3456,5872],exit_pose
+        assert not ceiling['others'],ceiling
+        others={u['id']:u['x'] for u in exit_pose['others']}
+        original={'draft-pressure-0':1936,'draft-pressure-1':3456,'draft-pressure-2':5872}
+        opening={'a6-56-opening-1':1512,'a6-56-opening-2':2545}
+        assert others==original or others=={**original,**opening},exit_pose
     else:
         assert exit_pose['x']==736 and exit_pose['y']==900 and exit_pose['grounded'],exit_pose
     page.screenshot(path=out/f'eave-{direction}{suffix}-exit.png')

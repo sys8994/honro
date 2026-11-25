@@ -108,7 +108,7 @@ def play(browser,args):
         write(args.out,'relay',relay)
         approved('hall',hall_passage.live_d(browser,args.out,sodan=True,session=session))
         transitioned(58)
-        approved('daedosa',daedosa_return.play(browser,args.out,22,session=session))
+        approved('daedosa',daedosa_return.play(browser,args.out,100,session=session))
         transitioned(59)
         courtyard={}
         proceed(page,args.out,courtyard,'continuous')
