@@ -1,0 +1,40 @@
+name: Verify deployed Act 6 journey-book access
+on:
+  push:
+    branches: ['qa/act6-debug-journey-live-20261125']
+    paths: ['.github/workflows/act6-debug-journey-live.yml']
+permissions:
+  contents: read
+jobs:
+  live:
+    if: github.repository == 'sys8994/honro' && github.ref == 'refs/heads/qa/act6-debug-journey-live-20261125'
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c
+        with:
+          python-version: '3.12'
+      - name: Verify actual hosted files and stage navigation
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/act6-debug-live"
+          mkdir -p "$out"
+          python -m pip install 'playwright==1.58.0'
+          python -m playwright install --with-deps chromium
+          git fetch --depth=1 origin refs/heads/release/act6-debug-journey-20261125
+          git show FETCH_HEAD:web/manifest.json > "$out/expected.json"
+          EXPECTED="$(sha256sum "$out/expected.json" | cut -d' ' -f1)"
+          for retry in $(seq 1 55); do
+            curl -fsSL -H 'Cache-Control: no-cache' https://sys8994.github.io/honro/web/manifest.json -o "$out/public.json" || true
+            if test -s "$out/public.json" && test "$(sha256sum "$out/public.json" | cut -d' ' -f1)" = "$EXPECTED"; then break; fi
+            sleep 6
+          done
+          test "$(sha256sum "$out/public.json" | cut -d' ' -f1)" = "$EXPECTED"
+          python tools/act6-debug-journey/browser.py live "$out" > "$out/PLAYWRIGHT.log" 2>&1
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: act6-debug-journey-live
+          path: ${{ runner.temp }}/act6-debug-live/
+          retention-days: 7
