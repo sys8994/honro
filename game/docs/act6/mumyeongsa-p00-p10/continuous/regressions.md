@@ -17,3 +17,17 @@
 | `npm run test:act2:normal` | 13·17장 승리, 14장 구조 대상 손실, 11·12·15·16장 입력 예산 만료가 확인됐다. 앞 막 연속 완주 증거는 없다. |
 
 6막의 실제 새/이전 체크포인트 검수는 [장 경계 증거](../README.md)에 있다. 앞 막은 위의 표본 결과만 기록했다.
+
+## 후보 커밋 4a25a187 재실행
+
+분리한 정확한 4a25a187에서 앱과 Workshop 빌드가 성공했다. 캠페인 생명주기 31건, release guard 19건, 지형 가독성/시각 계층 세 명령이 통과했다. 30개 장 렌더 경로와 원래 레이어 분류를 검사했다. 56·60 패킷과 엔딩의 위 해시는 이 커밋에서도 일치한다.
+
+같은 명령의 맵 도메인 첫 검사는 이 커밋과 별도 master dd409de2에서 모두 같은 파일 13행의 `st.terrains.some(t=>t.playProjection)`으로 실패했다. 새 분기와 원래 실패를 구분했다. 해당 명령의 연쇄 뒤 두 검사는 실행되지 않았다. 실제 51→60 플레이의 결과는 [연속 검수](README.md)에 있다.
+
+```bash
+npm run build
+npm run test:campaign-continuity
+npm run test:release-guard
+npm run test:terrain-readability
+npm run test:terrain-domain
+```
