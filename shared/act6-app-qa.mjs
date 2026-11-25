@@ -329,35 +329,38 @@ export function makeQaMain(main,source,descriptor,terrainArt=null,journeyArt=nul
   proto=replaceOne(proto,'      function issue(app,button,id){','      function issue(app,button,id){if(stageDebug.has(app)){button.hidden=true;return;}');
   proto=replaceOne(proto,'      function boundarySession(app){','      function boundarySession(app){if(stageDebug.has(app))return null;');
   proto=replaceOne(proto,'      function mountEndingNormal60(a,s,terminal){','      function mountEndingNormal60(a,s,terminal){if(stageDebug.has(a))return false;');
-  proto=replaceOne(proto,'active:app=>active.has(app),','active:app=>active.has(app)||stageDebug.has(app),installDebugStages,restoreDebug,');
+  proto=replaceOne(proto,'active:app=>active.has(app),','active:app=>active.has(app)||stageDebug.has(app),travelDebug,returnDebugStage,debugStageOutcome,restoreDebug,');
  }
  assert.equal(source.split('/* SIGNED_ASSET */').length,2);
  const edits=[
  ['    class App {',proto+'\n    class App {'],
  ['if(this.profileStore.locked&&!this.profileRecoveryShown)','qa51.offer(this); if(this.profileStore.locked&&!this.profileRecoveryShown)'],
  ['G.HonroEquipmentUI.tick(this);return out;}','G.HonroEquipmentUI.tick(this);qa51.offerRest(this);return out;}'],
- ['G.HonroRestJourney.requestRest(this);','G.HonroRestJourney.requestRest(this);qa51.offerRest(this);'],
+ ['G.HonroRestJourney.requestRest(this);',(debugStages?'if(qa51.returnDebugStage(this))return;':'')+'G.HonroRestJourney.requestRest(this);qa51.offerRest(this);'],
  ['        persist() {','        persist() { if(qa51.active(this))return false;'],
  ['        flushBattleSave() {','        flushBattleSave() { if(qa51.active(this)){this.dirty=false;return;}'],
  ["if (this.engine && !this.training && !this.done) {","if (!qa51.active(this) && this.engine && !this.training && !this.done) {"],
  ['this.profile=this.customMap.returnProfile;this.stageId=this.customMap.returnStageId;this.customMap=null;}','this.profile=this.customMap.returnProfile;this.stageId=this.customMap.returnStageId;this.customMap=null;} qa51.release(this);'+(debugStages?'qa51.restoreDebug(this);':'')],
  ['        isOpen(st) {','        isOpen(st) { if(st?.id>=51)return false;'],
  ['        launch(id = this.stageId, training = false, skill = null) {','        launch(id = this.stageId, training = false, skill = null, permit) {\n            if(id>=51)return (id===51||id===52)&&!training?qa51.launch(this,id,permit):undefined;'],
- ['        retry() {','        retry() { if(qa51.active(this))return this.showTitle();'],
+ ['        retry() {','        retry() { '+(debugStages?'if(qa51.returnDebugStage(this))return;':'')+'if(qa51.active(this))return this.showTitle();'],
  ['        continue() {','        continue() {\n            if(qa51.active(this)||this.profile.honroBattle?.honroStage>=51||this.profile.honroMapRestart>=51)return;'],
  ['const st=H.stages[this.stageId-1], campaign=', 'const st=qa51.active(this)?this.stage:H.stages[this.stageId-1], campaign='],
  ['            e.checkEnd = () => this.checkMission(e);','            if(!qa51.bind(this,e))e.checkEnd = () => this.checkMission(e);'],
  ['        missionTick(dt){','        missionTick(dt){if(qa51.active(this))return;'],
  ['G.HonroObjectives.state(b,st);','(qa51.goalState(this,e)??G.HonroObjectives.state(b,st));'],
  ['const win=G.HonroObjectives.state(b,st).complete;', 'const win=(qa51.goalState(this,e)??G.HonroObjectives.state(b,st)).complete;'],
- ['            if(this.done||!this.engine)return;','            if(this.done||!this.engine)return;\n            if(qa51.outcome(this))return;'],
+ ['            if(this.done||!this.engine)return;','            if(this.done||!this.engine)return;\n            if('+ (debugStages?'qa51.debugStageOutcome(this)||':'') +'qa51.outcome(this))return;'],
  ["if(e.code==='KeyE'&&G.HonroInteractions?.key(this,e))return;", "if(e.code==='KeyE'&&(qa51.action(this,e)||G.HonroInteractions?.key(this,e)))return;"],
- ['const a = el.dataset.action, id = el.dataset.id, sk = el.dataset.skill;','const a = el.dataset.action, id = el.dataset.id, sk = el.dataset.skill; if(!qa51.keepAction(this,a))return;'],
+ ['const a = el.dataset.action, id = el.dataset.id, sk = el.dataset.skill;','const a = el.dataset.action, id = el.dataset.id, sk = el.dataset.skill; if(!qa51.keepAction(this,a)'+(debugStages?"&&!(this.screen==='battle'&&G.HonroAct6Journey?.debugBattle(this)&&['rest','result-continue'].includes(a))":'')+')return;'],
  ['        async export() {','        async export() { if(qa51.active(this))return;'],
  ["else if (el.id === 'file-import' && el.files[0]) {","else if (el.id === 'file-import' && el.files[0]) {\n                if(qa51.active(this)){el.value='';return;}"]
  ];
+ if(debugStages)edits.push(
+  ['G.HonroRestJourney.travel(this,id);','if(!(this.debugMode&&this.journeyAct===6)){G.HonroRestJourney.travel(this,id);}else if(!e.isTrusted||performance.now()<(this.journeyInputAfter||0))return;else qa51.travelDebug(this,Number(id),e,el);'],
+  ['        resultContinue(){','        resultContinue(){if(qa51.returnDebugStage(this))return;']);
  if(endingReplan)edits.push(
-  ['qa51.offer(this); if(this.profileStore.locked','qa51.offer(this); act6EndingReplan.installDebug(this); '+(debugStages?'qa51.installDebugStages(this); ':'')+'if(this.profileStore.locked'],
+  ['qa51.offer(this); if(this.profileStore.locked','qa51.offer(this); act6EndingReplan.installDebug(this); if(this.profileStore.locked'],
   ['this.audio?.update(inBattle&&!this.engine.noncombatWalk()', 'if(act6EndingReplan.silenceStock(this)){this.audio?.music?.setPaused(true);this.updateMusicLabel();return;}\n            this.audio?.update(inBattle&&!this.engine.noncombatWalk()']);
  if(source.includes('function enterNormal51('))edits.push(
   ['            G.HonroObjectives.updateSettlement(b,st,state.objectiveReady);','            if(!qa51.isNormal(this))G.HonroObjectives.updateSettlement(b,st,state.objectiveReady);']);

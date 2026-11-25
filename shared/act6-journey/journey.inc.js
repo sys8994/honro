@@ -4,6 +4,9 @@
           url:urlAt(descriptor.journeyMap.path).href});
         const stageIds=map.stages.map(r=>r.stageNumber);
         const view=app=>{
+          if(app?.debugMode){
+            return typeof debugJourneyAllowed==='function'&&debugJourneyAllowed(app)?{debug:true,current:null,through:60,finished:false,readable:true}:null;
+          }
           if(!app||!runtime(app)||app.profile!==app.normalProfile||!app.profile.cleared?.[50]||
              app.profile.honroBattle||app.profile.honroActEnding||app.profile.honroPendingResult||app.profile.honroPendingOutcome)return null;
           const run=app.profile.equipment?.runId;
@@ -23,6 +26,6 @@
           // A damaged/stale record never reveals story or mounts a battle.
           return {current:null,through:51,finished:false,readable:false};
         };
-        return Object.freeze({map,view});
+        return Object.freeze({map,view,debugBattle:app=>typeof stageDebug!=='undefined'&&stageDebug.has(app)});
       })();
       G.HonroAct6Journey=act6Journal;

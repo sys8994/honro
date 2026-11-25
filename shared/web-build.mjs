@@ -243,7 +243,7 @@ export async function buildWeb({vector=true,destination=path.join(root,'HONRO.ht
       const bytes=Buffer.from(JSON.stringify({schema:1,rows})+'\n');
       assert(bytes.length<400000);
       descriptors.debugFixtures={path:'/'+await emit('data','act6-debug-stages','json',bytes),bytes:bytes.length,sha256:hash(bytes)};
-      debugStages=await read('shared/act6-debug-stages/menu.inc.js');
+      debugStages=await read('shared/act6-debug-stages/journey-entry.inc.js');
     }
     mains[0].code=makeQaMain(mains[0].code,qaAct6.source,descriptors,terrainArt,journeyArt,endingReplan,debugStages);
   }
