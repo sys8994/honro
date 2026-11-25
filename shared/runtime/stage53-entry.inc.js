@@ -86,6 +86,7 @@
           app.mount(b,{freshReport:true,reportScope:'custom'});
           check(app.engine===s.engine&&app.engine.stage===content&&app.scene&&app.screen==='battle','Normal 53 mount failed');
           mountB53(app,s);
+          s.exterior=installExteriorEncounters(app,app.engine,()=>s.wallAxis.isWall(app.engine.active));
           const ui=appUI(app);check(ui,'Normal controls absent');
           const button=document.createElement('button');button.type='button';button.dataset.act6QaLookout='';styleAction(button);
           button.textContent='윗난간의 남은 진목 사이로 건너기';button.addEventListener('click',event=>{if(event.isTrusted&&event.currentTarget===button)action(app,event);});

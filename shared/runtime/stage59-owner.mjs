@@ -12,7 +12,7 @@ const auth=['act6.garmjinCompleted','act6.finalThreatResolved'];
 // round ahead on its own entry, holds (never drops) a squad when its own cap is full, and puts a
 // new squad on a rear line while the front line still stands.
 export const FRONTS59=Object.freeze({
- perFrontCap:6,totalCap:16,soften:{hp:.85,attack:.75},warn:1,period:1,forward:900,rear:420,breachLimit:3,guard:260,
+ perFrontCap:6,totalCap:14,soften:{hp:.85,attack:.75},warn:1,period:1,forward:900,rear:420,breachLimit:3,guard:260,
  posts:[{id:'west-cleat',x:522*7800/2172,label:'서쪽 지지석',radius:170},{id:'bell-path',x:1490*7800/2172,label:'종터 혼길',radius:170}],
  fronts:[
   {id:'west-return',dir:1,offset:2,line:'서쪽 높은 단과 아래 퇴각 경로로 원혼이 맺힙니다.',squads:[
@@ -31,6 +31,12 @@ export const FRONTS59=Object.freeze({
    [['lead','mourner',1800,'near'],['knot','shade',1870,'near'],['rear','mourner',1990,'near']],
    [['lead','shade',1830,'near'],['rear','mourner',2010,'near']]]}
  ]});
+const sentries59=[
+ ['west-ledge','mourner',323,high],['west-talus','shade',361,near],['west-bank','warden',485,near],
+ ['west-turn','mourner',583,high],['bridge-foot','mourner',740,near],
+ ['east-bell','shade',1585,near],['east-bend','mourner',1790,near],
+ ['east-stone','shade',1860,near],['east-ward','warden',1960,near]
+];
 const eq=(a,b)=>JSON.stringify(a)===JSON.stringify(b), copy=structuredClone;
 const alive=u=>u&&Number.isFinite(u.hp)&&u.hp>0&&!u.dead;
 const down=u=>u?.hp===0&&u.dead===true;
@@ -73,6 +79,8 @@ export async function createStage59Owner({C,packet,authorize,verifyIncoming,crea
   }
   const threat=reserve(special.bridge);
   if(!threat||threat.fixed||!threat.loadout?.includes('HWD01'))return (console.log('native59 deny 56'),null);
+  const sentries=sentries59.map(([name,kind,x,support])=>reserve(['finale-first-'+name,kind,x,support]));
+  if(sentries.some(u=>!u))return null;
   threat.honroRigAsset='gate_armor';threat.name='교각의 문턱 꼭두';
   const origin=threat.x; const add=v=>b.units.push(v);add(threat);
   const repelled=()=>retreatOrder!==null&&retreatOrder.walked>0&&grounded(threat,near)&&threat.x-retreatOrder.from>=240&&threat.x-witness.x>=500;
@@ -81,6 +89,19 @@ export async function createStage59Owner({C,packet,authorize,verifyIncoming,crea
   let breach=0,breachRound=null,recoverRound=null,giant=null,lostReason=null;
   const frontAlive=f=>walks.filter(z=>z.front===f.id&&alive(z.unit)).length;
   const enemyAlive=()=>b.units.filter(u=>u.side===1&&alive(u)).length;
+  let opening=false;
+  function openFronts(){
+   if(opening)return;
+   opening=true;
+   for(const u of sentries){
+    u.hp=u.maxHp=Math.round(u.maxHp*(u.honroType==='warden'?.45:.55));
+    u.attack*=.65;
+    u.group=640+b.units.length;
+    u.honroRigAsset=u.honroType==='warden'?'gate_armor':'wonhon';
+    add(u);
+   }
+   e.refreshActivation();note('opening-sentries',{ids:sentries.map(u=>u.id)});
+  }
   function wave(){
    if(!state.retreat||state.cleared||waves.closed||b.side!==0)return;
    const round=b.teamEnds[1]+1;
@@ -93,7 +114,7 @@ export async function createStage59Owner({C,packet,authorize,verifyIncoming,crea
     if(f.warned!==key){f.warned=key;b.honroState.localFinaleIncoming={front:f.id,squad:f.next,round:due,line:f.line};e.message(f.line);note('front-warned',{front:f.id,squad:f.next,due});}
     if(round<due||waves.rounds.some(o=>o.round===round&&o.front===f.id))continue;
     f.left??=f.squads[f.next].slice();
-    const room=Math.min(FRONTS59.perFrontCap-frontAlive(f)+(giant?1:0),FRONTS59.totalCap-walks.filter(z=>alive(z.unit)).length);
+    const room=Math.min(FRONTS59.perFrontCap-frontAlive(f)+(giant?1:0),FRONTS59.totalCap-enemyAlive()-Number(!bell)-Number(!giant));
     if(room<=0){f.held++;waves.rounds.push({round,action:'held',front:f.id,squad:f.next});note('wave-held',{front:f.id,squad:f.next,room});continue;}
     // Partial entry: as many bodies as the front has room for come now, the rest next round.
     const bodies=f.left.splice(0,room);
@@ -133,6 +154,7 @@ export async function createStage59Owner({C,packet,authorize,verifyIncoming,crea
   }
   function poll(){
    if(!active())return false;
+   openFronts();
    if(!state.retreat&&local(actor.knight,900,near)){
     upper=reserve(special.cliff);if(!upper)return false;
     let strip;try{strip=buildStrip(e,C);}catch{return false;}

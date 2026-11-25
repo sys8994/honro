@@ -1,5 +1,5 @@
 // Each row identifies an exposed authored contact face and one stock combat role.
-function installExteriorEncounters(app,e){
+function installExteriorEncounters(app,e,paused=()=>false){
  const b=e.b,stage=b.honroStage;
  const chapters={
   51:{active:8,attacks:5,sites:{
@@ -18,6 +18,21 @@ function installExteriorEncounters(app,e){
     {id:'cliff-watch',label:'암벽 아래 초병이 올라옵니다.',at:[1820,1850],units:[['hound','descent',2080,2180],['shade','westArch',2365,2455],['hound','westArch',2690,2470]]},
     {id:'broken-arch',label:'끊어진 석교 양쪽에서 응전합니다.',at:[2890,2370],units:[['stag','westArch',3000,2340],['shade','eastArch',3880,2280],['hound','eastArch',4145,2380]]},
     {id:'bell-approach',label:'종터로 향하는 길을 지키던 혼이 모입니다.',at:[4270,2630],units:[['shade','eastArch',4475,2500],['hound','eastArch',4830,2510],['shade','eastArch',4970,2515],['stag','return',4450,3830]]},
+   ]},
+  53:{active:6,attacks:4,sites:{floor:'south',library:'library-balcony',beam:'sanctuary-beam'},
+   initial:[['hound','floor',740,2390],['shade','library',1320,1910],['stag','floor',1985,1590]],
+   waves:[
+    {id:'gate-timber',label:'산문 뒤에서 바닥을 긁는 소리가 납니다.',at:[670,2390],units:[['hound','floor',970,2200],['shade','floor',1140,2075],['shade','library',1005,2040]]},
+    {id:'archive-balcony',label:'서고 양편에서 혼이 움직입니다.',at:[1320,1960],units:[['hound','floor',1480,1880],['shade','floor',1620,1845],['hound','beam',1700,1650]]},
+    {id:'lost-sanctuary',label:'파손 난간 앞에서 마지막 그림자가 갈라집니다.',at:[2020,1480],units:[['shade','beam',2090,1420],['hound','floor',2200,1375],['stag','floor',2380,1205]]},
+   ]},
+  56:{active:7,attacks:5,sites:{veranda:'A-upper-veranda',ascent:'B-01-center-stone-ascent',descent:'B-02-center-lower-short-climb',
+    lower:'B-central-lower-floor',return:'E-joined-ordinary-floor'},
+   initial:[['shade','veranda',1512,1136],['hound','veranda',2545,1136]],
+   waves:[
+    {id:'upper-veranda',label:'윗난간 사이에서 수의귀가 다가옵니다.',at:[1590,1136],units:[['shade','veranda',1850,1136],['hound','veranda',2050,1136],['shade','veranda',2390,1136]]},
+    {id:'deep-drop',label:'두 번째 진목 아래로 다시 적이 모입니다.',at:[3420,2300],units:[['hound','ascent',3120,2460],['shade','descent',3790,3360],['stag','descent',3970,3220]]},
+    {id:'reverse-bank',label:'가름진 아래의 낮은 받침이 흔들립니다.',at:[4930,4000],units:[['hound','return',4480,4050],['shade','return',4810,4050],['hound','return',5340,3970],['shade','return',5560,3860]]},
    ]},
  };
  const plan=chapters[stage];
@@ -49,7 +64,7 @@ function installExteriorEncounters(app,e){
   refreshNormal();
   if(e.active?.side===0&&!e.active.summoned)anchor=e.active;
   const dist=u=>anchor?Math.hypot(u.x-anchor.x,(u.y-anchor.y)*.85):Infinity;
-  const near=b.units.filter(alive).filter(u=>dist(u)<1250||u.aggroUntil>=b.round&&dist(u)<1600);
+  const near=paused()?[]:b.units.filter(alive).filter(u=>dist(u)<1250||u.aggroUntil>=b.round&&dist(u)<1600);
   near.sort((a,z)=>dist(a)-dist(z)||a.id.localeCompare(z.id));
   eligible=new Set(near.slice(0,plan.active));
   for(const u of b.units.filter(alive))u.awake=eligible.has(u);
@@ -57,11 +72,11 @@ function installExteriorEncounters(app,e){
  b.honroActiveLimit=b.enemyLimit=plan.attacks;
  plan.initial.forEach((row,i)=>spawn(row,'opening',i));
  e.refreshActivation=refresh;
- e.combatEnemies=()=>combatNormal().filter(u=>eligible.has(u));
+ e.combatEnemies=()=>paused()?[]:combatNormal().filter(u=>eligible.has(u));
  refresh();
  let clock=0,lastX=anchor?.x,lastY=anchor?.y,lastRound=b.round;
  function tick(dt){
-  if(app.done||app.dialogue||app.modal?.classList.contains('open')||b.phase!=='aim'||b.side!==0)return;
+  if(paused()||app.done||app.dialogue||app.modal?.classList.contains('open')||b.phase!=='aim'||b.side!==0)return;
   const u=e.active;
   if(!u||u.side!==0||u.summoned||u.dead)return;
   clock+=dt;

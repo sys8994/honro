@@ -1,0 +1,274 @@
+{
+  "status": "PASS",
+  "requestHz": 120,
+  "start": {
+    "stage": 53,
+    "round": 1,
+    "phase": "aim",
+    "active": "p-mage",
+    "gravity": {
+      "x": 0,
+      "y": 320
+    },
+    "enemyLimit": 4,
+    "queue": [],
+    "actionReason": "이동·발사 가능",
+    "actors": [
+      {
+        "id": "p-mage",
+        "x": 425,
+        "y": 2477,
+        "vx": 0,
+        "vy": 0,
+        "hp": 1708.9,
+        "dead": false,
+        "embedded": false,
+        "grounded": true,
+        "support": "south"
+      },
+      {
+        "id": "draft-lower-lane-guard",
+        "x": 1100,
+        "y": 1992.8,
+        "vx": 0,
+        "vy": 0,
+        "hp": 290,
+        "dead": false,
+        "embedded": false,
+        "grounded": true,
+        "support": "library-balcony"
+      },
+      {
+        "id": "draft-upper-side-guard",
+        "x": 2905,
+        "y": 1060,
+        "vx": 0,
+        "vy": 0,
+        "hp": 598,
+        "dead": false,
+        "embedded": false,
+        "grounded": true,
+        "support": "south"
+      },
+      {
+        "id": "a6-53-opening-1",
+        "x": 740,
+        "y": 2386.28,
+        "vx": 0,
+        "vy": 0,
+        "hp": 655,
+        "dead": false,
+        "embedded": false,
+        "grounded": true,
+        "support": "south"
+      },
+      {
+        "id": "a6-53-opening-2",
+        "x": 1320,
+        "y": 1917.0666666666666,
+        "vx": 0,
+        "vy": 0,
+        "hp": 595,
+        "dead": false,
+        "embedded": false,
+        "grounded": true,
+        "support": "library-balcony"
+      },
+      {
+        "id": "a6-53-opening-3",
+        "x": 1985,
+        "y": 1587.5,
+        "vx": 0,
+        "vy": 0,
+        "hp": 755,
+        "dead": false,
+        "embedded": false,
+        "grounded": true,
+        "support": "south"
+      }
+    ]
+  },
+  "m09": {
+    "input": {
+      "angle": 198,
+      "power": 0.62
+    },
+    "stakes": [
+      {
+        "id": 12,
+        "x": 2640,
+        "y": 569.6666666666666,
+        "side": 0,
+        "skill": "M09",
+        "rank": 1,
+        "owner": "p-mage",
+        "hp": 90,
+        "r": 13,
+        "h": 36,
+        "expires": 7
+      },
+      {
+        "attackSide": 0,
+        "damageRoll": 1,
+        "id": 2,
+        "skill": "M09",
+        "owner": "p-mage",
+        "side": 0,
+        "x": 2468.3987574669177,
+        "y": 577.1301988806357,
+        "rank": 1,
+        "damage": 0,
+        "shot": 1,
+        "effectBoost": 0,
+        "expires": 7
+      }
+    ]
+  },
+  "wall53": {
+    "stage": 53,
+    "round": 2,
+    "phase": "aim",
+    "active": "p-mage",
+    "gravity": {
+      "x": 320,
+      "y": 0
+    },
+    "enemyLimit": 4,
+    "queue": [
+      "a6-53-lost-sanctuary-1",
+      "a6-53-lost-sanctuary-2",
+      "a6-53-opening-3",
+      "a6-53-archive-balcony-1"
+    ],
+    "actionReason": "공중 이동 중 · 착지 후 발사·도약 가능",
+    "actors": [
+      {
+        "id": "p-mage",
+        "x": 3240,
+        "y": 669,
+        "vx": 0,
+        "vy": 0,
+        "hp": 1677.9,
+        "dead": false,
+        "embedded": false,
+        "grounded": true,
+        "support": "b-inner-jamb"
+      },
+      {
+        "id": "draft-lower-lane-guard",
+        "x": 1100,
+        "y": 1992.8,
+        "vx": 0,
+        "vy": 0,
+        "hp": 290,
+        "dead": false,
+        "embedded": false,
+        "grounded": true,
+        "support": "library-balcony"
+      },
+      {
+        "id": "draft-upper-side-guard",
+        "x": 2905,
+        "y": 1060,
+        "vx": 0,
+        "vy": 0,
+        "hp": 598,
+        "dead": false,
+        "embedded": true,
+        "grounded": true,
+        "support": "south"
+      },
+      {
+        "id": "a6-53-opening-1",
+        "x": 740,
+        "y": 2386.28,
+        "vx": 0,
+        "vy": 0,
+        "hp": 655,
+        "dead": false,
+        "embedded": true,
+        "grounded": true,
+        "support": "south"
+      },
+      {
+        "id": "a6-53-opening-2",
+        "x": 1320,
+        "y": 1917.0666666666666,
+        "vx": 0,
+        "vy": 0,
+        "hp": 684,
+        "dead": false,
+        "embedded": false,
+        "grounded": true,
+        "support": "library-balcony"
+      },
+      {
+        "id": "a6-53-opening-3",
+        "x": 1985,
+        "y": 1480.2777777777778,
+        "vx": 0,
+        "vy": 0,
+        "hp": 755,
+        "dead": false,
+        "embedded": false,
+        "grounded": true,
+        "support": "sanctuary-beam"
+      },
+      {
+        "id": "a6-53-gate-timber-1",
+        "x": 970,
+        "y": 2208.0434782608695,
+        "vx": 0,
+        "vy": 0,
+        "hp": 655,
+        "dead": false,
+        "embedded": true,
+        "grounded": true,
+        "support": "south"
+      },
+      {
+        "id": "a6-53-archive-balcony-1",
+        "x": 1622.5833333333378,
+        "y": 1686.461111111109,
+        "vx": 0,
+        "vy": 0,
+        "hp": 655,
+        "dead": false,
+        "embedded": false,
+        "grounded": true,
+        "support": "sanctuary-beam"
+      },
+      {
+        "id": "a6-53-lost-sanctuary-1",
+        "x": 2295.416666666654,
+        "y": 1266.4062500000146,
+        "vx": 0,
+        "vy": 0,
+        "hp": 684,
+        "dead": false,
+        "embedded": true,
+        "grounded": true,
+        "support": "south"
+      },
+      {
+        "id": "a6-53-lost-sanctuary-2",
+        "x": 2405.416666666654,
+        "y": 1187.4856321839166,
+        "vx": 0,
+        "vy": 0,
+        "hp": 655,
+        "dead": false,
+        "embedded": true,
+        "grounded": true,
+        "support": "south"
+      }
+    ]
+  },
+  "ordinarySaveUnchanged": true,
+  "clock": {
+    "medianMs": 8.600000001490116,
+    "solverSteps": [
+      0.008333333333333333
+    ]
+  }
+}

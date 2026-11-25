@@ -56,7 +56,7 @@ export function stage56Adapter(G,{normalPort=null}={}){
    const d=display(),result=mission.terminal(),complete=result?.won===true,failed=result?.won===false;
    return {complete,objectiveReady:complete,failed,summary:failed?'담허가 길을 계속할 수 없습니다.':complete?'깊은 경계 출구에 도달했습니다.':d?.goal,
     targets:!complete&&!failed&&d?.marker?[{kind:'route',id:d.action,x:d.marker.x,y:d.marker.y,label:d.goal}]:[],
-    appActions:{mission:d?.action??null},scopeFrame:d?.scene};
+    appActions:{mission:d?.action??null},scopeFrame:d?.scene,missionStep:d?.stage};
   }
   function terminal(){
    const q=mission.terminal();

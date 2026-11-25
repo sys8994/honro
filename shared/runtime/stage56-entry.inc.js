@@ -57,6 +57,12 @@
         try{
           a.mount(b,{freshReport:true,reportScope:'custom'});
           check(scope56(a,a.engine,s)&&a.engine.stage===content&&a.scene&&a.screen==='battle','Native normal 56 mount failed');
+          s.exterior=installExteriorEncounters(a,a.engine,()=>!!s.eave56);
+          const nearby=a.engine.combatEnemies.bind(a.engine);
+          // During the marked shelf evasion, the original reflow actor gets
+          // its attack before the separated banks resume their own turns.
+          a.engine.combatEnemies=()=>s.owner56.project()?.missionStep==='evade'
+            ?nearby().filter(u=>u===s.prepared56.reserved):nearby();
           if(previous.eave)mountEave56(a,s,previous.eave);
           const ui=appUI(a);check(ui,'Normal 56 controls absent');const btn=document.createElement('button');
           btn.type='button';btn.dataset.act6QaLookout='';styleAction(btn);
@@ -102,6 +108,7 @@
             return;
           }
           r.axis.dispose();r.restore();e.b.units=r.units;s.eave56=null;
+          e.refreshActivation();
           const support=e.contactSurface(u.x,u.y-3,u.y+4);
           check(u.x===928&&u.y===1136&&e.grounded(u)&&support?.t.id==='A-upper-veranda'&&
             fingerprints.get(JSON.stringify(e.b.terrain))===owner56.playSHA&&fingerprints.get(JSON.stringify(e.b.honroWorldTerrain))===owner56.worldSHA,

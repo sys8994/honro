@@ -46,7 +46,7 @@
           const src=JSON.stringify(v);check(expected.get(src)===h,'Native 59 shape drift');fingerprints.set(src,h);
         }
         b.units=prepared.units;b.active=prepared.units[0].id;b.queue=prepared.units.map(u=>u.id);
-        b.honroActiveLimit=9;b.enemyLimit=9;b.honroJourneyReplay=false;b.honroGeometryReady=true;b.honroGeometryRevision=2;b.honroContactRevision=2;
+        b.honroActiveLimit=8;b.enemyLimit=8;b.honroJourneyReplay=false;b.honroGeometryReady=true;b.honroGeometryRevision=2;b.honroContactRevision=2;
         a.stopBattle();
         if(live){
           for(const [i,seat] of prepared.units.entries()){
