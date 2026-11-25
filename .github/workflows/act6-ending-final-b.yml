@@ -1,0 +1,79 @@
+name: Verify the new temple, final trail and epilogue captions
+on:
+  push:
+    branches: ['qa/act6-ending-final-b-20261125']
+    paths: ['.github/workflows/act6-ending-final-b.yml','shared/act6-ending-replan/**','tools/act6-ending-v2/**']
+permissions:
+  contents: write
+jobs:
+  candidate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 24
+    env:
+      BASE: c5225683a77caa1caffd2252a21586bca7b87845
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c
+        with:
+          python-version: '3.12'
+      - name: Build narrowed patch and verify PC and mobile
+        shell: bash
+        run: |
+          set -euo pipefail
+          Q="$RUNNER_TEMP/ending-direct"
+          O="$RUNNER_TEMP/ending-direct-evidence"
+          mkdir -p "$O/screens"
+          git fetch --depth=1 origin "$BASE"
+          test "$(git ls-remote origin refs/heads/master | cut -f1)" = "$BASE"
+          git diff --binary "$BASE" HEAD -- shared/act6-ending-replan tools/act6-ending-v2 > "$O/source.patch"
+          git worktree add --detach "$Q" "$BASE"
+          cd "$Q"
+          git apply "$O/source.patch"
+          H="$(node --input-type=module -e 'import fs from "node:fs";import {selectPublishedGenerations} from "./shared/web-retention.mjs";console.log([...new Set(selectPublishedGenerations(JSON.parse(fs.readFileSync("web/manifest.json")).publishedGenerations).map(x=>x.sourceSha))].join(" "));')"
+          git fetch --depth=1 origin $H
+          node tools/release/retain-published-web.mjs "$BASE" --published-at 2026-11-25T11:54:07Z --evidence https://github.com/sys8994/honro/actions/runs/45608390776
+          npm ci --no-audit --no-fund
+          npm ci --prefix game --no-audit --no-fund
+          node --test tools/act6-ending-v2/cues.test.mjs
+          npm run build
+          python -m pip install 'playwright==1.58.0'
+          python -m playwright install --with-deps chromium
+          CHROME="$(python -c 'from playwright.sync_api import sync_playwright; p=sync_playwright().start(); print(p.chromium.executable_path); p.stop()')"
+          python tools/act6-ending-v2/preview.py --chromium "$CHROME" --out "$O/screens" | tee "$O/preview.log"
+
+          python tools/act6-ending-v2/normal.py --chromium "$CHROME" | tee "$O/normal.log"
+          cp _local/reports/ending-v2/*.png "$O/screens/"
+          python - "$O/NEW" <<'PY'
+          import json,sys,re,subprocess
+          from pathlib import Path
+          from os import environ
+          from hashlib import sha256
+          a=json.loads(subprocess.check_output(['git','show',environ['BASE']+':web/manifest.json']))
+          b=json.loads(Path('web/manifest.json').read_bytes())
+          d=lambda m:{x['path']:x['sha256'] for x in m['files']}
+          before,after=d(a),d(b)
+          for prefix in ('act6-qa-chapter-','act6-terrain-art-','act6-debug-stages.','journey-map-act6.'):
+              assert {k:v for k,v in before.items() if prefix in k}=={k:v for k,v in after.items() if prefix in k}
+          assert {k:v for k,v in before.items() if 'act6-ending_still_' in k and 'act6-ending_still_08_' not in k}=={k:v for k,v in after.items() if 'act6-ending_still_' in k and 'act6-ending_still_08_' not in k}
+          for label,side,digest in [('still_08','land','c2ac467bab868c2636ed3f8f42c3496ffe6a845720ebdc25da78041bdea273bb'),('still_08','port','75dea3195263f05be26a7fc7715e856299be81bd690bab423815a4f1f7046c8a'),('final','land','b95e2b4d546693f52420fc519d57a8dc446c96a948247cb9545ee94d2a8168c3'),('final','port','032ee3cceed14c0caa186a22fed7aec693fba688032ccba3ddfdb1e615eba0ef')]:
+              assert any(h==digest for p,h in after.items() if 'act6-ending_'+label+'_'+side+'.' in p),(label,side)
+          for p,h in (before|after).items():assert sha256(Path(p).read_bytes()).hexdigest()==h,p
+          pins=lambda f:re.search(r'boundary:\{build:"[a-f0-9]{64}",owner:\{[^}]+\},layout:\{.*?\}\}',Path(f).read_text()).group()
+          assert pins(next(p for p in before if 'ordered-game-24-normal51.' in p))==pins(next(p for p in after if 'ordered-game-24-normal51.' in p))
+          Path(sys.argv[1]).write_text('\n'.join(sorted(set(after)-set(before)))+'\n')
+          PY
+          git add -A -- shared/act6-ending-replan tools/act6-ending-v2 HONRO.html HONRO_WORKSHOP.html index.html web/manifest.json
+          xargs -d '\n' -r git add -- < "$O/NEW"
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Give the epilogue a quiet blue temple and a separate final trail'
+          test "$(git rev-parse HEAD^)" = "$BASE"
+          test "$(git ls-remote origin refs/heads/master | cut -f1)" = "$BASE"
+          git -C "$GITHUB_WORKSPACE" push origin "$(git rev-parse HEAD)":refs/heads/release/act6-ending-final-b-20261125
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: act6-ending-direct-qa
+          path: ${{ runner.temp }}/ending-direct-evidence/
