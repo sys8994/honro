@@ -45,7 +45,7 @@ jobs:
             for side in land port; do
               a="ending_""$cut""_""$side"".webp"
               if [[ "$cut" == "still_06b" ]]; then
-                cat "$S/ending_still_06b_r5_""$side"".webp.b64."{0,1,2} | base64 -d > "$A/$a"
+                cat "$S/ending_still_06b_tree_b_dusk_""$side"".webp.b64."{0,1} | base64 -d > "$A/$a"
               else
                 base64 -d "$S/$a.b64" > "$A/$a"
               fi
@@ -101,7 +101,7 @@ jobs:
           git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Replace the Act 6 finale with nine responsive ending stills'
           test "$(git rev-parse HEAD^)" = "$BASE"
           test "$(git ls-remote origin refs/heads/master | cut -f1)" = "$BASE"
-          git -C "$GITHUB_WORKSPACE" push origin "$(git rev-parse HEAD)":refs/heads/release/act6-ending-v2-face-20261125
+          git -C "$GITHUB_WORKSPACE" push origin "$(git rev-parse HEAD)":refs/heads/release/act6-ending-v2-tree-b-20261125
           git rev-parse HEAD > "$ENDING_EVIDENCE/CANDIDATE.txt"
       - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
         if: always()
