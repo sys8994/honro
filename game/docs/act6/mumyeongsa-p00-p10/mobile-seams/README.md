@@ -38,3 +38,11 @@ python game/docs/act6/mumyeongsa-p00-p10/baseline/daedosa_return.py --build "$PW
 p=game/docs/act6/mumyeongsa-p00-p10
 python "$p/baseline/mobile_seams.py" --build "$PWD" --out /tmp/honro-mobile-scale-360 --size 360 800 --device-scale 2 --b-proof "$p/visual-atlas/capture-input-b.json" --c-proof "$p/mobile-seams/captured-c-source.json" --d-proof "$p/visual-atlas/capture-input-d.json" --r-proof "$p/mobile-seams/captured-r-source.json"
 ```
+
+## 57에서 D를 실제로 송신
+
+이전 호환 57을 모바일 일반 쉼터에서 열고, 곽진의 받침 수호와 네 몸의 재합류까지 키와 게임 버튼으로 진행했다. 새 석교가 열린 뒤 네 사람은 조이스틱과 초상화 탭으로 D를 건너 `local-07-08-exact-receiving-slice`에 접지했다. 최초 모바일 판은 휘겸의 이동력이 바닥나고, 소단이 목표를 지나 별도 암반에 섰다. 다시 실행할 때 이동력이 남은 실제 턴에 짧게 조이스틱을 밀었다. 390×844에서 신뢰된 터치 시작·종료 30개가 기록됐다. 58의 네 객체는 동일했고 별도 일반 쉼터의 발점 오차는 모두 `(0,0)`이었다. 저장 바이트도 같았다. [57 모바일 송신](d-send-mobile.webp) · [58 모바일 라이브](d-receive-live-mobile.webp) · [곽진·배우·접촉·재로드](d-send-native.json)
+
+```bash
+python game/docs/act6/mumyeongsa-p00-p10/baseline/hall_passage.py --build "$PWD" --out /tmp/honro-57-touch-short --case live-d --touch-d
+```

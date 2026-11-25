@@ -127,35 +127,58 @@ def touch_send_d(context,page,steps):
     page.evaluate(POINTER_EVENTS)
     for cls,goal in (('occultist',6200),('knight',6090),('mage',5992),('archer',5872)):
         identity=actor(page,cls)['id']
-        for _ in range(6):
+        for _ in range(12):
             ready(page,30000)
-            if actor(page)['id']==identity:
+            if actor(page)['id']!=identity:
+                target=page.locator(f'[data-action="select-hero"][data-id="{identity}"]:visible').first
+                if target.count() and target.is_enabled():
+                    target.tap(timeout=4400)
+            foot=actor(page)
+            if foot['id']==identity and foot['move']>abs(goal-foot['x'])*1.35+160:
                 break
-            target=page.locator(f'[data-action="select-hero"][data-id="{identity}"]:visible').first
-            if target.count() and target.is_enabled():
-                target.tap(timeout=4400)
-                if actor(page)['id']==identity:
-                    break
             page.locator('button[data-action="defend"]:visible').first.tap(timeout=4500)
-        foot=actor(page)
-        assert foot['id']==identity,foot
+        else:
+            raise AssertionError(f'No remaining movement for {identity} on D')
+        steps['touch-start-'+cls]=foot
         if foot['contact'] not in D_APPROACH:
-            if abs(foot['x']-5260)>14:
-                move(context,page,1 if foot['x']<5260 else -1,
-                     '()=>Math.abs(HonroApp.engine.active.x-5260)<13',timeout=8000)
+            march(page,5260,cls=cls,tolerance=25)
             page.locator('#jump').tap(timeout=5000)
             page.wait_for_function("""ids=>{const e=HonroApp.engine,u=e.active;return e.grounded(u)&&
                 ids.includes(e.contactSurface(u.x,u.y-4,u.y+5)?.t.id);}""",arg=D_APPROACH,timeout=5000)
         steps['ramp-'+cls]=actor(page)
-        if cls=='archer':
-            move(context,page,1,"HonroApp.done&&HonroApp.engine.b.phase==='won'",timeout=10500)
+        for _ in range(6):
+            foot=actor(page)
+            distance=goal-foot['x']
+            if state(page)['phase']=='won' or abs(distance)<20 and foot['grounded'] and foot['contact']==D_APPROACH[2]:
+                break
+            direction=1 if distance>0 else -1
+            ahead=goal-direction*min(60,max(7,abs(distance)*.26))
+            move(context,page,direction,"([x,d])=>HonroApp.done||d*(HonroApp.engine.active.x-x)>=0",[ahead,direction],
+                 timeout=8500,displacement=27 if abs(distance)>240 else 13)
+            page.wait_for_function('HonroApp.done||Math.abs(HonroApp.engine.active.vx)<0.5',timeout=4000)
         else:
-            move(context,page,1,'x=>HonroApp.engine.active.x>=x',goal,timeout=10500)
+            raise AssertionError({'destination':goal,'actual':actor(page)})
+        steps['touch-end-'+cls]=actor(page)
     steps['exitTouches']=page.evaluate('seamTouches')
     assert len(steps['exitTouches'])>=8 and all(v['trusted'] and v['type']=='touch' for v in steps['exitTouches'])
 
 
-def live_d(browser,out,sodan=False,session=None,touch_d=False):
+def relay_defense(page):
+    from daedosa_return import CANDIDATE
+    trials=[]
+    for cls,x in (('knight',4400),('archer',2890),('knight',3980),('archer',3330)):
+        foot=march(page,x,cls=cls,tolerance=95)
+        plan=page.evaluate(CANDIDATE)
+        trials.append({'foot':foot,'input':plan,'round':state(page)['round']})
+        if plan:
+            previous=state(page)['shot']
+            page.locator(f'[data-action="combat-skill"][data-skill="{plan["id"]}"]').first.click(timeout=4500)
+            aim(page,plan)
+            page.wait_for_function('n=>HonroApp.engine.b.shot>n',arg=previous,timeout=6500)
+    return trials
+
+
+def live_d(browser,out,sodan=False,session=None,touch_d=False,pressure=False):
     ctx,page=session if session else (seeded_context(browser,57,mobile=touch_d),None)
     if page is None:
         page=ctx.new_page()
@@ -167,6 +190,9 @@ def live_d(browser,out,sodan=False,session=None,touch_d=False):
             resume(page,57,True,mobile=touch_d)
         else:
             base.dismiss_dialogue(page)
+        if pressure:
+            from exterior_combat import TRACE
+            page.evaluate(TRACE)
         steps['initial']=state(page)
         if sodan:
             initial_loadout=actor(page,'occultist')['loadout']
@@ -187,6 +213,8 @@ def live_d(browser,out,sodan=False,session=None,touch_d=False):
         page.wait_for_timeout(1000)
         mission_click(page,'openRetreat','moveRelayToFallback')
         steps['retreat']=state(page)
+        if pressure:
+            steps['relayDefense']=relay_defense(page)
         march(page,1910,cls='occultist',tolerance=36)
         mission_click(page,'moveRelayToFallback')
         march(page,1970,cls='knight',tolerance=36)
@@ -196,14 +224,14 @@ def live_d(browser,out,sodan=False,session=None,touch_d=False):
         march(page,2028,actor_id='local-07-gwakjin-return-keeper',tolerance=39)
         mission_click(page,'receiveKeeperWatch','reuniteAtWard')
         steps['keeperParked']=state(page)
-        march(page,5260,cls='archer',tolerance=11)
+        march(page,5260,cls='archer',tolerance=25)
         page.keyboard.press('Control')
         page.wait_for_function('HonroApp.engine.active.y<2940',timeout=4200)
         sample_walk(page,1,5372,3700)
         page.wait_for_function("""()=>{const e=HonroApp.engine,u=e.active;return e.grounded(u)&&
           e.contactSurface(u.x,u.y-4,u.y+5)?.t.id==='a6-c07-stationary-stone-ward';}""",timeout=4300)
         steps['archerOnWard']=actor(page)
-        for cls,x,tolerance in [('occultist',5285,18),('knight',5385,19)]:
+        for cls,x,tolerance in [('occultist',5285,18),('knight',5385,19),('archer',5315,13)]:
             if not reunion_feet(page)[cls]['ready']:
                 march(page,x,cls=cls,tolerance=tolerance)
         steps['reunionFeet']=reunion_feet(page)
@@ -241,7 +269,7 @@ def live_d(browser,out,sodan=False,session=None,touch_d=False):
             for cls,x in [('occultist',6200),('knight',6090),('mage',5992),('archer',5872)]:
                 select(page,cls,advance=True)
                 if actor(page)['contact'] not in D_APPROACH:
-                    march(page,5260,cls=cls,tolerance=12)
+                    march(page,5260,cls=cls,tolerance=25)
                     page.keyboard.press('Control')
                     page.wait_for_function("""ids=>{const e=HonroApp.engine,u=e.active;return e.grounded(u)&&
                       ids.includes(e.contactSurface(u.x,u.y-4,u.y+5)?.t.id);}""",arg=D_APPROACH,timeout=5000)
@@ -289,10 +317,16 @@ def live_d(browser,out,sodan=False,session=None,touch_d=False):
         q['status']='PASS'
     except (AssertionError,Error) as err:
         q['error']=str(err)
+        if touch_d:
+            q['steps']['exitTouches']=page.evaluate('window.seamTouches??[]')
         if page.evaluate('!!HonroApp.engine'):
             q['last']=state(page)
         page.screenshot(path=out/'d-live-failure.png')
     finally:
+        if pressure:
+            q['encounters']=page.evaluate('window.a6Exterior??null')
+            if q['encounters']:
+                q['encounters'].pop('frames')
         if session is None:
             ctx.close()
     if q['errors']:
@@ -422,13 +456,14 @@ def main():
     p.add_argument('--case',choices=['gallery','gallery-combat','live-d'],default='gallery')
     p.add_argument('--sodan',action='store_true')
     p.add_argument('--touch-d',action='store_true')
+    p.add_argument('--pressure',action='store_true')
     opts=p.parse_args()
     base.ROOT=opts.build.resolve()
     opts.out.mkdir(parents=True,exist_ok=True)
     with sync_playwright() as pw:
         browser=pw.chromium.launch(executable_path='/usr/bin/chromium',headless=True,
                                    args=['--no-sandbox','--disable-dev-shm-usage'])
-        entries=[(f'{opts.case}-{hz}',gallery(browser,opts.out,hz,opts.case=='gallery-combat')) for hz in opts.rates] if opts.case!='live-d' else [('live-d',live_d(browser,opts.out,opts.sodan,touch_d=opts.touch_d))]
+        entries=[(f'{opts.case}-{hz}',gallery(browser,opts.out,hz,opts.case=='gallery-combat')) for hz in opts.rates] if opts.case!='live-d' else [('live-d',live_d(browser,opts.out,opts.sodan,touch_d=opts.touch_d,pressure=opts.pressure))]
         for label,result in entries:
             (opts.out/f'{label}.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
             print(label,result['status'],result.get('error',''),flush=True)

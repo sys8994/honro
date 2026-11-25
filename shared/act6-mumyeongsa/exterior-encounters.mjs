@@ -70,7 +70,9 @@ function installExteriorEncounters(app,e,paused=()=>false,admit=()=>true){
    waves:[
     {id:'folding-ridge',label:'부서진 난간 아래에서 추격대가 다가옵니다.',at:[3010,3290],units:[['shade','west',2645,3285],['hound','west',2870,3295],['hound','west',3480,3320],['shade','west',3720,3250]]},
     {id:'relay-cutoff',label:'보호 받침을 향한 길 양편에서 적이 올라옵니다.',at:[4200,3100],units:[['shade','west',3880,3260],['hound','west',4120,3120],['shade','west',4510,3130],['stag','west',4800,3020]]},
-    {id:'occluded-bank',label:'동쪽 바위와 서쪽 암반 뒤에 마지막 감시대가 섭니다.',at:[5300,3010],units:[['shade','west',4940,3120,true],['shade','west',5070,3080,true],['shade','east',6810,2890,true],['shade','east',6970,3010,true]]},
+    {id:'occluded-bank',label:'석교 앞 돌턱과 동쪽 암반에서 마지막 감시대가 섭니다.',at:[5300,3010],units:[
+     ['shade','west',4940,3120,true],['shade','west',5070,3080,true],
+     [['hound','west',5192,3060],['hound','west',4840,3224]],['shade','east',6970,3010,true]]},
    ]},
   58:{active:9,attacks:6,roomReach:950,priority:'a6-c08-boss',sites:{hull:'local-lower-08-body',entryDeck:'m58-west-stone-step',
    gallery:'m58-rising-gallery',apse:'m58-east-deck'},
