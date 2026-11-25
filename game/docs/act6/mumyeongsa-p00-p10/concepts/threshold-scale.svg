@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1260" height="350" viewBox="0 0 1260 350" role="img" aria-labelledby="title desc">
+  <title id="title">Mumyeongsa threshold openings and hero contact envelope</title>
+  <desc id="desc">Proposed geometry drawn at the same scale, half a display pixel per world pixel. Gold hero boxes measure 92 by 44 world pixels. Red arrows indicate gravity. Blue lines indicate intended feet support.</desc>
+  <defs>
+    <marker id="gravity-arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0 0 L12 6 L0 12 Z" fill="#d27161"/>
+    </marker>
+    <pattern id="solid" width="18" height="18" patternUnits="userSpaceOnUse">
+      <path d="M-4 18 L18 -4 M0 36 L36 0" stroke="#54534e" stroke-width="2"/>
+    </pattern>
+    <g id="hero">
+      <path d="M-22 0V-92H22V0Z" fill="#e8bd72" fill-opacity=".35" stroke="#f6c980" stroke-width="3"/>
+      <path d="M-22 0H22" stroke="#ffe8a5" stroke-width="5"/>
+    </g>
+    <style>
+      text { font-family: system-ui,sans-serif; fill:#e6ddc9; }
+      .minor { fill:#b8b5a9; font-size:13px; }
+      .tag { font-size:17px; font-weight:600; }
+      .rock { fill:url(#solid); stroke:#777369; stroke-width:2; }
+      .surface { stroke:#8ec8cb; stroke-width:5; }
+      .axis { stroke:#d27161; stroke-width:5; marker-end:url(#gravity-arrow); }
+      .measure { stroke:#aba696; stroke-width:2; stroke-dasharray:8 8; }
+    </style>
+  </defs>
+  <rect width="1260" height="350" fill="#202523"/>
+  <text x="28" y="38" font-size="24" font-weight="650">Mumyeongsa · shared support sections</text>
+  <text x="28" y="65" class="minor">World geometry proposed at 1:2. Gold shows the measured 92 × 44 hero envelope. Cyan shows contact. Red points with gravity.</text>
+  <path d="M248 92V315 M496 92V315 M744 92V315 M1000 92V315" stroke="#434742"/>
+
+  <text x="32" y="110" class="tag">A · Gallery</text>
+  <g transform="translate(56,251) scale(.5)">
+    <rect class="rock" x="0" y="-236" width="292" height="28"/>
+    <rect class="rock" x="0" y="0" width="292" height="48"/>
+    <path class="surface" d="M0 0H292"/>
+    <path class="measure" d="M22 0V-208"/>
+    <use href="#hero" transform="translate(126 0)"/>
+    <path class="axis" d="M239 -141V-41"/>
+  </g>
+  <text x="32" y="312" class="minor">208 world px · gravity down</text>
+
+  <text x="271" y="110" class="tag">B · 53 → 54</text>
+  <g transform="translate(428,250) scale(.5)">
+    <rect class="rock" x="0" y="-210" width="40" height="214"/>
+    <rect class="rock" x="-252" y="-210" width="28" height="214"/>
+    <path class="surface" d="M0 -210V4"/>
+    <path class="measure" d="M-224 -19H0"/>
+    <use href="#hero" transform="translate(0 -84) rotate(-90)"/>
+    <path class="axis" d="M-167 -156H-53"/>
+  </g>
+  <text x="271" y="312" class="minor">224 world px · gravity right</text>
+
+  <text x="520" y="110" class="tag">C · 54 → 56</text>
+  <g transform="translate(554,147) scale(.5)">
+    <rect class="rock" x="0" y="-33" width="286" height="33"/>
+    <rect class="rock" x="0" y="236" width="286" height="40"/>
+    <path class="surface" d="M0 0H286"/>
+    <path class="measure" d="M22 0V236"/>
+    <use href="#hero" transform="translate(127 0) rotate(180)"/>
+    <path class="axis" d="M239 169V70"/>
+  </g>
+  <text x="520" y="312" class="minor">236 world px · gravity up</text>
+
+  <text x="763" y="110" class="tag">D · 56 / 57 → 58</text>
+  <g transform="translate(977,270) scale(.5)">
+    <rect class="rock" x="0" y="-275" width="24" height="279"/>
+    <rect class="rock" x="-432" y="-275" width="24" height="279"/>
+    <path class="surface" d="M0 -275V4"/>
+    <path class="measure" d="M-408 4H0"/>
+    <use href="#hero" transform="translate(0 -24) rotate(-90)"/>
+    <use href="#hero" transform="translate(0 -96) rotate(-90)"/>
+    <use href="#hero" transform="translate(0 -168) rotate(-90)"/>
+    <use href="#hero" transform="translate(0 -240) rotate(-90)"/>
+    <path class="axis" d="M-291 -127H-167"/>
+  </g>
+  <text x="763" y="312" class="minor">408 world px · gravity right</text>
+
+  <text x="1021" y="110" class="tag">R · 58 → 59</text>
+  <g transform="translate(1061,257) scale(.5)">
+    <rect class="rock" x="0" y="-278" width="300" height="30"/>
+    <rect class="rock" x="0" y="0" width="300" height="48"/>
+    <path class="surface" d="M0 0H300"/>
+    <path class="measure" d="M22 0V-248"/>
+    <use href="#hero" transform="translate(126 0)"/>
+    <path class="axis" d="M239 -172V-56"/>
+  </g>
+  <text x="1021" y="312" class="minor">248 world px · gravity down</text>
+</svg>

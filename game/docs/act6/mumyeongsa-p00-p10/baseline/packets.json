@@ -1,0 +1,641 @@
+{
+  "rows": [
+    {
+      "id": 51,
+      "packet": "first-two",
+      "sha256": "6b01d867cab98268bcd8d4f328f4166c90d091b64bf69d0a1e1eb6da51e245ca",
+      "mapId": "qa-act6-r4-01",
+      "play": {
+        "left": 0,
+        "top": 0,
+        "right": 7200,
+        "bottom": 5400
+      },
+      "terrain": {
+        "left": -6400,
+        "top": -9800,
+        "right": 12900,
+        "bottom": 17100
+      },
+      "authoredUnitIds": [
+        "p-archer",
+        "p-mage",
+        "p-knight",
+        "p-occultist",
+        "watcher",
+        "pocket",
+        "armor",
+        "crest-champion"
+      ],
+      "colliderPoints": [
+        {
+          "id": "mountain-main",
+          "points": 55,
+          "type": "solid"
+        },
+        {
+          "id": "terrace-continuous",
+          "points": 92,
+          "type": "solid"
+        }
+      ],
+      "assets": 10
+    },
+    {
+      "id": 52,
+      "packet": "first-two",
+      "sha256": "6b01d867cab98268bcd8d4f328f4166c90d091b64bf69d0a1e1eb6da51e245ca",
+      "mapId": "qa-act6-r4-02",
+      "play": {
+        "left": 0,
+        "top": 0,
+        "right": 6250,
+        "bottom": 6250
+      },
+      "terrain": {
+        "left": -6500,
+        "top": -9800,
+        "right": 13000,
+        "bottom": 17000
+      },
+      "authoredUnitIds": [
+        "p-archer",
+        "p-mage",
+        "p-knight",
+        "p-occultist",
+        "watch-range",
+        "bridge-keeper",
+        "return-guard",
+        "cliff-stone"
+      ],
+      "colliderPoints": [
+        {
+          "id": "west-watch-and-descent",
+          "points": 45,
+          "type": "solid"
+        },
+        {
+          "id": "east-return-buttress",
+          "points": 50,
+          "type": "solid"
+        },
+        {
+          "id": "broken-arch-west",
+          "points": 21,
+          "type": "solid"
+        },
+        {
+          "id": "broken-arch-east",
+          "points": 21,
+          "type": "solid"
+        },
+        {
+          "id": "return-lower-crossing",
+          "points": 31,
+          "type": "solid"
+        },
+        {
+          "id": "landing-1",
+          "points": 6,
+          "type": "solid"
+        },
+        {
+          "id": "landing-2",
+          "points": 6,
+          "type": "solid"
+        },
+        {
+          "id": "landing-3",
+          "points": 6,
+          "type": "solid"
+        },
+        {
+          "id": "landing-4",
+          "points": 6,
+          "type": "solid"
+        },
+        {
+          "id": "landing-5",
+          "points": 6,
+          "type": "solid"
+        }
+      ],
+      "assets": 16
+    },
+    {
+      "id": 53,
+      "packet": "third",
+      "sha256": "7684415ea7182438c8aa3d60c0bf14a1c177682ff25df3ff88c50958cb32231c",
+      "mapId": "contact-q-03",
+      "play": {
+        "left": 0,
+        "top": 0,
+        "right": 3000,
+        "bottom": 3000
+      },
+      "terrain": {
+        "left": -305,
+        "top": -285,
+        "right": 3425,
+        "bottom": 3450
+      },
+      "authoredUnitIds": [
+        "draft-damheo",
+        "draft-lower-lane-guard",
+        "draft-upper-side-guard"
+      ],
+      "colliderPoints": [
+        {
+          "id": "south",
+          "points": 31,
+          "type": "solid"
+        },
+        {
+          "id": "east",
+          "points": 37,
+          "type": "solid"
+        },
+        {
+          "id": "west",
+          "points": 32,
+          "type": "solid"
+        },
+        {
+          "id": "north",
+          "points": 39,
+          "type": "solid"
+        },
+        {
+          "id": "upper-threshold-footing",
+          "points": 15,
+          "type": "solid"
+        }
+      ],
+      "assets": 17,
+      "rosterRows": [
+        "a5-foe-7",
+        "a5-foe-13"
+      ]
+    },
+    {
+      "id": 54,
+      "packet": "fourth",
+      "sha256": "b5922a3d8aa7bd413f52171ca945e7096585d336c28780f6ccaba3fefb54f5b8",
+      "mapId": "stage-54",
+      "play": {
+        "left": 0,
+        "top": 0,
+        "right": 3200,
+        "bottom": 3000
+      },
+      "terrain": {
+        "left": -260,
+        "top": -280,
+        "right": 3580,
+        "bottom": 3450
+      },
+      "authoredUnitIds": [],
+      "colliderPoints": [
+        {
+          "id": "foothill",
+          "points": 38,
+          "type": "solid"
+        },
+        {
+          "id": "mid-contact",
+          "points": 54,
+          "type": "solid"
+        },
+        {
+          "id": "east-spine",
+          "points": 30,
+          "type": "solid"
+        },
+        {
+          "id": "post-contact",
+          "points": 29,
+          "type": "solid"
+        },
+        {
+          "id": "west-continuation",
+          "points": 8,
+          "type": "solid"
+        }
+      ],
+      "assets": 18,
+      "rosterRows": [],
+      "charts": {
+        "N": {
+          "width": 3200,
+          "height": 3000,
+          "play": {
+            "left": 0,
+            "top": 0,
+            "right": 3200,
+            "bottom": 3000
+          },
+          "terrain": {
+            "left": -260,
+            "top": -280,
+            "right": 3580,
+            "bottom": 3450
+          }
+        },
+        "L": {
+          "width": 3000,
+          "height": 3200,
+          "play": {
+            "left": 0,
+            "top": 0,
+            "right": 3000,
+            "bottom": 3200
+          },
+          "terrain": {
+            "left": -280,
+            "top": -380,
+            "right": 3450,
+            "bottom": 3460
+          }
+        },
+        "C": {
+          "width": 3200,
+          "height": 3000,
+          "play": {
+            "left": 0,
+            "top": 0,
+            "right": 3200,
+            "bottom": 3000
+          },
+          "terrain": {
+            "left": -380,
+            "top": -450,
+            "right": 3460,
+            "bottom": 3280
+          }
+        }
+      },
+      "authoredSpawn": {
+        "x": 250,
+        "support": "foothill"
+      }
+    },
+    {
+      "id": 55,
+      "packet": "fifth",
+      "sha256": "3ae91543525a09093da52ee1dd2bff8ab8324a7e7858996c363afdd10e066b8f",
+      "mapId": "stage-55",
+      "play": {
+        "left": 0,
+        "top": 0,
+        "right": 6800,
+        "bottom": 3200
+      },
+      "terrain": {
+        "left": -4496,
+        "top": -1992,
+        "right": 11536,
+        "bottom": 11768
+      },
+      "authoredUnitIds": [],
+      "colliderPoints": [
+        {
+          "id": "west-ring-descent",
+          "points": 4,
+          "type": "solid"
+        },
+        {
+          "id": "arrival-core-terrace",
+          "points": 4,
+          "type": "solid"
+        },
+        {
+          "id": "right-return-rise",
+          "points": 4,
+          "type": "solid"
+        },
+        {
+          "id": "east-upper-end",
+          "points": 4,
+          "type": "solid"
+        },
+        {
+          "id": "west-lower-branch",
+          "points": 4,
+          "type": "solid"
+        },
+        {
+          "id": "east-lower-branch",
+          "points": 4,
+          "type": "solid"
+        }
+      ],
+      "assets": 1,
+      "rosterRows": [
+        "draft-pressure-0",
+        "draft-pressure-1",
+        "draft-pressure-2",
+        "draft-pressure-3"
+      ]
+    },
+    {
+      "id": 56,
+      "packet": "sixth",
+      "sha256": "73e6de40351e90fc7014ea471cf7739b9444c3e67b5edb80d89f895dc5ae9d61",
+      "mapId": "qa-act6-06",
+      "play": {
+        "left": 0,
+        "top": 0,
+        "right": 6720,
+        "bottom": 5040
+      },
+      "terrain": {
+        "left": -4528,
+        "top": -1992,
+        "right": 11488,
+        "bottom": 13776
+      },
+      "authoredUnitIds": [],
+      "colliderPoints": [
+        {
+          "id": "A-01-upper-entry",
+          "points": 4,
+          "type": "solid"
+        },
+        {
+          "id": "C-01-west-upper-descent",
+          "points": 4,
+          "type": "solid"
+        },
+        {
+          "id": "C-02-west-shaft-descent",
+          "points": 8,
+          "type": "solid"
+        },
+        {
+          "id": "C-03-west-refuge-lower",
+          "points": 7,
+          "type": "solid"
+        },
+        {
+          "id": "B-01-center-stone-ascent",
+          "points": 4,
+          "type": "solid"
+        },
+        {
+          "id": "B-02-center-lower-short-climb",
+          "points": 6,
+          "type": "solid"
+        },
+        {
+          "id": "A-upper-veranda",
+          "points": 4,
+          "type": "solid"
+        },
+        {
+          "id": "B-left-broken-balcony",
+          "points": 4,
+          "type": "solid"
+        },
+        {
+          "id": "B-central-lower-floor",
+          "points": 6,
+          "type": "solid"
+        },
+        {
+          "id": "E-joined-ordinary-floor",
+          "points": 8,
+          "type": "solid"
+        },
+        {
+          "id": "west-extension-prototype",
+          "points": 14,
+          "type": "solid"
+        }
+      ],
+      "assets": 1,
+      "rosterRows": [
+        "draft-pressure-0",
+        "draft-pressure-1",
+        "draft-pressure-2",
+        "draft-pressure-3"
+      ],
+      "authoredSpawn": {
+        "x": 928,
+        "y": 1136,
+        "support": "A-upper-veranda"
+      }
+    },
+    {
+      "id": 57,
+      "packet": "seventh",
+      "sha256": "005b77bedf9a6034cb92faa8fc816c5df06fc78b23b295379eab1a00d087dfe4",
+      "mapId": "a6-local-playable-07",
+      "play": {
+        "left": 0,
+        "top": 0,
+        "right": 7200,
+        "bottom": 3600
+      },
+      "terrain": {
+        "left": -3200,
+        "top": -3100,
+        "right": 11320,
+        "bottom": 7400
+      },
+      "authoredUnitIds": [],
+      "colliderPoints": [
+        {
+          "id": "local-lower-07-west",
+          "points": 36,
+          "type": "solid"
+        },
+        {
+          "id": "local-lower-07-east",
+          "points": 11,
+          "type": "solid"
+        },
+        {
+          "id": "local-lower-07-aperture-roof",
+          "points": 11,
+          "type": "solid"
+        },
+        {
+          "id": "local-lower-07-aperture-footing",
+          "points": 6,
+          "type": "solid"
+        },
+        {
+          "id": "a6-c07-railing",
+          "points": 6,
+          "type": "solid"
+        },
+        {
+          "id": "a6-c07-protective-relay",
+          "points": 6,
+          "type": "solid"
+        },
+        {
+          "id": "a6-c07-stationary-stone-ward",
+          "points": 6,
+          "type": "solid"
+        }
+      ],
+      "assets": 22,
+      "rosterRows": [
+        "a6-c07-optional-drift",
+        "a6-c07-optional-pressure",
+        "a6-c07-ward-pressure"
+      ]
+    },
+    {
+      "id": 58,
+      "packet": "eighth",
+      "sha256": "5379e10b5e5490036308ab4e9c8d552f360359365f83106c6e52a57385114297",
+      "mapId": "stage-58",
+      "play": {
+        "left": 0,
+        "top": 0,
+        "right": 7200,
+        "bottom": 3600
+      },
+      "terrain": {
+        "left": -3600,
+        "top": -3250,
+        "right": 11440,
+        "bottom": 7500
+      },
+      "authoredUnitIds": [],
+      "colliderPoints": [
+        {
+          "id": "local-lower-08-body",
+          "points": 45,
+          "type": "solid"
+        },
+        {
+          "id": "local-lower-08-east-buttress",
+          "points": 27,
+          "type": "solid"
+        }
+      ],
+      "assets": 30,
+      "rosterRows": [
+        "a6-c08-boss",
+        "a6-c08-expansion-node",
+        "a6-c08-unsettled-ledger",
+        "a6-c08-margin-echo",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b",
+        "a6-c08-ink-echo-a",
+        "a6-c08-ink-echo-b"
+      ]
+    },
+    {
+      "id": 59,
+      "packet": "ninth",
+      "sha256": "dd829cb01460592a296b5f8127825260036386a437206928e21cb928cdb8d333",
+      "mapId": "stage-59",
+      "play": {
+        "left": 0,
+        "top": 0,
+        "right": 7800,
+        "bottom": 4700
+      },
+      "terrain": {
+        "left": -5000,
+        "top": -2100,
+        "right": 13000,
+        "bottom": 14700
+      },
+      "authoredUnitIds": [],
+      "colliderPoints": [
+        {
+          "id": "finale-cutout-near-body",
+          "points": 75,
+          "type": "solid"
+        },
+        {
+          "id": "finale-cutout-west-terrace",
+          "points": 33,
+          "type": "solid"
+        }
+      ],
+      "assets": 4,
+      "rosterRows": [
+        "warden",
+        "mourner",
+        "shade"
+      ]
+    },
+    {
+      "id": 60,
+      "packet": "tenth",
+      "sha256": "1ed264e9415a2757852c7e7274ffdf94696e5fa89ff2b258871773bf920d52e1",
+      "mapId": "a6-10-playable-draft-noncampaign",
+      "play": {
+        "left": 0,
+        "top": 0,
+        "right": 7200,
+        "bottom": 4100
+      },
+      "terrain": {
+        "left": -5000,
+        "top": -2100,
+        "right": 13000,
+        "bottom": 14700
+      },
+      "authoredUnitIds": [],
+      "colliderPoints": [
+        {
+          "id": "return-cutout-near-body",
+          "points": 71,
+          "type": "solid"
+        },
+        {
+          "id": "return-cutout-upper-ledges",
+          "points": 55,
+          "type": "solid"
+        }
+      ],
+      "assets": 3,
+      "rosterRows": []
+    }
+  ],
+  "sources": {
+    "stage56": {
+      "sourceSHA": "73e6de40351e90fc7014ea471cf7739b9444c3e67b5edb80d89f895dc5ae9d61",
+      "authority": "shared/runtime/stage56-owner.mjs",
+      "bodyAsset": [
+        {
+          "id": "ch06-v5-local-native-art",
+          "visualFaces": 725
+        }
+      ]
+    },
+    "stage58": {
+      "reservedCombatIds": [
+        "a6-c08-boss",
+        "a6-c08-expansion-node",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b",
+        "a6-c08-ink-echo-a",
+        "a6-c08-ink-echo-b"
+      ],
+      "grotesqueTotal": 6,
+      "grotesqueMaxAlive": 2
+    },
+    "stage59": {
+      "frontCounts": [
+        {
+          "id": "west-return",
+          "count": 16
+        },
+        {
+          "id": "east-fault",
+          "count": 17
+        }
+      ],
+      "perFrontCap": 6,
+      "totalCap": 16
+    }
+  }
+}

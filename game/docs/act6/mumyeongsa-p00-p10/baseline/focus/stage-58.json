@@ -1,0 +1,4399 @@
+{
+  "stage": 58,
+  "status": "PASS",
+  "errors": [],
+  "warnings": [],
+  "httpErrors": [],
+  "entry": {
+    "stageId": 58,
+    "honroStage": 58,
+    "mode": "campaign",
+    "authoredId": "stage-58",
+    "round": 1,
+    "phase": "aim",
+    "side": 0,
+    "shot": 0,
+    "rng": 19388,
+    "active": "p-mage",
+    "dialogue": false,
+    "isolatedStore": true,
+    "play": [
+      7200,
+      3600
+    ],
+    "terrainBounds": {
+      "left": -3600,
+      "top": -3250,
+      "right": 11440,
+      "bottom": 7500
+    },
+    "playBounds": {
+      "left": 0,
+      "top": 0,
+      "right": 7200,
+      "bottom": 3600
+    },
+    "camera": {
+      "x": 2831.800148591102,
+      "y": 3284.6932901870996,
+      "zoom": null
+    },
+    "gravity": {
+      "x": 0,
+      "y": 320
+    },
+    "fieldFlags": [
+      {
+        "id": "local-sealed-axis",
+        "gravity": {
+          "x": 320,
+          "y": 0
+        },
+        "projectileOnly": true
+      }
+    ],
+    "terrain": [
+      {
+        "id": "local-lower-08-body",
+        "vertices": 39,
+        "oneWay": false
+      },
+      {
+        "id": "local-lower-08-east-buttress",
+        "vertices": 23,
+        "oneWay": false
+      }
+    ],
+    "worldTerrain": [
+      {
+        "id": "local-lower-08-body",
+        "vertices": 45
+      },
+      {
+        "id": "local-lower-08-east-buttress",
+        "vertices": 27
+      }
+    ],
+    "enemies": [],
+    "units": [
+      {
+        "id": "p-mage",
+        "cls": "mage",
+        "side": 0,
+        "level": 25,
+        "hp": 1314.9,
+        "maxHp": 2050,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "pos": [
+          2780.04,
+          3458.96
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "local-lower-08-body",
+        "fixed": false,
+        "objective": false,
+        "role": "mage",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "p-archer",
+        "cls": "archer",
+        "side": 0,
+        "level": 25,
+        "hp": 1407,
+        "maxHp": 1720,
+        "loadout": [
+          "A01",
+          "A14",
+          "A02",
+          "A05"
+        ],
+        "pos": [
+          2645.07,
+          3480.52
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "local-lower-08-body",
+        "fixed": false,
+        "objective": false,
+        "role": "archer",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "p-knight",
+        "cls": "knight",
+        "side": 0,
+        "level": 25,
+        "hp": 3688.1,
+        "maxHp": 3846,
+        "loadout": [
+          "S00",
+          "S01",
+          "S03"
+        ],
+        "pos": [
+          2876.99,
+          3430.81
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "local-lower-08-body",
+        "fixed": false,
+        "objective": false,
+        "role": "knight",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "p-occultist",
+        "cls": "occultist",
+        "side": 0,
+        "level": 25,
+        "hp": 2144.1,
+        "maxHp": 2304,
+        "loadout": [
+          "O01",
+          "O04",
+          "O03",
+          "O06"
+        ],
+        "pos": [
+          2987.09,
+          3399.12
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "local-lower-08-body",
+        "fixed": false,
+        "objective": false,
+        "role": "occultist",
+        "summoned": false,
+        "ally": false
+      }
+    ]
+  },
+  "settled": {
+    "stageId": 58,
+    "honroStage": 58,
+    "mode": "campaign",
+    "authoredId": "stage-58",
+    "round": 1,
+    "phase": "aim",
+    "side": 0,
+    "shot": 0,
+    "rng": 19388,
+    "active": "p-mage",
+    "dialogue": false,
+    "isolatedStore": true,
+    "play": [
+      7200,
+      3600
+    ],
+    "terrainBounds": {
+      "left": -3600,
+      "top": -3250,
+      "right": 11440,
+      "bottom": 7500
+    },
+    "playBounds": {
+      "left": 0,
+      "top": 0,
+      "right": 7200,
+      "bottom": 3600
+    },
+    "camera": {
+      "x": 2948.226754317972,
+      "y": 3275.1052167742982,
+      "zoom": null
+    },
+    "gravity": {
+      "x": 0,
+      "y": 320
+    },
+    "fieldFlags": [
+      {
+        "id": "local-sealed-axis",
+        "gravity": {
+          "x": 320,
+          "y": 0
+        },
+        "projectileOnly": true
+      }
+    ],
+    "terrain": [
+      {
+        "id": "local-lower-08-body",
+        "vertices": 39,
+        "oneWay": false
+      },
+      {
+        "id": "local-lower-08-east-buttress",
+        "vertices": 23,
+        "oneWay": false
+      }
+    ],
+    "worldTerrain": [
+      {
+        "id": "local-lower-08-body",
+        "vertices": 45
+      },
+      {
+        "id": "local-lower-08-east-buttress",
+        "vertices": 27
+      }
+    ],
+    "enemies": [],
+    "units": [
+      {
+        "id": "p-mage",
+        "cls": "mage",
+        "side": 0,
+        "level": 25,
+        "hp": 1314.9,
+        "maxHp": 2050,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "pos": [
+          2780.04,
+          3458.96
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "local-lower-08-body",
+        "fixed": false,
+        "objective": false,
+        "role": "mage",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "p-archer",
+        "cls": "archer",
+        "side": 0,
+        "level": 25,
+        "hp": 1407,
+        "maxHp": 1720,
+        "loadout": [
+          "A01",
+          "A14",
+          "A02",
+          "A05"
+        ],
+        "pos": [
+          2645.07,
+          3480.52
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "local-lower-08-body",
+        "fixed": false,
+        "objective": false,
+        "role": "archer",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "p-knight",
+        "cls": "knight",
+        "side": 0,
+        "level": 25,
+        "hp": 3688.1,
+        "maxHp": 3846,
+        "loadout": [
+          "S00",
+          "S01",
+          "S03"
+        ],
+        "pos": [
+          2876.99,
+          3430.81
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "local-lower-08-body",
+        "fixed": false,
+        "objective": false,
+        "role": "knight",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "p-occultist",
+        "cls": "occultist",
+        "side": 0,
+        "level": 25,
+        "hp": 2144.1,
+        "maxHp": 2304,
+        "loadout": [
+          "O01",
+          "O04",
+          "O03",
+          "O06"
+        ],
+        "pos": [
+          2987.09,
+          3399.12
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "local-lower-08-body",
+        "fixed": false,
+        "objective": false,
+        "role": "occultist",
+        "summoned": false,
+        "ally": false
+      }
+    ]
+  },
+  "fightStart": {
+    "status": "PASS",
+    "poses": [
+      {
+        "stageId": 58,
+        "honroStage": 58,
+        "mode": "campaign",
+        "authoredId": "stage-58",
+        "round": 1,
+        "phase": "aim",
+        "side": 0,
+        "shot": 0,
+        "rng": 19388,
+        "active": "p-occultist",
+        "dialogue": false,
+        "isolatedStore": true,
+        "play": [
+          7200,
+          3600
+        ],
+        "terrainBounds": {
+          "left": -3600,
+          "top": -3250,
+          "right": 11440,
+          "bottom": 7500
+        },
+        "playBounds": {
+          "left": 0,
+          "top": 0,
+          "right": 7200,
+          "bottom": 3600
+        },
+        "camera": {
+          "x": 3572.9562052049987,
+          "y": 3057.0655593201345,
+          "zoom": null
+        },
+        "gravity": {
+          "x": 0,
+          "y": 320
+        },
+        "fieldFlags": [
+          {
+            "id": "local-sealed-axis",
+            "gravity": {
+              "x": 320,
+              "y": 0
+            },
+            "projectileOnly": true
+          }
+        ],
+        "terrain": [
+          {
+            "id": "local-lower-08-body",
+            "vertices": 39,
+            "oneWay": false
+          },
+          {
+            "id": "local-lower-08-east-buttress",
+            "vertices": 23,
+            "oneWay": false
+          }
+        ],
+        "worldTerrain": [
+          {
+            "id": "local-lower-08-body",
+            "vertices": 45
+          },
+          {
+            "id": "local-lower-08-east-buttress",
+            "vertices": 27
+          }
+        ],
+        "enemies": [],
+        "units": [
+          {
+            "id": "p-mage",
+            "cls": "mage",
+            "side": 0,
+            "level": 25,
+            "hp": 1314.9,
+            "maxHp": 2050,
+            "loadout": [
+              "M01",
+              "M10",
+              "M07"
+            ],
+            "pos": [
+              2780.04,
+              3458.96
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-08-body",
+            "fixed": false,
+            "objective": false,
+            "role": "mage",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-archer",
+            "cls": "archer",
+            "side": 0,
+            "level": 25,
+            "hp": 1407,
+            "maxHp": 1720,
+            "loadout": [
+              "A01",
+              "A14",
+              "A02",
+              "A05"
+            ],
+            "pos": [
+              2645.07,
+              3480.52
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-08-body",
+            "fixed": false,
+            "objective": false,
+            "role": "archer",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-knight",
+            "cls": "knight",
+            "side": 0,
+            "level": 25,
+            "hp": 3688.1,
+            "maxHp": 3846,
+            "loadout": [
+              "S00",
+              "S01",
+              "S03"
+            ],
+            "pos": [
+              2876.99,
+              3430.81
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-08-body",
+            "fixed": false,
+            "objective": false,
+            "role": "knight",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-occultist",
+            "cls": "occultist",
+            "side": 0,
+            "level": 25,
+            "hp": 2144.1,
+            "maxHp": 2304,
+            "loadout": [
+              "O01",
+              "O04",
+              "O03",
+              "O06"
+            ],
+            "pos": [
+              3461.5,
+              3221.87
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-08-body",
+            "fixed": false,
+            "objective": false,
+            "role": "occultist",
+            "summoned": false,
+            "ally": false
+          }
+        ]
+      },
+      {
+        "stageId": 58,
+        "honroStage": 58,
+        "mode": "campaign",
+        "authoredId": "stage-58",
+        "round": 1,
+        "phase": "aim",
+        "side": 0,
+        "shot": 0,
+        "rng": 19388,
+        "active": "p-mage",
+        "dialogue": false,
+        "isolatedStore": true,
+        "play": [
+          7200,
+          3600
+        ],
+        "terrainBounds": {
+          "left": -3600,
+          "top": -3250,
+          "right": 11440,
+          "bottom": 7500
+        },
+        "playBounds": {
+          "left": 0,
+          "top": 0,
+          "right": 7200,
+          "bottom": 3600
+        },
+        "camera": {
+          "x": 3727.6644326623414,
+          "y": 3114.51489225545,
+          "zoom": null
+        },
+        "gravity": {
+          "x": 0,
+          "y": 320
+        },
+        "fieldFlags": [],
+        "terrain": [
+          {
+            "id": "local-lower-08-body",
+            "vertices": 39,
+            "oneWay": false
+          },
+          {
+            "id": "local-lower-08-east-buttress",
+            "vertices": 23,
+            "oneWay": false
+          }
+        ],
+        "worldTerrain": [
+          {
+            "id": "local-lower-08-body",
+            "vertices": 45
+          },
+          {
+            "id": "local-lower-08-east-buttress",
+            "vertices": 27
+          }
+        ],
+        "enemies": [],
+        "units": [
+          {
+            "id": "p-mage",
+            "cls": "mage",
+            "side": 0,
+            "level": 25,
+            "hp": 1314.9,
+            "maxHp": 2050,
+            "loadout": [
+              "M01",
+              "M10",
+              "M07"
+            ],
+            "pos": [
+              3611.82,
+              3318.85
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-08-body",
+            "fixed": false,
+            "objective": false,
+            "role": "mage",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-archer",
+            "cls": "archer",
+            "side": 0,
+            "level": 25,
+            "hp": 1407,
+            "maxHp": 1720,
+            "loadout": [
+              "A01",
+              "A14",
+              "A02",
+              "A05"
+            ],
+            "pos": [
+              2645.07,
+              3480.52
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-08-body",
+            "fixed": false,
+            "objective": false,
+            "role": "archer",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-knight",
+            "cls": "knight",
+            "side": 0,
+            "level": 25,
+            "hp": 3688.1,
+            "maxHp": 3846,
+            "loadout": [
+              "S00",
+              "S01",
+              "S03"
+            ],
+            "pos": [
+              2876.99,
+              3430.81
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-08-body",
+            "fixed": false,
+            "objective": false,
+            "role": "knight",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-occultist",
+            "cls": "occultist",
+            "side": 0,
+            "level": 25,
+            "hp": 2144.1,
+            "maxHp": 2304,
+            "loadout": [
+              "O01",
+              "O04",
+              "O03",
+              "O06"
+            ],
+            "pos": [
+              3461.5,
+              3221.87
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-08-body",
+            "fixed": false,
+            "objective": false,
+            "role": "occultist",
+            "summoned": false,
+            "ally": false
+          }
+        ]
+      }
+    ],
+    "result": {
+      "stageId": 58,
+      "honroStage": 58,
+      "mode": "campaign",
+      "authoredId": "stage-58",
+      "round": 1,
+      "phase": "aim",
+      "side": 0,
+      "shot": 0,
+      "rng": 19388,
+      "active": "p-mage",
+      "dialogue": false,
+      "isolatedStore": true,
+      "play": [
+        7200,
+        3600
+      ],
+      "terrainBounds": {
+        "left": -3600,
+        "top": -3250,
+        "right": 11440,
+        "bottom": 7500
+      },
+      "playBounds": {
+        "left": 0,
+        "top": 0,
+        "right": 7200,
+        "bottom": 3600
+      },
+      "camera": {
+        "x": 3897.676670629068,
+        "y": 3119.161958263329,
+        "zoom": null
+      },
+      "gravity": {
+        "x": 0,
+        "y": 320
+      },
+      "fieldFlags": [
+        {
+          "id": "a6-c08-far-sight",
+          "gravity": {
+            "x": -260,
+            "y": 0
+          },
+          "projectileOnly": true
+        }
+      ],
+      "terrain": [
+        {
+          "id": "local-lower-08-body",
+          "vertices": 39,
+          "oneWay": false
+        },
+        {
+          "id": "local-lower-08-east-buttress",
+          "vertices": 23,
+          "oneWay": false
+        }
+      ],
+      "worldTerrain": [
+        {
+          "id": "local-lower-08-body",
+          "vertices": 45
+        },
+        {
+          "id": "local-lower-08-east-buttress",
+          "vertices": 27
+        }
+      ],
+      "enemies": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b"
+      ],
+      "units": [
+        {
+          "id": "p-mage",
+          "cls": "mage",
+          "side": 0,
+          "level": 25,
+          "hp": 1314.9,
+          "maxHp": 2050,
+          "loadout": [
+            "M01",
+            "M10",
+            "M07"
+          ],
+          "pos": [
+            3611.82,
+            3318.85
+          ],
+          "h": 92,
+          "r": 22,
+          "awake": true,
+          "dead": false,
+          "airborne": false,
+          "grounded": true,
+          "validContact": true,
+          "support": "local-lower-08-body",
+          "fixed": false,
+          "objective": false,
+          "role": "mage",
+          "summoned": false,
+          "ally": false
+        },
+        {
+          "id": "p-archer",
+          "cls": "archer",
+          "side": 0,
+          "level": 25,
+          "hp": 1407,
+          "maxHp": 1720,
+          "loadout": [
+            "A01",
+            "A14",
+            "A02",
+            "A05"
+          ],
+          "pos": [
+            2645.07,
+            3480.52
+          ],
+          "h": 92,
+          "r": 22,
+          "awake": true,
+          "dead": false,
+          "airborne": false,
+          "grounded": true,
+          "validContact": true,
+          "support": "local-lower-08-body",
+          "fixed": false,
+          "objective": false,
+          "role": "archer",
+          "summoned": false,
+          "ally": false
+        },
+        {
+          "id": "p-knight",
+          "cls": "knight",
+          "side": 0,
+          "level": 25,
+          "hp": 3688.1,
+          "maxHp": 3846,
+          "loadout": [
+            "S00",
+            "S01",
+            "S03"
+          ],
+          "pos": [
+            2876.99,
+            3430.81
+          ],
+          "h": 92,
+          "r": 22,
+          "awake": true,
+          "dead": false,
+          "airborne": false,
+          "grounded": true,
+          "validContact": true,
+          "support": "local-lower-08-body",
+          "fixed": false,
+          "objective": false,
+          "role": "knight",
+          "summoned": false,
+          "ally": false
+        },
+        {
+          "id": "p-occultist",
+          "cls": "occultist",
+          "side": 0,
+          "level": 25,
+          "hp": 2144.1,
+          "maxHp": 2304,
+          "loadout": [
+            "O01",
+            "O04",
+            "O03",
+            "O06"
+          ],
+          "pos": [
+            3461.5,
+            3221.87
+          ],
+          "h": 92,
+          "r": 22,
+          "awake": true,
+          "dead": false,
+          "airborne": false,
+          "grounded": true,
+          "validContact": true,
+          "support": "local-lower-08-body",
+          "fixed": false,
+          "objective": false,
+          "role": "occultist",
+          "summoned": false,
+          "ally": false
+        },
+        {
+          "id": "a6-c08-boss",
+          "cls": "mage",
+          "side": 1,
+          "level": 25,
+          "hp": 10500,
+          "maxHp": 10500,
+          "loadout": [],
+          "pos": [
+            4480,
+            3194.77
+          ],
+          "h": 182,
+          "r": 34,
+          "awake": true,
+          "dead": false,
+          "airborne": false,
+          "grounded": true,
+          "validContact": true,
+          "support": "local-lower-08-body",
+          "fixed": true,
+          "objective": false,
+          "role": "boss",
+          "summoned": false,
+          "ally": false
+        },
+        {
+          "id": "a6-c08-vessel-a",
+          "cls": "occultist",
+          "side": 1,
+          "level": 25,
+          "hp": 1100,
+          "maxHp": 1100,
+          "loadout": [
+            "HGS01",
+            "HGS02"
+          ],
+          "pos": [
+            4300,
+            3241.52
+          ],
+          "h": 105,
+          "r": 21,
+          "awake": true,
+          "dead": false,
+          "airborne": false,
+          "grounded": true,
+          "validContact": true,
+          "support": "local-lower-08-body",
+          "fixed": false,
+          "objective": false,
+          "role": "fire",
+          "summoned": false,
+          "ally": false
+        },
+        {
+          "id": "a6-c08-vessel-b",
+          "cls": "occultist",
+          "side": 1,
+          "level": 25,
+          "hp": 1100,
+          "maxHp": 1100,
+          "loadout": [
+            "HGS01",
+            "HGS02"
+          ],
+          "pos": [
+            5000,
+            2977.83
+          ],
+          "h": 105,
+          "r": 21,
+          "awake": true,
+          "dead": false,
+          "airborne": false,
+          "grounded": true,
+          "validContact": true,
+          "support": "local-lower-08-body",
+          "fixed": false,
+          "objective": false,
+          "role": "fire",
+          "summoned": false,
+          "ally": false
+        }
+      ]
+    }
+  },
+  "input": [
+    {
+      "key": "ArrowRight",
+      "before": {
+        "stageId": 58,
+        "honroStage": 58,
+        "mode": "campaign",
+        "authoredId": "stage-58",
+        "round": 1,
+        "phase": "aim",
+        "side": 0,
+        "shot": 0,
+        "rng": 19388,
+        "active": "p-mage",
+        "dialogue": false,
+        "isolatedStore": true,
+        "play": [
+          7200,
+          3600
+        ],
+        "terrainBounds": {
+          "left": -3600,
+          "top": -3250,
+          "right": 11440,
+          "bottom": 7500
+        },
+        "playBounds": {
+          "left": 0,
+          "top": 0,
+          "right": 7200,
+          "bottom": 3600
+        },
+        "camera": {
+          "x": 3944.5661768434265,
+          "y": 3119.3584922640466,
+          "zoom": null
+        },
+        "gravity": {
+          "x": 0,
+          "y": 320
+        },
+        "fieldFlags": [
+          {
+            "id": "a6-c08-far-sight",
+            "gravity": {
+              "x": -260,
+              "y": 0
+            },
+            "projectileOnly": true
+          }
+        ],
+        "terrain": [
+          {
+            "id": "local-lower-08-body",
+            "vertices": 39,
+            "oneWay": false
+          },
+          {
+            "id": "local-lower-08-east-buttress",
+            "vertices": 23,
+            "oneWay": false
+          }
+        ],
+        "worldTerrain": [
+          {
+            "id": "local-lower-08-body",
+            "vertices": 45
+          },
+          {
+            "id": "local-lower-08-east-buttress",
+            "vertices": 27
+          }
+        ],
+        "enemies": [
+          "a6-c08-boss",
+          "a6-c08-vessel-a",
+          "a6-c08-vessel-b"
+        ],
+        "units": [
+          {
+            "id": "p-mage",
+            "cls": "mage",
+            "side": 0,
+            "level": 25,
+            "hp": 1314.9,
+            "maxHp": 2050,
+            "loadout": [
+              "M01",
+              "M10",
+              "M07"
+            ],
+            "pos": [
+              3611.82,
+              3318.85
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-08-body",
+            "fixed": false,
+            "objective": false,
+            "role": "mage",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-archer",
+            "cls": "archer",
+            "side": 0,
+            "level": 25,
+            "hp": 1407,
+            "maxHp": 1720,
+            "loadout": [
+              "A01",
+              "A14",
+              "A02",
+              "A05"
+            ],
+            "pos": [
+              2645.07,
+              3480.52
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-08-body",
+            "fixed": false,
+            "objective": false,
+            "role": "archer",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-knight",
+            "cls": "knight",
+            "side": 0,
+            "level": 25,
+            "hp": 3688.1,
+            "maxHp": 3846,
+            "loadout": [
+              "S00",
+              "S01",
+              "S03"
+            ],
+            "pos": [
+              2876.99,
+              3430.81
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-08-body",
+            "fixed": false,
+            "objective": false,
+            "role": "knight",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-occultist",
+            "cls": "occultist",
+            "side": 0,
+            "level": 25,
+            "hp": 2144.1,
+            "maxHp": 2304,
+            "loadout": [
+              "O01",
+              "O04",
+              "O03",
+              "O06"
+            ],
+            "pos": [
+              3461.5,
+              3221.87
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-08-body",
+            "fixed": false,
+            "objective": false,
+            "role": "occultist",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "a6-c08-boss",
+            "cls": "mage",
+            "side": 1,
+            "level": 25,
+            "hp": 10500,
+            "maxHp": 10500,
+            "loadout": [],
+            "pos": [
+              4480,
+              3194.77
+            ],
+            "h": 182,
+            "r": 34,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-08-body",
+            "fixed": true,
+            "objective": false,
+            "role": "boss",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "a6-c08-vessel-a",
+            "cls": "occultist",
+            "side": 1,
+            "level": 25,
+            "hp": 1100,
+            "maxHp": 1100,
+            "loadout": [
+              "HGS01",
+              "HGS02"
+            ],
+            "pos": [
+              4300,
+              3241.52
+            ],
+            "h": 105,
+            "r": 21,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-08-body",
+            "fixed": false,
+            "objective": false,
+            "role": "fire",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "a6-c08-vessel-b",
+            "cls": "occultist",
+            "side": 1,
+            "level": 25,
+            "hp": 1100,
+            "maxHp": 1100,
+            "loadout": [
+              "HGS01",
+              "HGS02"
+            ],
+            "pos": [
+              5000,
+              2977.83
+            ],
+            "h": 105,
+            "r": 21,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-08-body",
+            "fixed": false,
+            "objective": false,
+            "role": "fire",
+            "summoned": false,
+            "ally": false
+          }
+        ]
+      },
+      "held": {
+        "stageId": 58,
+        "honroStage": 58,
+        "mode": "campaign",
+        "authoredId": "stage-58",
+        "round": 1,
+        "phase": "aim",
+        "side": 0,
+        "shot": 0,
+        "rng": 19388,
+        "active": "p-mage",
+        "dialogue": false,
+        "isolatedStore": true,
+        "play": [
+          7200,
+          3600
+        ],
+        "terrainBounds": {
+          "left": -3600,
+          "top": -3250,
+          "right": 11440,
+          "bottom": 7500
+        },
+        "playBounds": {
+          "left": 0,
+          "top": 0,
+          "right": 7200,
+          "bottom": 3600
+        },
+        "camera": {
+          "x": 3920.0497348512185,
+          "y": 3163.6818044926886,
+          "zoom": null
+        },
+        "gravity": {
+          "x": 0,
+          "y": 320
+        },
+        "fieldFlags": [
+          {
+            "id": "a6-c08-far-sight",
+            "gravity": {
+              "x": -260,
+              "y": 0
+            },
+            "projectileOnly": true
+          }
+        ],
+        "terrain": [
+          {
+            "id": "local-lower-08-body",
+            "vertices": 39,
+            "oneWay": false
+          },
+          {
+            "id": "local-lower-08-east-buttress",
+            "vertices": 23,
+            "oneWay": false
+          }
+        ],
+        "worldTerrain": [
+          {
+            "id": "local-lower-08-body",
+            "vertices": 45
+          },
+          {
+            "id": "local-lower-08-east-buttress",
+            "vertices": 27
+          }
+        ],
+        "enemies": [
+          "a6-c08-boss",
+          "a6-c08-vessel-a",
+          "a6-c08-vessel-b"
+        ],
+        "units": [
+          {
+            "id": "p-mage",
+            "cls": "mage",
+            "side": 0,
+            "level": 25,
+            "hp": 1314.9,
+            "maxHp": 2050,
+            "loadout": [
+              "M01",
+              "M10",
+              "M07"
+            ],
+            "pos": [
+              3798.3,
+              3364.85
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-08-body",
+            "fixed": false,
+            "objective": false,
+            "role": "mage",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-archer",
+            "cls": "archer",
+            "side": 0,
+            "level": 25,
+            "hp": 1407,
+            "maxHp": 1720,
+            "loadout": [
+              "A01",
+              "A14",
+              "A02",
+              "A05"
+            ],
+            "pos": [
+              2645.07,
+              3480.52
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-08-body",
+            "fixed": false,
+            "objective": false,
+            "role": "archer",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-knight",
+            "cls": "knight",
+            "side": 0,
+            "level": 25,
+            "hp": 3688.1,
+            "maxHp": 3846,
+            "loadout": [
+              "S00",
+              "S01",
+              "S03"
+            ],
+            "pos": [
+              2876.99,
+              3430.81
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-08-body",
+            "fixed": false,
+            "objective": false,
+            "role": "knight",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-occultist",
+            "cls": "occultist",
+            "side": 0,
+            "level": 25,
+            "hp": 2144.1,
+            "maxHp": 2304,
+            "loadout": [
+              "O01",
+              "O04",
+              "O03",
+              "O06"
+            ],
+            "pos": [
+              3461.5,
+              3221.87
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-08-body",
+            "fixed": false,
+            "objective": false,
+            "role": "occultist",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "a6-c08-boss",
+            "cls": "mage",
+            "side": 1,
+            "level": 25,
+            "hp": 10500,
+            "maxHp": 10500,
+            "loadout": [],
+            "pos": [
+              4480,
+              3194.77
+            ],
+            "h": 182,
+            "r": 34,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-08-body",
+            "fixed": true,
+            "objective": false,
+            "role": "boss",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "a6-c08-vessel-a",
+            "cls": "occultist",
+            "side": 1,
+            "level": 25,
+            "hp": 1100,
+            "maxHp": 1100,
+            "loadout": [
+              "HGS01",
+              "HGS02"
+            ],
+            "pos": [
+              4300,
+              3241.52
+            ],
+            "h": 105,
+            "r": 21,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-08-body",
+            "fixed": false,
+            "objective": false,
+            "role": "fire",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "a6-c08-vessel-b",
+            "cls": "occultist",
+            "side": 1,
+            "level": 25,
+            "hp": 1100,
+            "maxHp": 1100,
+            "loadout": [
+              "HGS01",
+              "HGS02"
+            ],
+            "pos": [
+              5000,
+              2977.83
+            ],
+            "h": 105,
+            "r": 21,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-08-body",
+            "fixed": false,
+            "objective": false,
+            "role": "fire",
+            "summoned": false,
+            "ally": false
+          }
+        ]
+      },
+      "after": {
+        "stageId": 58,
+        "honroStage": 58,
+        "mode": "campaign",
+        "authoredId": "stage-58",
+        "round": 1,
+        "phase": "aim",
+        "side": 0,
+        "shot": 0,
+        "rng": 19388,
+        "active": "p-mage",
+        "dialogue": false,
+        "isolatedStore": true,
+        "play": [
+          7200,
+          3600
+        ],
+        "terrainBounds": {
+          "left": -3600,
+          "top": -3250,
+          "right": 11440,
+          "bottom": 7500
+        },
+        "playBounds": {
+          "left": 0,
+          "top": 0,
+          "right": 7200,
+          "bottom": 3600
+        },
+        "camera": {
+          "x": 3946.5877672497286,
+          "y": 3173.124111360771,
+          "zoom": null
+        },
+        "gravity": {
+          "x": 0,
+          "y": 320
+        },
+        "fieldFlags": [
+          {
+            "id": "a6-c08-far-sight",
+            "gravity": {
+              "x": -260,
+              "y": 0
+            },
+            "projectileOnly": true
+          }
+        ],
+        "terrain": [
+          {
+            "id": "local-lower-08-body",
+            "vertices": 39,
+            "oneWay": false
+          },
+          {
+            "id": "local-lower-08-east-buttress",
+            "vertices": 23,
+            "oneWay": false
+          }
+        ],
+        "worldTerrain": [
+          {
+            "id": "local-lower-08-body",
+            "vertices": 45
+          },
+          {
+            "id": "local-lower-08-east-buttress",
+            "vertices": 27
+          }
+        ],
+        "enemies": [
+          "a6-c08-boss",
+          "a6-c08-vessel-a",
+          "a6-c08-vessel-b"
+        ],
+        "units": [
+          {
+            "id": "p-mage",
+            "cls": "mage",
+            "side": 0,
+            "level": 25,
+            "hp": 1314.9,
+            "maxHp": 2050,
+            "loadout": [
+              "M01",
+              "M10",
+              "M07"
+            ],
+            "pos": [
+              3798.3,
+              3364.85
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-08-body",
+            "fixed": false,
+            "objective": false,
+            "role": "mage",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-archer",
+            "cls": "archer",
+            "side": 0,
+            "level": 25,
+            "hp": 1407,
+            "maxHp": 1720,
+            "loadout": [
+              "A01",
+              "A14",
+              "A02",
+              "A05"
+            ],
+            "pos": [
+              2645.07,
+              3480.52
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-08-body",
+            "fixed": false,
+            "objective": false,
+            "role": "archer",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-knight",
+            "cls": "knight",
+            "side": 0,
+            "level": 25,
+            "hp": 3688.1,
+            "maxHp": 3846,
+            "loadout": [
+              "S00",
+              "S01",
+              "S03"
+            ],
+            "pos": [
+              2876.99,
+              3430.81
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-08-body",
+            "fixed": false,
+            "objective": false,
+            "role": "knight",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-occultist",
+            "cls": "occultist",
+            "side": 0,
+            "level": 25,
+            "hp": 2144.1,
+            "maxHp": 2304,
+            "loadout": [
+              "O01",
+              "O04",
+              "O03",
+              "O06"
+            ],
+            "pos": [
+              3461.5,
+              3221.87
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-08-body",
+            "fixed": false,
+            "objective": false,
+            "role": "occultist",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "a6-c08-boss",
+            "cls": "mage",
+            "side": 1,
+            "level": 25,
+            "hp": 10500,
+            "maxHp": 10500,
+            "loadout": [],
+            "pos": [
+              4480,
+              3194.77
+            ],
+            "h": 182,
+            "r": 34,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-08-body",
+            "fixed": true,
+            "objective": false,
+            "role": "boss",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "a6-c08-vessel-a",
+            "cls": "occultist",
+            "side": 1,
+            "level": 25,
+            "hp": 1100,
+            "maxHp": 1100,
+            "loadout": [
+              "HGS01",
+              "HGS02"
+            ],
+            "pos": [
+              4300,
+              3241.52
+            ],
+            "h": 105,
+            "r": 21,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-08-body",
+            "fixed": false,
+            "objective": false,
+            "role": "fire",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "a6-c08-vessel-b",
+            "cls": "occultist",
+            "side": 1,
+            "level": 25,
+            "hp": 1100,
+            "maxHp": 1100,
+            "loadout": [
+              "HGS01",
+              "HGS02"
+            ],
+            "pos": [
+              5000,
+              2977.83
+            ],
+            "h": 105,
+            "r": 21,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-08-body",
+            "fixed": false,
+            "objective": false,
+            "role": "fire",
+            "summoned": false,
+            "ally": false
+          }
+        ]
+      }
+    },
+    {
+      "key": "Control",
+      "before": {
+        "stageId": 58,
+        "honroStage": 58,
+        "mode": "campaign",
+        "authoredId": "stage-58",
+        "round": 1,
+        "phase": "aim",
+        "side": 0,
+        "shot": 0,
+        "rng": 19388,
+        "active": "p-mage",
+        "dialogue": false,
+        "isolatedStore": true,
+        "play": [
+          7200,
+          3600
+        ],
+        "terrainBounds": {
+          "left": -3600,
+          "top": -3250,
+          "right": 11440,
+          "bottom": 7500
+        },
+        "playBounds": {
+          "left": 0,
+          "top": 0,
+          "right": 7200,
+          "bottom": 3600
+        },
+        "camera": {
+          "x": 3948.101396531159,
+          "y": 3173.662664933439,
+          "zoom": null
+        },
+        "gravity": {
+          "x": 0,
+          "y": 320
+        },
+        "fieldFlags": [
+          {
+            "id": "a6-c08-far-sight",
+            "gravity": {
+              "x": -260,
+              "y": 0
+            },
+            "projectileOnly": true
+          }
+        ],
+        "terrain": [
+          {
+            "id": "local-lower-08-body",
+            "vertices": 39,
+            "oneWay": false
+          },
+          {
+            "id": "local-lower-08-east-buttress",
+            "vertices": 23,
+            "oneWay": false
+          }
+        ],
+        "worldTerrain": [
+          {
+            "id": "local-lower-08-body",
+            "vertices": 45
+          },
+          {
+            "id": "local-lower-08-east-buttress",
+            "vertices": 27
+          }
+        ],
+        "enemies": [
+          "a6-c08-boss",
+          "a6-c08-vessel-a",
+          "a6-c08-vessel-b"
+        ],
+        "units": [
+          {
+            "id": "p-mage",
+            "cls": "mage",
+            "side": 0,
+            "level": 25,
+            "hp": 1314.9,
+            "maxHp": 2050,
+            "loadout": [
+              "M01",
+              "M10",
+              "M07"
+            ],
+            "pos": [
+              3798.3,
+              3364.85
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-08-body",
+            "fixed": false,
+            "objective": false,
+            "role": "mage",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-archer",
+            "cls": "archer",
+            "side": 0,
+            "level": 25,
+            "hp": 1407,
+            "maxHp": 1720,
+            "loadout": [
+              "A01",
+              "A14",
+              "A02",
+              "A05"
+            ],
+            "pos": [
+              2645.07,
+              3480.52
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-08-body",
+            "fixed": false,
+            "objective": false,
+            "role": "archer",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-knight",
+            "cls": "knight",
+            "side": 0,
+            "level": 25,
+            "hp": 3688.1,
+            "maxHp": 3846,
+            "loadout": [
+              "S00",
+              "S01",
+              "S03"
+            ],
+            "pos": [
+              2876.99,
+              3430.81
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-08-body",
+            "fixed": false,
+            "objective": false,
+            "role": "knight",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-occultist",
+            "cls": "occultist",
+            "side": 0,
+            "level": 25,
+            "hp": 2144.1,
+            "maxHp": 2304,
+            "loadout": [
+              "O01",
+              "O04",
+              "O03",
+              "O06"
+            ],
+            "pos": [
+              3461.5,
+              3221.87
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-08-body",
+            "fixed": false,
+            "objective": false,
+            "role": "occultist",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "a6-c08-boss",
+            "cls": "mage",
+            "side": 1,
+            "level": 25,
+            "hp": 10500,
+            "maxHp": 10500,
+            "loadout": [],
+            "pos": [
+              4480,
+              3194.77
+            ],
+            "h": 182,
+            "r": 34,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-08-body",
+            "fixed": true,
+            "objective": false,
+            "role": "boss",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "a6-c08-vessel-a",
+            "cls": "occultist",
+            "side": 1,
+            "level": 25,
+            "hp": 1100,
+            "maxHp": 1100,
+            "loadout": [
+              "HGS01",
+              "HGS02"
+            ],
+            "pos": [
+              4300,
+              3241.52
+            ],
+            "h": 105,
+            "r": 21,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-08-body",
+            "fixed": false,
+            "objective": false,
+            "role": "fire",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "a6-c08-vessel-b",
+            "cls": "occultist",
+            "side": 1,
+            "level": 25,
+            "hp": 1100,
+            "maxHp": 1100,
+            "loadout": [
+              "HGS01",
+              "HGS02"
+            ],
+            "pos": [
+              5000,
+              2977.83
+            ],
+            "h": 105,
+            "r": 21,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-08-body",
+            "fixed": false,
+            "objective": false,
+            "role": "fire",
+            "summoned": false,
+            "ally": false
+          }
+        ]
+      },
+      "held": {
+        "stageId": 58,
+        "honroStage": 58,
+        "mode": "campaign",
+        "authoredId": "stage-58",
+        "round": 1,
+        "phase": "aim",
+        "side": 0,
+        "shot": 0,
+        "rng": 19388,
+        "active": "p-mage",
+        "dialogue": false,
+        "isolatedStore": true,
+        "play": [
+          7200,
+          3600
+        ],
+        "terrainBounds": {
+          "left": -3600,
+          "top": -3250,
+          "right": 11440,
+          "bottom": 7500
+        },
+        "playBounds": {
+          "left": 0,
+          "top": 0,
+          "right": 7200,
+          "bottom": 3600
+        },
+        "camera": {
+          "x": 3955.2309563483495,
+          "y": 3161.6493926063067,
+          "zoom": null
+        },
+        "gravity": {
+          "x": 0,
+          "y": 320
+        },
+        "fieldFlags": [
+          {
+            "id": "a6-c08-far-sight",
+            "gravity": {
+              "x": -260,
+              "y": 0
+            },
+            "projectileOnly": true
+          }
+        ],
+        "terrain": [
+          {
+            "id": "local-lower-08-body",
+            "vertices": 39,
+            "oneWay": false
+          },
+          {
+            "id": "local-lower-08-east-buttress",
+            "vertices": 23,
+            "oneWay": false
+          }
+        ],
+        "worldTerrain": [
+          {
+            "id": "local-lower-08-body",
+            "vertices": 45
+          },
+          {
+            "id": "local-lower-08-east-buttress",
+            "vertices": 27
+          }
+        ],
+        "enemies": [
+          "a6-c08-boss",
+          "a6-c08-vessel-a",
+          "a6-c08-vessel-b"
+        ],
+        "units": [
+          {
+            "id": "p-mage",
+            "cls": "mage",
+            "side": 0,
+            "level": 25,
+            "hp": 1314.9,
+            "maxHp": 2050,
+            "loadout": [
+              "M01",
+              "M10",
+              "M07"
+            ],
+            "pos": [
+              3798.3,
+              3290.76
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": false,
+            "validContact": false,
+            "support": null,
+            "fixed": false,
+            "objective": false,
+            "role": "mage",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-archer",
+            "cls": "archer",
+            "side": 0,
+            "level": 25,
+            "hp": 1407,
+            "maxHp": 1720,
+            "loadout": [
+              "A01",
+              "A14",
+              "A02",
+              "A05"
+            ],
+            "pos": [
+              2645.07,
+              3480.52
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-08-body",
+            "fixed": false,
+            "objective": false,
+            "role": "archer",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-knight",
+            "cls": "knight",
+            "side": 0,
+            "level": 25,
+            "hp": 3688.1,
+            "maxHp": 3846,
+            "loadout": [
+              "S00",
+              "S01",
+              "S03"
+            ],
+            "pos": [
+              2876.99,
+              3430.81
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-08-body",
+            "fixed": false,
+            "objective": false,
+            "role": "knight",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-occultist",
+            "cls": "occultist",
+            "side": 0,
+            "level": 25,
+            "hp": 2144.1,
+            "maxHp": 2304,
+            "loadout": [
+              "O01",
+              "O04",
+              "O03",
+              "O06"
+            ],
+            "pos": [
+              3461.5,
+              3221.87
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-08-body",
+            "fixed": false,
+            "objective": false,
+            "role": "occultist",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "a6-c08-boss",
+            "cls": "mage",
+            "side": 1,
+            "level": 25,
+            "hp": 10500,
+            "maxHp": 10500,
+            "loadout": [],
+            "pos": [
+              4480,
+              3194.77
+            ],
+            "h": 182,
+            "r": 34,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-08-body",
+            "fixed": true,
+            "objective": false,
+            "role": "boss",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "a6-c08-vessel-a",
+            "cls": "occultist",
+            "side": 1,
+            "level": 25,
+            "hp": 1100,
+            "maxHp": 1100,
+            "loadout": [
+              "HGS01",
+              "HGS02"
+            ],
+            "pos": [
+              4300,
+              3241.52
+            ],
+            "h": 105,
+            "r": 21,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-08-body",
+            "fixed": false,
+            "objective": false,
+            "role": "fire",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "a6-c08-vessel-b",
+            "cls": "occultist",
+            "side": 1,
+            "level": 25,
+            "hp": 1100,
+            "maxHp": 1100,
+            "loadout": [
+              "HGS01",
+              "HGS02"
+            ],
+            "pos": [
+              5000,
+              2977.83
+            ],
+            "h": 105,
+            "r": 21,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-08-body",
+            "fixed": false,
+            "objective": false,
+            "role": "fire",
+            "summoned": false,
+            "ally": false
+          }
+        ]
+      },
+      "after": {
+        "stageId": 58,
+        "honroStage": 58,
+        "mode": "campaign",
+        "authoredId": "stage-58",
+        "round": 1,
+        "phase": "aim",
+        "side": 0,
+        "shot": 0,
+        "rng": 19388,
+        "active": "p-mage",
+        "dialogue": false,
+        "isolatedStore": true,
+        "play": [
+          7200,
+          3600
+        ],
+        "terrainBounds": {
+          "left": -3600,
+          "top": -3250,
+          "right": 11440,
+          "bottom": 7500
+        },
+        "playBounds": {
+          "left": 0,
+          "top": 0,
+          "right": 7200,
+          "bottom": 3600
+        },
+        "camera": {
+          "x": 3968.0187352360526,
+          "y": 3108.0223764278517,
+          "zoom": null
+        },
+        "gravity": {
+          "x": 0,
+          "y": 320
+        },
+        "fieldFlags": [
+          {
+            "id": "a6-c08-far-sight",
+            "gravity": {
+              "x": -260,
+              "y": 0
+            },
+            "projectileOnly": true
+          }
+        ],
+        "terrain": [
+          {
+            "id": "local-lower-08-body",
+            "vertices": 39,
+            "oneWay": false
+          },
+          {
+            "id": "local-lower-08-east-buttress",
+            "vertices": 23,
+            "oneWay": false
+          }
+        ],
+        "worldTerrain": [
+          {
+            "id": "local-lower-08-body",
+            "vertices": 45
+          },
+          {
+            "id": "local-lower-08-east-buttress",
+            "vertices": 27
+          }
+        ],
+        "enemies": [
+          "a6-c08-boss",
+          "a6-c08-vessel-a",
+          "a6-c08-vessel-b"
+        ],
+        "units": [
+          {
+            "id": "p-mage",
+            "cls": "mage",
+            "side": 0,
+            "level": 25,
+            "hp": 1314.9,
+            "maxHp": 2050,
+            "loadout": [
+              "M01",
+              "M10",
+              "M07"
+            ],
+            "pos": [
+              3798.3,
+              3364.85
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-08-body",
+            "fixed": false,
+            "objective": false,
+            "role": "mage",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-archer",
+            "cls": "archer",
+            "side": 0,
+            "level": 25,
+            "hp": 1407,
+            "maxHp": 1720,
+            "loadout": [
+              "A01",
+              "A14",
+              "A02",
+              "A05"
+            ],
+            "pos": [
+              2645.07,
+              3480.52
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-08-body",
+            "fixed": false,
+            "objective": false,
+            "role": "archer",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-knight",
+            "cls": "knight",
+            "side": 0,
+            "level": 25,
+            "hp": 3688.1,
+            "maxHp": 3846,
+            "loadout": [
+              "S00",
+              "S01",
+              "S03"
+            ],
+            "pos": [
+              2876.99,
+              3430.81
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-08-body",
+            "fixed": false,
+            "objective": false,
+            "role": "knight",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-occultist",
+            "cls": "occultist",
+            "side": 0,
+            "level": 25,
+            "hp": 2144.1,
+            "maxHp": 2304,
+            "loadout": [
+              "O01",
+              "O04",
+              "O03",
+              "O06"
+            ],
+            "pos": [
+              3461.5,
+              3221.87
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-08-body",
+            "fixed": false,
+            "objective": false,
+            "role": "occultist",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "a6-c08-boss",
+            "cls": "mage",
+            "side": 1,
+            "level": 25,
+            "hp": 10500,
+            "maxHp": 10500,
+            "loadout": [],
+            "pos": [
+              4480,
+              3194.77
+            ],
+            "h": 182,
+            "r": 34,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-08-body",
+            "fixed": true,
+            "objective": false,
+            "role": "boss",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "a6-c08-vessel-a",
+            "cls": "occultist",
+            "side": 1,
+            "level": 25,
+            "hp": 1100,
+            "maxHp": 1100,
+            "loadout": [
+              "HGS01",
+              "HGS02"
+            ],
+            "pos": [
+              4300,
+              3241.52
+            ],
+            "h": 105,
+            "r": 21,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-08-body",
+            "fixed": false,
+            "objective": false,
+            "role": "fire",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "a6-c08-vessel-b",
+            "cls": "occultist",
+            "side": 1,
+            "level": 25,
+            "hp": 1100,
+            "maxHp": 1100,
+            "loadout": [
+              "HGS01",
+              "HGS02"
+            ],
+            "pos": [
+              5000,
+              2977.83
+            ],
+            "h": 105,
+            "r": 21,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-08-body",
+            "fixed": false,
+            "objective": false,
+            "role": "fire",
+            "summoned": false,
+            "ally": false
+          }
+        ]
+      }
+    }
+  ],
+  "defendInputs": 24,
+  "end": {
+    "stageId": 58,
+    "honroStage": 58,
+    "mode": "campaign",
+    "authoredId": "stage-58",
+    "round": 5,
+    "phase": "flight",
+    "side": 1,
+    "shot": 8,
+    "rng": 47620730526,
+    "active": "a6-c08-vessel-b",
+    "dialogue": false,
+    "isolatedStore": true,
+    "play": [
+      7200,
+      3600
+    ],
+    "terrainBounds": {
+      "left": -3600,
+      "top": -3250,
+      "right": 11440,
+      "bottom": 7500
+    },
+    "playBounds": {
+      "left": 0,
+      "top": 0,
+      "right": 7200,
+      "bottom": 3600
+    },
+    "camera": {
+      "x": 3361.455021127613,
+      "y": 3023.518451745404,
+      "zoom": null
+    },
+    "gravity": {
+      "x": 0,
+      "y": 320
+    },
+    "fieldFlags": [
+      {
+        "id": "a6-c08-far-sight",
+        "gravity": {
+          "x": -260,
+          "y": 0
+        },
+        "projectileOnly": true
+      }
+    ],
+    "terrain": [
+      {
+        "id": "local-lower-08-body",
+        "vertices": 39,
+        "oneWay": false
+      },
+      {
+        "id": "local-lower-08-east-buttress",
+        "vertices": 23,
+        "oneWay": false
+      }
+    ],
+    "worldTerrain": [
+      {
+        "id": "local-lower-08-body",
+        "vertices": 45
+      },
+      {
+        "id": "local-lower-08-east-buttress",
+        "vertices": 27
+      }
+    ],
+    "enemies": [
+      "a6-c08-boss",
+      "a6-c08-vessel-a",
+      "a6-c08-vessel-b",
+      "a6-c08-grot-0",
+      "a6-c08-grot-1"
+    ],
+    "units": [
+      {
+        "id": "p-mage",
+        "cls": "mage",
+        "side": 0,
+        "level": 25,
+        "hp": 1724.9,
+        "maxHp": 2050,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "pos": [
+          3728.67,
+          3366.84
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "local-lower-08-body",
+        "fixed": false,
+        "objective": false,
+        "role": "mage",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "p-archer",
+        "cls": "archer",
+        "side": 0,
+        "level": 25,
+        "hp": 1720,
+        "maxHp": 1720,
+        "loadout": [
+          "A01",
+          "A14",
+          "A02",
+          "A05"
+        ],
+        "pos": [
+          2645.07,
+          3480.52
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "local-lower-08-body",
+        "fixed": false,
+        "objective": false,
+        "role": "archer",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "p-knight",
+        "cls": "knight",
+        "side": 0,
+        "level": 25,
+        "hp": 3846,
+        "maxHp": 3846,
+        "loadout": [
+          "S00",
+          "S01",
+          "S03"
+        ],
+        "pos": [
+          2854.44,
+          3437.36
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "local-lower-08-body",
+        "fixed": false,
+        "objective": false,
+        "role": "knight",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "p-occultist",
+        "cls": "occultist",
+        "side": 0,
+        "level": 25,
+        "hp": 2304,
+        "maxHp": 2304,
+        "loadout": [
+          "O01",
+          "O04",
+          "O03",
+          "O06"
+        ],
+        "pos": [
+          3461.5,
+          3221.87
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "local-lower-08-body",
+        "fixed": false,
+        "objective": false,
+        "role": "occultist",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-c08-boss",
+        "cls": "mage",
+        "side": 1,
+        "level": 25,
+        "hp": 10500,
+        "maxHp": 10500,
+        "loadout": [],
+        "pos": [
+          4480,
+          3194.77
+        ],
+        "h": 182,
+        "r": 34,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "local-lower-08-body",
+        "fixed": true,
+        "objective": false,
+        "role": "boss",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-c08-vessel-a",
+        "cls": "occultist",
+        "side": 1,
+        "level": 25,
+        "hp": 1100,
+        "maxHp": 1100,
+        "loadout": [
+          "HGS01",
+          "HGS02"
+        ],
+        "pos": [
+          4218.27,
+          3249.97
+        ],
+        "h": 105,
+        "r": 21,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "local-lower-08-body",
+        "fixed": false,
+        "objective": false,
+        "role": "fire",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-c08-vessel-b",
+        "cls": "occultist",
+        "side": 1,
+        "level": 25,
+        "hp": 1100,
+        "maxHp": 1100,
+        "loadout": [
+          "HGS01",
+          "HGS02"
+        ],
+        "pos": [
+          4326.04,
+          3238.82
+        ],
+        "h": 105,
+        "r": 21,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "local-lower-08-body",
+        "fixed": false,
+        "objective": false,
+        "role": "fire",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-c08-grot-0",
+        "cls": "occultist",
+        "side": 1,
+        "level": 25,
+        "hp": 1700,
+        "maxHp": 1700,
+        "loadout": [
+          "HGS01",
+          "HGS02"
+        ],
+        "pos": [
+          2645.07,
+          3220.52
+        ],
+        "h": 150,
+        "r": 30,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": false,
+        "validContact": false,
+        "support": null,
+        "fixed": true,
+        "objective": false,
+        "role": "fire",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-c08-grot-1",
+        "cls": "occultist",
+        "side": 1,
+        "level": 25,
+        "hp": 2400,
+        "maxHp": 2400,
+        "loadout": [
+          "HGS01",
+          "HGS02"
+        ],
+        "pos": [
+          3187,
+          3342
+        ],
+        "h": 140,
+        "r": 30,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "local-lower-08-body",
+        "fixed": false,
+        "objective": false,
+        "role": "fire",
+        "summoned": false,
+        "ally": false
+      }
+    ]
+  },
+  "trace": [
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 0,
+      "phase": "aim",
+      "active": [],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b"
+      ],
+      "newIds": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b"
+      ]
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 0,
+      "phase": "transition",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 1,
+      "phase": "enemy",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "fire",
+      "round": 1,
+      "owner": "a6-c08-vessel-a",
+      "skill": "HGS01"
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 1,
+      "phase": "flight",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "hit",
+      "round": 1,
+      "owner": "a6-c08-vessel-a",
+      "target": "p-mage",
+      "loss": 45
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 1,
+      "phase": "review",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 1,
+      "phase": "enemy",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 1,
+      "phase": "review",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 1,
+      "phase": "enemy",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 1,
+      "phase": "review",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 1,
+      "phase": "transition",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 0,
+      "phase": "transition",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 1,
+      "phase": "enemy",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "fire",
+      "round": 2,
+      "owner": "a6-c08-vessel-a",
+      "skill": "HGS01"
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 1,
+      "phase": "flight",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "hit",
+      "round": 2,
+      "owner": "a6-c08-vessel-a",
+      "target": "p-mage",
+      "loss": 46
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 1,
+      "phase": "review",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "hit",
+      "round": 2,
+      "owner": "a6-c08-boss",
+      "target": "p-knight",
+      "loss": 227
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 1,
+      "phase": "review",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b",
+        "a6-c08-grot-0"
+      ],
+      "newIds": [
+        "a6-c08-grot-0"
+      ]
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 1,
+      "phase": "enemy",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b",
+        "a6-c08-grot-0"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "fire",
+      "round": 2,
+      "owner": "a6-c08-vessel-b",
+      "skill": "HGS01"
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 1,
+      "phase": "flight",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b",
+        "a6-c08-grot-0"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "hit",
+      "round": 2,
+      "owner": "a6-c08-vessel-b",
+      "target": "p-knight",
+      "loss": 15
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 1,
+      "phase": "review",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b",
+        "a6-c08-grot-0"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 1,
+      "phase": "transition",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b",
+        "a6-c08-grot-0"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b",
+        "a6-c08-grot-0"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b",
+        "a6-c08-grot-0"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b",
+        "a6-c08-grot-0"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b",
+        "a6-c08-grot-0"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b",
+        "a6-c08-grot-0"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b",
+        "a6-c08-grot-0"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b",
+        "a6-c08-grot-0"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b",
+        "a6-c08-grot-0"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 0,
+      "phase": "transition",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b",
+        "a6-c08-grot-0"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 1,
+      "phase": "enemy",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b",
+        "a6-c08-grot-0"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 1,
+      "phase": "review",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b",
+        "a6-c08-grot-0"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 1,
+      "phase": "enemy",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b",
+        "a6-c08-grot-0"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "fire",
+      "round": 3,
+      "owner": "a6-c08-vessel-a",
+      "skill": "HGS01"
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 1,
+      "phase": "flight",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b",
+        "a6-c08-grot-0"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "hit",
+      "round": 3,
+      "owner": "a6-c08-vessel-a",
+      "target": "p-mage",
+      "loss": 45
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 1,
+      "phase": "review",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b",
+        "a6-c08-grot-0"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 1,
+      "phase": "enemy",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b",
+        "a6-c08-grot-0"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 1,
+      "phase": "review",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b",
+        "a6-c08-grot-0"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 1,
+      "phase": "transition",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b",
+        "a6-c08-grot-0"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b",
+        "a6-c08-grot-0"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b",
+        "a6-c08-grot-0"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b",
+        "a6-c08-grot-0"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b",
+        "a6-c08-grot-0"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b",
+        "a6-c08-grot-0"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b",
+        "a6-c08-grot-0"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b",
+        "a6-c08-grot-0"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b",
+        "a6-c08-grot-0"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 0,
+      "phase": "transition",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b",
+        "a6-c08-grot-0"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 1,
+      "phase": "enemy",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b",
+        "a6-c08-grot-0"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "hit",
+      "round": 4,
+      "owner": "a6-c08-grot-0",
+      "target": "p-archer",
+      "loss": 196
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 1,
+      "phase": "review",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b",
+        "a6-c08-grot-0"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 1,
+      "phase": "enemy",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b",
+        "a6-c08-grot-0"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "hit",
+      "round": 4,
+      "owner": "a6-c08-boss",
+      "target": "p-mage",
+      "loss": 142
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 1,
+      "phase": "review",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b",
+        "a6-c08-grot-0",
+        "a6-c08-grot-1"
+      ],
+      "newIds": [
+        "a6-c08-grot-1"
+      ]
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 1,
+      "phase": "enemy",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b",
+        "a6-c08-grot-0",
+        "a6-c08-grot-1"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "fire",
+      "round": 4,
+      "owner": "a6-c08-vessel-a",
+      "skill": "HGS01"
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 1,
+      "phase": "flight",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b",
+        "a6-c08-grot-0",
+        "a6-c08-grot-1"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "hit",
+      "round": 4,
+      "owner": "a6-c08-vessel-a",
+      "target": "p-mage",
+      "loss": 40
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 1,
+      "phase": "review",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b",
+        "a6-c08-grot-0",
+        "a6-c08-grot-1"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 1,
+      "phase": "enemy",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b",
+        "a6-c08-grot-0",
+        "a6-c08-grot-1"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "fire",
+      "round": 4,
+      "owner": "a6-c08-vessel-b",
+      "skill": "HGS01"
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 1,
+      "phase": "flight",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b",
+        "a6-c08-grot-0",
+        "a6-c08-grot-1"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "hit",
+      "round": 4,
+      "owner": "a6-c08-vessel-b",
+      "target": "p-knight",
+      "loss": 16
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 1,
+      "phase": "review",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b",
+        "a6-c08-grot-0",
+        "a6-c08-grot-1"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 1,
+      "phase": "transition",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b",
+        "a6-c08-grot-0",
+        "a6-c08-grot-1"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b",
+        "a6-c08-grot-0",
+        "a6-c08-grot-1"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b",
+        "a6-c08-grot-0",
+        "a6-c08-grot-1"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b",
+        "a6-c08-grot-0",
+        "a6-c08-grot-1"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b",
+        "a6-c08-grot-0",
+        "a6-c08-grot-1"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b",
+        "a6-c08-grot-0",
+        "a6-c08-grot-1"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b",
+        "a6-c08-grot-0",
+        "a6-c08-grot-1"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b",
+        "a6-c08-grot-0",
+        "a6-c08-grot-1"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b",
+        "a6-c08-grot-0",
+        "a6-c08-grot-1"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 0,
+      "phase": "transition",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b",
+        "a6-c08-grot-0",
+        "a6-c08-grot-1"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 1,
+      "phase": "enemy",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b",
+        "a6-c08-grot-0",
+        "a6-c08-grot-1"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 1,
+      "phase": "review",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b",
+        "a6-c08-grot-0",
+        "a6-c08-grot-1"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 1,
+      "phase": "enemy",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b",
+        "a6-c08-grot-0",
+        "a6-c08-grot-1"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "fire",
+      "round": 5,
+      "owner": "a6-c08-vessel-a",
+      "skill": "HGS01"
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 1,
+      "phase": "flight",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b",
+        "a6-c08-grot-0",
+        "a6-c08-grot-1"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "hit",
+      "round": 5,
+      "owner": "a6-c08-vessel-a",
+      "target": "p-mage",
+      "loss": 44
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 1,
+      "phase": "review",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b",
+        "a6-c08-grot-0",
+        "a6-c08-grot-1"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 1,
+      "phase": "enemy",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b",
+        "a6-c08-grot-0",
+        "a6-c08-grot-1"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "fire",
+      "round": 5,
+      "owner": "a6-c08-vessel-b",
+      "skill": "HGS02"
+    },
+    {
+      "type": "sample",
+      "round": 5,
+      "side": 1,
+      "phase": "flight",
+      "active": [
+        "a6-c08-boss",
+        "a6-c08-vessel-a",
+        "a6-c08-vessel-b",
+        "a6-c08-grot-0",
+        "a6-c08-grot-1"
+      ],
+      "newIds": []
+    }
+  ],
+  "save": {
+    "keys": [
+      "honro-first-act-profile-1"
+    ],
+    "before": "c6b46406e5b28fcf4acb3abe43497b943dc0f6fb5ef2d85041717cc36cab8b45",
+    "after": "c6b46406e5b28fcf4acb3abe43497b943dc0f6fb5ef2d85041717cc36cab8b45",
+    "unchanged": true
+  },
+  "chromium": "154.0.8037.57"
+}

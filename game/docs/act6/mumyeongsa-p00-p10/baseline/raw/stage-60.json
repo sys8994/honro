@@ -1,0 +1,2150 @@
+{
+  "stage": 60,
+  "status": "PASS",
+  "errors": [],
+  "warnings": [],
+  "httpErrors": [],
+  "entry": {
+    "stageId": 60,
+    "honroStage": 60,
+    "mode": "campaign",
+    "authoredId": "stage-60",
+    "round": 1,
+    "phase": "aim",
+    "side": 0,
+    "shot": 0,
+    "rng": 19388,
+    "active": "p-archer",
+    "dialogue": false,
+    "isolatedStore": true,
+    "play": [
+      7200,
+      4100
+    ],
+    "terrainBounds": {
+      "left": -5000,
+      "top": -2100,
+      "right": 13000,
+      "bottom": 14700
+    },
+    "playBounds": {
+      "left": 0,
+      "top": 0,
+      "right": 7200,
+      "bottom": 4100
+    },
+    "camera": {
+      "x": 5040.762685843094,
+      "y": 2672.5791461503595,
+      "zoom": null
+    },
+    "fieldFlags": [],
+    "terrain": [
+      {
+        "id": "return-cutout-near-body",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "return-cutout-upper-ledges",
+        "vertices": null,
+        "oneWay": false
+      }
+    ],
+    "worldTerrain": [
+      {
+        "id": "return-cutout-near-body",
+        "vertices": null
+      },
+      {
+        "id": "return-cutout-upper-ledges",
+        "vertices": null
+      }
+    ],
+    "enemies": [],
+    "units": [
+      {
+        "id": "p-archer",
+        "cls": "archer",
+        "side": 0,
+        "level": 25,
+        "hp": 1400,
+        "maxHp": 1720,
+        "loadout": [
+          "A01",
+          "A14",
+          "A02",
+          "A05"
+        ],
+        "pos": [
+          4988.95,
+          2846.85
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "return-cutout-near-body",
+        "fixed": false,
+        "objective": false,
+        "role": "archer",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "p-knight",
+        "cls": "knight",
+        "side": 0,
+        "level": 25,
+        "hp": 3688.1,
+        "maxHp": 3846,
+        "loadout": [
+          "S00",
+          "S01",
+          "S03"
+        ],
+        "pos": [
+          5104.97,
+          2860.16
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "return-cutout-near-body",
+        "fixed": false,
+        "objective": false,
+        "role": "knight",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "p-occultist",
+        "cls": "occultist",
+        "side": 0,
+        "level": 25,
+        "hp": 2043.1999999999998,
+        "maxHp": 2304,
+        "loadout": [
+          "O01",
+          "O04",
+          "O03",
+          "O06"
+        ],
+        "pos": [
+          5237.57,
+          2880.35
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "return-cutout-near-body",
+        "fixed": false,
+        "objective": false,
+        "role": "occultist",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "p-mage",
+        "cls": "mage",
+        "side": 0,
+        "level": 25,
+        "hp": 1264.9,
+        "maxHp": 2050,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "pos": [
+          5303.87,
+          2167.65
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "return-cutout-upper-ledges",
+        "fixed": false,
+        "objective": false,
+        "role": "mage",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "qa-last-traveling-soul",
+        "cls": "occultist",
+        "side": 2,
+        "level": 1,
+        "hp": 126,
+        "maxHp": 126,
+        "loadout": [],
+        "pos": [
+          5469.61,
+          2820.08
+        ],
+        "h": 105,
+        "r": 21,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "return-cutout-near-body",
+        "fixed": false,
+        "objective": false,
+        "role": "fire",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "quiet10-second-traveling-soul",
+        "cls": "occultist",
+        "side": 2,
+        "level": 1,
+        "hp": 126,
+        "maxHp": 126,
+        "loadout": [],
+        "pos": [
+          5429.83,
+          2832.29
+        ],
+        "h": 105,
+        "r": 21,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "return-cutout-near-body",
+        "fixed": false,
+        "objective": false,
+        "role": "fire",
+        "summoned": false,
+        "ally": false
+      }
+    ]
+  },
+  "settled": {
+    "stageId": 60,
+    "honroStage": 60,
+    "mode": "campaign",
+    "authoredId": "stage-60",
+    "round": 1,
+    "phase": "aim",
+    "side": 0,
+    "shot": 0,
+    "rng": 19388,
+    "active": "p-archer",
+    "dialogue": false,
+    "isolatedStore": true,
+    "play": [
+      7200,
+      4100
+    ],
+    "terrainBounds": {
+      "left": -5000,
+      "top": -2100,
+      "right": 13000,
+      "bottom": 14700
+    },
+    "playBounds": {
+      "left": 0,
+      "top": 0,
+      "right": 7200,
+      "bottom": 4100
+    },
+    "camera": {
+      "x": 5156.359604963028,
+      "y": 2663.0593998698946,
+      "zoom": null
+    },
+    "fieldFlags": [],
+    "terrain": [
+      {
+        "id": "return-cutout-near-body",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "return-cutout-upper-ledges",
+        "vertices": null,
+        "oneWay": false
+      }
+    ],
+    "worldTerrain": [
+      {
+        "id": "return-cutout-near-body",
+        "vertices": null
+      },
+      {
+        "id": "return-cutout-upper-ledges",
+        "vertices": null
+      }
+    ],
+    "enemies": [],
+    "units": [
+      {
+        "id": "p-archer",
+        "cls": "archer",
+        "side": 0,
+        "level": 25,
+        "hp": 1400,
+        "maxHp": 1720,
+        "loadout": [
+          "A01",
+          "A14",
+          "A02",
+          "A05"
+        ],
+        "pos": [
+          4988.95,
+          2846.85
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "return-cutout-near-body",
+        "fixed": false,
+        "objective": false,
+        "role": "archer",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "p-knight",
+        "cls": "knight",
+        "side": 0,
+        "level": 25,
+        "hp": 3688.1,
+        "maxHp": 3846,
+        "loadout": [
+          "S00",
+          "S01",
+          "S03"
+        ],
+        "pos": [
+          5104.97,
+          2860.16
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "return-cutout-near-body",
+        "fixed": false,
+        "objective": false,
+        "role": "knight",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "p-occultist",
+        "cls": "occultist",
+        "side": 0,
+        "level": 25,
+        "hp": 2043.1999999999998,
+        "maxHp": 2304,
+        "loadout": [
+          "O01",
+          "O04",
+          "O03",
+          "O06"
+        ],
+        "pos": [
+          5237.57,
+          2880.35
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "return-cutout-near-body",
+        "fixed": false,
+        "objective": false,
+        "role": "occultist",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "p-mage",
+        "cls": "mage",
+        "side": 0,
+        "level": 25,
+        "hp": 1264.9,
+        "maxHp": 2050,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "pos": [
+          5303.87,
+          2167.65
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "return-cutout-upper-ledges",
+        "fixed": false,
+        "objective": false,
+        "role": "mage",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "qa-last-traveling-soul",
+        "cls": "occultist",
+        "side": 2,
+        "level": 1,
+        "hp": 126,
+        "maxHp": 126,
+        "loadout": [],
+        "pos": [
+          5469.61,
+          2820.08
+        ],
+        "h": 105,
+        "r": 21,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "return-cutout-near-body",
+        "fixed": false,
+        "objective": false,
+        "role": "fire",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "quiet10-second-traveling-soul",
+        "cls": "occultist",
+        "side": 2,
+        "level": 1,
+        "hp": 126,
+        "maxHp": 126,
+        "loadout": [],
+        "pos": [
+          5429.83,
+          2832.29
+        ],
+        "h": 105,
+        "r": 21,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "return-cutout-near-body",
+        "fixed": false,
+        "objective": false,
+        "role": "fire",
+        "summoned": false,
+        "ally": false
+      }
+    ]
+  },
+  "input": [
+    {
+      "key": "ArrowRight",
+      "before": {
+        "stageId": 60,
+        "honroStage": 60,
+        "mode": "campaign",
+        "authoredId": "stage-60",
+        "round": 1,
+        "phase": "aim",
+        "side": 0,
+        "shot": 0,
+        "rng": 19388,
+        "active": "p-archer",
+        "dialogue": false,
+        "isolatedStore": true,
+        "play": [
+          7200,
+          4100
+        ],
+        "terrainBounds": {
+          "left": -5000,
+          "top": -2100,
+          "right": 13000,
+          "bottom": 14700
+        },
+        "playBounds": {
+          "left": 0,
+          "top": 0,
+          "right": 7200,
+          "bottom": 4100
+        },
+        "camera": {
+          "x": 5158.401484676221,
+          "y": 2662.8912450699845,
+          "zoom": null
+        },
+        "fieldFlags": [],
+        "terrain": [
+          {
+            "id": "return-cutout-near-body",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "return-cutout-upper-ledges",
+            "vertices": null,
+            "oneWay": false
+          }
+        ],
+        "worldTerrain": [
+          {
+            "id": "return-cutout-near-body",
+            "vertices": null
+          },
+          {
+            "id": "return-cutout-upper-ledges",
+            "vertices": null
+          }
+        ],
+        "enemies": [],
+        "units": [
+          {
+            "id": "p-archer",
+            "cls": "archer",
+            "side": 0,
+            "level": 25,
+            "hp": 1400,
+            "maxHp": 1720,
+            "loadout": [
+              "A01",
+              "A14",
+              "A02",
+              "A05"
+            ],
+            "pos": [
+              4988.95,
+              2846.85
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "return-cutout-near-body",
+            "fixed": false,
+            "objective": false,
+            "role": "archer",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-knight",
+            "cls": "knight",
+            "side": 0,
+            "level": 25,
+            "hp": 3688.1,
+            "maxHp": 3846,
+            "loadout": [
+              "S00",
+              "S01",
+              "S03"
+            ],
+            "pos": [
+              5104.97,
+              2860.16
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "return-cutout-near-body",
+            "fixed": false,
+            "objective": false,
+            "role": "knight",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-occultist",
+            "cls": "occultist",
+            "side": 0,
+            "level": 25,
+            "hp": 2043.1999999999998,
+            "maxHp": 2304,
+            "loadout": [
+              "O01",
+              "O04",
+              "O03",
+              "O06"
+            ],
+            "pos": [
+              5237.57,
+              2880.35
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "return-cutout-near-body",
+            "fixed": false,
+            "objective": false,
+            "role": "occultist",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-mage",
+            "cls": "mage",
+            "side": 0,
+            "level": 25,
+            "hp": 1264.9,
+            "maxHp": 2050,
+            "loadout": [
+              "M01",
+              "M10",
+              "M07"
+            ],
+            "pos": [
+              5303.87,
+              2167.65
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "return-cutout-upper-ledges",
+            "fixed": false,
+            "objective": false,
+            "role": "mage",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "qa-last-traveling-soul",
+            "cls": "occultist",
+            "side": 2,
+            "level": 1,
+            "hp": 126,
+            "maxHp": 126,
+            "loadout": [],
+            "pos": [
+              5469.61,
+              2820.08
+            ],
+            "h": 105,
+            "r": 21,
+            "awake": false,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "return-cutout-near-body",
+            "fixed": false,
+            "objective": false,
+            "role": "fire",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "quiet10-second-traveling-soul",
+            "cls": "occultist",
+            "side": 2,
+            "level": 1,
+            "hp": 126,
+            "maxHp": 126,
+            "loadout": [],
+            "pos": [
+              5429.83,
+              2832.29
+            ],
+            "h": 105,
+            "r": 21,
+            "awake": false,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "return-cutout-near-body",
+            "fixed": false,
+            "objective": false,
+            "role": "fire",
+            "summoned": false,
+            "ally": false
+          }
+        ]
+      },
+      "held": {
+        "stageId": 60,
+        "honroStage": 60,
+        "mode": "campaign",
+        "authoredId": "stage-60",
+        "round": 1,
+        "phase": "aim",
+        "side": 0,
+        "shot": 0,
+        "rng": 19388,
+        "active": "p-archer",
+        "dialogue": false,
+        "isolatedStore": true,
+        "play": [
+          7200,
+          4100
+        ],
+        "terrainBounds": {
+          "left": -5000,
+          "top": -2100,
+          "right": 13000,
+          "bottom": 14700
+        },
+        "playBounds": {
+          "left": 0,
+          "top": 0,
+          "right": 7200,
+          "bottom": 4100
+        },
+        "camera": {
+          "x": 5258.680797521068,
+          "y": 2675.336308850184,
+          "zoom": null
+        },
+        "fieldFlags": [],
+        "terrain": [
+          {
+            "id": "return-cutout-near-body",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "return-cutout-upper-ledges",
+            "vertices": null,
+            "oneWay": false
+          }
+        ],
+        "worldTerrain": [
+          {
+            "id": "return-cutout-near-body",
+            "vertices": null
+          },
+          {
+            "id": "return-cutout-upper-ledges",
+            "vertices": null
+          }
+        ],
+        "enemies": [],
+        "units": [
+          {
+            "id": "p-archer",
+            "cls": "archer",
+            "side": 0,
+            "level": 25,
+            "hp": 1400,
+            "maxHp": 1720,
+            "loadout": [
+              "A01",
+              "A14",
+              "A02",
+              "A05"
+            ],
+            "pos": [
+              5186.21,
+              2876.16
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "return-cutout-near-body",
+            "fixed": false,
+            "objective": false,
+            "role": "archer",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-knight",
+            "cls": "knight",
+            "side": 0,
+            "level": 25,
+            "hp": 3688.1,
+            "maxHp": 3846,
+            "loadout": [
+              "S00",
+              "S01",
+              "S03"
+            ],
+            "pos": [
+              5104.97,
+              2860.16
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "return-cutout-near-body",
+            "fixed": false,
+            "objective": false,
+            "role": "knight",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-occultist",
+            "cls": "occultist",
+            "side": 0,
+            "level": 25,
+            "hp": 2043.1999999999998,
+            "maxHp": 2304,
+            "loadout": [
+              "O01",
+              "O04",
+              "O03",
+              "O06"
+            ],
+            "pos": [
+              5237.57,
+              2880.35
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "return-cutout-near-body",
+            "fixed": false,
+            "objective": false,
+            "role": "occultist",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-mage",
+            "cls": "mage",
+            "side": 0,
+            "level": 25,
+            "hp": 1264.9,
+            "maxHp": 2050,
+            "loadout": [
+              "M01",
+              "M10",
+              "M07"
+            ],
+            "pos": [
+              5303.87,
+              2167.65
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "return-cutout-upper-ledges",
+            "fixed": false,
+            "objective": false,
+            "role": "mage",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "qa-last-traveling-soul",
+            "cls": "occultist",
+            "side": 2,
+            "level": 1,
+            "hp": 126,
+            "maxHp": 126,
+            "loadout": [],
+            "pos": [
+              5469.61,
+              2820.08
+            ],
+            "h": 105,
+            "r": 21,
+            "awake": false,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "return-cutout-near-body",
+            "fixed": false,
+            "objective": false,
+            "role": "fire",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "quiet10-second-traveling-soul",
+            "cls": "occultist",
+            "side": 2,
+            "level": 1,
+            "hp": 126,
+            "maxHp": 126,
+            "loadout": [],
+            "pos": [
+              5429.83,
+              2832.29
+            ],
+            "h": 105,
+            "r": 21,
+            "awake": false,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "return-cutout-near-body",
+            "fixed": false,
+            "objective": false,
+            "role": "fire",
+            "summoned": false,
+            "ally": false
+          }
+        ]
+      },
+      "after": {
+        "stageId": 60,
+        "honroStage": 60,
+        "mode": "campaign",
+        "authoredId": "stage-60",
+        "round": 1,
+        "phase": "aim",
+        "side": 0,
+        "shot": 0,
+        "rng": 19388,
+        "active": "p-archer",
+        "dialogue": false,
+        "isolatedStore": true,
+        "play": [
+          7200,
+          4100
+        ],
+        "terrainBounds": {
+          "left": -5000,
+          "top": -2100,
+          "right": 13000,
+          "bottom": 14700
+        },
+        "playBounds": {
+          "left": 0,
+          "top": 0,
+          "right": 7200,
+          "bottom": 4100
+        },
+        "camera": {
+          "x": 5352.405300642601,
+          "y": 2692.114803957312,
+          "zoom": null
+        },
+        "fieldFlags": [],
+        "terrain": [
+          {
+            "id": "return-cutout-near-body",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "return-cutout-upper-ledges",
+            "vertices": null,
+            "oneWay": false
+          }
+        ],
+        "worldTerrain": [
+          {
+            "id": "return-cutout-near-body",
+            "vertices": null
+          },
+          {
+            "id": "return-cutout-upper-ledges",
+            "vertices": null
+          }
+        ],
+        "enemies": [],
+        "units": [
+          {
+            "id": "p-archer",
+            "cls": "archer",
+            "side": 0,
+            "level": 25,
+            "hp": 1400,
+            "maxHp": 1720,
+            "loadout": [
+              "A01",
+              "A14",
+              "A02",
+              "A05"
+            ],
+            "pos": [
+              5224.43,
+              2883.64
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "return-cutout-near-body",
+            "fixed": false,
+            "objective": false,
+            "role": "archer",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-knight",
+            "cls": "knight",
+            "side": 0,
+            "level": 25,
+            "hp": 3688.1,
+            "maxHp": 3846,
+            "loadout": [
+              "S00",
+              "S01",
+              "S03"
+            ],
+            "pos": [
+              5104.97,
+              2860.16
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "return-cutout-near-body",
+            "fixed": false,
+            "objective": false,
+            "role": "knight",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-occultist",
+            "cls": "occultist",
+            "side": 0,
+            "level": 25,
+            "hp": 2043.1999999999998,
+            "maxHp": 2304,
+            "loadout": [
+              "O01",
+              "O04",
+              "O03",
+              "O06"
+            ],
+            "pos": [
+              5237.57,
+              2880.35
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "return-cutout-near-body",
+            "fixed": false,
+            "objective": false,
+            "role": "occultist",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-mage",
+            "cls": "mage",
+            "side": 0,
+            "level": 25,
+            "hp": 1264.9,
+            "maxHp": 2050,
+            "loadout": [
+              "M01",
+              "M10",
+              "M07"
+            ],
+            "pos": [
+              5303.87,
+              2167.65
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "return-cutout-upper-ledges",
+            "fixed": false,
+            "objective": false,
+            "role": "mage",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "qa-last-traveling-soul",
+            "cls": "occultist",
+            "side": 2,
+            "level": 1,
+            "hp": 126,
+            "maxHp": 126,
+            "loadout": [],
+            "pos": [
+              5469.61,
+              2820.08
+            ],
+            "h": 105,
+            "r": 21,
+            "awake": false,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "return-cutout-near-body",
+            "fixed": false,
+            "objective": false,
+            "role": "fire",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "quiet10-second-traveling-soul",
+            "cls": "occultist",
+            "side": 2,
+            "level": 1,
+            "hp": 126,
+            "maxHp": 126,
+            "loadout": [],
+            "pos": [
+              5429.83,
+              2832.29
+            ],
+            "h": 105,
+            "r": 21,
+            "awake": false,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "return-cutout-near-body",
+            "fixed": false,
+            "objective": false,
+            "role": "fire",
+            "summoned": false,
+            "ally": false
+          }
+        ]
+      }
+    },
+    {
+      "key": "Control",
+      "before": {
+        "stageId": 60,
+        "honroStage": 60,
+        "mode": "campaign",
+        "authoredId": "stage-60",
+        "round": 1,
+        "phase": "aim",
+        "side": 0,
+        "shot": 0,
+        "rng": 19388,
+        "active": "p-archer",
+        "dialogue": false,
+        "isolatedStore": true,
+        "play": [
+          7200,
+          4100
+        ],
+        "terrainBounds": {
+          "left": -5000,
+          "top": -2100,
+          "right": 13000,
+          "bottom": 14700
+        },
+        "playBounds": {
+          "left": 0,
+          "top": 0,
+          "right": 7200,
+          "bottom": 4100
+        },
+        "camera": {
+          "x": 5355.352965381934,
+          "y": 2692.6424928407855,
+          "zoom": null
+        },
+        "fieldFlags": [],
+        "terrain": [
+          {
+            "id": "return-cutout-near-body",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "return-cutout-upper-ledges",
+            "vertices": null,
+            "oneWay": false
+          }
+        ],
+        "worldTerrain": [
+          {
+            "id": "return-cutout-near-body",
+            "vertices": null
+          },
+          {
+            "id": "return-cutout-upper-ledges",
+            "vertices": null
+          }
+        ],
+        "enemies": [],
+        "units": [
+          {
+            "id": "p-archer",
+            "cls": "archer",
+            "side": 0,
+            "level": 25,
+            "hp": 1400,
+            "maxHp": 1720,
+            "loadout": [
+              "A01",
+              "A14",
+              "A02",
+              "A05"
+            ],
+            "pos": [
+              5224.43,
+              2883.64
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "return-cutout-near-body",
+            "fixed": false,
+            "objective": false,
+            "role": "archer",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-knight",
+            "cls": "knight",
+            "side": 0,
+            "level": 25,
+            "hp": 3688.1,
+            "maxHp": 3846,
+            "loadout": [
+              "S00",
+              "S01",
+              "S03"
+            ],
+            "pos": [
+              5104.97,
+              2860.16
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "return-cutout-near-body",
+            "fixed": false,
+            "objective": false,
+            "role": "knight",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-occultist",
+            "cls": "occultist",
+            "side": 0,
+            "level": 25,
+            "hp": 2043.1999999999998,
+            "maxHp": 2304,
+            "loadout": [
+              "O01",
+              "O04",
+              "O03",
+              "O06"
+            ],
+            "pos": [
+              5237.57,
+              2880.35
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "return-cutout-near-body",
+            "fixed": false,
+            "objective": false,
+            "role": "occultist",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-mage",
+            "cls": "mage",
+            "side": 0,
+            "level": 25,
+            "hp": 1264.9,
+            "maxHp": 2050,
+            "loadout": [
+              "M01",
+              "M10",
+              "M07"
+            ],
+            "pos": [
+              5303.87,
+              2167.65
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "return-cutout-upper-ledges",
+            "fixed": false,
+            "objective": false,
+            "role": "mage",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "qa-last-traveling-soul",
+            "cls": "occultist",
+            "side": 2,
+            "level": 1,
+            "hp": 126,
+            "maxHp": 126,
+            "loadout": [],
+            "pos": [
+              5469.61,
+              2820.08
+            ],
+            "h": 105,
+            "r": 21,
+            "awake": false,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "return-cutout-near-body",
+            "fixed": false,
+            "objective": false,
+            "role": "fire",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "quiet10-second-traveling-soul",
+            "cls": "occultist",
+            "side": 2,
+            "level": 1,
+            "hp": 126,
+            "maxHp": 126,
+            "loadout": [],
+            "pos": [
+              5429.83,
+              2832.29
+            ],
+            "h": 105,
+            "r": 21,
+            "awake": false,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "return-cutout-near-body",
+            "fixed": false,
+            "objective": false,
+            "role": "fire",
+            "summoned": false,
+            "ally": false
+          }
+        ]
+      },
+      "held": {
+        "stageId": 60,
+        "honroStage": 60,
+        "mode": "campaign",
+        "authoredId": "stage-60",
+        "round": 1,
+        "phase": "aim",
+        "side": 0,
+        "shot": 0,
+        "rng": 19388,
+        "active": "p-archer",
+        "dialogue": false,
+        "isolatedStore": true,
+        "play": [
+          7200,
+          4100
+        ],
+        "terrainBounds": {
+          "left": -5000,
+          "top": -2100,
+          "right": 13000,
+          "bottom": 14700
+        },
+        "playBounds": {
+          "left": 0,
+          "top": 0,
+          "right": 7200,
+          "bottom": 4100
+        },
+        "camera": {
+          "x": 5371.318466790294,
+          "y": 2678.700869907921,
+          "zoom": null
+        },
+        "fieldFlags": [],
+        "terrain": [
+          {
+            "id": "return-cutout-near-body",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "return-cutout-upper-ledges",
+            "vertices": null,
+            "oneWay": false
+          }
+        ],
+        "worldTerrain": [
+          {
+            "id": "return-cutout-near-body",
+            "vertices": null
+          },
+          {
+            "id": "return-cutout-upper-ledges",
+            "vertices": null
+          }
+        ],
+        "enemies": [],
+        "units": [
+          {
+            "id": "p-archer",
+            "cls": "archer",
+            "side": 0,
+            "level": 25,
+            "hp": 1400,
+            "maxHp": 1720,
+            "loadout": [
+              "A01",
+              "A14",
+              "A02",
+              "A05"
+            ],
+            "pos": [
+              5224.43,
+              2809.55
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": false,
+            "validContact": false,
+            "support": null,
+            "fixed": false,
+            "objective": false,
+            "role": "archer",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-knight",
+            "cls": "knight",
+            "side": 0,
+            "level": 25,
+            "hp": 3688.1,
+            "maxHp": 3846,
+            "loadout": [
+              "S00",
+              "S01",
+              "S03"
+            ],
+            "pos": [
+              5104.97,
+              2860.16
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "return-cutout-near-body",
+            "fixed": false,
+            "objective": false,
+            "role": "knight",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-occultist",
+            "cls": "occultist",
+            "side": 0,
+            "level": 25,
+            "hp": 2043.1999999999998,
+            "maxHp": 2304,
+            "loadout": [
+              "O01",
+              "O04",
+              "O03",
+              "O06"
+            ],
+            "pos": [
+              5237.57,
+              2880.35
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "return-cutout-near-body",
+            "fixed": false,
+            "objective": false,
+            "role": "occultist",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-mage",
+            "cls": "mage",
+            "side": 0,
+            "level": 25,
+            "hp": 1264.9,
+            "maxHp": 2050,
+            "loadout": [
+              "M01",
+              "M10",
+              "M07"
+            ],
+            "pos": [
+              5303.87,
+              2167.65
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "return-cutout-upper-ledges",
+            "fixed": false,
+            "objective": false,
+            "role": "mage",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "qa-last-traveling-soul",
+            "cls": "occultist",
+            "side": 2,
+            "level": 1,
+            "hp": 126,
+            "maxHp": 126,
+            "loadout": [],
+            "pos": [
+              5469.61,
+              2820.08
+            ],
+            "h": 105,
+            "r": 21,
+            "awake": false,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "return-cutout-near-body",
+            "fixed": false,
+            "objective": false,
+            "role": "fire",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "quiet10-second-traveling-soul",
+            "cls": "occultist",
+            "side": 2,
+            "level": 1,
+            "hp": 126,
+            "maxHp": 126,
+            "loadout": [],
+            "pos": [
+              5429.83,
+              2832.29
+            ],
+            "h": 105,
+            "r": 21,
+            "awake": false,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "return-cutout-near-body",
+            "fixed": false,
+            "objective": false,
+            "role": "fire",
+            "summoned": false,
+            "ally": false
+          }
+        ]
+      },
+      "after": {
+        "stageId": 60,
+        "honroStage": 60,
+        "mode": "campaign",
+        "authoredId": "stage-60",
+        "round": 1,
+        "phase": "aim",
+        "side": 0,
+        "shot": 0,
+        "rng": 19388,
+        "active": "p-archer",
+        "dialogue": false,
+        "isolatedStore": true,
+        "play": [
+          7200,
+          4100
+        ],
+        "terrainBounds": {
+          "left": -5000,
+          "top": -2100,
+          "right": 13000,
+          "bottom": 14700
+        },
+        "playBounds": {
+          "left": 0,
+          "top": 0,
+          "right": 7200,
+          "bottom": 4100
+        },
+        "camera": {
+          "x": 5394.011300530288,
+          "y": 2635.400695295214,
+          "zoom": null
+        },
+        "fieldFlags": [],
+        "terrain": [
+          {
+            "id": "return-cutout-near-body",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "return-cutout-upper-ledges",
+            "vertices": null,
+            "oneWay": false
+          }
+        ],
+        "worldTerrain": [
+          {
+            "id": "return-cutout-near-body",
+            "vertices": null
+          },
+          {
+            "id": "return-cutout-upper-ledges",
+            "vertices": null
+          }
+        ],
+        "enemies": [],
+        "units": [
+          {
+            "id": "p-archer",
+            "cls": "archer",
+            "side": 0,
+            "level": 25,
+            "hp": 1400,
+            "maxHp": 1720,
+            "loadout": [
+              "A01",
+              "A14",
+              "A02",
+              "A05"
+            ],
+            "pos": [
+              5224.43,
+              2883.64
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "return-cutout-near-body",
+            "fixed": false,
+            "objective": false,
+            "role": "archer",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-knight",
+            "cls": "knight",
+            "side": 0,
+            "level": 25,
+            "hp": 3688.1,
+            "maxHp": 3846,
+            "loadout": [
+              "S00",
+              "S01",
+              "S03"
+            ],
+            "pos": [
+              5104.97,
+              2860.16
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "return-cutout-near-body",
+            "fixed": false,
+            "objective": false,
+            "role": "knight",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-occultist",
+            "cls": "occultist",
+            "side": 0,
+            "level": 25,
+            "hp": 2043.1999999999998,
+            "maxHp": 2304,
+            "loadout": [
+              "O01",
+              "O04",
+              "O03",
+              "O06"
+            ],
+            "pos": [
+              5237.57,
+              2880.35
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "return-cutout-near-body",
+            "fixed": false,
+            "objective": false,
+            "role": "occultist",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-mage",
+            "cls": "mage",
+            "side": 0,
+            "level": 25,
+            "hp": 1264.9,
+            "maxHp": 2050,
+            "loadout": [
+              "M01",
+              "M10",
+              "M07"
+            ],
+            "pos": [
+              5303.87,
+              2167.65
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "return-cutout-upper-ledges",
+            "fixed": false,
+            "objective": false,
+            "role": "mage",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "qa-last-traveling-soul",
+            "cls": "occultist",
+            "side": 2,
+            "level": 1,
+            "hp": 126,
+            "maxHp": 126,
+            "loadout": [],
+            "pos": [
+              5469.61,
+              2820.08
+            ],
+            "h": 105,
+            "r": 21,
+            "awake": false,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "return-cutout-near-body",
+            "fixed": false,
+            "objective": false,
+            "role": "fire",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "quiet10-second-traveling-soul",
+            "cls": "occultist",
+            "side": 2,
+            "level": 1,
+            "hp": 126,
+            "maxHp": 126,
+            "loadout": [],
+            "pos": [
+              5429.83,
+              2832.29
+            ],
+            "h": 105,
+            "r": 21,
+            "awake": false,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "return-cutout-near-body",
+            "fixed": false,
+            "objective": false,
+            "role": "fire",
+            "summoned": false,
+            "ally": false
+          }
+        ]
+      }
+    }
+  ],
+  "defendInputs": 0,
+  "end": {
+    "stageId": 60,
+    "honroStage": 60,
+    "mode": "campaign",
+    "authoredId": "stage-60",
+    "round": 1,
+    "phase": "aim",
+    "side": 0,
+    "shot": 0,
+    "rng": 19388,
+    "active": "p-archer",
+    "dialogue": false,
+    "isolatedStore": true,
+    "play": [
+      7200,
+      4100
+    ],
+    "terrainBounds": {
+      "left": -5000,
+      "top": -2100,
+      "right": 13000,
+      "bottom": 14700
+    },
+    "playBounds": {
+      "left": 0,
+      "top": 0,
+      "right": 7200,
+      "bottom": 4100
+    },
+    "camera": {
+      "x": 5394.04054427039,
+      "y": 2639.8793320209356,
+      "zoom": null
+    },
+    "fieldFlags": [],
+    "terrain": [
+      {
+        "id": "return-cutout-near-body",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "return-cutout-upper-ledges",
+        "vertices": null,
+        "oneWay": false
+      }
+    ],
+    "worldTerrain": [
+      {
+        "id": "return-cutout-near-body",
+        "vertices": null
+      },
+      {
+        "id": "return-cutout-upper-ledges",
+        "vertices": null
+      }
+    ],
+    "enemies": [],
+    "units": [
+      {
+        "id": "p-archer",
+        "cls": "archer",
+        "side": 0,
+        "level": 25,
+        "hp": 1400,
+        "maxHp": 1720,
+        "loadout": [
+          "A01",
+          "A14",
+          "A02",
+          "A05"
+        ],
+        "pos": [
+          5224.43,
+          2883.64
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "return-cutout-near-body",
+        "fixed": false,
+        "objective": false,
+        "role": "archer",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "p-knight",
+        "cls": "knight",
+        "side": 0,
+        "level": 25,
+        "hp": 3688.1,
+        "maxHp": 3846,
+        "loadout": [
+          "S00",
+          "S01",
+          "S03"
+        ],
+        "pos": [
+          5104.97,
+          2860.16
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "return-cutout-near-body",
+        "fixed": false,
+        "objective": false,
+        "role": "knight",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "p-occultist",
+        "cls": "occultist",
+        "side": 0,
+        "level": 25,
+        "hp": 2043.1999999999998,
+        "maxHp": 2304,
+        "loadout": [
+          "O01",
+          "O04",
+          "O03",
+          "O06"
+        ],
+        "pos": [
+          5237.57,
+          2880.35
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "return-cutout-near-body",
+        "fixed": false,
+        "objective": false,
+        "role": "occultist",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "p-mage",
+        "cls": "mage",
+        "side": 0,
+        "level": 25,
+        "hp": 1264.9,
+        "maxHp": 2050,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "pos": [
+          5303.87,
+          2167.65
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "return-cutout-upper-ledges",
+        "fixed": false,
+        "objective": false,
+        "role": "mage",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "qa-last-traveling-soul",
+        "cls": "occultist",
+        "side": 2,
+        "level": 1,
+        "hp": 126,
+        "maxHp": 126,
+        "loadout": [],
+        "pos": [
+          5469.61,
+          2820.08
+        ],
+        "h": 105,
+        "r": 21,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "return-cutout-near-body",
+        "fixed": false,
+        "objective": false,
+        "role": "fire",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "quiet10-second-traveling-soul",
+        "cls": "occultist",
+        "side": 2,
+        "level": 1,
+        "hp": 126,
+        "maxHp": 126,
+        "loadout": [],
+        "pos": [
+          5429.83,
+          2832.29
+        ],
+        "h": 105,
+        "r": 21,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "return-cutout-near-body",
+        "fixed": false,
+        "objective": false,
+        "role": "fire",
+        "summoned": false,
+        "ally": false
+      }
+    ]
+  },
+  "trace": [
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 0,
+      "phase": "aim",
+      "active": [],
+      "newIds": []
+    }
+  ],
+  "save": {
+    "keys": [
+      "honro-first-act-profile-1"
+    ],
+    "before": "a4c26350023556b04dac266a59b94aae507156e5f7b20107b9d80cdfda23b91c",
+    "after": "a4c26350023556b04dac266a59b94aae507156e5f7b20107b9d80cdfda23b91c",
+    "unchanged": true
+  },
+  "chromium": "154.0.8037.57"
+}

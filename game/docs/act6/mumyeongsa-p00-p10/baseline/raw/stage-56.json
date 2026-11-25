@@ -1,0 +1,2561 @@
+{
+  "stage": 56,
+  "status": "PASS",
+  "errors": [],
+  "warnings": [],
+  "httpErrors": [],
+  "entry": {
+    "stageId": 56,
+    "honroStage": 56,
+    "mode": "campaign",
+    "authoredId": "stage-56",
+    "round": 1,
+    "phase": "aim",
+    "side": 0,
+    "shot": 0,
+    "rng": 19388,
+    "active": "p-mage",
+    "dialogue": false,
+    "isolatedStore": true,
+    "play": [
+      6720,
+      5040
+    ],
+    "terrainBounds": {
+      "left": -4528,
+      "top": -1992,
+      "right": 11488,
+      "bottom": 13776
+    },
+    "playBounds": {
+      "left": 0,
+      "top": 0,
+      "right": 6720,
+      "bottom": 5040
+    },
+    "camera": {
+      "x": 916.0762000000001,
+      "y": 965.01804,
+      "zoom": null
+    },
+    "fieldFlags": [],
+    "terrain": [
+      {
+        "id": "A-01-upper-entry",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "C-01-west-upper-descent",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "C-02-west-shaft-descent",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "C-03-west-refuge-lower",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "B-01-center-stone-ascent",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "B-02-center-lower-short-climb",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "A-upper-veranda",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "B-left-broken-balcony",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "B-central-lower-floor",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "E-joined-ordinary-floor",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "west-extension-prototype",
+        "vertices": null,
+        "oneWay": false
+      }
+    ],
+    "worldTerrain": [
+      {
+        "id": "A-01-upper-entry",
+        "vertices": null
+      },
+      {
+        "id": "C-01-west-upper-descent",
+        "vertices": null
+      },
+      {
+        "id": "C-02-west-shaft-descent",
+        "vertices": null
+      },
+      {
+        "id": "C-03-west-refuge-lower",
+        "vertices": null
+      },
+      {
+        "id": "B-01-center-stone-ascent",
+        "vertices": null
+      },
+      {
+        "id": "B-02-center-lower-short-climb",
+        "vertices": null
+      },
+      {
+        "id": "A-upper-veranda",
+        "vertices": null
+      },
+      {
+        "id": "B-left-broken-balcony",
+        "vertices": null
+      },
+      {
+        "id": "B-central-lower-floor",
+        "vertices": null
+      },
+      {
+        "id": "E-joined-ordinary-floor",
+        "vertices": null
+      },
+      {
+        "id": "west-extension-prototype",
+        "vertices": null
+      }
+    ],
+    "enemies": [
+      "draft-pressure-0"
+    ],
+    "units": [
+      {
+        "id": "p-mage",
+        "cls": "mage",
+        "side": 0,
+        "level": 25,
+        "hp": 1708.9,
+        "maxHp": 2050,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "pos": [
+          928,
+          1136
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "A-upper-veranda",
+        "fixed": false,
+        "objective": false,
+        "role": "mage",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "draft-pressure-0",
+        "cls": "knight",
+        "side": 1,
+        "level": 8,
+        "hp": 409,
+        "maxHp": 409,
+        "loadout": [
+          "HBM01"
+        ],
+        "pos": [
+          1936,
+          3784.07
+        ],
+        "h": 88,
+        "r": 32,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "C-03-west-refuge-lower",
+        "fixed": false,
+        "objective": false,
+        "role": "leaper",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "draft-pressure-1",
+        "cls": "occultist",
+        "side": 1,
+        "level": 12,
+        "hp": 987,
+        "maxHp": 987,
+        "loadout": [
+          "HLN01",
+          "HLN02"
+        ],
+        "pos": [
+          3456,
+          2247.2
+        ],
+        "h": 92,
+        "r": 25,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "B-01-center-stone-ascent",
+        "fixed": true,
+        "objective": false,
+        "role": "fire",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "draft-pressure-2",
+        "cls": "occultist",
+        "side": 1,
+        "level": 8,
+        "hp": 409,
+        "maxHp": 409,
+        "loadout": [
+          "HGS01",
+          "HGS02"
+        ],
+        "pos": [
+          5872,
+          3694.83
+        ],
+        "h": 88,
+        "r": 32,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "E-joined-ordinary-floor",
+        "fixed": false,
+        "objective": false,
+        "role": "fire",
+        "summoned": false,
+        "ally": false
+      }
+    ]
+  },
+  "settled": {
+    "stageId": 56,
+    "honroStage": 56,
+    "mode": "campaign",
+    "authoredId": "stage-56",
+    "round": 1,
+    "phase": "aim",
+    "side": 0,
+    "shot": 0,
+    "rng": 19388,
+    "active": "p-mage",
+    "dialogue": false,
+    "isolatedStore": true,
+    "play": [
+      6720,
+      5040
+    ],
+    "terrainBounds": {
+      "left": -4528,
+      "top": -1992,
+      "right": 11488,
+      "bottom": 13776
+    },
+    "playBounds": {
+      "left": 0,
+      "top": 0,
+      "right": 6720,
+      "bottom": 5040
+    },
+    "camera": {
+      "x": 761.8168244221785,
+      "y": 952.3143267171206,
+      "zoom": null
+    },
+    "fieldFlags": [],
+    "terrain": [
+      {
+        "id": "A-01-upper-entry",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "C-01-west-upper-descent",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "C-02-west-shaft-descent",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "C-03-west-refuge-lower",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "B-01-center-stone-ascent",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "B-02-center-lower-short-climb",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "A-upper-veranda",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "B-left-broken-balcony",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "B-central-lower-floor",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "E-joined-ordinary-floor",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "west-extension-prototype",
+        "vertices": null,
+        "oneWay": false
+      }
+    ],
+    "worldTerrain": [
+      {
+        "id": "A-01-upper-entry",
+        "vertices": null
+      },
+      {
+        "id": "C-01-west-upper-descent",
+        "vertices": null
+      },
+      {
+        "id": "C-02-west-shaft-descent",
+        "vertices": null
+      },
+      {
+        "id": "C-03-west-refuge-lower",
+        "vertices": null
+      },
+      {
+        "id": "B-01-center-stone-ascent",
+        "vertices": null
+      },
+      {
+        "id": "B-02-center-lower-short-climb",
+        "vertices": null
+      },
+      {
+        "id": "A-upper-veranda",
+        "vertices": null
+      },
+      {
+        "id": "B-left-broken-balcony",
+        "vertices": null
+      },
+      {
+        "id": "B-central-lower-floor",
+        "vertices": null
+      },
+      {
+        "id": "E-joined-ordinary-floor",
+        "vertices": null
+      },
+      {
+        "id": "west-extension-prototype",
+        "vertices": null
+      }
+    ],
+    "enemies": [
+      "draft-pressure-0"
+    ],
+    "units": [
+      {
+        "id": "p-mage",
+        "cls": "mage",
+        "side": 0,
+        "level": 25,
+        "hp": 1708.9,
+        "maxHp": 2050,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "pos": [
+          928,
+          1136
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "A-upper-veranda",
+        "fixed": false,
+        "objective": false,
+        "role": "mage",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "draft-pressure-0",
+        "cls": "knight",
+        "side": 1,
+        "level": 8,
+        "hp": 409,
+        "maxHp": 409,
+        "loadout": [
+          "HBM01"
+        ],
+        "pos": [
+          1936,
+          3784.07
+        ],
+        "h": 88,
+        "r": 32,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "C-03-west-refuge-lower",
+        "fixed": false,
+        "objective": false,
+        "role": "leaper",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "draft-pressure-1",
+        "cls": "occultist",
+        "side": 1,
+        "level": 12,
+        "hp": 987,
+        "maxHp": 987,
+        "loadout": [
+          "HLN01",
+          "HLN02"
+        ],
+        "pos": [
+          3456,
+          2247.2
+        ],
+        "h": 92,
+        "r": 25,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "B-01-center-stone-ascent",
+        "fixed": true,
+        "objective": false,
+        "role": "fire",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "draft-pressure-2",
+        "cls": "occultist",
+        "side": 1,
+        "level": 8,
+        "hp": 409,
+        "maxHp": 409,
+        "loadout": [
+          "HGS01",
+          "HGS02"
+        ],
+        "pos": [
+          5872,
+          3694.83
+        ],
+        "h": 88,
+        "r": 32,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "E-joined-ordinary-floor",
+        "fixed": false,
+        "objective": false,
+        "role": "fire",
+        "summoned": false,
+        "ally": false
+      }
+    ]
+  },
+  "input": [
+    {
+      "key": "ArrowRight",
+      "before": {
+        "stageId": 56,
+        "honroStage": 56,
+        "mode": "campaign",
+        "authoredId": "stage-56",
+        "round": 1,
+        "phase": "aim",
+        "side": 0,
+        "shot": 0,
+        "rng": 19388,
+        "active": "p-mage",
+        "dialogue": false,
+        "isolatedStore": true,
+        "play": [
+          6720,
+          5040
+        ],
+        "terrainBounds": {
+          "left": -4528,
+          "top": -1992,
+          "right": 11488,
+          "bottom": 13776
+        },
+        "playBounds": {
+          "left": 0,
+          "top": 0,
+          "right": 6720,
+          "bottom": 5040
+        },
+        "camera": {
+          "x": 759.7085109848249,
+          "y": 952.1407009046327,
+          "zoom": null
+        },
+        "fieldFlags": [],
+        "terrain": [
+          {
+            "id": "A-01-upper-entry",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "C-01-west-upper-descent",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "C-02-west-shaft-descent",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "C-03-west-refuge-lower",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "B-01-center-stone-ascent",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "B-02-center-lower-short-climb",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "A-upper-veranda",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "B-left-broken-balcony",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "B-central-lower-floor",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "E-joined-ordinary-floor",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "west-extension-prototype",
+            "vertices": null,
+            "oneWay": false
+          }
+        ],
+        "worldTerrain": [
+          {
+            "id": "A-01-upper-entry",
+            "vertices": null
+          },
+          {
+            "id": "C-01-west-upper-descent",
+            "vertices": null
+          },
+          {
+            "id": "C-02-west-shaft-descent",
+            "vertices": null
+          },
+          {
+            "id": "C-03-west-refuge-lower",
+            "vertices": null
+          },
+          {
+            "id": "B-01-center-stone-ascent",
+            "vertices": null
+          },
+          {
+            "id": "B-02-center-lower-short-climb",
+            "vertices": null
+          },
+          {
+            "id": "A-upper-veranda",
+            "vertices": null
+          },
+          {
+            "id": "B-left-broken-balcony",
+            "vertices": null
+          },
+          {
+            "id": "B-central-lower-floor",
+            "vertices": null
+          },
+          {
+            "id": "E-joined-ordinary-floor",
+            "vertices": null
+          },
+          {
+            "id": "west-extension-prototype",
+            "vertices": null
+          }
+        ],
+        "enemies": [
+          "draft-pressure-0"
+        ],
+        "units": [
+          {
+            "id": "p-mage",
+            "cls": "mage",
+            "side": 0,
+            "level": 25,
+            "hp": 1708.9,
+            "maxHp": 2050,
+            "loadout": [
+              "M01",
+              "M10",
+              "M07"
+            ],
+            "pos": [
+              928,
+              1136
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "A-upper-veranda",
+            "fixed": false,
+            "objective": false,
+            "role": "mage",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "draft-pressure-0",
+            "cls": "knight",
+            "side": 1,
+            "level": 8,
+            "hp": 409,
+            "maxHp": 409,
+            "loadout": [
+              "HBM01"
+            ],
+            "pos": [
+              1936,
+              3784.07
+            ],
+            "h": 88,
+            "r": 32,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "C-03-west-refuge-lower",
+            "fixed": false,
+            "objective": false,
+            "role": "leaper",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "draft-pressure-1",
+            "cls": "occultist",
+            "side": 1,
+            "level": 12,
+            "hp": 987,
+            "maxHp": 987,
+            "loadout": [
+              "HLN01",
+              "HLN02"
+            ],
+            "pos": [
+              3456,
+              2247.2
+            ],
+            "h": 92,
+            "r": 25,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "B-01-center-stone-ascent",
+            "fixed": true,
+            "objective": false,
+            "role": "fire",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "draft-pressure-2",
+            "cls": "occultist",
+            "side": 1,
+            "level": 8,
+            "hp": 409,
+            "maxHp": 409,
+            "loadout": [
+              "HGS01",
+              "HGS02"
+            ],
+            "pos": [
+              5872,
+              3694.83
+            ],
+            "h": 88,
+            "r": 32,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "E-joined-ordinary-floor",
+            "fixed": false,
+            "objective": false,
+            "role": "fire",
+            "summoned": false,
+            "ally": false
+          }
+        ]
+      },
+      "held": {
+        "stageId": 56,
+        "honroStage": 56,
+        "mode": "campaign",
+        "authoredId": "stage-56",
+        "round": 1,
+        "phase": "aim",
+        "side": 0,
+        "shot": 0,
+        "rng": 19388,
+        "active": "p-mage",
+        "dialogue": false,
+        "isolatedStore": true,
+        "play": [
+          6720,
+          5040
+        ],
+        "terrainBounds": {
+          "left": -4528,
+          "top": -1992,
+          "right": 11488,
+          "bottom": 13776
+        },
+        "playBounds": {
+          "left": 0,
+          "top": 0,
+          "right": 6720,
+          "bottom": 5040
+        },
+        "camera": {
+          "x": 1117.5157777824907,
+          "y": 952.0329625611238,
+          "zoom": null
+        },
+        "fieldFlags": [],
+        "terrain": [
+          {
+            "id": "A-01-upper-entry",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "C-01-west-upper-descent",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "C-02-west-shaft-descent",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "C-03-west-refuge-lower",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "B-01-center-stone-ascent",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "B-02-center-lower-short-climb",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "A-upper-veranda",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "B-left-broken-balcony",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "B-central-lower-floor",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "E-joined-ordinary-floor",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "west-extension-prototype",
+            "vertices": null,
+            "oneWay": false
+          }
+        ],
+        "worldTerrain": [
+          {
+            "id": "A-01-upper-entry",
+            "vertices": null
+          },
+          {
+            "id": "C-01-west-upper-descent",
+            "vertices": null
+          },
+          {
+            "id": "C-02-west-shaft-descent",
+            "vertices": null
+          },
+          {
+            "id": "C-03-west-refuge-lower",
+            "vertices": null
+          },
+          {
+            "id": "B-01-center-stone-ascent",
+            "vertices": null
+          },
+          {
+            "id": "B-02-center-lower-short-climb",
+            "vertices": null
+          },
+          {
+            "id": "A-upper-veranda",
+            "vertices": null
+          },
+          {
+            "id": "B-left-broken-balcony",
+            "vertices": null
+          },
+          {
+            "id": "B-central-lower-floor",
+            "vertices": null
+          },
+          {
+            "id": "E-joined-ordinary-floor",
+            "vertices": null
+          },
+          {
+            "id": "west-extension-prototype",
+            "vertices": null
+          }
+        ],
+        "enemies": [
+          "draft-pressure-0"
+        ],
+        "units": [
+          {
+            "id": "p-mage",
+            "cls": "mage",
+            "side": 0,
+            "level": 25,
+            "hp": 1708.9,
+            "maxHp": 2050,
+            "loadout": [
+              "M01",
+              "M10",
+              "M07"
+            ],
+            "pos": [
+              1129,
+              1136
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "A-upper-veranda",
+            "fixed": false,
+            "objective": false,
+            "role": "mage",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "draft-pressure-0",
+            "cls": "knight",
+            "side": 1,
+            "level": 8,
+            "hp": 409,
+            "maxHp": 409,
+            "loadout": [
+              "HBM01"
+            ],
+            "pos": [
+              1936,
+              3784.07
+            ],
+            "h": 88,
+            "r": 32,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "C-03-west-refuge-lower",
+            "fixed": false,
+            "objective": false,
+            "role": "leaper",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "draft-pressure-1",
+            "cls": "occultist",
+            "side": 1,
+            "level": 12,
+            "hp": 987,
+            "maxHp": 987,
+            "loadout": [
+              "HLN01",
+              "HLN02"
+            ],
+            "pos": [
+              3456,
+              2247.2
+            ],
+            "h": 92,
+            "r": 25,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "B-01-center-stone-ascent",
+            "fixed": true,
+            "objective": false,
+            "role": "fire",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "draft-pressure-2",
+            "cls": "occultist",
+            "side": 1,
+            "level": 8,
+            "hp": 409,
+            "maxHp": 409,
+            "loadout": [
+              "HGS01",
+              "HGS02"
+            ],
+            "pos": [
+              5872,
+              3694.83
+            ],
+            "h": 88,
+            "r": 32,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "E-joined-ordinary-floor",
+            "fixed": false,
+            "objective": false,
+            "role": "fire",
+            "summoned": false,
+            "ally": false
+          }
+        ]
+      },
+      "after": {
+        "stageId": 56,
+        "honroStage": 56,
+        "mode": "campaign",
+        "authoredId": "stage-56",
+        "round": 1,
+        "phase": "aim",
+        "side": 0,
+        "shot": 0,
+        "rng": 19388,
+        "active": "p-mage",
+        "dialogue": false,
+        "isolatedStore": true,
+        "play": [
+          6720,
+          5040
+        ],
+        "terrainBounds": {
+          "left": -4528,
+          "top": -1992,
+          "right": 11488,
+          "bottom": 13776
+        },
+        "playBounds": {
+          "left": 0,
+          "top": 0,
+          "right": 6720,
+          "bottom": 5040
+        },
+        "camera": {
+          "x": 1217.3010315376275,
+          "y": 952,
+          "zoom": null
+        },
+        "fieldFlags": [],
+        "terrain": [
+          {
+            "id": "A-01-upper-entry",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "C-01-west-upper-descent",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "C-02-west-shaft-descent",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "C-03-west-refuge-lower",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "B-01-center-stone-ascent",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "B-02-center-lower-short-climb",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "A-upper-veranda",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "B-left-broken-balcony",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "B-central-lower-floor",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "E-joined-ordinary-floor",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "west-extension-prototype",
+            "vertices": null,
+            "oneWay": false
+          }
+        ],
+        "worldTerrain": [
+          {
+            "id": "A-01-upper-entry",
+            "vertices": null
+          },
+          {
+            "id": "C-01-west-upper-descent",
+            "vertices": null
+          },
+          {
+            "id": "C-02-west-shaft-descent",
+            "vertices": null
+          },
+          {
+            "id": "C-03-west-refuge-lower",
+            "vertices": null
+          },
+          {
+            "id": "B-01-center-stone-ascent",
+            "vertices": null
+          },
+          {
+            "id": "B-02-center-lower-short-climb",
+            "vertices": null
+          },
+          {
+            "id": "A-upper-veranda",
+            "vertices": null
+          },
+          {
+            "id": "B-left-broken-balcony",
+            "vertices": null
+          },
+          {
+            "id": "B-central-lower-floor",
+            "vertices": null
+          },
+          {
+            "id": "E-joined-ordinary-floor",
+            "vertices": null
+          },
+          {
+            "id": "west-extension-prototype",
+            "vertices": null
+          }
+        ],
+        "enemies": [
+          "draft-pressure-0"
+        ],
+        "units": [
+          {
+            "id": "p-mage",
+            "cls": "mage",
+            "side": 0,
+            "level": 25,
+            "hp": 1708.9,
+            "maxHp": 2050,
+            "loadout": [
+              "M01",
+              "M10",
+              "M07"
+            ],
+            "pos": [
+              1129,
+              1136
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "A-upper-veranda",
+            "fixed": false,
+            "objective": false,
+            "role": "mage",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "draft-pressure-0",
+            "cls": "knight",
+            "side": 1,
+            "level": 8,
+            "hp": 409,
+            "maxHp": 409,
+            "loadout": [
+              "HBM01"
+            ],
+            "pos": [
+              1936,
+              3784.07
+            ],
+            "h": 88,
+            "r": 32,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "C-03-west-refuge-lower",
+            "fixed": false,
+            "objective": false,
+            "role": "leaper",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "draft-pressure-1",
+            "cls": "occultist",
+            "side": 1,
+            "level": 12,
+            "hp": 987,
+            "maxHp": 987,
+            "loadout": [
+              "HLN01",
+              "HLN02"
+            ],
+            "pos": [
+              3456,
+              2247.2
+            ],
+            "h": 92,
+            "r": 25,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "B-01-center-stone-ascent",
+            "fixed": true,
+            "objective": false,
+            "role": "fire",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "draft-pressure-2",
+            "cls": "occultist",
+            "side": 1,
+            "level": 8,
+            "hp": 409,
+            "maxHp": 409,
+            "loadout": [
+              "HGS01",
+              "HGS02"
+            ],
+            "pos": [
+              5872,
+              3694.83
+            ],
+            "h": 88,
+            "r": 32,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "E-joined-ordinary-floor",
+            "fixed": false,
+            "objective": false,
+            "role": "fire",
+            "summoned": false,
+            "ally": false
+          }
+        ]
+      }
+    },
+    {
+      "key": "Control",
+      "before": {
+        "stageId": 56,
+        "honroStage": 56,
+        "mode": "campaign",
+        "authoredId": "stage-56",
+        "round": 1,
+        "phase": "aim",
+        "side": 0,
+        "shot": 0,
+        "rng": 19388,
+        "active": "p-mage",
+        "dialogue": false,
+        "isolatedStore": true,
+        "play": [
+          6720,
+          5040
+        ],
+        "terrainBounds": {
+          "left": -4528,
+          "top": -1992,
+          "right": 11488,
+          "bottom": 13776
+        },
+        "playBounds": {
+          "left": 0,
+          "top": 0,
+          "right": 6720,
+          "bottom": 5040
+        },
+        "camera": {
+          "x": 1222.9970836188238,
+          "y": 952,
+          "zoom": null
+        },
+        "fieldFlags": [],
+        "terrain": [
+          {
+            "id": "A-01-upper-entry",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "C-01-west-upper-descent",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "C-02-west-shaft-descent",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "C-03-west-refuge-lower",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "B-01-center-stone-ascent",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "B-02-center-lower-short-climb",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "A-upper-veranda",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "B-left-broken-balcony",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "B-central-lower-floor",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "E-joined-ordinary-floor",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "west-extension-prototype",
+            "vertices": null,
+            "oneWay": false
+          }
+        ],
+        "worldTerrain": [
+          {
+            "id": "A-01-upper-entry",
+            "vertices": null
+          },
+          {
+            "id": "C-01-west-upper-descent",
+            "vertices": null
+          },
+          {
+            "id": "C-02-west-shaft-descent",
+            "vertices": null
+          },
+          {
+            "id": "C-03-west-refuge-lower",
+            "vertices": null
+          },
+          {
+            "id": "B-01-center-stone-ascent",
+            "vertices": null
+          },
+          {
+            "id": "B-02-center-lower-short-climb",
+            "vertices": null
+          },
+          {
+            "id": "A-upper-veranda",
+            "vertices": null
+          },
+          {
+            "id": "B-left-broken-balcony",
+            "vertices": null
+          },
+          {
+            "id": "B-central-lower-floor",
+            "vertices": null
+          },
+          {
+            "id": "E-joined-ordinary-floor",
+            "vertices": null
+          },
+          {
+            "id": "west-extension-prototype",
+            "vertices": null
+          }
+        ],
+        "enemies": [
+          "draft-pressure-0"
+        ],
+        "units": [
+          {
+            "id": "p-mage",
+            "cls": "mage",
+            "side": 0,
+            "level": 25,
+            "hp": 1708.9,
+            "maxHp": 2050,
+            "loadout": [
+              "M01",
+              "M10",
+              "M07"
+            ],
+            "pos": [
+              1129,
+              1136
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "A-upper-veranda",
+            "fixed": false,
+            "objective": false,
+            "role": "mage",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "draft-pressure-0",
+            "cls": "knight",
+            "side": 1,
+            "level": 8,
+            "hp": 409,
+            "maxHp": 409,
+            "loadout": [
+              "HBM01"
+            ],
+            "pos": [
+              1936,
+              3784.07
+            ],
+            "h": 88,
+            "r": 32,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "C-03-west-refuge-lower",
+            "fixed": false,
+            "objective": false,
+            "role": "leaper",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "draft-pressure-1",
+            "cls": "occultist",
+            "side": 1,
+            "level": 12,
+            "hp": 987,
+            "maxHp": 987,
+            "loadout": [
+              "HLN01",
+              "HLN02"
+            ],
+            "pos": [
+              3456,
+              2247.2
+            ],
+            "h": 92,
+            "r": 25,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "B-01-center-stone-ascent",
+            "fixed": true,
+            "objective": false,
+            "role": "fire",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "draft-pressure-2",
+            "cls": "occultist",
+            "side": 1,
+            "level": 8,
+            "hp": 409,
+            "maxHp": 409,
+            "loadout": [
+              "HGS01",
+              "HGS02"
+            ],
+            "pos": [
+              5872,
+              3694.83
+            ],
+            "h": 88,
+            "r": 32,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "E-joined-ordinary-floor",
+            "fixed": false,
+            "objective": false,
+            "role": "fire",
+            "summoned": false,
+            "ally": false
+          }
+        ]
+      },
+      "held": {
+        "stageId": 56,
+        "honroStage": 56,
+        "mode": "campaign",
+        "authoredId": "stage-56",
+        "round": 1,
+        "phase": "aim",
+        "side": 0,
+        "shot": 0,
+        "rng": 19388,
+        "active": "p-mage",
+        "dialogue": false,
+        "isolatedStore": true,
+        "play": [
+          6720,
+          5040
+        ],
+        "terrainBounds": {
+          "left": -4528,
+          "top": -1992,
+          "right": 11488,
+          "bottom": 13776
+        },
+        "playBounds": {
+          "left": 0,
+          "top": 0,
+          "right": 6720,
+          "bottom": 5040
+        },
+        "camera": {
+          "x": 1249.8268658732582,
+          "y": 937.4609229329956,
+          "zoom": null
+        },
+        "fieldFlags": [],
+        "terrain": [
+          {
+            "id": "A-01-upper-entry",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "C-01-west-upper-descent",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "C-02-west-shaft-descent",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "C-03-west-refuge-lower",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "B-01-center-stone-ascent",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "B-02-center-lower-short-climb",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "A-upper-veranda",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "B-left-broken-balcony",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "B-central-lower-floor",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "E-joined-ordinary-floor",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "west-extension-prototype",
+            "vertices": null,
+            "oneWay": false
+          }
+        ],
+        "worldTerrain": [
+          {
+            "id": "A-01-upper-entry",
+            "vertices": null
+          },
+          {
+            "id": "C-01-west-upper-descent",
+            "vertices": null
+          },
+          {
+            "id": "C-02-west-shaft-descent",
+            "vertices": null
+          },
+          {
+            "id": "C-03-west-refuge-lower",
+            "vertices": null
+          },
+          {
+            "id": "B-01-center-stone-ascent",
+            "vertices": null
+          },
+          {
+            "id": "B-02-center-lower-short-climb",
+            "vertices": null
+          },
+          {
+            "id": "A-upper-veranda",
+            "vertices": null
+          },
+          {
+            "id": "B-left-broken-balcony",
+            "vertices": null
+          },
+          {
+            "id": "B-central-lower-floor",
+            "vertices": null
+          },
+          {
+            "id": "E-joined-ordinary-floor",
+            "vertices": null
+          },
+          {
+            "id": "west-extension-prototype",
+            "vertices": null
+          }
+        ],
+        "enemies": [
+          "draft-pressure-0"
+        ],
+        "units": [
+          {
+            "id": "p-mage",
+            "cls": "mage",
+            "side": 0,
+            "level": 25,
+            "hp": 1708.9,
+            "maxHp": 2050,
+            "loadout": [
+              "M01",
+              "M10",
+              "M07"
+            ],
+            "pos": [
+              1129,
+              1061.91
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": false,
+            "validContact": false,
+            "support": null,
+            "fixed": false,
+            "objective": false,
+            "role": "mage",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "draft-pressure-0",
+            "cls": "knight",
+            "side": 1,
+            "level": 8,
+            "hp": 409,
+            "maxHp": 409,
+            "loadout": [
+              "HBM01"
+            ],
+            "pos": [
+              1936,
+              3784.07
+            ],
+            "h": 88,
+            "r": 32,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "C-03-west-refuge-lower",
+            "fixed": false,
+            "objective": false,
+            "role": "leaper",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "draft-pressure-1",
+            "cls": "occultist",
+            "side": 1,
+            "level": 12,
+            "hp": 987,
+            "maxHp": 987,
+            "loadout": [
+              "HLN01",
+              "HLN02"
+            ],
+            "pos": [
+              3456,
+              2247.2
+            ],
+            "h": 92,
+            "r": 25,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "B-01-center-stone-ascent",
+            "fixed": true,
+            "objective": false,
+            "role": "fire",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "draft-pressure-2",
+            "cls": "occultist",
+            "side": 1,
+            "level": 8,
+            "hp": 409,
+            "maxHp": 409,
+            "loadout": [
+              "HGS01",
+              "HGS02"
+            ],
+            "pos": [
+              5872,
+              3694.83
+            ],
+            "h": 88,
+            "r": 32,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "E-joined-ordinary-floor",
+            "fixed": false,
+            "objective": false,
+            "role": "fire",
+            "summoned": false,
+            "ally": false
+          }
+        ]
+      },
+      "after": {
+        "stageId": 56,
+        "honroStage": 56,
+        "mode": "campaign",
+        "authoredId": "stage-56",
+        "round": 1,
+        "phase": "aim",
+        "side": 0,
+        "shot": 0,
+        "rng": 19388,
+        "active": "p-mage",
+        "dialogue": false,
+        "isolatedStore": true,
+        "play": [
+          6720,
+          5040
+        ],
+        "terrainBounds": {
+          "left": -4528,
+          "top": -1992,
+          "right": 11488,
+          "bottom": 13776
+        },
+        "playBounds": {
+          "left": 0,
+          "top": 0,
+          "right": 6720,
+          "bottom": 5040
+        },
+        "camera": {
+          "x": 1297.870789093482,
+          "y": 873.7980289198825,
+          "zoom": null
+        },
+        "fieldFlags": [],
+        "terrain": [
+          {
+            "id": "A-01-upper-entry",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "C-01-west-upper-descent",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "C-02-west-shaft-descent",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "C-03-west-refuge-lower",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "B-01-center-stone-ascent",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "B-02-center-lower-short-climb",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "A-upper-veranda",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "B-left-broken-balcony",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "B-central-lower-floor",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "E-joined-ordinary-floor",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "west-extension-prototype",
+            "vertices": null,
+            "oneWay": false
+          }
+        ],
+        "worldTerrain": [
+          {
+            "id": "A-01-upper-entry",
+            "vertices": null
+          },
+          {
+            "id": "C-01-west-upper-descent",
+            "vertices": null
+          },
+          {
+            "id": "C-02-west-shaft-descent",
+            "vertices": null
+          },
+          {
+            "id": "C-03-west-refuge-lower",
+            "vertices": null
+          },
+          {
+            "id": "B-01-center-stone-ascent",
+            "vertices": null
+          },
+          {
+            "id": "B-02-center-lower-short-climb",
+            "vertices": null
+          },
+          {
+            "id": "A-upper-veranda",
+            "vertices": null
+          },
+          {
+            "id": "B-left-broken-balcony",
+            "vertices": null
+          },
+          {
+            "id": "B-central-lower-floor",
+            "vertices": null
+          },
+          {
+            "id": "E-joined-ordinary-floor",
+            "vertices": null
+          },
+          {
+            "id": "west-extension-prototype",
+            "vertices": null
+          }
+        ],
+        "enemies": [
+          "draft-pressure-0"
+        ],
+        "units": [
+          {
+            "id": "p-mage",
+            "cls": "mage",
+            "side": 0,
+            "level": 25,
+            "hp": 1708.9,
+            "maxHp": 2050,
+            "loadout": [
+              "M01",
+              "M10",
+              "M07"
+            ],
+            "pos": [
+              1129,
+              1136
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "A-upper-veranda",
+            "fixed": false,
+            "objective": false,
+            "role": "mage",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "draft-pressure-0",
+            "cls": "knight",
+            "side": 1,
+            "level": 8,
+            "hp": 409,
+            "maxHp": 409,
+            "loadout": [
+              "HBM01"
+            ],
+            "pos": [
+              1936,
+              3784.07
+            ],
+            "h": 88,
+            "r": 32,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "C-03-west-refuge-lower",
+            "fixed": false,
+            "objective": false,
+            "role": "leaper",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "draft-pressure-1",
+            "cls": "occultist",
+            "side": 1,
+            "level": 12,
+            "hp": 987,
+            "maxHp": 987,
+            "loadout": [
+              "HLN01",
+              "HLN02"
+            ],
+            "pos": [
+              3456,
+              2247.2
+            ],
+            "h": 92,
+            "r": 25,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "B-01-center-stone-ascent",
+            "fixed": true,
+            "objective": false,
+            "role": "fire",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "draft-pressure-2",
+            "cls": "occultist",
+            "side": 1,
+            "level": 8,
+            "hp": 409,
+            "maxHp": 409,
+            "loadout": [
+              "HGS01",
+              "HGS02"
+            ],
+            "pos": [
+              5872,
+              3694.83
+            ],
+            "h": 88,
+            "r": 32,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "E-joined-ordinary-floor",
+            "fixed": false,
+            "objective": false,
+            "role": "fire",
+            "summoned": false,
+            "ally": false
+          }
+        ]
+      }
+    }
+  ],
+  "defendInputs": 6,
+  "end": {
+    "stageId": 56,
+    "honroStage": 56,
+    "mode": "campaign",
+    "authoredId": "stage-56",
+    "round": 4,
+    "phase": "aim",
+    "side": 0,
+    "shot": 0,
+    "rng": 19388,
+    "active": "p-mage",
+    "dialogue": false,
+    "isolatedStore": true,
+    "play": [
+      6720,
+      5040
+    ],
+    "terrainBounds": {
+      "left": -4528,
+      "top": -1992,
+      "right": 11488,
+      "bottom": 13776
+    },
+    "playBounds": {
+      "left": 0,
+      "top": 0,
+      "right": 6720,
+      "bottom": 5040
+    },
+    "camera": {
+      "x": 1283.619632492963,
+      "y": 1343.9629772565738,
+      "zoom": null
+    },
+    "fieldFlags": [],
+    "terrain": [
+      {
+        "id": "A-01-upper-entry",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "C-01-west-upper-descent",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "C-02-west-shaft-descent",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "C-03-west-refuge-lower",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "B-01-center-stone-ascent",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "B-02-center-lower-short-climb",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "A-upper-veranda",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "B-left-broken-balcony",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "B-central-lower-floor",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "E-joined-ordinary-floor",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "west-extension-prototype",
+        "vertices": null,
+        "oneWay": false
+      }
+    ],
+    "worldTerrain": [
+      {
+        "id": "A-01-upper-entry",
+        "vertices": null
+      },
+      {
+        "id": "C-01-west-upper-descent",
+        "vertices": null
+      },
+      {
+        "id": "C-02-west-shaft-descent",
+        "vertices": null
+      },
+      {
+        "id": "C-03-west-refuge-lower",
+        "vertices": null
+      },
+      {
+        "id": "B-01-center-stone-ascent",
+        "vertices": null
+      },
+      {
+        "id": "B-02-center-lower-short-climb",
+        "vertices": null
+      },
+      {
+        "id": "A-upper-veranda",
+        "vertices": null
+      },
+      {
+        "id": "B-left-broken-balcony",
+        "vertices": null
+      },
+      {
+        "id": "B-central-lower-floor",
+        "vertices": null
+      },
+      {
+        "id": "E-joined-ordinary-floor",
+        "vertices": null
+      },
+      {
+        "id": "west-extension-prototype",
+        "vertices": null
+      }
+    ],
+    "enemies": [
+      "draft-pressure-0"
+    ],
+    "units": [
+      {
+        "id": "p-mage",
+        "cls": "mage",
+        "side": 0,
+        "level": 25,
+        "hp": 1954.9,
+        "maxHp": 2050,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "pos": [
+          1129,
+          1136
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "A-upper-veranda",
+        "fixed": false,
+        "objective": false,
+        "role": "mage",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "draft-pressure-0",
+        "cls": "knight",
+        "side": 1,
+        "level": 8,
+        "hp": 409,
+        "maxHp": 409,
+        "loadout": [
+          "HBM01"
+        ],
+        "pos": [
+          1297.52,
+          3544.79
+        ],
+        "h": 88,
+        "r": 32,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "C-03-west-refuge-lower",
+        "fixed": false,
+        "objective": false,
+        "role": "leaper",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "draft-pressure-1",
+        "cls": "occultist",
+        "side": 1,
+        "level": 12,
+        "hp": 987,
+        "maxHp": 987,
+        "loadout": [
+          "HLN01",
+          "HLN02"
+        ],
+        "pos": [
+          3437.97,
+          2229.17
+        ],
+        "h": 92,
+        "r": 25,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": false,
+        "validContact": false,
+        "support": null,
+        "fixed": true,
+        "objective": false,
+        "role": "fire",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "draft-pressure-2",
+        "cls": "occultist",
+        "side": 1,
+        "level": 8,
+        "hp": 409,
+        "maxHp": 409,
+        "loadout": [
+          "HGS01",
+          "HGS02"
+        ],
+        "pos": [
+          5872,
+          3694.83
+        ],
+        "h": 88,
+        "r": 32,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "E-joined-ordinary-floor",
+        "fixed": false,
+        "objective": false,
+        "role": "fire",
+        "summoned": false,
+        "ally": false
+      }
+    ]
+  },
+  "trace": [
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "draft-pressure-0"
+      ],
+      "newIds": [
+        "draft-pressure-0",
+        "draft-pressure-1",
+        "draft-pressure-2"
+      ]
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "draft-pressure-0"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 0,
+      "phase": "transition",
+      "active": [
+        "draft-pressure-0"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 1,
+      "phase": "enemy",
+      "active": [
+        "draft-pressure-0"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 1,
+      "phase": "review",
+      "active": [
+        "draft-pressure-0"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 1,
+      "phase": "transition",
+      "active": [
+        "draft-pressure-0"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "draft-pressure-0"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "draft-pressure-0"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 0,
+      "phase": "transition",
+      "active": [
+        "draft-pressure-0"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 1,
+      "phase": "enemy",
+      "active": [
+        "draft-pressure-0"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 1,
+      "phase": "review",
+      "active": [
+        "draft-pressure-0"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 1,
+      "phase": "transition",
+      "active": [
+        "draft-pressure-0"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "draft-pressure-0"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "draft-pressure-0"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 0,
+      "phase": "transition",
+      "active": [
+        "draft-pressure-0"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 1,
+      "phase": "enemy",
+      "active": [
+        "draft-pressure-0"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 1,
+      "phase": "review",
+      "active": [
+        "draft-pressure-0"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 1,
+      "phase": "transition",
+      "active": [
+        "draft-pressure-0"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "draft-pressure-0"
+      ],
+      "newIds": []
+    }
+  ],
+  "save": {
+    "keys": [
+      "honro-first-act-profile-1"
+    ],
+    "before": "489ce857915955e5387fd3fbadf5a9901cc8c8e717c769319a73fcb6fa14caf6",
+    "after": "489ce857915955e5387fd3fbadf5a9901cc8c8e717c769319a73fcb6fa14caf6",
+    "unchanged": true
+  },
+  "chromium": "154.0.8037.57"
+}

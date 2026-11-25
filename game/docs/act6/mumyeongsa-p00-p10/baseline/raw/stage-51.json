@@ -1,0 +1,2953 @@
+{
+  "stage": 51,
+  "status": "PASS",
+  "errors": [],
+  "warnings": [],
+  "httpErrors": [],
+  "entry": {
+    "stageId": 51,
+    "honroStage": 51,
+    "mode": "campaign",
+    "authoredId": "stage-51",
+    "round": 1,
+    "phase": "aim",
+    "side": 0,
+    "shot": 0,
+    "rng": 19388,
+    "active": "p-archer",
+    "dialogue": false,
+    "isolatedStore": true,
+    "play": [
+      7200,
+      5400
+    ],
+    "terrainBounds": {
+      "left": -6400,
+      "top": -9800,
+      "right": 12900,
+      "bottom": 17100
+    },
+    "playBounds": {
+      "left": 0,
+      "top": 0,
+      "right": 7200,
+      "bottom": 5400
+    },
+    "camera": {
+      "x": 148.7590023999999,
+      "y": 4587.530176846829,
+      "zoom": null
+    },
+    "fieldFlags": [],
+    "terrain": [
+      {
+        "id": "mountain-main",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "terrace-continuous",
+        "vertices": null,
+        "oneWay": false
+      }
+    ],
+    "worldTerrain": [
+      {
+        "id": "mountain-main",
+        "vertices": null
+      },
+      {
+        "id": "terrace-continuous",
+        "vertices": null
+      }
+    ],
+    "enemies": [],
+    "units": [
+      {
+        "id": "p-archer",
+        "cls": "archer",
+        "side": 0,
+        "level": 25,
+        "hp": 1720,
+        "maxHp": 1720,
+        "loadout": [
+          "A01",
+          "A14",
+          "A02",
+          "A05"
+        ],
+        "pos": [
+          97,
+          4761.79
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "mountain-main",
+        "fixed": false,
+        "objective": false,
+        "role": "archer",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "p-mage",
+        "cls": "mage",
+        "side": 0,
+        "level": 25,
+        "hp": 2050,
+        "maxHp": 2050,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "pos": [
+          170,
+          4762.68
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "mountain-main",
+        "fixed": false,
+        "objective": false,
+        "role": "mage",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "p-knight",
+        "cls": "knight",
+        "side": 0,
+        "level": 25,
+        "hp": 3846,
+        "maxHp": 3846,
+        "loadout": [
+          "S00",
+          "S01",
+          "S03"
+        ],
+        "pos": [
+          248,
+          4763.63
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "mountain-main",
+        "fixed": false,
+        "objective": false,
+        "role": "knight",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "p-occultist",
+        "cls": "occultist",
+        "side": 0,
+        "level": 25,
+        "hp": 2304,
+        "maxHp": 2304,
+        "loadout": [
+          "O01",
+          "O04",
+          "O03",
+          "O06"
+        ],
+        "pos": [
+          330,
+          4764.63
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "mountain-main",
+        "fixed": false,
+        "objective": false,
+        "role": "occultist",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "watcher",
+        "cls": "archer",
+        "side": 1,
+        "level": 25,
+        "hp": 527,
+        "maxHp": 527,
+        "loadout": [
+          "HCW01",
+          "HCW02"
+        ],
+        "pos": [
+          2440,
+          3529.49
+        ],
+        "h": 92,
+        "r": 25,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": false,
+        "validContact": false,
+        "support": null,
+        "fixed": false,
+        "objective": false,
+        "role": "archer",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "pocket",
+        "cls": "knight",
+        "side": 1,
+        "level": 25,
+        "hp": 758,
+        "maxHp": 758,
+        "loadout": [
+          "HBM01"
+        ],
+        "pos": [
+          4170,
+          3255.83
+        ],
+        "h": 110,
+        "r": 37,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "mountain-main",
+        "fixed": false,
+        "objective": false,
+        "role": "knight",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "armor",
+        "cls": "knight",
+        "side": 1,
+        "level": 25,
+        "hp": 758,
+        "maxHp": 758,
+        "loadout": [
+          "HBM03"
+        ],
+        "pos": [
+          5900,
+          1800
+        ],
+        "h": 139,
+        "r": 42,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "terrace-continuous",
+        "fixed": false,
+        "objective": false,
+        "role": "knight",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "crest-champion",
+        "cls": "occultist",
+        "side": 1,
+        "level": 25,
+        "hp": 758,
+        "maxHp": 758,
+        "loadout": [
+          "HSH01",
+          "HSH02"
+        ],
+        "pos": [
+          6475,
+          1647.86
+        ],
+        "h": 137,
+        "r": 24,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "mountain-main",
+        "fixed": false,
+        "objective": false,
+        "role": "occultist",
+        "summoned": false,
+        "ally": false
+      }
+    ]
+  },
+  "settled": {
+    "stageId": 51,
+    "honroStage": 51,
+    "mode": "campaign",
+    "authoredId": "stage-51",
+    "round": 1,
+    "phase": "aim",
+    "side": 0,
+    "shot": 0,
+    "rng": 19388,
+    "active": "p-archer",
+    "dialogue": false,
+    "isolatedStore": true,
+    "play": [
+      7200,
+      5400
+    ],
+    "terrainBounds": {
+      "left": -6400,
+      "top": -9800,
+      "right": 12900,
+      "bottom": 17100
+    },
+    "playBounds": {
+      "left": 0,
+      "top": 0,
+      "right": 7200,
+      "bottom": 5400
+    },
+    "camera": {
+      "x": 264.3803556751532,
+      "y": 4578.008418341816,
+      "zoom": null
+    },
+    "fieldFlags": [],
+    "terrain": [
+      {
+        "id": "mountain-main",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "terrace-continuous",
+        "vertices": null,
+        "oneWay": false
+      }
+    ],
+    "worldTerrain": [
+      {
+        "id": "mountain-main",
+        "vertices": null
+      },
+      {
+        "id": "terrace-continuous",
+        "vertices": null
+      }
+    ],
+    "enemies": [],
+    "units": [
+      {
+        "id": "p-archer",
+        "cls": "archer",
+        "side": 0,
+        "level": 25,
+        "hp": 1720,
+        "maxHp": 1720,
+        "loadout": [
+          "A01",
+          "A14",
+          "A02",
+          "A05"
+        ],
+        "pos": [
+          97,
+          4761.79
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "mountain-main",
+        "fixed": false,
+        "objective": false,
+        "role": "archer",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "p-mage",
+        "cls": "mage",
+        "side": 0,
+        "level": 25,
+        "hp": 2050,
+        "maxHp": 2050,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "pos": [
+          170,
+          4762.68
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "mountain-main",
+        "fixed": false,
+        "objective": false,
+        "role": "mage",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "p-knight",
+        "cls": "knight",
+        "side": 0,
+        "level": 25,
+        "hp": 3846,
+        "maxHp": 3846,
+        "loadout": [
+          "S00",
+          "S01",
+          "S03"
+        ],
+        "pos": [
+          248,
+          4763.63
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "mountain-main",
+        "fixed": false,
+        "objective": false,
+        "role": "knight",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "p-occultist",
+        "cls": "occultist",
+        "side": 0,
+        "level": 25,
+        "hp": 2304,
+        "maxHp": 2304,
+        "loadout": [
+          "O01",
+          "O04",
+          "O03",
+          "O06"
+        ],
+        "pos": [
+          330,
+          4764.63
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "mountain-main",
+        "fixed": false,
+        "objective": false,
+        "role": "occultist",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "watcher",
+        "cls": "archer",
+        "side": 1,
+        "level": 25,
+        "hp": 527,
+        "maxHp": 527,
+        "loadout": [
+          "HCW01",
+          "HCW02"
+        ],
+        "pos": [
+          2440,
+          3593.49
+        ],
+        "h": 92,
+        "r": 25,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "terrace-continuous",
+        "fixed": false,
+        "objective": false,
+        "role": "archer",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "pocket",
+        "cls": "knight",
+        "side": 1,
+        "level": 25,
+        "hp": 758,
+        "maxHp": 758,
+        "loadout": [
+          "HBM01"
+        ],
+        "pos": [
+          4170,
+          3255.83
+        ],
+        "h": 110,
+        "r": 37,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "mountain-main",
+        "fixed": false,
+        "objective": false,
+        "role": "knight",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "armor",
+        "cls": "knight",
+        "side": 1,
+        "level": 25,
+        "hp": 758,
+        "maxHp": 758,
+        "loadout": [
+          "HBM03"
+        ],
+        "pos": [
+          5900,
+          1800
+        ],
+        "h": 139,
+        "r": 42,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "terrace-continuous",
+        "fixed": false,
+        "objective": false,
+        "role": "knight",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "crest-champion",
+        "cls": "occultist",
+        "side": 1,
+        "level": 25,
+        "hp": 758,
+        "maxHp": 758,
+        "loadout": [
+          "HSH01",
+          "HSH02"
+        ],
+        "pos": [
+          6475,
+          1647.86
+        ],
+        "h": 137,
+        "r": 24,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "mountain-main",
+        "fixed": false,
+        "objective": false,
+        "role": "occultist",
+        "summoned": false,
+        "ally": false
+      }
+    ]
+  },
+  "input": [
+    {
+      "key": "ArrowRight",
+      "before": {
+        "stageId": 51,
+        "honroStage": 51,
+        "mode": "campaign",
+        "authoredId": "stage-51",
+        "round": 1,
+        "phase": "aim",
+        "side": 0,
+        "shot": 0,
+        "rng": 19388,
+        "active": "p-archer",
+        "dialogue": false,
+        "isolatedStore": true,
+        "play": [
+          7200,
+          5400
+        ],
+        "terrainBounds": {
+          "left": -6400,
+          "top": -9800,
+          "right": 12900,
+          "bottom": 17100
+        },
+        "playBounds": {
+          "left": 0,
+          "top": 0,
+          "right": 7200,
+          "bottom": 5400
+        },
+        "camera": {
+          "x": 265.7317570325659,
+          "y": 4577.897126465323,
+          "zoom": null
+        },
+        "fieldFlags": [],
+        "terrain": [
+          {
+            "id": "mountain-main",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "terrace-continuous",
+            "vertices": null,
+            "oneWay": false
+          }
+        ],
+        "worldTerrain": [
+          {
+            "id": "mountain-main",
+            "vertices": null
+          },
+          {
+            "id": "terrace-continuous",
+            "vertices": null
+          }
+        ],
+        "enemies": [],
+        "units": [
+          {
+            "id": "p-archer",
+            "cls": "archer",
+            "side": 0,
+            "level": 25,
+            "hp": 1720,
+            "maxHp": 1720,
+            "loadout": [
+              "A01",
+              "A14",
+              "A02",
+              "A05"
+            ],
+            "pos": [
+              97,
+              4761.79
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "mountain-main",
+            "fixed": false,
+            "objective": false,
+            "role": "archer",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-mage",
+            "cls": "mage",
+            "side": 0,
+            "level": 25,
+            "hp": 2050,
+            "maxHp": 2050,
+            "loadout": [
+              "M01",
+              "M10",
+              "M07"
+            ],
+            "pos": [
+              170,
+              4762.68
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "mountain-main",
+            "fixed": false,
+            "objective": false,
+            "role": "mage",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-knight",
+            "cls": "knight",
+            "side": 0,
+            "level": 25,
+            "hp": 3846,
+            "maxHp": 3846,
+            "loadout": [
+              "S00",
+              "S01",
+              "S03"
+            ],
+            "pos": [
+              248,
+              4763.63
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "mountain-main",
+            "fixed": false,
+            "objective": false,
+            "role": "knight",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-occultist",
+            "cls": "occultist",
+            "side": 0,
+            "level": 25,
+            "hp": 2304,
+            "maxHp": 2304,
+            "loadout": [
+              "O01",
+              "O04",
+              "O03",
+              "O06"
+            ],
+            "pos": [
+              330,
+              4764.63
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "mountain-main",
+            "fixed": false,
+            "objective": false,
+            "role": "occultist",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "watcher",
+            "cls": "archer",
+            "side": 1,
+            "level": 25,
+            "hp": 527,
+            "maxHp": 527,
+            "loadout": [
+              "HCW01",
+              "HCW02"
+            ],
+            "pos": [
+              2440,
+              3593.49
+            ],
+            "h": 92,
+            "r": 25,
+            "awake": false,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "terrace-continuous",
+            "fixed": false,
+            "objective": false,
+            "role": "archer",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "pocket",
+            "cls": "knight",
+            "side": 1,
+            "level": 25,
+            "hp": 758,
+            "maxHp": 758,
+            "loadout": [
+              "HBM01"
+            ],
+            "pos": [
+              4170,
+              3255.83
+            ],
+            "h": 110,
+            "r": 37,
+            "awake": false,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "mountain-main",
+            "fixed": false,
+            "objective": false,
+            "role": "knight",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "armor",
+            "cls": "knight",
+            "side": 1,
+            "level": 25,
+            "hp": 758,
+            "maxHp": 758,
+            "loadout": [
+              "HBM03"
+            ],
+            "pos": [
+              5900,
+              1800
+            ],
+            "h": 139,
+            "r": 42,
+            "awake": false,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "terrace-continuous",
+            "fixed": false,
+            "objective": false,
+            "role": "knight",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "crest-champion",
+            "cls": "occultist",
+            "side": 1,
+            "level": 25,
+            "hp": 758,
+            "maxHp": 758,
+            "loadout": [
+              "HSH01",
+              "HSH02"
+            ],
+            "pos": [
+              6475,
+              1647.86
+            ],
+            "h": 137,
+            "r": 24,
+            "awake": false,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "mountain-main",
+            "fixed": false,
+            "objective": false,
+            "role": "occultist",
+            "summoned": false,
+            "ally": false
+          }
+        ]
+      },
+      "held": {
+        "stageId": 51,
+        "honroStage": 51,
+        "mode": "campaign",
+        "authoredId": "stage-51",
+        "round": 1,
+        "phase": "aim",
+        "side": 0,
+        "shot": 0,
+        "rng": 19388,
+        "active": "p-archer",
+        "dialogue": false,
+        "isolatedStore": true,
+        "play": [
+          7200,
+          5400
+        ],
+        "terrainBounds": {
+          "left": -6400,
+          "top": -9800,
+          "right": 12900,
+          "bottom": 17100
+        },
+        "playBounds": {
+          "left": 0,
+          "top": 0,
+          "right": 7200,
+          "bottom": 5400
+        },
+        "camera": {
+          "x": 361.21889085352296,
+          "y": 4578.970674067064,
+          "zoom": null
+        },
+        "fieldFlags": [],
+        "terrain": [
+          {
+            "id": "mountain-main",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "terrace-continuous",
+            "vertices": null,
+            "oneWay": false
+          }
+        ],
+        "worldTerrain": [
+          {
+            "id": "mountain-main",
+            "vertices": null
+          },
+          {
+            "id": "terrace-continuous",
+            "vertices": null
+          }
+        ],
+        "enemies": [],
+        "units": [
+          {
+            "id": "p-archer",
+            "cls": "archer",
+            "side": 0,
+            "level": 25,
+            "hp": 1720,
+            "maxHp": 1720,
+            "loadout": [
+              "A01",
+              "A14",
+              "A02",
+              "A05"
+            ],
+            "pos": [
+              284.69,
+              4764.08
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "mountain-main",
+            "fixed": false,
+            "objective": false,
+            "role": "archer",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-mage",
+            "cls": "mage",
+            "side": 0,
+            "level": 25,
+            "hp": 2050,
+            "maxHp": 2050,
+            "loadout": [
+              "M01",
+              "M10",
+              "M07"
+            ],
+            "pos": [
+              170,
+              4762.68
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "mountain-main",
+            "fixed": false,
+            "objective": false,
+            "role": "mage",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-knight",
+            "cls": "knight",
+            "side": 0,
+            "level": 25,
+            "hp": 3846,
+            "maxHp": 3846,
+            "loadout": [
+              "S00",
+              "S01",
+              "S03"
+            ],
+            "pos": [
+              248,
+              4763.63
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "mountain-main",
+            "fixed": false,
+            "objective": false,
+            "role": "knight",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-occultist",
+            "cls": "occultist",
+            "side": 0,
+            "level": 25,
+            "hp": 2304,
+            "maxHp": 2304,
+            "loadout": [
+              "O01",
+              "O04",
+              "O03",
+              "O06"
+            ],
+            "pos": [
+              330,
+              4764.63
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "mountain-main",
+            "fixed": false,
+            "objective": false,
+            "role": "occultist",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "watcher",
+            "cls": "archer",
+            "side": 1,
+            "level": 25,
+            "hp": 527,
+            "maxHp": 527,
+            "loadout": [
+              "HCW01",
+              "HCW02"
+            ],
+            "pos": [
+              2440,
+              3593.49
+            ],
+            "h": 92,
+            "r": 25,
+            "awake": false,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "terrace-continuous",
+            "fixed": false,
+            "objective": false,
+            "role": "archer",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "pocket",
+            "cls": "knight",
+            "side": 1,
+            "level": 25,
+            "hp": 758,
+            "maxHp": 758,
+            "loadout": [
+              "HBM01"
+            ],
+            "pos": [
+              4170,
+              3255.83
+            ],
+            "h": 110,
+            "r": 37,
+            "awake": false,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "mountain-main",
+            "fixed": false,
+            "objective": false,
+            "role": "knight",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "armor",
+            "cls": "knight",
+            "side": 1,
+            "level": 25,
+            "hp": 758,
+            "maxHp": 758,
+            "loadout": [
+              "HBM03"
+            ],
+            "pos": [
+              5900,
+              1800
+            ],
+            "h": 139,
+            "r": 42,
+            "awake": false,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "terrace-continuous",
+            "fixed": false,
+            "objective": false,
+            "role": "knight",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "crest-champion",
+            "cls": "occultist",
+            "side": 1,
+            "level": 25,
+            "hp": 758,
+            "maxHp": 758,
+            "loadout": [
+              "HSH01",
+              "HSH02"
+            ],
+            "pos": [
+              6475,
+              1647.86
+            ],
+            "h": 137,
+            "r": 24,
+            "awake": false,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "mountain-main",
+            "fixed": false,
+            "objective": false,
+            "role": "occultist",
+            "summoned": false,
+            "ally": false
+          }
+        ]
+      },
+      "after": {
+        "stageId": 51,
+        "honroStage": 51,
+        "mode": "campaign",
+        "authoredId": "stage-51",
+        "round": 1,
+        "phase": "aim",
+        "side": 0,
+        "shot": 0,
+        "rng": 19388,
+        "active": "p-archer",
+        "dialogue": false,
+        "isolatedStore": true,
+        "play": [
+          7200,
+          5400
+        ],
+        "terrainBounds": {
+          "left": -6400,
+          "top": -9800,
+          "right": 12900,
+          "bottom": 17100
+        },
+        "playBounds": {
+          "left": 0,
+          "top": 0,
+          "right": 7200,
+          "bottom": 5400
+        },
+        "camera": {
+          "x": 449.33249309982375,
+          "y": 4580.0248584735655,
+          "zoom": null
+        },
+        "fieldFlags": [],
+        "terrain": [
+          {
+            "id": "mountain-main",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "terrace-continuous",
+            "vertices": null,
+            "oneWay": false
+          }
+        ],
+        "worldTerrain": [
+          {
+            "id": "mountain-main",
+            "vertices": null
+          },
+          {
+            "id": "terrace-continuous",
+            "vertices": null
+          }
+        ],
+        "enemies": [],
+        "units": [
+          {
+            "id": "p-archer",
+            "cls": "archer",
+            "side": 0,
+            "level": 25,
+            "hp": 1720,
+            "maxHp": 1720,
+            "loadout": [
+              "A01",
+              "A14",
+              "A02",
+              "A05"
+            ],
+            "pos": [
+              316.57,
+              4764.47
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "mountain-main",
+            "fixed": false,
+            "objective": false,
+            "role": "archer",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-mage",
+            "cls": "mage",
+            "side": 0,
+            "level": 25,
+            "hp": 2050,
+            "maxHp": 2050,
+            "loadout": [
+              "M01",
+              "M10",
+              "M07"
+            ],
+            "pos": [
+              170,
+              4762.68
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "mountain-main",
+            "fixed": false,
+            "objective": false,
+            "role": "mage",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-knight",
+            "cls": "knight",
+            "side": 0,
+            "level": 25,
+            "hp": 3846,
+            "maxHp": 3846,
+            "loadout": [
+              "S00",
+              "S01",
+              "S03"
+            ],
+            "pos": [
+              248,
+              4763.63
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "mountain-main",
+            "fixed": false,
+            "objective": false,
+            "role": "knight",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-occultist",
+            "cls": "occultist",
+            "side": 0,
+            "level": 25,
+            "hp": 2304,
+            "maxHp": 2304,
+            "loadout": [
+              "O01",
+              "O04",
+              "O03",
+              "O06"
+            ],
+            "pos": [
+              330,
+              4764.63
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "mountain-main",
+            "fixed": false,
+            "objective": false,
+            "role": "occultist",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "watcher",
+            "cls": "archer",
+            "side": 1,
+            "level": 25,
+            "hp": 527,
+            "maxHp": 527,
+            "loadout": [
+              "HCW01",
+              "HCW02"
+            ],
+            "pos": [
+              2440,
+              3593.49
+            ],
+            "h": 92,
+            "r": 25,
+            "awake": false,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "terrace-continuous",
+            "fixed": false,
+            "objective": false,
+            "role": "archer",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "pocket",
+            "cls": "knight",
+            "side": 1,
+            "level": 25,
+            "hp": 758,
+            "maxHp": 758,
+            "loadout": [
+              "HBM01"
+            ],
+            "pos": [
+              4170,
+              3255.83
+            ],
+            "h": 110,
+            "r": 37,
+            "awake": false,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "mountain-main",
+            "fixed": false,
+            "objective": false,
+            "role": "knight",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "armor",
+            "cls": "knight",
+            "side": 1,
+            "level": 25,
+            "hp": 758,
+            "maxHp": 758,
+            "loadout": [
+              "HBM03"
+            ],
+            "pos": [
+              5900,
+              1800
+            ],
+            "h": 139,
+            "r": 42,
+            "awake": false,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "terrace-continuous",
+            "fixed": false,
+            "objective": false,
+            "role": "knight",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "crest-champion",
+            "cls": "occultist",
+            "side": 1,
+            "level": 25,
+            "hp": 758,
+            "maxHp": 758,
+            "loadout": [
+              "HSH01",
+              "HSH02"
+            ],
+            "pos": [
+              6475,
+              1647.86
+            ],
+            "h": 137,
+            "r": 24,
+            "awake": false,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "mountain-main",
+            "fixed": false,
+            "objective": false,
+            "role": "occultist",
+            "summoned": false,
+            "ally": false
+          }
+        ]
+      }
+    },
+    {
+      "key": "Control",
+      "before": {
+        "stageId": 51,
+        "honroStage": 51,
+        "mode": "campaign",
+        "authoredId": "stage-51",
+        "round": 1,
+        "phase": "aim",
+        "side": 0,
+        "shot": 0,
+        "rng": 19388,
+        "active": "p-archer",
+        "dialogue": false,
+        "isolatedStore": true,
+        "play": [
+          7200,
+          5400
+        ],
+        "terrainBounds": {
+          "left": -6400,
+          "top": -9800,
+          "right": 12900,
+          "bottom": 17100
+        },
+        "playBounds": {
+          "left": 0,
+          "top": 0,
+          "right": 7200,
+          "bottom": 5400
+        },
+        "camera": {
+          "x": 451.94412189271713,
+          "y": 4580.056103800948,
+          "zoom": null
+        },
+        "fieldFlags": [],
+        "terrain": [
+          {
+            "id": "mountain-main",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "terrace-continuous",
+            "vertices": null,
+            "oneWay": false
+          }
+        ],
+        "worldTerrain": [
+          {
+            "id": "mountain-main",
+            "vertices": null
+          },
+          {
+            "id": "terrace-continuous",
+            "vertices": null
+          }
+        ],
+        "enemies": [],
+        "units": [
+          {
+            "id": "p-archer",
+            "cls": "archer",
+            "side": 0,
+            "level": 25,
+            "hp": 1720,
+            "maxHp": 1720,
+            "loadout": [
+              "A01",
+              "A14",
+              "A02",
+              "A05"
+            ],
+            "pos": [
+              316.57,
+              4764.47
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "mountain-main",
+            "fixed": false,
+            "objective": false,
+            "role": "archer",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-mage",
+            "cls": "mage",
+            "side": 0,
+            "level": 25,
+            "hp": 2050,
+            "maxHp": 2050,
+            "loadout": [
+              "M01",
+              "M10",
+              "M07"
+            ],
+            "pos": [
+              170,
+              4762.68
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "mountain-main",
+            "fixed": false,
+            "objective": false,
+            "role": "mage",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-knight",
+            "cls": "knight",
+            "side": 0,
+            "level": 25,
+            "hp": 3846,
+            "maxHp": 3846,
+            "loadout": [
+              "S00",
+              "S01",
+              "S03"
+            ],
+            "pos": [
+              248,
+              4763.63
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "mountain-main",
+            "fixed": false,
+            "objective": false,
+            "role": "knight",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-occultist",
+            "cls": "occultist",
+            "side": 0,
+            "level": 25,
+            "hp": 2304,
+            "maxHp": 2304,
+            "loadout": [
+              "O01",
+              "O04",
+              "O03",
+              "O06"
+            ],
+            "pos": [
+              330,
+              4764.63
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "mountain-main",
+            "fixed": false,
+            "objective": false,
+            "role": "occultist",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "watcher",
+            "cls": "archer",
+            "side": 1,
+            "level": 25,
+            "hp": 527,
+            "maxHp": 527,
+            "loadout": [
+              "HCW01",
+              "HCW02"
+            ],
+            "pos": [
+              2440,
+              3593.49
+            ],
+            "h": 92,
+            "r": 25,
+            "awake": false,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "terrace-continuous",
+            "fixed": false,
+            "objective": false,
+            "role": "archer",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "pocket",
+            "cls": "knight",
+            "side": 1,
+            "level": 25,
+            "hp": 758,
+            "maxHp": 758,
+            "loadout": [
+              "HBM01"
+            ],
+            "pos": [
+              4170,
+              3255.83
+            ],
+            "h": 110,
+            "r": 37,
+            "awake": false,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "mountain-main",
+            "fixed": false,
+            "objective": false,
+            "role": "knight",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "armor",
+            "cls": "knight",
+            "side": 1,
+            "level": 25,
+            "hp": 758,
+            "maxHp": 758,
+            "loadout": [
+              "HBM03"
+            ],
+            "pos": [
+              5900,
+              1800
+            ],
+            "h": 139,
+            "r": 42,
+            "awake": false,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "terrace-continuous",
+            "fixed": false,
+            "objective": false,
+            "role": "knight",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "crest-champion",
+            "cls": "occultist",
+            "side": 1,
+            "level": 25,
+            "hp": 758,
+            "maxHp": 758,
+            "loadout": [
+              "HSH01",
+              "HSH02"
+            ],
+            "pos": [
+              6475,
+              1647.86
+            ],
+            "h": 137,
+            "r": 24,
+            "awake": false,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "mountain-main",
+            "fixed": false,
+            "objective": false,
+            "role": "occultist",
+            "summoned": false,
+            "ally": false
+          }
+        ]
+      },
+      "held": {
+        "stageId": 51,
+        "honroStage": 51,
+        "mode": "campaign",
+        "authoredId": "stage-51",
+        "round": 1,
+        "phase": "aim",
+        "side": 0,
+        "shot": 0,
+        "rng": 19388,
+        "active": "p-archer",
+        "dialogue": false,
+        "isolatedStore": true,
+        "play": [
+          7200,
+          5400
+        ],
+        "terrainBounds": {
+          "left": -6400,
+          "top": -9800,
+          "right": 12900,
+          "bottom": 17100
+        },
+        "playBounds": {
+          "left": 0,
+          "top": 0,
+          "right": 7200,
+          "bottom": 5400
+        },
+        "camera": {
+          "x": 470.1895353481216,
+          "y": 4558.565151173011,
+          "zoom": null
+        },
+        "fieldFlags": [],
+        "terrain": [
+          {
+            "id": "mountain-main",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "terrace-continuous",
+            "vertices": null,
+            "oneWay": false
+          }
+        ],
+        "worldTerrain": [
+          {
+            "id": "mountain-main",
+            "vertices": null
+          },
+          {
+            "id": "terrace-continuous",
+            "vertices": null
+          }
+        ],
+        "enemies": [],
+        "units": [
+          {
+            "id": "p-archer",
+            "cls": "archer",
+            "side": 0,
+            "level": 25,
+            "hp": 1720,
+            "maxHp": 1720,
+            "loadout": [
+              "A01",
+              "A14",
+              "A02",
+              "A05"
+            ],
+            "pos": [
+              316.57,
+              4677.45
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": false,
+            "validContact": false,
+            "support": null,
+            "fixed": false,
+            "objective": false,
+            "role": "archer",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-mage",
+            "cls": "mage",
+            "side": 0,
+            "level": 25,
+            "hp": 2050,
+            "maxHp": 2050,
+            "loadout": [
+              "M01",
+              "M10",
+              "M07"
+            ],
+            "pos": [
+              170,
+              4762.68
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "mountain-main",
+            "fixed": false,
+            "objective": false,
+            "role": "mage",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-knight",
+            "cls": "knight",
+            "side": 0,
+            "level": 25,
+            "hp": 3846,
+            "maxHp": 3846,
+            "loadout": [
+              "S00",
+              "S01",
+              "S03"
+            ],
+            "pos": [
+              248,
+              4763.63
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "mountain-main",
+            "fixed": false,
+            "objective": false,
+            "role": "knight",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-occultist",
+            "cls": "occultist",
+            "side": 0,
+            "level": 25,
+            "hp": 2304,
+            "maxHp": 2304,
+            "loadout": [
+              "O01",
+              "O04",
+              "O03",
+              "O06"
+            ],
+            "pos": [
+              330,
+              4764.63
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "mountain-main",
+            "fixed": false,
+            "objective": false,
+            "role": "occultist",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "watcher",
+            "cls": "archer",
+            "side": 1,
+            "level": 25,
+            "hp": 527,
+            "maxHp": 527,
+            "loadout": [
+              "HCW01",
+              "HCW02"
+            ],
+            "pos": [
+              2440,
+              3593.49
+            ],
+            "h": 92,
+            "r": 25,
+            "awake": false,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "terrace-continuous",
+            "fixed": false,
+            "objective": false,
+            "role": "archer",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "pocket",
+            "cls": "knight",
+            "side": 1,
+            "level": 25,
+            "hp": 758,
+            "maxHp": 758,
+            "loadout": [
+              "HBM01"
+            ],
+            "pos": [
+              4170,
+              3255.83
+            ],
+            "h": 110,
+            "r": 37,
+            "awake": false,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "mountain-main",
+            "fixed": false,
+            "objective": false,
+            "role": "knight",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "armor",
+            "cls": "knight",
+            "side": 1,
+            "level": 25,
+            "hp": 758,
+            "maxHp": 758,
+            "loadout": [
+              "HBM03"
+            ],
+            "pos": [
+              5900,
+              1800
+            ],
+            "h": 139,
+            "r": 42,
+            "awake": false,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "terrace-continuous",
+            "fixed": false,
+            "objective": false,
+            "role": "knight",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "crest-champion",
+            "cls": "occultist",
+            "side": 1,
+            "level": 25,
+            "hp": 758,
+            "maxHp": 758,
+            "loadout": [
+              "HSH01",
+              "HSH02"
+            ],
+            "pos": [
+              6475,
+              1647.86
+            ],
+            "h": 137,
+            "r": 24,
+            "awake": false,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "mountain-main",
+            "fixed": false,
+            "objective": false,
+            "role": "occultist",
+            "summoned": false,
+            "ally": false
+          }
+        ]
+      },
+      "after": {
+        "stageId": 51,
+        "honroStage": 51,
+        "mode": "campaign",
+        "authoredId": "stage-51",
+        "round": 1,
+        "phase": "aim",
+        "side": 0,
+        "shot": 0,
+        "rng": 19388,
+        "active": "p-archer",
+        "dialogue": false,
+        "isolatedStore": true,
+        "play": [
+          7200,
+          5400
+        ],
+        "terrainBounds": {
+          "left": -6400,
+          "top": -9800,
+          "right": 12900,
+          "bottom": 17100
+        },
+        "playBounds": {
+          "left": 0,
+          "top": 0,
+          "right": 7200,
+          "bottom": 5400
+        },
+        "camera": {
+          "x": 486.26778122329785,
+          "y": 4522.560016491154,
+          "zoom": null
+        },
+        "fieldFlags": [],
+        "terrain": [
+          {
+            "id": "mountain-main",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "terrace-continuous",
+            "vertices": null,
+            "oneWay": false
+          }
+        ],
+        "worldTerrain": [
+          {
+            "id": "mountain-main",
+            "vertices": null
+          },
+          {
+            "id": "terrace-continuous",
+            "vertices": null
+          }
+        ],
+        "enemies": [],
+        "units": [
+          {
+            "id": "p-archer",
+            "cls": "archer",
+            "side": 0,
+            "level": 25,
+            "hp": 1720,
+            "maxHp": 1720,
+            "loadout": [
+              "A01",
+              "A14",
+              "A02",
+              "A05"
+            ],
+            "pos": [
+              316.57,
+              4764.47
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "mountain-main",
+            "fixed": false,
+            "objective": false,
+            "role": "archer",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-mage",
+            "cls": "mage",
+            "side": 0,
+            "level": 25,
+            "hp": 2050,
+            "maxHp": 2050,
+            "loadout": [
+              "M01",
+              "M10",
+              "M07"
+            ],
+            "pos": [
+              170,
+              4762.68
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "mountain-main",
+            "fixed": false,
+            "objective": false,
+            "role": "mage",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-knight",
+            "cls": "knight",
+            "side": 0,
+            "level": 25,
+            "hp": 3846,
+            "maxHp": 3846,
+            "loadout": [
+              "S00",
+              "S01",
+              "S03"
+            ],
+            "pos": [
+              248,
+              4763.63
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "mountain-main",
+            "fixed": false,
+            "objective": false,
+            "role": "knight",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-occultist",
+            "cls": "occultist",
+            "side": 0,
+            "level": 25,
+            "hp": 2304,
+            "maxHp": 2304,
+            "loadout": [
+              "O01",
+              "O04",
+              "O03",
+              "O06"
+            ],
+            "pos": [
+              330,
+              4764.63
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "mountain-main",
+            "fixed": false,
+            "objective": false,
+            "role": "occultist",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "watcher",
+            "cls": "archer",
+            "side": 1,
+            "level": 25,
+            "hp": 527,
+            "maxHp": 527,
+            "loadout": [
+              "HCW01",
+              "HCW02"
+            ],
+            "pos": [
+              2440,
+              3593.49
+            ],
+            "h": 92,
+            "r": 25,
+            "awake": false,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "terrace-continuous",
+            "fixed": false,
+            "objective": false,
+            "role": "archer",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "pocket",
+            "cls": "knight",
+            "side": 1,
+            "level": 25,
+            "hp": 758,
+            "maxHp": 758,
+            "loadout": [
+              "HBM01"
+            ],
+            "pos": [
+              4170,
+              3255.83
+            ],
+            "h": 110,
+            "r": 37,
+            "awake": false,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "mountain-main",
+            "fixed": false,
+            "objective": false,
+            "role": "knight",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "armor",
+            "cls": "knight",
+            "side": 1,
+            "level": 25,
+            "hp": 758,
+            "maxHp": 758,
+            "loadout": [
+              "HBM03"
+            ],
+            "pos": [
+              5900,
+              1800
+            ],
+            "h": 139,
+            "r": 42,
+            "awake": false,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "terrace-continuous",
+            "fixed": false,
+            "objective": false,
+            "role": "knight",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "crest-champion",
+            "cls": "occultist",
+            "side": 1,
+            "level": 25,
+            "hp": 758,
+            "maxHp": 758,
+            "loadout": [
+              "HSH01",
+              "HSH02"
+            ],
+            "pos": [
+              6475,
+              1647.86
+            ],
+            "h": 137,
+            "r": 24,
+            "awake": false,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "mountain-main",
+            "fixed": false,
+            "objective": false,
+            "role": "occultist",
+            "summoned": false,
+            "ally": false
+          }
+        ]
+      }
+    }
+  ],
+  "defendInputs": 15,
+  "end": {
+    "stageId": 51,
+    "honroStage": 51,
+    "mode": "campaign",
+    "authoredId": "stage-51",
+    "round": 4,
+    "phase": "aim",
+    "side": 0,
+    "shot": 0,
+    "rng": 19388,
+    "active": "p-archer",
+    "dialogue": false,
+    "isolatedStore": true,
+    "play": [
+      7200,
+      5400
+    ],
+    "terrainBounds": {
+      "left": -6400,
+      "top": -9800,
+      "right": 12900,
+      "bottom": 17100
+    },
+    "playBounds": {
+      "left": 0,
+      "top": 0,
+      "right": 7200,
+      "bottom": 5400
+    },
+    "camera": {
+      "x": 459.1197598542618,
+      "y": 4586.2470558029,
+      "zoom": null
+    },
+    "fieldFlags": [],
+    "terrain": [
+      {
+        "id": "mountain-main",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "terrace-continuous",
+        "vertices": null,
+        "oneWay": false
+      }
+    ],
+    "worldTerrain": [
+      {
+        "id": "mountain-main",
+        "vertices": null
+      },
+      {
+        "id": "terrace-continuous",
+        "vertices": null
+      }
+    ],
+    "enemies": [],
+    "units": [
+      {
+        "id": "p-archer",
+        "cls": "archer",
+        "side": 0,
+        "level": 25,
+        "hp": 1720,
+        "maxHp": 1720,
+        "loadout": [
+          "A01",
+          "A14",
+          "A02",
+          "A05"
+        ],
+        "pos": [
+          316.57,
+          4764.47
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "mountain-main",
+        "fixed": false,
+        "objective": false,
+        "role": "archer",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "p-mage",
+        "cls": "mage",
+        "side": 0,
+        "level": 25,
+        "hp": 2050,
+        "maxHp": 2050,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "pos": [
+          170,
+          4762.68
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "mountain-main",
+        "fixed": false,
+        "objective": false,
+        "role": "mage",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "p-knight",
+        "cls": "knight",
+        "side": 0,
+        "level": 25,
+        "hp": 3846,
+        "maxHp": 3846,
+        "loadout": [
+          "S00",
+          "S01",
+          "S03"
+        ],
+        "pos": [
+          248,
+          4763.63
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "mountain-main",
+        "fixed": false,
+        "objective": false,
+        "role": "knight",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "p-occultist",
+        "cls": "occultist",
+        "side": 0,
+        "level": 25,
+        "hp": 2304,
+        "maxHp": 2304,
+        "loadout": [
+          "O01",
+          "O04",
+          "O03",
+          "O06"
+        ],
+        "pos": [
+          330,
+          4764.63
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "mountain-main",
+        "fixed": false,
+        "objective": false,
+        "role": "occultist",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "watcher",
+        "cls": "archer",
+        "side": 1,
+        "level": 25,
+        "hp": 527,
+        "maxHp": 527,
+        "loadout": [
+          "HCW01",
+          "HCW02"
+        ],
+        "pos": [
+          2440,
+          3593.49
+        ],
+        "h": 92,
+        "r": 25,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "terrace-continuous",
+        "fixed": false,
+        "objective": false,
+        "role": "archer",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "pocket",
+        "cls": "knight",
+        "side": 1,
+        "level": 25,
+        "hp": 758,
+        "maxHp": 758,
+        "loadout": [
+          "HBM01"
+        ],
+        "pos": [
+          4170,
+          3255.83
+        ],
+        "h": 110,
+        "r": 37,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "mountain-main",
+        "fixed": false,
+        "objective": false,
+        "role": "knight",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "armor",
+        "cls": "knight",
+        "side": 1,
+        "level": 25,
+        "hp": 758,
+        "maxHp": 758,
+        "loadout": [
+          "HBM03"
+        ],
+        "pos": [
+          5900,
+          1800
+        ],
+        "h": 139,
+        "r": 42,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "terrace-continuous",
+        "fixed": false,
+        "objective": false,
+        "role": "knight",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "crest-champion",
+        "cls": "occultist",
+        "side": 1,
+        "level": 25,
+        "hp": 758,
+        "maxHp": 758,
+        "loadout": [
+          "HSH01",
+          "HSH02"
+        ],
+        "pos": [
+          6475,
+          1647.86
+        ],
+        "h": 137,
+        "r": 24,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "mountain-main",
+        "fixed": false,
+        "objective": false,
+        "role": "occultist",
+        "summoned": false,
+        "ally": false
+      }
+    ]
+  },
+  "trace": [
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 0,
+      "phase": "aim",
+      "active": [],
+      "newIds": [
+        "watcher",
+        "pocket",
+        "armor",
+        "crest-champion"
+      ]
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 0,
+      "phase": "review",
+      "active": [],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 0,
+      "phase": "aim",
+      "active": [],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 0,
+      "phase": "review",
+      "active": [],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 0,
+      "phase": "aim",
+      "active": [],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 0,
+      "phase": "review",
+      "active": [],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 0,
+      "phase": "aim",
+      "active": [],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 0,
+      "phase": "review",
+      "active": [],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 0,
+      "phase": "transition",
+      "active": [],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 1,
+      "phase": "transition",
+      "active": [],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 0,
+      "phase": "aim",
+      "active": [],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 0,
+      "phase": "review",
+      "active": [],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 0,
+      "phase": "aim",
+      "active": [],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 0,
+      "phase": "review",
+      "active": [],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 0,
+      "phase": "aim",
+      "active": [],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 0,
+      "phase": "review",
+      "active": [],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 0,
+      "phase": "aim",
+      "active": [],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 0,
+      "phase": "review",
+      "active": [],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 0,
+      "phase": "transition",
+      "active": [],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 1,
+      "phase": "transition",
+      "active": [],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 0,
+      "phase": "aim",
+      "active": [],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 0,
+      "phase": "review",
+      "active": [],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 0,
+      "phase": "aim",
+      "active": [],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 0,
+      "phase": "review",
+      "active": [],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 0,
+      "phase": "aim",
+      "active": [],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 0,
+      "phase": "review",
+      "active": [],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 0,
+      "phase": "aim",
+      "active": [],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 0,
+      "phase": "review",
+      "active": [],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 0,
+      "phase": "transition",
+      "active": [],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 1,
+      "phase": "transition",
+      "active": [],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 0,
+      "phase": "aim",
+      "active": [],
+      "newIds": []
+    }
+  ],
+  "save": {
+    "keys": [
+      "honro-first-act-profile-1"
+    ],
+    "before": "4732fa1bb0a722bb4b0469d07b26785fdb0497d876e2a8c5df5a9758907486eb",
+    "after": "4732fa1bb0a722bb4b0469d07b26785fdb0497d876e2a8c5df5a9758907486eb",
+    "unchanged": true
+  },
+  "chromium": "154.0.8037.57"
+}

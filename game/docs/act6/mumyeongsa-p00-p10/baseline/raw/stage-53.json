@@ -1,0 +1,1884 @@
+{
+  "stage": 53,
+  "status": "PASS",
+  "errors": [],
+  "warnings": [],
+  "httpErrors": [],
+  "entry": {
+    "stageId": 53,
+    "honroStage": 53,
+    "mode": "campaign",
+    "authoredId": "stage-53",
+    "round": 1,
+    "phase": "aim",
+    "side": 0,
+    "shot": 0,
+    "rng": 19388,
+    "active": "p-mage",
+    "dialogue": false,
+    "isolatedStore": true,
+    "play": [
+      3000,
+      3000
+    ],
+    "terrainBounds": {
+      "left": -305,
+      "top": -285,
+      "right": 3425,
+      "bottom": 3450
+    },
+    "playBounds": {
+      "left": 0,
+      "top": 0,
+      "right": 3000,
+      "bottom": 3000
+    },
+    "camera": {
+      "x": 436.8524000000003,
+      "y": 2306.0175505732486,
+      "zoom": null
+    },
+    "fieldFlags": [],
+    "terrain": [
+      {
+        "id": "south",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "east",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "west",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "north",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "upper-threshold-footing",
+        "vertices": null,
+        "oneWay": false
+      }
+    ],
+    "worldTerrain": [
+      {
+        "id": "south",
+        "vertices": null
+      },
+      {
+        "id": "east",
+        "vertices": null
+      },
+      {
+        "id": "west",
+        "vertices": null
+      },
+      {
+        "id": "north",
+        "vertices": null
+      },
+      {
+        "id": "upper-threshold-footing",
+        "vertices": null
+      }
+    ],
+    "enemies": [],
+    "units": [
+      {
+        "id": "p-mage",
+        "cls": "mage",
+        "side": 0,
+        "level": 25,
+        "hp": 1708.9,
+        "maxHp": 2050,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "pos": [
+          425,
+          2476.99
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "south",
+        "fixed": false,
+        "objective": false,
+        "role": "mage",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "draft-lower-lane-guard",
+        "cls": "occultist",
+        "side": 1,
+        "level": 1,
+        "hp": 290,
+        "maxHp": 290,
+        "loadout": [
+          "HGS01",
+          "HGS02"
+        ],
+        "pos": [
+          940,
+          2402
+        ],
+        "h": 105,
+        "r": 21,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": false,
+        "support": "south",
+        "fixed": false,
+        "objective": false,
+        "role": "fire",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "draft-upper-side-guard",
+        "cls": "occultist",
+        "side": 1,
+        "level": 1,
+        "hp": 598,
+        "maxHp": 598,
+        "loadout": [
+          "HSH02"
+        ],
+        "pos": [
+          2835,
+          458.9
+        ],
+        "h": 137,
+        "r": 24,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "east",
+        "fixed": false,
+        "objective": false,
+        "role": "ice",
+        "summoned": false,
+        "ally": false
+      }
+    ]
+  },
+  "settled": {
+    "stageId": 53,
+    "honroStage": 53,
+    "mode": "campaign",
+    "authoredId": "stage-53",
+    "round": 1,
+    "phase": "aim",
+    "side": 0,
+    "shot": 0,
+    "rng": 19388,
+    "active": "p-mage",
+    "dialogue": false,
+    "isolatedStore": true,
+    "play": [
+      3000,
+      3000
+    ],
+    "terrainBounds": {
+      "left": -305,
+      "top": -285,
+      "right": 3425,
+      "bottom": 3450
+    },
+    "playBounds": {
+      "left": 0,
+      "top": 0,
+      "right": 3000,
+      "bottom": 3000
+    },
+    "camera": {
+      "x": 592.8893648278763,
+      "y": 2293.167447587424,
+      "zoom": null
+    },
+    "fieldFlags": [],
+    "terrain": [
+      {
+        "id": "south",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "east",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "west",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "north",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "upper-threshold-footing",
+        "vertices": null,
+        "oneWay": false
+      }
+    ],
+    "worldTerrain": [
+      {
+        "id": "south",
+        "vertices": null
+      },
+      {
+        "id": "east",
+        "vertices": null
+      },
+      {
+        "id": "west",
+        "vertices": null
+      },
+      {
+        "id": "north",
+        "vertices": null
+      },
+      {
+        "id": "upper-threshold-footing",
+        "vertices": null
+      }
+    ],
+    "enemies": [],
+    "units": [
+      {
+        "id": "p-mage",
+        "cls": "mage",
+        "side": 0,
+        "level": 25,
+        "hp": 1708.9,
+        "maxHp": 2050,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "pos": [
+          425,
+          2476.99
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "south",
+        "fixed": false,
+        "objective": false,
+        "role": "mage",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "draft-lower-lane-guard",
+        "cls": "occultist",
+        "side": 1,
+        "level": 1,
+        "hp": 290,
+        "maxHp": 290,
+        "loadout": [
+          "HGS01",
+          "HGS02"
+        ],
+        "pos": [
+          940,
+          2401.6
+        ],
+        "h": 105,
+        "r": 21,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "south",
+        "fixed": false,
+        "objective": false,
+        "role": "fire",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "draft-upper-side-guard",
+        "cls": "occultist",
+        "side": 1,
+        "level": 1,
+        "hp": 598,
+        "maxHp": 598,
+        "loadout": [
+          "HSH02"
+        ],
+        "pos": [
+          2835,
+          458.9
+        ],
+        "h": 137,
+        "r": 24,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "east",
+        "fixed": false,
+        "objective": false,
+        "role": "ice",
+        "summoned": false,
+        "ally": false
+      }
+    ]
+  },
+  "input": [
+    {
+      "key": "ArrowRight",
+      "before": {
+        "stageId": 53,
+        "honroStage": 53,
+        "mode": "campaign",
+        "authoredId": "stage-53",
+        "round": 1,
+        "phase": "aim",
+        "side": 0,
+        "shot": 0,
+        "rng": 19388,
+        "active": "p-mage",
+        "dialogue": false,
+        "isolatedStore": true,
+        "play": [
+          3000,
+          3000
+        ],
+        "terrainBounds": {
+          "left": -305,
+          "top": -285,
+          "right": 3425,
+          "bottom": 3450
+        },
+        "playBounds": {
+          "left": 0,
+          "top": 0,
+          "right": 3000,
+          "bottom": 3000
+        },
+        "camera": {
+          "x": 594.0498528508102,
+          "y": 2293.071877985535,
+          "zoom": null
+        },
+        "fieldFlags": [],
+        "terrain": [
+          {
+            "id": "south",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "east",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "west",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "north",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "upper-threshold-footing",
+            "vertices": null,
+            "oneWay": false
+          }
+        ],
+        "worldTerrain": [
+          {
+            "id": "south",
+            "vertices": null
+          },
+          {
+            "id": "east",
+            "vertices": null
+          },
+          {
+            "id": "west",
+            "vertices": null
+          },
+          {
+            "id": "north",
+            "vertices": null
+          },
+          {
+            "id": "upper-threshold-footing",
+            "vertices": null
+          }
+        ],
+        "enemies": [],
+        "units": [
+          {
+            "id": "p-mage",
+            "cls": "mage",
+            "side": 0,
+            "level": 25,
+            "hp": 1708.9,
+            "maxHp": 2050,
+            "loadout": [
+              "M01",
+              "M10",
+              "M07"
+            ],
+            "pos": [
+              425,
+              2476.99
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "south",
+            "fixed": false,
+            "objective": false,
+            "role": "mage",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "draft-lower-lane-guard",
+            "cls": "occultist",
+            "side": 1,
+            "level": 1,
+            "hp": 290,
+            "maxHp": 290,
+            "loadout": [
+              "HGS01",
+              "HGS02"
+            ],
+            "pos": [
+              940,
+              2401.6
+            ],
+            "h": 105,
+            "r": 21,
+            "awake": false,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "south",
+            "fixed": false,
+            "objective": false,
+            "role": "fire",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "draft-upper-side-guard",
+            "cls": "occultist",
+            "side": 1,
+            "level": 1,
+            "hp": 598,
+            "maxHp": 598,
+            "loadout": [
+              "HSH02"
+            ],
+            "pos": [
+              2835,
+              458.9
+            ],
+            "h": 137,
+            "r": 24,
+            "awake": false,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "east",
+            "fixed": false,
+            "objective": false,
+            "role": "ice",
+            "summoned": false,
+            "ally": false
+          }
+        ]
+      },
+      "held": {
+        "stageId": 53,
+        "honroStage": 53,
+        "mode": "campaign",
+        "authoredId": "stage-53",
+        "round": 1,
+        "phase": "aim",
+        "side": 0,
+        "shot": 0,
+        "rng": 19388,
+        "active": "p-mage",
+        "dialogue": false,
+        "isolatedStore": true,
+        "play": [
+          3000,
+          3000
+        ],
+        "terrainBounds": {
+          "left": -305,
+          "top": -285,
+          "right": 3425,
+          "bottom": 3450
+        },
+        "playBounds": {
+          "left": 0,
+          "top": 0,
+          "right": 3000,
+          "bottom": 3000
+        },
+        "camera": {
+          "x": 691.0943242250133,
+          "y": 2285.482745475102,
+          "zoom": null
+        },
+        "fieldFlags": [],
+        "terrain": [
+          {
+            "id": "south",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "east",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "west",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "north",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "upper-threshold-footing",
+            "vertices": null,
+            "oneWay": false
+          }
+        ],
+        "worldTerrain": [
+          {
+            "id": "south",
+            "vertices": null
+          },
+          {
+            "id": "east",
+            "vertices": null
+          },
+          {
+            "id": "west",
+            "vertices": null
+          },
+          {
+            "id": "north",
+            "vertices": null
+          },
+          {
+            "id": "upper-threshold-footing",
+            "vertices": null
+          }
+        ],
+        "enemies": [
+          "draft-lower-lane-guard"
+        ],
+        "units": [
+          {
+            "id": "p-mage",
+            "cls": "mage",
+            "side": 0,
+            "level": 25,
+            "hp": 1708.9,
+            "maxHp": 2050,
+            "loadout": [
+              "M01",
+              "M10",
+              "M07"
+            ],
+            "pos": [
+              621.39,
+              2465.29
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "south",
+            "fixed": false,
+            "objective": false,
+            "role": "mage",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "draft-lower-lane-guard",
+            "cls": "occultist",
+            "side": 1,
+            "level": 1,
+            "hp": 290,
+            "maxHp": 290,
+            "loadout": [
+              "HGS01",
+              "HGS02"
+            ],
+            "pos": [
+              940,
+              2401.6
+            ],
+            "h": 105,
+            "r": 21,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "south",
+            "fixed": false,
+            "objective": false,
+            "role": "fire",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "draft-upper-side-guard",
+            "cls": "occultist",
+            "side": 1,
+            "level": 1,
+            "hp": 598,
+            "maxHp": 598,
+            "loadout": [
+              "HSH02"
+            ],
+            "pos": [
+              2835,
+              458.9
+            ],
+            "h": 137,
+            "r": 24,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "east",
+            "fixed": false,
+            "objective": false,
+            "role": "ice",
+            "summoned": false,
+            "ally": false
+          }
+        ]
+      },
+      "after": {
+        "stageId": 53,
+        "honroStage": 53,
+        "mode": "campaign",
+        "authoredId": "stage-53",
+        "round": 1,
+        "phase": "aim",
+        "side": 0,
+        "shot": 0,
+        "rng": 19388,
+        "active": "p-mage",
+        "dialogue": false,
+        "isolatedStore": true,
+        "play": [
+          3000,
+          3000
+        ],
+        "terrainBounds": {
+          "left": -305,
+          "top": -285,
+          "right": 3425,
+          "bottom": 3450
+        },
+        "playBounds": {
+          "left": 0,
+          "top": 0,
+          "right": 3000,
+          "bottom": 3000
+        },
+        "camera": {
+          "x": 746.2403051117915,
+          "y": 2283.1763400913255,
+          "zoom": null
+        },
+        "fieldFlags": [],
+        "terrain": [
+          {
+            "id": "south",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "east",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "west",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "north",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "upper-threshold-footing",
+            "vertices": null,
+            "oneWay": false
+          }
+        ],
+        "worldTerrain": [
+          {
+            "id": "south",
+            "vertices": null
+          },
+          {
+            "id": "east",
+            "vertices": null
+          },
+          {
+            "id": "west",
+            "vertices": null
+          },
+          {
+            "id": "north",
+            "vertices": null
+          },
+          {
+            "id": "upper-threshold-footing",
+            "vertices": null
+          }
+        ],
+        "enemies": [
+          "draft-lower-lane-guard"
+        ],
+        "units": [
+          {
+            "id": "p-mage",
+            "cls": "mage",
+            "side": 0,
+            "level": 25,
+            "hp": 1708.9,
+            "maxHp": 2050,
+            "loadout": [
+              "M01",
+              "M10",
+              "M07"
+            ],
+            "pos": [
+              621.39,
+              2465.29
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "south",
+            "fixed": false,
+            "objective": false,
+            "role": "mage",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "draft-lower-lane-guard",
+            "cls": "occultist",
+            "side": 1,
+            "level": 1,
+            "hp": 290,
+            "maxHp": 290,
+            "loadout": [
+              "HGS01",
+              "HGS02"
+            ],
+            "pos": [
+              940,
+              2401.6
+            ],
+            "h": 105,
+            "r": 21,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "south",
+            "fixed": false,
+            "objective": false,
+            "role": "fire",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "draft-upper-side-guard",
+            "cls": "occultist",
+            "side": 1,
+            "level": 1,
+            "hp": 598,
+            "maxHp": 598,
+            "loadout": [
+              "HSH02"
+            ],
+            "pos": [
+              2835,
+              458.9
+            ],
+            "h": 137,
+            "r": 24,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "east",
+            "fixed": false,
+            "objective": false,
+            "role": "ice",
+            "summoned": false,
+            "ally": false
+          }
+        ]
+      }
+    },
+    {
+      "key": "Control",
+      "before": {
+        "stageId": 53,
+        "honroStage": 53,
+        "mode": "campaign",
+        "authoredId": "stage-53",
+        "round": 1,
+        "phase": "aim",
+        "side": 0,
+        "shot": 0,
+        "rng": 19388,
+        "active": "p-mage",
+        "dialogue": false,
+        "isolatedStore": true,
+        "play": [
+          3000,
+          3000
+        ],
+        "terrainBounds": {
+          "left": -305,
+          "top": -285,
+          "right": 3425,
+          "bottom": 3450
+        },
+        "playBounds": {
+          "left": 0,
+          "top": 0,
+          "right": 3000,
+          "bottom": 3000
+        },
+        "camera": {
+          "x": 749.4071710097967,
+          "y": 2283.0438902474857,
+          "zoom": null
+        },
+        "fieldFlags": [],
+        "terrain": [
+          {
+            "id": "south",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "east",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "west",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "north",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "upper-threshold-footing",
+            "vertices": null,
+            "oneWay": false
+          }
+        ],
+        "worldTerrain": [
+          {
+            "id": "south",
+            "vertices": null
+          },
+          {
+            "id": "east",
+            "vertices": null
+          },
+          {
+            "id": "west",
+            "vertices": null
+          },
+          {
+            "id": "north",
+            "vertices": null
+          },
+          {
+            "id": "upper-threshold-footing",
+            "vertices": null
+          }
+        ],
+        "enemies": [
+          "draft-lower-lane-guard"
+        ],
+        "units": [
+          {
+            "id": "p-mage",
+            "cls": "mage",
+            "side": 0,
+            "level": 25,
+            "hp": 1708.9,
+            "maxHp": 2050,
+            "loadout": [
+              "M01",
+              "M10",
+              "M07"
+            ],
+            "pos": [
+              621.39,
+              2465.29
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "south",
+            "fixed": false,
+            "objective": false,
+            "role": "mage",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "draft-lower-lane-guard",
+            "cls": "occultist",
+            "side": 1,
+            "level": 1,
+            "hp": 290,
+            "maxHp": 290,
+            "loadout": [
+              "HGS01",
+              "HGS02"
+            ],
+            "pos": [
+              940,
+              2401.6
+            ],
+            "h": 105,
+            "r": 21,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "south",
+            "fixed": false,
+            "objective": false,
+            "role": "fire",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "draft-upper-side-guard",
+            "cls": "occultist",
+            "side": 1,
+            "level": 1,
+            "hp": 598,
+            "maxHp": 598,
+            "loadout": [
+              "HSH02"
+            ],
+            "pos": [
+              2835,
+              458.9
+            ],
+            "h": 137,
+            "r": 24,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "east",
+            "fixed": false,
+            "objective": false,
+            "role": "ice",
+            "summoned": false,
+            "ally": false
+          }
+        ]
+      },
+      "held": {
+        "stageId": 53,
+        "honroStage": 53,
+        "mode": "campaign",
+        "authoredId": "stage-53",
+        "round": 1,
+        "phase": "aim",
+        "side": 0,
+        "shot": 0,
+        "rng": 19388,
+        "active": "p-mage",
+        "dialogue": false,
+        "isolatedStore": true,
+        "play": [
+          3000,
+          3000
+        ],
+        "terrainBounds": {
+          "left": -305,
+          "top": -285,
+          "right": 3425,
+          "bottom": 3450
+        },
+        "playBounds": {
+          "left": 0,
+          "top": 0,
+          "right": 3000,
+          "bottom": 3000
+        },
+        "camera": {
+          "x": 762.1789282691991,
+          "y": 2267.9649579839906,
+          "zoom": null
+        },
+        "fieldFlags": [],
+        "terrain": [
+          {
+            "id": "south",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "east",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "west",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "north",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "upper-threshold-footing",
+            "vertices": null,
+            "oneWay": false
+          }
+        ],
+        "worldTerrain": [
+          {
+            "id": "south",
+            "vertices": null
+          },
+          {
+            "id": "east",
+            "vertices": null
+          },
+          {
+            "id": "west",
+            "vertices": null
+          },
+          {
+            "id": "north",
+            "vertices": null
+          },
+          {
+            "id": "upper-threshold-footing",
+            "vertices": null
+          }
+        ],
+        "enemies": [
+          "draft-lower-lane-guard"
+        ],
+        "units": [
+          {
+            "id": "p-mage",
+            "cls": "mage",
+            "side": 0,
+            "level": 25,
+            "hp": 1708.9,
+            "maxHp": 2050,
+            "loadout": [
+              "M01",
+              "M10",
+              "M07"
+            ],
+            "pos": [
+              621.39,
+              2391.2
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": false,
+            "validContact": false,
+            "support": null,
+            "fixed": false,
+            "objective": false,
+            "role": "mage",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "draft-lower-lane-guard",
+            "cls": "occultist",
+            "side": 1,
+            "level": 1,
+            "hp": 290,
+            "maxHp": 290,
+            "loadout": [
+              "HGS01",
+              "HGS02"
+            ],
+            "pos": [
+              940,
+              2401.6
+            ],
+            "h": 105,
+            "r": 21,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "south",
+            "fixed": false,
+            "objective": false,
+            "role": "fire",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "draft-upper-side-guard",
+            "cls": "occultist",
+            "side": 1,
+            "level": 1,
+            "hp": 598,
+            "maxHp": 598,
+            "loadout": [
+              "HSH02"
+            ],
+            "pos": [
+              2835,
+              458.9
+            ],
+            "h": 137,
+            "r": 24,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "east",
+            "fixed": false,
+            "objective": false,
+            "role": "ice",
+            "summoned": false,
+            "ally": false
+          }
+        ]
+      },
+      "after": {
+        "stageId": 53,
+        "honroStage": 53,
+        "mode": "campaign",
+        "authoredId": "stage-53",
+        "round": 1,
+        "phase": "aim",
+        "side": 0,
+        "shot": 0,
+        "rng": 19388,
+        "active": "p-mage",
+        "dialogue": false,
+        "isolatedStore": true,
+        "play": [
+          3000,
+          3000
+        ],
+        "terrainBounds": {
+          "left": -305,
+          "top": -285,
+          "right": 3425,
+          "bottom": 3450
+        },
+        "playBounds": {
+          "left": 0,
+          "top": 0,
+          "right": 3000,
+          "bottom": 3000
+        },
+        "camera": {
+          "x": 790.8139426254664,
+          "y": 2213.6555961440663,
+          "zoom": null
+        },
+        "fieldFlags": [],
+        "terrain": [
+          {
+            "id": "south",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "east",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "west",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "north",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "upper-threshold-footing",
+            "vertices": null,
+            "oneWay": false
+          }
+        ],
+        "worldTerrain": [
+          {
+            "id": "south",
+            "vertices": null
+          },
+          {
+            "id": "east",
+            "vertices": null
+          },
+          {
+            "id": "west",
+            "vertices": null
+          },
+          {
+            "id": "north",
+            "vertices": null
+          },
+          {
+            "id": "upper-threshold-footing",
+            "vertices": null
+          }
+        ],
+        "enemies": [
+          "draft-lower-lane-guard"
+        ],
+        "units": [
+          {
+            "id": "p-mage",
+            "cls": "mage",
+            "side": 0,
+            "level": 25,
+            "hp": 1708.9,
+            "maxHp": 2050,
+            "loadout": [
+              "M01",
+              "M10",
+              "M07"
+            ],
+            "pos": [
+              621.39,
+              2465.29
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "south",
+            "fixed": false,
+            "objective": false,
+            "role": "mage",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "draft-lower-lane-guard",
+            "cls": "occultist",
+            "side": 1,
+            "level": 1,
+            "hp": 290,
+            "maxHp": 290,
+            "loadout": [
+              "HGS01",
+              "HGS02"
+            ],
+            "pos": [
+              940,
+              2401.6
+            ],
+            "h": 105,
+            "r": 21,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "south",
+            "fixed": false,
+            "objective": false,
+            "role": "fire",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "draft-upper-side-guard",
+            "cls": "occultist",
+            "side": 1,
+            "level": 1,
+            "hp": 598,
+            "maxHp": 598,
+            "loadout": [
+              "HSH02"
+            ],
+            "pos": [
+              2835,
+              458.9
+            ],
+            "h": 137,
+            "r": 24,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "east",
+            "fixed": false,
+            "objective": false,
+            "role": "ice",
+            "summoned": false,
+            "ally": false
+          }
+        ]
+      }
+    }
+  ],
+  "defendInputs": 6,
+  "end": {
+    "stageId": 53,
+    "honroStage": 53,
+    "mode": "campaign",
+    "authoredId": "stage-53",
+    "round": 4,
+    "phase": "aim",
+    "side": 0,
+    "shot": 3,
+    "rng": 10989414266,
+    "active": "p-mage",
+    "dialogue": false,
+    "isolatedStore": true,
+    "play": [
+      3000,
+      3000
+    ],
+    "terrainBounds": {
+      "left": -305,
+      "top": -285,
+      "right": 3425,
+      "bottom": 3450
+    },
+    "playBounds": {
+      "left": 0,
+      "top": 0,
+      "right": 3000,
+      "bottom": 3000
+    },
+    "camera": {
+      "x": 791.4929189504525,
+      "y": 2270.199209789165,
+      "zoom": null
+    },
+    "fieldFlags": [],
+    "terrain": [
+      {
+        "id": "south",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "east",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "west",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "north",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "upper-threshold-footing",
+        "vertices": null,
+        "oneWay": false
+      }
+    ],
+    "worldTerrain": [
+      {
+        "id": "south",
+        "vertices": null
+      },
+      {
+        "id": "east",
+        "vertices": null
+      },
+      {
+        "id": "west",
+        "vertices": null
+      },
+      {
+        "id": "north",
+        "vertices": null
+      },
+      {
+        "id": "upper-threshold-footing",
+        "vertices": null
+      }
+    ],
+    "enemies": [
+      "draft-lower-lane-guard"
+    ],
+    "units": [
+      {
+        "id": "p-mage",
+        "cls": "mage",
+        "side": 0,
+        "level": 25,
+        "hp": 1954.9,
+        "maxHp": 2050,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "pos": [
+          566.66,
+          2468.7
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "south",
+        "fixed": false,
+        "objective": false,
+        "role": "mage",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "draft-lower-lane-guard",
+        "cls": "occultist",
+        "side": 1,
+        "level": 1,
+        "hp": 290,
+        "maxHp": 290,
+        "loadout": [
+          "HGS01",
+          "HGS02"
+        ],
+        "pos": [
+          982.07,
+          2381.41
+        ],
+        "h": 105,
+        "r": 21,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "south",
+        "fixed": false,
+        "objective": false,
+        "role": "fire",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "draft-upper-side-guard",
+        "cls": "occultist",
+        "side": 1,
+        "level": 1,
+        "hp": 598,
+        "maxHp": 598,
+        "loadout": [
+          "HSH02"
+        ],
+        "pos": [
+          2835,
+          458.9
+        ],
+        "h": 137,
+        "r": 24,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "east",
+        "fixed": false,
+        "objective": false,
+        "role": "ice",
+        "summoned": false,
+        "ally": false
+      }
+    ]
+  },
+  "trace": [
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 0,
+      "phase": "aim",
+      "active": [],
+      "newIds": [
+        "draft-lower-lane-guard",
+        "draft-upper-side-guard"
+      ]
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "draft-lower-lane-guard"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "draft-lower-lane-guard"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 0,
+      "phase": "transition",
+      "active": [
+        "draft-lower-lane-guard"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 1,
+      "phase": "enemy",
+      "active": [
+        "draft-lower-lane-guard"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "fire",
+      "round": 1,
+      "owner": "draft-lower-lane-guard",
+      "skill": "HGS01"
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 1,
+      "phase": "flight",
+      "active": [
+        "draft-lower-lane-guard"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "hit",
+      "round": 1,
+      "owner": "draft-lower-lane-guard",
+      "target": "p-mage",
+      "loss": 11
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 1,
+      "phase": "review",
+      "active": [
+        "draft-lower-lane-guard"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 1,
+      "phase": "transition",
+      "active": [
+        "draft-lower-lane-guard"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "draft-lower-lane-guard"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "draft-lower-lane-guard"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 0,
+      "phase": "transition",
+      "active": [
+        "draft-lower-lane-guard"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 1,
+      "phase": "enemy",
+      "active": [
+        "draft-lower-lane-guard"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "fire",
+      "round": 2,
+      "owner": "draft-lower-lane-guard",
+      "skill": "HGS01"
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 1,
+      "phase": "flight",
+      "active": [
+        "draft-lower-lane-guard"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "hit",
+      "round": 2,
+      "owner": "draft-lower-lane-guard",
+      "target": "p-mage",
+      "loss": 11
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 1,
+      "phase": "review",
+      "active": [
+        "draft-lower-lane-guard"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 1,
+      "phase": "transition",
+      "active": [
+        "draft-lower-lane-guard"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "draft-lower-lane-guard"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "draft-lower-lane-guard"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 0,
+      "phase": "transition",
+      "active": [
+        "draft-lower-lane-guard"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 1,
+      "phase": "enemy",
+      "active": [
+        "draft-lower-lane-guard"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "fire",
+      "round": 3,
+      "owner": "draft-lower-lane-guard",
+      "skill": "HGS01"
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 1,
+      "phase": "flight",
+      "active": [
+        "draft-lower-lane-guard"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "hit",
+      "round": 3,
+      "owner": "draft-lower-lane-guard",
+      "target": "p-mage",
+      "loss": 11
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 1,
+      "phase": "review",
+      "active": [
+        "draft-lower-lane-guard"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 1,
+      "phase": "transition",
+      "active": [
+        "draft-lower-lane-guard"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "draft-lower-lane-guard"
+      ],
+      "newIds": []
+    }
+  ],
+  "save": {
+    "keys": [
+      "honro-first-act-profile-1"
+    ],
+    "before": "98ff208c878f688ca5913815bff741cabe6ed3e0a4b5d87dddadb097cdf67bd6",
+    "after": "98ff208c878f688ca5913815bff741cabe6ed3e0a4b5d87dddadb097cdf67bd6",
+    "unchanged": true
+  },
+  "chromium": "154.0.8037.57"
+}

@@ -1,0 +1,2737 @@
+{
+  "stage": 57,
+  "status": "PASS",
+  "errors": [],
+  "warnings": [],
+  "httpErrors": [],
+  "entry": {
+    "stageId": 57,
+    "honroStage": 57,
+    "mode": "campaign",
+    "authoredId": "stage-57",
+    "round": 1,
+    "phase": "aim",
+    "side": 0,
+    "shot": 0,
+    "rng": 19388,
+    "active": "p-archer",
+    "dialogue": false,
+    "isolatedStore": true,
+    "play": [
+      7200,
+      3600
+    ],
+    "terrainBounds": {
+      "left": -3200,
+      "top": -3100,
+      "right": 11320,
+      "bottom": 7400
+    },
+    "playBounds": {
+      "left": 0,
+      "top": 0,
+      "right": 7200,
+      "bottom": 3600
+    },
+    "camera": {
+      "x": 2419.8523999999998,
+      "y": 3063.7825406896554,
+      "zoom": null
+    },
+    "fieldFlags": [],
+    "terrain": [
+      {
+        "id": "local-lower-07-west",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "local-lower-07-east",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "local-lower-07-aperture-roof",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "local-lower-07-aperture-footing",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "a6-c07-railing",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "a6-c07-protective-relay",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "a6-c07-stationary-stone-ward",
+        "vertices": null,
+        "oneWay": false
+      }
+    ],
+    "worldTerrain": [
+      {
+        "id": "local-lower-07-west",
+        "vertices": null
+      },
+      {
+        "id": "local-lower-07-east",
+        "vertices": null
+      },
+      {
+        "id": "local-lower-07-aperture-roof",
+        "vertices": null
+      },
+      {
+        "id": "local-lower-07-aperture-footing",
+        "vertices": null
+      },
+      {
+        "id": "a6-c07-railing",
+        "vertices": null
+      },
+      {
+        "id": "a6-c07-protective-relay",
+        "vertices": null
+      },
+      {
+        "id": "a6-c07-stationary-stone-ward",
+        "vertices": null
+      }
+    ],
+    "enemies": [
+      "a6-c07-optional-drift",
+      "a6-c07-ward-pressure"
+    ],
+    "units": [
+      {
+        "id": "p-archer",
+        "cls": "archer",
+        "side": 0,
+        "level": 25,
+        "hp": 1407,
+        "maxHp": 1720,
+        "loadout": [
+          "A01",
+          "A14",
+          "A02",
+          "A05"
+        ],
+        "pos": [
+          2408,
+          3234.76
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "local-lower-07-west",
+        "fixed": false,
+        "objective": false,
+        "role": "archer",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "p-knight",
+        "cls": "knight",
+        "side": 0,
+        "level": 25,
+        "hp": 3688.1,
+        "maxHp": 3846,
+        "loadout": [
+          "S00",
+          "S01",
+          "S03"
+        ],
+        "pos": [
+          3584,
+          3271.11
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "local-lower-07-west",
+        "fixed": false,
+        "objective": false,
+        "role": "knight",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "p-occultist",
+        "cls": "occultist",
+        "side": 0,
+        "level": 25,
+        "hp": 2144.1,
+        "maxHp": 2304,
+        "loadout": [
+          "O01",
+          "O04",
+          "O03",
+          "O06"
+        ],
+        "pos": [
+          5024,
+          3099.14
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "local-lower-07-west",
+        "fixed": false,
+        "objective": false,
+        "role": "occultist",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-c07-optional-drift",
+        "cls": "occultist",
+        "side": 1,
+        "level": 25,
+        "hp": 850,
+        "maxHp": 850,
+        "loadout": [
+          "LA01"
+        ],
+        "pos": [
+          5336,
+          2988
+        ],
+        "h": 105,
+        "r": 21,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "a6-c07-stationary-stone-ward",
+        "fixed": true,
+        "objective": false,
+        "role": "bow",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-c07-ward-pressure",
+        "cls": "occultist",
+        "side": 1,
+        "level": 25,
+        "hp": 850,
+        "maxHp": 850,
+        "loadout": [
+          "HGS01",
+          "HGS02"
+        ],
+        "pos": [
+          5720,
+          2939.43
+        ],
+        "h": 105,
+        "r": 21,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "local-lower-07-west",
+        "fixed": true,
+        "objective": false,
+        "role": "fire",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-c07-original-darmheo-body",
+        "cls": "mage",
+        "side": 2,
+        "level": 1,
+        "hp": 390,
+        "maxHp": 390,
+        "loadout": [],
+        "pos": [
+          5384,
+          2976
+        ],
+        "h": 72,
+        "r": 21,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "a6-c07-stationary-stone-ward",
+        "fixed": true,
+        "objective": false,
+        "role": "mage",
+        "summoned": true,
+        "ally": false
+      }
+    ]
+  },
+  "settled": {
+    "stageId": 57,
+    "honroStage": 57,
+    "mode": "campaign",
+    "authoredId": "stage-57",
+    "round": 1,
+    "phase": "aim",
+    "side": 0,
+    "shot": 0,
+    "rng": 19388,
+    "active": "p-archer",
+    "dialogue": false,
+    "isolatedStore": true,
+    "play": [
+      7200,
+      3600
+    ],
+    "terrainBounds": {
+      "left": -3200,
+      "top": -3100,
+      "right": 11320,
+      "bottom": 7400
+    },
+    "playBounds": {
+      "left": 0,
+      "top": 0,
+      "right": 7200,
+      "bottom": 3600
+    },
+    "camera": {
+      "x": 2576.219119523343,
+      "y": 3050.9052814347915,
+      "zoom": null
+    },
+    "fieldFlags": [],
+    "terrain": [
+      {
+        "id": "local-lower-07-west",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "local-lower-07-east",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "local-lower-07-aperture-roof",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "local-lower-07-aperture-footing",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "a6-c07-railing",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "a6-c07-protective-relay",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "a6-c07-stationary-stone-ward",
+        "vertices": null,
+        "oneWay": false
+      }
+    ],
+    "worldTerrain": [
+      {
+        "id": "local-lower-07-west",
+        "vertices": null
+      },
+      {
+        "id": "local-lower-07-east",
+        "vertices": null
+      },
+      {
+        "id": "local-lower-07-aperture-roof",
+        "vertices": null
+      },
+      {
+        "id": "local-lower-07-aperture-footing",
+        "vertices": null
+      },
+      {
+        "id": "a6-c07-railing",
+        "vertices": null
+      },
+      {
+        "id": "a6-c07-protective-relay",
+        "vertices": null
+      },
+      {
+        "id": "a6-c07-stationary-stone-ward",
+        "vertices": null
+      }
+    ],
+    "enemies": [
+      "a6-c07-optional-drift",
+      "a6-c07-ward-pressure"
+    ],
+    "units": [
+      {
+        "id": "p-archer",
+        "cls": "archer",
+        "side": 0,
+        "level": 25,
+        "hp": 1407,
+        "maxHp": 1720,
+        "loadout": [
+          "A01",
+          "A14",
+          "A02",
+          "A05"
+        ],
+        "pos": [
+          2408,
+          3234.76
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "local-lower-07-west",
+        "fixed": false,
+        "objective": false,
+        "role": "archer",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "p-knight",
+        "cls": "knight",
+        "side": 0,
+        "level": 25,
+        "hp": 3688.1,
+        "maxHp": 3846,
+        "loadout": [
+          "S00",
+          "S01",
+          "S03"
+        ],
+        "pos": [
+          3584,
+          3271.11
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "local-lower-07-west",
+        "fixed": false,
+        "objective": false,
+        "role": "knight",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "p-occultist",
+        "cls": "occultist",
+        "side": 0,
+        "level": 25,
+        "hp": 2144.1,
+        "maxHp": 2304,
+        "loadout": [
+          "O01",
+          "O04",
+          "O03",
+          "O06"
+        ],
+        "pos": [
+          5024,
+          3099.14
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "local-lower-07-west",
+        "fixed": false,
+        "objective": false,
+        "role": "occultist",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-c07-optional-drift",
+        "cls": "occultist",
+        "side": 1,
+        "level": 25,
+        "hp": 850,
+        "maxHp": 850,
+        "loadout": [
+          "LA01"
+        ],
+        "pos": [
+          5336,
+          2988
+        ],
+        "h": 105,
+        "r": 21,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "a6-c07-stationary-stone-ward",
+        "fixed": true,
+        "objective": false,
+        "role": "bow",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-c07-ward-pressure",
+        "cls": "occultist",
+        "side": 1,
+        "level": 25,
+        "hp": 850,
+        "maxHp": 850,
+        "loadout": [
+          "HGS01",
+          "HGS02"
+        ],
+        "pos": [
+          5720,
+          2939.43
+        ],
+        "h": 105,
+        "r": 21,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "local-lower-07-west",
+        "fixed": true,
+        "objective": false,
+        "role": "fire",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-c07-original-darmheo-body",
+        "cls": "mage",
+        "side": 2,
+        "level": 1,
+        "hp": 390,
+        "maxHp": 390,
+        "loadout": [],
+        "pos": [
+          5384,
+          2976
+        ],
+        "h": 72,
+        "r": 21,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "a6-c07-stationary-stone-ward",
+        "fixed": true,
+        "objective": false,
+        "role": "mage",
+        "summoned": true,
+        "ally": false
+      }
+    ]
+  },
+  "input": [
+    {
+      "key": "ArrowRight",
+      "before": {
+        "stageId": 57,
+        "honroStage": 57,
+        "mode": "campaign",
+        "authoredId": "stage-57",
+        "round": 1,
+        "phase": "aim",
+        "side": 0,
+        "shot": 0,
+        "rng": 19388,
+        "active": "p-archer",
+        "dialogue": false,
+        "isolatedStore": true,
+        "play": [
+          7200,
+          3600
+        ],
+        "terrainBounds": {
+          "left": -3200,
+          "top": -3100,
+          "right": 11320,
+          "bottom": 7400
+        },
+        "playBounds": {
+          "left": 0,
+          "top": 0,
+          "right": 7200,
+          "bottom": 3600
+        },
+        "camera": {
+          "x": 2577.582974402719,
+          "y": 3050.7929639741374,
+          "zoom": null
+        },
+        "fieldFlags": [],
+        "terrain": [
+          {
+            "id": "local-lower-07-west",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "local-lower-07-east",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "local-lower-07-aperture-roof",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "local-lower-07-aperture-footing",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "a6-c07-railing",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "a6-c07-protective-relay",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "a6-c07-stationary-stone-ward",
+            "vertices": null,
+            "oneWay": false
+          }
+        ],
+        "worldTerrain": [
+          {
+            "id": "local-lower-07-west",
+            "vertices": null
+          },
+          {
+            "id": "local-lower-07-east",
+            "vertices": null
+          },
+          {
+            "id": "local-lower-07-aperture-roof",
+            "vertices": null
+          },
+          {
+            "id": "local-lower-07-aperture-footing",
+            "vertices": null
+          },
+          {
+            "id": "a6-c07-railing",
+            "vertices": null
+          },
+          {
+            "id": "a6-c07-protective-relay",
+            "vertices": null
+          },
+          {
+            "id": "a6-c07-stationary-stone-ward",
+            "vertices": null
+          }
+        ],
+        "enemies": [
+          "a6-c07-optional-drift",
+          "a6-c07-ward-pressure"
+        ],
+        "units": [
+          {
+            "id": "p-archer",
+            "cls": "archer",
+            "side": 0,
+            "level": 25,
+            "hp": 1407,
+            "maxHp": 1720,
+            "loadout": [
+              "A01",
+              "A14",
+              "A02",
+              "A05"
+            ],
+            "pos": [
+              2408,
+              3234.76
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-07-west",
+            "fixed": false,
+            "objective": false,
+            "role": "archer",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-knight",
+            "cls": "knight",
+            "side": 0,
+            "level": 25,
+            "hp": 3688.1,
+            "maxHp": 3846,
+            "loadout": [
+              "S00",
+              "S01",
+              "S03"
+            ],
+            "pos": [
+              3584,
+              3271.11
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-07-west",
+            "fixed": false,
+            "objective": false,
+            "role": "knight",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-occultist",
+            "cls": "occultist",
+            "side": 0,
+            "level": 25,
+            "hp": 2144.1,
+            "maxHp": 2304,
+            "loadout": [
+              "O01",
+              "O04",
+              "O03",
+              "O06"
+            ],
+            "pos": [
+              5024,
+              3099.14
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-07-west",
+            "fixed": false,
+            "objective": false,
+            "role": "occultist",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "a6-c07-optional-drift",
+            "cls": "occultist",
+            "side": 1,
+            "level": 25,
+            "hp": 850,
+            "maxHp": 850,
+            "loadout": [
+              "LA01"
+            ],
+            "pos": [
+              5336,
+              2988
+            ],
+            "h": 105,
+            "r": 21,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "a6-c07-stationary-stone-ward",
+            "fixed": true,
+            "objective": false,
+            "role": "bow",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "a6-c07-ward-pressure",
+            "cls": "occultist",
+            "side": 1,
+            "level": 25,
+            "hp": 850,
+            "maxHp": 850,
+            "loadout": [
+              "HGS01",
+              "HGS02"
+            ],
+            "pos": [
+              5720,
+              2939.43
+            ],
+            "h": 105,
+            "r": 21,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-07-west",
+            "fixed": true,
+            "objective": false,
+            "role": "fire",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "a6-c07-original-darmheo-body",
+            "cls": "mage",
+            "side": 2,
+            "level": 1,
+            "hp": 390,
+            "maxHp": 390,
+            "loadout": [],
+            "pos": [
+              5384,
+              2976
+            ],
+            "h": 72,
+            "r": 21,
+            "awake": false,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "a6-c07-stationary-stone-ward",
+            "fixed": true,
+            "objective": false,
+            "role": "mage",
+            "summoned": true,
+            "ally": false
+          }
+        ]
+      },
+      "held": {
+        "stageId": 57,
+        "honroStage": 57,
+        "mode": "campaign",
+        "authoredId": "stage-57",
+        "round": 1,
+        "phase": "aim",
+        "side": 0,
+        "shot": 0,
+        "rng": 19388,
+        "active": "p-archer",
+        "dialogue": false,
+        "isolatedStore": true,
+        "play": [
+          7200,
+          3600
+        ],
+        "terrainBounds": {
+          "left": -3200,
+          "top": -3100,
+          "right": 11320,
+          "bottom": 7400
+        },
+        "playBounds": {
+          "left": 0,
+          "top": 0,
+          "right": 7200,
+          "bottom": 3600
+        },
+        "camera": {
+          "x": 2674.0601982987146,
+          "y": 3044.0953646141743,
+          "zoom": null
+        },
+        "fieldFlags": [],
+        "terrain": [
+          {
+            "id": "local-lower-07-west",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "local-lower-07-east",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "local-lower-07-aperture-roof",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "local-lower-07-aperture-footing",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "a6-c07-railing",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "a6-c07-protective-relay",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "a6-c07-stationary-stone-ward",
+            "vertices": null,
+            "oneWay": false
+          }
+        ],
+        "worldTerrain": [
+          {
+            "id": "local-lower-07-west",
+            "vertices": null
+          },
+          {
+            "id": "local-lower-07-east",
+            "vertices": null
+          },
+          {
+            "id": "local-lower-07-aperture-roof",
+            "vertices": null
+          },
+          {
+            "id": "local-lower-07-aperture-footing",
+            "vertices": null
+          },
+          {
+            "id": "a6-c07-railing",
+            "vertices": null
+          },
+          {
+            "id": "a6-c07-protective-relay",
+            "vertices": null
+          },
+          {
+            "id": "a6-c07-stationary-stone-ward",
+            "vertices": null
+          }
+        ],
+        "enemies": [
+          "a6-c07-optional-drift",
+          "a6-c07-ward-pressure"
+        ],
+        "units": [
+          {
+            "id": "p-archer",
+            "cls": "archer",
+            "side": 0,
+            "level": 25,
+            "hp": 1407,
+            "maxHp": 1720,
+            "loadout": [
+              "A01",
+              "A14",
+              "A02",
+              "A05"
+            ],
+            "pos": [
+              2598.44,
+              3254.91
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-07-west",
+            "fixed": false,
+            "objective": false,
+            "role": "archer",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-knight",
+            "cls": "knight",
+            "side": 0,
+            "level": 25,
+            "hp": 3688.1,
+            "maxHp": 3846,
+            "loadout": [
+              "S00",
+              "S01",
+              "S03"
+            ],
+            "pos": [
+              3584,
+              3271.11
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-07-west",
+            "fixed": false,
+            "objective": false,
+            "role": "knight",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-occultist",
+            "cls": "occultist",
+            "side": 0,
+            "level": 25,
+            "hp": 2144.1,
+            "maxHp": 2304,
+            "loadout": [
+              "O01",
+              "O04",
+              "O03",
+              "O06"
+            ],
+            "pos": [
+              5024,
+              3099.14
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-07-west",
+            "fixed": false,
+            "objective": false,
+            "role": "occultist",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "a6-c07-optional-drift",
+            "cls": "occultist",
+            "side": 1,
+            "level": 25,
+            "hp": 850,
+            "maxHp": 850,
+            "loadout": [
+              "LA01"
+            ],
+            "pos": [
+              5336,
+              2988
+            ],
+            "h": 105,
+            "r": 21,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "a6-c07-stationary-stone-ward",
+            "fixed": true,
+            "objective": false,
+            "role": "bow",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "a6-c07-ward-pressure",
+            "cls": "occultist",
+            "side": 1,
+            "level": 25,
+            "hp": 850,
+            "maxHp": 850,
+            "loadout": [
+              "HGS01",
+              "HGS02"
+            ],
+            "pos": [
+              5720,
+              2939.43
+            ],
+            "h": 105,
+            "r": 21,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-07-west",
+            "fixed": true,
+            "objective": false,
+            "role": "fire",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "a6-c07-original-darmheo-body",
+            "cls": "mage",
+            "side": 2,
+            "level": 1,
+            "hp": 390,
+            "maxHp": 390,
+            "loadout": [],
+            "pos": [
+              5384,
+              2976
+            ],
+            "h": 72,
+            "r": 21,
+            "awake": false,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "a6-c07-stationary-stone-ward",
+            "fixed": true,
+            "objective": false,
+            "role": "mage",
+            "summoned": true,
+            "ally": false
+          }
+        ]
+      },
+      "after": {
+        "stageId": 57,
+        "honroStage": 57,
+        "mode": "campaign",
+        "authoredId": "stage-57",
+        "round": 1,
+        "phase": "aim",
+        "side": 0,
+        "shot": 0,
+        "rng": 19388,
+        "active": "p-archer",
+        "dialogue": false,
+        "isolatedStore": true,
+        "play": [
+          7200,
+          3600
+        ],
+        "terrainBounds": {
+          "left": -3200,
+          "top": -3100,
+          "right": 11320,
+          "bottom": 7400
+        },
+        "playBounds": {
+          "left": 0,
+          "top": 0,
+          "right": 7200,
+          "bottom": 3600
+        },
+        "camera": {
+          "x": 2733.976125017785,
+          "y": 3063.221953005227,
+          "zoom": null
+        },
+        "fieldFlags": [],
+        "terrain": [
+          {
+            "id": "local-lower-07-west",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "local-lower-07-east",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "local-lower-07-aperture-roof",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "local-lower-07-aperture-footing",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "a6-c07-railing",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "a6-c07-protective-relay",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "a6-c07-stationary-stone-ward",
+            "vertices": null,
+            "oneWay": false
+          }
+        ],
+        "worldTerrain": [
+          {
+            "id": "local-lower-07-west",
+            "vertices": null
+          },
+          {
+            "id": "local-lower-07-east",
+            "vertices": null
+          },
+          {
+            "id": "local-lower-07-aperture-roof",
+            "vertices": null
+          },
+          {
+            "id": "local-lower-07-aperture-footing",
+            "vertices": null
+          },
+          {
+            "id": "a6-c07-railing",
+            "vertices": null
+          },
+          {
+            "id": "a6-c07-protective-relay",
+            "vertices": null
+          },
+          {
+            "id": "a6-c07-stationary-stone-ward",
+            "vertices": null
+          }
+        ],
+        "enemies": [
+          "a6-c07-optional-drift",
+          "a6-c07-ward-pressure"
+        ],
+        "units": [
+          {
+            "id": "p-archer",
+            "cls": "archer",
+            "side": 0,
+            "level": 25,
+            "hp": 1407,
+            "maxHp": 1720,
+            "loadout": [
+              "A01",
+              "A14",
+              "A02",
+              "A05"
+            ],
+            "pos": [
+              2607.15,
+              3261
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-07-west",
+            "fixed": false,
+            "objective": false,
+            "role": "archer",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-knight",
+            "cls": "knight",
+            "side": 0,
+            "level": 25,
+            "hp": 3688.1,
+            "maxHp": 3846,
+            "loadout": [
+              "S00",
+              "S01",
+              "S03"
+            ],
+            "pos": [
+              3584,
+              3271.11
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-07-west",
+            "fixed": false,
+            "objective": false,
+            "role": "knight",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-occultist",
+            "cls": "occultist",
+            "side": 0,
+            "level": 25,
+            "hp": 2144.1,
+            "maxHp": 2304,
+            "loadout": [
+              "O01",
+              "O04",
+              "O03",
+              "O06"
+            ],
+            "pos": [
+              5024,
+              3099.14
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-07-west",
+            "fixed": false,
+            "objective": false,
+            "role": "occultist",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "a6-c07-optional-drift",
+            "cls": "occultist",
+            "side": 1,
+            "level": 25,
+            "hp": 850,
+            "maxHp": 850,
+            "loadout": [
+              "LA01"
+            ],
+            "pos": [
+              5336,
+              2988
+            ],
+            "h": 105,
+            "r": 21,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "a6-c07-stationary-stone-ward",
+            "fixed": true,
+            "objective": false,
+            "role": "bow",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "a6-c07-ward-pressure",
+            "cls": "occultist",
+            "side": 1,
+            "level": 25,
+            "hp": 850,
+            "maxHp": 850,
+            "loadout": [
+              "HGS01",
+              "HGS02"
+            ],
+            "pos": [
+              5720,
+              2939.43
+            ],
+            "h": 105,
+            "r": 21,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-07-west",
+            "fixed": true,
+            "objective": false,
+            "role": "fire",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "a6-c07-original-darmheo-body",
+            "cls": "mage",
+            "side": 2,
+            "level": 1,
+            "hp": 390,
+            "maxHp": 390,
+            "loadout": [],
+            "pos": [
+              5384,
+              2976
+            ],
+            "h": 72,
+            "r": 21,
+            "awake": false,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "a6-c07-stationary-stone-ward",
+            "fixed": true,
+            "objective": false,
+            "role": "mage",
+            "summoned": true,
+            "ally": false
+          }
+        ]
+      }
+    },
+    {
+      "key": "Control",
+      "before": {
+        "stageId": 57,
+        "honroStage": 57,
+        "mode": "campaign",
+        "authoredId": "stage-57",
+        "round": 1,
+        "phase": "aim",
+        "side": 0,
+        "shot": 0,
+        "rng": 19388,
+        "active": "p-archer",
+        "dialogue": false,
+        "isolatedStore": true,
+        "play": [
+          7200,
+          3600
+        ],
+        "terrainBounds": {
+          "left": -3200,
+          "top": -3100,
+          "right": 11320,
+          "bottom": 7400
+        },
+        "playBounds": {
+          "left": 0,
+          "top": 0,
+          "right": 7200,
+          "bottom": 3600
+        },
+        "camera": {
+          "x": 2737.022303232554,
+          "y": 3064.194365518395,
+          "zoom": null
+        },
+        "fieldFlags": [],
+        "terrain": [
+          {
+            "id": "local-lower-07-west",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "local-lower-07-east",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "local-lower-07-aperture-roof",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "local-lower-07-aperture-footing",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "a6-c07-railing",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "a6-c07-protective-relay",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "a6-c07-stationary-stone-ward",
+            "vertices": null,
+            "oneWay": false
+          }
+        ],
+        "worldTerrain": [
+          {
+            "id": "local-lower-07-west",
+            "vertices": null
+          },
+          {
+            "id": "local-lower-07-east",
+            "vertices": null
+          },
+          {
+            "id": "local-lower-07-aperture-roof",
+            "vertices": null
+          },
+          {
+            "id": "local-lower-07-aperture-footing",
+            "vertices": null
+          },
+          {
+            "id": "a6-c07-railing",
+            "vertices": null
+          },
+          {
+            "id": "a6-c07-protective-relay",
+            "vertices": null
+          },
+          {
+            "id": "a6-c07-stationary-stone-ward",
+            "vertices": null
+          }
+        ],
+        "enemies": [
+          "a6-c07-optional-drift",
+          "a6-c07-ward-pressure"
+        ],
+        "units": [
+          {
+            "id": "p-archer",
+            "cls": "archer",
+            "side": 0,
+            "level": 25,
+            "hp": 1407,
+            "maxHp": 1720,
+            "loadout": [
+              "A01",
+              "A14",
+              "A02",
+              "A05"
+            ],
+            "pos": [
+              2607.15,
+              3261
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-07-west",
+            "fixed": false,
+            "objective": false,
+            "role": "archer",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-knight",
+            "cls": "knight",
+            "side": 0,
+            "level": 25,
+            "hp": 3688.1,
+            "maxHp": 3846,
+            "loadout": [
+              "S00",
+              "S01",
+              "S03"
+            ],
+            "pos": [
+              3584,
+              3271.11
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-07-west",
+            "fixed": false,
+            "objective": false,
+            "role": "knight",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-occultist",
+            "cls": "occultist",
+            "side": 0,
+            "level": 25,
+            "hp": 2144.1,
+            "maxHp": 2304,
+            "loadout": [
+              "O01",
+              "O04",
+              "O03",
+              "O06"
+            ],
+            "pos": [
+              5024,
+              3099.14
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-07-west",
+            "fixed": false,
+            "objective": false,
+            "role": "occultist",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "a6-c07-optional-drift",
+            "cls": "occultist",
+            "side": 1,
+            "level": 25,
+            "hp": 850,
+            "maxHp": 850,
+            "loadout": [
+              "LA01"
+            ],
+            "pos": [
+              5336,
+              2988
+            ],
+            "h": 105,
+            "r": 21,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "a6-c07-stationary-stone-ward",
+            "fixed": true,
+            "objective": false,
+            "role": "bow",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "a6-c07-ward-pressure",
+            "cls": "occultist",
+            "side": 1,
+            "level": 25,
+            "hp": 850,
+            "maxHp": 850,
+            "loadout": [
+              "HGS01",
+              "HGS02"
+            ],
+            "pos": [
+              5720,
+              2939.43
+            ],
+            "h": 105,
+            "r": 21,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-07-west",
+            "fixed": true,
+            "objective": false,
+            "role": "fire",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "a6-c07-original-darmheo-body",
+            "cls": "mage",
+            "side": 2,
+            "level": 1,
+            "hp": 390,
+            "maxHp": 390,
+            "loadout": [],
+            "pos": [
+              5384,
+              2976
+            ],
+            "h": 72,
+            "r": 21,
+            "awake": false,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "a6-c07-stationary-stone-ward",
+            "fixed": true,
+            "objective": false,
+            "role": "mage",
+            "summoned": true,
+            "ally": false
+          }
+        ]
+      },
+      "held": {
+        "stageId": 57,
+        "honroStage": 57,
+        "mode": "campaign",
+        "authoredId": "stage-57",
+        "round": 1,
+        "phase": "aim",
+        "side": 0,
+        "shot": 0,
+        "rng": 19388,
+        "active": "p-archer",
+        "dialogue": false,
+        "isolatedStore": true,
+        "play": [
+          7200,
+          3600
+        ],
+        "terrainBounds": {
+          "left": -3200,
+          "top": -3100,
+          "right": 11320,
+          "bottom": 7400
+        },
+        "playBounds": {
+          "left": 0,
+          "top": 0,
+          "right": 7200,
+          "bottom": 3600
+        },
+        "camera": {
+          "x": 2751.1869251099556,
+          "y": 3049.078146833903,
+          "zoom": null
+        },
+        "fieldFlags": [],
+        "terrain": [
+          {
+            "id": "local-lower-07-west",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "local-lower-07-east",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "local-lower-07-aperture-roof",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "local-lower-07-aperture-footing",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "a6-c07-railing",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "a6-c07-protective-relay",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "a6-c07-stationary-stone-ward",
+            "vertices": null,
+            "oneWay": false
+          }
+        ],
+        "worldTerrain": [
+          {
+            "id": "local-lower-07-west",
+            "vertices": null
+          },
+          {
+            "id": "local-lower-07-east",
+            "vertices": null
+          },
+          {
+            "id": "local-lower-07-aperture-roof",
+            "vertices": null
+          },
+          {
+            "id": "local-lower-07-aperture-footing",
+            "vertices": null
+          },
+          {
+            "id": "a6-c07-railing",
+            "vertices": null
+          },
+          {
+            "id": "a6-c07-protective-relay",
+            "vertices": null
+          },
+          {
+            "id": "a6-c07-stationary-stone-ward",
+            "vertices": null
+          }
+        ],
+        "enemies": [
+          "a6-c07-optional-drift",
+          "a6-c07-ward-pressure"
+        ],
+        "units": [
+          {
+            "id": "p-archer",
+            "cls": "archer",
+            "side": 0,
+            "level": 25,
+            "hp": 1407,
+            "maxHp": 1720,
+            "loadout": [
+              "A01",
+              "A14",
+              "A02",
+              "A05"
+            ],
+            "pos": [
+              2607.15,
+              3173.99
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": false,
+            "validContact": false,
+            "support": null,
+            "fixed": false,
+            "objective": false,
+            "role": "archer",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-knight",
+            "cls": "knight",
+            "side": 0,
+            "level": 25,
+            "hp": 3688.1,
+            "maxHp": 3846,
+            "loadout": [
+              "S00",
+              "S01",
+              "S03"
+            ],
+            "pos": [
+              3584,
+              3271.11
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-07-west",
+            "fixed": false,
+            "objective": false,
+            "role": "knight",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-occultist",
+            "cls": "occultist",
+            "side": 0,
+            "level": 25,
+            "hp": 2144.1,
+            "maxHp": 2304,
+            "loadout": [
+              "O01",
+              "O04",
+              "O03",
+              "O06"
+            ],
+            "pos": [
+              5024,
+              3099.14
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-07-west",
+            "fixed": false,
+            "objective": false,
+            "role": "occultist",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "a6-c07-optional-drift",
+            "cls": "occultist",
+            "side": 1,
+            "level": 25,
+            "hp": 850,
+            "maxHp": 850,
+            "loadout": [
+              "LA01"
+            ],
+            "pos": [
+              5336,
+              2988
+            ],
+            "h": 105,
+            "r": 21,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "a6-c07-stationary-stone-ward",
+            "fixed": true,
+            "objective": false,
+            "role": "bow",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "a6-c07-ward-pressure",
+            "cls": "occultist",
+            "side": 1,
+            "level": 25,
+            "hp": 850,
+            "maxHp": 850,
+            "loadout": [
+              "HGS01",
+              "HGS02"
+            ],
+            "pos": [
+              5720,
+              2939.43
+            ],
+            "h": 105,
+            "r": 21,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-07-west",
+            "fixed": true,
+            "objective": false,
+            "role": "fire",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "a6-c07-original-darmheo-body",
+            "cls": "mage",
+            "side": 2,
+            "level": 1,
+            "hp": 390,
+            "maxHp": 390,
+            "loadout": [],
+            "pos": [
+              5384,
+              2976
+            ],
+            "h": 72,
+            "r": 21,
+            "awake": false,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "a6-c07-stationary-stone-ward",
+            "fixed": true,
+            "objective": false,
+            "role": "mage",
+            "summoned": true,
+            "ally": false
+          }
+        ]
+      },
+      "after": {
+        "stageId": 57,
+        "honroStage": 57,
+        "mode": "campaign",
+        "authoredId": "stage-57",
+        "round": 1,
+        "phase": "aim",
+        "side": 0,
+        "shot": 0,
+        "rng": 19388,
+        "active": "p-archer",
+        "dialogue": false,
+        "isolatedStore": true,
+        "play": [
+          7200,
+          3600
+        ],
+        "terrainBounds": {
+          "left": -3200,
+          "top": -3100,
+          "right": 11320,
+          "bottom": 7400
+        },
+        "playBounds": {
+          "left": 0,
+          "top": 0,
+          "right": 7200,
+          "bottom": 3600
+        },
+        "camera": {
+          "x": 2776.551155731114,
+          "y": 3004.089418673509,
+          "zoom": null
+        },
+        "fieldFlags": [],
+        "terrain": [
+          {
+            "id": "local-lower-07-west",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "local-lower-07-east",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "local-lower-07-aperture-roof",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "local-lower-07-aperture-footing",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "a6-c07-railing",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "a6-c07-protective-relay",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "a6-c07-stationary-stone-ward",
+            "vertices": null,
+            "oneWay": false
+          }
+        ],
+        "worldTerrain": [
+          {
+            "id": "local-lower-07-west",
+            "vertices": null
+          },
+          {
+            "id": "local-lower-07-east",
+            "vertices": null
+          },
+          {
+            "id": "local-lower-07-aperture-roof",
+            "vertices": null
+          },
+          {
+            "id": "local-lower-07-aperture-footing",
+            "vertices": null
+          },
+          {
+            "id": "a6-c07-railing",
+            "vertices": null
+          },
+          {
+            "id": "a6-c07-protective-relay",
+            "vertices": null
+          },
+          {
+            "id": "a6-c07-stationary-stone-ward",
+            "vertices": null
+          }
+        ],
+        "enemies": [
+          "a6-c07-optional-drift",
+          "a6-c07-ward-pressure"
+        ],
+        "units": [
+          {
+            "id": "p-archer",
+            "cls": "archer",
+            "side": 0,
+            "level": 25,
+            "hp": 1407,
+            "maxHp": 1720,
+            "loadout": [
+              "A01",
+              "A14",
+              "A02",
+              "A05"
+            ],
+            "pos": [
+              2607.15,
+              3261
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-07-west",
+            "fixed": false,
+            "objective": false,
+            "role": "archer",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-knight",
+            "cls": "knight",
+            "side": 0,
+            "level": 25,
+            "hp": 3688.1,
+            "maxHp": 3846,
+            "loadout": [
+              "S00",
+              "S01",
+              "S03"
+            ],
+            "pos": [
+              3584,
+              3271.11
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-07-west",
+            "fixed": false,
+            "objective": false,
+            "role": "knight",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-occultist",
+            "cls": "occultist",
+            "side": 0,
+            "level": 25,
+            "hp": 2144.1,
+            "maxHp": 2304,
+            "loadout": [
+              "O01",
+              "O04",
+              "O03",
+              "O06"
+            ],
+            "pos": [
+              5024,
+              3099.14
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-07-west",
+            "fixed": false,
+            "objective": false,
+            "role": "occultist",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "a6-c07-optional-drift",
+            "cls": "occultist",
+            "side": 1,
+            "level": 25,
+            "hp": 850,
+            "maxHp": 850,
+            "loadout": [
+              "LA01"
+            ],
+            "pos": [
+              5336,
+              2988
+            ],
+            "h": 105,
+            "r": 21,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "a6-c07-stationary-stone-ward",
+            "fixed": true,
+            "objective": false,
+            "role": "bow",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "a6-c07-ward-pressure",
+            "cls": "occultist",
+            "side": 1,
+            "level": 25,
+            "hp": 850,
+            "maxHp": 850,
+            "loadout": [
+              "HGS01",
+              "HGS02"
+            ],
+            "pos": [
+              5720,
+              2939.43
+            ],
+            "h": 105,
+            "r": 21,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "local-lower-07-west",
+            "fixed": true,
+            "objective": false,
+            "role": "fire",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "a6-c07-original-darmheo-body",
+            "cls": "mage",
+            "side": 2,
+            "level": 1,
+            "hp": 390,
+            "maxHp": 390,
+            "loadout": [],
+            "pos": [
+              5384,
+              2976
+            ],
+            "h": 72,
+            "r": 21,
+            "awake": false,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "a6-c07-stationary-stone-ward",
+            "fixed": true,
+            "objective": false,
+            "role": "mage",
+            "summoned": true,
+            "ally": false
+          }
+        ]
+      }
+    }
+  ],
+  "defendInputs": 3,
+  "end": {
+    "stageId": 57,
+    "honroStage": 57,
+    "mode": "campaign",
+    "authoredId": "stage-57",
+    "round": 1,
+    "phase": "flight",
+    "side": 1,
+    "shot": 2,
+    "rng": 7326282640,
+    "active": "a6-c07-ward-pressure",
+    "dialogue": false,
+    "isolatedStore": true,
+    "play": [
+      7200,
+      3600
+    ],
+    "terrainBounds": {
+      "left": -3200,
+      "top": -3100,
+      "right": 11320,
+      "bottom": 7400
+    },
+    "playBounds": {
+      "left": 0,
+      "top": 0,
+      "right": 7200,
+      "bottom": 3600
+    },
+    "camera": {
+      "x": 3819.1485407646846,
+      "y": 3118.1828543299534,
+      "zoom": null
+    },
+    "fieldFlags": [],
+    "terrain": [
+      {
+        "id": "local-lower-07-west",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "local-lower-07-east",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "local-lower-07-aperture-roof",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "local-lower-07-aperture-footing",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "a6-c07-railing",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "a6-c07-protective-relay",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "a6-c07-stationary-stone-ward",
+        "vertices": null,
+        "oneWay": false
+      }
+    ],
+    "worldTerrain": [
+      {
+        "id": "local-lower-07-west",
+        "vertices": null
+      },
+      {
+        "id": "local-lower-07-east",
+        "vertices": null
+      },
+      {
+        "id": "local-lower-07-aperture-roof",
+        "vertices": null
+      },
+      {
+        "id": "local-lower-07-aperture-footing",
+        "vertices": null
+      },
+      {
+        "id": "a6-c07-railing",
+        "vertices": null
+      },
+      {
+        "id": "a6-c07-protective-relay",
+        "vertices": null
+      },
+      {
+        "id": "a6-c07-stationary-stone-ward",
+        "vertices": null
+      }
+    ],
+    "enemies": [
+      "a6-c07-optional-drift",
+      "a6-c07-ward-pressure"
+    ],
+    "units": [
+      {
+        "id": "p-archer",
+        "cls": "archer",
+        "side": 0,
+        "level": 25,
+        "hp": 1476,
+        "maxHp": 1720,
+        "loadout": [
+          "A01",
+          "A14",
+          "A02",
+          "A05"
+        ],
+        "pos": [
+          2607.15,
+          3261
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "local-lower-07-west",
+        "fixed": false,
+        "objective": false,
+        "role": "archer",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "p-knight",
+        "cls": "knight",
+        "side": 0,
+        "level": 25,
+        "hp": 3842.1,
+        "maxHp": 3846,
+        "loadout": [
+          "S00",
+          "S01",
+          "S03"
+        ],
+        "pos": [
+          3584,
+          3271.11
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "local-lower-07-west",
+        "fixed": false,
+        "objective": false,
+        "role": "knight",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "p-occultist",
+        "cls": "occultist",
+        "side": 0,
+        "level": 25,
+        "hp": 2236.1,
+        "maxHp": 2304,
+        "loadout": [
+          "O01",
+          "O04",
+          "O03",
+          "O06"
+        ],
+        "pos": [
+          5024,
+          3099.14
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "local-lower-07-west",
+        "fixed": false,
+        "objective": false,
+        "role": "occultist",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-c07-optional-drift",
+        "cls": "occultist",
+        "side": 1,
+        "level": 25,
+        "hp": 850,
+        "maxHp": 850,
+        "loadout": [
+          "LA01"
+        ],
+        "pos": [
+          5336,
+          2988
+        ],
+        "h": 105,
+        "r": 21,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "a6-c07-stationary-stone-ward",
+        "fixed": true,
+        "objective": false,
+        "role": "bow",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-c07-ward-pressure",
+        "cls": "occultist",
+        "side": 1,
+        "level": 25,
+        "hp": 850,
+        "maxHp": 850,
+        "loadout": [
+          "HGS01",
+          "HGS02"
+        ],
+        "pos": [
+          5720,
+          2939.43
+        ],
+        "h": 105,
+        "r": 21,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "local-lower-07-west",
+        "fixed": true,
+        "objective": false,
+        "role": "fire",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "a6-c07-original-darmheo-body",
+        "cls": "mage",
+        "side": 2,
+        "level": 1,
+        "hp": 390,
+        "maxHp": 390,
+        "loadout": [],
+        "pos": [
+          5384,
+          2976
+        ],
+        "h": 72,
+        "r": 21,
+        "awake": false,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "a6-c07-stationary-stone-ward",
+        "fixed": true,
+        "objective": false,
+        "role": "mage",
+        "summoned": true,
+        "ally": false
+      }
+    ]
+  },
+  "trace": [
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "a6-c07-optional-drift",
+        "a6-c07-ward-pressure"
+      ],
+      "newIds": [
+        "a6-c07-optional-drift",
+        "a6-c07-ward-pressure"
+      ]
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "a6-c07-optional-drift",
+        "a6-c07-ward-pressure"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "a6-c07-optional-drift",
+        "a6-c07-ward-pressure"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "a6-c07-optional-drift",
+        "a6-c07-ward-pressure"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "a6-c07-optional-drift",
+        "a6-c07-ward-pressure"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "a6-c07-optional-drift",
+        "a6-c07-ward-pressure"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 0,
+      "phase": "transition",
+      "active": [
+        "a6-c07-optional-drift",
+        "a6-c07-ward-pressure"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 1,
+      "phase": "enemy",
+      "active": [
+        "a6-c07-optional-drift",
+        "a6-c07-ward-pressure"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "fire",
+      "round": 1,
+      "owner": "a6-c07-optional-drift",
+      "skill": "LA01"
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 1,
+      "phase": "flight",
+      "active": [
+        "a6-c07-optional-drift",
+        "a6-c07-ward-pressure"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "hit",
+      "round": 1,
+      "owner": "a6-c07-optional-drift",
+      "target": "p-archer",
+      "loss": 26
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 1,
+      "phase": "review",
+      "active": [
+        "a6-c07-optional-drift",
+        "a6-c07-ward-pressure"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 1,
+      "phase": "enemy",
+      "active": [
+        "a6-c07-optional-drift",
+        "a6-c07-ward-pressure"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "fire",
+      "round": 1,
+      "owner": "a6-c07-ward-pressure",
+      "skill": "HGS02"
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 1,
+      "phase": "flight",
+      "active": [
+        "a6-c07-optional-drift",
+        "a6-c07-ward-pressure"
+      ],
+      "newIds": []
+    }
+  ],
+  "save": {
+    "keys": [
+      "honro-first-act-profile-1"
+    ],
+    "before": "5d13fe6f8cbcc552dbd7f7db140dc70e2883aa23b3d65d52fa72dcf5b80bc502",
+    "after": "5d13fe6f8cbcc552dbd7f7db140dc70e2883aa23b3d65d52fa72dcf5b80bc502",
+    "unchanged": true
+  },
+  "chromium": "154.0.8037.57"
+}

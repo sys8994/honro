@@ -1,0 +1,3047 @@
+{
+  "stage": 55,
+  "status": "PASS",
+  "errors": [],
+  "warnings": [],
+  "httpErrors": [],
+  "entry": {
+    "stageId": 55,
+    "honroStage": 55,
+    "mode": "campaign",
+    "authoredId": "stage-55",
+    "round": 1,
+    "phase": "aim",
+    "side": 0,
+    "shot": 0,
+    "rng": 19388,
+    "active": "p-knight",
+    "dialogue": false,
+    "isolatedStore": true,
+    "play": [
+      6800,
+      3200
+    ],
+    "terrainBounds": {
+      "left": -4496,
+      "top": -1992,
+      "right": 11536,
+      "bottom": 11768
+    },
+    "playBounds": {
+      "left": 0,
+      "top": 0,
+      "right": 6800,
+      "bottom": 3200
+    },
+    "camera": {
+      "x": 227.7590023999999,
+      "y": 412.64658482909084,
+      "zoom": null
+    },
+    "fieldFlags": [],
+    "terrain": [
+      {
+        "id": "west-ring-descent",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "arrival-core-terrace",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "right-return-rise",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "east-upper-end",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "west-lower-branch",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "east-lower-branch",
+        "vertices": null,
+        "oneWay": false
+      }
+    ],
+    "worldTerrain": [
+      {
+        "id": "west-ring-descent",
+        "vertices": null
+      },
+      {
+        "id": "arrival-core-terrace",
+        "vertices": null
+      },
+      {
+        "id": "right-return-rise",
+        "vertices": null
+      },
+      {
+        "id": "east-upper-end",
+        "vertices": null
+      },
+      {
+        "id": "west-lower-branch",
+        "vertices": null
+      },
+      {
+        "id": "east-lower-branch",
+        "vertices": null
+      }
+    ],
+    "enemies": [
+      "draft-pressure-0",
+      "draft-pressure-1",
+      "draft-pressure-2",
+      "draft-pressure-3"
+    ],
+    "units": [
+      {
+        "id": "p-knight",
+        "cls": "knight",
+        "side": 0,
+        "level": 25,
+        "hp": 3688.1,
+        "maxHp": 3846,
+        "loadout": [
+          "S00",
+          "S01",
+          "S03"
+        ],
+        "pos": [
+          176,
+          586.91
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "west-ring-descent",
+        "fixed": false,
+        "objective": false,
+        "role": "knight",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "p-archer",
+        "cls": "archer",
+        "side": 0,
+        "level": 25,
+        "hp": 1651,
+        "maxHp": 1720,
+        "loadout": [
+          "A01",
+          "A14",
+          "A02",
+          "A05"
+        ],
+        "pos": [
+          1232,
+          1162.91
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "west-ring-descent",
+        "fixed": false,
+        "objective": false,
+        "role": "archer",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "p-occultist",
+        "cls": "occultist",
+        "side": 0,
+        "level": 25,
+        "hp": 2144.1,
+        "maxHp": 2304,
+        "loadout": [
+          "O01",
+          "O04",
+          "O03",
+          "O06"
+        ],
+        "pos": [
+          2688,
+          1700.31
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "arrival-core-terrace",
+        "fixed": false,
+        "objective": false,
+        "role": "occultist",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "draft-pressure-0",
+        "cls": "occultist",
+        "side": 1,
+        "level": 12,
+        "hp": 480,
+        "maxHp": 480,
+        "loadout": [
+          "HLN01",
+          "HLN02"
+        ],
+        "pos": [
+          2112,
+          1523.08
+        ],
+        "h": 92,
+        "r": 25,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "arrival-core-terrace",
+        "fixed": true,
+        "objective": false,
+        "role": "fire",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "draft-pressure-1",
+        "cls": "occultist",
+        "side": 1,
+        "level": 8,
+        "hp": 409,
+        "maxHp": 409,
+        "loadout": [
+          "HGS01",
+          "HGS02"
+        ],
+        "pos": [
+          912,
+          2590.33
+        ],
+        "h": 88,
+        "r": 32,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "west-lower-branch",
+        "fixed": false,
+        "objective": false,
+        "role": "fire",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "draft-pressure-2",
+        "cls": "knight",
+        "side": 1,
+        "level": 8,
+        "hp": 409,
+        "maxHp": 409,
+        "loadout": [
+          "HBM01"
+        ],
+        "pos": [
+          1624,
+          1372.92
+        ],
+        "h": 88,
+        "r": 32,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "arrival-core-terrace",
+        "fixed": false,
+        "objective": false,
+        "role": "leaper",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "draft-pressure-3",
+        "cls": "archer",
+        "side": 1,
+        "level": 12,
+        "hp": 796,
+        "maxHp": 796,
+        "loadout": [
+          "LA01",
+          "LA02"
+        ],
+        "pos": [
+          1264,
+          1180.36
+        ],
+        "h": 91,
+        "r": 21,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "west-ring-descent",
+        "fixed": false,
+        "objective": false,
+        "role": "bow",
+        "summoned": false,
+        "ally": false
+      }
+    ]
+  },
+  "settled": {
+    "stageId": 55,
+    "honroStage": 55,
+    "mode": "campaign",
+    "authoredId": "stage-55",
+    "round": 1,
+    "phase": "aim",
+    "side": 0,
+    "shot": 0,
+    "rng": 19388,
+    "active": "p-knight",
+    "dialogue": false,
+    "isolatedStore": true,
+    "play": [
+      6800,
+      3200
+    ],
+    "terrainBounds": {
+      "left": -4496,
+      "top": -1992,
+      "right": 11536,
+      "bottom": 11768
+    },
+    "playBounds": {
+      "left": 0,
+      "top": 0,
+      "right": 6800,
+      "bottom": 3200
+    },
+    "camera": {
+      "x": 344.190240972722,
+      "y": 403.05812988780787,
+      "zoom": null
+    },
+    "fieldFlags": [],
+    "terrain": [
+      {
+        "id": "west-ring-descent",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "arrival-core-terrace",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "right-return-rise",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "east-upper-end",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "west-lower-branch",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "east-lower-branch",
+        "vertices": null,
+        "oneWay": false
+      }
+    ],
+    "worldTerrain": [
+      {
+        "id": "west-ring-descent",
+        "vertices": null
+      },
+      {
+        "id": "arrival-core-terrace",
+        "vertices": null
+      },
+      {
+        "id": "right-return-rise",
+        "vertices": null
+      },
+      {
+        "id": "east-upper-end",
+        "vertices": null
+      },
+      {
+        "id": "west-lower-branch",
+        "vertices": null
+      },
+      {
+        "id": "east-lower-branch",
+        "vertices": null
+      }
+    ],
+    "enemies": [
+      "draft-pressure-0",
+      "draft-pressure-1",
+      "draft-pressure-2",
+      "draft-pressure-3"
+    ],
+    "units": [
+      {
+        "id": "p-knight",
+        "cls": "knight",
+        "side": 0,
+        "level": 25,
+        "hp": 3688.1,
+        "maxHp": 3846,
+        "loadout": [
+          "S00",
+          "S01",
+          "S03"
+        ],
+        "pos": [
+          176,
+          586.91
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "west-ring-descent",
+        "fixed": false,
+        "objective": false,
+        "role": "knight",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "p-archer",
+        "cls": "archer",
+        "side": 0,
+        "level": 25,
+        "hp": 1651,
+        "maxHp": 1720,
+        "loadout": [
+          "A01",
+          "A14",
+          "A02",
+          "A05"
+        ],
+        "pos": [
+          1232,
+          1162.91
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "west-ring-descent",
+        "fixed": false,
+        "objective": false,
+        "role": "archer",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "p-occultist",
+        "cls": "occultist",
+        "side": 0,
+        "level": 25,
+        "hp": 2144.1,
+        "maxHp": 2304,
+        "loadout": [
+          "O01",
+          "O04",
+          "O03",
+          "O06"
+        ],
+        "pos": [
+          2688,
+          1700.31
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "arrival-core-terrace",
+        "fixed": false,
+        "objective": false,
+        "role": "occultist",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "draft-pressure-0",
+        "cls": "occultist",
+        "side": 1,
+        "level": 12,
+        "hp": 480,
+        "maxHp": 480,
+        "loadout": [
+          "HLN01",
+          "HLN02"
+        ],
+        "pos": [
+          2112,
+          1523.08
+        ],
+        "h": 92,
+        "r": 25,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "arrival-core-terrace",
+        "fixed": true,
+        "objective": false,
+        "role": "fire",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "draft-pressure-1",
+        "cls": "occultist",
+        "side": 1,
+        "level": 8,
+        "hp": 409,
+        "maxHp": 409,
+        "loadout": [
+          "HGS01",
+          "HGS02"
+        ],
+        "pos": [
+          912,
+          2590.33
+        ],
+        "h": 88,
+        "r": 32,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "west-lower-branch",
+        "fixed": false,
+        "objective": false,
+        "role": "fire",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "draft-pressure-2",
+        "cls": "knight",
+        "side": 1,
+        "level": 8,
+        "hp": 409,
+        "maxHp": 409,
+        "loadout": [
+          "HBM01"
+        ],
+        "pos": [
+          1624,
+          1372.92
+        ],
+        "h": 88,
+        "r": 32,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "arrival-core-terrace",
+        "fixed": false,
+        "objective": false,
+        "role": "leaper",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "draft-pressure-3",
+        "cls": "archer",
+        "side": 1,
+        "level": 12,
+        "hp": 796,
+        "maxHp": 796,
+        "loadout": [
+          "LA01",
+          "LA02"
+        ],
+        "pos": [
+          1264,
+          1180.36
+        ],
+        "h": 91,
+        "r": 21,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "west-ring-descent",
+        "fixed": false,
+        "objective": false,
+        "role": "bow",
+        "summoned": false,
+        "ally": false
+      }
+    ]
+  },
+  "input": [
+    {
+      "key": "ArrowRight",
+      "before": {
+        "stageId": 55,
+        "honroStage": 55,
+        "mode": "campaign",
+        "authoredId": "stage-55",
+        "round": 1,
+        "phase": "aim",
+        "side": 0,
+        "shot": 0,
+        "rng": 19388,
+        "active": "p-knight",
+        "dialogue": false,
+        "isolatedStore": true,
+        "play": [
+          6800,
+          3200
+        ],
+        "terrainBounds": {
+          "left": -4496,
+          "top": -1992,
+          "right": 11536,
+          "bottom": 11768
+        },
+        "playBounds": {
+          "left": 0,
+          "top": 0,
+          "right": 6800,
+          "bottom": 3200
+        },
+        "camera": {
+          "x": 345.25602308933014,
+          "y": 402.97035959585196,
+          "zoom": null
+        },
+        "fieldFlags": [],
+        "terrain": [
+          {
+            "id": "west-ring-descent",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "arrival-core-terrace",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "right-return-rise",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "east-upper-end",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "west-lower-branch",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "east-lower-branch",
+            "vertices": null,
+            "oneWay": false
+          }
+        ],
+        "worldTerrain": [
+          {
+            "id": "west-ring-descent",
+            "vertices": null
+          },
+          {
+            "id": "arrival-core-terrace",
+            "vertices": null
+          },
+          {
+            "id": "right-return-rise",
+            "vertices": null
+          },
+          {
+            "id": "east-upper-end",
+            "vertices": null
+          },
+          {
+            "id": "west-lower-branch",
+            "vertices": null
+          },
+          {
+            "id": "east-lower-branch",
+            "vertices": null
+          }
+        ],
+        "enemies": [
+          "draft-pressure-0",
+          "draft-pressure-1",
+          "draft-pressure-2",
+          "draft-pressure-3"
+        ],
+        "units": [
+          {
+            "id": "p-knight",
+            "cls": "knight",
+            "side": 0,
+            "level": 25,
+            "hp": 3688.1,
+            "maxHp": 3846,
+            "loadout": [
+              "S00",
+              "S01",
+              "S03"
+            ],
+            "pos": [
+              176,
+              586.91
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "west-ring-descent",
+            "fixed": false,
+            "objective": false,
+            "role": "knight",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-archer",
+            "cls": "archer",
+            "side": 0,
+            "level": 25,
+            "hp": 1651,
+            "maxHp": 1720,
+            "loadout": [
+              "A01",
+              "A14",
+              "A02",
+              "A05"
+            ],
+            "pos": [
+              1232,
+              1162.91
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "west-ring-descent",
+            "fixed": false,
+            "objective": false,
+            "role": "archer",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-occultist",
+            "cls": "occultist",
+            "side": 0,
+            "level": 25,
+            "hp": 2144.1,
+            "maxHp": 2304,
+            "loadout": [
+              "O01",
+              "O04",
+              "O03",
+              "O06"
+            ],
+            "pos": [
+              2688,
+              1700.31
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "arrival-core-terrace",
+            "fixed": false,
+            "objective": false,
+            "role": "occultist",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "draft-pressure-0",
+            "cls": "occultist",
+            "side": 1,
+            "level": 12,
+            "hp": 480,
+            "maxHp": 480,
+            "loadout": [
+              "HLN01",
+              "HLN02"
+            ],
+            "pos": [
+              2112,
+              1523.08
+            ],
+            "h": 92,
+            "r": 25,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "arrival-core-terrace",
+            "fixed": true,
+            "objective": false,
+            "role": "fire",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "draft-pressure-1",
+            "cls": "occultist",
+            "side": 1,
+            "level": 8,
+            "hp": 409,
+            "maxHp": 409,
+            "loadout": [
+              "HGS01",
+              "HGS02"
+            ],
+            "pos": [
+              912,
+              2590.33
+            ],
+            "h": 88,
+            "r": 32,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "west-lower-branch",
+            "fixed": false,
+            "objective": false,
+            "role": "fire",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "draft-pressure-2",
+            "cls": "knight",
+            "side": 1,
+            "level": 8,
+            "hp": 409,
+            "maxHp": 409,
+            "loadout": [
+              "HBM01"
+            ],
+            "pos": [
+              1624,
+              1372.92
+            ],
+            "h": 88,
+            "r": 32,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "arrival-core-terrace",
+            "fixed": false,
+            "objective": false,
+            "role": "leaper",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "draft-pressure-3",
+            "cls": "archer",
+            "side": 1,
+            "level": 12,
+            "hp": 796,
+            "maxHp": 796,
+            "loadout": [
+              "LA01",
+              "LA02"
+            ],
+            "pos": [
+              1264,
+              1180.36
+            ],
+            "h": 91,
+            "r": 21,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "west-ring-descent",
+            "fixed": false,
+            "objective": false,
+            "role": "bow",
+            "summoned": false,
+            "ally": false
+          }
+        ]
+      },
+      "held": {
+        "stageId": 55,
+        "honroStage": 55,
+        "mode": "campaign",
+        "authoredId": "stage-55",
+        "round": 1,
+        "phase": "aim",
+        "side": 0,
+        "shot": 0,
+        "rng": 19388,
+        "active": "p-knight",
+        "dialogue": false,
+        "isolatedStore": true,
+        "play": [
+          6800,
+          3200
+        ],
+        "terrainBounds": {
+          "left": -4496,
+          "top": -1992,
+          "right": 11536,
+          "bottom": 11768
+        },
+        "playBounds": {
+          "left": 0,
+          "top": 0,
+          "right": 6800,
+          "bottom": 3200
+        },
+        "camera": {
+          "x": 436.43061164078193,
+          "y": 452.33662747293073,
+          "zoom": null
+        },
+        "fieldFlags": [],
+        "terrain": [
+          {
+            "id": "west-ring-descent",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "arrival-core-terrace",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "right-return-rise",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "east-upper-end",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "west-lower-branch",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "east-lower-branch",
+            "vertices": null,
+            "oneWay": false
+          }
+        ],
+        "worldTerrain": [
+          {
+            "id": "west-ring-descent",
+            "vertices": null
+          },
+          {
+            "id": "arrival-core-terrace",
+            "vertices": null
+          },
+          {
+            "id": "right-return-rise",
+            "vertices": null
+          },
+          {
+            "id": "east-upper-end",
+            "vertices": null
+          },
+          {
+            "id": "west-lower-branch",
+            "vertices": null
+          },
+          {
+            "id": "east-lower-branch",
+            "vertices": null
+          }
+        ],
+        "enemies": [
+          "draft-pressure-0",
+          "draft-pressure-1",
+          "draft-pressure-2",
+          "draft-pressure-3"
+        ],
+        "units": [
+          {
+            "id": "p-knight",
+            "cls": "knight",
+            "side": 0,
+            "level": 25,
+            "hp": 3688.1,
+            "maxHp": 3846,
+            "loadout": [
+              "S00",
+              "S01",
+              "S03"
+            ],
+            "pos": [
+              360.36,
+              687.47
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "west-ring-descent",
+            "fixed": false,
+            "objective": false,
+            "role": "knight",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-archer",
+            "cls": "archer",
+            "side": 0,
+            "level": 25,
+            "hp": 1651,
+            "maxHp": 1720,
+            "loadout": [
+              "A01",
+              "A14",
+              "A02",
+              "A05"
+            ],
+            "pos": [
+              1232,
+              1162.91
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "west-ring-descent",
+            "fixed": false,
+            "objective": false,
+            "role": "archer",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-occultist",
+            "cls": "occultist",
+            "side": 0,
+            "level": 25,
+            "hp": 2144.1,
+            "maxHp": 2304,
+            "loadout": [
+              "O01",
+              "O04",
+              "O03",
+              "O06"
+            ],
+            "pos": [
+              2688,
+              1700.31
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "arrival-core-terrace",
+            "fixed": false,
+            "objective": false,
+            "role": "occultist",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "draft-pressure-0",
+            "cls": "occultist",
+            "side": 1,
+            "level": 12,
+            "hp": 480,
+            "maxHp": 480,
+            "loadout": [
+              "HLN01",
+              "HLN02"
+            ],
+            "pos": [
+              2112,
+              1523.08
+            ],
+            "h": 92,
+            "r": 25,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "arrival-core-terrace",
+            "fixed": true,
+            "objective": false,
+            "role": "fire",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "draft-pressure-1",
+            "cls": "occultist",
+            "side": 1,
+            "level": 8,
+            "hp": 409,
+            "maxHp": 409,
+            "loadout": [
+              "HGS01",
+              "HGS02"
+            ],
+            "pos": [
+              912,
+              2590.33
+            ],
+            "h": 88,
+            "r": 32,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "west-lower-branch",
+            "fixed": false,
+            "objective": false,
+            "role": "fire",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "draft-pressure-2",
+            "cls": "knight",
+            "side": 1,
+            "level": 8,
+            "hp": 409,
+            "maxHp": 409,
+            "loadout": [
+              "HBM01"
+            ],
+            "pos": [
+              1624,
+              1372.92
+            ],
+            "h": 88,
+            "r": 32,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "arrival-core-terrace",
+            "fixed": false,
+            "objective": false,
+            "role": "leaper",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "draft-pressure-3",
+            "cls": "archer",
+            "side": 1,
+            "level": 12,
+            "hp": 796,
+            "maxHp": 796,
+            "loadout": [
+              "LA01",
+              "LA02"
+            ],
+            "pos": [
+              1264,
+              1180.36
+            ],
+            "h": 91,
+            "r": 21,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "west-ring-descent",
+            "fixed": false,
+            "objective": false,
+            "role": "bow",
+            "summoned": false,
+            "ally": false
+          }
+        ]
+      },
+      "after": {
+        "stageId": 55,
+        "honroStage": 55,
+        "mode": "campaign",
+        "authoredId": "stage-55",
+        "round": 1,
+        "phase": "aim",
+        "side": 0,
+        "shot": 0,
+        "rng": 19388,
+        "active": "p-knight",
+        "dialogue": false,
+        "isolatedStore": true,
+        "play": [
+          6800,
+          3200
+        ],
+        "terrainBounds": {
+          "left": -4496,
+          "top": -1992,
+          "right": 11536,
+          "bottom": 11768
+        },
+        "playBounds": {
+          "left": 0,
+          "top": 0,
+          "right": 6800,
+          "bottom": 3200
+        },
+        "camera": {
+          "x": 488.07463437490054,
+          "y": 480.45015021934546,
+          "zoom": null
+        },
+        "fieldFlags": [],
+        "terrain": [
+          {
+            "id": "west-ring-descent",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "arrival-core-terrace",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "right-return-rise",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "east-upper-end",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "west-lower-branch",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "east-lower-branch",
+            "vertices": null,
+            "oneWay": false
+          }
+        ],
+        "worldTerrain": [
+          {
+            "id": "west-ring-descent",
+            "vertices": null
+          },
+          {
+            "id": "arrival-core-terrace",
+            "vertices": null
+          },
+          {
+            "id": "right-return-rise",
+            "vertices": null
+          },
+          {
+            "id": "east-upper-end",
+            "vertices": null
+          },
+          {
+            "id": "west-lower-branch",
+            "vertices": null
+          },
+          {
+            "id": "east-lower-branch",
+            "vertices": null
+          }
+        ],
+        "enemies": [
+          "draft-pressure-0",
+          "draft-pressure-1",
+          "draft-pressure-2",
+          "draft-pressure-3"
+        ],
+        "units": [
+          {
+            "id": "p-knight",
+            "cls": "knight",
+            "side": 0,
+            "level": 25,
+            "hp": 3688.1,
+            "maxHp": 3846,
+            "loadout": [
+              "S00",
+              "S01",
+              "S03"
+            ],
+            "pos": [
+              360.36,
+              687.47
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "west-ring-descent",
+            "fixed": false,
+            "objective": false,
+            "role": "knight",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-archer",
+            "cls": "archer",
+            "side": 0,
+            "level": 25,
+            "hp": 1651,
+            "maxHp": 1720,
+            "loadout": [
+              "A01",
+              "A14",
+              "A02",
+              "A05"
+            ],
+            "pos": [
+              1232,
+              1162.91
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "west-ring-descent",
+            "fixed": false,
+            "objective": false,
+            "role": "archer",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-occultist",
+            "cls": "occultist",
+            "side": 0,
+            "level": 25,
+            "hp": 2144.1,
+            "maxHp": 2304,
+            "loadout": [
+              "O01",
+              "O04",
+              "O03",
+              "O06"
+            ],
+            "pos": [
+              2688,
+              1700.31
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "arrival-core-terrace",
+            "fixed": false,
+            "objective": false,
+            "role": "occultist",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "draft-pressure-0",
+            "cls": "occultist",
+            "side": 1,
+            "level": 12,
+            "hp": 480,
+            "maxHp": 480,
+            "loadout": [
+              "HLN01",
+              "HLN02"
+            ],
+            "pos": [
+              2112,
+              1523.08
+            ],
+            "h": 92,
+            "r": 25,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "arrival-core-terrace",
+            "fixed": true,
+            "objective": false,
+            "role": "fire",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "draft-pressure-1",
+            "cls": "occultist",
+            "side": 1,
+            "level": 8,
+            "hp": 409,
+            "maxHp": 409,
+            "loadout": [
+              "HGS01",
+              "HGS02"
+            ],
+            "pos": [
+              912,
+              2590.33
+            ],
+            "h": 88,
+            "r": 32,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "west-lower-branch",
+            "fixed": false,
+            "objective": false,
+            "role": "fire",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "draft-pressure-2",
+            "cls": "knight",
+            "side": 1,
+            "level": 8,
+            "hp": 409,
+            "maxHp": 409,
+            "loadout": [
+              "HBM01"
+            ],
+            "pos": [
+              1624,
+              1372.92
+            ],
+            "h": 88,
+            "r": 32,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "arrival-core-terrace",
+            "fixed": false,
+            "objective": false,
+            "role": "leaper",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "draft-pressure-3",
+            "cls": "archer",
+            "side": 1,
+            "level": 12,
+            "hp": 796,
+            "maxHp": 796,
+            "loadout": [
+              "LA01",
+              "LA02"
+            ],
+            "pos": [
+              1264,
+              1180.36
+            ],
+            "h": 91,
+            "r": 21,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "west-ring-descent",
+            "fixed": false,
+            "objective": false,
+            "role": "bow",
+            "summoned": false,
+            "ally": false
+          }
+        ]
+      }
+    },
+    {
+      "key": "Control",
+      "before": {
+        "stageId": 55,
+        "honroStage": 55,
+        "mode": "campaign",
+        "authoredId": "stage-55",
+        "round": 1,
+        "phase": "aim",
+        "side": 0,
+        "shot": 0,
+        "rng": 19388,
+        "active": "p-knight",
+        "dialogue": false,
+        "isolatedStore": true,
+        "play": [
+          6800,
+          3200
+        ],
+        "terrainBounds": {
+          "left": -4496,
+          "top": -1992,
+          "right": 11536,
+          "bottom": 11768
+        },
+        "playBounds": {
+          "left": 0,
+          "top": 0,
+          "right": 6800,
+          "bottom": 3200
+        },
+        "camera": {
+          "x": 491.0403945715303,
+          "y": 482.06462489297076,
+          "zoom": null
+        },
+        "fieldFlags": [],
+        "terrain": [
+          {
+            "id": "west-ring-descent",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "arrival-core-terrace",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "right-return-rise",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "east-upper-end",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "west-lower-branch",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "east-lower-branch",
+            "vertices": null,
+            "oneWay": false
+          }
+        ],
+        "worldTerrain": [
+          {
+            "id": "west-ring-descent",
+            "vertices": null
+          },
+          {
+            "id": "arrival-core-terrace",
+            "vertices": null
+          },
+          {
+            "id": "right-return-rise",
+            "vertices": null
+          },
+          {
+            "id": "east-upper-end",
+            "vertices": null
+          },
+          {
+            "id": "west-lower-branch",
+            "vertices": null
+          },
+          {
+            "id": "east-lower-branch",
+            "vertices": null
+          }
+        ],
+        "enemies": [
+          "draft-pressure-0",
+          "draft-pressure-1",
+          "draft-pressure-2",
+          "draft-pressure-3"
+        ],
+        "units": [
+          {
+            "id": "p-knight",
+            "cls": "knight",
+            "side": 0,
+            "level": 25,
+            "hp": 3688.1,
+            "maxHp": 3846,
+            "loadout": [
+              "S00",
+              "S01",
+              "S03"
+            ],
+            "pos": [
+              360.36,
+              687.47
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "west-ring-descent",
+            "fixed": false,
+            "objective": false,
+            "role": "knight",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-archer",
+            "cls": "archer",
+            "side": 0,
+            "level": 25,
+            "hp": 1651,
+            "maxHp": 1720,
+            "loadout": [
+              "A01",
+              "A14",
+              "A02",
+              "A05"
+            ],
+            "pos": [
+              1232,
+              1162.91
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "west-ring-descent",
+            "fixed": false,
+            "objective": false,
+            "role": "archer",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-occultist",
+            "cls": "occultist",
+            "side": 0,
+            "level": 25,
+            "hp": 2144.1,
+            "maxHp": 2304,
+            "loadout": [
+              "O01",
+              "O04",
+              "O03",
+              "O06"
+            ],
+            "pos": [
+              2688,
+              1700.31
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "arrival-core-terrace",
+            "fixed": false,
+            "objective": false,
+            "role": "occultist",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "draft-pressure-0",
+            "cls": "occultist",
+            "side": 1,
+            "level": 12,
+            "hp": 480,
+            "maxHp": 480,
+            "loadout": [
+              "HLN01",
+              "HLN02"
+            ],
+            "pos": [
+              2112,
+              1523.08
+            ],
+            "h": 92,
+            "r": 25,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "arrival-core-terrace",
+            "fixed": true,
+            "objective": false,
+            "role": "fire",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "draft-pressure-1",
+            "cls": "occultist",
+            "side": 1,
+            "level": 8,
+            "hp": 409,
+            "maxHp": 409,
+            "loadout": [
+              "HGS01",
+              "HGS02"
+            ],
+            "pos": [
+              912,
+              2590.33
+            ],
+            "h": 88,
+            "r": 32,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "west-lower-branch",
+            "fixed": false,
+            "objective": false,
+            "role": "fire",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "draft-pressure-2",
+            "cls": "knight",
+            "side": 1,
+            "level": 8,
+            "hp": 409,
+            "maxHp": 409,
+            "loadout": [
+              "HBM01"
+            ],
+            "pos": [
+              1624,
+              1372.92
+            ],
+            "h": 88,
+            "r": 32,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "arrival-core-terrace",
+            "fixed": false,
+            "objective": false,
+            "role": "leaper",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "draft-pressure-3",
+            "cls": "archer",
+            "side": 1,
+            "level": 12,
+            "hp": 796,
+            "maxHp": 796,
+            "loadout": [
+              "LA01",
+              "LA02"
+            ],
+            "pos": [
+              1264,
+              1180.36
+            ],
+            "h": 91,
+            "r": 21,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "west-ring-descent",
+            "fixed": false,
+            "objective": false,
+            "role": "bow",
+            "summoned": false,
+            "ally": false
+          }
+        ]
+      },
+      "held": {
+        "stageId": 55,
+        "honroStage": 55,
+        "mode": "campaign",
+        "authoredId": "stage-55",
+        "round": 1,
+        "phase": "aim",
+        "side": 0,
+        "shot": 0,
+        "rng": 19388,
+        "active": "p-knight",
+        "dialogue": false,
+        "isolatedStore": true,
+        "play": [
+          6800,
+          3200
+        ],
+        "terrainBounds": {
+          "left": -4496,
+          "top": -1992,
+          "right": 11536,
+          "bottom": 11768
+        },
+        "playBounds": {
+          "left": 0,
+          "top": 0,
+          "right": 6800,
+          "bottom": 3200
+        },
+        "camera": {
+          "x": 503.0011060575487,
+          "y": 474.0257028679139,
+          "zoom": null
+        },
+        "fieldFlags": [],
+        "terrain": [
+          {
+            "id": "west-ring-descent",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "arrival-core-terrace",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "right-return-rise",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "east-upper-end",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "west-lower-branch",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "east-lower-branch",
+            "vertices": null,
+            "oneWay": false
+          }
+        ],
+        "worldTerrain": [
+          {
+            "id": "west-ring-descent",
+            "vertices": null
+          },
+          {
+            "id": "arrival-core-terrace",
+            "vertices": null
+          },
+          {
+            "id": "right-return-rise",
+            "vertices": null
+          },
+          {
+            "id": "east-upper-end",
+            "vertices": null
+          },
+          {
+            "id": "west-lower-branch",
+            "vertices": null
+          },
+          {
+            "id": "east-lower-branch",
+            "vertices": null
+          }
+        ],
+        "enemies": [
+          "draft-pressure-0",
+          "draft-pressure-1",
+          "draft-pressure-2",
+          "draft-pressure-3"
+        ],
+        "units": [
+          {
+            "id": "p-knight",
+            "cls": "knight",
+            "side": 0,
+            "level": 25,
+            "hp": 3688.1,
+            "maxHp": 3846,
+            "loadout": [
+              "S00",
+              "S01",
+              "S03"
+            ],
+            "pos": [
+              360.36,
+              613.38
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": false,
+            "validContact": false,
+            "support": null,
+            "fixed": false,
+            "objective": false,
+            "role": "knight",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-archer",
+            "cls": "archer",
+            "side": 0,
+            "level": 25,
+            "hp": 1651,
+            "maxHp": 1720,
+            "loadout": [
+              "A01",
+              "A14",
+              "A02",
+              "A05"
+            ],
+            "pos": [
+              1232,
+              1162.91
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "west-ring-descent",
+            "fixed": false,
+            "objective": false,
+            "role": "archer",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-occultist",
+            "cls": "occultist",
+            "side": 0,
+            "level": 25,
+            "hp": 2144.1,
+            "maxHp": 2304,
+            "loadout": [
+              "O01",
+              "O04",
+              "O03",
+              "O06"
+            ],
+            "pos": [
+              2688,
+              1700.31
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "arrival-core-terrace",
+            "fixed": false,
+            "objective": false,
+            "role": "occultist",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "draft-pressure-0",
+            "cls": "occultist",
+            "side": 1,
+            "level": 12,
+            "hp": 480,
+            "maxHp": 480,
+            "loadout": [
+              "HLN01",
+              "HLN02"
+            ],
+            "pos": [
+              2112,
+              1523.08
+            ],
+            "h": 92,
+            "r": 25,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "arrival-core-terrace",
+            "fixed": true,
+            "objective": false,
+            "role": "fire",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "draft-pressure-1",
+            "cls": "occultist",
+            "side": 1,
+            "level": 8,
+            "hp": 409,
+            "maxHp": 409,
+            "loadout": [
+              "HGS01",
+              "HGS02"
+            ],
+            "pos": [
+              912,
+              2590.33
+            ],
+            "h": 88,
+            "r": 32,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "west-lower-branch",
+            "fixed": false,
+            "objective": false,
+            "role": "fire",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "draft-pressure-2",
+            "cls": "knight",
+            "side": 1,
+            "level": 8,
+            "hp": 409,
+            "maxHp": 409,
+            "loadout": [
+              "HBM01"
+            ],
+            "pos": [
+              1624,
+              1372.92
+            ],
+            "h": 88,
+            "r": 32,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "arrival-core-terrace",
+            "fixed": false,
+            "objective": false,
+            "role": "leaper",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "draft-pressure-3",
+            "cls": "archer",
+            "side": 1,
+            "level": 12,
+            "hp": 796,
+            "maxHp": 796,
+            "loadout": [
+              "LA01",
+              "LA02"
+            ],
+            "pos": [
+              1264,
+              1180.36
+            ],
+            "h": 91,
+            "r": 21,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "west-ring-descent",
+            "fixed": false,
+            "objective": false,
+            "role": "bow",
+            "summoned": false,
+            "ally": false
+          }
+        ]
+      },
+      "after": {
+        "stageId": 55,
+        "honroStage": 55,
+        "mode": "campaign",
+        "authoredId": "stage-55",
+        "round": 1,
+        "phase": "aim",
+        "side": 0,
+        "shot": 0,
+        "rng": 19388,
+        "active": "p-knight",
+        "dialogue": false,
+        "isolatedStore": true,
+        "play": [
+          6800,
+          3200
+        ],
+        "terrainBounds": {
+          "left": -4496,
+          "top": -1992,
+          "right": 11536,
+          "bottom": 11768
+        },
+        "playBounds": {
+          "left": 0,
+          "top": 0,
+          "right": 6800,
+          "bottom": 3200
+        },
+        "camera": {
+          "x": 529.7736453439641,
+          "y": 430.4243744331638,
+          "zoom": null
+        },
+        "fieldFlags": [],
+        "terrain": [
+          {
+            "id": "west-ring-descent",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "arrival-core-terrace",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "right-return-rise",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "east-upper-end",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "west-lower-branch",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "east-lower-branch",
+            "vertices": null,
+            "oneWay": false
+          }
+        ],
+        "worldTerrain": [
+          {
+            "id": "west-ring-descent",
+            "vertices": null
+          },
+          {
+            "id": "arrival-core-terrace",
+            "vertices": null
+          },
+          {
+            "id": "right-return-rise",
+            "vertices": null
+          },
+          {
+            "id": "east-upper-end",
+            "vertices": null
+          },
+          {
+            "id": "west-lower-branch",
+            "vertices": null
+          },
+          {
+            "id": "east-lower-branch",
+            "vertices": null
+          }
+        ],
+        "enemies": [
+          "draft-pressure-0",
+          "draft-pressure-1",
+          "draft-pressure-2",
+          "draft-pressure-3"
+        ],
+        "units": [
+          {
+            "id": "p-knight",
+            "cls": "knight",
+            "side": 0,
+            "level": 25,
+            "hp": 3688.1,
+            "maxHp": 3846,
+            "loadout": [
+              "S00",
+              "S01",
+              "S03"
+            ],
+            "pos": [
+              360.36,
+              687.47
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "west-ring-descent",
+            "fixed": false,
+            "objective": false,
+            "role": "knight",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-archer",
+            "cls": "archer",
+            "side": 0,
+            "level": 25,
+            "hp": 1651,
+            "maxHp": 1720,
+            "loadout": [
+              "A01",
+              "A14",
+              "A02",
+              "A05"
+            ],
+            "pos": [
+              1232,
+              1162.91
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "west-ring-descent",
+            "fixed": false,
+            "objective": false,
+            "role": "archer",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-occultist",
+            "cls": "occultist",
+            "side": 0,
+            "level": 25,
+            "hp": 2144.1,
+            "maxHp": 2304,
+            "loadout": [
+              "O01",
+              "O04",
+              "O03",
+              "O06"
+            ],
+            "pos": [
+              2688,
+              1700.31
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "arrival-core-terrace",
+            "fixed": false,
+            "objective": false,
+            "role": "occultist",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "draft-pressure-0",
+            "cls": "occultist",
+            "side": 1,
+            "level": 12,
+            "hp": 480,
+            "maxHp": 480,
+            "loadout": [
+              "HLN01",
+              "HLN02"
+            ],
+            "pos": [
+              2112,
+              1523.08
+            ],
+            "h": 92,
+            "r": 25,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "arrival-core-terrace",
+            "fixed": true,
+            "objective": false,
+            "role": "fire",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "draft-pressure-1",
+            "cls": "occultist",
+            "side": 1,
+            "level": 8,
+            "hp": 409,
+            "maxHp": 409,
+            "loadout": [
+              "HGS01",
+              "HGS02"
+            ],
+            "pos": [
+              912,
+              2590.33
+            ],
+            "h": 88,
+            "r": 32,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "west-lower-branch",
+            "fixed": false,
+            "objective": false,
+            "role": "fire",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "draft-pressure-2",
+            "cls": "knight",
+            "side": 1,
+            "level": 8,
+            "hp": 409,
+            "maxHp": 409,
+            "loadout": [
+              "HBM01"
+            ],
+            "pos": [
+              1624,
+              1372.92
+            ],
+            "h": 88,
+            "r": 32,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "arrival-core-terrace",
+            "fixed": false,
+            "objective": false,
+            "role": "leaper",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "draft-pressure-3",
+            "cls": "archer",
+            "side": 1,
+            "level": 12,
+            "hp": 796,
+            "maxHp": 796,
+            "loadout": [
+              "LA01",
+              "LA02"
+            ],
+            "pos": [
+              1264,
+              1180.36
+            ],
+            "h": 91,
+            "r": 21,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "west-ring-descent",
+            "fixed": false,
+            "objective": false,
+            "role": "bow",
+            "summoned": false,
+            "ally": false
+          }
+        ]
+      }
+    }
+  ],
+  "defendInputs": 3,
+  "end": {
+    "stageId": 55,
+    "honroStage": 55,
+    "mode": "campaign",
+    "authoredId": "stage-55",
+    "round": 1,
+    "phase": "enemy",
+    "side": 1,
+    "shot": 2,
+    "rng": 14652545892,
+    "active": "draft-pressure-2",
+    "dialogue": false,
+    "isolatedStore": true,
+    "play": [
+      6800,
+      3200
+    ],
+    "terrainBounds": {
+      "left": -4496,
+      "top": -1992,
+      "right": 11536,
+      "bottom": 11768
+    },
+    "playBounds": {
+      "left": 0,
+      "top": 0,
+      "right": 6800,
+      "bottom": 3200
+    },
+    "camera": {
+      "x": 989.6535521184869,
+      "y": 2165.266682811403,
+      "zoom": null
+    },
+    "fieldFlags": [],
+    "terrain": [
+      {
+        "id": "west-ring-descent",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "arrival-core-terrace",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "right-return-rise",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "east-upper-end",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "west-lower-branch",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "east-lower-branch",
+        "vertices": null,
+        "oneWay": false
+      }
+    ],
+    "worldTerrain": [
+      {
+        "id": "west-ring-descent",
+        "vertices": null
+      },
+      {
+        "id": "arrival-core-terrace",
+        "vertices": null
+      },
+      {
+        "id": "right-return-rise",
+        "vertices": null
+      },
+      {
+        "id": "east-upper-end",
+        "vertices": null
+      },
+      {
+        "id": "west-lower-branch",
+        "vertices": null
+      },
+      {
+        "id": "east-lower-branch",
+        "vertices": null
+      }
+    ],
+    "enemies": [
+      "draft-pressure-0",
+      "draft-pressure-1",
+      "draft-pressure-2",
+      "draft-pressure-3"
+    ],
+    "units": [
+      {
+        "id": "p-knight",
+        "cls": "knight",
+        "side": 0,
+        "level": 25,
+        "hp": 3842.1,
+        "maxHp": 3846,
+        "loadout": [
+          "S00",
+          "S01",
+          "S03"
+        ],
+        "pos": [
+          360.36,
+          687.47
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "west-ring-descent",
+        "fixed": false,
+        "objective": false,
+        "role": "knight",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "p-archer",
+        "cls": "archer",
+        "side": 0,
+        "level": 25,
+        "hp": 1720,
+        "maxHp": 1720,
+        "loadout": [
+          "A01",
+          "A14",
+          "A02",
+          "A05"
+        ],
+        "pos": [
+          1232,
+          1162.91
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "west-ring-descent",
+        "fixed": false,
+        "objective": false,
+        "role": "archer",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "p-occultist",
+        "cls": "occultist",
+        "side": 0,
+        "level": 25,
+        "hp": 2236.1,
+        "maxHp": 2304,
+        "loadout": [
+          "O01",
+          "O04",
+          "O03",
+          "O06"
+        ],
+        "pos": [
+          2718.39,
+          1709.66
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "arrival-core-terrace",
+        "fixed": false,
+        "objective": false,
+        "role": "occultist",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "draft-pressure-0",
+        "cls": "occultist",
+        "side": 1,
+        "level": 12,
+        "hp": 480,
+        "maxHp": 480,
+        "loadout": [
+          "HLN01",
+          "HLN02"
+        ],
+        "pos": [
+          2118.89,
+          1506.45
+        ],
+        "h": 92,
+        "r": 25,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": false,
+        "validContact": false,
+        "support": null,
+        "fixed": true,
+        "objective": false,
+        "role": "fire",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "draft-pressure-1",
+        "cls": "occultist",
+        "side": 1,
+        "level": 8,
+        "hp": 409,
+        "maxHp": 409,
+        "loadout": [
+          "HGS01",
+          "HGS02"
+        ],
+        "pos": [
+          838.26,
+          2531.96
+        ],
+        "h": 88,
+        "r": 32,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "west-lower-branch",
+        "fixed": false,
+        "objective": false,
+        "role": "fire",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "draft-pressure-2",
+        "cls": "knight",
+        "side": 1,
+        "level": 8,
+        "hp": 409,
+        "maxHp": 409,
+        "loadout": [
+          "HBM01"
+        ],
+        "pos": [
+          1611.92,
+          1341.4
+        ],
+        "h": 88,
+        "r": 32,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": false,
+        "validContact": false,
+        "support": null,
+        "fixed": false,
+        "objective": false,
+        "role": "leaper",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "draft-pressure-3",
+        "cls": "archer",
+        "side": 1,
+        "level": 12,
+        "hp": 796,
+        "maxHp": 796,
+        "loadout": [
+          "LA01",
+          "LA02"
+        ],
+        "pos": [
+          932.16,
+          999.36
+        ],
+        "h": 91,
+        "r": 21,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "west-ring-descent",
+        "fixed": false,
+        "objective": false,
+        "role": "bow",
+        "summoned": false,
+        "ally": false
+      }
+    ]
+  },
+  "trace": [
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "draft-pressure-0",
+        "draft-pressure-1",
+        "draft-pressure-2",
+        "draft-pressure-3"
+      ],
+      "newIds": [
+        "draft-pressure-0",
+        "draft-pressure-1",
+        "draft-pressure-2",
+        "draft-pressure-3"
+      ]
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "draft-pressure-0",
+        "draft-pressure-1",
+        "draft-pressure-2",
+        "draft-pressure-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "draft-pressure-0",
+        "draft-pressure-1",
+        "draft-pressure-2",
+        "draft-pressure-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "draft-pressure-0",
+        "draft-pressure-1",
+        "draft-pressure-2",
+        "draft-pressure-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "draft-pressure-0",
+        "draft-pressure-1",
+        "draft-pressure-2",
+        "draft-pressure-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "draft-pressure-0",
+        "draft-pressure-1",
+        "draft-pressure-2",
+        "draft-pressure-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 0,
+      "phase": "transition",
+      "active": [
+        "draft-pressure-0",
+        "draft-pressure-1",
+        "draft-pressure-2",
+        "draft-pressure-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 1,
+      "phase": "enemy",
+      "active": [
+        "draft-pressure-0",
+        "draft-pressure-1",
+        "draft-pressure-2",
+        "draft-pressure-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "fire",
+      "round": 1,
+      "owner": "draft-pressure-3",
+      "skill": "LA01"
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 1,
+      "phase": "flight",
+      "active": [
+        "draft-pressure-0",
+        "draft-pressure-1",
+        "draft-pressure-2",
+        "draft-pressure-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "hit",
+      "round": 1,
+      "owner": "draft-pressure-3",
+      "target": "p-archer",
+      "loss": 54
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 1,
+      "phase": "review",
+      "active": [
+        "draft-pressure-0",
+        "draft-pressure-1",
+        "draft-pressure-2",
+        "draft-pressure-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 1,
+      "phase": "enemy",
+      "active": [
+        "draft-pressure-0",
+        "draft-pressure-1",
+        "draft-pressure-2",
+        "draft-pressure-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "fire",
+      "round": 1,
+      "owner": "draft-pressure-0",
+      "skill": "HLN01"
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 1,
+      "phase": "flight",
+      "active": [
+        "draft-pressure-0",
+        "draft-pressure-1",
+        "draft-pressure-2",
+        "draft-pressure-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "hit",
+      "round": 1,
+      "owner": "draft-pressure-0",
+      "target": "p-occultist",
+      "loss": 38
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 1,
+      "phase": "review",
+      "active": [
+        "draft-pressure-0",
+        "draft-pressure-1",
+        "draft-pressure-2",
+        "draft-pressure-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 1,
+      "phase": "enemy",
+      "active": [
+        "draft-pressure-0",
+        "draft-pressure-1",
+        "draft-pressure-2",
+        "draft-pressure-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 1,
+      "phase": "review",
+      "active": [
+        "draft-pressure-0",
+        "draft-pressure-1",
+        "draft-pressure-2",
+        "draft-pressure-3"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 1,
+      "phase": "enemy",
+      "active": [
+        "draft-pressure-0",
+        "draft-pressure-1",
+        "draft-pressure-2",
+        "draft-pressure-3"
+      ],
+      "newIds": []
+    }
+  ],
+  "save": {
+    "keys": [
+      "honro-first-act-profile-1"
+    ],
+    "before": "0e1ff8a96b3a9ee994ef78af18a68f75aeccd615400d6a11ca7ddc350530c637",
+    "after": "0e1ff8a96b3a9ee994ef78af18a68f75aeccd615400d6a11ca7ddc350530c637",
+    "unchanged": true
+  },
+  "chromium": "154.0.8037.57"
+}

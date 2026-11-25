@@ -1,0 +1,2394 @@
+{
+  "stage": 59,
+  "status": "PASS",
+  "errors": [],
+  "warnings": [],
+  "httpErrors": [],
+  "entry": {
+    "stageId": 59,
+    "honroStage": 59,
+    "mode": "campaign",
+    "authoredId": "stage-59",
+    "round": 1,
+    "phase": "aim",
+    "side": 0,
+    "shot": 0,
+    "rng": 19388,
+    "active": "p-archer",
+    "dialogue": false,
+    "isolatedStore": true,
+    "play": [
+      7800,
+      4700
+    ],
+    "terrainBounds": {
+      "left": -5000,
+      "top": -2100,
+      "right": 13000,
+      "bottom": 14700
+    },
+    "playBounds": {
+      "left": 0,
+      "top": 0,
+      "right": 7800,
+      "bottom": 4700
+    },
+    "camera": {
+      "x": 1352.4380512088396,
+      "y": 1278.001208017529,
+      "zoom": null
+    },
+    "fieldFlags": [],
+    "terrain": [
+      {
+        "id": "finale-cutout-near-body",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "finale-cutout-west-terrace",
+        "vertices": null,
+        "oneWay": false
+      }
+    ],
+    "worldTerrain": [
+      {
+        "id": "finale-cutout-near-body",
+        "vertices": null
+      },
+      {
+        "id": "finale-cutout-west-terrace",
+        "vertices": null
+      }
+    ],
+    "enemies": [
+      "qa-immediate-bridge-threat"
+    ],
+    "units": [
+      {
+        "id": "p-archer",
+        "cls": "archer",
+        "side": 0,
+        "level": 25,
+        "hp": 1407,
+        "maxHp": 1720,
+        "loadout": [
+          "A01",
+          "A14",
+          "A02",
+          "A05"
+        ],
+        "pos": [
+          1404.14,
+          1452.26
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "finale-cutout-west-terrace",
+        "fixed": false,
+        "objective": false,
+        "role": "archer",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "p-knight",
+        "cls": "knight",
+        "side": 0,
+        "level": 25,
+        "hp": 3688.1,
+        "maxHp": 3846,
+        "loadout": [
+          "S00",
+          "S01",
+          "S03"
+        ],
+        "pos": [
+          3041.71,
+          2891.45
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "finale-cutout-near-body",
+        "fixed": false,
+        "objective": false,
+        "role": "knight",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "p-occultist",
+        "cls": "occultist",
+        "side": 0,
+        "level": 25,
+        "hp": 2047.1999999999998,
+        "maxHp": 2304,
+        "loadout": [
+          "O01",
+          "O04",
+          "O03",
+          "O06"
+        ],
+        "pos": [
+          5458.56,
+          2493.64
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "finale-cutout-near-body",
+        "fixed": false,
+        "objective": false,
+        "role": "occultist",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "p-mage",
+        "cls": "mage",
+        "side": 0,
+        "level": 25,
+        "hp": 1264.9,
+        "maxHp": 2050,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "pos": [
+          5907.46,
+          2378.06
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "finale-cutout-near-body",
+        "fixed": false,
+        "objective": false,
+        "role": "mage",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "qa-immediate-bridge-threat",
+        "cls": "knight",
+        "side": 1,
+        "level": 25,
+        "hp": 2292,
+        "maxHp": 2292,
+        "loadout": [
+          "HWD01",
+          "HWD02"
+        ],
+        "pos": [
+          4022.1,
+          2906.82
+        ],
+        "h": 146,
+        "r": 32,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "finale-cutout-near-body",
+        "fixed": false,
+        "objective": false,
+        "role": "guard",
+        "summoned": false,
+        "ally": false
+      }
+    ]
+  },
+  "settled": {
+    "stageId": 59,
+    "honroStage": 59,
+    "mode": "campaign",
+    "authoredId": "stage-59",
+    "round": 1,
+    "phase": "aim",
+    "side": 0,
+    "shot": 0,
+    "rng": 19388,
+    "active": "p-archer",
+    "dialogue": false,
+    "isolatedStore": true,
+    "play": [
+      7800,
+      4700
+    ],
+    "terrainBounds": {
+      "left": -5000,
+      "top": -2100,
+      "right": 13000,
+      "bottom": 14700
+    },
+    "playBounds": {
+      "left": 0,
+      "top": 0,
+      "right": 7800,
+      "bottom": 4700
+    },
+    "camera": {
+      "x": 1237.3715708517873,
+      "y": 1268.5251449293012,
+      "zoom": null
+    },
+    "fieldFlags": [],
+    "terrain": [
+      {
+        "id": "finale-cutout-near-body",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "finale-cutout-west-terrace",
+        "vertices": null,
+        "oneWay": false
+      }
+    ],
+    "worldTerrain": [
+      {
+        "id": "finale-cutout-near-body",
+        "vertices": null
+      },
+      {
+        "id": "finale-cutout-west-terrace",
+        "vertices": null
+      }
+    ],
+    "enemies": [
+      "qa-immediate-bridge-threat"
+    ],
+    "units": [
+      {
+        "id": "p-archer",
+        "cls": "archer",
+        "side": 0,
+        "level": 25,
+        "hp": 1407,
+        "maxHp": 1720,
+        "loadout": [
+          "A01",
+          "A14",
+          "A02",
+          "A05"
+        ],
+        "pos": [
+          1404.14,
+          1452.26
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "finale-cutout-west-terrace",
+        "fixed": false,
+        "objective": false,
+        "role": "archer",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "p-knight",
+        "cls": "knight",
+        "side": 0,
+        "level": 25,
+        "hp": 3688.1,
+        "maxHp": 3846,
+        "loadout": [
+          "S00",
+          "S01",
+          "S03"
+        ],
+        "pos": [
+          3041.71,
+          2891.45
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "finale-cutout-near-body",
+        "fixed": false,
+        "objective": false,
+        "role": "knight",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "p-occultist",
+        "cls": "occultist",
+        "side": 0,
+        "level": 25,
+        "hp": 2047.1999999999998,
+        "maxHp": 2304,
+        "loadout": [
+          "O01",
+          "O04",
+          "O03",
+          "O06"
+        ],
+        "pos": [
+          5458.56,
+          2493.64
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "finale-cutout-near-body",
+        "fixed": false,
+        "objective": false,
+        "role": "occultist",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "p-mage",
+        "cls": "mage",
+        "side": 0,
+        "level": 25,
+        "hp": 1264.9,
+        "maxHp": 2050,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "pos": [
+          5907.46,
+          2378.06
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "finale-cutout-near-body",
+        "fixed": false,
+        "objective": false,
+        "role": "mage",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "qa-immediate-bridge-threat",
+        "cls": "knight",
+        "side": 1,
+        "level": 25,
+        "hp": 2292,
+        "maxHp": 2292,
+        "loadout": [
+          "HWD01",
+          "HWD02"
+        ],
+        "pos": [
+          4022.1,
+          2906.82
+        ],
+        "h": 146,
+        "r": 32,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "finale-cutout-near-body",
+        "fixed": false,
+        "objective": false,
+        "role": "guard",
+        "summoned": false,
+        "ally": false
+      }
+    ]
+  },
+  "input": [
+    {
+      "key": "ArrowRight",
+      "before": {
+        "stageId": 59,
+        "honroStage": 59,
+        "mode": "campaign",
+        "authoredId": "stage-59",
+        "round": 1,
+        "phase": "aim",
+        "side": 0,
+        "shot": 0,
+        "rng": 19388,
+        "active": "p-archer",
+        "dialogue": false,
+        "isolatedStore": true,
+        "play": [
+          7800,
+          4700
+        ],
+        "terrainBounds": {
+          "left": -5000,
+          "top": -2100,
+          "right": 13000,
+          "bottom": 14700
+        },
+        "playBounds": {
+          "left": 0,
+          "top": 0,
+          "right": 7800,
+          "bottom": 4700
+        },
+        "camera": {
+          "x": 1235.003082855331,
+          "y": 1268.3300929766517,
+          "zoom": null
+        },
+        "fieldFlags": [],
+        "terrain": [
+          {
+            "id": "finale-cutout-near-body",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "finale-cutout-west-terrace",
+            "vertices": null,
+            "oneWay": false
+          }
+        ],
+        "worldTerrain": [
+          {
+            "id": "finale-cutout-near-body",
+            "vertices": null
+          },
+          {
+            "id": "finale-cutout-west-terrace",
+            "vertices": null
+          }
+        ],
+        "enemies": [
+          "qa-immediate-bridge-threat"
+        ],
+        "units": [
+          {
+            "id": "p-archer",
+            "cls": "archer",
+            "side": 0,
+            "level": 25,
+            "hp": 1407,
+            "maxHp": 1720,
+            "loadout": [
+              "A01",
+              "A14",
+              "A02",
+              "A05"
+            ],
+            "pos": [
+              1404.14,
+              1452.26
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "finale-cutout-west-terrace",
+            "fixed": false,
+            "objective": false,
+            "role": "archer",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-knight",
+            "cls": "knight",
+            "side": 0,
+            "level": 25,
+            "hp": 3688.1,
+            "maxHp": 3846,
+            "loadout": [
+              "S00",
+              "S01",
+              "S03"
+            ],
+            "pos": [
+              3041.71,
+              2891.45
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "finale-cutout-near-body",
+            "fixed": false,
+            "objective": false,
+            "role": "knight",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-occultist",
+            "cls": "occultist",
+            "side": 0,
+            "level": 25,
+            "hp": 2047.1999999999998,
+            "maxHp": 2304,
+            "loadout": [
+              "O01",
+              "O04",
+              "O03",
+              "O06"
+            ],
+            "pos": [
+              5458.56,
+              2493.64
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "finale-cutout-near-body",
+            "fixed": false,
+            "objective": false,
+            "role": "occultist",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-mage",
+            "cls": "mage",
+            "side": 0,
+            "level": 25,
+            "hp": 1264.9,
+            "maxHp": 2050,
+            "loadout": [
+              "M01",
+              "M10",
+              "M07"
+            ],
+            "pos": [
+              5907.46,
+              2378.06
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "finale-cutout-near-body",
+            "fixed": false,
+            "objective": false,
+            "role": "mage",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "qa-immediate-bridge-threat",
+            "cls": "knight",
+            "side": 1,
+            "level": 25,
+            "hp": 2292,
+            "maxHp": 2292,
+            "loadout": [
+              "HWD01",
+              "HWD02"
+            ],
+            "pos": [
+              4022.1,
+              2906.82
+            ],
+            "h": 146,
+            "r": 32,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "finale-cutout-near-body",
+            "fixed": false,
+            "objective": false,
+            "role": "guard",
+            "summoned": false,
+            "ally": false
+          }
+        ]
+      },
+      "held": {
+        "stageId": 59,
+        "honroStage": 59,
+        "mode": "campaign",
+        "authoredId": "stage-59",
+        "round": 1,
+        "phase": "aim",
+        "side": 0,
+        "shot": 0,
+        "rng": 19388,
+        "active": "p-archer",
+        "dialogue": false,
+        "isolatedStore": true,
+        "play": [
+          7800,
+          4700
+        ],
+        "terrainBounds": {
+          "left": -5000,
+          "top": -2100,
+          "right": 13000,
+          "bottom": 14700
+        },
+        "playBounds": {
+          "left": 0,
+          "top": 0,
+          "right": 7800,
+          "bottom": 4700
+        },
+        "camera": {
+          "x": 1581.217341403278,
+          "y": 1337.2438829397554,
+          "zoom": null
+        },
+        "fieldFlags": [],
+        "terrain": [
+          {
+            "id": "finale-cutout-near-body",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "finale-cutout-west-terrace",
+            "vertices": null,
+            "oneWay": false
+          }
+        ],
+        "worldTerrain": [
+          {
+            "id": "finale-cutout-near-body",
+            "vertices": null
+          },
+          {
+            "id": "finale-cutout-west-terrace",
+            "vertices": null
+          }
+        ],
+        "enemies": [
+          "qa-immediate-bridge-threat"
+        ],
+        "units": [
+          {
+            "id": "p-archer",
+            "cls": "archer",
+            "side": 0,
+            "level": 25,
+            "hp": 1407,
+            "maxHp": 1720,
+            "loadout": [
+              "A01",
+              "A14",
+              "A02",
+              "A05"
+            ],
+            "pos": [
+              1563.51,
+              1592.02
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "finale-cutout-west-terrace",
+            "fixed": false,
+            "objective": false,
+            "role": "archer",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-knight",
+            "cls": "knight",
+            "side": 0,
+            "level": 25,
+            "hp": 3688.1,
+            "maxHp": 3846,
+            "loadout": [
+              "S00",
+              "S01",
+              "S03"
+            ],
+            "pos": [
+              3041.71,
+              2891.45
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "finale-cutout-near-body",
+            "fixed": false,
+            "objective": false,
+            "role": "knight",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-occultist",
+            "cls": "occultist",
+            "side": 0,
+            "level": 25,
+            "hp": 2047.1999999999998,
+            "maxHp": 2304,
+            "loadout": [
+              "O01",
+              "O04",
+              "O03",
+              "O06"
+            ],
+            "pos": [
+              5458.56,
+              2493.64
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "finale-cutout-near-body",
+            "fixed": false,
+            "objective": false,
+            "role": "occultist",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-mage",
+            "cls": "mage",
+            "side": 0,
+            "level": 25,
+            "hp": 1264.9,
+            "maxHp": 2050,
+            "loadout": [
+              "M01",
+              "M10",
+              "M07"
+            ],
+            "pos": [
+              5907.46,
+              2378.06
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "finale-cutout-near-body",
+            "fixed": false,
+            "objective": false,
+            "role": "mage",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "qa-immediate-bridge-threat",
+            "cls": "knight",
+            "side": 1,
+            "level": 25,
+            "hp": 2292,
+            "maxHp": 2292,
+            "loadout": [
+              "HWD01",
+              "HWD02"
+            ],
+            "pos": [
+              4022.1,
+              2906.82
+            ],
+            "h": 146,
+            "r": 32,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "finale-cutout-near-body",
+            "fixed": false,
+            "objective": false,
+            "role": "guard",
+            "summoned": false,
+            "ally": false
+          }
+        ]
+      },
+      "after": {
+        "stageId": 59,
+        "honroStage": 59,
+        "mode": "campaign",
+        "authoredId": "stage-59",
+        "round": 1,
+        "phase": "aim",
+        "side": 0,
+        "shot": 0,
+        "rng": 19388,
+        "active": "p-archer",
+        "dialogue": false,
+        "isolatedStore": true,
+        "play": [
+          7800,
+          4700
+        ],
+        "terrainBounds": {
+          "left": -5000,
+          "top": -2100,
+          "right": 13000,
+          "bottom": 14700
+        },
+        "playBounds": {
+          "left": 0,
+          "top": 0,
+          "right": 7800,
+          "bottom": 4700
+        },
+        "camera": {
+          "x": 1679.7379623215243,
+          "y": 1385.6688889873835,
+          "zoom": null
+        },
+        "fieldFlags": [],
+        "terrain": [
+          {
+            "id": "finale-cutout-near-body",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "finale-cutout-west-terrace",
+            "vertices": null,
+            "oneWay": false
+          }
+        ],
+        "worldTerrain": [
+          {
+            "id": "finale-cutout-near-body",
+            "vertices": null
+          },
+          {
+            "id": "finale-cutout-west-terrace",
+            "vertices": null
+          }
+        ],
+        "enemies": [
+          "qa-immediate-bridge-threat"
+        ],
+        "units": [
+          {
+            "id": "p-archer",
+            "cls": "archer",
+            "side": 0,
+            "level": 25,
+            "hp": 1407,
+            "maxHp": 1720,
+            "loadout": [
+              "A01",
+              "A14",
+              "A02",
+              "A05"
+            ],
+            "pos": [
+              1570.85,
+              1599.71
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "finale-cutout-west-terrace",
+            "fixed": false,
+            "objective": false,
+            "role": "archer",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-knight",
+            "cls": "knight",
+            "side": 0,
+            "level": 25,
+            "hp": 3688.1,
+            "maxHp": 3846,
+            "loadout": [
+              "S00",
+              "S01",
+              "S03"
+            ],
+            "pos": [
+              3041.71,
+              2891.45
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "finale-cutout-near-body",
+            "fixed": false,
+            "objective": false,
+            "role": "knight",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-occultist",
+            "cls": "occultist",
+            "side": 0,
+            "level": 25,
+            "hp": 2047.1999999999998,
+            "maxHp": 2304,
+            "loadout": [
+              "O01",
+              "O04",
+              "O03",
+              "O06"
+            ],
+            "pos": [
+              5458.56,
+              2493.64
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "finale-cutout-near-body",
+            "fixed": false,
+            "objective": false,
+            "role": "occultist",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-mage",
+            "cls": "mage",
+            "side": 0,
+            "level": 25,
+            "hp": 1264.9,
+            "maxHp": 2050,
+            "loadout": [
+              "M01",
+              "M10",
+              "M07"
+            ],
+            "pos": [
+              5907.46,
+              2378.06
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "finale-cutout-near-body",
+            "fixed": false,
+            "objective": false,
+            "role": "mage",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "qa-immediate-bridge-threat",
+            "cls": "knight",
+            "side": 1,
+            "level": 25,
+            "hp": 2292,
+            "maxHp": 2292,
+            "loadout": [
+              "HWD01",
+              "HWD02"
+            ],
+            "pos": [
+              4022.1,
+              2906.82
+            ],
+            "h": 146,
+            "r": 32,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "finale-cutout-near-body",
+            "fixed": false,
+            "objective": false,
+            "role": "guard",
+            "summoned": false,
+            "ally": false
+          }
+        ]
+      }
+    },
+    {
+      "key": "Control",
+      "before": {
+        "stageId": 59,
+        "honroStage": 59,
+        "mode": "campaign",
+        "authoredId": "stage-59",
+        "round": 1,
+        "phase": "aim",
+        "side": 0,
+        "shot": 0,
+        "rng": 19388,
+        "active": "p-archer",
+        "dialogue": false,
+        "isolatedStore": true,
+        "play": [
+          7800,
+          4700
+        ],
+        "terrainBounds": {
+          "left": -5000,
+          "top": -2100,
+          "right": 13000,
+          "bottom": 14700
+        },
+        "playBounds": {
+          "left": 0,
+          "top": 0,
+          "right": 7800,
+          "bottom": 4700
+        },
+        "camera": {
+          "x": 1684.0500522974698,
+          "y": 1387.7883740374864,
+          "zoom": null
+        },
+        "fieldFlags": [],
+        "terrain": [
+          {
+            "id": "finale-cutout-near-body",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "finale-cutout-west-terrace",
+            "vertices": null,
+            "oneWay": false
+          }
+        ],
+        "worldTerrain": [
+          {
+            "id": "finale-cutout-near-body",
+            "vertices": null
+          },
+          {
+            "id": "finale-cutout-west-terrace",
+            "vertices": null
+          }
+        ],
+        "enemies": [
+          "qa-immediate-bridge-threat"
+        ],
+        "units": [
+          {
+            "id": "p-archer",
+            "cls": "archer",
+            "side": 0,
+            "level": 25,
+            "hp": 1407,
+            "maxHp": 1720,
+            "loadout": [
+              "A01",
+              "A14",
+              "A02",
+              "A05"
+            ],
+            "pos": [
+              1570.85,
+              1599.71
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "finale-cutout-west-terrace",
+            "fixed": false,
+            "objective": false,
+            "role": "archer",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-knight",
+            "cls": "knight",
+            "side": 0,
+            "level": 25,
+            "hp": 3688.1,
+            "maxHp": 3846,
+            "loadout": [
+              "S00",
+              "S01",
+              "S03"
+            ],
+            "pos": [
+              3041.71,
+              2891.45
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "finale-cutout-near-body",
+            "fixed": false,
+            "objective": false,
+            "role": "knight",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-occultist",
+            "cls": "occultist",
+            "side": 0,
+            "level": 25,
+            "hp": 2047.1999999999998,
+            "maxHp": 2304,
+            "loadout": [
+              "O01",
+              "O04",
+              "O03",
+              "O06"
+            ],
+            "pos": [
+              5458.56,
+              2493.64
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "finale-cutout-near-body",
+            "fixed": false,
+            "objective": false,
+            "role": "occultist",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-mage",
+            "cls": "mage",
+            "side": 0,
+            "level": 25,
+            "hp": 1264.9,
+            "maxHp": 2050,
+            "loadout": [
+              "M01",
+              "M10",
+              "M07"
+            ],
+            "pos": [
+              5907.46,
+              2378.06
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "finale-cutout-near-body",
+            "fixed": false,
+            "objective": false,
+            "role": "mage",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "qa-immediate-bridge-threat",
+            "cls": "knight",
+            "side": 1,
+            "level": 25,
+            "hp": 2292,
+            "maxHp": 2292,
+            "loadout": [
+              "HWD01",
+              "HWD02"
+            ],
+            "pos": [
+              4022.1,
+              2906.82
+            ],
+            "h": 146,
+            "r": 32,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "finale-cutout-near-body",
+            "fixed": false,
+            "objective": false,
+            "role": "guard",
+            "summoned": false,
+            "ally": false
+          }
+        ]
+      },
+      "held": {
+        "stageId": 59,
+        "honroStage": 59,
+        "mode": "campaign",
+        "authoredId": "stage-59",
+        "round": 1,
+        "phase": "aim",
+        "side": 0,
+        "shot": 0,
+        "rng": 19388,
+        "active": "p-archer",
+        "dialogue": false,
+        "isolatedStore": true,
+        "play": [
+          7800,
+          4700
+        ],
+        "terrainBounds": {
+          "left": -5000,
+          "top": -2100,
+          "right": 13000,
+          "bottom": 14700
+        },
+        "playBounds": {
+          "left": 0,
+          "top": 0,
+          "right": 7800,
+          "bottom": 4700
+        },
+        "camera": {
+          "x": 1707.0487217563273,
+          "y": 1383.5149683312811,
+          "zoom": null
+        },
+        "fieldFlags": [],
+        "terrain": [
+          {
+            "id": "finale-cutout-near-body",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "finale-cutout-west-terrace",
+            "vertices": null,
+            "oneWay": false
+          }
+        ],
+        "worldTerrain": [
+          {
+            "id": "finale-cutout-near-body",
+            "vertices": null
+          },
+          {
+            "id": "finale-cutout-west-terrace",
+            "vertices": null
+          }
+        ],
+        "enemies": [
+          "qa-immediate-bridge-threat"
+        ],
+        "units": [
+          {
+            "id": "p-archer",
+            "cls": "archer",
+            "side": 0,
+            "level": 25,
+            "hp": 1407,
+            "maxHp": 1720,
+            "loadout": [
+              "A01",
+              "A14",
+              "A02",
+              "A05"
+            ],
+            "pos": [
+              1570.85,
+              1525.62
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": false,
+            "validContact": false,
+            "support": null,
+            "fixed": false,
+            "objective": false,
+            "role": "archer",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-knight",
+            "cls": "knight",
+            "side": 0,
+            "level": 25,
+            "hp": 3688.1,
+            "maxHp": 3846,
+            "loadout": [
+              "S00",
+              "S01",
+              "S03"
+            ],
+            "pos": [
+              3041.71,
+              2891.45
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "finale-cutout-near-body",
+            "fixed": false,
+            "objective": false,
+            "role": "knight",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-occultist",
+            "cls": "occultist",
+            "side": 0,
+            "level": 25,
+            "hp": 2047.1999999999998,
+            "maxHp": 2304,
+            "loadout": [
+              "O01",
+              "O04",
+              "O03",
+              "O06"
+            ],
+            "pos": [
+              5458.56,
+              2493.64
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "finale-cutout-near-body",
+            "fixed": false,
+            "objective": false,
+            "role": "occultist",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-mage",
+            "cls": "mage",
+            "side": 0,
+            "level": 25,
+            "hp": 1264.9,
+            "maxHp": 2050,
+            "loadout": [
+              "M01",
+              "M10",
+              "M07"
+            ],
+            "pos": [
+              5907.46,
+              2378.06
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "finale-cutout-near-body",
+            "fixed": false,
+            "objective": false,
+            "role": "mage",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "qa-immediate-bridge-threat",
+            "cls": "knight",
+            "side": 1,
+            "level": 25,
+            "hp": 2292,
+            "maxHp": 2292,
+            "loadout": [
+              "HWD01",
+              "HWD02"
+            ],
+            "pos": [
+              4022.1,
+              2906.82
+            ],
+            "h": 146,
+            "r": 32,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "finale-cutout-near-body",
+            "fixed": false,
+            "objective": false,
+            "role": "guard",
+            "summoned": false,
+            "ally": false
+          }
+        ]
+      },
+      "after": {
+        "stageId": 59,
+        "honroStage": 59,
+        "mode": "campaign",
+        "authoredId": "stage-59",
+        "round": 1,
+        "phase": "aim",
+        "side": 0,
+        "shot": 0,
+        "rng": 19388,
+        "active": "p-archer",
+        "dialogue": false,
+        "isolatedStore": true,
+        "play": [
+          7800,
+          4700
+        ],
+        "terrainBounds": {
+          "left": -5000,
+          "top": -2100,
+          "right": 13000,
+          "bottom": 14700
+        },
+        "playBounds": {
+          "left": 0,
+          "top": 0,
+          "right": 7800,
+          "bottom": 4700
+        },
+        "camera": {
+          "x": 1740.2272948381567,
+          "y": 1349.874220026701,
+          "zoom": null
+        },
+        "fieldFlags": [],
+        "terrain": [
+          {
+            "id": "finale-cutout-near-body",
+            "vertices": null,
+            "oneWay": false
+          },
+          {
+            "id": "finale-cutout-west-terrace",
+            "vertices": null,
+            "oneWay": false
+          }
+        ],
+        "worldTerrain": [
+          {
+            "id": "finale-cutout-near-body",
+            "vertices": null
+          },
+          {
+            "id": "finale-cutout-west-terrace",
+            "vertices": null
+          }
+        ],
+        "enemies": [
+          "qa-immediate-bridge-threat"
+        ],
+        "units": [
+          {
+            "id": "p-archer",
+            "cls": "archer",
+            "side": 0,
+            "level": 25,
+            "hp": 1407,
+            "maxHp": 1720,
+            "loadout": [
+              "A01",
+              "A14",
+              "A02",
+              "A05"
+            ],
+            "pos": [
+              1570.85,
+              1599.71
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "finale-cutout-west-terrace",
+            "fixed": false,
+            "objective": false,
+            "role": "archer",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-knight",
+            "cls": "knight",
+            "side": 0,
+            "level": 25,
+            "hp": 3688.1,
+            "maxHp": 3846,
+            "loadout": [
+              "S00",
+              "S01",
+              "S03"
+            ],
+            "pos": [
+              3041.71,
+              2891.45
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "finale-cutout-near-body",
+            "fixed": false,
+            "objective": false,
+            "role": "knight",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-occultist",
+            "cls": "occultist",
+            "side": 0,
+            "level": 25,
+            "hp": 2047.1999999999998,
+            "maxHp": 2304,
+            "loadout": [
+              "O01",
+              "O04",
+              "O03",
+              "O06"
+            ],
+            "pos": [
+              5458.56,
+              2493.64
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "finale-cutout-near-body",
+            "fixed": false,
+            "objective": false,
+            "role": "occultist",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "p-mage",
+            "cls": "mage",
+            "side": 0,
+            "level": 25,
+            "hp": 1264.9,
+            "maxHp": 2050,
+            "loadout": [
+              "M01",
+              "M10",
+              "M07"
+            ],
+            "pos": [
+              5907.46,
+              2378.06
+            ],
+            "h": 92,
+            "r": 22,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "finale-cutout-near-body",
+            "fixed": false,
+            "objective": false,
+            "role": "mage",
+            "summoned": false,
+            "ally": false
+          },
+          {
+            "id": "qa-immediate-bridge-threat",
+            "cls": "knight",
+            "side": 1,
+            "level": 25,
+            "hp": 2292,
+            "maxHp": 2292,
+            "loadout": [
+              "HWD01",
+              "HWD02"
+            ],
+            "pos": [
+              4022.1,
+              2906.82
+            ],
+            "h": 146,
+            "r": 32,
+            "awake": true,
+            "dead": false,
+            "airborne": false,
+            "grounded": true,
+            "validContact": true,
+            "support": "finale-cutout-near-body",
+            "fixed": false,
+            "objective": false,
+            "role": "guard",
+            "summoned": false,
+            "ally": false
+          }
+        ]
+      }
+    }
+  ],
+  "defendInputs": 15,
+  "end": {
+    "stageId": 59,
+    "honroStage": 59,
+    "mode": "campaign",
+    "authoredId": "stage-59",
+    "round": 4,
+    "phase": "aim",
+    "side": 0,
+    "shot": 3,
+    "rng": 10989414266,
+    "active": "p-archer",
+    "dialogue": false,
+    "isolatedStore": true,
+    "play": [
+      7800,
+      4700
+    ],
+    "terrainBounds": {
+      "left": -5000,
+      "top": -2100,
+      "right": 13000,
+      "bottom": 14700
+    },
+    "playBounds": {
+      "left": 0,
+      "top": 0,
+      "right": 7800,
+      "bottom": 4700
+    },
+    "camera": {
+      "x": 1987.9866744726608,
+      "y": 1611.9888860419098,
+      "zoom": null
+    },
+    "fieldFlags": [],
+    "terrain": [
+      {
+        "id": "finale-cutout-near-body",
+        "vertices": null,
+        "oneWay": false
+      },
+      {
+        "id": "finale-cutout-west-terrace",
+        "vertices": null,
+        "oneWay": false
+      }
+    ],
+    "worldTerrain": [
+      {
+        "id": "finale-cutout-near-body",
+        "vertices": null
+      },
+      {
+        "id": "finale-cutout-west-terrace",
+        "vertices": null
+      }
+    ],
+    "enemies": [
+      "qa-immediate-bridge-threat"
+    ],
+    "units": [
+      {
+        "id": "p-archer",
+        "cls": "archer",
+        "side": 0,
+        "level": 25,
+        "hp": 1614,
+        "maxHp": 1720,
+        "loadout": [
+          "A01",
+          "A14",
+          "A02",
+          "A05"
+        ],
+        "pos": [
+          1570.85,
+          1599.71
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "finale-cutout-west-terrace",
+        "fixed": false,
+        "objective": false,
+        "role": "archer",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "p-knight",
+        "cls": "knight",
+        "side": 0,
+        "level": 25,
+        "hp": 3846,
+        "maxHp": 3846,
+        "loadout": [
+          "S00",
+          "S01",
+          "S03"
+        ],
+        "pos": [
+          3012.49,
+          2886.92
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "finale-cutout-near-body",
+        "fixed": false,
+        "objective": false,
+        "role": "knight",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "p-occultist",
+        "cls": "occultist",
+        "side": 0,
+        "level": 25,
+        "hp": 2304,
+        "maxHp": 2304,
+        "loadout": [
+          "O01",
+          "O04",
+          "O03",
+          "O06"
+        ],
+        "pos": [
+          5458.56,
+          2493.64
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "finale-cutout-near-body",
+        "fixed": false,
+        "objective": false,
+        "role": "occultist",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "p-mage",
+        "cls": "mage",
+        "side": 0,
+        "level": 25,
+        "hp": 1510.9,
+        "maxHp": 2050,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "pos": [
+          5907.46,
+          2378.06
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "finale-cutout-near-body",
+        "fixed": false,
+        "objective": false,
+        "role": "mage",
+        "summoned": false,
+        "ally": false
+      },
+      {
+        "id": "qa-immediate-bridge-threat",
+        "cls": "knight",
+        "side": 1,
+        "level": 25,
+        "hp": 2865,
+        "maxHp": 2865,
+        "loadout": [
+          "HWD01",
+          "HWD02"
+        ],
+        "pos": [
+          3363.94,
+          2924.6
+        ],
+        "h": 206,
+        "r": 39,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "finale-cutout-near-body",
+        "fixed": false,
+        "objective": false,
+        "role": "guard",
+        "summoned": false,
+        "ally": false
+      }
+    ]
+  },
+  "trace": [
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "qa-immediate-bridge-threat"
+      ],
+      "newIds": [
+        "qa-immediate-bridge-threat"
+      ]
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "qa-immediate-bridge-threat"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "qa-immediate-bridge-threat"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "qa-immediate-bridge-threat"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "qa-immediate-bridge-threat"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "qa-immediate-bridge-threat"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "qa-immediate-bridge-threat"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "qa-immediate-bridge-threat"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 0,
+      "phase": "transition",
+      "active": [
+        "qa-immediate-bridge-threat"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 1,
+      "phase": "enemy",
+      "active": [
+        "qa-immediate-bridge-threat"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "fire",
+      "round": 1,
+      "owner": "qa-immediate-bridge-threat",
+      "skill": "HWD01"
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 1,
+      "phase": "flight",
+      "active": [
+        "qa-immediate-bridge-threat"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "hit",
+      "round": 1,
+      "owner": "qa-immediate-bridge-threat",
+      "target": "p-knight",
+      "loss": 35.000000000000455
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 1,
+      "phase": "review",
+      "active": [
+        "qa-immediate-bridge-threat"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 1,
+      "side": 1,
+      "phase": "transition",
+      "active": [
+        "qa-immediate-bridge-threat"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "qa-immediate-bridge-threat"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "qa-immediate-bridge-threat"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "qa-immediate-bridge-threat"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "qa-immediate-bridge-threat"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "qa-immediate-bridge-threat"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "qa-immediate-bridge-threat"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "qa-immediate-bridge-threat"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "qa-immediate-bridge-threat"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 0,
+      "phase": "transition",
+      "active": [
+        "qa-immediate-bridge-threat"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 1,
+      "phase": "enemy",
+      "active": [
+        "qa-immediate-bridge-threat"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "fire",
+      "round": 2,
+      "owner": "qa-immediate-bridge-threat",
+      "skill": "HWD01"
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 1,
+      "phase": "flight",
+      "active": [
+        "qa-immediate-bridge-threat"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "hit",
+      "round": 2,
+      "owner": "qa-immediate-bridge-threat",
+      "target": "p-knight",
+      "loss": 36
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 1,
+      "phase": "review",
+      "active": [
+        "qa-immediate-bridge-threat"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 2,
+      "side": 1,
+      "phase": "transition",
+      "active": [
+        "qa-immediate-bridge-threat"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "qa-immediate-bridge-threat"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "qa-immediate-bridge-threat"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "qa-immediate-bridge-threat"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "qa-immediate-bridge-threat"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "qa-immediate-bridge-threat"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "qa-immediate-bridge-threat"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "qa-immediate-bridge-threat"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 0,
+      "phase": "review",
+      "active": [
+        "qa-immediate-bridge-threat"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 0,
+      "phase": "transition",
+      "active": [
+        "qa-immediate-bridge-threat"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 1,
+      "phase": "enemy",
+      "active": [
+        "qa-immediate-bridge-threat"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "fire",
+      "round": 3,
+      "owner": "qa-immediate-bridge-threat",
+      "skill": "HWD01"
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 1,
+      "phase": "flight",
+      "active": [
+        "qa-immediate-bridge-threat"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "hit",
+      "round": 3,
+      "owner": "qa-immediate-bridge-threat",
+      "target": "p-knight",
+      "loss": 38
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 1,
+      "phase": "review",
+      "active": [
+        "qa-immediate-bridge-threat"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 3,
+      "side": 1,
+      "phase": "transition",
+      "active": [
+        "qa-immediate-bridge-threat"
+      ],
+      "newIds": []
+    },
+    {
+      "type": "sample",
+      "round": 4,
+      "side": 0,
+      "phase": "aim",
+      "active": [
+        "qa-immediate-bridge-threat"
+      ],
+      "newIds": []
+    }
+  ],
+  "save": {
+    "keys": [
+      "honro-first-act-profile-1"
+    ],
+    "before": "c3b6458b0a40dd2ccdb2fab1a6f2e71e188a53fa68b08a9d453007538709789f",
+    "after": "c3b6458b0a40dd2ccdb2fab1a6f2e71e188a53fa68b08a9d453007538709789f",
+    "unchanged": true
+  },
+  "chromium": "154.0.8037.57"
+}
