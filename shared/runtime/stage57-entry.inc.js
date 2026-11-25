@@ -53,6 +53,7 @@
         try{
           a.mount(b,{freshReport:true,reportScope:'custom'});
           check(scope57(a,a.engine,s)&&a.engine.stage===content&&a.scene&&a.screen==='battle','Native normal 57 mount failed');
+          s.exterior=installExteriorEncounters(a,a.engine,()=>!!s.hallSill57);
           const ui=appUI(a);check(ui,'Normal 57 controls absent');const btn=document.createElement('button');
           btn.type='button';btn.dataset.act6QaLookout='';styleAction(btn);
           btn.addEventListener('click',event=>{if(event.isTrusted&&event.currentTarget===btn)action(a,event);});s.button=btn;ui.append(btn);

@@ -49,6 +49,13 @@ function installExteriorEncounters(app,e,paused=()=>false,admit=()=>true){
     {id:'deep-drop',label:'두 번째 진목 아래로 다시 적이 모입니다.',at:[3420,2300],units:[['hound','ascent',3120,2460],['shade','descent',3790,3360],['stag','descent',3970,3220]]},
     {id:'reverse-bank',label:'가름진 아래의 낮은 받침이 흔들립니다.',at:[4930,4000],units:[['hound','return',4480,4050],['shade','return',4810,4050],['hound','return',5340,3970],['shade','return',5560,3860]]},
    ]},
+  57:{active:9,attacks:6,sites:{west:'local-lower-07-west',east:'local-lower-07-east'},
+   initial:[['hound','west',2220,3240],['hound','west',2770,3305],['shade','west',3170,3330],['stag','west',3920,3250],['shade','east',6700,2840,true]],
+   waves:[
+    {id:'folding-ridge',label:'부서진 난간 아래에서 추격대가 다가옵니다.',at:[3010,3290],units:[['shade','west',2645,3285],['hound','west',2870,3295],['hound','west',3480,3320],['shade','west',3720,3250]]},
+    {id:'relay-cutoff',label:'보호 받침을 향한 길 양편에서 적이 올라옵니다.',at:[4200,3100],units:[['shade','west',3880,3260],['hound','west',4120,3120],['shade','west',4510,3130],['stag','west',4800,3020]]},
+    {id:'occluded-bank',label:'동쪽 바위와 서쪽 암반 뒤에 마지막 감시대가 섭니다.',at:[5300,3010],units:[['shade','west',4940,3120,true],['shade','west',5070,3080,true],['shade','east',6810,2890,true],['shade','east',6970,3010,true]]},
+   ]},
   58:{active:9,attacks:6,priority:'a6-c08-boss',sites:{hull:'local-lower-08-body',entryDeck:'m58-west-stone-step',gallery:'m58-rising-gallery'},
    initial:[['hound','hull',3220,3330],['shade','entryDeck',3580,3072],['stag','hull',3910,3362],['shade','hull',4625,3150]],
    waves:[
@@ -65,7 +72,7 @@ function installExteriorEncounters(app,e,paused=()=>false,admit=()=>true){
  const markers=plan.waves.map(wave=>({wave,next:0,warning:null}));
  const issued=new WeakSet();
  const spawn=(slot,name,index)=>{
-  const [kind,site,x,reference]=slot,support=plan.sites[site];
+  const [kind,site,x,reference,fixed=false]=slot,support=plan.sites[site];
   const host=b.terrain.find(t=>t.id===support&&x>=t.x&&x<=t.x+t.w);
   if(!host)return false;
   const y=C.topAt(host,x,reference),face=e.contactSurface(x,y-3,y+4);
@@ -76,7 +83,7 @@ function installExteriorEncounters(app,e,paused=()=>false,admit=()=>true){
   const occupied=b.units.some(v=>v.hp>0&&!v.dead&&Math.abs(v.x-x)<v.r+u.r+8&&v.y-v.h<y&&y-u.h<v.y);
   if(occupied)return false;
   const hp=({hound:655,shade:595,stag:755})[kind];
-  Object.assign(u,{hp,maxHp:hp,combatBaseHp:hp,attack:2.7,combatBaseAttack:2.7,group:700+b.units.length,
+  Object.assign(u,{hp,maxHp:hp,combatBaseHp:hp,attack:2.7,combatBaseAttack:2.7,group:700+b.units.length,fixed,
    spawnX:x,spawnY:y,awake:false,honroSpawnSource:name,honroEncounterSupport:support});
   if(!admit(u))return false;
   issued.add(u);

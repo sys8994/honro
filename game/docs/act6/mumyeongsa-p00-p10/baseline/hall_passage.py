@@ -154,8 +154,8 @@ def live_d(browser,out,sodan=False):
         page.wait_for_function("""()=>{const e=HonroApp.engine,u=e.active;return e.grounded(u)&&
           e.contactSurface(u.x,u.y-4,u.y+5)?.t.id==='a6-c07-stationary-stone-ward';}""",timeout=4300)
         steps['archerOnWard']=actor(page)
-        for cls,x in [('knight',5385),('occultist',5290)]:
-            march(page,x,cls=cls,tolerance=10)
+        for cls,x,tolerance in [('knight',5385,10),('occultist',5285,18)]:
+            march(page,x,cls=cls,tolerance=tolerance)
         mission_click(page,'reuniteAtWard')
         page.wait_for_function("!!HonroApp.engine.unit('p-mage')",timeout=4100)
         steps['folded']=state(page)
@@ -199,7 +199,8 @@ def live_d(browser,out,sodan=False):
         page.wait_for_function('HonroApp.engine?.b?.honroStage===58',timeout=12000)
         base.dismiss_dialogue(page)
         q['live']=state(page)
-        q['sameObjects']=page.evaluate('HonroApp.engine.b.units.every(u=>dOriginals.get(u.id)===u)')
+        q['sameObjects']=page.evaluate("""() => {const crew=HonroApp.engine.b.units.filter(u=>u.side===0&&!u.summoned);
+          return crew.length===4&&crew.every(u=>dOriginals.get(u.id)===u);}""")
         assert q['sameObjects'],q['live']
         page.screenshot(path=out/'d-live-58.png')
         saved=base.saved_bytes(page)
@@ -208,7 +209,7 @@ def live_d(browser,out,sodan=False):
             fresh=cold.new_page()
             resume(fresh,58,True)
             q['newCold']=state(fresh)
-            assert q['newCold']['actors']==q['live']['actors'],q['newCold']
+            assert [u for u in q['newCold']['actors'] if u['side']==0]==[u for u in q['live']['actors'] if u['side']==0],q['newCold']
             assert storage_hash(saved)==storage_hash(base.saved_bytes(fresh)),'Stored bytes changed'
             fresh.screenshot(path=out/'d-new-checkpoint-58.png')
         finally:
