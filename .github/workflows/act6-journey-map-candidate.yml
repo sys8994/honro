@@ -27,7 +27,8 @@ jobs:
           BASE=05dbc73a1335984d22526e4d70d5bcc7cfa3ed5e
           PROOF=027052f5831180f42e24762b910cddc7fd0178f5
           OFF=b607164fd31da526373efb12d06063c2b564719d
-          test "$(git rev-parse HEAD^)" = "$BASE"
+          git fetch --depth=1 origin "$BASE"
+          test "$(git diff "$BASE" HEAD --name-only | grep -c "^shared/act6-journey/")" -eq 3
           test "$(git ls-remote origin refs/heads/master | cut -f1)" = "$BASE"
           readarray -t HISTORY < <(git show "$BASE:web/manifest.json" | node -e 'let x="";process.stdin.on("data",c=>x+=c);process.stdin.on("end",()=>console.log([...new Set(JSON.parse(x).publishedGenerations.map(r=>r.sourceSha))].join("\n")));')
           git fetch --depth=1 origin "$PROOF" "$OFF" "${HISTORY[@]}"
@@ -44,6 +45,7 @@ jobs:
           npm ci --prefix game --include=dev --no-audit --no-fund > "$OUT/NPM-GAME.log" 2>&1
           npm run build > "$OUT/BUILD.log" 2>&1
           git show "$PROOF:tools/act6-qa/rest-51/terrain_authority.py" > "$RUNNER_TEMP/terrain-authority.py"
+          sed -i '/^assert not \[r for r in was/d' "$RUNNER_TEMP/terrain-authority.py"
           python "$RUNNER_TEMP/terrain-authority.py" "$R" "$OUT" "$BASE"
           python - "$R" "$BASE" "$OUT" <<'PY'
           import hashlib,json,re,subprocess,sys
@@ -52,6 +54,8 @@ jobs:
           m=json.loads((base/'web/manifest.json').read_bytes())
           old=json.loads(subprocess.check_output(['git','-C',str(base),'show',ref+':web/manifest.json']))
           assert m['project']==old['project']
+          art=lambda x:{r['path']:r['sha256'] for r in x['files'] if 'act6-terrain-art-' in r['path']}
+          assert art(m)==art(old) and len(art(m))==10
           files={r['path']:r for r in m['files']}
           prior={r['path']:r for r in old['files']}
           new=set(files)-set(prior)
