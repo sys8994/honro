@@ -24,7 +24,7 @@ jobs:
           BASE=13470b4bce757ac894cfbabdee83dc52e9bc75c1
           PROOF=2cd0382d8484e024389455d8c6f52f6560ccfc54
           ENTRY=web/entries/game-normal51.9f6b312b53b40fa5.js
-          MAP=d3f6d9ab557f3230815a864dd0babe9b4fd58cc6
+          MAP=fba1d8be263e36121f276d2b5100f90312fcb60c
           OUT="$RUNNER_TEMP/ending-release"
           mkdir -p "$OUT"
           test "$(git -C "$GITHUB_WORKSPACE" ls-remote origin refs/heads/master | cut -f1)" = "$BASE"
@@ -88,7 +88,7 @@ jobs:
           git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' -c core.hooksPath=/dev/null commit -m 'feat(act6): release the overcast map and expanded ending with debug preview'
           test "$(git rev-parse HEAD^)" = "$BASE"
           test "$(git -C "$GITHUB_WORKSPACE" ls-remote origin refs/heads/master | cut -f1)" = "$BASE"
-          git -C "$GITHUB_WORKSPACE" push origin "$(git rev-parse HEAD)":refs/heads/release/act6-ending-and-map-20261125
+          git -C "$GITHUB_WORKSPACE" push origin "$(git rev-parse HEAD)":refs/heads/release/act6-ending-and-map-fit-20261125
           git rev-parse HEAD > "$OUT/CANDIDATE.txt"
       - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
         if: always()
