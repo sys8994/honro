@@ -1,4 +1,4 @@
-name: Record genuine synthetic-test campaign checkpoints for debug fixtures
+name: Read genuine campaign checkpoints for isolated debug
 on:
   push:
     branches: ['qa/act6-debug-fixture-harvest-20261125']
