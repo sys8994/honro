@@ -66,7 +66,8 @@ function installExteriorEncounters(app,e,paused=()=>false,admit=()=>true){
     {id:'relay-cutoff',label:'보호 받침을 향한 길 양편에서 적이 올라옵니다.',at:[4200,3100],units:[['shade','west',3880,3260],['hound','west',4120,3120],['shade','west',4510,3130],['stag','west',4800,3020]]},
     {id:'occluded-bank',label:'동쪽 바위와 서쪽 암반 뒤에 마지막 감시대가 섭니다.',at:[5300,3010],units:[['shade','west',4940,3120,true],['shade','west',5070,3080,true],['shade','east',6810,2890,true],['shade','east',6970,3010,true]]},
    ]},
-  58:{active:9,attacks:6,priority:'a6-c08-boss',sites:{hull:'local-lower-08-body',entryDeck:'m58-west-stone-step',gallery:'m58-rising-gallery'},
+  58:{active:9,attacks:6,roomReach:950,priority:'a6-c08-boss',sites:{hull:'local-lower-08-body',entryDeck:'m58-west-stone-step',
+   gallery:'m58-rising-gallery',apse:'m58-east-deck'},
    initial:[['hound','hull',3220,3330],['shade','entryDeck',3580,3072],['stag','hull',3910,3362],['shade','hull',4625,3150]],
    waves:[
     {id:'entrance-columns',label:'첫 기둥의 술식 뒤에서 잔향이 올라옵니다.',at:[3470,3250],units:[['shade','hull',3340,3260],['hound','hull',3475,3230],['shade','gallery',3730,3070]]},
@@ -145,6 +146,7 @@ function installExteriorEncounters(app,e,paused=()=>false,admit=()=>true){
   for(const marker of markers){
    const {wave}=marker;
    if(marker.next===wave.units.length)continue;
+   if(wave.phase&&(b.honroDaedosa?.phase??0)<wave.phase)continue;
    const [x,y]=wave.at;
    if(Math.abs(u.x-x)>525||Math.abs(u.y-y)>550)continue;
    if(marker.warning===null){marker.warning=clock;app.notify(wave.label);continue;}

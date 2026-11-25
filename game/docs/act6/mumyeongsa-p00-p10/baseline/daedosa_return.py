@@ -10,6 +10,7 @@ from cold_resume import saved_context, seeded_context, storage_hash
 from exterior_combat import TRACE
 from hall_passage import actor, combat_from_ceiling, march, mission_click, near, select, state
 from legacy54_live import hold, resume
+from mobile_seams import POINTER_EVENTS, move as touch_move
 from native_b import aim, wall_trace
 from relay_live_chain import boundary_of
 from return_gate import ROOM, proceed
@@ -58,6 +59,18 @@ CANDIDATE="""() => {
  }
  return opts.sort((a,b)=>b.score-a.score)[0]??null;
 }"""
+MENDING="""() => {
+ const e=HonroApp.engine,u=e.active,skill=HONRO_CORE.SKILLS.M10;
+ if(u.hp>=u.maxHp*.72||!u.loadout.includes('M10')||!e.canAfford(skill,u,.5)||
+    e.b.stakes?.some(s=>s.skill==='M10'&&Math.abs(s.x-u.x)<100))return null;
+ for(const power of [.27,.36,.45,.56,.65])for(let i=0;i<14;i++){
+  const angle=u.facing>0?86-i*2:94+i*2;
+  const hit=(a,p)=>{const z=e.predict(u,skill,a,p,undefined,true);
+   return z.terrain&&Math.abs(z.x-u.x)<100&&Math.abs(z.y-u.y)<44;};
+  if([-.8,0,.8].every(d=>[0,.025].every(p=>hit(angle+d,power+p))))return {id:'M10',angle,power};
+ }
+ return null;
+}"""
 
 def action_ready(page):
     for _ in range(10):
@@ -97,8 +110,20 @@ def lower_turn(page,report):
         return False
     prime=next((u for key in ('a6-c08-expansion-node','a6-c08-boss') for u in cfg['major'] if u['id']==key and not u['dead']),None)
     boss=next(u for u in cfg['major'] if u['id']=='a6-c08-boss')
+    ledger=page.locator('[data-act6-qa-lookout][data-act6-mission="ledger"]')
+    if ledger.count() and (cfg.get('mark') or {}).get('kind')!='great' and abs(before['x']-4464)<=before['move']*.87:
+        sample_walk(page,1 if before['x']<4464 else -1,4464,4200)
+        seated=actor(page)
+        if abs(seated['x']-4464)<65 and seated['grounded'] and seated['contact']=='local-lower-08-body':
+            ledger.click(timeout=4400)
+            proof=foes_moved(page)
+            if proof['flags'].get('localLedgerCounterSpent'):
+                report.setdefault('ledgerUse',[]).append({'round':proof['round'],'foot':seated,'flags':proof['flags']})
+                cfg=proof
     desired=(prime or boss)['x']+{'archer':305,'mage':185,'occultist':525,'knight':65}[before['cls']]
-    desired=escape_mark(before,cfg.get('mark'),desired,boss)
+    safe=escape_mark(before,cfg.get('mark'),desired,boss)
+    avoiding=safe!=desired
+    desired=safe
     if abs(before['x']-desired)>45:
         sample_walk(page,1 if desired>before['x'] else -1,desired,5200)
     action_ready(page)
@@ -106,9 +131,19 @@ def lower_turn(page,report):
     intended=1 if (prime or boss)['x']>current['x'] else -1
     if page.evaluate('HonroApp.engine.active.facing')!=intended:
         sample_walk(page,intended,current['x']+13*intended,450)
-    options=None
+    options=page.evaluate(MENDING)
     if current['hp']>=current['maxHp']*.46:
-        options=page.evaluate(CANDIDATE)
+        options=options or page.evaluate(CANDIDATE)
+    if not options and not avoiding and prime and current['move']>115:
+        other=prime['x']-{'archer':185,'mage':135,'occultist':280,'knight':85}[before['cls']]
+        if abs(other-current['x'])>65:
+            sample_walk(page,1 if other>current['x'] else -1,other,4800)
+            action_ready(page)
+            current=actor(page)
+            want=1 if prime['x']>current['x'] else -1
+            if page.evaluate('HonroApp.engine.active.facing')!=want:
+                sample_walk(page,want,current['x']+13*want,450)
+            options=page.evaluate(MENDING) or page.evaluate(CANDIDATE)
     plan={'round':cfg['round'],'actor':before['id'],'from':[before['x'],before['y']],
           'feet':[current['x'],current['y']],'targets':cfg['major'],'plan':options}
     if options:
@@ -120,7 +155,8 @@ def lower_turn(page,report):
         page.keyboard.press('f')
     report['turns'].append(plan)
     if len(report['turns'])%8==0:
-        print('round',cfg['round'],'actions',len(report['turns']),[(u['id'],u['hp']) for u in cfg['major']],flush=True)
+        print('round',cfg['round'],'actions',len(report['turns']),[(u['id'],u['hp']) for u in cfg['major']],
+              'party',[(u['id'],round(u['hp'])) for u in state(page)['actors'] if u['side']==0],flush=True)
     return True
 
 def all_once_east(page,report,limit=100):
@@ -174,15 +210,44 @@ def open_from_ceiling(page,out,report):
     assert report['upperOpening']['dismount']['family']=={'x':0,'y':320}
 
 
-def play(browser,out,turns,session=None,pressure=False,tactic='ground',rng=None):
-    ctx,page=session if session else (seeded_context(browser,58),None)
+def touch_send_r(context,page,report):
+    page.evaluate(POINTER_EVENTS)
+    for cls,target in (('archer',3075),('occultist',3010),('knight',3140),('mage',3240)):
+        identity=actor(page,cls)['id']
+        for _ in range(5):
+            action_ready(page)
+            if actor(page)['id']==identity:
+                break
+            select_control=page.locator(f'[data-action="select-hero"][data-id="{identity}"]:visible').first
+            if select_control.count() and select_control.is_enabled():
+                select_control.tap(timeout=3200)
+                if actor(page)['id']==identity:
+                    break
+            page.locator('[data-act6-qa-return]').tap(timeout=4400)
+        who=actor(page)
+        assert who['id']==identity,who
+        if who['x']<=3260:
+            touch_move(context,page,1,'HonroApp.engine.active.x>=3340')
+        if cls=='mage':
+            touch_move(context,page,-1,"HonroApp.done&&HonroApp.engine.b.phase==='won'",timeout=10000)
+        else:
+            touch_move(context,page,-1,'x=>HonroApp.engine.active.x<=x',target,timeout=10000)
+        landed=actor(page)
+        assert landed['grounded'] and landed['contact']=='local-lower-08-body',landed
+        report['returnRoute'].append(landed)
+    report['returnTouches']=page.evaluate('seamTouches')
+    assert len(report['returnTouches'])>=8 and all(v['trusted'] and v['type']=='touch' for v in report['returnTouches'])
+
+
+def play(browser,out,turns,session=None,pressure=False,tactic='ground',rng=None,touch_return=False):
+    ctx,page=session if session else (seeded_context(browser,58,mobile=touch_return),None)
     if page is None:
         page=ctx.new_page()
     q={'status':'FAIL','turns':[],'errors':[]}
     page.on('pageerror',lambda err:q['errors'].append(str(err)))
     try:
         if session is None:
-            resume(page,58,True)
+            resume(page,58,True,mobile=touch_return)
         else:
             base.dismiss_dialogue(page)
         if rng is not None:
@@ -203,20 +268,20 @@ def play(browser,out,turns,session=None,pressure=False,tactic='ground',rng=None)
         mission_click(page,'stake')
         q['returnRoute']=[]
         page.evaluate("window.rOriginals=new Map(HonroApp.engine.b.units.filter(u=>u.side===0&&!u.summoned).map(u=>[u.id,u]))")
-        for cls,x in [('archer',3075),('occultist',3010),('knight',3140)]:
-            action_ready(page)
-            end=march(page,x,cls=cls,tolerance=22)
-            q['returnRoute'].append(end)
-        select(page,'mage',advance=True)
-        hold(page,'ArrowLeft',"()=>HonroApp.done&&HonroApp.engine.b.phase==='won'",None,7500)
-        q['returnRoute'].append(actor(page))
+        if touch_return:
+            touch_send_r(ctx,page,q)
+        else:
+            for cls,x in [('archer',3075),('occultist',3010),('knight',3140)]:
+                action_ready(page)
+                end=march(page,x,cls=cls,tolerance=22)
+                q['returnRoute'].append(end)
+            select(page,'mage',advance=True)
+            hold(page,'ArrowLeft',"()=>HonroApp.done&&HonroApp.engine.b.phase==='won'",None,7500)
+            q['returnRoute'].append(actor(page))
         q['outgoing']=page.evaluate(ROOM)
-        if pressure:
-            q['encounters']=page.evaluate('window.a6Exterior')
-            frames=q['encounters'].pop('frames')
-            q['hostP95']=sorted(frames)[int(.95*(len(frames)-1))] if frames else None
         page.screenshot(path=out/'r-source-58.png')
-        page.locator('[data-act6-qa-next="59"]').click(timeout=6200)
+        next_chapter=page.locator('[data-act6-qa-next="59"]')
+        (next_chapter.tap if touch_return else next_chapter.click)(timeout=6200)
         page.wait_for_function("HonroApp.engine?.b?.honroStage===59",timeout=12000)
         base.dismiss_dialogue(page)
         q['liveSameObjects']=page.evaluate('HonroApp.engine.b.units.every(u=>rOriginals.get(u.id)===u)')
@@ -251,6 +316,11 @@ def play(browser,out,turns,session=None,pressure=False,tactic='ground',rng=None)
         page.screenshot(path=out/'r-live-failure.png')
     finally:
         q['projectileTrace']=page.evaluate('window.nativeWall??[]')
+        if pressure:
+            q['encounters']=page.evaluate('window.a6Exterior??null')
+            if q['encounters']:
+                frames=q['encounters'].pop('frames')
+                q['hostP95']=sorted(frames)[int(.95*(len(frames)-1))] if frames else None
         if session is None:
             ctx.close()
     if q['errors']:
@@ -263,6 +333,7 @@ def main():
     p.add_argument('--pressure',action='store_true')
     p.add_argument('--tactic',choices=('ground','ceiling'),default='ground')
     p.add_argument('--rng',type=int)
+    p.add_argument('--touch-return',action='store_true')
     p.add_argument('--out',type=Path,required=True)
     p.add_argument('--turns',type=int,default=100)
     opts=p.parse_args()
@@ -271,7 +342,7 @@ def main():
     with sync_playwright() as pw:
         browser=pw.chromium.launch(executable_path='/usr/bin/chromium',headless=True,
                                    args=['--no-sandbox','--disable-dev-shm-usage'])
-        q=play(browser,opts.out,opts.turns,pressure=opts.pressure,tactic=opts.tactic,rng=opts.rng)
+        q=play(browser,opts.out,opts.turns,pressure=opts.pressure,tactic=opts.tactic,rng=opts.rng,touch_return=opts.touch_return)
         (opts.out/'r-live.json').write_text(json.dumps(q,ensure_ascii=False,indent=2)+'\n')
         print(q['status'],q.get('error',''),flush=True)
         browser.close()
