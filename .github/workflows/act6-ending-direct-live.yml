@@ -1,0 +1,43 @@
+name: Verify published direct Stage 60 ending on desktop and mobile
+on:
+  push:
+    branches: ['qa/act6-ending-direct-20261125']
+    paths: ['.github/workflows/act6-ending-direct-live.yml']
+permissions:
+  contents: read
+jobs:
+  published:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 16
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          ref: c5225683a77caa1caffd2252a21586bca7b87845
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c
+        with:
+          python-version: '3.12'
+      - name: Wait for exact Pages bytes, then exercise live UI
+        shell: bash
+        run: |
+          set -euo pipefail
+          O="$RUNNER_TEMP/honro-live"
+          mkdir -p "$O"
+          python -m pip install 'playwright==1.58.0'
+          python -m playwright install --with-deps chromium
+          for n in $(seq 1 60); do
+            curl -fsS "https://sys8994.github.io/honro/web/manifest.json?check=$GITHUB_RUN_ID-$n" -o "$O/live-manifest.json" && cmp -s web/manifest.json "$O/live-manifest.json" &&
+            curl -fsS "https://sys8994.github.io/honro/?check=$GITHUB_RUN_ID-$n" -o "$O/live-index.html" && cmp -s index.html "$O/live-index.html" && break
+            sleep 5
+          done
+          cmp web/manifest.json "$O/live-manifest.json"
+          cmp index.html "$O/live-index.html"
+          CHROME="$(python -c 'from playwright.sync_api import sync_playwright; p=sync_playwright().start(); print(p.chromium.executable_path); p.stop()')"
+          python tools/act6-ending-v2/preview.py --live --chromium "$CHROME" --out "$O/screens" | tee "$O/preview.log"
+          python tools/act6-ending-v2/normal.py --live --chromium "$CHROME" | tee "$O/normal.log"
+          cp -v _local/reports/ending-v2/*.png "$O/screens/"
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: honro-ending-pages-screens
+          path: ${{ runner.temp }}/honro-live/
+          retention-days: 7
