@@ -1,0 +1,98 @@
+name: Assemble the verified Act 6 ending and overcast map
+on:
+  push:
+    branches: ['qa/act6-ending-map-assembly-20261125']
+    paths: ['.github/workflows/act6-ending-and-map-assembly.yml']
+permissions:
+  contents: write
+jobs:
+  candidate:
+    if: github.repository == 'sys8994/honro' && github.ref == 'refs/heads/qa/act6-ending-map-assembly-20261125'
+    runs-on: ubuntu-22.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903
+        with:
+          node-version: '22'
+      - name: Rebuild exact tested source and prepare one candidate
+        shell: bash
+        run: |
+          set -euo pipefail
+          BASE=13470b4bce757ac894cfbabdee83dc52e9bc75c1
+          PROOF=2cd0382d8484e024389455d8c6f52f6560ccfc54
+          ENTRY=web/entries/game-normal51.9f6b312b53b40fa5.js
+          MAP=d3f6d9ab557f3230815a864dd0babe9b4fd58cc6
+          OUT="$RUNNER_TEMP/ending-release"
+          mkdir -p "$OUT"
+          test "$(git -C "$GITHUB_WORKSPACE" ls-remote origin refs/heads/master | cut -f1)" = "$BASE"
+          readarray -t HISTORY < <(git show "$BASE:web/manifest.json" | node -e 'let x="";process.stdin.on("data",c=>x+=c);process.stdin.on("end",()=>console.log([...new Set(JSON.parse(x).publishedGenerations.map(r=>r.sourceSha))].join("\n")));')
+          git fetch --depth=1 origin "$PROOF" "$MAP" "${HISTORY[@]}"
+          R="$(realpath "$(mktemp -d /tmp/honro-act6-web-qa-XXXXXXXX)")"
+          git -c core.hooksPath=/dev/null worktree add --detach "$R" "$BASE"
+          git show "$PROOF:tools/act6-ending-qa/authority.py" > "$RUNNER_TEMP/ending-authority.py"
+          cd "$R"
+          git checkout "$PROOF" -- shared/act6-ending-replan shared/{act6-app-qa,web-build}.mjs
+          node tools/release/retain-published-web.mjs "$BASE" --published-at 2026-11-25T02:53:56Z --evidence https://github.com/sys8994/honro/actions/runs/45535961964 > "$OUT/RETENTION.log" 2>&1
+          npm ci --no-audit --no-fund > "$OUT/NPM.log" 2>&1
+          npm ci --prefix game --include=dev --no-audit --no-fund > "$OUT/NPM-GAME.log" 2>&1
+          npm run build > "$OUT/BUILD.log" 2>&1
+          python "$RUNNER_TEMP/ending-authority.py" "$R" "$OUT" "$BASE"
+          node -e 'const fs=require("fs");const j=require("./web/manifest.json");if(j.gameEntry!==process.argv[1])throw new Error(j.gameEntry); for(const root of ["HONRO.html","index.html"])if(!fs.readFileSync(root,"utf8").includes(j.gameEntry))throw new Error(root)' "$ENTRY"
+          cp web/manifest.json "$OUT/END-ONLY-MANIFEST.json"
+          # Build the combined release from the same pristine published graph.
+          # Only map data, illustration, and design note may differ here.
+          git restore --worktree -- web HONRO.html HONRO_WORKSHOP.html index.html
+          git clean -fd -- web
+          git checkout "$MAP" -- shared/runtime/rest-journey.js shared/act6-journey/{map.json,mumyeongsa.webp} game/docs/planning/act6-finale-20261125/HONRO-ACT6-JOURNEY-MAP.ko.md
+          node tools/release/retain-published-web.mjs "$BASE" --published-at 2026-11-25T02:53:56Z --evidence https://github.com/sys8994/honro/actions/runs/45535961964 > "$OUT/RETENTION-COMBINED.log" 2>&1
+          npm run build > "$OUT/BUILD-COMBINED.log" 2>&1
+          python - "$R" "$OUT" "$BASE" <<'PY'
+          import json,subprocess,sys,re
+          from pathlib import Path
+          from hashlib import sha256
+          w,o,base=Path(sys.argv[1]),Path(sys.argv[2]),sys.argv[3]
+          pre=json.loads((o/'END-ONLY-MANIFEST.json').read_bytes())
+          mix=json.loads((w/'web/manifest.json').read_bytes())
+          stock=json.loads(subprocess.check_output(['git','-C',str(w),'show',base+':web/manifest.json']))
+          assert pre['project']==mix['project']==stock['project']
+          paths=lambda m:{x['path']:x for x in m['files']}
+          a,b,c=paths(pre),paths(mix),paths(stock)
+          new=set(b)-set(a)
+          assert 3<=len(new)<=8 and sum('journey-map-act6.cd2aff500c4b2055.' in p for p in new)==1,new
+          assert sum('web/runtime/ordered-game-24-normal51.' in p for p in new)==1
+          assert sum('web/entries/game-normal51.' in p for p in new)==1
+          assert mix['gameEntry'] in new and all(mix['gameEntry'] in (w/p).read_text() for p in ('HONRO.html','index.html'))
+          for keys in ('act6-qa-chapter-','act6-terrain-art-','act6-ending-'):
+              assert {p:r for p,r in a.items() if keys in p}=={p:r for p,r in b.items() if keys in p},keys
+          for p,r in (b|c).items():
+              raw=(w/p).read_bytes()
+              assert len(raw)==r['bytes'] and sha256(raw).hexdigest()==r['sha256'],p
+          assert any(x['sourceSha']==base for x in mix['publishedGenerations'])
+          oldmain=next(p for p in a if 'ordered-game-24-normal51.' in p)
+          newmain=next(p for p in new if 'ordered-game-24-normal51.' in p)
+          scope=lambda s:re.search(r'boundary:\{build:"([0-9a-f]{64})",owner:(\{[^}]+\}),layout:(\{.*?\}\})',s).group()
+          assert scope((w/newmain).read_text())==scope(subprocess.check_output(['git','-C',str(w),'show',base+':'+next(p for p in c if 'ordered-game-24-normal51.' in p)]).decode()),'boundary contract altered'
+          (o/'COMBINED-ENTRY.txt').write_text(mix['gameEntry']+'\n')
+          (o/'COMBINED-NEW.txt').write_text('\n'.join(sorted(set(b)-set(c)))+'\n')
+          PY
+          readarray -t NEW < "$OUT/COMBINED-NEW.txt"
+          git add -- HONRO.html HONRO_WORKSHOP.html index.html web/manifest.json "${NEW[@]}"
+          ! git diff --cached --name-only | grep -E '^\.github/|^tools/'
+          test -z "$(git diff --cached --diff-filter=D --name-only)"
+          sha256sum web/manifest.json | cut -f1 -d' ' > "$OUT/MANIFEST.sha256"
+          git diff --cached --name-only > "$OUT/PRODUCT-PATHS.txt"
+          git diff --cached --name-only -z | tar --null -T - -czf "$OUT/release-delta.tar.gz"
+          git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' -c core.hooksPath=/dev/null commit -m 'feat(act6): release the overcast map and expanded ending with debug preview'
+          test "$(git rev-parse HEAD^)" = "$BASE"
+          test "$(git -C "$GITHUB_WORKSPACE" ls-remote origin refs/heads/master | cut -f1)" = "$BASE"
+          git -C "$GITHUB_WORKSPACE" push origin "$(git rev-parse HEAD)":refs/heads/release/act6-ending-and-map-20261125
+          git rev-parse HEAD > "$OUT/CANDIDATE.txt"
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: act6-ending-map-verified-release
+          path: ${{ runner.temp }}/ending-release/
+          retention-days: 7
