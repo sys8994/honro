@@ -1,0 +1,37 @@
+name: Verify deployed Act 6 debug stage menu
+on:
+  push:
+    branches: ['qa/act6-debug-stage-live-20261125']
+    paths: ['.github/workflows/act6-debug-stage-live.yml']
+permissions:
+  contents: read
+jobs:
+  live:
+    if: github.repository == 'sys8994/honro' && github.ref == 'refs/heads/qa/act6-debug-stage-live-20261125'
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c
+        with:
+          python-version: '3.12'
+      - name: Verify actual hosted files and stage navigation
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/act6-debug-live"
+          mkdir -p "$out"
+          python -m pip install 'playwright==1.58.0'
+          python -m playwright install --with-deps chromium
+          for retry in $(seq 1 45); do
+            curl -fsSL -H 'Cache-Control: no-cache' https://sys8994.github.io/honro/web/manifest.json -o "$out/public.json" || true
+            if test -s "$out/public.json" && test "$(sha256sum "$out/public.json" | cut -d' ' -f1)" = "3a70cceb8111e7f988d577210438f609b405e4cc9a4f878928a4cc47d7cb3fb4"; then break; fi
+            sleep 6
+          done
+          test "$(sha256sum "$out/public.json" | cut -d' ' -f1)" = "3a70cceb8111e7f988d577210438f609b405e4cc9a4f878928a4cc47d7cb3fb4"
+          python tools/act6-debug-stages/browser.py live "$out" > "$out/PLAYWRIGHT.log" 2>&1
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: act6-debug-stage-live
+          path: ${{ runner.temp }}/act6-debug-live/
+          retention-days: 7
