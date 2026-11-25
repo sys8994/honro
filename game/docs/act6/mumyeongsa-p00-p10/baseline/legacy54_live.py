@@ -103,8 +103,21 @@ def m09(page,report,attempt=0):
     if aim_power is None:
         raise AssertionError('Positioned angles do not give a stable relay tip')
     report["target"]=target
-    hold(page,"Space","power=>HonroApp.charging&&HonroApp.power>=power",aim_power)
+    before=page.evaluate('HonroApp.engine.b.shot')
+    page.keyboard.down('Space')
+    try:
+        page.wait_for_function("""min=>{
+          const a=HonroApp,e=a.engine,u=e.active;
+          if(!a.charging||a.power<min-.04)return false;
+          return [0,.018,.033].every(d=>{
+            const p=e.predict(u,HONRO_CORE.SKILLS.M09,u.angle,Math.min(1,a.power+d),undefined,true);
+            return p.terrain==='mid-contact'&&p.x>=2305&&p.x<=u.x-25&&Math.abs(p.y-2924)<1e-7;
+          });
+        }""",arg=aim_power,polling=7,timeout=3500)
+    finally:
+        page.keyboard.up('Space')
     report["input"]=page.evaluate("()=>({angle:HonroApp.engine.active.angle,power:HonroApp.power,shot:HonroApp.engine.b.shot})")
+    report['released']=report['input']['shot']>before
     page.wait_for_function("HonroApp.engine.b.stakes?.some(s=>s.skill==='M09'&&s.shot===HonroApp.engine.b.shot&&s.x<2325)",timeout=9000)
     return {"target":target,"shot":page.evaluate("HonroApp.engine.b.shot"),
             "stakes":page.evaluate("HonroApp.engine.b.stakes")}
@@ -225,7 +238,18 @@ def play54(page,out,results):
     watch_eave(page)
     for attempt in range(3):
         results["relayAttempt"]={}
-        results["relay"]=m09(page,results["relayAttempt"],attempt)
+        try:
+            results["relay"]=m09(page,results["relayAttempt"],attempt)
+        except Error as error:
+            results['previousRelayAttempts'].append({**results['relayAttempt'],'error':str(error),'pose':page.evaluate(FOOT)})
+            page.wait_for_function('HonroApp.canInput()&&HonroApp.engine.grounded(HonroApp.engine.active)',timeout=12000)
+            hit=page.evaluate("""()=>{const b=HonroApp.engine.b;return b.stakes?.some(s=>s.skill==='M09'&&s.shot===b.shot&&s.x<2325)?
+              {shot:b.shot,stakes:b.stakes}:null;}""")
+            if not hit:
+                if attempt==2:
+                    raise
+                continue
+            results['relay']=hit
         page.screenshot(path=out/"legacy54-m09.png")
         page.wait_for_function("HonroApp.engine.b.phase==='aim' && HonroApp.engine.grounded(HonroApp.engine.active)",timeout=8500)
         traces["L_exit"]=sample_walk(page,-1,2330,1600)

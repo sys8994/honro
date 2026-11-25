@@ -41,7 +41,8 @@ export async function createStage54ChartOwner({C,domain,charts,gallery=null,obse
     s.b.honroGrowth?.limit.total===0&&s.b.honroGrowth?.limit.combat===0&&verifyMounted(a,e,s.ticket)?s:null;
  };
  const support=(e,a)=>e.contactSurface(a.x,a.y-4,a.y+4)?.t.id;
- const noTransients=b=>['projectiles','stakes','waters','fields','drafts','summons','supportHazards'].every(k=>!b[k]?.length)&&!b.volley;
+ const noTransients=(b,localStakes)=>['projectiles','waters','fields','drafts','summons','supportHazards'].every(k=>!b[k]?.length)&&!b.volley&&
+   (b.stakes??[]).every(s=>localStakes?.has(s)===true);
  function mount(a,e,ticket){
   const b=e?.b,s=a?.stage;
   if(!safe(a)||a.engine!==e||owned.has(e)||!(e instanceof C.Engine)||s?.id!==54||s.act!==6||s.actStage!==4||s.objective!=='act6-gallery-charts'||a.stageId!==54||
@@ -50,16 +51,21 @@ export async function createStage54ChartOwner({C,domain,charts,gallery=null,obse
   const prev=verifyIncoming(a,e,ticket), u=b.units[0];
   if(b.units.length!==1||u.side!==0||u.cls!=='mage'||!e.grounded(u)||!C.validTerrainContactPose(b.terrain,u)||prev?.stage!==53||!prev.won||
       prev.flags?.['act6.innerStakeAReady']!==true||sig(row(u))!==sig(row(prev.mage??{})))return false;
-  const g={ticket,app:a,stage:s,b,u,external:structuredClone(prev.external),frame:'N',order:[],pending:null,m09:null,shot:null,terminal:false,cameraEvents:[],company:new Map()};
+  const g={ticket,app:a,stage:s,b,u,external:structuredClone(prev.external),frame:'N',order:[],pending:null,m09:null,shot:null,terminal:false,
+   cameraEvents:[],company:new Map(),galleryStakes:new WeakSet()};
   owned.set(e,g);
   const impact=e.impact.bind(e);
   e.impact=(p,h)=>{
+   const local=g.gallery&&g.frame==='N'&&get(a,e)===g&&p?.side===0&&p.owner===u.id&&['M07','M10'].includes(p.skill)&&b.projectiles.includes(p);
    const valid=get(a,e)===g&&g.frame==='L'&&g.shot&&p?.shot===g.shot.shot&&p.owner===u.id&&p.skill==='M09'&&b.projectiles.includes(p)&&
      h?.terrain===b.terrain.find(t=>t.id==='mid-contact')&&span(h.x,g.shot.minX,g.shot.maxX);
    const supportY=valid&&h.y-(h.n?.y??0)*p.radius;
    const sill=valid&&e.contactSurface(h.x,h.y,supportY);
    const before=new Set(b.stakes??[]);
    const out=impact(p,h);
+   if(local)for(const s of b.stakes??[]){
+    if(!before.has(s)&&s.owner===u.id&&s.skill===p.skill&&s.shot===p.shot)g.galleryStakes.add(s);
+   }
    if(sill&&sill.t===h.terrain&&sill.y===supportY&&geometry(b,'L')){
     const face=C.terrainSurfaces(sill.t,h.x).find(f=>f.y===sill.y&&f.slope===0);
     if(face)for(const stake of b.stakes??[])if(!before.has(stake)&&stake.owner===u.id&&stake.shot===p.shot&&stake.skill==='M09'){
@@ -79,7 +85,9 @@ export async function createStage54ChartOwner({C,domain,charts,gallery=null,obse
    if(!g.observed||!galleryGeometry(g.b))return response(false,'회랑 끝 관측턱에 닿은 뒤 돌아오세요.');
   }else if(!geometry(g.b,g.frame))return response(false,'chart order/owner');
   const {u,b}=g;
-  if(e.active!==u||!e.canAct()||!e.grounded(u)||!C.validTerrainContactPose(b.terrain,u)||!noTransients(b)||!span(u.x,...m.zone)||support(e,u)!==m.surface)return response(false,'same grounded chart mark');
+  const leavesGallery=g.frame==='N'&&g.gallery;
+  if(e.active!==u||!e.canAct()||!e.grounded(u)||!C.validTerrainContactPose(b.terrain,u)||
+     !noTransients(b,leavesGallery?g.galleryStakes:undefined)||!span(u.x,...m.zone)||support(e,u)!==m.surface)return response(false,'same grounded chart mark');
   const scene=a.scene;
   if(!scene||typeof scene.focusUnit!=='function'||typeof scene._releaseDomainTiles!=='function')return response(false,'native camera unavailable');
   const next=pages[m.to], center=m.p({x:u.x,y:u.y-u.h/2}), foot={x:center.x,y:center.y+u.h/2};
@@ -90,14 +98,16 @@ export async function createStage54ChartOwner({C,domain,charts,gallery=null,obse
   const v=m.v({x:u.vx,y:u.vy}), aim=m.v({x:Math.cos(u.angle*Math.PI/180),y:-Math.sin(u.angle*Math.PI/180)});
   let angle=Math.atan2(-aim.y,aim.x)*180/Math.PI;if(angle<-90)angle+=360;
   const spawn=m.p({x:u.spawnX,y:u.spawnY});
-  if(g.frame==='N'&&g.gallery)leaveCompany(g,e,'gallery');
+  const settledStakes=leavesGallery?(b.stakes??[]).map(({id,skill,shot})=>({id,skill,shot})):[];
+  if(leavesGallery){leaveCompany(g,e,'gallery');if(settledStakes.length)b.stakes=[];}
   const tile={terrain:structuredClone(next.terrain),honroWorldTerrain:structuredClone(next.world),honroLandmarks:structuredClone(next.landmarks),honroElements:structuredClone(next.elements),
    honroPlayBounds:structuredClone(next.play),honroTerrainBounds:structuredClone(next.terra)};
   Object.assign(b,tile,{width:next.width,height:next.height,honroTerrainDomainVersion:1,sceneVersion:(b.sceneVersion??0)+1});
   // Coordinate re-expression only. The same actor, gravity, HP, equipment,
   // turn and velocity vector stay in the Engine; ordinary solver lands it.
   Object.assign(u,foot,{vx:v.x,vy:v.y,angle,facing:Math.sign(aim.x)||1,spawnX:spawn.x,spawnY:spawn.y,airborne:true,jumping:false,fallApexY:foot.y,moveTarget:undefined});
-  g.frame=m.to;g.pending={id,frame:m.to,drop:floor.y-foot.y,expected:floor.id,actor:u.id,round:b.round};
+  g.frame=m.to;g.pending={id,frame:m.to,drop:floor.y-foot.y,expected:floor.id,actor:u.id,round:b.round,
+   ...(settledStakes.length?{settledStakes}:{})};
   scene._releaseDomainTiles(); scene.manual=false;scene.x=u.x;scene.y=u.y-170;scene.focusUnit(u.id,700,false);
   g.cameraEvents.push({id,focus:u.id,frame:g.frame,sceneVersion:b.sceneVersion});
   return {ok:true,pending:true,drop:g.pending.drop};
