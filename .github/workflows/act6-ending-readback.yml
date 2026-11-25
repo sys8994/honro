@@ -26,7 +26,7 @@ jobs:
           git fetch --depth=1 origin fba1d8be263e36121f276d2b5100f90312fcb60c
           git show "fba1d8be263e36121f276d2b5100f90312fcb60c:tools/act6-journey/witness.py" > tools/act6-journey/witness.py
           git show "2cd0382d8484e024389455d8c6f52f6560ccfc54:tools/act6-ending-qa/debug_ui.py" > tools/act6-ending-readback/debug_ui.py
-          python -m pip install 'playwright==1.58.0'
+          python -m pip install 'playwright==1.58.0' 'Pillow==12.0.0'
           python -m playwright install --with-deps chromium
           mkdir -p "$OUT/map" "$OUT/ending"
           python tools/act6-ending-readback/live.py 9a5bc8cd24f709b620079a2e873cf1e0eabda230a56fe889d23538adf9eab1f1 "$OUT/ending" > "$OUT/ending/CHROME.log" 2>&1 &
