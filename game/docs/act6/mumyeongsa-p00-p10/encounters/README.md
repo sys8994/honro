@@ -16,13 +16,15 @@
 
 59 교각 수비는 장 소유자가 `Engine.wait`만 보던 상태에서 실제 앱 방어가 관측되지 않았다. 일반 방어의 동일한 행동 소비를 장 소유자가 확인하도록 연결했다. 390×844 실제 터치로 휘겸을 `(3456.15, 2928.85)`에 놓고 방어한 뒤 적 턴을 넘겨 수비 완료를 확인했다. [로그](courtyard-defend-59.json) · [화면](screens/courtyard-defend-59.webp)
 
-59의 시드 `19388` 기존 체크포인트에서 실제 터치로 기둥 앞까지 나가 기본 포격을 쓰는 전진 판을 따로 실행했다. 4라운드 서쪽 증원 HMO01이 휘겸 실드 `400→370`, 동쪽 증원 HMO02가 담허 체력 `691.4→650.4`를 줄였다. 5라운드에는 두 증원이 각각 휘겸 체력과 소단 실드를 줄였다. 서쪽은 3라운드에 접지와 사격 후보를 만족했으나 8명 공격 큐에 들지 않았고 4라운드부터 양쪽이 참가했다. 같은 시드의 방어 유지 판과 단독 호스트 성능은 별도 기록한다. [전진 원자료](courtyard-advance-59.json) · [화면](screens/courtyard-advance-59.webp)
+59의 같은 기존 체크포인트와 시드 `19388`에서 터치 방어 유지와 기본 포격으로 전진·노출하는 판을 각각 돌렸다. 방어 판은 실제 적 피해 처리 37회에서 실드가 줄었고, 이 중 2회는 체력도 줄었다. 서쪽 증원의 4라운드 HMO02는 설오 실드 `206→147`을 줄였다. 동쪽 증원은 4라운드에 후보였으나 8명 큐에 들지 않았고 5라운드 HMO01을 실제 발사했다. 방어 판에서 동쪽 증원의 아군 명중은 관측되지 않았다. [방어 원자료](courtyard-defend-solo-59.json) · [화면](screens/courtyard-defend-solo-59.webp)
+
+전진 판의 4라운드에 서쪽 증원 HMO01이 휘겸 실드 `400→370`, 동쪽 증원 HMO02가 담허 체력 `691.4→650.4`를 줄였다. 5라운드에는 서쪽이 휘겸 체력을, 동쪽이 소단 실드를 줄였다. 서쪽은 3라운드에 접지와 사격 후보를 만족했으나 큐에 들지 않았고 4라운드부터 양쪽이 참가했다. [전진 원자료](courtyard-advance-59.json) · [화면](screens/courtyard-advance-59.webp)
 
 54는 담허와 원래 수문지기 객체를 유지하고 장 소유자가 검사한 적만 각 방에 들인다. 진행 중인 포격·진목·장 효과가 남으면 방을 바꾸지 않는다. 실제 발점과 원래 수문지기 제압이 확인된 뒤 이전 방의 증원만 남겨 두고, 관측과 발점이 맞으면 다시 다음 차트로 넘어간다.
 
 [정량 표본 CSV](observed.csv)는 라운드마다 실제 발사한 적 수와 엔진 공격 큐 상한을 함께 기록했다. 빈 칸은 관측하지 못한 값이다. 라운드 표본은 전체 범위 승인을 뜻하지 않는다.
 
-PC에서 51은 일반 쉼터, 52는 기존 정상 기록을 열어 실제 키로 세 구간을 이동했다. 기존 원본 발점과 신설 적의 실제 발판을 기록했다. PC 호스트의 수집 표본은 각각 16.8·33.3 ms p95였다. 59 터치 표본의 호스트 p95는 병렬 Chromium 실행 중 50.0 ms로 33 ms 목표를 넘었다. 저사양 실기기, 장 완료까지 연속 세 시드, 난이도 차이와 59 가름진 종료는 별도 검수한다.
+PC에서 51은 일반 쉼터, 52는 기존 정상 기록을 열어 실제 키로 세 구간을 이동했다. 기존 원본 발점과 신설 적의 실제 발판을 기록했다. PC 호스트의 수집 표본은 각각 16.8·33.3 ms p95였다. 390×844 59 터치 방어의 호스트 p95는 Chromium 병렬 실행 때 50.0 ms, 단독 실행 때 16.8 ms였다. 단독 표본은 33 ms 목표 이내였다. 저사양 실기기, 장 완료까지 연속 세 시드, 난이도 차이와 59 가름진 종료는 별도 검수한다.
 
 ```bash
 npm run build
@@ -43,4 +45,5 @@ python game/docs/act6/mumyeongsa-p00-p10/baseline/return_gate.py --build "$PWD" 
 python game/docs/act6/mumyeongsa-p00-p10/baseline/courtyard_combat.py --build "$PWD" --out /tmp/honro-act6-courtyard59-touch --rounds 5 --touch
 python game/docs/act6/mumyeongsa-p00-p10/baseline/courtyard_combat.py --build "$PWD" --out /tmp/honro-act6-courtyard59-defend --rounds 3 --touch --check-defend
 python game/docs/act6/mumyeongsa-p00-p10/baseline/courtyard_combat.py --build "$PWD" --out /tmp/honro-act6-courtyard59-advance --rounds 6 --touch --advance
+python game/docs/act6/mumyeongsa-p00-p10/baseline/courtyard_combat.py --build "$PWD" --out /tmp/honro-act6-courtyard59-solo --rounds 6 --touch --check-defend
 ```
