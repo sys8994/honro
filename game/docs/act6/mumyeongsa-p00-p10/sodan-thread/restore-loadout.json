@@ -1,0 +1,62 @@
+{
+  "status": "PASS",
+  "restoredLoadout": {
+    "before": [
+      "O01",
+      "O04",
+      "O03",
+      "O06"
+    ],
+    "after": [
+      "O01",
+      "O04",
+      "O03",
+      "O06"
+    ]
+  },
+  "actualO06": [
+    {
+      "event": "fire",
+      "skill": "O06",
+      "angle": -19.041600000001072,
+      "power": 0.5178059834817113,
+      "actor": "p-occultist",
+      "grounded": true,
+      "x": 5295.509754211021,
+      "y": 3043.557251994694,
+      "prediction": {
+        "x": 5318.554825311301,
+        "y": 2993.521381016524,
+        "unit": "a6-c07-optional-drift",
+        "terrain": null
+      },
+      "shot": 24,
+      "gravity": {
+        "x": -29.371422493792284,
+        "y": 309.8627485359121
+      }
+    },
+    {
+      "event": "impact",
+      "skill": "O06",
+      "actor": "p-occultist",
+      "target": "a6-c07-optional-drift",
+      "terrain": null,
+      "x": 5318.554825311301,
+      "y": 2993.521381016524,
+      "normal": {
+        "x": 0,
+        "y": -1
+      },
+      "radius": 6,
+      "shot": 24,
+      "before": 850,
+      "after": 328,
+      "shieldBefore": 0,
+      "shieldAfter": 0
+    }
+  ],
+  "sameObjects": true,
+  "saveBefore": "5b8dbe3ab1a9c15a7d966736fc07a6c79b286cee3f29c147a9e3534f307599f7",
+  "saveAfter": "5b8dbe3ab1a9c15a7d966736fc07a6c79b286cee3f29c147a9e3534f307599f7"
+}

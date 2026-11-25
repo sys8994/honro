@@ -12,3 +12,5 @@
 npm run build
 python game/docs/act6/mumyeongsa-p00-p10/baseline/relay_live_chain.py --build "$PWD" --out /tmp/honro-bell-lane --bell-only --bell-case repair
 ```
+
+온전한 결속 판에서는 1라운드에 화살이 빗나갔으나 휘겸이 빈종각귀의 발사 방향을 받아낸 뒤 살아 있는 원본을 실제 검격으로 처치했다. 첫 HLN01이 x2143.248의 휘겸에게 체력 피해를 줬으며 좌정 결속 판정 범위 밖이었다. 2라운드 정렬과 56 라이브·새 컨텍스트를 확인했다. 방치 판은 초반 방어 후 실제 연속 결속 명중으로 3라운드에 패배했다. 56 저장이 생성되지 않았다. [온전한 결속](intact.json) · [정렬 화면](intact.webp) · [방치 패배](collapse.json) · [패배 화면](collapse.webp)

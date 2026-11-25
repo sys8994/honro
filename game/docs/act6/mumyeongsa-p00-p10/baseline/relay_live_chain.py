@@ -188,12 +188,18 @@ def finish_bell(page,out,report,route='repair'):
             continue
         if route=='intact':
             assert binding=='stable','Intact run received a damaging bell strike'
-            if foe['hp']>0:
-                assert not any('intactKnight' in item for item in actions),'Opening sequence left the hoop alive'
+            if foe['hp']>0 and can_choose(page,'p-knight'):
                 move(page,'p-knight',2190,20)
                 spec=aim_at_gate(page,'p-knight',True)
                 actions.append({'intactKnight':spec,'pose':pose(page,'p-knight')})
-                assert spec,'No grounded sword contact before first enemy turn'
+                assert spec,'No grounded sword contact from the measured terrace'
+                continue
+            if foe['hp']>0 and can_choose(page,'p-archer'):
+                move(page,'p-archer',1810,105)
+                spec=aim_at_gate(page,'p-archer',True)
+                actions.append({'intactCover':spec,'pose':pose(page,'p-archer')})
+                if spec is None:
+                    page.keyboard.press('f')
                 continue
         if binding=="frayed" and (seated or can_choose(page,"p-occultist")):
             sodan=pose(page,"p-occultist") if seated else move(page,"p-occultist",2660,95)

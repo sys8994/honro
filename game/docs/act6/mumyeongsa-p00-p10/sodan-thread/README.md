@@ -43,3 +43,5 @@ python game/docs/act6/mumyeongsa-p00-p10/baseline/mobile_bell.py --build "$PWD" 
 ```bash
 python game/docs/act6/mumyeongsa-p00-p10/baseline/sodan_acceptance.py --build "$PWD" --out /tmp/honro-sodan-acceptance
 ```
+
+57 일반 저장에서 담허 회수 전 O06이 차단된 것을 확인했다. 회수 뒤 동일한 기예 배열을 가진 소단이 다시 실제 O06을 적중시켰고 사용 뒤 배열도 그대로였다. 네 원본은 동일 객체로 D를 건넜으며 58 새 컨텍스트가 같은 저장 바이트를 읽었다. [57 복귀와 명중](restore-loadout.json)
