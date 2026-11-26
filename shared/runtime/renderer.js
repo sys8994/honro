@@ -220,8 +220,8 @@
         _terrainPaintBounds(t){const work=!!t.honroWorkAccess,cap=t.honroV4Support?32:0;return{left:t.x-(work?32:0),right:t.x+t.w+(work?32:0),top:t.y-cap,bottom:t.y+Math.max(t.h,work?600:0)};}
         _naruRasterBounds(b){
             const domain={...b.honroTerrainBounds};
-            // Only fresh Stage3's explicit approved art may exceed collision bounds.
-            // Every other stage keeps the original master path and domain reference.
+            // Explicit art may extend the render tiles without moving the
+            // authoritative terrain or the camera bounds.
             for(const l of G.HonroTerrainDomain.materialLandmarks(b)){
                 if(l.asset?.params?.paintBeyondTerrainDomain!==true)continue;
                 const a=this._landmarkPaintBounds(l);if(!a)continue;
@@ -437,7 +437,8 @@
         _drawTerrainDomainTiles(c,b,w,h){
             // Geographically fixed tiles, never a bitmap cut at Play Bounds.
             // Pixel-aligned clips consume each gutter sample exactly once.
-            const rs=this._worldRasterScale(b,w),px=512,gutter=2,size=px/rs,v=G.HonroBounds.viewport(this,w,h),domain=b.honroStage===3?this._naruRasterBounds(b):b.honroTerrainBounds,
+            const act6Foundation=[53,54].includes(b.honroStage)&&b.honroCanonical===true&&b.honroCustom===false&&b.honroMapOrigin==='campaign';
+            const rs=this._worldRasterScale(b,w),px=512,gutter=2,size=px/rs,v=G.HonroBounds.viewport(this,w,h),domain=b.honroStage===3||act6Foundation?this._naruRasterBounds(b):b.honroTerrainBounds,
                 key=this._worldCacheKey(b,w),limit=this._domainTileLimit?.(b,w)??(w<900?12:24),budget=this._domainTileBudget?.(b,w)??Infinity;let built=0;this._domainTilesDeferred=false;
             let q=this._domainTiles;if(!q||q.key!==key){this._releaseDomainTiles();q=this._domainTiles={key,tiles:new Map(),rs};this._cacheStats.worldBuilds++;}
             const minX=Math.floor(Math.max(v.left,domain.left)/size),maxX=Math.floor(Math.min(v.right,domain.right)/size),

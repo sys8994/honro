@@ -117,6 +117,8 @@ function foundation53(){
     [3751,2280],[3632,2312],[3515,2391]]),
   face('#57564a',[[3682,1301],[3810,1253],[3918,1179],[4002,1186],[3930,1215],[3834,1284],[3748,1333]])
  ]);
+ west.asset.params.paintBeyondTerrainDomain=true;
+ east.asset.params.paintBeyondTerrainDomain=true;
  return {west,east};
 }
 function nativeY(line,x){

@@ -46,7 +46,7 @@ export function createBrokenRail(spec){
   ['#9b8a69',[[floor.left,floor.top],[floor.right,floor.top],[floor.right,floor.top+14],[floor.left,floor.top+12]]]
  ].map(([fill,points])=>({fill,points:points.map(plain)}));
  const asset={id:spec.id,renderer:'vector',category:'terrain',layer:'prop',anchor:{x:0,y:0},
-  bounds:{x:2632,y:-320,w:4044-2632,h:1173+320},collision:[],visual:art,sockets:[],params:{}};
+  bounds:{x:2632,y:-320,w:4044-2632,h:1173+320},collision:[],visual:art,sockets:[],params:{paintBeyondTerrainDomain:true}};
  const element={id:'art-'+spec.id,assetId:spec.id,x:0,y:0,scale:1,rotation:0,snap:false,layer:'prop',depthLayer:'L1',visualRole:'scenery'};
  const rear={...asset,id:spec.id+'-rear',layer:'back',bounds:{x:2792,y:-150,w:748,h:900},visual:[
   ['#302e2c',[[2860,-150],[3540,-150],[3540,768],[2780,768],[2796,212]]],
