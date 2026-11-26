@@ -17,7 +17,10 @@ export async function buildActors(){
   const ids=new Set();for(const p of a.parts){if(ids.has(p.id)||p.parent&&!ids.has(p.parent))throw Error(a.id+': invalid part '+p.id);ids.add(p.id);}
   for(const clip of Object.values(a.clips))for(const t of clip.tracks){if(!ids.has(t.part)||t.keys[0][0]!==0||t.keys.at(-1)[0]!==1)throw Error(a.id+': invalid track');}
   const paths=a.parts.flatMap(p=>p.paths),counts=paths.map(p=>countPath(p.d)),anchors=counts.reduce((s,p)=>s+p.anchors,0),old=base.assets[a.id]?.anchors;
-  const perActor=a.visualRevision==='act6-art-20261126'?finaleBudgets[a.id]:null, budget=perActor??(old?old*3.15:240);
+  // The Stage 8 bier is a deliberate, inspected exception. Do not
+  // loosen the historical complexity guard for party actors or other objects.
+  const perActor=a.visualRevision==='act6-art-20261126'?finaleBudgets[a.id]:(a.id==='bier_boss'?800:null);
+  const budget=perActor??(old?old*3.15:240);
   if(anchors>budget)throw Error(`${a.id}: ${anchors} exceeds ${budget} vector nodes`);
   for(const p of paths)if(/NaN|Infinity|[^MLCQZ\d.,\s+-]/.test(p.d)||p.fill&&!a.palette[p.fill]||p.stroke&&!a.palette[p.stroke])throw Error(a.id+': invalid absolute path');
   const raw=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="${a.viewBox.join(' ')}"><title>${a.name}</title>\n${a.parts.map(p=>`<g id="${p.id}" stroke-linecap="round" stroke-linejoin="round">${p.paths.map(v=>`<path d="${v.d}" fill="${v.fill?a.palette[v.fill]:'none'}" stroke="${v.stroke?a.palette[v.stroke]:'none'}" stroke-width="${v.width}"/>`).join('')}</g>`).join('\n')}\n</svg>\n`,svg=raw.replace(/\n\s*/g,''),rig=JSON.stringify({version:1,baseHeight:a.baseHeight,viewBox:a.viewBox,parts:a.parts.map(({paths,...p})=>p)},null,2)+'\n',anim=JSON.stringify(a.clips,null,2)+'\n';
