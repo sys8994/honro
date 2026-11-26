@@ -153,7 +153,7 @@
         const key=b.honroState.localReturnGuardAftermath?'guardFound':null;
         if(key&&showAct6Milestone(a,s,key,finale59Dialogue[key]))return true;
         if(p?.giant?.alive&&!st.forepaw&&showAct6Milestone(a,s,'forepaw',finale59Dialogue.forepaw))return true;
-        if(!st.cliff&&!st.mage&&p?.fronts?.every(f=>f.spawned>0))return showAct6Milestone(a,s,'twoWings',finale59Dialogue.twoWings);
+        if(!st.cliff&&!st.mage&&p?.fronts?.every(f=>f.spawned>0)&&showAct6Milestone(a,s,'twoWings',finale59Dialogue.twoWings))return true;
         for(const [fact,cue] of [['cliff','cliffHeld'],['mage','faultHeld'],['bridge','bridgeHeld'],['soul','soulHeld']])
           if(st[fact]&&showAct6Milestone(a,s,cue,finale59Dialogue[cue]))return true;
         return false;
