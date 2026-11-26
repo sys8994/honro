@@ -333,6 +333,7 @@ function travel(app,id){if(app.screen==='journey'&&id==='end'&&app.journeySelect
 function enterRest(app,id){app.journeyInputAfter=performance.now()+400;app.close();const s=state(app.profile);s.restStageId=id||null;if(app.debugMode){app.debugRestStage=id||null;app.prepareDebugCamp();}showRest(app);}
 function requestRest(app){
  if(G.HonroActEndings?.show(app))return;
+ if(G.HonroCampaignStills?.openFresh(app,()=>requestRest(app)))return;
  // Practice/custom maps own no campaign battle; returning preserves their
  // protected owner. A later explicit campaign entry still asks to replace it.
  if(app.training||app.customMap||G.HONRO_EMBEDDED)return showRest(app);

@@ -308,6 +308,10 @@ export async function buildWeb({vector=true,destination=path.join(root,'HONRO.ht
         item.url=item.status==='ready'?{$honroAsset:await emit('graphics',`skill-icon-${id}`,'webp',await readFile(path.join(root,item.file)))}:null;
       }
     }
+    if(entry.name==='shared/runtime/campaign-stills.js'){
+      const {compileCampaignStills}=await import('./campaign-stills/build.mjs');
+      entry.code=(await compileCampaignStills({root,emit,sharp}))+entry.code;
+    }
     if(entry.name==='shared/runtime/act-endings-content.js'){
       // Resolve art at build time, without fetching it at startup. Missing
       // parent-supplied portraits retain the existing landscape presentation.

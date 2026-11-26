@@ -16,11 +16,13 @@
   const side=orient();
   for(const cut of timeline.cuts)void load(assets.stills[cut.id][side]);
  }
- function open(app,mode,leave){
+ function open(app,mode,leave,options={}){
   if(sessions.has(app))return null;
   const style=node('style');style.textContent=css;doc.head.append(style);
   const root=node('section','he-root');root.dataset.endingMode=mode;root.dataset.endingPhase='intro';root.tabIndex=-1;
-  root.setAttribute('role','dialog');root.setAttribute('aria-modal','true');root.setAttribute('aria-label','혼로 엔딩');
+  root.setAttribute('role','dialog');root.setAttribute('aria-modal','true');root.setAttribute('aria-label',options.label||'혼로 엔딩');
+  if(options.id){root.id=options.id;root.dataset.campaignStills=mode;}
+  if(options.stage)root.dataset.stage=String(options.stage);
   const backdrop=node('div','he-media'),veil=node('div','he-veil'),fx=node('div','he-fx'),words=node('div','he-copy'),
     controls=node('div','he-controls'),status=node('p','he-status');
   words.setAttribute('aria-live','polite');status.setAttribute('role','status');
@@ -28,7 +30,7 @@
   const held=[...app.root.children].map(n=>[n,n.inert]);
   for(const [n] of held)n.inert=true;
   app.root.append(root);
-  const s={app,mode,root,backdrop,fx,words,controls,status,closed:false,rafs:new Set(),timers:new Set(),hold:null};
+  const s={app,mode,options,root,backdrop,fx,words,controls,status,closed:false,rafs:new Set(),timers:new Set(),hold:null};
   sessions.set(app,s);
   const stop=e=>e.stopPropagation();
   root.addEventListener('pointerdown',stop);root.addEventListener('pointerup',stop);root.addEventListener('click',stop);
@@ -132,8 +134,9 @@
   s.root.dataset.endingPhase='stills';s.words.replaceChildren();s.status.textContent='';
   const picture=node('img','he-still');picture.alt='';s.backdrop.replaceChildren(picture);
   const skip=button('건너뛰기','skip'),audioPlay=button('음악 재생','audio');audioPlay.hidden=true;s.audioPlay=audioPlay;
-  skip.setAttribute('aria-label','2초간 눌러 엔딩 건너뛰기');s.controls.replaceChildren(skip,audioPlay);
-  const origin=G.performance.now(),p=s.playing={origin,audioOrigin:origin,hiddenAt:null,index:-1,beat:-1,side:null,transition:null};
+  skip.setAttribute('aria-label','2초간 눌러 '+(s.options.skipLabel||'엔딩')+' 건너뛰기');s.controls.replaceChildren(skip,audioPlay);
+  if(s.options.backLabel){const back=button(s.options.backLabel,'back');back.addEventListener('click',e=>{if(e.isTrusted)s.leave();});s.controls.prepend(back);}
+  const now=G.performance.now(),origin=now-(s.options.startAt||0),p=s.playing={origin,audioOrigin:now,hiddenAt:doc.hidden?now:null,index:-1,beat:-1,side:null,transition:null};
   s.root.setAttribute('aria-description','화면을 누르거나 스페이스 키를 누르면 다음 문장으로 넘어갑니다.');
   resumeAudio(s);
   audioPlay.addEventListener('click',e=>{if(e.isTrusted){audioPlay.hidden=true;resumeAudio(s);}});
@@ -148,8 +151,8 @@
    if(!cue||cue.final&&cue.beat===2)return;
    const target=(cue.start+cue.beatStart+cue.beatSpan)*1000+.1;
    const next=timeline.cueAt(target);
-   if(!next||target<=elapsed)return;
-   p.transition={since,elapsed,target,changesImage:next.index!==cue.index};
+   if(target<=elapsed||!next&&!s.options.leaveOnLastTap)return;
+   p.transition={since,elapsed,target,changesImage:!next||next.index!==cue.index};
   }
   s.root.addEventListener('click',e=>{if(!e.target.closest?.('button'))advance(e);},{signal:s.lifecycle.signal});
   s.resetInputs=cancel;
@@ -177,7 +180,7 @@
     }
    }
    if(changed||beat!==p.beat){
-    p.beat=beat;s.root.dataset.endingBeat=String(beat);s.words.replaceChildren();
+    p.beat=beat;s.root.dataset.endingBeat=String(beat);s.words.replaceChildren();s.options.onCue?.(cue);
     if(final&&beat===1){
      const credits=node('div','he-credit');
      credits.append(node('h1','','혼로'),node('p','he-roman','HONRO'),node('p','','기획 · 시나리오 · 아트 · 프로그래밍'));
@@ -241,5 +244,5 @@
   x.debugControls=a=>formerControls(a).replace('</div></section>','<button type="button" data-action="debug-act-ending-preview" data-id="60">6막</button></div></section>');
   x.previewDebug=(a,id)=>Number(id)===60?debug(a):formerPreview(a,id);
  }
- return Object.freeze({installDebug,silenceStock:app=>sessions.has(app),open,intro});
+ return Object.freeze({installDebug,silenceStock:app=>sessions.has(app),open,intro,play,prewarm});
 }
