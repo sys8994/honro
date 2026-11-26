@@ -16,8 +16,23 @@ export function createBrokenRail(spec){
  const terrain=[...outlines,...dummies].map(({id,points})=>({id,name:id,points:points.map(plain),type:'solid',baseMaterial:'rock',breakable:false}));
  const crossY=spec.seamY+y;
  const courses=[0,112,218,331,462,581];
+ // The foundation is the same painted section on both sides. It follows the
+ // outer jamb into the bedrock below the sill, clear of the inner wall face.
+ const foundation=[
+  ['#41433d',[[3490,375],[3630,329],[3770,241],[3860,244],[3890,357],[3978,426],[3938,563],
+    [4044,670],[3986,804],[4020,945],[3896,1072],[3774,1097],[3710,1173],[3528,1142],[3310,1022],[3370,864],[3450,781]]],
+  ['#535249',[[3505,383],[3673,360],[3770,241],[3860,244],[3816,368],[3731,423],[3590,449],[3515,500]]],
+  ['#494b44',[[3515,500],[3590,449],[3731,423],[3906,436],[3955,471],[3900,522],[3740,548],[3607,599],[3515,617]]],
+  ['#373b37',[[3370,864],[3541,843],[3685,754],[3837,696],[3986,682],[3980,767],[3862,833],
+    [3740,859],[3610,936],[3510,954],[3462,1000],[3310,1022]]],
+  ['#4b4a42',[[3528,1081],[3632,1040],[3701,977],[3810,914],[3913,901],[3976,876],[3990,926],
+    [3932,985],[3823,1018],[3746,1083],[3710,1124],[3626,1127]]],
+  ['#3e413b',[[3701,977],[3750,931],[3821,897],[3909,882],[3950,836],[3995,799],[3984,858],[3913,901],[3810,914]]],
+  ['#535047',[[3471,830],[3566,794],[3627,739],[3725,719],[3694,754],[3605,803],[3550,826]]]
+ ];
  const art=[
   ...dummies.map(t=>[t.paint,t.points]),
+  ...foundation,
   ['#555048',outlines[0].points],['#514c43',outlines[1].points],['#483d32',outlines[2].points],['#615142',outlines[3].points],
   ...courses.flatMap((offset,i)=>{
    const ax=wall.left,ay=wall.top+offset,by=ay+104;
@@ -31,7 +46,7 @@ export function createBrokenRail(spec){
   ['#9b8a69',[[floor.left,floor.top],[floor.right,floor.top],[floor.right,floor.top+14],[floor.left,floor.top+12]]]
  ].map(([fill,points])=>({fill,points:points.map(plain)}));
  const asset={id:spec.id,renderer:'vector',category:'terrain',layer:'prop',anchor:{x:0,y:0},
-  bounds:{x:2632,y:-320,w:wall.right+305-2632,h:wall.bottom+274+320},collision:[],visual:art,sockets:[],params:{}};
+  bounds:{x:2632,y:-320,w:4044-2632,h:1173+320},collision:[],visual:art,sockets:[],params:{}};
  const element={id:'art-'+spec.id,assetId:spec.id,x:0,y:0,scale:1,rotation:0,snap:false,layer:'prop',depthLayer:'L1',visualRole:'scenery'};
  const rear={...asset,id:spec.id+'-rear',layer:'back',bounds:{x:2792,y:-150,w:748,h:900},visual:[
   ['#302e2c',[[2860,-150],[3540,-150],[3540,768],[2780,768],[2796,212]]],
