@@ -1,3 +1,5 @@
+import {handoffMaterialSecondary} from "./handoff-material.mjs";
+import {handoffMaterial} from "./role-material.mjs";
 import {mkdir,writeFile,readFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {fileURLToPath} from 'node:url';
@@ -10,11 +12,11 @@ const xml=s=>s.replaceAll('&','&amp;').replaceAll('"','&quot;').replaceAll('<','
 async function writeChanged(file,data){try{if(await readFile(file,'utf8')===data)return;}catch(error){if(error.code!=='ENOENT')throw error;}await writeFile(file,data);}
 export async function buildMonsters(){
  await mkdir(dir,{recursive:true});await mkdir(out,{recursive:true});
- const sourceFiles=['tools/monster-forge/recipes.mjs','tools/monster-forge/species.mjs','tools/monster-forge/act3-species.mjs','tools/monster-forge/redesign.mjs','tools/monster-forge/recommended-redesign.mjs','tools/monster-forge/animal-restoration.mjs','tools/monster-forge/material-depth.mjs','tools/monster-forge/monster-rework-art.json'];
+ const sourceFiles=['tools/monster-forge/recipes.mjs','tools/monster-forge/species.mjs','tools/monster-forge/act3-species.mjs','tools/monster-forge/redesign.mjs','tools/monster-forge/recommended-redesign.mjs','tools/monster-forge/animal-restoration.mjs','tools/monster-forge/material-depth.mjs','tools/monster-forge/role-material.mjs','tools/monster-forge/handoff-material.mjs','tools/monster-forge/monster-rework-art.json'];
  const inputs=await Promise.all(sourceFiles.map(async name=>[name,(await readFile(path.join(root,name),'utf8')).replaceAll('\r\n','\n')]));
  const sourceSha256=sha(inputs.map(([name,text])=>name+'\n'+text).join('\n')),rows=[];
  const handoff=JSON.parse(inputs.at(-1)[1]);
- const catalog=[...monsters,...handoff.assets];
+ const catalog=[...monsters,...handoff.assets.map(handoffMaterial).map(handoffMaterialSecondary)];
  if(new Set(catalog.map(a=>a.id)).size!==catalog.length)throw Error('Duplicate monster asset ID');
  const baseline=JSON.parse(await readFile(path.join(root,'tests/fixtures/monster-baseline.json'),'utf8'));
  for(const a of catalog){
