@@ -10,6 +10,7 @@ const auth=['act6.garmjinCompleted','act6.finalThreatResolved'];
 // The four forward groups on each wing contest the anchors. Later groups reinforce a
 // stalled line until the garmjin is joined. Leaving the field is a physical retreat.
 export const FRONTS59=Object.freeze({
+ bodies:{mourner:{h:155,r:45,hp:1.12,attack:1.12},shade:{h:123,r:36,hp:1.04,attack:1.09},warden:{h:222,r:60,hp:1.26,attack:1.18},forepaw:{h:360,r:116,hp:2.8,attack:1.2}},
  perFrontCap:6,totalCap:14,attackCap:8,soften:{hp:.85,attack:.75},warn:1,period:2,forward:630,rear:340,breachLimit:3,guard:260,anchorGroups:4,
  posts:[{id:'west-cleat',x:522*7800/2172,label:'서쪽 지지석',radius:170},{id:'bell-path',x:1490*7800/2172,label:'종터 혼길',radius:170}],
  fronts:[
@@ -35,6 +36,7 @@ export const sentries59=Object.freeze([
  ['east-bell','shade',1585,near],['east-bend','mourner',1790,near],
  ['east-stone','shade',1860,near],['east-ward','warden',1960,near]
 ]);
+const finaleArt=kind=>kind==='warden'?'gate_armor':kind==='shade'?'wonhon_knotted':'wonhon';
 const eq=(a,b)=>JSON.stringify(a)===JSON.stringify(b), copy=structuredClone;
 const alive=u=>u&&Number.isFinite(u.hp)&&u.hp>0&&!u.dead;
 const down=u=>u?.hp===0&&u.dead===true;
@@ -69,7 +71,18 @@ export async function createStage59Owner({C,packet,authorize,verifyIncoming,crea
   const state={retreat:false,cliff:false,bridge:false,bell:false,soul:false,mage:false,forepaw:null,activated:false,cleared:false};
   let waited=null, upper=null, bell=null, warning=null, clash=null,witness=null,retreatOrder=null;
   function note(kind,detail={}){log.push({kind,round:b.round,...detail});}
-  function reserve([id,kind,u,t]){
+  function presentBody(v,t,role=v.honroType){
+  const form=FRONTS59.bodies[role];
+  if(!form)return v;
+  for(const f of [1,.9,.8]){
+   const pose={...v,h:Math.max(v.h,Math.round(form.h*f)),r:Math.max(v.r,Math.round(form.r*f))};
+   if(!grounded(pose,t))continue;
+   v.h=pose.h;v.r=pose.r;break;
+  }
+  v.hp=v.maxHp=Math.round(v.maxHp*form.hp);v.attack*=form.attack;
+  return v;
+ }
+ function reserve([id,kind,u,t]){
    if(e.unit(id))return (console.log('native59 deny 49'),null);
    const x=u*k,y=C.topAt(terrain.find(a=>a.id===t),x);
    const v=createEnemy({app,engine:e,id,kind,x,y,terrain:t,facing:t===high||u>1050?-1:1});
@@ -80,7 +93,7 @@ export async function createStage59Owner({C,packet,authorize,verifyIncoming,crea
   if(!threat||threat.fixed||!threat.loadout?.includes('HWD01'))return (console.log('native59 deny 56'),null);
   const sentries=sentries59.map(([name,kind,x,support])=>reserve(['finale-first-'+name,kind,x,support]));
   if(sentries.some(u=>!u))return null;
-  threat.honroRigAsset='gate_armor';threat.name='교각의 문턱 꼭두';
+  presentBody(threat,near);threat.honroRigAsset='gate_armor';threat.name='교각의 문턱 꼭두';
   const origin=threat.x; const add=v=>b.units.push(v);add(threat);
   const repelled=()=>retreatOrder!==null&&retreatOrder.walked>0&&grounded(threat,near)&&threat.x-retreatOrder.from>=240&&threat.x-witness.x>=500;
   const resolved=()=>down(threat)||repelled();
@@ -139,7 +152,7 @@ export async function createStage59Owner({C,packet,authorize,verifyIncoming,crea
     u.hp=u.maxHp=Math.round(u.maxHp*(u.honroType==='warden'?.45:.55));
     u.attack*=.65;
     u.group=640+b.units.length;
-    u.honroRigAsset=u.honroType==='warden'?'gate_armor':'wonhon';
+    presentBody(u,sentries59[i][3]);u.honroRigAsset=finaleArt(u.honroType);
     add(u);track(u,fronts[i<5?0:1],sentries59[i][3]);
    }
    e.refreshActivation();note('opening-sentries',{ids:sentries.map(u=>u.id)});
@@ -177,8 +190,8 @@ export async function createStage59Owner({C,packet,authorize,verifyIncoming,crea
      const v=reserve([id+'-'+suffix,kind,seat,t]);
      if(!v)continue;
      // Courtyard bodies are knotted fragments of the dead, lighter than a whole possessed body.
-     if(kind!=='warden'){v.maxHp=v.hp=Math.round(v.maxHp*FRONTS59.soften.hp);v.attack*=FRONTS59.soften.attack;v.honroRigAsset='wonhon';v.name=kind==='shade'?'맺힌 원혼':'넘쳐온 원혼';}else{v.name='문턱 꼭두';v.armor=Math.max(v.armor,.2);v.honroRigAsset='gate_armor';}
-     picked.push({v,t,suffix});
+     if(kind!=='warden'){v.maxHp=v.hp=Math.round(v.maxHp*FRONTS59.soften.hp);v.attack*=FRONTS59.soften.attack;v.honroRigAsset=finaleArt(kind);v.name=kind==='shade'?'맺힌 원혼':'넘쳐온 원혼';}else{v.name='문턱 꼭두';v.armor=Math.max(v.armor,.2);v.honroRigAsset='gate_armor';}
+     presentBody(v,t);picked.push({v,t,suffix});
     }
     if(!picked.length){
      if(!waves.rounds.some(o=>o.round===round&&o.front===f.id)){
@@ -197,8 +210,9 @@ export async function createStage59Owner({C,packet,authorize,verifyIncoming,crea
     for(const seat of [1180,1137,1230]){
      const v=reserve(['finale-giant-forepaw','warden',seat,near]);
      if(!v)continue;
-     Object.assign(v,{name:'혼류의 앞발',honroRigAsset:'forepaw',maxHp:Math.round(v.maxHp*2.6),hp:Math.round(v.maxHp*2.6),armor:Math.max(v.armor,.18),h:Math.round(v.h*1.9),r:Math.round(v.r*1.8)});
-     if(!grounded(v,near)||localCrowd(v.x,v.y,v.r+32))continue;
+     presentBody(v,near,'forepaw');
+     Object.assign(v,{name:'혼류의 앞발',honroRigAsset:'forepaw',armor:Math.max(v.armor,.2)});
+     if(!grounded(v,near)||v.h<280||localCrowd(v.x,v.y,v.r+32))continue;
      giant=v;add(v);track(v,fronts[1],near);e.refreshActivation();
      e.message('교각 아래에서 앞발이 올라옵니다. 휘겸은 교각을 지키고, 나머지는 앞발을 쳐서 물리치십시오.');
      note('giant-arrived',{id:v.id,hp:v.hp,x:v.x,y:v.y,support:near});
@@ -232,7 +246,7 @@ export async function createStage59Owner({C,packet,authorize,verifyIncoming,crea
    }
    openFronts();
    if(!state.retreat&&local(actor.knight,900,near)){
-    upper=reserve(special.cliff);if(!upper)return false;
+    upper=reserve(special.cliff);if(!upper)return false;upper.honroRigAsset=finaleArt(upper.honroType);
     let strip;try{strip=buildStrip(e,C);}catch{return false;}
     state.retreat=true;add(upper);
     const anchorX=900*k,poses=traces.map((id,i)=>{const x=anchorX+[-23,11,24][i]*k;return {id,x,y:C.topAt(terrain[0],x),support:near,collides:false,damageable:false,targetable:false,awards:false,addUnit:false};});
@@ -245,7 +259,7 @@ export async function createStage59Owner({C,packet,authorize,verifyIncoming,crea
     note('retreat-and-forepaw',{actor:actor.knight.id,guards:poses.map(v=>v.id),witness});
    }
    if(state.retreat&&!bell&&Math.abs(actor.archer.x-462*k)<170&&grounded(actor.archer,high)){
-    bell=reserve(special.bell);if(bell){bell.maxHp=bell.hp=Math.round(bell.maxHp*.5);add(bell);note('bell-shade-arrived');}
+    bell=reserve(special.bell);if(bell){bell.honroRigAsset=finaleArt(bell.honroType);bell.maxHp=bell.hp=Math.round(bell.maxHp*.5);add(bell);note('bell-shade-arrived');}
    }
    // Fix (2026-11-25): if any hero brings the bell shade down, the bell is clear; before this a
    // kill by someone other than Sodan left the soul-path objective permanently unreachable.
@@ -399,7 +413,7 @@ export async function createStage59Owner({C,packet,authorize,verifyIncoming,crea
       const before=[a.u.hp,a.u.shield];e.hurt(a.u,damage,giant.id,false,undefined,a.contact,'normal','HWD01');
       hits.push({id:a.u.id,before,after:[a.u.hp,a.u.shield]});
      }
-     giantAttack=b.teamEnds[1];giantSweeps++;
+     giantAttack=b.teamEnds[1];giantSweeps++;giant.anim=1;
      lastGiantSweep={sequence:pending.sequence,strip:pending.strip,round:b.round};
      note('giant-sweep-resolved',{direction:pending.lane.direction,hits,damage});
      e.fx('ring',pending.strip.footprint.at(-1).x,pending.strip.footprint.at(-1).y,'#b67458',62);

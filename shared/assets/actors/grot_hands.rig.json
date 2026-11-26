@@ -1,132 +1,60 @@
 {
   "version": 1,
-  "baseHeight": 150,
+  "baseHeight": 229,
   "viewBox": [
-    -90,
-    -176,
-    180,
-    182
+    -159,
+    -231,
+    306,
+    233
   ],
   "parts": [
     {
-      "id": "root",
+      "id": "core",
       "pivot": [
         0,
-        -70
+        0
       ],
       "parent": null
     },
     {
-      "id": "leg0",
+      "id": "body",
       "pivot": [
-        -20,
-        -72
+        -10,
+        -102
       ],
-      "parent": "root"
+      "parent": "core"
     },
     {
-      "id": "leg1",
+      "id": "farHands",
       "pivot": [
-        3,
-        -72
+        8,
+        -141
       ],
-      "parent": "root"
+      "parent": "core"
     },
     {
-      "id": "leg2",
+      "id": "nearHands",
       "pivot": [
-        24,
-        -72
+        -58,
+        -162
       ],
-      "parent": "root"
+      "parent": "core"
     },
     {
-      "id": "heap",
+      "id": "farLeg",
       "pivot": [
-        0,
-        -96
+        27,
+        -74
       ],
-      "parent": "root"
+      "parent": "core"
     },
     {
-      "id": "faces",
+      "id": "nearLeg",
       "pivot": [
-        0,
-        -100
+        -77,
+        -74
       ],
-      "parent": "heap"
-    },
-    {
-      "id": "arm0",
-      "pivot": [
-        -27,
-        -108.5
-      ],
-      "parent": "heap"
-    },
-    {
-      "id": "arm1",
-      "pivot": [
-        -21.6,
-        -114.7
-      ],
-      "parent": "heap"
-    },
-    {
-      "id": "arm2",
-      "pivot": [
-        -14.1,
-        -119.2
-      ],
-      "parent": "heap"
-    },
-    {
-      "id": "arm3",
-      "pivot": [
-        -3.1,
-        -121.9
-      ],
-      "parent": "heap"
-    },
-    {
-      "id": "arm4",
-      "pivot": [
-        7.3,
-        -121.3
-      ],
-      "parent": "heap"
-    },
-    {
-      "id": "arm5",
-      "pivot": [
-        15.9,
-        -118.4
-      ],
-      "parent": "heap"
-    },
-    {
-      "id": "arm6",
-      "pivot": [
-        23.6,
-        -112.8
-      ],
-      "parent": "heap"
-    },
-    {
-      "id": "arm7",
-      "pivot": [
-        -29.3,
-        -103
-      ],
-      "parent": "heap"
-    },
-    {
-      "id": "arm8",
-      "pivot": [
-        27.4,
-        -107.8
-      ],
-      "parent": "heap"
+      "parent": "core"
     }
   ]
 }

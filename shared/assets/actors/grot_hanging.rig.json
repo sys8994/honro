@@ -1,92 +1,44 @@
 {
   "version": 1,
-  "baseHeight": 170,
+  "baseHeight": 288,
   "viewBox": [
-    -74,
-    -196,
-    148,
-    202
+    -111,
+    -290,
+    222,
+    292
   ],
   "parts": [
     {
-      "id": "root",
+      "id": "garment",
       "pivot": [
-        0,
-        -100
+        -16,
+        -244
       ],
       "parent": null
     },
     {
-      "id": "rope",
+      "id": "farReach",
       "pivot": [
-        0,
-        -190
+        41,
+        -65
       ],
-      "parent": "root"
+      "parent": "garment"
     },
     {
-      "id": "legs",
+      "id": "face",
       "pivot": [
-        0,
-        -142
+        8,
+        -132
       ],
-      "parent": "root"
+      "parent": "garment"
     },
     {
-      "id": "robe",
+      "id": "nearReach",
       "pivot": [
-        0,
-        -118
+        -5,
+        -130
       ],
-      "parent": "root"
-    },
-    {
-      "id": "torso",
-      "pivot": [
-        0,
-        -84
-      ],
-      "parent": "robe"
-    },
-    {
-      "id": "neck",
-      "pivot": [
-        0,
-        -60
-      ],
-      "parent": "torso"
-    },
-    {
-      "id": "head",
-      "pivot": [
-        0,
-        -32
-      ],
-      "parent": "neck"
-    },
-    {
-      "id": "staff",
-      "pivot": [
-        20,
-        -27
-      ],
-      "parent": "torso"
-    },
-    {
-      "id": "l-arm",
-      "pivot": [
-        -10,
-        -96
-      ],
-      "parent": "torso"
-    },
-    {
-      "id": "r-arm",
-      "pivot": [
-        10,
-        -96
-      ],
-      "parent": "torso"
+      "parent": "garment"
     }
   ]
 }

@@ -1,60 +1,52 @@
 {
   "version": 1,
-  "baseHeight": 124,
+  "baseHeight": 180,
   "viewBox": [
-    -70,
-    -134,
-    140,
-    138
+    -168,
+    -182,
+    306,
+    184
   ],
   "parts": [
     {
-      "id": "root",
+      "id": "core",
       "pivot": [
         0,
-        -46
+        0
       ],
       "parent": null
     },
     {
-      "id": "trail",
-      "pivot": [
-        0,
-        -24
-      ],
-      "parent": "root"
-    },
-    {
       "id": "body",
       "pivot": [
-        0,
-        -78
+        20,
+        -82
       ],
-      "parent": "root"
+      "parent": "core"
     },
     {
-      "id": "head",
+      "id": "mantle",
       "pivot": [
-        -2,
-        -90
+        32,
+        -134
       ],
-      "parent": "body"
+      "parent": "core"
     },
     {
-      "id": "l-arm",
+      "id": "reach",
       "pivot": [
-        -18,
-        -92
+        63,
+        -117
       ],
-      "parent": "body"
+      "parent": "core"
     },
     {
-      "id": "r-arm",
+      "id": "face",
       "pivot": [
-        18,
-        -92
+        54,
+        -127
       ],
-      "parent": "body"
+      "parent": "core"
     }
   ]
 }

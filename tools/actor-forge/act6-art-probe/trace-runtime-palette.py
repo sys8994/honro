@@ -62,6 +62,7 @@ def mask_path(mask,out,tag,speckles=3,threshold=.001):
 
 ART_PALETTES={
  'boss_daedosa':'211f22 302e29 46463e 586351 797561 9a8d73 b9afa0 d6cbbb 4c262b 733637 975442 97723f c39550 d7b071',
+ 'daedosa_head':'252226 372d29 4f3f30 65492b 8d6234 ab864b c89a52 dab56a 5f5547 797068 a0998d bcb1a2 dfceb8 6a3c34',
  'grot_hands':'211e21 34332c 49483d 5a5d4e 737765 938876 b1a28c c1ae8e d6c8ab 7d6952 9b824d',
  'grot_door':'271c1e 3d2c23 564236 785638 9c7351 b7905f d4b485 e2cda6 294c42 4f6550 63785a 69332c a75039 d19c62',
  'grot_hanging':'252426 3f392f 5c4b32 806541 a18256 5b5852 7a7369 9a9083 b5a895 cbbda5 e3d6bd',
@@ -99,7 +100,8 @@ def main(src,out,palette_size):
     result=[]
     for i,k in enumerate(colors):
         mo=matte if i==0 else (masks==k)
-        p=mask_path(mo,out,f'paint-{i:02d}',0 if i==0 else 4,0.0002 if i==0 else 0.0015)
+        p=mask_path(mo,out,f'paint-{i:02d}',0 if i==0 else int(os.environ.get('HONRO_PAINT_SPECKLES','4')),
+                    0.0002 if i==0 else float(os.environ.get('HONRO_PAINT_THRESHOLD','0.0015')))
         d,n=compact_path(p,w/2,h-2)
         if d: result.append(dict(color='#'+''.join(f'{v:02x}' for v in table[k]),d=d,anchors=n))
     (out/'candidate.json').write_text(json.dumps({'viewBox':[-w/2,2-h,w,h],'height':h-4,'paths':result},separators=(',',':'))+'\n')

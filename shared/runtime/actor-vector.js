@@ -20,8 +20,15 @@ function kind(u){
  return null;
 }
 function state(u,engine){
- const q=engine?.b.honroState?.allyQueue,active=q?.ids[q.index]===u.id;
+ const q=engine?.b.honroState?.allyQueue,active=!!q&&q.ids[q.index]===u.id;
  const st=V.state(u);
+ // Native finale tells. Once release starts, let the ordinary attack clock play the full motion.
+ if(st.attack===undefined&&!u.dead&&u.honroRigAsset==='boss_daedosa'){
+  const cue=engine?.b.honroDaedosa;
+  if(cue?.boss===u.id&&cue.mark&&!cue.mark.neutralized){st.move=false;st.attack=.28;}
+ }
+ if(st.attack===undefined&&!u.dead&&u.honroRigAsset==='grot_hanging'&&u.honroDrop){st.move=false;st.attack=.28;}
+ if(st.attack===undefined&&!u.dead&&u.honroRigAsset==='forepaw'&&engine?.b.honroState?.localFinaleGiantTelegraph?.id==='giant-forepaw-reach'){st.move=false;st.attack=.28;}
  if(u.summonKind==='eater'&&(u.eaterSwallow||0)>0)st.attack=Math.max(0,Math.min(1,1-u.eaterSwallow/.9));
  const p=u.honroScenePose;if(p){st.move=p.kind==='move';st.attack=['point','guard','hold-bell'].includes(p.kind)?.16*Math.min(1,p.time/.4):undefined;st.hit=p.kind==='recoil'?.25:undefined;st.jump=['kneel','bow','inspect'].includes(p.kind)?.42:undefined;return st;}
  if(active&&q.phase==='after'&&q.started)st.attack=Math.min(1,q.elapsed/.6);

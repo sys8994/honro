@@ -1,44 +1,44 @@
 {
   "version": 1,
-  "baseHeight": 180,
+  "baseHeight": 133,
   "viewBox": [
-    -120,
-    -204,
-    240,
-    208
+    -125,
+    -135,
+    309,
+    137
   ],
   "parts": [
     {
-      "id": "root",
+      "id": "core",
       "pivot": [
         0,
-        -24
+        0
       ],
       "parent": null
     },
     {
-      "id": "mass",
+      "id": "base",
       "pivot": [
-        -36,
-        -46
+        -13,
+        -33
       ],
-      "parent": "root"
+      "parent": "core"
     },
     {
-      "id": "arm",
+      "id": "fingers",
       "pivot": [
-        -24,
-        -82
+        43,
+        -80
       ],
-      "parent": "mass"
+      "parent": "core"
     },
     {
-      "id": "paw",
+      "id": "dangling",
       "pivot": [
-        74,
-        -180
+        -29,
+        -89
       ],
-      "parent": "arm"
+      "parent": "core"
     }
   ]
 }
