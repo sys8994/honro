@@ -66,8 +66,8 @@ export interface Collision {
 type SmallRoost={v:1;kind:'east-rock-watch';revealed:boolean};
 type MonsterWeakPoint={v:2;key:'warden-face';body:number;bonus:number;top:number;bottom:number;halfWidth:number;discovery?:'unknown'};
 type MonsterImpact={unit:Unit;x:number;y:number;weak:boolean;spent:boolean;confirmed?:boolean};
-type ScaleTrialObservation44Entry={kind:'resisted'|'weak';shot:number;owner:string;skill:string;round:number};
-type ScaleTrialObservation44={v:1;bodyShots:number[];weakShot?:number;queue:ScaleTrialObservation44Entry[];presented?:string[]};
+type ScaleTrialObservationEntry={kind:'resisted'|'weak';shot:number;owner:string;skill:string;round:number};
+type ScaleTrialObservation={v:1;bodyShots:number[];weakShot?:number;queue:ScaleTrialObservationEntry[];presented?:string[]};
 export interface Prediction {
     points: Vec[];
     x: number;
@@ -95,11 +95,14 @@ export class Engine {
     private planningRemaining=Infinity;
     private weakRays=new WeakMap<Collision,{dx:number;dy:number;radius:number;projectile:Projectile}>();
     private weakImpacts=new WeakMap<Projectile,MonsterImpact>();
-    private monsterWeakPoint(u:Unit):MonsterWeakPoint|undefined{
+    monsterWeakPoint(u:Unit):MonsterWeakPoint|undefined{
         const b=this.b as Battle & {honroMonsterScaleRevision?:number;honroStage?:number;honroCanonical?:boolean;honroCustom?:boolean;honroMapOrigin?:string};
-        if(b.honroMonsterScaleRevision!==2||b.mode!=='campaign'||!b.honroCanonical||b.honroCustom||b.honroMapOrigin!=='campaign'||!((b.honroStage===6&&u.id==='midboss-stage6')||(b.honroStage===44&&u.id==='a5-foe-5'))||u.side!==1||u.honroObjectiveTarget)return;
+        if(b.mode!=='campaign'||!b.honroCanonical||b.honroCustom||b.honroMapOrigin!=='campaign'||u.side!==1||u.honroObjectiveTarget)return;
+        const original=b.honroMonsterScaleRevision===2&&((b.honroStage===6&&u.id==='midboss-stage6')||(b.honroStage===44&&u.id==='a5-foe-5'));
+        const expanded=b.honroMonsterScaleRevision===3&&((b.honroStage===3&&u.id==='midboss-stage3')||(b.honroStage===34&&u.id==='a4-34-r-6'));
+        if(!original&&!expanded)return;
         const w=(u as Unit & {honroMonsterWeakPoint?:MonsterWeakPoint}).honroMonsterWeakPoint;
-        if(w?.v===2&&w.key==='warden-face'&&(b.honroStage!==44||w.discovery==='unknown')&&[w.body,w.bonus,w.top,w.bottom,w.halfWidth].every(Number.isFinite)&&w.body>0&&w.body<=1&&w.bonus>=w.body&&w.bonus<=1.5&&w.top>=0&&w.bottom>w.top&&w.bottom<=1&&w.halfWidth>0&&w.halfWidth<=1)return w;
+        if(w?.v===2&&w.key==='warden-face'&&(b.honroStage===6||w.discovery==='unknown')&&[w.body,w.bonus,w.top,w.bottom,w.halfWidth].every(Number.isFinite)&&w.body>0&&w.body<=1&&w.bonus>=w.body&&w.bonus<=1.5&&w.top>=0&&w.bottom>w.top&&w.bottom<=1&&w.halfWidth>0&&w.halfWidth<=1)return w;
     }
     private monsterImpact(p:Projectile,h:Collision):MonsterImpact|undefined{
         const u=h.unit,ray=this.weakRays.get(h),w=u&&this.monsterWeakPoint(u);
@@ -123,11 +126,11 @@ export class Engine {
         }
         return out;
     }
-    private observeScaleTrial44(u:Unit,owner:Unit|undefined,p:Projectile,impact:MonsterImpact,actual:number,regionMultiplier:number){
-        const b=this.b as Battle & {honroStage?:number;honroState?:{scaleTrialObservation44?:ScaleTrialObservation44}};
+    private observeScaleTrial(u:Unit,owner:Unit|undefined,p:Projectile,impact:MonsterImpact,actual:number,regionMultiplier:number){
+        const b=this.b as Battle & {honroStage?:number;honroState?:{scaleTrialObservation44?:ScaleTrialObservation;scaleTrialObservation?:ScaleTrialObservation}};
         const cast=b.cast, memory=b.honroState;
-        if(b.honroStage!==44||u.id!=='a5-foe-5'||!memory||!impact.confirmed||actual<=0||!owner||owner.side!==0||owner.summoned||owner.enthrall||p.owner!==owner.id||p.child||p.secondary||p.autonomous||p.returning||p.body||p.followup||p.bounces||!cast||cast.owner!==p.owner||cast.skill!==p.skill||cast.shot!==p.shot||!Number.isSafeInteger(p.shot)||p.shot<=0)return;
-        const s=memory.scaleTrialObservation44??={v:1,bodyShots:[],queue:[]};
+        if(this.monsterWeakPoint(u)?.discovery!=='unknown'||!memory||!impact.confirmed||actual<=0||!owner||owner.side!==0||owner.summoned||owner.enthrall||p.owner!==owner.id||p.child||p.secondary||p.autonomous||p.returning||p.body||p.followup||p.bounces||!cast||cast.owner!==p.owner||cast.skill!==p.skill||cast.shot!==p.shot||!Number.isSafeInteger(p.shot)||p.shot<=0)return;
+        const s=b.honroStage===44?(memory.scaleTrialObservation44??={v:1,bodyShots:[],queue:[]}):(memory.scaleTrialObservation??={v:1,bodyShots:[],queue:[]});
         if(s.v!==1||s.weakShot!==undefined)return;
         const receipt={shot:p.shot,owner:p.owner,skill:p.skill,round:b.round};
         if(impact.weak){
@@ -1058,7 +1061,7 @@ export class Engine {
         }
         if (dmg <= 0)
             return;
-        if(exactImpact&&weakRule)this.fx('text',u.x,u.y-u.h-36,weak?'#e9c479':'#a2b1b6',weak?19:15,weak?'약점!':'감쇄');
+        if(exactImpact&&weakRule)this.fx('text',u.x,u.y-u.h-36,weak?'#e9c479':'#a2b1b6',weak?19:15,weak?'약점!':'감쇠');
         const friendlyFire=damageSource==='normal'?this.friendlyFireMultiplier(u,owner,p||provenance):1;
         // Reduce the existing rounded result. Fractional tenths preserve 1 -> 0.3
         // and prevent the old minimum-one rule from undoing the reduction.
@@ -1098,7 +1101,7 @@ export class Engine {
             const actual=Math.max(0,hpBefore-u.hp);keeperPressure(this,u,owner,actual);
             // Commit this HP interval before on-hit effects can recursively hurt again.
             endHit(this.b,u,contribution);
-            if(exactImpact&&impact&&p)this.observeScaleTrial44(u,rawSrc,p,impact,actual,regionMultiplier);
+            if(exactImpact&&impact&&p)this.observeScaleTrial(u,rawSrc,p,impact,actual,regionMultiplier);
             if(src && (src.side!==2||(src as any).honroAlly)){this.b.reviewDamage??={};this.b.reviewDamage[u.id]=(this.b.reviewDamage[u.id]||0)+actual;this.b.reviewFocus={x:u.x,y:u.y-u.h*.7};}
             u.hurt = .7;
             if(damageSource!=='eaterTransfer')this.emit('fx',{name:'text',x:u.x,y:u.y-u.h-7,color:critical?'#ffd45c':u.side===0?'#ffaaa3':'#fff0d2',size:critical?26:19,text:(critical?'치명! −':'−')+dmg,critical:!!critical,damage:dmg,targetId:u.id,attackId:`${owner||'environment'}:${this.b.round}:${p?.shot??this.b.shot}`});

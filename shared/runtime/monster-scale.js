@@ -5,7 +5,7 @@
 // rectangle is 2r × h, so one change moves art, hit area and HP together.
 // Every enlargement is fitted to the spot: if the head or body would meet
 // solid terrain the unit steps down toward its old size instead.
-const C=G.HONRO_CORE,LEGACY_REVISION=1,REVISION=2,PX_PER_M=60.6; // hero h92 draws 103px = 1.7 m
+const C=G.HONRO_CORE,LEGACY_REVISION=1,REVISION=2,EXPANSION_REVISION=3,PX_PER_M=60.6; // hero h92 draws 103px = 1.7 m
 // Drawn height / body h for each art (measured with the game renderer).
 const RATIO={hound:.97,boar:.97,stag:1.05,human:1.05,possessedArcher:1.15,possessedGuard:1.15,archiveFiend:1.15,gateMaster:1.33,kilnFiend:1.23,archerMaster:1.29,
  mourner:.92,shade:1.02,warden:1.12,dueoksini:1.01,eoduksini:.64,eoduksini2:.76,eoduksini3:1,geuseundae:.99,geuseunsae:1.01,mulgwishin:1.12,
@@ -23,7 +23,12 @@ const NAMED={'midboss-stage6':[6.5,1.3],'midboss-stage3':[6.5,1.3],'final40-tide
 const KEEP=new Set(['stage29-hantaerok']);
 // Explicit chapter-and-actor variants cannot bleed into other
 // chapters, difficulty profiles, Workshop maps or an existing v1 battle.
-const PLACE_VARIANTS=Object.freeze({6:Object.freeze({'midboss-stage6':Object.freeze({
+const PLACE_VARIANTS=Object.freeze({3:Object.freeze({'midboss-stage3':Object.freeze({
+ revision:3,species:'warden',metres:7.5,tone:'wetTimber',reason:'나루 물속에 오래 잠긴 장승의 몸에 물이 들었다.',
+ // Preserve the existing normal HP budget; reward precise shots, while
+ // the journal can still be secured without killing its optional guardian.
+ weak:Object.freeze({v:2,key:'warden-face',discovery:'unknown',body:.35,bonus:1.30,top:.10,bottom:.46,halfWidth:.50})
+})}),6:Object.freeze({'midboss-stage6':Object.freeze({
  species:'warden',metres:8.5,healthRatio:.32,tone:'wetTimber',reason:'무너진 교각 아래, 물을 먹은 장승의 목재가 불었다.',
  weak:Object.freeze({v:2,key:'warden-face',body:.20,bonus:1,top:.10,bottom:.46,halfWidth:.50})
 })}),16:Object.freeze({'tm-lower-point':Object.freeze({
@@ -32,15 +37,24 @@ const PLACE_VARIANTS=Object.freeze({6:Object.freeze({'midboss-stage6':Object.fre
 })}),30:Object.freeze({'sf-dw6':Object.freeze({
  species:'dueoksini',toneOnly:'quayStoneDust',reason:'나루 서편 석단에 머문 두억시니에 젖은 석분이 묻었다.'
 })}),34:Object.freeze({'a4-34-r-6':Object.freeze({
- species:'warden',shapeOnly:Object.freeze({h:430,r:60})
+ species:'warden',shapeOnly:Object.freeze({h:430,r:60}),
+ extended:Object.freeze({tone:'saltTimber',reason:'파도 아래 잠겼다 드러나는 절벽의 장승. 젖은 몸통보다 침식된 눈가가 약하다.',healthRatio:.50,
+ weak:Object.freeze({v:2,key:'warden-face',discovery:'unknown',body:.20,bonus:1,top:.10,bottom:.46,halfWidth:.50})})
 })}),40:Object.freeze({'final40-tide-keeper-1':Object.freeze({
  species:'warden',toneOnly:'saltTimber',reason:'포구를 지키는 장승의 나무가 오랜 조수에 젖어 푸르게 바랬다.'
 })}),44:Object.freeze({'a5-foe-5':Object.freeze({
  species:'warden',metres:8.5,healthRatio:.46,tone:'groveTimber',reason:'귀림 윗뿌리에 맺힌 혼기로 오래된 수목귀의 껍질과 결이 불었다.',
  weak:Object.freeze({v:2,key:'warden-face',discovery:'unknown',body:.20,bonus:1,top:.10,bottom:.46,halfWidth:.50})
 })})});
-const activeVersion=b=>b?.honroMonsterScaleRevision===LEGACY_REVISION||b?.honroMonsterScaleRevision===REVISION;
-const placeVariant=(b,u)=>b.honroMonsterScaleRevision===REVISION&&PLACE_VARIANTS[b.honroStage]?.[u.id];
+const activeVersion=b=>b?.honroMonsterScaleRevision===LEGACY_REVISION||b?.honroMonsterScaleRevision===REVISION||b?.honroMonsterScaleRevision===EXPANSION_REVISION;
+const expansionStage=n=>n===3||n===34;
+function placeVariant(b,u){
+ const revision=b.honroMonsterScaleRevision;
+ if(revision!==REVISION&&revision!==EXPANSION_REVISION)return;
+ const v=PLACE_VARIANTS[b.honroStage]?.[u.id];
+ if(v?.revision===EXPANSION_REVISION&&revision!==EXPANSION_REVISION)return;
+ return v;
+}
 const ROLE_MID={warden:5.5,vanguard:5.5,marksman:4.5,pursuer:4.2,shade:4.0};
 const NOT=new Set(['bat','crow','lantern','ghost','dokkaebibul','hound','human','muyeo','sonmalmyeong','gaekgwi','yagwanggwi','picks','minecart','resonance']);
 const disabled=()=>G.HONRO_MONSTER_SCALE_DISABLED===true;
@@ -141,6 +155,15 @@ function apply(b,u){
    sc.rest=shape.h;sc.restR=shape.r;sc.step=1;
    record(b,u,{why:'shape-only',result:'applied',h:shape.h,r:shape.r});
   }
+  const ex=v?.extended;
+  if(ex&&b.honroMonsterScaleRevision===EXPANSION_REVISION&&shape&&u.h===shape.h&&u.r===shape.r){
+   const hp=u.maxHp;
+   u.maxHp=Math.max(1,Math.round(hp*ex.healthRatio));
+   u.hp=Math.max(1,Math.round(u.hp*u.maxHp/hp));
+   if(Number.isFinite(u.combatBaseHp))u.combatBaseHp*=u.maxHp/hp;
+   u.honroMonsterScaleVariant={v:REVISION,tone:ex.tone,reason:ex.reason};
+   u.honroMonsterWeakPoint={...ex.weak};
+  }
   return;
  }
  const row=SPECIES[key];if(!row){u.honroMonsterScale={v:b.honroMonsterScaleRevision,why:'species',kept:true};return;}
@@ -154,7 +177,7 @@ function apply(b,u){
 }
 function prepare(b){
  if(disabled()||!b||b.honroMonsterScaleRevision||b.honroMapOrigin!=='campaign'||b.honroCustom||!b.honroCanonical)return;
- b.honroMonsterScaleRevision=PLACE_VARIANTS[b.honroStage]?REVISION:LEGACY_REVISION;
+ b.honroMonsterScaleRevision=expansionStage(b.honroStage)?EXPANSION_REVISION:PLACE_VARIANTS[b.honroStage]?REVISION:LEGACY_REVISION;
  if(b.honroStage===6){
   // The late upper bat already sits behind the east rock. Sign only new
   // canonical battles; Continue and noncampaign maps never acquire a latch.
@@ -240,7 +263,7 @@ function reveal(app){
  for(const u of b.units){const sc=u.honroMonsterScale;if(!sc||sc.kept||sc.revealed||u.h<250||!alive(u)||!u.awake)continue;
   sc.revealed=true;app.scene.focusUnit(u.id,1500);return;}
 }
-G.HonroMonsterScale={REVISION,LEGACY_REVISION,PLACE_VARIANTS,KEEP,addDarkness,DARK,prepare,apply,sync,headroom,look,SPECIES,NAMED,ROLE_MID,OFF_STAGES};
+G.HonroMonsterScale={REVISION,LEGACY_REVISION,EXPANSION_REVISION,PLACE_VARIANTS,KEEP,addDarkness,DARK,prepare,apply,sync,headroom,look,SPECIES,NAMED,ROLE_MID,OFF_STAGES};
 // Later finite waves and act-5 reserves use the same path.
 const diversity=G.HonroMonsterDiversity;
 if(diversity){const spawn=diversity.spawn;diversity.spawn=function(b,u,...rest){const out=spawn.call(this,b,u,...rest);apply(b,u);return out;};}

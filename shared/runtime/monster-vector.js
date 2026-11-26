@@ -21,6 +21,10 @@ function paintFor(u,id,b){
  const grove=b?.honroStage===44&&b.honroCanonical===true&&!b.honroCustom&&
   b.honroMonsterScaleRevision===2&&u.id==='a5-foe-5'&&v?.v===2&&v.tone==='groveTimber'&&w?.discovery==='unknown';
  const tone=grove?GROVE_TIMBER:v?.v===2&&v.tone==='wetTimber'?WET_TIMBER:null;
+ const expansion=b?.honroCanonical===true&&!b.honroCustom&&b.honroMonsterScaleRevision===3&&v?.v===2&&w?.v===2&&
+  ((b.honroStage===3&&u.id==='midboss-stage3'&&v.tone==='wetTimber')||
+   (b.honroStage===34&&u.id==='a4-34-r-6'&&v.tone==='saltTimber'));
+ if(expansion)return {tone:b.honroStage===34?SALT_TIMBER:WET_TIMBER,face:GROVE_EYES};
  const face=w?.v===2&&w.key==='warden-face'?(w.discovery==='unknown'?(grove?GROVE_EYES:null):FACE_LIGHT):null;
  return tone||face?{tone,face}:null;
 }
