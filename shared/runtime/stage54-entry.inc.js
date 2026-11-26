@@ -175,6 +175,29 @@
         return !!c&&e.active===u&&c.frame==='L'&&!c.pending&&c.chart.length===3&&!c.m09&&e.grounded(u)&&u.x>=2334&&u.x<=2340&&
           e.contactSurface(u.x,u.y-4,u.y+4)?.t.id==='mid-contact';
       }
+      const field54Dialogue=Object.freeze({
+        gallery:[
+          ['담허','발을 놓는 자리마다 기와가 다른 쪽에 보이네. 끝까지 가서 어디가 우리 쪽인지 먼저 봐야겠어.'],
+          ['소단','전에 걷던 면이 뒤에 남아 있어요. 제가 줄을 풀어 버리면 돌아올 때 못 찾을 수도 있겠어요.'],
+          ['담허','짧게만 풀게. 좋은 받침을 보더라도 멀리 뛰어 옮길 생각은 없네.'],
+          ['소단','그럼 먼저 보러 가 주세요. 제가 같은 자리에서 보이는지만 알려 드릴게요.'],
+          ['담허','좋네. 저 턱을 봤다고 바로 건너지는 않을게. 첫 돌로 돌아올 수 있는지부터 보지.']
+        ],
+        chart:[
+          ['소단','아까 그 기둥이 그대로 보여요. 담허님 발만 다른 데에 붙었어요.'],
+          ['담허','기둥을 기준으로 보면 돌아갈 길은 안 잃겠네. 이제 옆의 받침을 보겠어.'],
+          ['소단','발을 움직이기 전에 줄이 당기는 데를 한 번만 더 말해 주세요. 제가 안 보이는 쪽을 잡을게요.'],
+          ['담허','그래. 여기서는 저 받침이 아래가 됐네. 네 쪽에서 보이던 바닥으로 당기지 마.'],
+          ['소단','알겠어요. 소리보다 줄이 먼저 움직이면 부를게요. 건너편에서도 대답해 주세요.']
+        ],
+        stake:[
+          ['담허','이제 진목을 놓을 면이 보이네. 얇은 장식에는 박지 말고 돌이 두꺼운 끝을 잡겠어.'],
+          ['소단','제가 보이는 쪽에서는 저게 옆으로 서 있어요. 거길 맞힐 때까지 줄을 누르고 있을게요.'],
+          ['담허','맞히고 나서 바닥이 흔들리면 그대로 밟지 않겠네. 내려서도 괜찮은 돌부터 가름하세.'],
+          ['소단','제가 먼저 바깥에서 부르는 소리가 나더라도 그쪽으로 가면 안 돼요. 지금은 여기 붙들고 있어요.'],
+          ['담허','네가 놓으라고 하기 전엔 기대지 않겠네. 처마가 가까워져도 한 번 더 보고 갈게.']
+        ]
+      });
       function tick54(app){
         const s=active.get(app),e=app.engine;
         if(e?.b.honroStage!==54||!s?.owner54)return;
@@ -182,10 +205,10 @@
         if(s.wallAxis){leaveBrokenReceive54(app,s);return;}
         if(s.eave54){if(s.eave54.exit&&!app.done)e.checkEnd();return;}
         if(s.owner54.enterEave(app,e,s)){mountEave54(app,e,s);return;}
-        if(s.owner54.observeGallery(app,e)&&s.button){s.button.disabled=false;s.button.textContent='첫 받침으로 돌아가 건너기';app.updateHUD(true);}
+        if(s.owner54.observeGallery(app,e)&&s.button){s.button.disabled=false;s.button.textContent='첫 받침으로 돌아가 건너기';app.updateHUD(true);showAct6Milestone(app,s,'gallery',field54Dialogue.gallery);}
         const landed=s.owner54.observe(app,e), p=s.owner54.project(app,e),info=s.owner54.inspect(app,e);
         if(landed&&s.button)s.button.textContent=info.chart.length===3?'돌턱에 진목 놓기':'다음 받침에서 건너기';
-        if(landed)app.updateHUD(true);
+        if(landed){app.updateHUD(true);if(info?.chart?.length===1)showAct6Milestone(app,s,'landed',field54Dialogue.chart);else if(info?.chart?.length===3&&!info.m09)showAct6Milestone(app,s,'stake',field54Dialogue.stake);}
         if(p.complete&&!app.done)e.checkEnd();
       }
 

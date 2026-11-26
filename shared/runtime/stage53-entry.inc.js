@@ -118,6 +118,24 @@
         const result=indoor53.terminal(app,s.engine);
         return result?{...result,bridge:structuredClone(s.bridge),sodanThread:s.spirit.record()}:null;
       }
+      const field53Dialogue=Object.freeze({
+        footing:[
+          ['담허','여기 놓인 진목은 흔들리지 않는군. 이제 나까지 저쪽으로 움직이면 어디에 매달리는지 보겠네.'],
+          ['소단','줄이 이제 위에서 아래로 안 내려와요. 오른쪽으로 누가 끌고 가는 것 같아요.'],
+          ['담허','내가 저 난간에 닿으면 잡는 쪽을 바꿔도 돼. 그전에는 여기에서 버티게.'],
+          ['소단','닿았다고 생각하시면 한 번 더 불러 주세요. 줄이 느슨해도 놓친 줄로만 여기지 않을게요.'],
+          ['담허','알겠네. 나를 끌어당기는 것과 내 발을 받치는 게 같은 면인지부터 보지.'],
+          ['소단','뒤에서 돌아가는 건 제가 볼게요. 맞은편이 안 보이면 걸음을 더 옮기지 마세요.']
+        ],
+        wall:[
+          ['담허','발이 난간 옆에 붙었어. 서 있는 줄 알았던 면은 이제 옆이군.'],
+          ['소단','줄이 들려요. 지금은 제가 위에 있어요, 아니면 옆에 있어요?'],
+          ['담허','나한테는 아래인 쪽이 바뀌었네. 네가 같은 데 서 있으면 그대로 있어도 돼.'],
+          ['소단','그럼 저도 안 돌게요. 담허님이 어디에 발을 붙이셨는지만 말해 줘요.'],
+          ['담허','발은 붙었네. 오른쪽으로 한 걸음 가 보겠어. 줄이 끊기는 것 같으면 먼저 말하게.'],
+          ['소단','지금은 아직 닿아요. 그런데 조금만 더 가면 바깥에서는 못 보겠어요. 꼭 답해 주세요.']
+        ]
+      });
       function tick53(app){
         const s=active.get(app),e=app.engine;
         if(e?.b.honroStage!==53||!s||app.done)return;
@@ -125,6 +143,8 @@
         if(s.bridge){e.checkEnd();return;}
         if(!s.button)return;
         const u=e.active,rail=s.wallAxis?.isWall(u),proof=indoor53.qualified(app,e);
+        if(rail&&u&&e.grounded(u))showAct6Milestone(app,s,'rail',field53Dialogue.wall);
+        else if(proof&&u&&e.grounded(u))showAct6Milestone(app,s,'footing',field53Dialogue.footing);
         if(rail||proof){
           s.button.disabled=true;s.button.textContent=rail?'벽에 발을 붙이고 오른쪽 조작으로 올라가세요.':'오른쪽 파손 난간을 향해 걸으세요.';
         }

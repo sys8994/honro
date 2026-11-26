@@ -54,4 +54,17 @@ function fixture(){
  b.honroCustom=false;q.events.tide_warning={started:true,terminal:false};
  q.tide.warned=true;b.round=43;tick();assert.deepEqual(offered.splice(0),[],'unheard warning is not treated as a finished chapter event');
 }
+{
+ const {q,b,a,tick}=fixture();
+ b.honroAct4Design.exit={x:2200,y:1900};q.tide.finished=true;q.tide.warned=true;q.tide.phase='low';
+ b.round=q.tide.lowRound;
+ tick();assert.deepEqual(offered.splice(0),[],'exit reflection requires the earlier witnessed warning');
+ q.events.tide_warning={started:true,terminal:true};a.camera=false;
+ tick();assert.deepEqual(offered.splice(0),[],'no exit reflection off camera');
+ a.camera=true;b.units.push({side:0,hp:20,x:700,y:1600});
+ tick();assert.deepEqual(offered.splice(0),[],'does not claim the party is together');
+ b.units.pop();tick();tick();
+ assert.deepEqual(offered.splice(0),['before_departure'],'optional exit scene is one-shot');
+ assert.equal(b.phase,'aim','new scene does not change the battle result');
+}
 console.log('PASS Act 4 dialogue sight, safety, timing and ordered one-shot shore events');

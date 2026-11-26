@@ -47,7 +47,7 @@ for(const [i,chapter] of chapters.entries()){
  const {entry:oldEntry,beats:oldBeats,outro:oldOutro,...oldFacets}=act5Old[i];
  assert.deepEqual(facets,oldFacets,'Act 5 map/enemy data must not change');
  assert.deepEqual(Object.keys(beats),Object.keys(oldBeats),'Act 5 event keys must not change');
- for(const [section,old] of [[entry,oldEntry],[outro,oldOutro],...Object.keys(oldBeats).filter(key=>!(i===2&&key==='commander')).map(key=>[beats[key],oldBeats[key]])]){
+ for(const [section,old] of [[entry,oldEntry],[outro,oldOutro],...Object.keys(oldBeats).map(key=>[beats[key],oldBeats[key]])]){
   for(const [who,line] of section)row(i+41,who,line,newRows);
   for(const [who,line] of old)row(i+41,who,line,baseRows);
  }
@@ -82,6 +82,13 @@ if(opens.includes('const field52Dialogue=Object.freeze({')){
  const block=opens.split('const field52Dialogue=Object.freeze({')[1].split('});')[0];
  assert(text('shared/act6-app-qa.mjs').includes('if(s.normal51)show52FieldDialogue(app,s,id);'));
  for(const r of block.matchAll(/\['([^']+)','([^']+)'\]/g))row(52,r[1],r[2],newRows);
+}
+for(const n of [53,54,55,56]){
+ const src=text('shared/runtime/stage'+n+'-entry.inc.js'),anchor='const field'+n+'Dialogue=Object.freeze({';
+ if(!src.includes(anchor))continue;
+ const block=src.split(anchor)[1].split('});')[0];
+ assert(src.includes('showAct6Milestone('));
+ for(const r of block.matchAll(/\['([^']+)','([^']+)'\]/g))row(n,r[1],r[2],newRows);
 }
 const entry57=text('shared/runtime/stage57-entry.inc.js');
 if(entry57.includes('const field57Dialogue=Object.freeze({')){

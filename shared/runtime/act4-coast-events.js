@@ -270,6 +270,14 @@ P.coastObserve=function(app,dt){const b=app.engine.b,n=b.honroAct4Preview;if(!ac
  if(n===35){const d=q.flaskDelivery;if(d&&d.phase!=='complete'){const mage=e.unit(d.receiver),giver=e.unit(d.giver);if(!working(e,mage,giver,150)||!alive(giver)||!e.grounded(giver)||!localReady(b,'flask')){delete mage?.honroScenePose;delete giver?.honroScenePose;q.flaskDelivery=null;}else{mage.facing=giver.x>mage.x?1:-1;giver.facing=-mage.facing;mage.honroScenePose=giver.honroScenePose={kind:'point',time:1};d.elapsed+=dt;if(d.elapsed>=1.4&&d.received){d.phase='complete';fact(b,'eq_da_t3b',{itemId:'itm_da_06',giver:giver.id,receiver:mage.id,receivedAt:d.received.at,positions:d.received.positions,kind:'companion-handoff'});delete mage.honroScenePose;delete giver.honroScenePose;P.save?.();}}}
   if(party(b).some(u=>u.x>K(b,'clearingX1',5520)&&u.x<K(b,'clearingX2',5720)&&u.y<K(b,'clearingYMax',1e9)&&e.grounded(u))&&!foes(b).some(u=>u.x>K(b,'clearingFoeX',5000)&&u.y<K(b,'clearingFoeYMax',1e9)))fact(b,'eq_co_t3_choice',{tag:'rooted-third-clearing',reached:true});}
  if(n===37){if(seen(q,'signal')&&seen(q,'gesture'))play(app,'signal');}
+ if(b.honroAct4Official===1&&!b.honroCustom&&objectiveReady(b)&&!q.reader&&!q.bark&&!app.dialogue){
+  const heroes=party(b),nearFoes=foes(b).some(u=>heroes.some(h=>near(h,u,485)));
+  const exit=cfg.exit,atExit=exit&&inView(app,exit)&&heroes.length>0&&heroes.every(u=>e.grounded(u)&&near(u,exit,620));
+  if(!nearFoes&&atExit&&(n===33&&closed(q,'tide_warning')||n===34&&closed(q,'wrong_exit')||n===37&&closed(q,'signal')))play(app,'before_departure');
+  if(n===35&&closed(q,'blocked_shot')&&!nearFoes&&heroes.some(u=>e.grounded(u)&&u.x>K(b,'clearingX1',5520)&&u.x<K(b,'clearingX2',5720)&&u.y<K(b,'clearingYMax',1e9)))play(app,'shared_clearing');
+  if(n===39&&q.exitStable&&q.rescued?.ids.length===4&&closed(q,'souls_freed')&&!nearFoes&&cfg.rescue.ids.every(id=>rescueSafe(e,e.unit(id))))
+    play(app,'shore_gathered');
+ }
  if(n===38){const geo=geometry38(b),c=cfg.connection,pursuers=foes(b).filter(u=>u.honroAct4Pursuer),tour=rescueVista(app,q,dt);
   if(seen(q,'rescue-voices')&&!q.connected){for(const [i,u]of pursuers.entries()){const slot=geo===legacy38?i:b.units.filter(v=>v.honroAct4Pursuer).indexOf(u),target=geo.pursuerDestinations?.[slot]??5610+i*170;if(geo!==legacy38&&geo.pursuerDestinations[slot]===undefined)throw Error('Missing Act4 pursuit destination');if(u.x>target)moveNpc(e,u,target,dt,180);}if(!tour&&(!pursuers.length||q.pursuitSeen))play(app,'voice');}
 

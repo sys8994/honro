@@ -91,8 +91,29 @@
         const r=s.owner55.project(a,e),id=r?.targets?.[0]?.id;
         if(!id)return;
         const q=s.owner55.interact(a,e,id);a.notify(q.ok?q.label:q.reason);
-        e.checkEnd();tick55(a);a.updateHUD(true);
+        e.checkEnd();tick55(a);a.updateHUD(true);if(q.ok){const cue=id==='reach-bell'?'reached':id==='rebind-bell'?'rebound':null;if(cue)showAct6Milestone(a,s,cue,field55Dialogue[cue]);}
       }
+      const field55Dialogue=Object.freeze({
+        reached:[
+          ['휘겸','돌단 앞에 왔소. 여기서 보니 저놈 몸보다 종 있던 자리가 더 크게 흔들리오.'],
+          ['소단','저쪽이 울릴 때마다 이 줄도 같이 잡아당겨요. 두 번 연달아 울리면 손이 떨어질 것 같아요.'],
+          ['설오','둘이 같은 사선에 있지 않게 자리를 옮기겠습니다. 소단 씨 앞에서 쏘지 않겠습니다.'],
+          ['휘겸','나는 이 돌을 비우지 않겠소. 뒤에서 소리가 나더라도 소단 쪽을 먼저 보시오.'],
+          ['소단','네. 헤지기 시작하면 제가 바로 말할게요. 그때 한 번만 곁을 봐 주세요.']
+        ],
+        frayed:[
+          ['소단','지금이에요. 잡고 있는데도 이쪽으로 미끄러져 나가요. 제가 다시 묶는 동안 도와주세요.'],
+          ['휘겸','알겠소. 매듭 옆에서 기다리게. 칼 내려놓고 방어할 테니 뒤에서 쏘지는 마시오.'],
+          ['설오','먼저 닿는 쪽은 제가 보겠습니다. 정면으로 들어가는 게 있으면 바로 부르겠습니다.'],
+          ['소단','막아 주셔도 저는 여기서 못 일어나요. 제 쪽이 조용해도 일이 끝난 건 아니에요.']
+        ],
+        rebound:[
+          ['소단','다시 잡았어요. 아까처럼 줄이 손에서 밀리지는 않아요.'],
+          ['휘겸','그럼 조금만 더 그렇게 계시오. 놈이 쓰러지면 내가 빈 받침으로 다시 가겠소.'],
+          ['설오','종터 뒤로 넘어오는 것은 제가 맡겠습니다. 줄이 또 울리면 몸 돌리지 말고 말부터 해 주세요.'],
+          ['소단','그럴게요. 담허님 쪽에서도 당길 수 있게 이번엔 너무 단단히 조이지 않을게요.']
+        ]
+      });
       function tick55(a){
         const s=active.get(a),e=a.engine;
         if(e?.b.honroStage!==55||!s?.owner55)return;
@@ -104,7 +125,7 @@
           const label=body.loadout.includes(sodanSkills.body)?reason||'소단 · 좌정한 채 호혼령 부르기':'소단 · 좌정해 혼줄 유지 · 직접 공격과 이동 봉인';
           if(s.support55.textContent!==label)s.support55.textContent=label;
           s.support55.style.opacity=s.support55.disabled?'.88':'';}
-        if((r.complete||r.failed)&&!a.done)e.checkEnd();
+        if((r.complete||r.failed)&&!a.done)e.checkEnd();else if(r.binding==='frayed')showAct6Milestone(a,s,'frayed',field55Dialogue.frayed);
       }
       function terminalNormal55(a,s){
         const t=s.owner55.terminal(a,s.engine),proof=s.previous?.eave;
