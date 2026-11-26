@@ -108,6 +108,17 @@
         return G.HonroStory.start(app,rows.map(([who,line],i)=>[who,line,{kind:'character',storyId:dlg,rowId:dlg+'-'+i}]),
           {id:dlg,title:app.stage.name});
       }
+      function showAct6Milestone(a,s,id,rows){
+        const e=s?.engine,b=e?.b;
+        if(!rows?.length||a.engine!==e||a.screen!=='battle'||a.done||a.dialogue||a.modal.classList.contains('open')||
+           b?.side!==0||b.phase!=='aim'||b.projectiles?.length||b.volley)return false;
+        const seen=s.speechMilestones??=new Set(),key='act6-milestone-'+b.honroStage+'-'+id;
+        if(seen.has(key))return false;
+        const accepted=G.HonroStory.start(a,rows.map(([who,line],i)=>[who,line,{kind:'character',storyId:key,rowId:key+'-'+i}]),
+          {id:key,title:a.stage.name});
+        if(accepted)seen.add(key);
+        return accepted;
+      }
       function enterNormal51(app,grant,carried){
         const m=grant.packet.map,d=grant.packet.mission;
         check(carried.profile===app.profile&&app.profile===app.normalProfile&&!app.engine,'Normal Stage51 rest changed');

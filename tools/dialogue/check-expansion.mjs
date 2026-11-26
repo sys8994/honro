@@ -89,6 +89,13 @@ if(entry57.includes('const field57Dialogue=Object.freeze({')){
  assert(entry57.includes('if(q.ok)show57FieldDialogue(a,e,id);'));
  for(const r of block.matchAll(/\['([^']+)','([^']+)'\]/g))row(57,r[1],r[2],newRows);
 }
+for(const n of [58,59,60]){
+ const src=text('shared/runtime/stage'+n+'-normal-entry.inc.js'),anchor='const finale'+n+'Dialogue=Object.freeze({';
+ if(!src.includes(anchor))continue;
+ const block=src.split(anchor)[1].split('});')[0];
+ assert(src.includes('showAct6Milestone('));
+ for(const r of block.matchAll(/\['([^']+)','([^']+)'\]/g))row(n,r[1],r[2],newRows);
+}
 const before=unique(baseRows),now=unique(newRows),isInAct=(n,i)=>Math.ceil(n/10)===i+1;
 const report=released.map((baseline,i)=>{
  const added=[...now].filter(([key,r])=>!before.has(key)&&isInAct(r.n,i)).map(([,r])=>r);

@@ -77,13 +77,55 @@
         s.owner59=adapter59.attach({app:a,engine:e,prepared:s.prepared59});
         check(s.owner59,'Native 59 owner refused');e.checkEnd=()=>a.checkMission(e);return true;
       }
+      const finale59Dialogue=Object.freeze({
+        guardFound:[
+          ['휘겸','곽진. 표지 아래까지 왔소. ……곽진, 대답하게.'],
+          ['설오','이쪽에는 움직이는 게 없습니다. 방패들이 전부 다리 쪽을 보고 있습니다.'],
+          ['소단','여기 오래 계셨나 봐요. 매듭이 풀리지 않은 건 누가 끝까지 잡았기 때문일 거예요.'],
+          ['휘겸','길을 맡겼지, 돌아오지 말라고 한 건 아니었는데.'],
+          ['담허','휘겸, 그쪽 돌이 흔들리네. 네가 서 있는 데부터 물러나게.'],
+          ['휘겸','알겠소. 이름은 내가 기억하오. 사람을 지킬 동안 저 자리를 밟고 넘어가는 건 나중이오.']
+        ],
+        forepaw:[
+          ['설오','교각 위가 아니라 아래에서 올라옵니다. 처음부터 그쪽을 보고 계셨습니까?'],
+          ['휘겸','지금은 보이오. 내가 교각에서 받치겠소. 위에서 쏘는 쪽이 먼저 자리를 잡으면 내 쪽을 불러 주시오.'],
+          ['소단','다리 모서리 가까이 붙어 싸우지는 마요. 앞발이 물러나도 돌까지 같이 빠질 수 있어요.'],
+          ['담허','지금은 저 앞발을 막아야 하네. 동쪽으로 돌아갈 일은 그 뒤일세.']
+        ],
+        twoWings:[
+          ['설오','서쪽만 물러난 줄 알았더니 동쪽도 올라옵니다. 둘 다 열린 채입니다.'],
+          ['담허','한쪽을 닫아 버리면 나머지 쪽으로 또 밀리네. 두 자리에서 받치면서 소단이 통과할 길을 남기세.'],
+          ['소단','길이 생길 때까지 종터에서 기다릴게요. 모두 제 쪽으로만 오지는 마세요.'],
+          ['휘겸','그러면 다리를 내가 보겠소. 이름 부르면 어디 서 있는지 먼저 대답하시오.']
+        ],
+        markSoulPath:[
+          ['소단','여기 표시했어요. 한 번만 제 발을 여기서 떼지 않으면 길이 잡혀요.'],
+          ['설오','그럼 종터로 내려오는 쪽만 보겠습니다. 다른 데서 소리가 나도 이쪽을 비우지 않겠습니다.'],
+          ['휘겸','나까지 다리를 비우면 둘 다 막히오. 여기서 버틸 테니 자리를 옮기기 전에 부르시오.']
+        ],
+        activateGarmjin:[
+          ['소단','이제 왼쪽으로 갑니다. 보내야 할 것과 막아야 할 것이 섞여 돌아오지는 않아요.'],
+          ['담허','그래. 진을 더 넓히지는 말게. 우리가 지킬 쪽만 남겨 두지.'],
+          ['설오','그래도 다리 끝에 서 있던 것은 아직 보입니다. 제가 먼저 그쪽을 다시 확인하겠습니다.'],
+          ['휘겸','사람이 다 붙어 있는 데서 마지막으로 하겠소. 자리를 봤으면 서로 부르고 갑시다.']
+        ]
+      });
+      function speak59State(a,s,r){
+        const b=s.engine.b,st=r.states,p=b.honroState.localFinaleProgress;
+        if(!st||r.failed||r.complete||st.activated)return false;
+        const key=b.honroState.localReturnGuardAftermath?'guardFound':null;
+        if(key&&showAct6Milestone(a,s,key,finale59Dialogue[key]))return true;
+        if(p?.giant?.alive&&!st.forepaw&&showAct6Milestone(a,s,'forepaw',finale59Dialogue.forepaw))return true;
+        if(!st.cliff&&!st.mage&&p?.fronts?.every(f=>f.spawned>0))return showAct6Milestone(a,s,'twoWings',finale59Dialogue.twoWings);
+        return false;
+      }
       function option59(s,e){
         return (s.owner59.project()?.targets??[]).find(t=>t.kind==='interaction'&&Math.abs(t.x-e.active?.x)<96);
       }
       function stage59UI(a,s,e){
         if(!scope59(a,e,s)||s.return59)return;
         const item=option59(s,e);if(!item)return;
-        const q=s.owner59.interact(item.id);if(!q.ok)a.notify(q.reason);e.checkEnd();tick59(a);a.updateHUD(true);
+        const q=s.owner59.interact(item.id);if(!q.ok)a.notify(q.reason);e.checkEnd();tick59(a);a.updateHUD(true);if(q.ok)showAct6Milestone(a,s,item.id,finale59Dialogue[item.id]);
       }
       function defend59(a,act){
         const s=active.get(a);
@@ -98,7 +140,7 @@
         s.owner59.tick();const r=s.owner59.project();if(!r)return;
         const item=option59(s,e);
         if(s.button){s.button.textContent=item?.label??r.summary??'휘겸과 함께 교각 아래를 살핀다';s.button.disabled=!item;s.button.dataset.act6Mission=item?.id??'';}
-        if((r.complete||r.failed)&&!a.done)e.checkEnd();
+        if((r.complete||r.failed)&&!a.done)e.checkEnd();else speak59State(a,s,r);
       }
       function terminalNormal59(a,s){
         if(!scope59(a,s.engine,s)||s.b.phase!=='won'||s.owner59.project()?.complete!==true)return null;

@@ -92,17 +92,64 @@
         installHallAxes({C,e,scene:a.scene,crew});
         s.return58=watchReturnGate(e,C,crew);
       }
+      const finale58Dialogue=Object.freeze({
+        column:[
+          ['소단','기둥 뒤에서 잡아당기던 게 풀렸어요. 문턱 쪽은 아직 그대로예요.'],
+          ['설오','그럼 여기서는 사선을 똑바로 잡겠습니다. 문턱을 넘기 전에 한 번 더 손을 들어 주세요.'],
+          ['담허','문 너머에서 먼저 대답하는 것이 있는지 들어 보겠네. 다들 내 뒤로 오게.'],
+          ['휘겸','들어갈 사람과 돌아올 사람이 같아야 하오. 우리끼리 먼저 넷부터 셉시다.']
+        ],
+        threshold:[
+          ['대도사','그 진목을 뽑아라. 현묵도 거기서 시작했지. 내가 무엇을 들으려 했는지는 한 번도 묻지 않더군.'],
+          ['담허','묻겠습니다. 저문골에서는 그렇게 많은 사람이 죽었는데, 그날 무슨 소리를 들으셨습니까?'],
+          ['대도사','처음엔 아무것도. 방을 비워야 들린다 하여, 더 비울 곳을 찾았지.'],
+          ['휘겸','당신이 비웠다는 방에 살던 이들에게도 이름이 있었소. 그 사람들을 옮겼다는 기록을 내가 들고 있소.'],
+          ['대도사','그 종이에서는 소리가 나지 않는다. 이제 여기서 귀를 기울여 봐라.'],
+          ['소단','저한텐 대답으로 안 들려요. 문 밖으로 나가려고 돌을 긁는 것 같아요.'],
+          ['설오','말을 더 해도 저 사람은 놓지 않겠습니다. 먼저 제 쪽에서 보이는 것을 끊겠습니다.'],
+          ['담허','그래. 문을 조금 더 벌려 보자는 말에는 우리가 대답하지 않겠네.']
+        ],
+        second:[
+          ['설오','방금 같은 데를 겨눴는데 사선이 지난번과 달랐습니다.'],
+          ['소단','발 아래도 밀려요. 저 사람 쪽으로 끌려가면 바로 일어나 뛰지 마세요.'],
+          ['담허','먼저 진목으로 발밑 한곳만 잡겠네. 저 사람까지 당기려고 넓히지는 말게.'],
+          ['휘겸','그러면 붙들린 쪽으로 다 모이지 맙시다. 바깥 턱에 한 사람은 남아야 하오.']
+        ],
+        third:[
+          ['소단','저 사람이 있는 쪽 말고, 옆에 걸린 매듭도 계속 당겨요.'],
+          ['담허','사람에게 이어진 힘이 아니네. 저 받침이 남으면 사람만 멎어도 틈은 그대로야.'],
+          ['설오','둘 중 다른 하나가 쓰러져도 사선을 풀지 않겠습니다. 저 매듭을 먼저 볼 수 있는 데로 가겠습니다.'],
+          ['휘겸','먼저 맞히겠다고 같은 쪽으로 뛰어들지는 마시오. 문이 또 꺾이면 돌아갈 곳부터 잃소.']
+        ],
+        stillWorking:[
+          ['휘겸','쓰러졌소. 아직 가까이 가지 마시오.'],
+          ['소단','사람은 더 안 움직여요. 그런데 옆에 서 있던 매듭은 아직 떨려요.'],
+          ['담허','그게 남아 있으면 자리도 남는 걸세. 저 사람이 일어날까 기다릴 게 아니라 그쪽을 끊어야 하네.'],
+          ['설오','저쪽이 보입니다. 몸 가까이 모이지 마십시오. 한 번 더 겨누겠습니다.']
+        ],
+        stake:[
+          ['담허','이번엔 붙잡아 둘 만큼만 박았네. 나가려는 혼을 막지 않도록 저 뜬 곳은 그대로 두게.'],
+          ['소단','네. 줄을 놓친 것들이 저 틈을 보고 있어요. 제가 다시 잡지는 않을게요.'],
+          ['휘겸','곽진이 지켜 준 문으로 갑시다. 지나갈 때마다 뒤를 돌아보시오.'],
+          ['설오','각자 넘어가신 뒤에 부르십시오. 마지막 대답을 듣고 저도 나오겠습니다.']
+        ]
+      });
+      function speak58State(a,s,r){
+        const f=r.flags;if(!f?.bossManifested||f.stake||r.failed||r.complete)return;
+        const key=f.bossDead&&!f.nodeDead?'stillWorking':!f.bossDead&&r.phase===3&&!f.nodeDead?'third':!f.bossDead&&r.phase===2?'second':null;
+        if(key)showAct6Milestone(a,s,key,finale58Dialogue[key]);
+      }
       function stage58UI(a,s,e){
         if(!scope58(a,e,s))return;
         const id=s.owner58.project()?.targets?.[0]?.id;if(!id)return;
-        const q=s.owner58.interact(id);if(!q.ok)a.notify(q.reason);e.checkEnd();tick58(a);a.updateHUD(true);
+        const q=s.owner58.interact(id);if(!q.ok)a.notify(q.reason);e.checkEnd();tick58(a);a.updateHUD(true);if(q.ok)showAct6Milestone(a,s,id,finale58Dialogue[id]);
       }
       function tick58(a){
         const s=active.get(a),e=a.engine;if(e?.b?.honroStage!==58||!scope58(a,e,s)||!s.owner58)return;
         s.owner58.tick();const r=s.owner58.project();if(!r)return;
         if(s.button){s.button.textContent=r.summary;s.button.disabled=!r.targets.length;s.button.dataset.act6Mission=r.targets?.[0]?.id??'';}
         if(s.move){s.move.hidden=!r.skipReturn;s.move.disabled=s.move.hidden;}
-        if((r.complete||r.failed)&&!a.done)e.checkEnd();
+        if((r.complete||r.failed)&&!a.done)e.checkEnd();else speak58State(a,s,r);
       }
       function terminalNormal58(a,s){
         if(!scope58(a,s.engine,s)||s.b.phase!=='won'||s.owner58.project()?.complete!==true)return null;
