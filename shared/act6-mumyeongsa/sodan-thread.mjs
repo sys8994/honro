@@ -1,5 +1,44 @@
 // Chapter-local controls keep the campaign actor's normal equipment and loadout.
 export const sodanSkills=Object.freeze({body:'O13',spirit:'O06'});
+export const sodanInnerTree=Object.freeze(['O06','O07','O08','O09','O10']);
+
+function seatedArt(scene,body,when){
+ const draw=scene.unitBody;
+ scene.unitBody=function(c,u,...args){
+  if(u.id!==body.id||u.dead||u.portraitOnly||!when())return draw.call(this,c,u,...args);
+  c.save();
+  c.translate(body.x,body.y);
+  c.strokeStyle='#c8d8bd';c.lineWidth=1.6;
+  c.beginPath();c.ellipse(0,-2,49,10,0,0,Math.PI*2);c.stroke();
+  c.beginPath();c.moveTo(-8,-20);c.bezierCurveTo(24,-71,55,-31,108,-95);c.stroke();
+  c.fillStyle='#493f51';c.beginPath();c.ellipse(1,-10,28,9,0,0,Math.PI*2);c.fill();
+  c.scale(1.07,.71);c.translate(-body.x,-body.y);
+  try{return draw.call(this,c,u,...args);}finally{c.restore();}
+ };
+}
+
+// Chapter 7 still requires Sodan to repair the bell relay herself, carry it
+// west, then regroup at Damheo's ward. Keep her turn; lock only at a relay.
+export function mountRetreatSodan({e,scene,body,reunionMark}){
+ const flags=e.b.honroState.flags;
+ const seated=()=>!body.dead&&!flags[reunionMark]&&(!flags.bridgeRetreatOpened||
+  flags.relayMovedToFallback&&!flags['act6.fallbackRelaySecured']&&Math.abs(body.x-1968)<=124&&e.grounded(body));
+ const stock=Object.fromEntries(['walk','jump','canDrop','impulse','integrateBody','tick'].map(k=>[k,e[k].bind(e)]));
+ const sync=()=>{
+  const held=seated();
+  if(held){body.fixed=true;body.vx=0;body.vy=0;delete body.moveTarget;}
+  else if(body.fixed===true)body.fixed=false;
+  return held;
+ };
+ e.walk=(u,...args)=>!(u===body&&seated())&&stock.walk(u,...args);
+ e.jump=(u=e.active)=>!(u===body&&seated())&&stock.jump(u);
+ e.canDrop=(u=e.active)=>!(u===body&&seated())&&stock.canDrop(u);
+ e.impulse=(u,...args)=>{if(u!==body||!seated())return stock.impulse(u,...args);};
+ e.integrateBody=(u,...args)=>u===body&&seated()?e.grounded(u):stock.integrateBody(u,...args);
+ e.tick=(...args)=>{sync();return stock.tick(...args);};
+ sync();seatedArt(scene,body,seated);
+ return {seated,sync};
+}
 export function mountSeatedSodan({C,e,scene,body}){
  const pose={x:body.x,y:body.y};
  const methods=['actors','select','walk','jump','impulse','integrateBody','fire','skillAllowed','newRound'];
@@ -38,17 +77,7 @@ export function mountSeatedSodan({C,e,scene,body}){
    return stock.fire(sodanSkills.body,nearest?.x<body.x?194:-14,.18);
   }finally{releasing=false;b.active=active;body.acted=acted;}
  }
- scene.unitBody=function(c,u,...args){
-  if(u.id!==body.id||u.dead||u.portraitOnly)return draw.call(this,c,u,...args);
-  c.save();
-  c.translate(body.x,body.y);
-  c.strokeStyle='#c8d8bd';c.lineWidth=1.6;
-  c.beginPath();c.ellipse(0,-2,49,10,0,0,Math.PI*2);c.stroke();
-  c.beginPath();c.moveTo(-8,-20);c.bezierCurveTo(24,-71,55,-31,108,-95);c.stroke();
-  c.fillStyle='#493f51';c.beginPath();c.ellipse(1,-10,28,9,0,0,Math.PI*2);c.fill();
-  c.scale(1.07,.71);c.translate(-body.x,-body.y);
-  try{return draw.call(this,c,u,...args);}finally{c.restore();}
- };
+ seatedArt(scene,body,()=>true);
  return {anchored,unavailableReason,release};
 }
 
@@ -57,7 +86,7 @@ export function validSodanThread(record,body,through){
  if(!record||record.version!==1||!body||record.body!==body.id||body.cls!=='occultist'||!Array.isArray(record.casts))return false;
  let earlier=0;
  return record.casts.every(c=>{
-  if(!spiritChapters.includes(c.stage)||c.stage<=earlier||c.stage>through||c.skill!==sodanSkills.spirit||
+  if(!spiritChapters.includes(c.stage)||c.stage<=earlier||c.stage>through||!sodanInnerTree.includes(c.skill)||
      !Number.isSafeInteger(c.shot)||c.shot<1||!Number.isFinite(c.cost)||c.cost<0||c.cost>body.maxFocus)return false;
   earlier=c.stage;
   return true;
@@ -77,28 +106,39 @@ export function mountSodanSpirit({C,e,scene,hero,body,previous,stage,isWall=()=>
  if(!validSodanThread(record,body,stage-1))throw Error('Unverified Sodan thread carry');
  const after=stage===56?54:0;
  const byId=e.unit.bind(e),fire=e.fire.bind(e),draw=scene.unitBody;
- const skill=C.SKILLS[sodanSkills.spirit],rank=body.ranks[skill.id]??0;
+ const skills=sodanInnerTree.filter(id=>C.SKILLS[id]?.cls==='occultist'&&!C.SKILLS[id].passive&&body.ranks[id]>0);
  const powers=[.42,.61,.29,.78];
- const spirit={...structuredClone(body),loadout:[skill.id],ranks:{[skill.id]:rank},equipmentIds:[],gearBonuses:{},gearStats:undefined,
+ const spirit={...structuredClone(body),loadout:skills.slice(),ranks:Object.fromEntries(skills.map(id=>[id,body.ranks[id]])),equipmentIds:[],gearBonuses:{},gearStats:undefined,
   equipmentState:{version:1},fixed:true,acted:false,airborne:false,jumping:false,vx:0,vy:0};
  e.unit=id=>id===spirit.id?spirit:byId(id);
+ // These two authored enemies must stay hostile to drive their chapter
+ // objective. An intervening collision must not charm them either.
+ const plotEnemy=u=>u.id==='mumyeongsa-b-wall-guard'||stage===56&&u.id==='draft-pressure-3';
+ if(typeof e.captureEnemy==='function'){
+  const capture=e.captureEnemy.bind(e);
+  e.captureEnemy=(u,owner,...args)=>owner===spirit&&plotEnemy(u)?false:capture(u,owner,...args);
+ }
  function position(){
   const wall=isWall(hero);
   spirit.x=hero.x-(wall?105:75*(hero.facing||1));
   spirit.y=hero.y-(wall?54:24);
   return wall;
  }
- function unavailableReason(){
-  if(rank<=0||body.hp<=0||body.dead)return '소단의 혼이 주박부를 쓸 수 없습니다.';
-  if(record.casts.some(c=>c.stage===stage))return '이 장에서 주박부를 이미 썼습니다.';
+ const legalTarget=(u,id)=>u.side===1&&!u.dead&&u.hp>0&&
+  Math.hypot(u.x-hero.x,u.y-hero.y)<940&&(id!=='O09'||(
+    !u.honroObjectiveTarget&&!u.eaterCapturedBy&&!u.summoned&&!u.boss&&!u.honroMidboss&&!u.honroAct2Boss&&!u.elite&&!u.enthrall&&
+    !plotEnemy(u)));
+ function unavailableReason(id=skills[0]){
+  if(!skills.includes(id)||body.hp<=0||body.dead)return '소단의 혼이 주박 기예를 쓸 수 없습니다.';
+  const skill=C.SKILLS[id];
+  if(record.casts.some(c=>c.stage===stage))return '이 장의 혼령 지원을 이미 썼습니다.';
   if(funds()<Math.min(...powers.map(power=>e.manaCost(skill,spirit,power))))return '소단의 기력이 부족합니다.';
   if(e.active!==hero||!e.canAct()||!e.grounded(hero)||e.b.projectiles.length)return '담허가 발을 붙이고 행동할 때 쓸 수 있습니다.';
-  return e.b.units.some(u=>u.side===1&&!u.dead&&Math.hypot(u.x-hero.x,u.y-hero.y)<940)?'':'적에게 혼줄이 닿는 곳에서 쓸 수 있습니다.';
+  return e.b.units.some(u=>legalTarget(u,id))?'':id==='O09'?'혼을 붙잡을 수 있는 적에게 가까이 가세요.':'적에게 혼줄이 닿는 곳에서 쓸 수 있습니다.';
  }
  const funds=()=>body.focus-threadCost(record,after);
- const canCast=()=>!unavailableReason();
- function target(){
-  const foes=new Set(e.b.units.filter(u=>u.side===1&&u.hp>0&&!u.dead).map(u=>u.id));
+ function target(skill){
+  const foes=new Set(e.b.units.filter(u=>legalTarget(u,skill.id)).map(u=>u.id));
   const preferred=preferredTarget();
   let other=null;
   for(const power of powers){
@@ -112,11 +152,12 @@ export function mountSodanSpirit({C,e,scene,hero,body,previous,stage,isWall=()=>
   }
   return other;
  }
- function cast(){
-  if(!canCast())return false;
+ function cast(id=skills[0]){
+  if(unavailableReason(id))return false;
+  const skill=C.SKILLS[id];
   position();
   spirit.focus=funds();
-  const aim=target();
+  const aim=target(skill);
   if(!aim)return false;
   const b=e.b,before=spirit.focus,active=b.active;
   try{
@@ -142,5 +183,5 @@ export function mountSodanSpirit({C,e,scene,hero,body,previous,stage,isWall=()=>
   if(hero.dead||hero.hp<=0||body.dead||body.hp<=0)return null;
   position();return spirit;
  }
- return {unavailableReason,cast,storySpeaker,record:()=>structuredClone(record)};
+ return {skills:()=>skills.slice(),used:()=>record.casts.some(c=>c.stage===stage),unavailableReason,cast,storySpeaker,record:()=>structuredClone(record)};
 }

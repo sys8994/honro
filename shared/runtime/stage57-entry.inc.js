@@ -60,7 +60,12 @@
           btn.addEventListener('click',event=>{if(event.isTrusted&&event.currentTarget===btn)action(a,event);});s.button=btn;ui.append(btn);
           const alt=document.createElement('button');alt.type='button';alt.dataset.act6QaAlt='';styleAction(alt);alt.textContent='두 인물이 나누어 결속 잇기';
           alt.addEventListener('click',event=>{if(event.isTrusted&&event.currentTarget===alt&&scope57(a,a.engine,s))stage57UI(a,s,a.engine,true);});
-          s.alt=alt;ui.append(alt);tick57(a);startAct6Opening(a,s,57);return true;
+          s.alt=alt;ui.append(alt);
+          const sodan=s.prepared57.heroes.find(u=>u.cls==='occultist');
+          s.tether57=mountRetreatSodan({e:a.engine,scene:a.scene,body:sodan,reunionMark:s.packet.bridge.required.marker});
+          const tether=document.createElement('span');tether.dataset.act6SodanTether='';
+          tether.style.cssText='padding:6px 9px;background:#192624e8;color:#e5d7b6;font-size:.82rem';
+          s.tetherLabel57=tether;ui.append(tether);tick57(a);startAct6Opening(a,s,57);return true;
         }catch(error){a.stopBattle();a.showTitle();throw error;}
       }
       function bindNormal57(a,e,s){
@@ -93,6 +98,7 @@
         ],
         openRetreat:[
           ['설오','난간이 떨어졌습니다. 지금 그 자리에 서 있던 사람은 없습니다.'],
+          ['소단','돌단에서 줄을 걷을게요. 제가 서쪽 받침에 다시 묶을 때까지 앞을 봐 주세요.'],
           ['휘겸','그럼 반대쪽으로 사람을 옮기겠소. 가장 뒤에 있던 사람이 먼저 건너시오.'],
           ['소단','움직일 때 저랑 줄을 같이 봐 주세요. 헐거워지면 그 발판에서 멈춰요.']
         ],
@@ -133,6 +139,13 @@
       }
       function tick57(a){
         const s=active.get(a),e=a.engine;if(e?.b?.honroStage!==57||!scope57(a,e,s)||!s.owner57)return;
+        const held=s.tether57?.sync();
+        if(s.tetherLabel57){
+          const joined=e.b.honroState.flags[s.packet.bridge.required.marker]===true;
+          s.tetherLabel57.hidden=joined;
+          const label=held?'소단 · 좌정해 혼줄 유지':'소단 · 혼줄을 든 채 이동 가능';
+          if(s.tetherLabel57.textContent!==label)s.tetherLabel57.textContent=label;
+        }
         s.owner57.tick();const r=s.owner57.project();
         const id='stage57-rail-clearance',target=r.targets?.find(t=>t.id==='openRetreat'&&Number.isFinite(t.y));
         const targets=a.scene.missionTargets??[],present=targets.find(t=>t.id===id);

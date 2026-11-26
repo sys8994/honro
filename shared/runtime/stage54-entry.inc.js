@@ -221,17 +221,28 @@
         s.spirit=mountSodanSpirit({C,e,scene:app.scene,hero,body,previous,stage,isWall:u=>s.wallAxis?.isWall(u)===true,
           preferredTarget:()=>s.wallAxis&&s.guardB?.id});
         const btn=document.createElement('button');btn.type='button';btn.dataset.act6SodanSpirit='';styleAction(btn);
-        btn.textContent='소단의 혼 · 주박부';
+        const host=appUI(app),skills=s.spirit.skills();
+        if(skills.length>1){
+          const chooser=document.createElement('select');
+          chooser.setAttribute('aria-label','소단의 혼이 사용할 주박 기예');
+          chooser.dataset.act6SodanCurse='';
+          chooser.style.cssText='pointer-events:auto;max-width:100%;min-height:40px;background:#17231e;color:#e5d7b6;border:1px solid #7b6a48;padding:4px 8px';
+          for(const id of skills)chooser.add(new Option(C.SKILLS[id].name,id));
+          chooser.addEventListener('change',()=>updateSodanSpirit(s));
+          s.spiritChooser=chooser;host.append(chooser);
+        }
         btn.addEventListener('click',event=>{
           if(!event.isTrusted||active.get(app)!==s||app.engine!==e||!app.canInput())return;
-          if(!s.spirit.cast())app.notify('혼줄이 닿는 적에게 가까이 다가가세요.');
+          if(!s.spirit.cast(s.spiritChooser?.value))app.notify('혼령이 기예를 맞힐 수 있는 자리까지 가까이 가세요.');
           app.updateHUD(true);
         });
-        s.spiritButton=btn;appUI(app).append(btn);updateSodanSpirit(s);
+        s.spiritButton=btn;host.append(btn);updateSodanSpirit(s);
       }
       function updateSodanSpirit(s){
         if(!s.spiritButton)return;
-        const reason=s.spirit.unavailableReason(),label=reason||'소단의 혼 · 주박부';
+        const skill=s.spiritChooser?.value??s.spirit.skills()[0];
+        const reason=s.spirit.unavailableReason(skill),label=reason||'소단의 혼 · '+C.SKILLS[skill].name;
+        if(s.spiritChooser)s.spiritChooser.hidden=s.spirit.used();
         s.spiritButton.disabled=!!reason;
         if(s.spiritButton.textContent!==label)s.spiritButton.textContent=label;
         s.spiritButton.style.opacity=reason?'.88':'';

@@ -55,7 +55,7 @@ export function native56Handoff({app,engine:e,result,previous,isTerminal}={}){
     !result.events?.includes('exitReached')||
     !result.reflow?.some(v=>v.key==='native-reversal')||!result.reflow?.some(v=>v.key==='native-evade')||
     result.flags?.['act6.firstGarmjinFailed']!==true||result.flags?.['act6.temporaryPassageEscaped']!==true)return null;
- const units=e.b.units.filter(u=>u.side===0&&!u.summoned),mage=units[0];
+ const units=e.b.units.filter(u=>u.side===0&&!u.summoned&&!u.enthrall),mage=units[0];
  if(units.length!==1||mage.id!==previous.boundary.fullParkedMage.id||!e.grounded(mage)||result.actors?.length!==4||
     !intact(mage,result.actors.find(u=>u.cls==='mage'),'mage')||
     !parked.every(r=>intact(previous.boundary.fullOuter[r],result.actors.find(u=>u.cls===r),r)))return null;

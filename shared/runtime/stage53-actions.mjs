@@ -8,7 +8,7 @@ export function createStage53PhysicalActions({C, authenticate, entryX=425, passa
  const owners=new WeakMap();
  const safe=(app,e,g)=>!!g&&g.app===app&&g.b===e?.b&&app.engine===e&&app.stageId===53&&
    !app.debugMode&&!app.training&&!app.workshopMode&&!app.customMap&&!app.embedded&&authenticate(app,e,g.author)&&
-   e.b.units.filter(u=>u.side===0&&!u.dead&&!u.summoned).length===1&&e.unit(g.u.id)===g.u;
+   e.b.units.filter(u=>u.side===0&&!u.dead&&!u.summoned&&!u.enthrall).length===1&&e.unit(g.u.id)===g.u;
  const current=(app,e)=>{const g=owners.get(e);return safe(app,e,g)?g:null;};
  const contact=(e,u)=>e.contactSurface(u.x,u.y-4,u.y+4)?.t.id;
  const live=(e,g)=>e.active===g.u&&g.u.side===0&&g.u.hp>0&&!g.u.dead&&e.canAct()&&e.grounded(g.u)&&C.validTerrainContactPose(e.b.terrain,g.u);

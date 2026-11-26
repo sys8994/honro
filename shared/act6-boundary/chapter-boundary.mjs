@@ -31,7 +31,7 @@ const changedKeys=(a,b)=>[...new Set([...Object.keys(a),...Object.keys(b)])].fil
 
 const priorUnsafe=p=>!p||p.honroBattle||p.honroActEnding||p.honroMapRestart||p.honroPendingOutcome||p.honroPendingResult;
 const withFlags=(r,flags)=>flags.every(k=>r.flags?.[k]===true);
-const originals=e=>e.b.units.filter(u=>u.side===0&&!u.summoned&&!u.honroAlly);
+const originals=e=>e.b.units.filter(u=>u.side===0&&!u.summoned&&!u.honroAlly&&!u.enthrall);
 const packRoster=v=>Object.fromEntries(v.map(u=>[u.cls,u]));
 const shapeRoles=(r,keys,stage51=false)=>names(r)===keys.slice().sort().join(',')&&keys.every(k=>takeRow(r[k],k,stage51))&&new Set(Object.values(r).map(u=>u.id)).size===keys.length;
 

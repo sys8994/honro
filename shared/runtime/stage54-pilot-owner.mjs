@@ -37,7 +37,7 @@ export async function createStage54ChartOwner({C,domain,charts,gallery=null,obse
   return s&&safe(a)&&s.app===a&&a.engine===e&&s.b===e.b&&a.stage===s.stage&&a.stageId===54&&s.b.honroAuthoredId===ids.N&&
     units[0]===s.u&&s.u.side===0&&s.u.cls==='mage'&&s.u.hp>0&&!s.u.dead&&
     (!s.foe||units[1]===s.foe&&s.foe.side===1)&&new Set(units.map(u=>u.id)).size===units.length&&
-    units.slice(s.foe?2:1).every(u=>s.company.has(u)&&u.side===1&&!u.summoned&&!u.honroAlly)&&
+    units.slice(s.foe?2:1).every(u=>s.company.has(u)&&(u.side===1||u.side===0&&u.enthrall)&&!u.summoned&&!u.honroAlly)&&
     s.b.honroGrowth?.limit.total===0&&s.b.honroGrowth?.limit.combat===0&&verifyMounted(a,e,s.ticket)?s:null;
  };
  const support=(e,a)=>e.contactSurface(a.x,a.y-4,a.y+4)?.t.id;

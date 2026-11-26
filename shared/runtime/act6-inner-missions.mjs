@@ -3,7 +3,7 @@
 const alive=u=>!!u&&!u.dead&&u.hp>0;
 const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
 const inRange=(x,[a,b])=>Number.isFinite(x)&&x>=a&&x<=b;
-const roster=b=>b.units.filter(u=>u.side===0&&!u.summoned&&!u.honroAlly);
+const roster=b=>b.units.filter(u=>u.side===0&&!u.summoned&&!u.honroAlly&&!u.enthrall);
 const keys=['id','cls','hp','maxHp','focus','maxFocus','shield','level','loadout','tune','ranks','h','r','equipmentState','dead'];
 const row=u=>Object.fromEntries(keys.map(k=>[k,u[k]]));
 const surface=(e,x,y)=>e.contactSurface(x,y-4,y+4)?.t.id;

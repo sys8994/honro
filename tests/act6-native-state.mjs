@@ -14,7 +14,7 @@ import {hallB58,verifyHallD56,legacyHallExit56,hallSill} from '../shared/act6-mu
 import {verifyReturnGate,watchReturnGate} from '../shared/act6-mumyeongsa/return-gate.mjs';
 import {createBrokenRail,validBrokenRailCrossing} from '../shared/act6-mumyeongsa/broken-rail.mjs';
 import {validTornEave} from '../shared/act6-mumyeongsa/torn-eave.mjs';
-import {validSodanThread} from '../shared/act6-mumyeongsa/sodan-thread.mjs';
+import {validSodanThread, mountRetreatSodan, mountSodanSpirit, debitSodanThread, sodanInnerTree} from '../shared/act6-mumyeongsa/sodan-thread.mjs';
 import {verifyStage54Relay} from '../shared/runtime/stage54-pilot-owner.mjs';
 import {createChapterBoundary} from '../shared/act6-boundary/chapter-boundary.mjs';
 import {planThresholdPrep} from '../shared/runtime/act6-threshold-prep.mjs';
@@ -227,8 +227,14 @@ async function test58(){
 
 const west57='local-lower-07-west', body57='a6-c07-original-darmheo-body', ward57='a6-c07-stationary-stone-ward';
 function rescue57(h){
- const {e,b,owner}=h;
- actor(e,'occultist',5036,west57);assert(owner.interact('warnBell').ok);
+ const {e,b,owner}=h,flags=b.honroState.flags;
+ const sodan=players(b).find(u=>u.cls==='occultist');
+ const tether=mountRetreatSodan({e,scene:{unitBody(){}},body:sodan,reunionMark:h.p.bridge.required.marker});
+ actor(e,'occultist',5036,west57);
+ assert(tether.seated()&&sodan.fixed&&e.canAct());
+ assert(!e.walk(sodan,-1,.1)&&!e.jump(sodan)&&!e.canDrop(sodan));
+ e.impulse(sodan,400,-200);assert.equal(sodan.vx,0);assert.equal(sodan.vy,0);
+assert(owner.interact('warnBell').ok);
  const relay=b.terrain.find(t=>t.id==='a6-c07-protective-relay');
  e.damageTerrain(relay,12,0,'a6-c07-ward-pressure');assert(owner.interact('repairRelay').ok);
  actor(e,'knight',3332,west57);assert(owner.interact('warnRailing').ok);
@@ -236,9 +242,12 @@ function rescue57(h){
  assert.match(owner.interact('openRetreat').reason,/휘겸/);
  assert.equal(b.terrain.find(t=>t.id==='a6-c07-railing').broken,false);
  actor(e,'knight',3428,west57);assert(owner.interact('openRetreat').ok);
+ assert(flags.bridgeRetreatOpened&&!tether.sync()&&!sodan.fixed);
  actor(e,'occultist',1905,west57);assert(owner.interact('moveRelayToFallback').ok);
+ assert(tether.sync()&&sodan.fixed);
  actor(e,'knight',1958,west57);
  actor(e,'archer',2034,west57);owner.tick();assert(owner.interact('assistKeeper').ok);
+ assert(!tether.sync()&&!sodan.fixed);
  const keeper=e.unit('local-07-gwakjin-return-keeper');assert(keeper&&keeper.side===0);
  Object.assign(b,{active:keeper.id,phase:'aim',side:0});foot(e,keeper,2028,west57);
  assert(owner.interact('receiveKeeperWatch').ok);assert.equal(keeper.side,2);
@@ -306,6 +315,49 @@ async function testBoundaryRecipes(){
    readOnlySHA:shaText(held),verifiedFlags:flags,deniedMissingFlags:flags.length,originalBytesPreserved:true};
  }
  stateChecks.boundaryRecipes=results;
+}
+
+async function testSodanThread(){
+ const skill=Object.fromEntries(sodanInnerTree.map(id=>[id,C.SKILLS[id]]));
+ assert(sodanInnerTree.every(id=>skill[id]?.cls==='occultist'&&!skill[id].passive&&C.TALENT_MAP[id].branch===1));
+ const from=rawProfile(53),p=await pack(59),c=compiled(p);
+ const body=clone(fixtures[53].body.custody.full.occultist);
+ Object.assign(body,{focus:100,maxFocus:100,ranks:{...body.ranks,O06:1,O07:1,O08:1,O09:1,O10:1}});
+ const original=clone(body),m=clone(fixtures[53].body.custody.full.mage);
+ const foe=C.makeUnit('knight',1,m.x+230,m.y,{id:'thread-proof-foe',hp:200});
+ const {e,b}=carrier(53,p,c,from,[m,foe],'act6-native-53');
+ // Use the authored upper landing as the actual grounding of the caster. A
+ // deterministic shot prediction isolates skill/rank/cost from AI and aim.
+ const t=b.terrain.find(q=>q.id===near59);
+ const x=1000*K;
+ foot(e,m,x,t.id);foot(e,foe,x-95,t.id);
+ const old=e.predict;e.predict=()=>({unit:foe.id});
+ const s=mountSodanSpirit({C,e,scene:{unitBody(){}},hero:m,body,stage:53});
+ assert.deepEqual(s.skills(),sodanInnerTree);
+ assert(!s.cast('O13'));assert(s.cast('O07'),'native O07 support launch');
+ e.predict=old;
+ const record=s.record(),cast=record.casts[0];
+ assert.equal(cast.skill,'O07');assert(cast.cost>0&&s.used()&&!s.cast('O06'));
+ assert(b.projectiles.some(p=>p.skill==='O07'&&p.owner===body.id));
+ assert.equal(e.active,m);assert.deepEqual(body,original);
+ assert(validSodanThread(record,body,53));
+ assert(validSodanThread({...record,casts:[{...cast,skill:'O06'}]},body,53));
+ assert(!validSodanThread({...record,casts:[{...cast,skill:'O13'}]},body,53));
+ assert(debitSodanThread(body,record,53,0));assert.equal(body.focus,100-cast.cost);
+ const mage2=clone(m), guard=C.makeUnit('knight',1,x-90,m.y,{id:'mumyeongsa-b-wall-guard',hp:300});
+ const foe2=C.makeUnit('knight',1,x+80,m.y,{id:'thread-charm-foe',hp:200});
+ const second=carrier(54,p,c,from,[mage2,guard,foe2],'act6-gallery-charts');
+ foot(second.e,mage2,x,t.id);foot(second.e,guard,x-90,t.id);foot(second.e,foe2,x+80,t.id);
+ const choice=mountSodanSpirit({C,e:second.e,scene:{unitBody(){}},hero:mage2,body:original,stage:54});
+ second.e.predict=()=>({unit:guard.id});
+ assert(!choice.cast('O09')&&!choice.used(),'scripted wall guard excluded from aim');
+ second.e.predict=()=>({unit:foe2.id});assert(choice.cast('O09'));
+ const bolt=second.b.projectiles.find(p=>p.skill==='O09');
+ assert(bolt); const spirit=second.e.unit(original.id);
+ assert.equal(second.e.captureEnemy(guard,spirit,1),false,'scripted wall guard protected at impact too');
+ second.e.impact(bolt,{x:foe2.x,y:foe2.y-30,unit:foe2});
+ assert(foe2.enthrall&&foe2.side===0&&guard.side===1,'normal eligible enemy is temporarily enthralled');
+ stateChecks.sodan={learnedTree:s.skills(),cast:cast.skill,retainedOriginalParty:true,cost:cast.cost};
 }
 
 async function testFirstMissions(){
@@ -754,5 +806,6 @@ await run('57 parked body defeat, signed retry, real reunion and signed 58',test
 if(winner59)await run('60 true guides, no combat, signed memorial and normal title handoff',()=>test60(winner59));
 await run('51–60 authored slots, actual supporting faces, roles and caps',auditRosters);
 await run('51→52 through 59→60 exact saved-state conditions and missing-flag negatives',testBoundaryRecipes);
+await run('Sodan native curse support and old thread ledger compatibility',testSodanThread);
 await run('51 and 52 native objective order, grounded four, and the Archer cliff projectile',testFirstMissions);
 if(process.argv[2])await writeFile(process.argv[2],JSON.stringify({stateChecks,ledger},null,2)+'\n');
