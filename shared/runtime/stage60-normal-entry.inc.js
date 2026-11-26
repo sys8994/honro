@@ -60,7 +60,7 @@
           s.walk=button('act6QaWalk','다른 동행에게 걸음을 넘긴다',()=>{return a.canInput()&&s.owner60.nativeInteraction('end-walk');});
           s.memorial=button('act6QaMemorial','휘겸이 곽진과 곁에 남은 사람의 이름을 기록한다',()=>memorial60(a,s));s.memorial.hidden=true;
           s.advance=button('act6QaEndingNext','다음',()=>advance60(a,s));s.advance.hidden=true;
-          tick60(a,1/120);showAct6Milestone(a,s,'arrival',finale60Dialogue.arrival);return true;
+          tick60(a,1/120);return true;
         }catch(error){a.stopBattle();a.showTitle();throw error;}
       }
       function bindNormal60(a,e,s){
@@ -81,30 +81,9 @@
         s.ready60??=s.owner60.nativePosition();
         return {complete:!!s.ready60,objectiveReady:!!s.ready60,targets:[],summary:s.ready60?'마지막 두 혼과 모두가 산문에 닿았습니다.':'마지막 두 혼을 인도하고 네 사람이 산문에 닿으십시오.'};
       }
-      const finale60Dialogue=Object.freeze({
-        arrival:[
-          ['설오','여기까지는 소리가 따라오지 않습니다. 다리 끝에도 더는 서 있는 것이 없습니다.'],
-          ['소단','둘이 아직 남아 있어요. 저희가 길을 막고 있으면 못 따라 나갈 것 같아요.'],
-          ['휘겸','이번에는 다리를 비우겠소. 화살부터 꺼내지 마시오.'],
-          ['담허','손이 닿을 만큼만 가까이 가게. 앞서 걷고, 함께 움직이는지 한번 돌아보면 되네.'],
-          ['설오','두 분 중 한 분이 먼저 가십시오. 여기서는 제가 다른 사람들 발을 보겠습니다.'],
-          ['휘겸','다 도착하면 돌아가는 길에서 이름을 적겠소. 모르는 사람이라고 그냥 비워 둘 수는 없소.']
-        ],
-        sodan:[
-          ['소단','제가 먼저 걸을게요. 두 분이 멈추면 저도 설게요.'],
-          ['담허','급할 일 없네. 나머지는 여기서 뒤따라가겠네.'],
-          ['설오','산문까지 먼저 뛰어가 있지는 않겠습니다. 나란히 보이면 같이 가겠습니다.']
-        ],
-        damheo:[
-          ['담허','먼저 가겠네. 발 아래 돌이 끊기면 너도 나를 불러 주게.'],
-          ['소단','네. 두 분 다 걷는 게 보일 때만 뒤따라갈게요.'],
-          ['휘겸','바닥부터 보시오. 먼저 걷는 사람보다 앞서 가지는 맙시다.']
-        ]
-      });
       function stage60UI(a,s,e){
         if(!scope60(a,e,s)||!a.canInput()||!s.owner60.nativeInteraction('guide'))return false;
-        a.notify('마지막 두 혼과 함께 천천히 이동하십시오.');
-        const id=e.active?.cls==='occultist'?'sodan':'damheo';showAct6Milestone(a,s,id,finale60Dialogue[id]);return true;
+        a.notify('마지막 두 혼과 함께 천천히 이동하십시오.');return true;
       }
       function ending60(a,s){
         const canvas=a.scene?.canvas??document.getElementById?.('battlecanvas');

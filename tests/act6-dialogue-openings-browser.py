@@ -16,7 +16,7 @@ with sync_playwright() as pw:
  page.goto('https://sys8994.github.io/honro/',wait_until='domcontentloaded')
  page.wait_for_function('!!window.HonroApp',timeout=90000)
  page.evaluate("""()=>{const a=HonroApp;a.setDebugMode(true);HonroRestJourney.showBook(a,51,null,6);}""")
- for id,needle in [(51,'고개에서 본 절'),(52,'위에서 본 곳이 셋'),(53,'들어오긴 했네'),(54,'처마가 저리'),(55,'소단, 종터까지'),(56,'저 아래로 가는 혼'),(57,'진목 받침이 기울었소'),(58,'네 사람이 다 들어왔군'),(59,'산문 밖입니다')]:
+ for id,needle in [(51,'고개에서 본 절'),(52,'위에서 본 곳이 셋'),(53,'들어오긴 했네'),(54,'처마가 저리'),(55,'소단, 종터까지'),(56,'저 아래로 가는 혼'),(57,'진목 받침이 기울었소'),(58,'네 사람이 다 들어왔군'),(59,'산문 밖입니다'),(60,'여기까지는 소리가')]:
   if id!=51:page.evaluate('n=>HonroRestJourney.showBook(HonroApp,n,null,6)',id)
   page.locator(f'[data-action="journey-travel"][data-id="{id}"]').click(timeout=20000)
   page.wait_for_function('n=>HonroApp.engine?.b.honroStage===n && !!HonroApp.dialogue',arg=id,timeout=30000)
@@ -64,8 +64,41 @@ with sync_playwright() as pw:
     assert not page.evaluate('HonroApp.dialogue')
    assert not page.evaluate('HonroApp.done')
    print('VERIFIED CLIFF → BRIDGE → BELL; INVALID CLIFF NO DIALOGUE',flush=True)
+  if id==58:
+   button=page.locator('[data-act6-qa-lookout]')
+   def at58(cls,x):
+    return page.evaluate("""({cls,x})=>{
+     const a=HonroApp,e=a.engine,b=e.b,u=b.units.find(v=>v.side===0&&v.cls===cls);
+     const surface=HONRO_CORE.terrainSurface(b.terrain.filter(t=>t.id==='local-lower-08-body'),x,2100,3555,Infinity);
+     if(!u||!surface)return false;
+     Object.assign(b,{side:0,phase:'aim',active:u.id,projectiles:[]});
+     Object.assign(u,{x,y:surface.y,vx:0,vy:0,airborne:false,jumping:false,acted:false,moveLeft:u.maxMove,moving:0});
+     a.updateHUD(true);return e.grounded(u);
+    }""",{'cls':cls,'x':x})
+   assert at58('mage',3496);button.click();assert not page.evaluate('!!HonroApp.dialogue')
+   assert at58('occultist',3496);button.click();assert '기둥 뒤에서' in page.locator('#dialogue-root').inner_text()
+   assert not page.evaluate("!!HonroApp.engine.unit('a6-c08-boss')")
+   page.locator('#dialogue-root [data-action="dialogue-skip"]').click()
+   assert at58('mage',3680);button.click()
+   assert page.evaluate("!!HonroApp.engine.unit('a6-c08-boss')")
+   assert '그 진목을 뽑아라' in page.locator('#dialogue-root').inner_text()
+   page.locator('#dialogue-root [data-action="dialogue-skip"]').click()
+   print('VERIFIED DAEDOSA APPEARS ONLY AFTER COLUMN → THRESHOLD',flush=True)
+  if id==60:
+   button=page.locator('[data-act6-qa-lookout]')
+   page.evaluate("""()=>{
+    const a=HonroApp,e=a.engine,b=e.b,role=b.units.find(v=>v.side===0&&v.cls==='occultist'),soul=b.units.find(v=>v.side===2);
+    if(!role||!soul)throw Error('escort test fixture');
+    b.active=role.id;Object.assign(role,{x:soul.x-36,y:soul.y,vx:0,vy:0,airborne:false,jumping:false,acted:false});
+    a.updateHUD(true);
+   }""")
+   button.click()
+   assert '제가 먼저 걸을게요' in page.locator('#dialogue-root').inner_text()
+   page.locator('#dialogue-root [data-action="dialogue-skip"]').click()
+   assert not page.evaluate('HonroApp.done')
+   print('VERIFIED SOUL ESCORT ACCEPTED BEFORE DIALOGUE',flush=True)
   print('ENTRY AND SKIP',id,flush=True)
-  if id!=59:
+  if id!=60:
    page.reload(wait_until='domcontentloaded')
    page.wait_for_function('!!window.HonroApp',timeout=90000)
    page.evaluate('()=>HonroApp.setDebugMode(true)')

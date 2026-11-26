@@ -97,11 +97,21 @@ if(entry57.includes('const field57Dialogue=Object.freeze({')){
  for(const r of block.matchAll(/\['([^']+)','([^']+)'\]/g))row(57,r[1],r[2],newRows);
 }
 for(const n of [58,59,60]){
- const src=text('shared/runtime/stage'+n+'-normal-entry.inc.js'),anchor='const finale'+n+'Dialogue=Object.freeze({';
+ const src=text(n===60?'shared/act6-normal-ending-qa/stage60-entry-stock.inc.js':'shared/runtime/stage'+n+'-normal-entry.inc.js'),anchor='const finale'+n+'Dialogue=Object.freeze({';
  if(!src.includes(anchor))continue;
  const block=src.split(anchor)[1].split('});')[0];
  assert(src.includes('showAct6Milestone('));
  for(const r of block.matchAll(/\['([^']+)','([^']+)'\]/g))row(n,r[1],r[2],newRows);
+}
+if(opens.includes('const field51Dialogue=Object.freeze({')){
+ const block=opens.split('const field51Dialogue=Object.freeze({')[1].split('});')[0];
+ assert(text('shared/act6-app-qa.mjs').includes('speak51State(a,active.get(a))'));
+ for(const r of block.matchAll(/\['([^']+)','([^']+)'\]/g))row(51,r[1],r[2],newRows);
+}
+const lastCueFile='shared/act6-ending-replan/cues.mjs';
+for(const [src,collect] of [[git(lastCueFile),baseRows],[text(lastCueFile),newRows]]){
+ const block=src.split('export const intro=[')[1].split('];')[0];
+ for(const r of block.matchAll(/\['([^']+)','([^']+)'\]/g))row(60,r[1],r[2],collect);
 }
 const before=unique(baseRows),now=unique(newRows),isInAct=(n,i)=>Math.ceil(n/10)===i+1;
 const report=released.map((baseline,i)=>{

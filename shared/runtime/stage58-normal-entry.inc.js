@@ -127,6 +127,13 @@
           ['담허','그게 남아 있으면 자리도 남는 걸세. 저 사람이 일어날까 기다릴 게 아니라 그쪽을 끊어야 하네.'],
           ['설오','저쪽이 보입니다. 몸 가까이 모이지 마십시오. 한 번 더 겨누겠습니다.']
         ],
+        bothStopped:[
+          ['설오','사람도, 옆에 걸려 있던 것도 둘 다 움직이지 않습니다.'],
+          ['소단','저 소리는 남아 있어요. 끊은 쪽 말고, 그 너머에서 계속 들려요.'],
+          ['담허','누가 부르는지 확인하러 더 안으로 들어갈 일은 없네. 벌어진 데만 우리가 바로잡고 나가세.'],
+          ['휘겸','저 사람한테 할 말이 더 있었소. 이제 그 말은 밖에 남은 사람한테 하겠소.'],
+          ['소단','그럼 진목을 놓는 동안 제가 틈을 볼게요. 떠나는 것은 지나가게 두세요.']
+        ],
         stake:[
           ['담허','이번엔 붙잡아 둘 만큼만 박았네. 나가려는 혼을 막지 않도록 저 뜬 곳은 그대로 두게.'],
           ['소단','네. 줄을 놓친 것들이 저 틈을 보고 있어요. 제가 다시 잡지는 않을게요.'],
@@ -136,7 +143,7 @@
       });
       function speak58State(a,s,r){
         const f=r.flags;if(!f?.bossManifested||f.stake||r.failed||r.complete)return;
-        const key=f.bossDead&&!f.nodeDead?'stillWorking':!f.bossDead&&r.phase===3&&!f.nodeDead?'third':!f.bossDead&&r.phase===2?'second':null;
+        const key=f.bossDead&&f.nodeDead?'bothStopped':f.bossDead&&!f.nodeDead?'stillWorking':!f.bossDead&&r.phase===3&&!f.nodeDead?'third':!f.bossDead&&r.phase===2?'second':null;
         if(key)showAct6Milestone(a,s,key,finale58Dialogue[key]);
       }
       function stage58UI(a,s,e){

@@ -331,6 +331,8 @@ export async function createAct6WebQa(project,repoRoot,env=process.env,release=n
  }
  if(source.includes('function mountB53('))source=replaceOne(source,'release,context53,release53,','release,context53,release53,tick53,adjustNativeWallAngle,');
  if(source.includes('function defend59('))source=replaceOne(source,'tickExterior:(a,dt)=>active.get(a)?.exterior?.tick(dt),bind','tickExterior:(a,dt)=>active.get(a)?.exterior?.tick(dt),defend59,bind');
+ if(source.includes('function speak51State('))source=replaceOne(source,'tickExterior:(a,dt)=>active.get(a)?.exterior?.tick(dt),',
+   'tickExterior:(a,dt)=>{active.get(a)?.exterior?.tick(dt);speak51State(a,active.get(a));},');
  return {source:replaceOne(replaceOne(source,'/* FIRST_OWNER */',first.replace('export function createFirstMissionOwner','function createFirstMissionOwner')),'/* FIFTY_OWNER */','const {createFiftyRestAdmission,buildPartyFromNormalRest,bindOrdinaryFiftyRestUI}=(()=>{'+rest.replaceAll('export function ','function ')+'\nreturn {createFiftyRestAdmission,buildPartyFromNormalRest,bindOrdinaryFiftyRestUI};})();'),packets};
 }
 function replaceOne(src,old,next){

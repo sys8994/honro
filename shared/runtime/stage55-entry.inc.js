@@ -107,6 +107,13 @@
           ['설오','먼저 닿는 쪽은 제가 보겠습니다. 정면으로 들어가는 게 있으면 바로 부르겠습니다.'],
           ['소단','막아 주셔도 저는 여기서 못 일어나요. 제 쪽이 조용해도 일이 끝난 건 아니에요.']
         ],
+        gateQuiet:[
+          ['설오','울리던 것이 멎었습니다. 종터 저쪽에서도 더는 같은 소리가 안 납니다.'],
+          ['소단','줄은 아직 살아 있어요. 누가 돌을 다시 맞춰 주면 손을 조금 놓을 수 있어요.'],
+          ['휘겸','내가 빈 받침까지 가겠소. 자리가 바뀌기 전에 올려놔야 하오.'],
+          ['설오','받침을 볼 동안 바깥쪽은 제가 살피겠습니다. 휘겸 씨가 손을 대기 전에는 여기서 움직이지 않겠습니다.'],
+          ['소단','조금 돌아가는 느낌이 나면 그때 말씀하실 필요 없어요. 제가 줄이 맞았는지 먼저 알려 드릴게요.']
+        ],
         rebound:[
           ['소단','다시 잡았어요. 아까처럼 줄이 손에서 밀리지는 않아요.'],
           ['휘겸','그럼 조금만 더 그렇게 계시오. 놈이 쓰러지면 내가 빈 받침으로 다시 가겠소.'],
@@ -126,6 +133,7 @@
           if(s.support55.textContent!==label)s.support55.textContent=label;
           s.support55.style.opacity=s.support55.disabled?'.88':'';}
         if((r.complete||r.failed)&&!a.done)e.checkEnd();else if(r.binding==='frayed')showAct6Milestone(a,s,'frayed',field55Dialogue.frayed);
+        else if(r.targets?.[0]?.id==='align-bell'&&e.unit('draft-pressure-0')?.dead)showAct6Milestone(a,s,'gate-quiet',field55Dialogue.gateQuiet);
       }
       function terminalNormal55(a,s){
         const t=s.owner55.terminal(a,s.engine),proof=s.previous?.eave;

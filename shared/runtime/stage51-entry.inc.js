@@ -119,6 +119,32 @@
         if(accepted)seen.add(key);
         return accepted;
       }
+      const field51Dialogue=Object.freeze({
+        rock:[
+          ['설오','높은 턱에 선 것이 우리 붙는 쪽을 보고 있습니다. 저 길을 그냥 넘겨주지는 않겠습니다.'],
+          ['휘겸','암귀를 앞에 두고 한 사람씩 오르지 마시오. 겁이 나더라도 내가 닿을 때까지 그 돌에서 기다리시오.'],
+          ['소단','둘이 따로 부르면 어느 쪽부터 볼지 모르겠어요. 정말 위험한 데만 크게 불러요.'],
+          ['담허','좋네. 먼저 발이 붙을 곳을 남겨 두고 겨누게. 쓰러뜨리다가 우리 길까지 막히면 곤란하네.'],
+          ['설오','앞에 몸을 내밀지 않겠습니다. 위로 난 자리가 보이면 그쪽부터 노려 보겠습니다.'],
+          ['휘겸','그럼 나는 저쪽에서 기다리겠소. 움직이는 쪽을 보면 먼저 알려 주겠소.']
+        ],
+        approach:[
+          ['설오','높은 턱은 비었습니다. 아직 이 자리에서 아래가 다 보이지는 않습니다.'],
+          ['휘겸','먼저 나가 확인했다고 말하지 마시오. 나머지 셋이 어디까지 왔는지 봅시다.'],
+          ['소단','저도 올라가고 있어요. 아래쪽이 가려져도 혼자 멀리 가시진 마세요.'],
+          ['담허','당장 분간할 것은 세 방향일세. 저 아래부터 보고, 어디에 발이 닿는지 정하세.'],
+          ['설오','도식 어르신이 보던 길이 어느 쪽인지도 함께 보겠습니다. 안 보여도 아무 데로 내려가지는 않겠습니다.'],
+          ['휘겸','좋소. 오는 사람이 없으면 내가 먼저 내려다보겠소. 각자 넘어왔을 때 대답하시오.']
+        ]
+      });
+      function speak51State(a,s){
+        const e=s?.engine,b=e?.b;if(b?.honroStage!==51||!s.normal51||a.engine!==e||!a.scene)return;
+        const foe=e.unit('crest-champion'),hero=e.active,v=a.scene;
+        if(!foe||!hero||!e.grounded(hero))return;
+        const shown=value=>v.canvas?.clientWidth>0&&v.scale>0&&Math.abs(value.x-v.x)<v.canvas.clientWidth/v.scale/2&&Math.abs(value.y-v.y)<v.canvas.clientHeight/v.scale/2;
+        if(!foe.dead&&foe.hp>0&&shown(foe)&&Math.abs(foe.x-hero.x)<1000)showAct6Milestone(a,s,'rock',field51Dialogue.rock);
+        else if(foe.dead&&hero.x>b.width*.83&&shown(hero))showAct6Milestone(a,s,'approach',field51Dialogue.approach);
+      }
       function enterNormal51(app,grant,carried){
         const m=grant.packet.map,d=grant.packet.mission;
         check(carried.profile===app.profile&&app.profile===app.normalProfile&&!app.engine,'Normal Stage51 rest changed');
