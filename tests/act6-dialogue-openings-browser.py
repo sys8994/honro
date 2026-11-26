@@ -22,6 +22,7 @@ with sync_playwright() as pw:
   page.wait_for_function('n=>HonroApp.engine?.b.honroStage===n && !!HonroApp.dialogue',arg=id,timeout=30000)
   if id==51: assert not page.evaluate('HonroApp.engine.b.honroState.flags?.["act6.threeSitesSighted"]')
   assert needle in page.locator('#dialogue-root').inner_text()
+  carried=page.evaluate('JSON.stringify(HonroApp.profile)')
   page.locator('#dialogue-root [data-action="dialogue-next"]').click(timeout=5000)
   assert page.evaluate('HonroApp.dialogue.index')==1
   if id in (53,54,56): assert page.evaluate("HonroApp.dialogue.lines.some(row=>row[0]==='소단')")
@@ -31,6 +32,7 @@ with sync_playwright() as pw:
   page.locator('#dialogue-root [data-action="dialogue-skip"]').click(timeout=5000)
   page.wait_for_function('!HonroApp.dialogue',timeout=6000)
   assert page.evaluate('HonroApp.engine.b.phase')=='aim'
+  assert page.evaluate('JSON.stringify(HonroApp.profile)')==carried
   if id==52:
    marks=json.loads((ROOT/'shared/data/act6-qa/first-two.json').read_text())['rows']['52']['mission']['marks']
    button=page.locator('[data-act6-qa-lookout]')
@@ -77,21 +79,28 @@ with sync_playwright() as pw:
     }""",{'cls':cls,'x':x})
    assert at58('mage',3496);button.click();assert not page.evaluate('!!HonroApp.dialogue')
    assert at58('occultist',3496);button.click();assert '기둥 뒤에서' in page.locator('#dialogue-root').inner_text()
+   assert page.evaluate('HonroApp.engine.b.honroState.flags.localColumnSealAligned===true')
    assert not page.evaluate("!!HonroApp.engine.unit('a6-c08-boss')")
    page.locator('#dialogue-root [data-action="dialogue-skip"]').click()
    assert at58('mage',3680);button.click()
    assert page.evaluate("!!HonroApp.engine.unit('a6-c08-boss')")
    assert '그 진목을 뽑아라' in page.locator('#dialogue-root').inner_text()
    page.locator('#dialogue-root [data-action="dialogue-skip"]').click()
+   assert page.evaluate('JSON.stringify(HonroApp.profile)')==carried
    print('VERIFIED DAEDOSA APPEARS ONLY AFTER COLUMN → THRESHOLD',flush=True)
   if id==60:
    button=page.locator('[data-act6-qa-lookout]')
    page.evaluate("""()=>{
     const a=HonroApp,e=a.engine,b=e.b,role=b.units.find(v=>v.side===0&&v.cls==='occultist'),soul=b.units.find(v=>v.side===2);
     if(!role||!soul)throw Error('escort test fixture');
-    b.active=role.id;Object.assign(role,{x:soul.x-36,y:soul.y,vx:0,vy:0,airborne:false,jumping:false,acted:false});
+    const floor=e.contactSurface(soul.x,soul.y-3,soul.y+4)?.t;
+    if(!floor)throw Error('soul has no floor');
+    Object.assign(b,{side:0,phase:'aim',active:role.id,projectiles:[]});
+    Object.assign(role,{x:5360,y:HONRO_CORE.topAt(floor,5360),vx:0,vy:0,airborne:false,jumping:false,acted:false,moveLeft:role.maxMove,moving:0});
+    delete role.platformDrop;delete role.groundContact;delete role.moveTarget;
     a.updateHUD(true);
    }""")
+   page.wait_for_function('HonroApp.canInput() && HonroApp.engine.canAct()')
    button.click()
    assert '제가 먼저 걸을게요' in page.locator('#dialogue-root').inner_text()
    page.locator('#dialogue-root [data-action="dialogue-skip"]').click()
