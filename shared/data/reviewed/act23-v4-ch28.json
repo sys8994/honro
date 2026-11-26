@@ -224,6 +224,45 @@
       "channel": "dialogue"
     },
     {
+      "id": "A3.S28.DOCUMENTS.08",
+      "speaker_channel": "곽진 · dialogue",
+      "condition": "responsibility_packet_secured; 화재 차단·주민 구조·재합류 완료 후 한 기록함을 안전하게 확보",
+      "text": "그 사람 이름이 지금 수문에 걸린 군기에도 있다는 말씀이오?",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S28.DOCUMENTS",
+      "order": 8,
+      "speaker": "곽진",
+      "channel": "dialogue"
+    },
+    {
+      "id": "A3.S28.DOCUMENTS.09",
+      "speaker_channel": "휘겸 · dialogue",
+      "condition": "responsibility_packet_secured; 화재 차단·주민 구조·재합류 완료 후 한 기록함을 안전하게 확보",
+      "text": "인장과 이름은 적어 놓았소. 지금 저쪽에 누가 서 있는지는 아직 봐야 하오.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S28.DOCUMENTS",
+      "order": 9,
+      "speaker": "휘겸",
+      "channel": "dialogue"
+    },
+    {
+      "id": "A3.S28.DOCUMENTS.10",
+      "speaker_channel": "담허 · dialogue",
+      "condition": "responsibility_packet_secured; 화재 차단·주민 구조·재합류 완료 후 한 기록함을 안전하게 확보",
+      "text": "이건 나가는 길에서 다시 보세. 문서가 타면 우린 방금 읽은 것을 다시 댈 수 없네.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S28.DOCUMENTS",
+      "order": 10,
+      "speaker": "담허",
+      "channel": "dialogue"
+    },
+    {
       "id": "A3.S28.PRESENT.01",
       "speaker_channel": "휘겸 · dialogue",
       "condition": "responsibility_scene_done; 핵심 증거 장면 뒤 곽진과 현재 병사들의 실제 구조 동작이 보임",

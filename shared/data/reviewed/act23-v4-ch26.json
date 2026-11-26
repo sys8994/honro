@@ -172,6 +172,45 @@
       "channel": "dialogue"
     },
     {
+      "id": "A3.S26.TESTIMONY.06",
+      "speaker_channel": "휘겸 · dialogue",
+      "condition": "ancestor_testimony_acquired; 구조 동선 안의 가문 물건과 선조 증언을 확보; 주민은 안전하고 위협 해소",
+      "text": "이 글이 들키면 그 어른도 무사하지 못했을 거요. 저 문장이 여기 남은 건 그분이 숨긴 덕이오.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S26.TESTIMONY",
+      "order": 6,
+      "speaker": "휘겸",
+      "channel": "dialogue"
+    },
+    {
+      "id": "A3.S26.TESTIMONY.07",
+      "speaker_channel": "소단 · dialogue",
+      "condition": "ancestor_testimony_acquired; 구조 동선 안의 가문 물건과 선조 증언을 확보; 주민은 안전하고 위협 해소",
+      "text": "접힌 데는 찢어지겠어요. 글이 안으로 오게 다시 접을까요?",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S26.TESTIMONY",
+      "order": 7,
+      "speaker": "소단",
+      "channel": "dialogue"
+    },
+    {
+      "id": "A3.S26.TESTIMONY.08",
+      "speaker_channel": "휘겸 · dialogue",
+      "condition": "ancestor_testimony_acquired; 구조 동선 안의 가문 물건과 선조 증언을 확보; 주민은 안전하고 위협 해소",
+      "text": "내가 들겠소. 내려갈 때 혹시 떨어뜨리면 그 자리에서 말해 주시오.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S26.TESTIMONY",
+      "order": 8,
+      "speaker": "휘겸",
+      "channel": "dialogue"
+    },
+    {
       "id": "A3.S26.FIRE.01",
       "speaker_channel": "소단 · dialogue",
       "condition": "office_smoke_visible; 관아 쪽 실제 연기가 화면에 보임",

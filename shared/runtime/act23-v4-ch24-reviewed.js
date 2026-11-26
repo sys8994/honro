@@ -91,7 +91,7 @@ R=F.register({stage:24,
   {key:'entry-voice',ids:['A3.S24.ENTRY.03'],when:app=>{const b=app.engine.b;return F.closed(mem(b).events.entry)&&(!received(b,'A3.S24.ENTRY.03')||mem(b).events['entry-voice']?.status==='open')&&voiceHeard(b);}},
   {key:'heard',ids:['A3.S24.INTRO.03'],when:app=>{const q=mem(app.engine.b);return F.closed(q.events.entry)&&spoken(app.engine.b,'A3.S24.ENTRY.03')&&voiceHeard(app.engine.b)&&(q.souls?.first||0)>=30;}},
   {key:'approach',ids:ids('APPROACH_DANGER',1),when:app=>(mem(app.engine.b).souls?.second||0)>=30&&!F.closed(mem(app.engine.b).events.split)},
-  {key:'split',ids:ids('SPLIT',5),when:app=>{const b=app.engine.b;return routeSafe(b)&&gathered(b)&&F.closed(mem(b).events.entry)&&spoken(b,'A3.S24.ENTRY.03')&&spoken(b,'A3.S24.INTRO.03');}},
+  {key:'split',ids:ids('SPLIT',7),when:app=>{const b=app.engine.b;return routeSafe(b)&&gathered(b)&&F.closed(mem(b).events.entry)&&spoken(b,'A3.S24.ENTRY.03')&&spoken(b,'A3.S24.INTRO.03');}},
   {key:'depart',ids:ids('DEPART',2),when:app=>['archer','mage','knight','occultist'].every(c=>(mem(app.engine.b).departWalk?.[c]?.distance||0)>=30)},
   {key:'guide',ids:['A3.S24.GUIDE.01'],when:app=>!!mem(app.engine.b).proof.departure}
  ],

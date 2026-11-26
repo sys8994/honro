@@ -159,6 +159,45 @@
       "channel": "dialogue"
     },
     {
+      "id": "A3.S25.HOUSEHOLDS.04",
+      "speaker_channel": "설오 · dialogue",
+      "condition": "household_goods_visible; 기존 household-tally 주변의 서로 다른 생활도구와 가구별 표찰이 시야에 들어옴",
+      "text": "문고리까지 가져갈 이유가 있었을까요? 식기만 실은 건 줄 알았습니다.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S25.HOUSEHOLDS",
+      "order": 4,
+      "speaker": "설오",
+      "channel": "dialogue"
+    },
+    {
+      "id": "A3.S25.HOUSEHOLDS.05",
+      "speaker_channel": "담허 · dialogue",
+      "condition": "household_goods_visible; 기존 household-tally 주변의 서로 다른 생활도구와 가구별 표찰이 시야에 들어옴",
+      "text": "집마다 남은 것을 묶어 나른 듯하네. 누가 무엇을 찾았는지는 아직 볼 수 없군.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S25.HOUSEHOLDS",
+      "order": 5,
+      "speaker": "담허",
+      "channel": "dialogue"
+    },
+    {
+      "id": "A3.S25.HOUSEHOLDS.06",
+      "speaker_channel": "설오 · dialogue",
+      "condition": "household_goods_visible; 기존 household-tally 주변의 서로 다른 생활도구와 가구별 표찰이 시야에 들어옴",
+      "text": "그러면 두 번호를 따로 기억하겠습니다. 올라가서 어느 집에 살던 분들인지 알아볼 수도 있겠지요.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S25.HOUSEHOLDS",
+      "order": 6,
+      "speaker": "설오",
+      "channel": "dialogue"
+    },
+    {
       "id": "A3.S25.FAR_SIDE.01",
       "speaker_channel": "설오 · dialogue",
       "condition": "stake_arrival_4_complete; 설오·담허 모두 기존 맞은편 검문실에 안전 도착; 맞은편 검문실 실제 도착 및 아래길 연결이 실제 시각적으로 확인되는 경우.",

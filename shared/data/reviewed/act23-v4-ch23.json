@@ -133,6 +133,45 @@
       "channel": "dialogue"
     },
     {
+      "id": "A3.S23.GOODS.05",
+      "speaker_channel": "설오 · dialogue",
+      "condition": "cargo_revealed; 호송 중 기존 dispatch-bundle 지점의 포장재와 생활금속이 보임",
+      "text": "그릇에 긁힌 번호하고 문고리에 매단 표찰이 같습니다. 이 둘은 원래 같은 집에 있던 것 같습니다.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S23.GOODS",
+      "order": 5,
+      "speaker": "설오",
+      "channel": "dialogue"
+    },
+    {
+      "id": "A3.S23.GOODS.06",
+      "speaker_channel": "휘겸 · dialogue",
+      "condition": "cargo_revealed; 호송 중 기존 dispatch-bundle 지점의 포장재와 생활금속이 보임",
+      "text": "짐을 누가 묶었는지는 모르니 그건 아직 쓰지 맙시다. 표찰만 떨어뜨리지 말고 두시오.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S23.GOODS",
+      "order": 6,
+      "speaker": "휘겸",
+      "channel": "dialogue"
+    },
+    {
+      "id": "A3.S23.GOODS.07",
+      "speaker_channel": "설오 · dialogue",
+      "condition": "cargo_revealed; 호송 중 기존 dispatch-bundle 지점의 포장재와 생활금속이 보임",
+      "text": "알겠습니다. 뼈가 있는 천은 다시 덮겠습니다.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S23.GOODS",
+      "order": 7,
+      "speaker": "설오",
+      "channel": "dialogue"
+    },
+    {
       "id": "A3.S23.BLOCKED.01",
       "speaker_channel": "짐꾼 · dialogue",
       "condition": "porter_threatened; 짐꾼 앞의 다음 엄폐 지점이 적에게 막힘",

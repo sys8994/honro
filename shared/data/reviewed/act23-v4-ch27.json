@@ -55,6 +55,32 @@
       "channel": "dialogue"
     },
     {
+      "id": "A3.S27.FIRST_STAKE.03",
+      "speaker_channel": "설오 · dialogue",
+      "condition": "first_stake_placed; 기존 depot-route-ledger를 첫 진목 설치·길 확인 이벤트로 대체; 서류 읽기 없음",
+      "text": "제가 건너가면 뒤쪽 길도 보겠습니다. 여기서는 저 끝만 보입니다.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S27.FIRST_STAKE",
+      "order": 3,
+      "speaker": "설오",
+      "channel": "dialogue"
+    },
+    {
+      "id": "A3.S27.FIRST_STAKE.04",
+      "speaker_channel": "담허 · dialogue",
+      "condition": "first_stake_placed; 기존 depot-route-ledger를 첫 진목 설치·길 확인 이벤트로 대체; 서류 읽기 없음",
+      "text": "내가 볼 때 건너게. 중간에 걸리면 손 놓고 떨어지지 말고 먼저 불러.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S27.FIRST_STAKE",
+      "order": 4,
+      "speaker": "담허",
+      "channel": "dialogue"
+    },
+    {
       "id": "A3.S27.LOADING.01",
       "speaker_channel": "설오 · dialogue",
       "condition": "stake_arrival_1_complete; 두 사람이 기존 수몰 하역대에 도착",

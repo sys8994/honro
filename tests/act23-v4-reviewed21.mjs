@@ -7,7 +7,7 @@ import {appHarness,plain} from './app-regression-helpers.mjs';
 const h=await appHarness(),g=h.g,V=g.HonroAct23V4,R=g.HonroAct23V4Chapter21Reviewed,S=g.HonroAct23V4Chapter21,City=g.HonroAct23V4City,C=g.HONRO_CORE;
 assert(R,'apply the isolated parent integration proposal first');
 const approved=JSON.parse(await readFile('shared/data/reviewed/act23-v4-ch21.json','utf8'));
-assert.equal(g.HONRO_ACT23_V4_REVIEWED_CH21,null);assert(!R.enabled());assert.equal(approved.rows.length,30);assert.equal(new Set(approved.rows.map(r=>r.id)).size,30);
+assert.equal(g.HONRO_ACT23_V4_REVIEWED_CH21,null);assert(!R.enabled());assert.equal(approved.rows.length,32);assert.equal(new Set(approved.rows.map(r=>r.id)).size,32);
 g.HONRO_ACT23_V4_PHASE_A=true;g.HONRO_ACT23_V4_PHASE_B_CH21=true;g.HONRO_ACT23_V4_REVIEWED_CH21=approved;
 const raw=plain(g.HONRO_PROJECT);g.HONRO_PROJECT=V.author(raw,{enabled:true});let app;
 function launch(){const p=h.profileThrough(20);p.seen['act2:first-spirit-encounter']=true;p.seen['map-story-v'+g.HonroStoryContent.version+'-20']=true;app=h.load(p);app.launch(21);app.turnNotice=null;Object.assign(app.engine.b,{side:0,phase:'aim'});assert(R.active(app.engine.b));assert.equal(app.engine.b.honroCampaignMapRevision,421);return app.engine.b;}

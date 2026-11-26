@@ -172,6 +172,32 @@
       "channel": "dialogue"
     },
     {
+      "id": "A3.S24.SPLIT.06",
+      "speaker_channel": "소단 · dialogue",
+      "condition": "split_decision; 두 출입로가 확보되었고 네 사람이 분할 직전 안전지점에 모임",
+      "text": "문이 잠겨 있으면 안에 살아 있는지 먼저 불러 봐요. 제가 혼을 살피는 사이에 문부터 부수진 마세요.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S24.SPLIT",
+      "order": 6,
+      "speaker": "소단",
+      "channel": "dialogue"
+    },
+    {
+      "id": "A3.S24.SPLIT.07",
+      "speaker_channel": "휘겸 · dialogue",
+      "condition": "split_decision; 두 출입로가 확보되었고 네 사람이 분할 직전 안전지점에 모임",
+      "text": "그리하리다. 담허, 아래에서 연기가 나면 우리가 올 때까지 기다리지 마시오.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S24.SPLIT",
+      "order": 7,
+      "speaker": "휘겸",
+      "channel": "dialogue"
+    },
+    {
       "id": "A3.S24.DEPART.01",
       "speaker_channel": "설오 · dialogue",
       "condition": "split_departure; 두 팀이 서로 다른 출구로 실제 이동 중",

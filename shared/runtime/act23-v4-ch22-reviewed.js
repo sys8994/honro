@@ -50,7 +50,7 @@ function tick(app,dt){const b=app.engine.b;if(!active(b)||!V.safe(app))return;co
  }
  if(V.mem(b).done['archive-seal']&&!q.events.seal){begin(app,'seal',['A3.S22.SEAL.01']);return;}
  if(!q.events.upper&&upperAim(app)){begin(app,'upper',['A3.S22.UPPER_DANGER.01']);return;}
- if(bundle(b)&&!q.events.records){begin(app,'records',['A3.S22.DOC.REPORT','A3.S22.DOC.REGISTER',...[1,2,3,4,5,6].map(i=>'A3.S22.COMPARE.0'+i),'A3.S22.DOC.MAP',...[1,2,3].map(i=>'A3.S22.MAP.0'+i)]);return;}
+ if(bundle(b)&&!q.events.records){begin(app,'records',['A3.S22.DOC.REPORT','A3.S22.DOC.REGISTER',...[1,2,3,4,5,6].map(i=>'A3.S22.COMPARE.0'+i),'A3.S22.COMPARE.07','A3.S22.COMPARE.08','A3.S22.DOC.MAP',...[1,2,3].map(i=>'A3.S22.MAP.0'+i)]);return;}
  if(closed(q.events.records)&&q.proof.compared&&!q.journal){const r=row('A3.S22.JOURNAL.01');app.profile.record??=[];if(!app.profile.record.some(x=>x.rowId===r.id&&x.sourceRun===b.session))app.profile.record.push({place:app.stage.name,text:r.text,rowId:r.id,reviewedRevision:1,sourceRun:b.session});q.journal={rowId:r.id};app.dirty=true;}
  if(closed(q.events.records)&&V.heroes(b).some(u=>V.near(u,V.marker(b,'archive-exit'),220))){q.ambient.distance=Math.min(120,q.ambient.distance+Math.max(0,Math.min(dt,.05))*140);if(q.ambient.distance>=60&&!q.events.exit)begin(app,'exit',['A3.S22.EXIT.01','A3.S22.EXIT.02']);}
 }

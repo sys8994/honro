@@ -46,7 +46,7 @@ function tick(app){const b=app.engine.b;if(!active(b)||!V.safe(app))return;const
  if(S.facts(b,'A3.S21.LAST_ESCORT.01')&&!q.events.last){begin(app,'last',['A3.S21.LAST_ESCORT.01']);return;}
  if(S.routeBlocked(b)&&!q.events.blocked){begin(app,'blocked',['A3.S21.GUIDE.01']);return;}
  if(S.rescued(b)&&q.proof.emblem){if(!q.events.clear){begin(app,'clear',[1,2,3,4,5,6].map(i=>'A3.S21.CLEAR.0'+i));return;}
-  if(closed(q.events.clear)&&!q.events.exit){begin(app,'exit',['A3.S21.EXIT.01','A3.S21.EXIT.02']);return;}
+  if(closed(q.events.clear)&&!q.events.exit){begin(app,'exit',['A3.S21.EXIT.01','A3.S21.EXIT.02','A3.S21.EXIT.03','A3.S21.EXIT.04']);return;}
   // This exact journal also asserts recognition and current soldier activity.
   // Do not manufacture those facts in a dead/missing-knight or guard run.
   if(closed(q.events.exit)&&!q.journal&&q.events.intro?.status==='done'&&q.events.intro?.ids.includes('A3.S21.INTRO.02')&&q.events.intro?.ids.includes('A3.S21.INTRO.03')&&q.events.exit?.ids.includes('A3.S21.EXIT.01')&&b.honroV4ArmorDistinction.current.every(id=>V.alive(b.units.find(u=>u.id===id)))){

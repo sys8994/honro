@@ -224,6 +224,32 @@
       "channel": "dialogue"
     },
     {
+      "id": "A3.S21.EXIT.03",
+      "speaker_channel": "곽진 · dialogue",
+      "condition": "old_emblem_seen; 빈 옛 갑주의 문장이 보였고 전투 후 안전함",
+      "text": "지도에서 수로를 찾으면 먼저 가까운 출구를 보시오. 여기서 본 부상자들은 계단을 오래 못 오릅니다.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S21.EXIT",
+      "order": 3,
+      "speaker": "곽진",
+      "channel": "dialogue"
+    },
+    {
+      "id": "A3.S21.EXIT.04",
+      "speaker_channel": "휘겸 · dialogue",
+      "condition": "old_emblem_seen; 빈 옛 갑주의 문장이 보였고 전투 후 안전함",
+      "text": "나가는 길까지 보고 오겠소. 못 찾으면 이 문으로 다시 오리다.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S21.EXIT",
+      "order": 4,
+      "speaker": "휘겸",
+      "channel": "dialogue"
+    },
+    {
       "id": "A3.S21.OBJ.01",
       "speaker_channel": "objective_texts · objective_texts",
       "condition": "stage_enter; 항상",
