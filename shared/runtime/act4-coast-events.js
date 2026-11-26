@@ -252,6 +252,14 @@ P.coastObserve=function(app,dt){const b=app.engine.b,n=b.honroAct4Preview;if(!ac
   if(q.thresholdAt!==undefined&&q.clock-q.thresholdAt>.8&&seen(q,'threshold')&&party(b).some(u=>u.cls==='archer'&&Math.abs(u.x-npc.x)<340)){const hero=party(b).find(u=>u.cls==='archer');if(!q.reunionObserved&&q.clock-(q.reunionCameraAt??-10)>2){q.reunionCameraAt=q.clock;app.scene.storyFocusPoint((hero.x+npc.x)/2,npc.y-100,400,G.innerWidth<600?.65:.8);}if(q.reunionObserved)play(app,'reunion');}
   if(closed(q,'reunion')&&cfg.shelter?.manifest.length===7&&seen(q,'threshold')){play(app,'missing_four');if(closed(q,'missing_four')&&(q.events.missing_four.skipped||q.events.missing_four.presented.includes('A4.S32.MISSING.01'))&&q.reunionObserved)q.safeSeven={ids:copy(cfg.shelter.manifest),sourceRun:b.session,reportIds:copy(q.events.missing_four.presented),reportSkipped:q.events.missing_four.skipped===true,reunionIds:copy(q.events.reunion.presented),reunionObserved:copy(q.reunionObserved),campaignRunId:b.honroAct4ReviewRunId};}
  }
+ if(n===33&&b.honroAct4Official===1&&!b.honroCustom&&objectiveReady(b)&&!q.bark&&seen(q,'upper-route')){
+  const upper={x:K(b,'upperMarkX',2200),y:K(b,'upperMarkY',1940)};
+  const partyOnHigh=party(b).some(u=>e.grounded(u)&&Math.abs(u.x-upper.x)<650&&u.y<=upper.y+150&&u.y<cfg.tide.high-80);
+  if(!q.tide?.warned&&inView(app,upper)&&party(b).some(u=>e.grounded(u)&&Math.abs(u.x-upper.x)<900)&&
+     !foes(b).some(u=>party(b).some(h=>near(h,u,420))))play(app,'shoal_approach');
+  if(q.tide?.finished&&closed(q,'tide_warning')&&partyOnHigh&&inView(app,upper)&&
+     !foes(b).some(u=>party(b).some(h=>near(h,u,420))))play(app,'shoal_recede');
+ }
  if(n===33||n===39){if(q.tide?.phase==='rising'&&seen(q,'water-rising')&&seen(q,'upper-route')&&b.side===0&&party(b).some(u=>!u.acted&&u.moveLeft>80))play(app,'tide_warning',true);}
  if(n===34){const w=cfg.wrongExit,u=e.unit(w.actor);if(alive(u)&&!q.dislocation&&party(b).some(v=>wrongExitNear(v,w))&&inView(app,w.entrance)){q.dislocation={phase:'entering',at:q.clock,originalFixed:u.fixed};}
   const t=q.dislocation;if(t&&alive(u)){if(t.phase==='entering'){u.fixed=false;moveNpc(e,u,w.entrance.x,dt,180);if(Math.abs(u.x-w.entrance.x)<25){u.fixed=true;t.phase='inside';t.at=q.clock;}}

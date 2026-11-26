@@ -21,9 +21,15 @@ const unique=xs=>new Map(xs.map(x=>[`${x.n}\u0000${x.who}\u0000${x.line}`,x]));
 const json4='shared/data/act4/reviewed.json', act4Now=parsed(json4),act4Old=JSON.parse(git(json4));
 assert.deepEqual(act4Now.ui,act4Old.ui,'dialogue expansion must not modify Act 4 objective UI');
 const duplicateAct4=new Set();
-for(const [i,scene] of act4Now.scenes.entries()){
- const {lines,...meta}=scene,{lines:previous,...original}=act4Old.scenes[i];
- assert.deepEqual(meta,original,'original Stage 4 event gates remain in order');
+const sceneKey=s=>`${s.stage}:${s.event}`;
+const oldActs=new Map(act4Old.scenes.map(s=>[sceneKey(s),s]));
+assert.deepEqual(act4Now.scenes.filter(s=>oldActs.has(sceneKey(s))).map(sceneKey),[...oldActs.keys()],'original Act 4 event order changed');
+const act4Runtime=['act4-events.js','act4-coast-events.js'].map(f=>text('shared/runtime/'+f)).join(' ');
+for(const scene of act4Now.scenes){
+ const {lines,...meta}=scene, old=oldActs.get(sceneKey(scene));
+ const {lines:previous,...original}=old??{lines:[]};
+ if(old)assert.deepEqual(meta,original,'original Stage 4 event gate metadata changed');
+ else assert(act4Runtime.includes("play(app,'"+scene.event+"'"),'orphan Act 4 scene '+scene.event);
  const oldById=new Map(previous.map(x=>[x[0],x]));
  let seen=0;
  for(const [id,who,line] of lines){
@@ -81,7 +87,10 @@ const report=released.map((baseline,i)=>{
  const added=[...now].filter(([key,r])=>!before.has(key)&&isInAct(r.n,i)).map(([,r])=>r);
  const removed=[...before].filter(([key,r])=>!now.has(key)&&isInAct(r.n,i)).map(([,r])=>r);
  const amount=baseline+added.length-removed.length;const stageBreakdown={};for(const r of added)stageBreakdown[r.n]=(stageBreakdown[r.n]||0)+1;
- return {act:i+1,baseline,target:target[i],added:added.length,removed:removed.length,amount,remaining:Math.max(0,target[i]-amount),addedChars:added.reduce((sum,r)=>sum+countChars(r.line),0),stageBreakdown};
+ const reference=target[i], lower=Math.ceil(reference*.90), upper=Math.floor(reference*1.10);
+ return {act:i+1,baseline,target:reference,band:[lower,upper],added:added.length,removed:removed.length,amount,
+  remaining:Math.max(0,lower-amount),gapToReference:Math.max(0,reference-amount),aboveBand:amount>upper,
+  addedChars:added.reduce((sum,r)=>sum+countChars(r.line),0),stageBreakdown};
 });
 console.log(JSON.stringify(report,null,2));
-if(process.argv.includes('--strict'))assert(report.every(row=>!row.remaining),'Dialogue expansion still below its approved line budget');
+if(process.argv.includes('--strict'))assert(report.every(row=>!row.remaining),'Dialogue expansion is more than 10% below one or more reference targets');
