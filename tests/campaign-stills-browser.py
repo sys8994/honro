@@ -152,6 +152,7 @@ with sync_playwright() as p, serve_game() as url:
     page.evaluate("HonroRestJourney.showBook(HonroApp,10,null,1)")
     snap = page.evaluate(SNAP)
     page.wait_for_function("performance.now()>=(HonroApp.journeyInputAfter||0)")
+    page.locator('.journey-records > summary').click()
     page.locator('[data-action="act-ending-replay"][data-id="10"]').click()
     page.locator('#act-ending[data-ending-mode="gallery"]').wait_for()
     page.locator('#act-ending [data-ending-action="back"]').click()
