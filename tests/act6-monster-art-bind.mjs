@@ -20,6 +20,19 @@ for(const id of ids){
  }
  assert.equal(v.HonroActorVisual.kind({id:'fixture',side:1,honroRigAsset:id}),id);
 }
+// The exterior spirits move using the engine's grounded walking signal, not
+// an actor-controlled time loop or an attack key. Lock the idle and moving sample
+// to the same time to distinguish movement from their ambient drifting cloth.
+for(const id of ['wonhon','wonhon_knotted']){
+ const body={id:'front-fixture',side:1,honroRigAsset:id,moving:.12,airborne:false};
+ const a=assets[id],visual=v.HonroActorVisual,time=a.clips.move.duration*.43;
+ assert.equal(visual.state(body).move,true);
+ assert.notDeepEqual(visual.pose(a,time,visual.state(body)),visual.pose(a,time,visual.state({...body,moving:0})));
+ assert.equal(visual.state({...body,airborne:true}).move,false);
+ assert.notDeepEqual(visual.pose(a,time,visual.state(body)),visual.pose(a,time,visual.state({...body,anim:.74})));
+ assert.notDeepEqual(visual.pose(a,time,visual.state(body)),visual.pose(a,time,visual.state({...body,hurt:.58})));
+}
+assert.notDeepEqual(assets.wonhon.clips.move,assets.wonhon_knotted.clips.move);
 assert.notEqual(assets.wonhon.parts[1].paths[0].d,assets.wonhon_knotted.parts[1].paths[0].d);
 const daedosa={id:'boss-example',honroRigAsset:'boss_daedosa'},hung={id:'hang-example',honroRigAsset:'grot_hanging'},paw={id:'paw-example',honroRigAsset:'forepaw'};
 const state=v.HonroActorVisual.state;

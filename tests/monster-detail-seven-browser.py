@@ -172,6 +172,8 @@ def main():
     if args.finale:
         motion={name:row["tracks"] for name,row in art["after"].items()}
         assert len(motion)==8 and all(r["attack"] and r["hit"] for r in motion.values()),motion
+        assert {name for name, r in motion.items() if not r["move"]}=={"boss_daedosa","forepaw"},motion
+        assert not any(r["jump_fall"] for r in motion.values()),motion
         print(json.dumps(motion))
         (out/"motions.json").write_text(json.dumps(motion,indent=2)+"\n")
         return
