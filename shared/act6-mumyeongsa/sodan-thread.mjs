@@ -138,15 +138,28 @@ export function mountSodanSpirit({C,e,scene,hero,body,previous,stage,isWall=()=>
  }
  const funds=()=>body.focus-threadCost(record,after);
  function target(skill){
-  const foes=new Set(e.b.units.filter(u=>legalTarget(u,skill.id)).map(u=>u.id));
-  const preferred=preferredTarget();
+  const foes=e.b.units.filter(u=>legalTarget(u,skill.id)),direct=new Set(foes.map(u=>u.id));
+  const preferred=preferredTarget(),prefers=direct.has(preferred);
+  const area=skill.id==='O08'||skill.id==='O10',radius=area?e.effective(skill,spirit).radius:0;
+  const allies=area?e.b.units.filter(u=>u.side===0&&!u.dead&&!u.enthrall):[];
+  // Match the native curse's blast origin and body-midpoint rule. A terrain
+  // impact can apply an area curse, but a miss or a blast on Damheo is not help.
+  const inBlast=(hit,u)=>Math.hypot(u.x-hit.x,u.y-u.h*.5-hit.y)<radius+u.r;
   let other=null;
   for(const power of powers){
    if(!e.canAfford(skill,spirit,power))continue;
    for(let angle=-80;angle<=260;angle+=5){
-    const hits=e.predict(spirit,skill,angle,power,undefined,true);
-    if(!foes.has(hits.unit))continue;
-    if(!foes.has(preferred)||hits.unit===preferred)return {angle,power};
+    const hit=e.predict(spirit,skill,angle,power,undefined,true);
+    if(area){
+     if(!Number.isFinite(hit.x)||!Number.isFinite(hit.y)||(!hit.terrain&&!direct.has(hit.unit))||
+        allies.some(u=>inBlast(hit,u)))continue;
+     const affected=foes.filter(u=>inBlast(hit,u));
+     if(!affected.length)continue;
+     if(!prefers||affected.some(u=>u.id===preferred))return {angle,power};
+    }else{
+     if(!direct.has(hit.unit))continue;
+     if(!prefers||hit.unit===preferred)return {angle,power};
+    }
     other??={angle,power};
    }
   }

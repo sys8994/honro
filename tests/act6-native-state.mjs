@@ -360,6 +360,37 @@ async function testSodanThread(){
  stateChecks.sodan={learnedTree:s.skills(),cast:cast.skill,retainedOriginalParty:true,cost:cast.cost};
 }
 
+async function testSodanGroundImpact(){
+ const profile=rawProfile(53),p=await pack(59),c=compiled(p);
+ const from=fixtures[53].body.custody.full,x=1000*K;
+ for(const skill of ['O08','O10']){
+  let exercised=false;
+  for(const distance of [290,390,470,600,720]){
+   const m=clone(from.mage),body={...clone(from.occultist),focus:500,maxFocus:500,ranks:{O08:3,O10:3}};
+   const foe=C.makeUnit('knight',1,x+distance,0,{id:'area-curse-check',hp:1200,maxHp:1200});
+   const {e,b}=carrier(53,p,c,profile,[m,foe],'act6-native-53');
+   foot(e,m,x,near59);foot(e,foe,x+distance,near59);m.facing=1;
+   const support=mountSodanSpirit({C,e,scene:{unitBody(){}},hero:m,body,stage:53});
+   const predict=e.predict.bind(e);
+   // Do not invent a trajectory. Choose only real terrain predictions so this
+   // tests the newly allowed outcome, not a successful direct hit.
+   e.predict=(...args)=>{const result=predict(...args);return result.terrain&&!result.unit?result:{points:[]};};
+   if(!support.cast(skill))continue;
+   const projectile=b.projectiles.find(p=>p.skill===skill);
+   const native=e.impact.bind(e),observed=[];
+   e.impact=(p,h)=>{if(p===projectile)observed.push(h);return native(p,h);};
+   for(let i=0;i<2400&&b.projectiles.includes(projectile);i++)e.stepProjectile(projectile,1/120);
+   assert(observed[0]?.terrain&&!observed[0]?.unit,skill+' native ground impact');
+   if(skill==='O08')assert(foe.manifestedUntil>=b.round,'native reveal');
+   else assert(foe.earthbind?.owner===body.id,'native earthbind');
+   assert(!support.cast(skill)&&support.record().casts.length===1);
+   const before=body.focus;assert(debitSodanThread(body,support.record(),53,0)&&body.focus<before);
+   exercised=true;break;
+  }
+  assert(exercised,skill+' needs a real ground-only trajectory');
+ }
+}
+
 async function testFirstMissions(){
  const profile=rawProfile(52),results={};
  let previous;
@@ -806,6 +837,7 @@ await run('57 parked body defeat, signed retry, real reunion and signed 58',test
 if(winner59)await run('60 true guides, no combat, signed memorial and normal title handoff',()=>test60(winner59));
 await run('51–60 authored slots, actual supporting faces, roles and caps',auditRosters);
 await run('51→52 through 59→60 exact saved-state conditions and missing-flag negatives',testBoundaryRecipes);
+await run('Sodan both area curses through real ground collisions',testSodanGroundImpact);
 await run('Sodan native curse support and old thread ledger compatibility',testSodanThread);
 await run('51 and 52 native objective order, grounded four, and the Archer cliff projectile',testFirstMissions);
 if(process.argv[2])await writeFile(process.argv[2],JSON.stringify({stateChecks,ledger},null,2)+'\n');
