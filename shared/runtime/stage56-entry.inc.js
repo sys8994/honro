@@ -67,7 +67,7 @@
           const ui=appUI(a);check(ui,'Normal 56 controls absent');const btn=document.createElement('button');
           btn.type='button';btn.dataset.act6QaLookout='';styleAction(btn);
           btn.addEventListener('click',event=>{if(event.isTrusted&&event.currentTarget===btn)action(a,event);});s.button=btn;ui.append(btn);
-          attachSodanSpirit(a,s,previous.boundary.fullOuter.occultist,previous.sodanThread,56);tick56(a);return true;
+          attachSodanSpirit(a,s,previous.boundary.fullOuter.occultist,previous.sodanThread,56);tick56(a);startAct6Opening(a,s,56);return true;
         }catch(error){a.stopBattle();a.showTitle();throw error;}
       }
       function bindNormal56(a,e,s){

@@ -216,6 +216,11 @@
         return true;
       }
       function release(app){const s=active.get(app);if(!s)return;active.delete(app);Object.assign(app,s.old,{dirty:false});}
+      function storyProjection(app,who){
+        if(who!=='소단'||app.screen!=='battle')return null;
+        const s=active.get(app);
+        return s?.engine===app.engine&&s?.normal51?s.spirit?.storySpeaker?.()??null:null;
+      }
       const safeActions=new Set(['title','close','battle-help','pause','drop','defend','wait','select-hero','inspect-hero','combat-skill','fullscreen','dialogue-prev','dialogue-next','dialogue-skip']);
-      return Object.freeze({offer,offerRest:app=>fiftyUI.offer(app),launch:(app,id,ticket)=>fiftyUI.launch(app,id,ticket)??enter(app,id,ticket),active:app=>active.has(app),bind,goalState,action,outcome,release,keepAction:(app,name)=>!active.has(app)||safeActions.has(name)});
+      return Object.freeze({offer,offerRest:app=>fiftyUI.offer(app),launch:(app,id,ticket)=>fiftyUI.launch(app,id,ticket)??enter(app,id,ticket),active:app=>active.has(app),bind,goalState,action,outcome,storyProjection,release,keepAction:(app,name)=>!active.has(app)||safeActions.has(name)});
     })();

@@ -1,6 +1,6 @@
       // Presentation only. The four bodies were admitted by the native owner
       // before this starts; no line receipt participates in a mission proof.
-      const opening51and52=Object.freeze({
+      const act6Openings=Object.freeze({
         51:[
           ['설오','고개에서 본 절이 저깁니다. 절 뒤에서 끊긴 능선은 여기서도 이어져 보이지 않습니다.'],
           ['휘겸','돌아서서 길부터 봅시다. 들어갔다가 나오지 못하면 절까지는 갈 이유가 없소.'],
@@ -16,11 +16,39 @@
           ['소단','종터에 닿으면 매듭을 둘 자리를 찾아 볼게요. 돌이 흔들리면 다른 데를 잡아야 해요.'],
           ['담허','그래. 묶기 전에 나부터 들여보낼 생각은 말게. 절 안에서 어디로 밀릴지 아직 모르네.'],
           ['설오','그럼 종터에서 다시 뵙겠습니다. 한 사람이라도 안 보이면 먼저 들어가지 마십시오.']
+        ],
+        53:[
+          ['담허','들어오긴 했네. 등 뒤에서 자꾸 잡아당기는데, 네가 잡은 줄인가?'],
+          ['소단','저예요. 바깥의 매듭은 놓지 않았어요. 안으로 들어갈 몸은 없지만 여기까진 닿아요.'],
+          ['담허','알겠네. 소리가 나는 쪽으로 가면 네가 있겠거니 하진 않겠어.'],
+          ['소단','진목 놓을 때만 먼저 말해 주세요. 발 디딜 때마다 따라 잡아당기진 않을게요.'],
+          ['담허','그래. 저 받침부터 보겠네. 기둥이 곧다고 꼭 바닥까지 곧은 건 아니니.']
+        ],
+        54:[
+          ['담허','처마가 저리 돌아가 있어도 발붙일 돌은 남아 있네. 어디부터 디딜지 봐야겠어.'],
+          ['소단','아까보다 줄이 옆으로 당겨요. 제가 더 잡아줘요?'],
+          ['담허','그대로 두게. 당기는 쪽이 바뀔 때 내가 먼저 멈추겠네.'],
+          ['소단','네. 멈춘 다음 제 목소리가 들리면 대답은 해 주세요. 안 들리는 줄 알고 당길 때가 있어요.'],
+          ['담허','대답하겠네. 여기선 저 끝이 위라고 미리 정해 두지 말고, 발이 붙을 때까진 기다려 보게.']
+        ],
+        55:[
+          ['휘겸','소단, 종터까지는 내가 가 보겠소. 무슨 일이 있어도 매듭을 잡은 자리에서는 일어나지 마시오.'],
+          ['소단','제가 서면 줄이 헐거워져요. 일어나지는 않을게요. 대신 제가 앞을 볼 수 없으니 뭐가 오는지 말씀해 주세요.'],
+          ['설오','종터 위쪽 사선부터 보겠습니다. 양쪽에서 오면 한꺼번에 맞히기 어렵습니다.'],
+          ['휘겸','한쪽만 늦춰 주시오. 그사이 내가 소단 쪽으로 들어오는 것을 막겠소.'],
+          ['소단','줄이 한 번 울리면 아직 괜찮아요. 연달아 당겨지면 제가 먼저 부를게요.']
+        ],
+        56:[
+          ['담허','저 아래로 가는 혼들이 보이는군. 같은 쪽으로 움직인다고 우리한테 오는 건 아닌가 봐.'],
+          ['소단','저도 그렇게 보여요. 지나는 것하고 여기 남아서 돌아보는 게 섞여 있어요.'],
+          ['담허','가까이서 구별해 보세. 저 틈 모양이면 좁게 진을 둘 수는 있겠네.'],
+          ['소단','좁게 두더라도 한쪽 길은 남겨 줘요. 지나가는 것들까지 돌아서면 저희가 있는 쪽으로 올 거예요.'],
+          ['담허','그럼 진목 박기 전에 물러날 돌부터 골라 두지. 잘못 놓으면 내가 먼저 빼겠네.']
         ]
       });
-      function start51or52Opening(app,state,id){
+      function startAct6Opening(app,state,id){
         if(app.engine!==state.engine||app.screen!=='battle'||app.dialogue||state.openingOffered)return false;
-        const rows=opening51and52[id];if(!rows)return false;
+        const rows=act6Openings[id];if(!rows)return false;
         state.openingOffered=true;
         const dlg='act6-opening-'+id;
         return G.HonroStory.start(app,rows.map(([who,line],i)=>[who,line,{kind:'character',storyId:dlg,rowId:dlg+'-'+i}]),
@@ -96,7 +124,7 @@
           const ui=appUI(app);check(ui,'Normal battle objective owner is absent');
           const button=document.createElement('button');button.type='button';button.dataset.act6QaLookout='';styleAction(button);
           button.textContent=d.marks[0].label;button.addEventListener('click',event=>{if(event.isTrusted&&event.currentTarget===button)action(app,event);});
-          state.button=button;ui.append(button);start51or52Opening(app,state,51);return true;
+          state.button=button;ui.append(button);startAct6Opening(app,state,51);return true;
         }catch(error){app.stopBattle();app.showTitle();throw error;}
       }
 
@@ -159,6 +187,6 @@
           const ui=appUI(app);check(ui,'Normal battle objective owner absent');const button=document.createElement('button');
           button.type='button';button.dataset.act6QaLookout='';styleAction(button);button.textContent=d.marks[0].label;
           button.addEventListener('click',event=>{if(event.isTrusted&&event.currentTarget===button)action(app,event);});
-          state.button=button;ui.append(button);start51or52Opening(app,state,52);return true;
+          state.button=button;ui.append(button);startAct6Opening(app,state,52);return true;
         }catch(error){app.stopBattle();app.showTitle();throw error;}
       }

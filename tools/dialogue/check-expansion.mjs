@@ -70,10 +70,11 @@ for(let n=21;n<=30;n++){
 // The native Act 6 owner emits dialogue only at explicit hook sites.
 // Keep this table narrow and add the matching hook as each source is admitted.
 const opens=text('shared/runtime/stage51-entry.inc.js');
-if(opens.includes('const opening51and52')){
- const block=opens.split('const opening51and52=Object.freeze({')[1].split('});')[0];
- for(const m of block.matchAll(/(51|52):\[([^]*?)\n\s{8}\]/g)){
-  assert(opens.includes('start51or52Opening(app,state,'+m[1]+')'));
+if(opens.includes('const act6Openings')){
+ const block=opens.split('const act6Openings=Object.freeze({')[1].split('});')[0];
+ for(const m of block.matchAll(/(5[1-6]):\[([^]*?)\n\s{8}\]/g)){
+  const source=Number(m[1])<=52?opens:text('shared/runtime/stage'+m[1]+'-entry.inc.js');
+  assert(source.includes(',s,'+m[1]+')')||source.includes('startAct6Opening(app,state,'+m[1]+')'));
   for(const r of m[2].matchAll(/\['([^']+)','([^']+)'\]/g))row(Number(m[1]),r[1],r[2],newRows);
  }
 }

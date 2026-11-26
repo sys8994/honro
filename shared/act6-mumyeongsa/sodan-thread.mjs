@@ -138,5 +138,9 @@ export function mountSodanSpirit({C,e,scene,hero,body,previous,stage,isWall=()=>
   try{draw.call(this,c,spirit,0);}finally{c.restore();}
   return output;
  };
- return {unavailableReason,cast,record:()=>structuredClone(record)};
+ function storySpeaker(){
+  if(hero.dead||hero.hp<=0||body.dead||body.hp<=0)return null;
+  position();return spirit;
+ }
+ return {unavailableReason,cast,storySpeaker,record:()=>structuredClone(record)};
 }

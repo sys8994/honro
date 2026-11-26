@@ -16,14 +16,15 @@ with sync_playwright() as pw:
  page.goto('https://sys8994.github.io/honro/',wait_until='domcontentloaded')
  page.wait_for_function('!!window.HonroApp',timeout=90000)
  page.evaluate("""()=>{const a=HonroApp;a.setDebugMode(true);HonroRestJourney.showBook(a,51,null,6);}""")
- for id,needle in [(51,'고개에서 본 절'),(52,'위에서 본 곳이 셋')]:
-  if id==52:page.evaluate("""()=>{const a=HonroApp;HonroRestJourney.showBook(a,52,null,6);}""")
+ for id,needle in [(51,'고개에서 본 절'),(52,'위에서 본 곳이 셋'),(53,'들어오긴 했네'),(54,'처마가 저리'),(55,'소단, 종터까지'),(56,'저 아래로 가는 혼')]:
+  if id!=51:page.evaluate('n=>HonroRestJourney.showBook(HonroApp,n,null,6)',id)
   page.locator(f'[data-action="journey-travel"][data-id="{id}"]').click(timeout=20000)
   page.wait_for_function('n=>HonroApp.engine?.b.honroStage===n && !!HonroApp.dialogue',arg=id,timeout=30000)
-  assert not page.evaluate('HonroApp.engine.b.honroState.flags?.["act6.threeSitesSighted"]')
+  if id==51: assert not page.evaluate('HonroApp.engine.b.honroState.flags?.["act6.threeSitesSighted"]')
   assert needle in page.locator('#dialogue-root').inner_text()
   page.locator('#dialogue-root [data-action="dialogue-next"]').click(timeout=5000)
   assert page.evaluate('HonroApp.dialogue.index')==1
+  if id in (53,54,56): assert page.evaluate("HonroApp.dialogue.lines.some(row=>row[0]==='소단')")
   page.locator('#dialogue-root [data-action="dialogue-prev"]').click(timeout=5000)
   assert page.evaluate('HonroApp.dialogue.index')==0
   page.screenshot(path=f'_local/reports/dialogue-entry-{id}.png')

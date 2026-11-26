@@ -91,7 +91,7 @@
           const button=document.createElement('button');button.type='button';button.dataset.act6QaLookout='';styleAction(button);
           button.textContent='윗난간의 남은 진목 사이로 건너기';button.addEventListener('click',event=>{if(event.isTrusted&&event.currentTarget===button)action(app,event);});
           s.button=button;ui.append(button);
-          attachSodanSpirit(app,s,external.occultist,null,53);return true;
+          attachSodanSpirit(app,s,external.occultist,null,53);startAct6Opening(app,s,53);return true;
         }catch(error){app.stopBattle();app.showTitle();throw error;}
       }
       function mountB53(app,s){

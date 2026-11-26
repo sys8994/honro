@@ -76,7 +76,7 @@
           btn.addEventListener('click',event=>{if(event.isTrusted&&event.currentTarget===btn)action(a,event);});s.button=btn;ui.append(btn);
           const support=document.createElement('button');support.type='button';support.dataset.act6SodanBody='';styleAction(support);
           support.addEventListener('click',event=>{if(event.isTrusted&&scope55(a,a.engine,s)&&a.canInput()&&s.seated55.release())a.updateHUD(true);});
-          s.support55=support;ui.append(support);tick55(a);return true;
+          s.support55=support;ui.append(support);tick55(a);startAct6Opening(a,s,55);return true;
         }catch(error){a.stopBattle();a.showTitle();throw error;}
       }
       function bindNormal55(a,e,s){

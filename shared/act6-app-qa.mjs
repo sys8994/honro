@@ -406,6 +406,10 @@ export function makeQaMain(main,source,descriptor,terrainArt=null,journeyArt=nul
   ['G.HonroStakeCrossing.skills(this.engine.b,active).includes(remembered)','qa51.context53(this,active,G.HonroStakeCrossing.skills(this.engine.b,active)).includes(remembered)'],
   ['G.HonroStakeCrossing.skills(b,u).includes(this.selected)','qa51.context53(this,u,G.HonroStakeCrossing.skills(b,u)).includes(this.selected)'],
   ['}else this.engine.fire(this.selected, u.angle, this.power);','}else if(!qa51.release53(this,u))this.engine.fire(this.selected, u.angle, this.power);']);
+ if(source.includes('function storyProjection('))edits.push([
+  '        speakerUnits(who){return[...',
+  '        speakerUnits(who){const echo=qa51.storyProjection(this,who);if(echo)return [echo];return[...'
+ ]);
  if(source.includes('function enterNormal54('))edits.push(['missionTick(dt){if(qa51.active(this))return;', 'missionTick(dt){if(qa51.active(this)){qa51.tickExterior(this,dt);qa51.tick53(this);qa51.tick54(this);qa51.tick55(this);qa51.tick56(this);qa51.tick57(this);qa51.tick58(this);qa51.tick59(this);qa51.tick60(this,dt);return;}']);
  if(source.includes('function defend59('))edits.push(['this.engine.finishAction();this.updateHUD(true); }\n        displayAngle(u)',
   'qa51.defend59(this,()=>this.engine.finishAction());this.updateHUD(true); }\n        displayAngle(u)']);

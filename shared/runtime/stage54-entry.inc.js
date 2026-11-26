@@ -83,7 +83,7 @@
           button.type='button';button.dataset.act6QaLookout='';styleAction(button);button.textContent='첫 받침에서 건너기';
           button.addEventListener('click',event=>{if(event.isTrusted&&event.currentTarget===button)action(app,event);});s.button=button;
           if(s.wallAxis){button.disabled=true;button.textContent='벽에 발을 붙여 수문지기와 싸우세요.';}
-          ui.append(button);attachSodanSpirit(app,s,t.external.occultist,t.sodanThread,54);return true;
+          ui.append(button);attachSodanSpirit(app,s,t.external.occultist,t.sodanThread,54);startAct6Opening(app,s,54);return true;
         }catch(error){app.stopBattle();app.showTitle();throw error;}
       }
       function bindNormal54(app,e,s){
