@@ -100,6 +100,20 @@ export function roleMaterial(a){
     wing('M@13 -67 Q@23 -77 @28 -89 Q@28 -72 @24 -59 L@18 -54 @13 -56Z','clothDark');
     wing('M@16 -67 Q@23 -77 @28 -88 M@32 -91 Q@45 -97 @55 -102 M@35 -91 Q@53 -88 @69 -87 M@31 -85 Q@32 -76 @30 -67',null,'clothLight',1.05);
     wing('M@24 -92 Q@28 -97 @33 -97 L@35 -94 @30 -90 @27 -82 @24 -84Z','boneShade','deep',.65);
+    // Three stretched membrane cells meet at the wrist, not at a decorative stripe.
+    // The near and far wing tips are worn differently; both retain their original joints.
+    if(sign<0){
+     wing('M@39 -96 Q@49 -100 @57 -103 Q@69 -97 @78 -91 L@71 -91 Q@63 -92 @57 -97 Q@47 -96 @39 -93Z','redDark');
+     wing('M@39 -89 Q@52 -87 @62 -84 L@57 -82 @53 -75 @51 -70 Q@50 -80 @43 -84 L@39 -86Z','shadow');
+     wing('M@32 -82 Q@37 -77 @40 -75 L@36 -74 Q@32 -69 @31 -64 L@28 -59 Q@28 -67 @31 -73Z','clothLight');
+    }else{
+     wing('M@39 -97 Q@49 -103 @56 -104 Q@66 -98 @76 -92 L@69 -91 Q@61 -94 @57 -98 L@48 -97Z','redDark');
+     wing('M@40 -90 Q@51 -88 @63 -85 L@58 -82 @54 -75 @51 -72 Q@49 -80 @45 -83 L@40 -87Z','shadow');
+     wing('M@32 -84 Q@36 -77 @41 -76 L@38 -74 Q@33 -71 @31 -66 L@28 -61 Q@29 -70 @31 -75Z','clothLight');
+    }
+    wing('M@30 -98 Q@36 -96 @42 -96 L@41 -93 Q@34 -94 @31 -91 L@28 -87 @27 -89Z','fur','deep',.65);
+    wing('M@36 -93 Q@47 -95 @56 -99 M@32 -89 Q@44 -87 @53 -84 M@31 -86 Q@29 -74 @27 -67',null,'boneShade',.65);
+    wing('M@14 -64 Q@18 -70 @24 -77 L@21 -69 @18 -66 @17 -60 @14 -58Z','shadow');
    }
   }
   if(crow){
@@ -110,6 +124,10 @@ export function roleMaterial(a){
    add('body','M-8 -71 L-3 -73 1 -70 5 -74 9 -68 6 -67 6 -59 3 -61 1 -54 -1 -61 -5 -59 -5 -65 -8 -64Z','fur');
    add('head','M-4 -84 L0 -86 5 -84 7 -80 3 -78 1 -75 -3 -76 -7 -79Z','shadow','ink',.85);
    add('head','M-3 -80 L0 -79 3 -80 2 -77 -1 -77Z','boneShade');
+   add('body','M-8 -54 Q-4 -52 -1 -49 Q2 -53 7 -55 L8 -49 Q5 -45 2 -43 L0 -38 Q-5 -41 -7 -46Z','shadow');
+   add('body','M-10 -46 Q-7 -41 -4 -40 L-2 -35 0 -33 4 -37 7 -43 Q8 -39 5 -36 L0 -31 -5 -36Z','deep');
+   add('head','M-14 -101 L-9 -97 -7 -90 -9 -92 -12 -94Z M14 -102 L11 -95 9 -93 10 -98Z','clothLight');
+   add('head','M-9 -85 Q-6 -87 -4 -85 M4 -85 Q7 -88 10 -88 M-3 -74 L0 -73 3 -74',null,'ink',.75);
   }
  }
  return a;
