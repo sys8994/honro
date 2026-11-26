@@ -42,7 +42,7 @@ export const ACT6_EXTERIOR_ENCOUNTERS=Object.freeze({
    ]},
   55:{active:10,attacks:7,roomReach:975,priority:'draft-pressure-0',sites:{west:'west-ring-descent',court:'arrival-core-terrace',low:'west-lower-branch'},
    initial:[['hound','west',410,711],['hound','west',640,840],['shade','west',920,1000],['shade','west',1180,1135],
-    ['shade','court',1470,1325],['stag','court',2794,1732]],
+    ['shade','court',1470,1325],['stag','court',2348,1596]],
    waves:[
     {id:'west-bank',label:'서쪽 돌벽 너머에서 수의귀들이 내려옵니다.',at:[1380,1210],units:[
      [['shade','west',1070,1075],['shade','west',930,1010]],
@@ -62,6 +62,20 @@ export const ACT6_EXTERIOR_ENCOUNTERS=Object.freeze({
      [['hound','court',1960,1476],['hound','west',1298,1240]],
      [['stag','low',860,2540],['stag','west',1214,1155]],
      [['shade','court',2842,1748],['shade','court',1664,1385]]]},
+   ],
+   // The court ends at 2856; the far bank beyond the gap is not a route to the bell.
+   // Back attackers enter from the walkable far lip, forward ones from the west descent.
+   siegeAlive:4,
+   siege:[
+    {id:'bell-siege-west',round:2,label:'서쪽 돌비탈로 짐승 혼들이 내려옵니다.',units:[
+     [['hound','west',873,967,false,1],['hound','west',771,911,false,1]],
+     [['shade','west',1032,1054,false,1],['shade','west',1125,1105,false,1]]]},
+    {id:'bell-siege-lip',round:4,label:'돌단 오른편 끝에서도 혼들이 몰려듭니다.',units:[
+     [['shade','court',2840,1747],['shade','court',2799,1734],['shade','court',2737,1715]],
+     [['hound','court',2757,1722],['hound','court',2773,1726],['hound','court',2592,1671]]]},
+    {id:'bell-siege-crossing',round:6,label:'서쪽 돌턱과 돌단 끝에서 다시 밀려옵니다.',units:[
+     [['stag','west',1126,1105,false,1],['stag','west',996,1034,false,1],['stag','west',808,932,false,1]],
+     [['shade','court',2840,1747],['shade','court',2799,1734],['shade','court',2584,1668]]]},
    ]},
   56:{active:7,attacks:5,priority:'draft-pressure-3',sites:{veranda:'A-upper-veranda',ascent:'B-01-center-stone-ascent',descent:'B-02-center-lower-short-climb',
     lower:'B-central-lower-floor',return:'E-joined-ordinary-floor'},
@@ -109,7 +123,7 @@ export const ACT6_EXTERIOR_ENCOUNTERS=Object.freeze({
    ]},
 });
 
-export function installExteriorEncounters(app,e,paused=()=>false,admit=()=>true,G=globalThis){
+export function installExteriorEncounters(app,e,paused=()=>false,admit=()=>true,G=globalThis,{siegeOpen}={}){
  const b=e.b,stage=b.honroStage,plan=ACT6_EXTERIOR_ENCOUNTERS[stage],C=G.HONRO_CORE;
  if(!plan||b.mode!=='campaign'||app.engine!==e||b.honroAuthoredId!==`stage-${stage}`)return null;
  const alive=u=>u.side===1&&!u.dead&&u.hp>0&&!u.summoned&&!u.honroShotTarget&&!u.honroObjectiveTarget&&
@@ -117,16 +131,17 @@ export function installExteriorEncounters(app,e,paused=()=>false,admit=()=>true,
  const entryState={mode:'campaign',honroStage:50,honroMapOrigin:'campaign',honroCanonical:true};
  const campaign=G.HONRO_CONTENT.stages[49];
  const markers=plan.waves.map(wave=>({wave,next:0,warning:null}));
- const issued=new WeakSet();
- const spawn=(slot,name,index)=>{
-  if(Array.isArray(slot[0]))return slot.some(pose=>spawn(pose,name,index));
-  const [kind,site,x,reference,fixed=false]=slot,support=plan.sites[site];
+ const siege=plan.siege?.map(wave=>({wave,next:0,warning:null,availableAt:0}))??[];
+ const issued=new WeakSet(),siegeIssued=new Set();
+ const spawn=(slot,name,index,isSiege=false)=>{
+  if(Array.isArray(slot[0]))return slot.some(pose=>spawn(pose,name,index,isSiege));
+  const [kind,site,x,reference,fixed=false,facing=-1]=slot,support=plan.sites[site];
   const host=b.terrain.find(t=>t.id===support&&x>=t.x&&x<=t.x+t.w);
   if(!host)return false;
   const y=C.topAt(host,x,reference),face=e.contactSurface(x,y-3,y+4);
   if(!face||face.t.id!==support||Math.abs(face.y-y)>.25||y<0||y>b.height)return false;
   const id=`a6-${stage}-${name}-${index+1}`;
-  const u=G.HonroUnits.create({id,kind,team:'enemy',behavior:'aggressive',x,y,facing:-1},entryState,app.profile,campaign);
+  const u=G.HonroUnits.create({id,kind,team:'enemy',behavior:'aggressive',x,y,facing},entryState,app.profile,campaign);
   if(!u?.loadout?.length||u.flying||!C.validTerrainContactPose(b.terrain,u))return false;
   const occupied=b.units.some(v=>v.hp>0&&!v.dead&&Math.abs(v.x-x)<v.r+u.r+8&&v.y-v.h<y&&y-u.h<v.y);
   if(occupied)return false;
@@ -135,6 +150,7 @@ export function installExteriorEncounters(app,e,paused=()=>false,admit=()=>true,
    spawnX:x,spawnY:y,awake:false,honroSpawnSource:name,honroEncounterSupport:support});
   if(!admit(u))return false;
   issued.add(u);
+  if(isSiege)siegeIssued.add(u);
   b.units.push(u);
   return true;
  };
@@ -179,6 +195,16 @@ export function installExteriorEncounters(app,e,paused=()=>false,admit=()=>true,
    refresh();lastX=u.x;lastY=u.y;lastRound=b.round;
   }
   if(b.projectiles.length||e.settleBusy()||!e.grounded(u))return;
+  const pulse=siege.find(({wave,next})=>next<wave.units.length&&b.round>=wave.round);
+  if(pulse&&siegeOpen?.()){
+   if(pulse.warning===null){
+    pulse.warning=clock;pulse.availableAt=clock+.85;app.notify(pulse.wave.label);
+   }else if(clock>=pulse.availableAt&&eligible.size<plan.active&&
+            [...siegeIssued].filter(alive).length<plan.siegeAlive&&
+            spawn(pulse.wave.units[pulse.next],pulse.wave.id,pulse.next,true)){
+    pulse.next++;pulse.availableAt=clock+.35;refresh();
+   }
+  }
   for(const marker of markers){
    const {wave}=marker;
    if(marker.next===wave.units.length)continue;

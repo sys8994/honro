@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {readFile,writeFile} from 'node:fs/promises';
 import {runtime} from '../game/tests/helpers.mjs';
+import {createStage55EmptyBell,STAGE55} from '../shared/runtime/stage55-pilot-owner.mjs';
 import {stage57Adapter} from '../shared/runtime/stage57-adapter.mjs';
 import {createNormalWarmPort} from '../shared/runtime/normal-scope.mjs';
 import {stage58Adapter} from '../shared/runtime/stage58-normal-adapter.mjs';
@@ -742,6 +743,48 @@ async function test60(incoming){
  stateChecks[60]={attackers:enemies(b).length,shots:b.shot,souls:ready.souls,memorial:seal.names,
   receipt:JSON.parse(finale).honroEndingReceipt,ordinaryProfileUnchanged:true,title:app.screen};
 }
+async function testBellSiege(){
+ const p=await pack(55),c=compiled(p),profile=rawProfile(55),prior=previous(55);
+ const units=[
+  ...p.slots.map(([cls,x,y])=>C.makeUnit(cls,0,x,y,{...prior.external[cls],x,y,acted:false,airborne:false})),
+  ...p.foes.map(({origin,...u})=>C.makeUnit(u.cls,1,u.x,u.y,u)),
+ ];
+ const h=carrier(55,p,c,profile,units,STAGE55.objective),{e,b,app,notices}=h;
+ b.honroGrowth={limit:{total:0,combat:0}};app.stage={...app.stage,act:6,actStage:5};
+ const source={};
+ const owner=await createStage55EmptyBell({C,packet:{terrain:c.terrain,world:c.worldTerrain},
+  verifyMounted:(a,j,v)=>a===app&&j===e&&v===source,verifyIncoming:()=>prior,verifyRelay:r=>r===prior.relay,
+  verifyImpact:()=>false});
+ assert(owner.mount(app,e,source),'normal 55 owner');
+ const exterior=installExteriorEncounters(app,e,undefined,undefined,G,{siegeOpen:()=>owner.reinforcementsOpen(app,e)});
+ const issued=()=>b.units.filter(u=>u.honroSpawnSource?.startsWith('bell-siege-'));
+ const support=STAGE55.bell.support,knight=players(b).find(u=>u.cls==='knight');
+ const drive=(round,x,site)=>{
+  b.round=round;actor(e,'knight',x,site);e.refreshActivation();
+  // Advance real encounter clock after a settled approach; no simulated damage or impact to trigger waves.
+  for(let i=0;i<150;i++)exterior.tick(1/60);
+ };
+ drive(1,550,'west-ring-descent');assert.equal(issued().length,0);
+ drive(2,550,'west-ring-descent');assert.equal(issued().length,2);
+ assert(issued().every(u=>u.honroEncounterSupport==='west-ring-descent'&&u.facing===1&&u.awake&&e.grounded(u)));
+ drive(3,587,'west-ring-descent');assert.equal(issued().length,2);
+ drive(4,2500,support);assert.equal(issued().length,4,JSON.stringify({notices,units:enemies(b).map(u=>[u.id,u.x,u.y,u.awake])}));
+ assert(issued().slice(2).every(u=>u.x>knight.x&&u.honroEncounterSupport===support&&u.awake&&e.grounded(u)));
+ drive(6,2500,support);assert.equal(issued().length,4,'living wave cap avoids stacking');
+ let u=issued()[0];u.hp=0;u.dead=true;
+ drive(7,2500,support);assert.equal(issued().length,5,'a cleared slot admits the waiting wave');
+ assert.equal(notices.filter(l=>l===ACT6_EXTERIOR_ENCOUNTERS[55].siege[2].label).length,1);
+ // Real owner actions and exact grounded contact; enemy defeat is supplied, not full manual play.
+ const arrived=actor(e,'knight',2612,support);
+ assert.equal(arrived,knight);assert(owner.interact(app,e,'reach-bell').ok);
+ const gate=e.unit(STAGE55.gate.id);gate.hp=0;gate.dead=true;
+ assert(owner.interact(app,e,'align-bell').ok,'actual empty seat alignment');
+ assert(owner.project(app,e).complete&&owner.project(app,e).optionalEnemiesRemain>0);
+ u=issued()[1];u.hp=0;u.dead=true;
+ drive(8,2500,support);assert.equal(issued().length,5,'no new assault after actual alignment');
+ assert.equal(b.enemyLimit,7);
+ stateChecks[55]={spawned:issued().map(u=>[u.id,u.honroEncounterSupport]),stopOnAlignment:true,maxOptionalWaveAlive:4};
+}
 const targets={
  51:[7,9,16,22,8,5],52:[8,10,18,24,9,6],53:[5,7,12,17,6,4],54:[4,6,13,18,6,4],
  55:[8,11,24,32,10,7],56:[5,7,14,19,7,5],57:[7,10,18,26,9,6],58:[4,6,16,23,9,6],
@@ -788,16 +831,17 @@ async function auditRosters(){
   const field=r=>(Array.isArray(r[0])?r:[r]).map(row=>poseCandidate(e,row,plan,profile));
   const initial=plan.initial.map(field);
   const groups=plan.waves.map(w=>({id:w.id,approach:w.at,phase:w.phase??null,slots:w.units.map(field)}));
+  const siege=(plan.siege??[]).map(w=>({id:w.id,round:w.round,slots:w.units.map(field)}));
   for(const [i,slot] of initial.entries())if(!slot.some(q=>q.legal))failures.push([id,'initial',i+1,slot]);
-  for(const wave of groups)for(const [i,slot] of wave.slots.entries())if(!slot.some(q=>q.legal))failures.push([id,wave.id,i+1,slot]);
-  const fixed=stockOriginals[id],generated=initial.length+groups.reduce((sum,w)=>sum+w.slots.length,0);
+  for(const wave of [...groups,...siege])for(const [i,slot] of wave.slots.entries())if(!slot.some(q=>q.legal))failures.push([id,wave.id,i+1,slot]);
+  const fixed=stockOriginals[id],generated=initial.length+[...groups,...siege].reduce((sum,w)=>sum+w.slots.length,0);
   const bossGrotesques=id===58?BOSS58.grot.total:0;
   const legalized=xs=>xs.filter(v=>v.some(c=>c.legal)).length;
   ledger[id]={target:targets[id],opening:fixed.initial+(id===54?0:initial.length),openingGallery:id===54?initial.length:undefined,
    declared:fixed.initial+fixed.conditions.length+generated+bossGrotesques,
-   physicallyAssigned:fixed.initial+fixed.conditions.length+legalized(initial)+groups.reduce((n,w)=>n+legalized(w.slots),0)+bossGrotesques,
+   physicallyAssigned:fixed.initial+fixed.conditions.length+legalized(initial)+[...groups,...siege].reduce((n,w)=>n+legalized(w.slots),0)+bossGrotesques,
    active:plan.active,attackQueue:plan.attacks,stock:fixed,phaseApprovedGrotesques:bossGrotesques,
-   groundFronts:plan.groundFronts??{},initial,groups};
+   groundFronts:plan.groundFronts??{},initial,groups,...(siege.length?{siege}:{})};
   assert.deepEqual([plan.active,plan.attacks],targets[id].slice(4));
  }
  const p=await pack(59),c=compiled(p),profile=rawProfile(59),e=carrier(59,p,c,profile,[C.makeUnit('archer',0,500,0,{id:'probe-player'})],'state-audit').e;
@@ -829,6 +873,7 @@ async function auditRosters(){
  assert.deepEqual(failures,[],'every authored slot needs a legal attack position in the exact map');
 }
 const run=async(name,fn)=>{try{await fn();console.log('PASS',name);}catch(error){console.error('FAIL',name,error.stack);process.exitCode=1;}};
+await run('55 repeating two-front siege and objective cutoff',testBellSiege);
 await run('58 exact admission, three phases, counterplay, loss and R',test58);
 let winner59;
 await run('59 both grounds, real contact, guard, final threat and loss',async()=>{winner59=await test59('guard');});

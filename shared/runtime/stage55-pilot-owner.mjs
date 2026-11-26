@@ -114,5 +114,13 @@ export async function createStage55EmptyBell({C,packet,verifyMounted,verifyIncom
   settled.add(e);
   return {stage:55,won:true,flags:Object.fromEntries(D.terminalFlags.map(v=>[v,true])),actors:structuredClone(party(k.b)),parkedMage:structuredClone(k.carry.mage),events:structuredClone(k.ordered),settlement:false};
  }
- return Object.freeze({mount:start,project,interact,observeRelease,observeImpact,terminal,visual,releaseEnabled:false});
+ // Hot-path check for the already-mounted encounter. All changes to binding
+ // and alignment still pass through the authenticated owner methods above.
+ function reinforcementsOpen(app,e){
+  const k=owners.get(e);
+  if(!k||k.b!==e.b||k.app!==app||app.engine!==e||app.stageId!==55||k.aligned||k.status==='failed')return false;
+  const seated=k.r.find(u=>u.cls==='occultist'&&u.fixed);
+  return seated?alive(seated)&&k.r.some(u=>u!==seated&&alive(u)):k.r.some(alive);
+ }
+ return Object.freeze({mount:start,project,interact,observeRelease,observeImpact,terminal,visual,reinforcementsOpen,releaseEnabled:false});
 }
