@@ -1,3 +1,31 @@
+      // Presentation only. The four bodies were admitted by the native owner
+      // before this starts; no line receipt participates in a mission proof.
+      const opening51and52=Object.freeze({
+        51:[
+          ['설오','고개에서 본 절이 저깁니다. 절 뒤에서 끊긴 능선은 여기서도 이어져 보이지 않습니다.'],
+          ['휘겸','돌아서서 길부터 봅시다. 들어갔다가 나오지 못하면 절까지는 갈 이유가 없소.'],
+          ['소단','조금 전부터 뒤에서도 소리가 나요. 뒤따라오는 건지는 아직 모르겠어요.'],
+          ['담허','낮은 데서는 어느 쪽 소린지 가르기 어렵겠네. 전망대에 올라가면 우리가 지나온 길도 보일 걸세.'],
+          ['설오','도식 어르신도 이 능선에서 길을 놓쳤습니다. 올라가서 그쪽부터 살펴보겠습니다.'],
+          ['휘겸','그럼 먼저 오르는 사람은 꼭대기에서 기다리시오. 네 사람이 다 올라간 다음에 살핍시다.']
+        ],
+        52:[
+          ['휘겸','위에서 본 곳이 셋이었소. 암벽, 석교, 종터. 사람들이 오갈 곳부터 확보합시다.'],
+          ['설오','먼저 저 높은 지지석을 맞히겠습니다. 아래에서는 앞바위에 가리니 위로 올라가 봐야겠습니다.'],
+          ['휘겸','지지석이 열리면 석교는 내가 보겠소. 다리가 비기 전엔 종터로 건너오지 마시오.'],
+          ['소단','종터에 닿으면 매듭을 둘 자리를 찾아 볼게요. 돌이 흔들리면 다른 데를 잡아야 해요.'],
+          ['담허','그래. 묶기 전에 나부터 들여보낼 생각은 말게. 절 안에서 어디로 밀릴지 아직 모르네.'],
+          ['설오','그럼 종터에서 다시 뵙겠습니다. 한 사람이라도 안 보이면 먼저 들어가지 마십시오.']
+        ]
+      });
+      function start51or52Opening(app,state,id){
+        if(app.engine!==state.engine||app.screen!=='battle'||app.dialogue||state.openingOffered)return false;
+        const rows=opening51and52[id];if(!rows)return false;
+        state.openingOffered=true;
+        const dlg='act6-opening-'+id;
+        return G.HonroStory.start(app,rows.map(([who,line],i)=>[who,line,{kind:'character',storyId:dlg,rowId:dlg+'-'+i}]),
+          {id:dlg,title:app.stage.name});
+      }
       function enterNormal51(app,grant,carried){
         const m=grant.packet.map,d=grant.packet.mission;
         check(carried.profile===app.profile&&app.profile===app.normalProfile&&!app.engine,'Normal Stage51 rest changed');
@@ -38,7 +66,7 @@
           const ui=appUI(app);check(ui,'Normal battle objective owner is absent');
           const button=document.createElement('button');button.type='button';button.dataset.act6QaLookout='';styleAction(button);
           button.textContent=d.marks[0].label;button.addEventListener('click',event=>{if(event.isTrusted&&event.currentTarget===button)action(app,event);});
-          state.button=button;ui.append(button);return true;
+          state.button=button;ui.append(button);start51or52Opening(app,state,51);return true;
         }catch(error){app.stopBattle();app.showTitle();throw error;}
       }
 
@@ -101,6 +129,6 @@
           const ui=appUI(app);check(ui,'Normal battle objective owner absent');const button=document.createElement('button');
           button.type='button';button.dataset.act6QaLookout='';styleAction(button);button.textContent=d.marks[0].label;
           button.addEventListener('click',event=>{if(event.isTrusted&&event.currentTarget===button)action(app,event);});
-          state.button=button;ui.append(button);return true;
+          state.button=button;ui.append(button);start51or52Opening(app,state,52);return true;
         }catch(error){app.stopBattle();app.showTitle();throw error;}
       }

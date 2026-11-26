@@ -216,6 +216,6 @@
         return true;
       }
       function release(app){const s=active.get(app);if(!s)return;active.delete(app);Object.assign(app,s.old,{dirty:false});}
-      const safeActions=new Set(['title','close','battle-help','pause','drop','defend','wait','select-hero','inspect-hero','combat-skill','fullscreen']);
+      const safeActions=new Set(['title','close','battle-help','pause','drop','defend','wait','select-hero','inspect-hero','combat-skill','fullscreen','dialogue-prev','dialogue-next','dialogue-skip']);
       return Object.freeze({offer,offerRest:app=>fiftyUI.offer(app),launch:(app,id,ticket)=>fiftyUI.launch(app,id,ticket)??enter(app,id,ticket),active:app=>active.has(app),bind,goalState,action,outcome,release,keepAction:(app,name)=>!active.has(app)||safeActions.has(name)});
     })();
