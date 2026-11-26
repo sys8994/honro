@@ -72,8 +72,8 @@ for(let n=21;n<=30;n++){
 const opens=text('shared/runtime/stage51-entry.inc.js');
 if(opens.includes('const act6Openings')){
  const block=opens.split('const act6Openings=Object.freeze({')[1].split('});')[0];
- for(const m of block.matchAll(/(5[1-6]):\[([^]*?)\n\s{8}\]/g)){
-  const source=Number(m[1])<=52?opens:text('shared/runtime/stage'+m[1]+'-entry.inc.js');
+ for(const m of block.matchAll(/(5[1-9]):\[([^]*?)\n\s{8}\]/g)){
+  const source=Number(m[1])<=52?opens:text('shared/runtime/stage'+m[1]+(Number(m[1])>=58?'-normal':'')+'-entry.inc.js');
   assert(source.includes(',s,'+m[1]+')')||source.includes('startAct6Opening(app,state,'+m[1]+')'));
   for(const r of m[2].matchAll(/\['([^']+)','([^']+)'\]/g))row(Number(m[1]),r[1],r[2],newRows);
  }
@@ -82,6 +82,12 @@ if(opens.includes('const field52Dialogue=Object.freeze({')){
  const block=opens.split('const field52Dialogue=Object.freeze({')[1].split('});')[0];
  assert(text('shared/act6-app-qa.mjs').includes('if(s.normal51)show52FieldDialogue(app,s,id);'));
  for(const r of block.matchAll(/\['([^']+)','([^']+)'\]/g))row(52,r[1],r[2],newRows);
+}
+const entry57=text('shared/runtime/stage57-entry.inc.js');
+if(entry57.includes('const field57Dialogue=Object.freeze({')){
+ const block=entry57.split('const field57Dialogue=Object.freeze({')[1].split('});')[0];
+ assert(entry57.includes('if(q.ok)show57FieldDialogue(a,e,id);'));
+ for(const r of block.matchAll(/\['([^']+)','([^']+)'\]/g))row(57,r[1],r[2],newRows);
 }
 const before=unique(baseRows),now=unique(newRows),isInAct=(n,i)=>Math.ceil(n/10)===i+1;
 const report=released.map((baseline,i)=>{

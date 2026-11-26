@@ -61,7 +61,7 @@
           move.addEventListener('click',event=>{if(event.isTrusted&&event.currentTarget===move&&scope58(a,a.engine,s)&&a.canInput()&&s.owner58.project()?.skipReturn){
             s.owner58.noncombatReturn();a.updateHUD(true);
           }});
-          s.move=move;ui.append(move);tick58(a);return true;
+          s.move=move;ui.append(move);tick58(a);startAct6Opening(a,s,58);return true;
         }catch(error){a.stopBattle();a.showTitle();throw error;}
       }
       function bindNormal58(a,e,s){

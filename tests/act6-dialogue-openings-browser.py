@@ -16,7 +16,7 @@ with sync_playwright() as pw:
  page.goto('https://sys8994.github.io/honro/',wait_until='domcontentloaded')
  page.wait_for_function('!!window.HonroApp',timeout=90000)
  page.evaluate("""()=>{const a=HonroApp;a.setDebugMode(true);HonroRestJourney.showBook(a,51,null,6);}""")
- for id,needle in [(51,'고개에서 본 절'),(52,'위에서 본 곳이 셋'),(53,'들어오긴 했네'),(54,'처마가 저리'),(55,'소단, 종터까지'),(56,'저 아래로 가는 혼')]:
+ for id,needle in [(51,'고개에서 본 절'),(52,'위에서 본 곳이 셋'),(53,'들어오긴 했네'),(54,'처마가 저리'),(55,'소단, 종터까지'),(56,'저 아래로 가는 혼'),(57,'진목 받침이 기울었소'),(58,'네 사람이 다 들어왔군'),(59,'산문 밖입니다')]:
   if id!=51:page.evaluate('n=>HonroRestJourney.showBook(HonroApp,n,null,6)',id)
   page.locator(f'[data-action="journey-travel"][data-id="{id}"]').click(timeout=20000)
   page.wait_for_function('n=>HonroApp.engine?.b.honroStage===n && !!HonroApp.dialogue',arg=id,timeout=30000)
@@ -65,7 +65,8 @@ with sync_playwright() as pw:
    assert not page.evaluate('HonroApp.done')
    print('VERIFIED CLIFF → BRIDGE → BELL; INVALID CLIFF NO DIALOGUE',flush=True)
   print('ENTRY AND SKIP',id,flush=True)
-  page.reload(wait_until='domcontentloaded')
-  page.wait_for_function('!!window.HonroApp',timeout=90000)
-  page.evaluate('()=>HonroApp.setDebugMode(true)')
+  if id!=59:
+   page.reload(wait_until='domcontentloaded')
+   page.wait_for_function('!!window.HonroApp',timeout=90000)
+   page.evaluate('()=>HonroApp.setDebugMode(true)')
  assert not errors,errors

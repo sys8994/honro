@@ -60,7 +60,7 @@
           btn.addEventListener('click',event=>{if(event.isTrusted&&event.currentTarget===btn)action(a,event);});s.button=btn;ui.append(btn);
           const alt=document.createElement('button');alt.type='button';alt.dataset.act6QaAlt='';styleAction(alt);alt.textContent='두 인물이 나누어 결속 잇기';
           alt.addEventListener('click',event=>{if(event.isTrusted&&event.currentTarget===alt&&scope57(a,a.engine,s))stage57UI(a,s,a.engine,true);});
-          s.alt=alt;ui.append(alt);tick57(a);return true;
+          s.alt=alt;ui.append(alt);tick57(a);startAct6Opening(a,s,57);return true;
         }catch(error){a.stopBattle();a.showTitle();throw error;}
       }
       function bindNormal57(a,e,s){
@@ -74,11 +74,54 @@
         e.monsterSkillReason=(skill,u=e.active)=>bound(u,skill)?'담허가 돌아올 때까지 혼줄을 붙듭니다.':reason(skill,u);
         e.checkEnd=()=>a.checkMission(e);return true;
       }
+      const field57Dialogue=Object.freeze({
+        warnBell:[
+          ['소단','받침 아래에 금이 갔어요. 줄을 옮기기 전에 저기가 주저앉으면 제가 놓치게 돼요.'],
+          ['휘겸','그 자리에서 힘으로만 버티려 하지 마시오. 가까이 있는 사람이 먼저 잇도록 하겠소.'],
+          ['설오','여기서 돌단이 보입니다. 옆에서 다가오는 것은 제가 막겠습니다. 누가 손을 보태야 하면 먼저 부르십시오.'],
+          ['소단','저한테 한 사람만 오거나, 두 분이 나눠서 잡아 주세요. 제가 어느 쪽이 느슨한지 말할게요.']
+        ],
+        repairRelay:[
+          ['소단','지금은 당겨도 버텨요. 그래도 더 오래 여기서 붙들면 받침이 못 견뎌요.'],
+          ['휘겸','그동안 내가 석교 난간을 보겠소. 사람을 빼기 전에 돌부터 떨구면 안 되오.'],
+          ['설오','석교에 닿으면 고개부터 들겠습니다. 아래에 서 있는 사람을 보지 못하면 부르겠습니다.']
+        ],
+        warnRailing:[
+          ['휘겸','난간이 아래쪽으로 먼저 기울었소. 넘기기 전에 그 밑에서 모두 나오시오.'],
+          ['설오','떨어지는 데까지 생각하면 난간 바로 앞도 비켜야 합니다. 저 턱을 넘어오면 부르십시오.'],
+          ['소단','뛰어내리지 마세요. 버텨야 한다고 뒤에 남아 있어도 제가 끌어올릴 순 없어요.']
+        ],
+        openRetreat:[
+          ['설오','난간이 떨어졌습니다. 지금 그 자리에 서 있던 사람은 없습니다.'],
+          ['휘겸','그럼 반대쪽으로 사람을 옮기겠소. 가장 뒤에 있던 사람이 먼저 건너시오.'],
+          ['소단','움직일 때 저랑 줄을 같이 봐 주세요. 헐거워지면 그 발판에서 멈춰요.']
+        ],
+        receiveKeeperWatch:[
+          ['휘겸','곽진, 이제부터 돌아오는 표지는 자네 몫이오. 안까지 따라오라는 뜻이 아니네.'],
+          ['설오','돌아올 때 먼저 표지를 찾겠습니다. 우리가 늦어도 혼자 들어오지 말라고 전하십시오.'],
+          ['휘겸','그래. 병사들은 자네 곁에 남기게. 그 사람들을 데리고 돌아가는 것도 자네 일이오.'],
+          ['소단','저는 이제 담허님한테 갑니다. 다시 줄을 잡아야 하면 그쪽에서 먼저 불러 주세요.']
+        ],
+        reuniteAtWard:[
+          ['소단','담허님, 대답 말고 손을 움직여 봐요. 손가락 하나만 움직여도 제가 알아요.'],
+          ['담허','이 손에 아직 감각이 있네. 돌이 이렇게 찼던가.'],
+          ['설오','기다리십시오. 바로 일어나면 넘어지십니다. 제 팔 잡고 서 보십시오.'],
+          ['휘겸','네 사람 다 있소. 이제 누가 먼저 갔더라도 따라가느라 뛰지 마시오. 같이 건너겠소.'],
+          ['소단','그럼 줄은 놓을게요. 걸어가실 때 옆에 있을게요.']
+        ]
+      });
+      function show57FieldDialogue(a,e,id){
+        const rows=field57Dialogue[id==='splitRepair'?'repairRelay':id];
+        if(!rows||a.engine!==e||a.done||a.dialogue||e.b.phase!=='aim')return false;
+        const dlg='act6-field-57-'+id;
+        return G.HonroStory.start(a,rows.map(([who,line],i)=>[who,line,{kind:'character',storyId:dlg,rowId:dlg+'-'+i}]),
+          {id:dlg,title:a.stage.name});
+      }
       function stage57UI(a,s,e,split=false){
         if(!scope57(a,e,s)||a.dialogue||a.modal.classList.contains('open'))return;
         if(a.done){presentNormal57Loss(a,s);return;}
         const actions=s.owner57.project()?.appActions,id=split?actions?.alt:actions?.mission;if(!id)return;
-        const q=s.owner57.interact(id);a.notify(q.ok?q.label:q.reason);e.checkEnd();tick57(a);a.updateHUD(true);
+        const q=s.owner57.interact(id);a.notify(q.ok?q.label:q.reason);e.checkEnd();tick57(a);a.updateHUD(true);if(q.ok)show57FieldDialogue(a,e,id);
       }
       function tick57(a){
         const s=active.get(a),e=a.engine;if(e?.b?.honroStage!==57||!scope57(a,e,s)||!s.owner57)return;
