@@ -1,92 +1,76 @@
 {
   "version": 1,
-  "baseHeight": 160,
+  "baseHeight": 240,
   "viewBox": [
-    -62,
-    -176,
-    124,
-    180
+    -153,
+    -242,
+    304,
+    244
   ],
   "parts": [
     {
-      "id": "root",
+      "id": "core",
       "pivot": [
         0,
-        -50
+        0
       ],
       "parent": null
     },
     {
-      "id": "leg-10",
-      "pivot": [
-        -10,
-        -40
-      ],
-      "parent": "root"
-    },
-    {
-      "id": "leg-11",
-      "pivot": [
-        -10,
-        -40
-      ],
-      "parent": "root"
-    },
-    {
-      "id": "leg10",
-      "pivot": [
-        10,
-        -40
-      ],
-      "parent": "root"
-    },
-    {
-      "id": "leg11",
-      "pivot": [
-        10,
-        -40
-      ],
-      "parent": "root"
-    },
-    {
-      "id": "l-leaf",
-      "pivot": [
-        -2,
-        -104
-      ],
-      "parent": "root"
-    },
-    {
-      "id": "r-leaf",
+      "id": "body",
       "pivot": [
         2,
-        -104
+        -115
       ],
-      "parent": "root"
+      "parent": "core"
     },
     {
-      "id": "eye",
+      "id": "doorLeft",
       "pivot": [
-        -20,
-        -150
+        -55,
+        -160
       ],
-      "parent": "l-leaf"
+      "parent": "core"
     },
     {
-      "id": "chain",
+      "id": "doorRight",
       "pivot": [
-        24,
-        -70
+        68,
+        -136
       ],
-      "parent": "r-leaf"
+      "parent": "core"
     },
     {
-      "id": "talisman",
+      "id": "rightArm",
       "pivot": [
-        -14,
-        -60
+        65,
+        -102
       ],
-      "parent": "l-leaf"
+      "parent": "core"
+    },
+    {
+      "id": "leftArm",
+      "pivot": [
+        -61,
+        -103
+      ],
+      "parent": "core"
+    },
+    {
+      "id": "leftLeg",
+      "pivot": [
+        -75,
+        -63
+      ],
+      "parent": "core"
+    },
+    {
+      "id": "rightLeg",
+      "pivot": [
+        79,
+        -67
+      ],
+      "parent": "core"
     }
   ]
 }

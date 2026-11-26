@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "baseHeight": 153,
+  "viewBox": [
+    -177,
+    -155,
+    305,
+    157
+  ],
+  "parts": [
+    {
+      "id": "core",
+      "pivot": [
+        0,
+        0
+      ],
+      "parent": null
+    },
+    {
+      "id": "body",
+      "pivot": [
+        -10,
+        -67
+      ],
+      "parent": "core"
+    },
+    {
+      "id": "cloth",
+      "pivot": [
+        -8,
+        -94
+      ],
+      "parent": "core"
+    },
+    {
+      "id": "head",
+      "pivot": [
+        61,
+        -118
+      ],
+      "parent": "core"
+    },
+    {
+      "id": "knots",
+      "pivot": [
+        18,
+        -77
+      ],
+      "parent": "core"
+    }
+  ]
+}

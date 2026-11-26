@@ -24,7 +24,7 @@ function paintFor(u,id,b){
  const face=w?.v===2&&w.key==='warden-face'?(w.discovery==='unknown'?(grove?GROVE_EYES:null):FACE_LIGHT):null;
  return tone||face?{tone,face}:null;
 }
-function create(assets){const cache=new Map(),idleRasters=new Map();
+function create(assets){const cache=new Map(),idleRasters=new Map(),act6Frames=new Map();let act6Bytes=0;
 function sample(keys,t){if(t<=keys[0][0])return keys[0][1];for(let i=1;i<keys.length;i++)if(t<=keys[i][0]){const a=keys[i-1],b=keys[i],f=(t-a[0])/(b[0]-a[0]),s=f*f*(3-2*f);return a[1]+(b[1]-a[1])*s;}return keys.at(-1)[1];}
 function compile(id){if(cache.has(id))return cache.get(id);const a=assets[id],byId=new Map(a.parts.map(p=>[p.id,p]));const parts=a.parts.map(p=>{const chain=[];let q=p;while(q){chain.unshift(q);q=byId.get(q.parent);}return{...p,chain,paths:p.paths.map(v=>({...v,path:new Path2D(v.d)}))};});const value={asset:a,parts};cache.set(id,value);return value;}
 function pose(a,time,state={}){
@@ -71,7 +71,34 @@ function drawVector(c,id,{time=0,state:st={},pixels=128,mode='paint',detail,acto
 }
 function draw(c,id,options={}){
  const {time=0,state:st={},pixels=128,mode='paint',detail}=options,a=assets[id];
- if(!['act3-authored','monster-handoff'].includes(a.budget)||pixels>=32||mode!=='paint'||options.actorPaint||detail!==undefined||st.move||st.attack!==undefined||st.hit!==undefined||st.jump!==undefined||typeof document==='undefined')return drawVector(c,id,options);
+ const still=mode==='paint'&&!options.actorPaint&&detail===undefined&&!st.move&&
+  st.attack===undefined&&st.hit===undefined&&st.jump===undefined&&typeof document!=='undefined';
+ // Dense Act 6 idle silhouettes share a small cache of canvas snapshots generated
+ // from the same vector parts. Moving, attacking, hurt, and close-up figures
+ // always use native paths, as do art inspection and explicit quality levels.
+ if(a.budget==='act6-retained-art'&&still&&pixels<150){
+  const limit=pixels<48?64:pixels<120?128:192, duration=a.clips.idle.duration;
+  const phase=((time%duration)+duration)%duration, step=Math.floor(phase/duration*12);
+  const key='a6:'+id+':'+limit+':'+step;
+  let frame=act6Frames.get(key);
+  if(frame){act6Frames.delete(key);act6Frames.set(key,frame);}
+  else{
+   const [x,y,w,h]=a.viewBox,margin=a.baseHeight*.18,k=limit/a.baseHeight;
+   const cv=document.createElement('canvas');cv.width=Math.ceil((w+2*margin)*k);cv.height=Math.ceil((h+2*margin)*k);
+   frame={canvas:cv,x:x-margin,y:y-margin,width:cv.width/k,height:cv.height/k,bytes:cv.width*cv.height*4};
+   const cc=cv.getContext('2d');cc.setTransform(k,0,0,k,-frame.x*k,-frame.y*k);
+   drawVector(cc,id,{...options,time:duration*step/12});
+   act6Frames.set(key,frame);act6Bytes+=frame.bytes;
+   while(act6Bytes>24*1024*1024&&act6Frames.size>1){
+    const drop=act6Frames.keys().next().value, old=act6Frames.get(drop);
+    act6Frames.delete(drop);act6Bytes-=old.bytes;
+    old.canvas.width=0;old.canvas.height=0;
+   }
+  }
+  c.drawImage(frame.canvas,frame.x,frame.y,frame.width,frame.height);
+  return{lod:pixels>=120?2:pixels>=48?1:0,parts:a.parts.length};
+ }
+ if(!['act3-authored','monster-handoff'].includes(a.budget)||pixels>=32||!still)return drawVector(c,id,options);
  // Reuse the exact current idle pose across a distant formation. One generously
  // oversampled image per species/aim is refreshed every frame, so neither the
  // vector source nor animation rate is reduced. Motion and close views stay vector.

@@ -1,140 +1,60 @@
 {
   "version": 1,
-  "baseHeight": 115,
+  "baseHeight": 198,
   "viewBox": [
-    -75,
-    -132,
-    150,
-    146
+    -154,
+    -202,
+    308,
+    204
   ],
   "parts": [
     {
-      "id": "root",
+      "id": "core",
       "pivot": [
         0,
-        0
+        -118
       ],
       "parent": null
     },
     {
-      "id": "rear-leg",
-      "pivot": [
-        -6.16,
-        -51.16279069767442
-      ],
-      "parent": "root"
-    },
-    {
-      "id": "rear-foot",
-      "pivot": [
-        -6.16,
-        -6.395348837209302
-      ],
-      "parent": "rear-leg"
-    },
-    {
-      "id": "front-leg",
-      "pivot": [
-        6.16,
-        -51.16279069767442
-      ],
-      "parent": "root"
-    },
-    {
-      "id": "front-foot",
-      "pivot": [
-        6.16,
-        -6.395348837209302
-      ],
-      "parent": "front-leg"
-    },
-    {
-      "id": "body",
+      "id": "robe",
       "pivot": [
         0,
-        -55
+        -77
       ],
-      "parent": "root"
+      "parent": "core"
     },
     {
-      "id": "rear-sleeve",
+      "id": "farArm",
       "pivot": [
-        -9.68,
-        -87
+        49,
+        -114
       ],
-      "parent": "body"
+      "parent": "robe"
     },
     {
-      "id": "rear-hand",
+      "id": "nearArm",
       "pivot": [
-        -19.36,
-        -57
+        -39,
+        -127
       ],
-      "parent": "rear-sleeve"
-    },
-    {
-      "id": "hem",
-      "pivot": [
-        0,
-        -59
-      ],
-      "parent": "body"
-    },
-    {
-      "id": "neck",
-      "pivot": [
-        0,
-        -94
-      ],
-      "parent": "body"
+      "parent": "robe"
     },
     {
       "id": "head",
       "pivot": [
-        0,
-        -95
+        2,
+        -139
       ],
-      "parent": "neck"
+      "parent": "robe"
     },
     {
-      "id": "front-sleeve",
+      "id": "ribbons",
       "pivot": [
-        9.68,
-        -87
+        -2,
+        -175
       ],
-      "parent": "body"
-    },
-    {
-      "id": "front-hand",
-      "pivot": [
-        19.36,
-        -59
-      ],
-      "parent": "front-sleeve"
-    },
-    {
-      "id": "tool",
-      "pivot": [
-        20.24,
-        -55
-      ],
-      "parent": "front-hand"
-    },
-    {
-      "id": "stake",
-      "pivot": [
-        20.24,
-        -55
-      ],
-      "parent": "front-hand"
-    },
-    {
-      "id": "goreum",
-      "pivot": [
-        1.76,
-        -75
-      ],
-      "parent": "body"
+      "parent": "head"
     }
   ]
 }

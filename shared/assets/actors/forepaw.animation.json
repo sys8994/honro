@@ -1,10 +1,9 @@
 {
   "idle": {
-    "duration": 3,
-    "loop": true,
+    "duration": 3.4,
     "tracks": [
       {
-        "part": "arm",
+        "part": "fingers",
         "channel": "rotate",
         "keys": [
           [
@@ -12,12 +11,12 @@
             0
           ],
           [
-            0.4,
-            -2.5
+            0.25,
+            1.4
           ],
           [
-            0.8,
-            2
+            0.75,
+            -1.4
           ],
           [
             1,
@@ -26,40 +25,38 @@
         ]
       },
       {
-        "part": "mass",
-        "channel": "scaleY",
+        "part": "dangling",
+        "channel": "rotate",
         "keys": [
           [
             0,
-            1
+            0
           ],
           [
-            0.45,
-            1.03
+            0.25,
+            1.4
           ],
           [
-            0.8,
-            0.985
+            0.75,
+            -1.4
           ],
           [
             1,
-            1
+            0
           ]
         ]
       }
     ]
   },
   "move": {
-    "duration": 0.8,
-    "loop": true,
+    "duration": 1.2,
     "tracks": []
   },
   "attack": {
-    "duration": 0.6,
-    "loop": false,
+    "duration": 0.8,
     "tracks": [
       {
-        "part": "arm",
+        "part": "fingers",
         "channel": "rotate",
         "keys": [
           [
@@ -67,16 +64,12 @@
             0
           ],
           [
-            0.3,
-            -16
+            0.27,
+            -7.2
           ],
           [
-            0.55,
-            24
-          ],
-          [
-            0.8,
-            7
+            0.63,
+            16
           ],
           [
             1,
@@ -85,7 +78,7 @@
         ]
       },
       {
-        "part": "paw",
+        "part": "dangling",
         "channel": "rotate",
         "keys": [
           [
@@ -93,8 +86,12 @@
             0
           ],
           [
-            0.5,
-            18
+            0.27,
+            4.5
+          ],
+          [
+            0.63,
+            -10
           ],
           [
             1,
@@ -105,20 +102,19 @@
     ]
   },
   "hit": {
-    "duration": 0.35,
-    "loop": false,
+    "duration": 0.34,
     "tracks": [
       {
-        "part": "arm",
+        "part": "core",
         "channel": "rotate",
         "keys": [
           [
             0,
-            8
+            -3
           ],
           [
-            0.5,
-            -3
+            0.38,
+            1
           ],
           [
             1,
@@ -130,7 +126,6 @@
   },
   "jump_fall": {
     "duration": 0.8,
-    "loop": false,
     "tracks": []
   }
 }

@@ -8,9 +8,11 @@ const hull='local-lower-08-body';
 const points=Object.freeze({column:{x:3496,r:88,cls:'occultist'},threshold:{x:3680,r:88,cls:'mage'},ledger:{x:4464,r:82,cls:'occultist'},stake:{x:3680,r:114,cls:'mage'}});
 const exits=Object.freeze({mage:3580,archer:3440,knight:3390,occultist:3500});
 const ids=['a6-c08-boss','a6-c08-expansion-node','a6-c08-unsettled-ledger','a6-c08-margin-echo','a6-c08-vessel-a','a6-c08-vessel-b','a6-c08-ink-echo-a','a6-c08-ink-echo-b'];
-export const BOSS58=Object.freeze({hp:10500,armor:.15,floors:[7600,4600],carry:.5,exposed:1.3,guarded:.6,
+export const BOSS58=Object.freeze({hp:10500,armor:.15,
+ body:{h:310,r:83,hp:11800,armor:.18},
+ bodies:{grot_hanging:{h:203,r:48,attack:1.26},grot_hands:{h:265,r:89,attack:1.32},grot_door:{h:298,r:98,attack:1.38}},floors:[7600,4600],carry:.5,exposed:1.3,guarded:.6,
  stand:[4480,4800,5150],band:{w:340,dmg:.24,push:110},zone:{w:420,dmg:.16,pull:200},drop:{r:150,dmg:.28},great:{dmg:.40},lash:{reach:650,dmg:.15},rain:{r:110,dmg:.15},tether:{reach:750,pull:260,dmg:.16},swap:{r:170,dmg:.22,push:120},lift:[0,220,320],
- grot:{every:2,maxAlive:2,total:6,kinds:[['grot_hanging','거꾸로 매달린 상주',1700,.12],['grot_hands','천수귀',2400,.15],['grot_door','입 벌린 문짝',3200,.25]]},
+ grot:{every:2,maxAlive:2,total:6,kinds:[['grot_hanging','거꾸로 매달린 상주',1830,.12],['grot_hands','천수귀',2740,.17],['grot_door','입 벌린 문짝',3650,.27]]},
  shelters:[{x0:2600,x1:3360,y0:3120,y1:3560,label:'법당 그늘'},{x0:5650,x1:6150,y0:2700,y1:3080,label:'움푹한 바위 아래'}],column:{x0:3410,x1:3500}});
 const used=new WeakSet();
 const fields=Object.freeze({
@@ -70,7 +72,11 @@ export function createStage58Owner({C,authorize,isolate=()=>false,preview=()=>fa
   // Flight: past the first phase he floats; when exposed he sinks to the floor (a melee window).
   const hover=(u,x,lift)=>{const g=ground(x);if(!g)return false;Object.assign(u,{x,y:g.y-lift,spawnX:x,spawnY:g.y-lift,vx:0,vy:0,airborne:lift>0,jumping:false,fixed:u.fixed||lift>0});return true;};
   for(const [u,x] of [[boss,BOSS58.stand[0]],[node,4896],[vesselA,4300],[vesselB,5000],[inkA,5420],[inkB,5560]])if(!place(u,x))return no('reserved pose unsupported '+u.id);
-  const originalUnits=new Set(four), east=new Set(), log=[], ritual=[], dead=[], fieldEvents=[], said=new Set(), signatures=new Set();
+  // Scale only newly constructed creatures, never the inherited heroes or packet.
+ const bodyFit=(u,preferred,lift)=>[1,.88,.76].map(scale=>({...u,h:Math.round(preferred.h*scale),r:Math.round(preferred.r*scale)})).find(p=>
+  lift? p.y-p.h>0&&!b.terrain.some(t=>!t.oneWay&&!t.broken&&C.terrainRectIntersects(t,p.x-5,p.y-p.h+4,10,p.h-9)):
+  C.validTerrainContactPose(b.terrain,p));
+ const originalUnits=new Set(four), east=new Set(), log=[], ritual=[], dead=[], fieldEvents=[], said=new Set(), signatures=new Set();
   let phase=1,pendingPhase=0,carryOver=0,presented=false,quiet=false,quietFire=false,terminal=null,tick=0,lostSpoken=false,firstBand=false,nearWarned=false;
   // Serializable fight record; the renderer draws marks/shelters from exactly this object.
   const rec=b.honroDaedosa={version:2,boss:boss.id,phase:0,mark:null,charge:0,exposed:false,guarded:false,exposedRounds:0,nodeDead:false,dead:false,shelters:[],shadowOffset:-70,history:[]};
@@ -200,17 +206,25 @@ export function createStage58Owner({C,authorize,isolate=()=>false,preview=()=>fa
    const [rig,name,hp,armor]=BOSS58.grot.kinds[grotSpawned%BOSS58.grot.kinds.length],t=densest();if(!t)return;
    const x=Math.round(rig==='grot_hanging'?t.x+(t.x<boss.x?240:-240):rig==='grot_hands'?t.x+(boss.x>t.x?320:-320):(t.x+boss.x)/2),id='a6-c08-grot-'+grotSpawned;
    const tpl=structuredClone(vesselA);delete tpl.id;
-   const u=C.makeUnit(tpl.cls,1,x,0,{...tpl,id,name,hp,maxHp:hp,armor,honroRigAsset:rig,honroGrotesque:rig,h:rig==='grot_hands'?140:150,r:rig==='grot_door'?36:30,fixed:rig!=='grot_hands',dead:false,acted:false,attack:(tpl.attack||1)*1.2,elite:true});
-   if(!hover(u,x,rig==='grot_hanging'?260:0))return;
+   const authored=BOSS58.bodies[rig];
+   const u=C.makeUnit(tpl.cls,1,x,0,{...tpl,id,name,hp,maxHp:hp,armor,honroRigAsset:rig,honroGrotesque:rig,h:rig==='grot_hands'?140:150,r:rig==='grot_door'?36:30,fixed:rig!=='grot_hands',dead:false,acted:false,attack:(tpl.attack||1)*authored.attack,elite:true});
+   const lift=rig==='grot_hanging'?260:0;
+   let placed=false;
+   for(const offset of [0,-72,72,-144,144]){
+    if(!hover(u,x+offset,lift))continue;
+    const fit=bodyFit(u,authored,lift);if(!fit)continue;
+    u.h=fit.h;u.r=fit.r;placed=true;break;
+   }
+   if(!placed)return;
    b.units.push(u);grots.push(u);gid.add(u.id);grotSpawned++;e.refreshActivation();
-   note('grotesque',{id,rig});e.message(grotLines[rig]);e.fx('ring',u.x,u.y-60,'#1b2124',120);
+   note('grotesque',{id,rig,h:u.h,r:u.r,hp:u.maxHp});e.message(grotLines[rig]);e.fx('ring',u.x,u.y-60,'#1b2124',120);
   }
   function grotTurn(){
    const u=e.active;if(!u||!gid.has(u.id)||!alive(u))return false;const h=heroes();if(!h.length)return false;
    if(u.honroGrotesque==='grot_hanging'){
     if(u.honroDrop){const d=u.honroDrop;rec.extra=(rec.extra||[]).filter(x=>x.owner!==u.id);
      for(const v of h)if(Math.abs(v.x-d.x)<=d.r+v.r)e.hurt(v,v.maxHp*.22,u.id,false,undefined,{x:u.x,y:u.y},'normal',undefined,{attackSide:1});
-     e.fx('ring',d.x,d.y,'#2a2f33',d.r);delete u.honroDrop;e.message('매달린 상주가 떨어졌다가 다시 허공에 걸립니다.');}
+     u.anim=1;e.fx('ring',d.x,d.y,'#2a2f33',d.r);delete u.honroDrop;e.message('매달린 상주가 떨어졌다가 다시 허공에 걸립니다.');}
     else{const t=h.sort((a,c)=>Math.abs(c.x-boss.x)-Math.abs(a.x-boss.x))[0],g=ground(t.x);hover(u,t.x,260);u.honroDrop={x:Math.round(t.x),y:Math.round((g?.y??t.y)-40),r:130};
      rec.extra=[...(rec.extra||[]).filter(x=>x.owner!==u.id),{owner:u.id,kind:'circle',...u.honroDrop,label:'매달린 것이 떨어짐'}];e.message('매달린 상주 · '+t.name+' 위로 옮겨 갑니다');}
     e.finishAction();return true;}
@@ -261,6 +275,9 @@ export function createStage58Owner({C,authorize,isolate=()=>false,preview=()=>fa
     flags.localColumnSealAligned=true;flags.localThresholdGravityNormalized=true;sync();say('column');
    }else if(k==='threshold'){
     if(!flags.localColumnSealAligned||!flags.localThresholdGravityNormalized||flags.localBossManifested||b.units.some(x=>x.side===1&&!vanguard(x,e)))return false;
+    const form=bodyFit(boss,BOSS58.body,0);
+    if(form){boss.h=form.h;boss.r=form.r;}
+    boss.maxHp=boss.hp=BOSS58.body.hp;boss.armor=BOSS58.body.armor;
     flags.localBossManifested=true;b.units.push(boss,vesselA,vesselB);e.refreshActivation();
     b.honroConvoyActors=[...(b.honroConvoyActors??[]),ledger,echo];
     rec.phase=1;rec.shadowOffset=-90;say('manifest');sync();

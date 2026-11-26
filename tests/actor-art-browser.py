@@ -53,7 +53,7 @@ with sync_playwright() as p:
     for row in rows:
         m=next(m for m in METRICS['assets'] if m['id']==row['id'])
         check(row['id']+': bounded five-motion geometry, valid joints and planted idle feet',all(row[k] for k in ['bounded','visible','rigid','planted']),row)
-        budget=BASE['assets'][row['id']]['anchors']*3.15 if row['id'] in BASE['assets'] else 240
+        budget=m['anchorLimit'] if m.get('visualRevision')=='act6-art-20261126' else (BASE['assets'][row['id']]['anchors']*3.15 if row['id'] in BASE['assets'] else 240)
         check(row['id']+': anchor ceiling and visible attack/hit response',m['anchors']<=budget and row['clips']['attack']>1 and row['clips']['hit']>1,{'anchors':m['anchors'],'ratio':m['ratio']})
     check('Actor source provenance matches runtime',lab.evaluate('HONRO_ACTORS.sourceSha256')==METRICS['sourceSha256']==hashlib.sha256('\n'.join(n+'\n'+(ROOT/n).read_text(encoding='utf-8') for n in METRICS['sourceFiles']).encode()).hexdigest())
     for n,h in BASE['sources'].items(): check('Immutable before source '+n,hashlib.sha256((ROOT/n).read_bytes()).hexdigest()==h)

@@ -136,6 +136,8 @@ async function test58(){
  assert(!b.units.some(u=>u.honroSpawnSource==='apse-lower'||u.honroSpawnSource==='folded-rear'));
  at58(e,'mage',3680);assert(owner.interact('threshold').ok);
  const boss=e.unit('a6-c08-boss'),party=players(b).slice();assert(boss&&boss.honroRigAsset==='boss_daedosa');
+ assert.equal(boss.maxHp,BOSS58.body.hp,'real boss manifestation applies the final body');
+ assert(boss.h>=BOSS58.body.h*.75&&boss.r>=BOSS58.body.r*.75&&C.validTerrainContactPose(b.terrain,boss));
  assert.equal(b.honroDaedosa.phase,1);assert(!e.unit('a6-c08-expansion-node'));
  const marks=[];
  const turn=()=>{
@@ -441,6 +443,10 @@ async function test59(which){
  const ctx={globalAlpha:1,save(){},restore(){},beginPath(){},moveTo(){},lineTo(){},stroke(){},translate(){},scale(){}};
  const cue=()=>{scene.time+=.03;scene.objectDamage(ctx,b);return renderer.read().last;};
  assert.equal(enemies(b).length,1);owner.tick();assert.equal(enemies(b).length,1+sentries59.length);
+ const first=enemies(b).filter(u=>u.id.startsWith('finale-first-'));
+ assert(first.some(u=>u.honroRigAsset==='wonhon_knotted')&&first.some(u=>u.honroRigAsset==='wonhon'));
+ assert(first.some(u=>u.honroRigAsset==='gate_armor'&&u.h>=FRONTS59.bodies.warden.h*.8));
+ assert(first.every(u=>C.validTerrainContactPose(b.terrain,u)));
  assert(!owner.interact('activateGarmjin').ok&&!owner.project().complete);
  actor(e,'knight',900*K,near59);owner.tick();
  assert(b.honroState.localReturnGuardAftermath?.poses.length===3);

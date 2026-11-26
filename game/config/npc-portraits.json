@@ -1003,6 +1003,667 @@
           }
         }
       }
+    },
+    "hantaerok": {
+      "id": "hantaerok",
+      "file": "shared/assets/portraits/npc-campaign-v4/hantaerok.webp",
+      "sourceArchive": {
+        "sha256": "490bcd5c885dbb67f5bd9c90f10ef085910bb1c057d8128d050cf44017416b16",
+        "member": "originals/hantaerok.png"
+      },
+      "sourceSha256": "e0e422fcc9e204200b35d64bd6609c91af186fe2588f51a38e6a8771e8b637ce",
+      "encodedSha256": "05c0a57e010b3988359728700766c5ec1be17c43d61a92bbec500b4b53f20fbb",
+      "width": 768,
+      "height": 1152,
+      "npc": true,
+      "head": {
+        "left": 226,
+        "top": 2,
+        "right": 591,
+        "bottom": 451,
+        "width": 365,
+        "height": 449
+      },
+      "bust": {
+        "left": 3,
+        "top": 2,
+        "right": 760,
+        "bottom": 1152,
+        "width": 757,
+        "height": 1150
+      },
+      "framing": {
+        "dialogue": {
+          "face": {
+            "left": 326,
+            "top": 195,
+            "right": 491,
+            "bottom": 381,
+            "width": 165,
+            "height": 186
+          },
+          "top": -16,
+          "height": 987
+        }
+      },
+      "expressions": {}
+    },
+    "ferryman": {
+      "id": "ferryman",
+      "file": "shared/assets/portraits/npc-campaign-v4/ferryman.webp",
+      "sourceArchive": {
+        "sha256": "490bcd5c885dbb67f5bd9c90f10ef085910bb1c057d8128d050cf44017416b16",
+        "member": "originals/ferryman.png"
+      },
+      "sourceSha256": "209fb52afb83030e533ec75995f0c6d745989a2f93338a1e2d229586113467e0",
+      "encodedSha256": "99d8c798bd2073e5822c4d1a22e1ad4f4ad956d745b65d05a8ddc929523e5c17",
+      "width": 768,
+      "height": 1152,
+      "npc": true,
+      "head": {
+        "left": 249,
+        "top": 18,
+        "right": 652,
+        "bottom": 454,
+        "width": 403,
+        "height": 436
+      },
+      "bust": {
+        "left": 17,
+        "top": 18,
+        "right": 763,
+        "bottom": 1152,
+        "width": 746,
+        "height": 1134
+      },
+      "framing": {
+        "dialogue": {
+          "face": {
+            "left": 349,
+            "top": 167,
+            "right": 552,
+            "bottom": 384,
+            "width": 203,
+            "height": 217
+          },
+          "top": -16,
+          "height": 987
+        }
+      },
+      "expressions": {}
+    },
+    "refugee": {
+      "id": "refugee",
+      "file": "shared/assets/portraits/npc-campaign-v4/refugee.webp",
+      "sourceArchive": {
+        "sha256": "490bcd5c885dbb67f5bd9c90f10ef085910bb1c057d8128d050cf44017416b16",
+        "member": "originals/refugee.png"
+      },
+      "sourceSha256": "57cbc32f087c51cc7e1c9fca6777c5e1ef86785fe51d6ff82bb7421f58041fd4",
+      "encodedSha256": "43fe6f50b75d8cbae26abbfdf4dd4d84107a8f011c712cb1a6c002241350a8d5",
+      "width": 768,
+      "height": 1152,
+      "npc": true,
+      "head": {
+        "left": 239,
+        "top": 24,
+        "right": 619,
+        "bottom": 438,
+        "width": 380,
+        "height": 414
+      },
+      "bust": {
+        "left": 14,
+        "top": 24,
+        "right": 762,
+        "bottom": 1152,
+        "width": 748,
+        "height": 1128
+      },
+      "framing": {
+        "dialogue": {
+          "face": {
+            "left": 339,
+            "top": 167,
+            "right": 519,
+            "bottom": 368,
+            "width": 180,
+            "height": 201
+          },
+          "top": -16,
+          "height": 987
+        }
+      },
+      "expressions": {}
+    },
+    "survivor18": {
+      "id": "survivor18",
+      "file": "shared/assets/portraits/npc-campaign-v4/survivor18.webp",
+      "sourceArchive": {
+        "sha256": "490bcd5c885dbb67f5bd9c90f10ef085910bb1c057d8128d050cf44017416b16",
+        "member": "originals/survivor18.png"
+      },
+      "sourceSha256": "3ac6cadac9c05af4eedbf9d41e32b0063e3d7a06ebb74ee9f0aff4d046a226f8",
+      "encodedSha256": "0ecac49042197970a493713a474aeb77d171881b4cb42ee8883eac0712d6242b",
+      "width": 768,
+      "height": 1152,
+      "npc": true,
+      "head": {
+        "left": 242,
+        "top": 29,
+        "right": 638,
+        "bottom": 465,
+        "width": 396,
+        "height": 436
+      },
+      "bust": {
+        "left": 17,
+        "top": 29,
+        "right": 738,
+        "bottom": 1152,
+        "width": 721,
+        "height": 1123
+      },
+      "framing": {
+        "dialogue": {
+          "face": {
+            "left": 342,
+            "top": 158,
+            "right": 538,
+            "bottom": 395,
+            "width": 196,
+            "height": 237
+          },
+          "top": -16,
+          "height": 987
+        }
+      },
+      "expressions": {}
+    },
+    "survivor19": {
+      "id": "survivor19",
+      "file": "shared/assets/portraits/npc-campaign-v4/survivor19.webp",
+      "sourceArchive": {
+        "sha256": "490bcd5c885dbb67f5bd9c90f10ef085910bb1c057d8128d050cf44017416b16",
+        "member": "originals/survivor19.png"
+      },
+      "sourceSha256": "21f2ff739c84d04dbfd75a6c91077e7c0bacf845f5906d1bc57a706482e77c0d",
+      "encodedSha256": "5547ef334cdbf1d1da55f380db7d0ca4fe877f3f535c6cb39d47c3fcb836927f",
+      "width": 768,
+      "height": 1152,
+      "npc": true,
+      "head": {
+        "left": 238,
+        "top": 31,
+        "right": 616,
+        "bottom": 445,
+        "width": 378,
+        "height": 414
+      },
+      "bust": {
+        "left": 8,
+        "top": 31,
+        "right": 765,
+        "bottom": 1152,
+        "width": 757,
+        "height": 1121
+      },
+      "framing": {
+        "dialogue": {
+          "face": {
+            "left": 338,
+            "top": 162,
+            "right": 516,
+            "bottom": 375,
+            "width": 178,
+            "height": 213
+          },
+          "top": -16,
+          "height": 987
+        }
+      },
+      "expressions": {}
+    },
+    "workshop24": {
+      "id": "workshop24",
+      "file": "shared/assets/portraits/npc-campaign-v4/workshop24.webp",
+      "sourceArchive": {
+        "sha256": "490bcd5c885dbb67f5bd9c90f10ef085910bb1c057d8128d050cf44017416b16",
+        "member": "originals/workshop24.png"
+      },
+      "sourceSha256": "04ac97233403d51ef7cb24ef8d318daf73904ec6350606bb55e0b853434ac95f",
+      "encodedSha256": "aac85320cc277ffd6f47844d2f230d59ba9037cd91aadd4715f06982bb7f2e68",
+      "width": 768,
+      "height": 1152,
+      "npc": true,
+      "head": {
+        "left": 255,
+        "top": 43,
+        "right": 629,
+        "bottom": 457,
+        "width": 374,
+        "height": 414
+      },
+      "bust": {
+        "left": 11,
+        "top": 43,
+        "right": 757,
+        "bottom": 1152,
+        "width": 746,
+        "height": 1109
+      },
+      "framing": {
+        "dialogue": {
+          "face": {
+            "left": 355,
+            "top": 183,
+            "right": 529,
+            "bottom": 387,
+            "width": 174,
+            "height": 204
+          },
+          "top": -16,
+          "height": 987
+        }
+      },
+      "expressions": {}
+    },
+    "gwakjin": {
+      "id": "gwakjin",
+      "file": "shared/assets/portraits/npc-campaign-v4/gwakjin.webp",
+      "sourceArchive": {
+        "sha256": "490bcd5c885dbb67f5bd9c90f10ef085910bb1c057d8128d050cf44017416b16",
+        "member": "originals/gwakjin.png"
+      },
+      "sourceSha256": "d43ae18a3dd87474174c671213ab854e429b1701f545d5da71105134f3a690c5",
+      "encodedSha256": "6b9d03efd71014a2506f55d48e547af51b15118ee5cf7ee199453a2238ac6aa6",
+      "width": 768,
+      "height": 1152,
+      "npc": true,
+      "head": {
+        "left": 244,
+        "top": 28,
+        "right": 626,
+        "bottom": 441,
+        "width": 382,
+        "height": 413
+      },
+      "bust": {
+        "left": 8,
+        "top": 28,
+        "right": 760,
+        "bottom": 1152,
+        "width": 752,
+        "height": 1124
+      },
+      "framing": {
+        "dialogue": {
+          "face": {
+            "left": 344,
+            "top": 161,
+            "right": 526,
+            "bottom": 371,
+            "width": 182,
+            "height": 210
+          },
+          "top": -16,
+          "height": 987
+        }
+      },
+      "expressions": {}
+    },
+    "dosik": {
+      "id": "dosik",
+      "file": "shared/assets/portraits/npc-campaign-v4/dosik.webp",
+      "sourceArchive": {
+        "sha256": "490bcd5c885dbb67f5bd9c90f10ef085910bb1c057d8128d050cf44017416b16",
+        "member": "originals/dosik.png"
+      },
+      "sourceSha256": "eb2f09ccb8f7beabdcb78b01fc8de8eb349b51f857897aea5d68690aff95fc69",
+      "encodedSha256": "e429f0e575b8656af0047f345938874b01ff5691cbc81e10a7847434e41de54c",
+      "width": 768,
+      "height": 1152,
+      "npc": true,
+      "head": {
+        "left": 240,
+        "top": 10,
+        "right": 629,
+        "bottom": 422,
+        "width": 389,
+        "height": 412
+      },
+      "bust": {
+        "left": 6,
+        "top": 10,
+        "right": 767,
+        "bottom": 1152,
+        "width": 761,
+        "height": 1142
+      },
+      "framing": {
+        "dialogue": {
+          "face": {
+            "left": 340,
+            "top": 149,
+            "right": 529,
+            "bottom": 352,
+            "width": 189,
+            "height": 203
+          },
+          "top": -16,
+          "height": 987
+        }
+      },
+      "expressions": {}
+    },
+    "jangmuyul": {
+      "id": "jangmuyul",
+      "file": "shared/assets/portraits/npc-campaign-v4/jangmuyul.webp",
+      "sourceArchive": {
+        "sha256": "490bcd5c885dbb67f5bd9c90f10ef085910bb1c057d8128d050cf44017416b16",
+        "member": "originals/jangmuyul.png"
+      },
+      "sourceSha256": "3f303332519eaea2f615ff9f2378379586876960264437f613352bbbc4fe622d",
+      "encodedSha256": "222dfc3179fbb03daf409c5a72c1ec6f1cee7b7ad699e54c39c3ab937e121a0c",
+      "width": 768,
+      "height": 1152,
+      "npc": true,
+      "head": {
+        "left": 249,
+        "top": 14,
+        "right": 613,
+        "bottom": 437,
+        "width": 364,
+        "height": 423
+      },
+      "bust": {
+        "left": 2,
+        "top": 14,
+        "right": 754,
+        "bottom": 1152,
+        "width": 752,
+        "height": 1138
+      },
+      "framing": {
+        "dialogue": {
+          "face": {
+            "left": 349,
+            "top": 147,
+            "right": 513,
+            "bottom": 367,
+            "width": 164,
+            "height": 220
+          },
+          "top": -16,
+          "height": 987
+        }
+      },
+      "expressions": {}
+    },
+    "hometown": {
+      "id": "hometown",
+      "file": "shared/assets/portraits/npc-campaign-v4/hometown.webp",
+      "sourceArchive": {
+        "sha256": "490bcd5c885dbb67f5bd9c90f10ef085910bb1c057d8128d050cf44017416b16",
+        "member": "originals/hometown.png"
+      },
+      "sourceSha256": "710dc8b6281a1d61548c900cd5c9105766e7351d21fc95c2cb4e1d5fd7d5911e",
+      "encodedSha256": "a26aee608a0290c8ae21ffc42a0438f385836c971fcb9b8b79bdb3a444e91d15",
+      "width": 768,
+      "height": 1152,
+      "npc": true,
+      "head": {
+        "left": 243,
+        "top": 25,
+        "right": 623,
+        "bottom": 460,
+        "width": 380,
+        "height": 435
+      },
+      "bust": {
+        "left": 8,
+        "top": 25,
+        "right": 758,
+        "bottom": 1152,
+        "width": 750,
+        "height": 1127
+      },
+      "framing": {
+        "dialogue": {
+          "face": {
+            "left": 343,
+            "top": 177,
+            "right": 523,
+            "bottom": 390,
+            "width": 180,
+            "height": 213
+          },
+          "top": -16,
+          "height": 987
+        }
+      },
+      "expressions": {}
+    },
+    "hyeonmuk": {
+      "id": "hyeonmuk",
+      "file": "shared/assets/portraits/npc-campaign-v4/hyeonmuk.webp",
+      "sourceArchive": {
+        "sha256": "490bcd5c885dbb67f5bd9c90f10ef085910bb1c057d8128d050cf44017416b16",
+        "member": "originals/hyeonmuk.png"
+      },
+      "sourceSha256": "18d32a60d34dab684c80f2f90ad6828cbbf8213655f1e64369b1a99755499188",
+      "encodedSha256": "21fd3320604eba450271a464ffe06c1450e8fece6fe20bbb5524d92c92cf2d99",
+      "width": 768,
+      "height": 1152,
+      "npc": true,
+      "head": {
+        "left": 238,
+        "top": 15,
+        "right": 643,
+        "bottom": 454,
+        "width": 405,
+        "height": 439
+      },
+      "bust": {
+        "left": 1,
+        "top": 15,
+        "right": 767,
+        "bottom": 1152,
+        "width": 766,
+        "height": 1137
+      },
+      "framing": {
+        "dialogue": {
+          "face": {
+            "left": 338,
+            "top": 168,
+            "right": 543,
+            "bottom": 384,
+            "width": 205,
+            "height": 216
+          },
+          "top": -16,
+          "height": 987
+        }
+      },
+      "expressions": {}
+    },
+    "spiritbrother": {
+      "id": "spiritbrother",
+      "file": "shared/assets/portraits/npc-campaign-v4/spiritbrother.webp",
+      "sourceArchive": {
+        "sha256": "490bcd5c885dbb67f5bd9c90f10ef085910bb1c057d8128d050cf44017416b16",
+        "member": "originals/spiritbrother.png"
+      },
+      "sourceSha256": "b4282b7852db8908ea6e8a5a5b6ecb19b243d50f7eb837e192b30abd81c87386",
+      "encodedSha256": "a6b15e4e1af86b67e79930f13353f159b1929374db2d8c636f3045128e302e89",
+      "width": 768,
+      "height": 1152,
+      "npc": true,
+      "head": {
+        "left": 233,
+        "top": 14,
+        "right": 614,
+        "bottom": 452,
+        "width": 381,
+        "height": 438
+      },
+      "bust": {
+        "left": 20,
+        "top": 14,
+        "right": 746,
+        "bottom": 1152,
+        "width": 726,
+        "height": 1138
+      },
+      "framing": {
+        "dialogue": {
+          "face": {
+            "left": 333,
+            "top": 166,
+            "right": 514,
+            "bottom": 382,
+            "width": 181,
+            "height": 216
+          },
+          "top": -16,
+          "height": 987
+        }
+      },
+      "expressions": {}
+    },
+    "spiritsister": {
+      "id": "spiritsister",
+      "file": "shared/assets/portraits/npc-campaign-v4/spiritsister.webp",
+      "sourceArchive": {
+        "sha256": "490bcd5c885dbb67f5bd9c90f10ef085910bb1c057d8128d050cf44017416b16",
+        "member": "originals/spiritsister.png"
+      },
+      "sourceSha256": "442775b9010ad0264bce0317570130b4bc936bedcd1b8b90516d251a2e15571c",
+      "encodedSha256": "299030a53a7b12b6d5abbdd42044e87f924db2ad78d6a5ff3270d5b7987d62da",
+      "width": 768,
+      "height": 1152,
+      "npc": true,
+      "head": {
+        "left": 236,
+        "top": 14,
+        "right": 630,
+        "bottom": 445,
+        "width": 394,
+        "height": 431
+      },
+      "bust": {
+        "left": 22,
+        "top": 14,
+        "right": 742,
+        "bottom": 1152,
+        "width": 720,
+        "height": 1138
+      },
+      "framing": {
+        "dialogue": {
+          "face": {
+            "left": 336,
+            "top": 155,
+            "right": 530,
+            "bottom": 375,
+            "width": 194,
+            "height": 220
+          },
+          "top": -16,
+          "height": 987
+        }
+      },
+      "expressions": {}
+    },
+    "spiritunnamed": {
+      "id": "spiritunnamed",
+      "file": "shared/assets/portraits/npc-campaign-v4/spiritunnamed.webp",
+      "sourceArchive": {
+        "sha256": "490bcd5c885dbb67f5bd9c90f10ef085910bb1c057d8128d050cf44017416b16",
+        "member": "originals/spiritunnamed.png"
+      },
+      "sourceSha256": "c3945c00fac0888ea509060c471c9e1efc86ee35d1f81b5690f32e4d366dd0ed",
+      "encodedSha256": "91897567af5ad415d96640a878606bc96f94914767ca663e9c1bab6a5ee7c647",
+      "width": 768,
+      "height": 1152,
+      "npc": true,
+      "head": {
+        "left": 245,
+        "top": 46,
+        "right": 637,
+        "bottom": 492,
+        "width": 392,
+        "height": 446
+      },
+      "bust": {
+        "left": 21,
+        "top": 46,
+        "right": 742,
+        "bottom": 1146,
+        "width": 721,
+        "height": 1100
+      },
+      "framing": {
+        "dialogue": {
+          "face": {
+            "left": 345,
+            "top": 201,
+            "right": 537,
+            "bottom": 422,
+            "width": 192,
+            "height": 221
+          },
+          "top": -16,
+          "height": 987
+        }
+      },
+      "expressions": {}
+    },
+    "daedosa": {
+      "id": "daedosa",
+      "file": "shared/assets/portraits/npc-campaign-v4/daedosa.webp",
+      "sourceSha256": "ddad6ba9ccf0bf21e0e399af9afe5f0ab7189ad276d3e0da9285c08513c5bc41",
+      "encodedSha256": "21dd8f2f08d0ad1edce9bebb25170e625fe6e1ce1377fe9f768e45f3822e09ad",
+      "width": 768,
+      "height": 1152,
+      "npc": true,
+      "head": {
+        "left": 133,
+        "top": 8,
+        "right": 753,
+        "bottom": 520,
+        "width": 620,
+        "height": 512
+      },
+      "bust": {
+        "left": 2,
+        "top": 8,
+        "right": 766,
+        "bottom": 1152,
+        "width": 764,
+        "height": 1144
+      },
+      "framing": {
+        "dialogue": {
+          "face": {
+            "left": 351,
+            "top": 250,
+            "right": 535,
+            "bottom": 450,
+            "width": 184,
+            "height": 200
+          },
+          "top": -22,
+          "height": 1070
+        }
+      },
+      "expressions": {},
+      "sourceOriginal": {
+        "name": "daedosa.png",
+        "retention": "reviewed-source-library",
+        "bytes": 2189290
+      }
     }
   },
   "rows": {
@@ -1229,6 +1890,406 @@
     "mapScenes.0:896ee35fc8": {
       "speaker": "주막주인",
       "asset": "man_elder"
+    },
+    "A2.S18.INTRO.03": {
+      "stage": 18,
+      "speaker": "유헌",
+      "asset": "keeper_ritual"
+    },
+    "A2.S18.PHASE1.01": {
+      "stage": 18,
+      "speaker": "유헌",
+      "asset": "keeper_ritual"
+    },
+    "A2.S18.PHASE1.03": {
+      "stage": 18,
+      "speaker": "유헌",
+      "asset": "keeper_ritual"
+    },
+    "A2.S18.MID.04": {
+      "stage": 18,
+      "speaker": "생존자",
+      "asset": "survivor18"
+    },
+    "A2.S18.PHASE2.02": {
+      "stage": 18,
+      "speaker": "유헌",
+      "asset": "keeper_ritual"
+    },
+    "A2.S18.PHASE2.04": {
+      "stage": 18,
+      "speaker": "유헌",
+      "asset": "keeper_ritual"
+    },
+    "A2.S18.DEATH.01": {
+      "stage": 18,
+      "speaker": "유헌",
+      "asset": "keeper_ritual"
+    },
+    "A2.S19.INTRO.01": {
+      "stage": 19,
+      "speaker": "주민 1",
+      "asset": "worker_mature"
+    },
+    "A2.S19.INTRO.03": {
+      "stage": 19,
+      "speaker": "주민 2",
+      "asset": "woman_mature"
+    },
+    "A2.S19.MID.06": {
+      "stage": 19,
+      "speaker": "생존자",
+      "asset": "survivor19"
+    },
+    "A2.S19.COMPLETE.02": {
+      "stage": 19,
+      "speaker": "주민 1",
+      "asset": "worker_mature"
+    },
+    "19.beats.separate-1:spirit-warning": {
+      "stage": 19,
+      "speaker": "동생의 혼",
+      "asset": "spiritbrother"
+    },
+    "19.beats.send-1:spirit-answer": {
+      "stage": 19,
+      "speaker": "동생의 혼",
+      "asset": "spiritbrother"
+    },
+    "19.beats.separate-2:spirit-answer": {
+      "stage": 19,
+      "speaker": "언니의 혼",
+      "asset": "spiritsister"
+    },
+    "19.beats.send-2:spirit-rises": {
+      "stage": 19,
+      "speaker": "언니의 혼",
+      "asset": "spiritsister"
+    },
+    "19.beats.separate-3:waiting": {
+      "stage": 19,
+      "speaker": "이름 없는 혼",
+      "asset": "spiritunnamed"
+    },
+    "19.beats.send-3:permission": {
+      "stage": 19,
+      "speaker": "이름 없는 혼",
+      "asset": "spiritunnamed"
+    },
+    "A2.S20.NEWS.01": {
+      "stage": 20,
+      "speaker": "읍성 피란민",
+      "asset": "refugee"
+    },
+    "A2.S20.NEWS.03": {
+      "stage": 20,
+      "speaker": "읍성 피란민",
+      "asset": "refugee"
+    },
+    "A3.S21.INTRO.01": {
+      "stage": 21,
+      "speaker": "곽진",
+      "asset": "gwakjin"
+    },
+    "A3.S21.INTRO.03": {
+      "stage": 21,
+      "speaker": "곽진",
+      "asset": "gwakjin"
+    },
+    "A3.S21.CART_STOP.01": {
+      "stage": 21,
+      "speaker": "곽진",
+      "asset": "gwakjin"
+    },
+    "A3.S21.LAST_ESCORT.01": {
+      "stage": 21,
+      "speaker": "곽진",
+      "asset": "gwakjin"
+    },
+    "A3.S21.CLEAR.02": {
+      "stage": 21,
+      "speaker": "곽진",
+      "asset": "gwakjin"
+    },
+    "A3.S21.CLEAR.05": {
+      "stage": 21,
+      "speaker": "곽진",
+      "asset": "gwakjin"
+    },
+    "A3.S21.EXIT.01": {
+      "stage": 21,
+      "speaker": "곽진",
+      "asset": "gwakjin"
+    },
+    "A3.S21.EXIT.03": {
+      "stage": 21,
+      "speaker": "곽진",
+      "asset": "gwakjin"
+    },
+    "A3.S24.ENTRY.03": {
+      "stage": 24,
+      "speaker": "주민",
+      "asset": "workshop24"
+    },
+    "A3.S28.ESCORT_DANGER.01": {
+      "stage": 28,
+      "speaker": "곽진",
+      "asset": "gwakjin"
+    },
+    "A3.S28.DOCUMENTS.05": {
+      "stage": 28,
+      "speaker": "곽진",
+      "asset": "gwakjin"
+    },
+    "A3.S28.DOCUMENTS.08": {
+      "stage": 28,
+      "speaker": "곽진",
+      "asset": "gwakjin"
+    },
+    "A3.S28.PRESENT.02": {
+      "stage": 28,
+      "speaker": "곽진",
+      "asset": "gwakjin"
+    },
+    "A3.S28.EXIT.02": {
+      "stage": 28,
+      "speaker": "곽진",
+      "asset": "gwakjin"
+    },
+    "A3.S29.INTRO.01": {
+      "stage": 29,
+      "speaker": "한태록",
+      "asset": "hantaerok"
+    },
+    "A3.S29.INTRO.03": {
+      "stage": 29,
+      "speaker": "한태록",
+      "asset": "hantaerok"
+    },
+    "A3.S29.PHASE1.01": {
+      "stage": 29,
+      "speaker": "한태록",
+      "asset": "hantaerok"
+    },
+    "A3.S29.PHASE2.02": {
+      "stage": 29,
+      "speaker": "한태록",
+      "asset": "hantaerok"
+    },
+    "A3.S29.PHASE3.01": {
+      "stage": 29,
+      "speaker": "한태록",
+      "asset": "hantaerok"
+    },
+    "A3.S29.DEFEAT.01": {
+      "stage": 29,
+      "speaker": "한태록",
+      "asset": "hantaerok"
+    },
+    "A3.S30.INTRO.02": {
+      "stage": 30,
+      "speaker": "곽진",
+      "asset": "gwakjin"
+    },
+    "A3.S30.FIRST_BOARD.02": {
+      "stage": 30,
+      "speaker": "곽진",
+      "asset": "gwakjin"
+    },
+    "A3.S30.LAST_DANGER.01": {
+      "stage": 30,
+      "speaker": "곽진",
+      "asset": "gwakjin"
+    },
+    "A3.S30.SAFE.01": {
+      "stage": 30,
+      "speaker": "곽진",
+      "asset": "gwakjin"
+    },
+    "A3.S30.THIRTEEN.03": {
+      "stage": 30,
+      "speaker": "나루 사공",
+      "asset": "ferryman"
+    },
+    "A3.S30.THIRTEEN.06": {
+      "stage": 30,
+      "speaker": "나루 사공",
+      "asset": "ferryman"
+    },
+    "A3.S30.ENDING.02": {
+      "stage": 30,
+      "speaker": "곽진",
+      "asset": "gwakjin"
+    },
+    "A4.S32.REUNION.02": {
+      "stage": 32,
+      "speaker": "고향 사람",
+      "asset": "hometown"
+    },
+    "A4.S32.REUNION.02.X02": {
+      "stage": 32,
+      "speaker": "고향 사람",
+      "asset": "hometown"
+    },
+    "A4.S32.REUNION.02.X04": {
+      "stage": 32,
+      "speaker": "고향 사람",
+      "asset": "hometown"
+    },
+    "A4.S32.REUNION.04": {
+      "stage": 32,
+      "speaker": "고향 사람",
+      "asset": "hometown"
+    },
+    "A4.S32.MISSING.01": {
+      "stage": 32,
+      "speaker": "고향 사람",
+      "asset": "hometown"
+    },
+    "A4.S32.MISSING.01.X02": {
+      "stage": 32,
+      "speaker": "고향 사람",
+      "asset": "hometown"
+    },
+    "A4.S32.MISSING.01.X04": {
+      "stage": 32,
+      "speaker": "고향 사람",
+      "asset": "hometown"
+    },
+    "A4.S32.MISSING.02.Y02": {
+      "stage": 32,
+      "speaker": "고향 사람",
+      "asset": "hometown"
+    },
+    "A4.S32.MISSING.03": {
+      "stage": 32,
+      "speaker": "고향 사람",
+      "asset": "hometown"
+    },
+    "A4.S32.MISSING.03.X02": {
+      "stage": 32,
+      "speaker": "고향 사람",
+      "asset": "hometown"
+    },
+    "A4.S32.MISSING.03.X04": {
+      "stage": 32,
+      "speaker": "고향 사람",
+      "asset": "hometown"
+    },
+    "A4.S38.VOICE.01": {
+      "stage": 38,
+      "speaker": "도식",
+      "asset": "dosik"
+    },
+    "A4.S38.VOICE.01.X02": {
+      "stage": 38,
+      "speaker": "도식",
+      "asset": "dosik"
+    },
+    "A4.S38.VOICE.02.X02": {
+      "stage": 38,
+      "speaker": "도식",
+      "asset": "dosik"
+    },
+    "A4.S38.VOICE.02.X03.Y01": {
+      "stage": 38,
+      "speaker": "도식",
+      "asset": "dosik"
+    },
+    "A4.S38.VOICE.03": {
+      "stage": 38,
+      "speaker": "도식",
+      "asset": "dosik"
+    },
+    "A4.S38.CONNECTED.01.X04.Y03.after1": {
+      "stage": 38,
+      "speaker": "도식",
+      "asset": "dosik"
+    },
+    "A4.S38.CONNECTED.01.X04.Y03.after3": {
+      "stage": 38,
+      "speaker": "도식",
+      "asset": "dosik"
+    },
+    "A4.S40.BOARD.02.X02": {
+      "stage": 40,
+      "speaker": "도식",
+      "asset": "dosik"
+    },
+    "A4.S40.REUNION.01": {
+      "stage": 40,
+      "speaker": "도식",
+      "asset": "dosik"
+    },
+    "A4.S40.REUNION.02.X01": {
+      "stage": 40,
+      "speaker": "도식",
+      "asset": "dosik"
+    },
+    "A4.S40.REUNION.02.X03.Y01": {
+      "stage": 40,
+      "speaker": "도식",
+      "asset": "dosik"
+    },
+    "A4.S40.REUNION.02.X03.Y03": {
+      "stage": 40,
+      "speaker": "도식",
+      "asset": "dosik"
+    },
+    "A4.S40.THIRTEEN.02": {
+      "stage": 40,
+      "speaker": "도식",
+      "asset": "dosik"
+    },
+    "A4.S40.THIRTEEN.02.X02": {
+      "stage": 40,
+      "speaker": "도식",
+      "asset": "dosik"
+    },
+    "A4.S40.THIRTEEN.03.Y02": {
+      "stage": 40,
+      "speaker": "도식",
+      "asset": "dosik"
+    },
+    "A4.S40.THIRTEEN.04.X02": {
+      "stage": 40,
+      "speaker": "도식",
+      "asset": "dosik"
+    },
+    "A4.S40.THIRTEEN.04.X03.after2": {
+      "stage": 40,
+      "speaker": "도식",
+      "asset": "dosik"
+    },
+    "A4.S40.THIRTEEN.04.X03.after4": {
+      "stage": 40,
+      "speaker": "도식",
+      "asset": "dosik"
+    },
+    "A4.S40.NEXT.02": {
+      "stage": 40,
+      "speaker": "도식",
+      "asset": "dosik"
+    },
+    "A4.S40.NEXT.02.X02": {
+      "stage": 40,
+      "speaker": "도식",
+      "asset": "dosik"
+    },
+    "A4.S40.NEXT.05.X02.Y01": {
+      "stage": 40,
+      "speaker": "도식",
+      "asset": "dosik"
+    },
+    "A4.S39.SAFE_SHORE.03": {
+      "stage": 39,
+      "speaker": "도식",
+      "asset": "dosik"
+    },
+    "A4.S39.SAFE_SHORE.07": {
+      "stage": 39,
+      "speaker": "도식",
+      "asset": "dosik"
     }
   },
   "scenes": {
@@ -1239,7 +2300,38 @@
     "act2-v1:act2-r2-entry-19|동생을 잃은 형": "worker_mature",
     "act3-entry-23|수비병 악귀": "guard_spirit",
     "act3-outro-23|짐꾼": "worker_young",
-    "act1-v6:event-1-witness|나무꾼": "worker_mature"
+    "act1-v6:event-1-witness|나무꾼": "worker_mature",
+    "act1-v6:entry-41|도식": "dosik",
+    "act1-v6:act5-entry-41|도식": "dosik",
+    "act1-v6:outcome-41|도식": "dosik",
+    "act1-v6:act5-41-watch|도식": "dosik",
+    "act1-v6:entry-42|곽진": "gwakjin",
+    "act1-v6:act5-entry-42|곽진": "gwakjin",
+    "act1-v6:outcome-42|곽진": "gwakjin",
+    "act1-v6:act5-42-rescue|곽진": "gwakjin",
+    "act1-v6:act5-42-drum|곽진": "gwakjin",
+    "act1-v6:entry-43|곽진": "gwakjin",
+    "act1-v6:act5-entry-43|곽진": "gwakjin",
+    "act1-v6:entry-43|장무율": "jangmuyul",
+    "act1-v6:act5-entry-43|장무율": "jangmuyul",
+    "act1-v6:outcome-43|곽진": "gwakjin",
+    "act1-v6:act5-43-banner|곽진": "gwakjin",
+    "act1-v6:act5-43-commander|곽진": "gwakjin",
+    "act1-v6:act5-43-commander|장무율": "jangmuyul",
+    "act1-v6:entry-44|도식": "dosik",
+    "act1-v6:act5-entry-44|도식": "dosik",
+    "act1-v6:outcome-44|도식": "dosik",
+    "act1-v6:act5-44-root|도식": "dosik",
+    "act1-v6:act5-44-summit|도식": "dosik",
+    "act1-v6:entry-45|도식": "dosik",
+    "act1-v6:act5-entry-45|도식": "dosik",
+    "act1-v6:act5-45-turnback|도식": "dosik",
+    "act1-v6:act5-46-memory|현묵": "hyeonmuk",
+    "act1-v6:act5-46-stakeTwo|현묵": "hyeonmuk",
+    "act6-field-57-assistKeeper|곽진": "gwakjin",
+    "act6-milestone-58-threshold|대도사": "daedosa",
+    "act6-milestone-58-second|대도사": "daedosa",
+    "act6-milestone-58-third|대도사": "daedosa"
   },
   "actors": {
     "1|npc-woodcutter": {
@@ -1294,11 +2386,17 @@
     },
     "19|mourner-brother": {
       "speaker": "동생을 잃은 형",
-      "asset": "worker_mature"
+      "asset": "worker_mature",
+      "aliases": [
+        "주민 1"
+      ]
     },
     "19|mourner-sister": {
       "speaker": "언니를 잃은 동생",
-      "asset": "woman_mature"
+      "asset": "woman_mature",
+      "aliases": [
+        "주민 2"
+      ]
     },
     "20|convoy-mason": {
       "speaker": "석공",
@@ -1321,8 +2419,95 @@
       "asset": "man_elder"
     },
     "18|act2-keeper": {
-      "speaker": "종지기",
-      "asset": "keeper_ritual"
+      "speaker": "유헌",
+      "asset": "keeper_ritual",
+      "aliases": [
+        "종지기"
+      ]
+    },
+    "18|18.survivor": {
+      "speaker": "생존자",
+      "asset": "survivor18"
+    },
+    "19|objective": {
+      "speaker": "생존자",
+      "asset": "survivor19"
+    },
+    "20|20.town-refugee": {
+      "speaker": "읍성 피란민",
+      "asset": "refugee"
+    },
+    "21|v4.gwakjin": {
+      "speaker": "곽진",
+      "asset": "gwakjin"
+    },
+    "24|v4.workshop-voice": {
+      "speaker": "주민",
+      "asset": "workshop24"
+    },
+    "28|v4.gwakjin": {
+      "speaker": "곽진",
+      "asset": "gwakjin"
+    },
+    "29|stage29-hantaerok": {
+      "speaker": "한태록",
+      "asset": "hantaerok"
+    },
+    "30|s30-gwakjin": {
+      "speaker": "곽진",
+      "asset": "gwakjin"
+    },
+    "30|s30-resident-4": {
+      "speaker": "나루 사공",
+      "asset": "ferryman"
+    },
+    "32|a4-shelter-speaker": {
+      "speaker": "고향 사람",
+      "asset": "hometown"
+    },
+    "38|a4-rescue-3": {
+      "speaker": "도식",
+      "asset": "dosik"
+    },
+    "39|a4-rescue-3": {
+      "speaker": "도식",
+      "asset": "dosik"
+    },
+    "40|a4-rescue-3": {
+      "speaker": "도식",
+      "asset": "dosik"
+    },
+    "41|a5-guide": {
+      "speaker": "도식",
+      "asset": "dosik"
+    },
+    "44|a5-guide": {
+      "speaker": "도식",
+      "asset": "dosik"
+    },
+    "45|a5-guide": {
+      "speaker": "도식",
+      "asset": "dosik"
+    },
+    "42|a5-gwak": {
+      "speaker": "곽진",
+      "asset": "gwakjin"
+    },
+    "43|a5-gwak": {
+      "speaker": "곽진",
+      "asset": "gwakjin"
+    },
+    "43|a5-foe-28": {
+      "speaker": "장무율",
+      "asset": "jangmuyul"
+    },
+    "57|local-07-gwakjin-return-keeper": {
+      "speaker": "곽진",
+      "asset": "gwakjin"
+    },
+    "58|a6-c08-boss": {
+      "speaker": "대도사",
+      "asset": "daedosa"
     }
   },
   "named": {
