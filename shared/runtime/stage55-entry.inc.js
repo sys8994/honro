@@ -78,7 +78,17 @@
           btn.addEventListener('click',event=>{if(event.isTrusted&&event.currentTarget===btn)action(a,event);});s.button=btn;ui.append(btn);
           const support=document.createElement('button');support.type='button';support.dataset.act6SodanBody='';styleAction(support);
           support.addEventListener('click',event=>{if(event.isTrusted&&scope55(a,a.engine,s)&&a.canInput()&&s.seated55.release())a.updateHUD(true);});
-          s.support55=support;ui.append(support);tick55(a);startAct6Opening(a,s,55);return true;
+          s.support55=support;ui.append(support);
+          s.prep55=latePrepButton(ui,55,()=>{
+            if(a.dialogue||a.modal.classList.contains('open')||!canPrep55(a,s))return;
+            const actors=party.filter(u=>u.cls==='archer'||u.cls==='knight');
+            fieldPrepForm(a,{actors,custody:[...party,t.mage],
+              context:'첫 공세가 시작되기 전에 설오와 휘겸만 정비합니다. 담허는 안에 있고 소단은 혼줄을 붙들며, 장착한 호혼령만 쓸 수 있습니다.',
+              isCurrent:()=>canPrep55(a,s)&&!a.dialogue,
+              submit:(_draft,changes)=>{applyFieldPrep(a,changes);if(changes.length)a.notify('설오와 휘겸의 정비를 마쳤습니다.');}
+            });
+          });
+          tick55(a);startAct6Opening(a,s,55);return true;
         }catch(error){a.stopBattle();a.showTitle();throw error;}
       }
       function bindNormal55(a,e,s){
@@ -123,10 +133,18 @@
           ['소단','그럴게요. 담허님 쪽에서도 당길 수 있게 이번엔 너무 단단히 조이지 않을게요.']
         ]
       });
+      function canPrep55(a,s){
+        const e=a.engine,b=e?.b;
+        return !!b&&scope55(a,e,s)&&!a.done&&b.round===1&&b.side===0&&b.phase==='aim'&&!b.shot&&!b.volley&&!b.projectiles?.length&&
+          ['archer','knight'].every(role=>b.units.some(u=>u.side===0&&!u.summoned&&u.cls===role&&u.hp>0&&!u.dead&&!u.acted&&
+            u.x===u.spawnX&&u.y===u.spawnY&&u.moveLeft===u.maxMove&&e.grounded(u)))&&
+          s.owner55.project(a,e)?.targets?.[0]?.id==='reach-bell';
+      }
       function tick55(a){
         const s=active.get(a),e=a.engine;
         if(e?.b.honroStage!==55||!s?.owner55)return;
         const r=s.owner55.project(a,e);if(!r)return;
+        if(s.prep55)s.prep55.hidden=!canPrep55(a,s);
         if(s.button){s.button.textContent=r.summary;s.button.disabled=r.complete||r.failed;s.button.dataset.act6Binding=r.binding;s.button.dataset.act6Mark=r.targets?.[0]?.id??'';}
         if(s.support55){const reason=s.seated55.unavailableReason();
           s.support55.disabled=!!reason||r.complete||r.failed;

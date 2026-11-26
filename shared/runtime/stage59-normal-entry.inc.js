@@ -20,12 +20,12 @@
           same(original.guard,prev.previous.boundary.guard),'Native 58 outgoing body, boss, node or guard changed');
         return mountFrom58(a,grant,original,fresh,e.stage,normal51Provider.budget(e.b),()=>eligible59(a,prev)&&active.get(a)===prev,undefined,live);
       }
-      async function mountCold59(a,grant,data,stays,key){
+      async function mountCold59(a,grant,data,stays,key,retryDraft=null){
         if(!cold59.has(key)||!stays()||data.from!==58||data.to!==59||!runtime(a))return false;
-        try{return await mountFrom58(a,grant,data.terminal,data.custody.full,data.stageSeed,data.budget,stays,key);}
+        try{return await mountFrom58(a,grant,data.terminal,data.custody.full,data.stageSeed,data.budget,stays,key,null,retryDraft);}
         finally{cold59.delete(key);}
       }
-      async function mountFrom58(a,grant,original,fresh,stageSeed,budget,stays,key,live=null){
+      async function mountFrom58(a,grant,original,fresh,stageSeed,budget,stays,key,live=null,retryDraft=null){
         const {packet,compiled}=grant,m=packet.map,p=structuredClone(a.profile);
         const previous=Object.freeze({...original,crew:fresh,boundary:{full:fresh,guard:original.guard,association:original.association}}),
           source=Object.freeze({app:a,previous,original,packet,stays,key});
@@ -34,6 +34,8 @@
         mounting59.set(previous,source);let prepared;
         try{prepared=await adapter59.prepare({descriptor:descriptor59,packet,compiled,previous});}catch(error){mounting59.delete(previous);throw error;}
         if(!prepared||!stays()){mounting59.delete(previous);throw Error('58 owner expired during preparation');}
+        const retryChanges=retryDraft?planThresholdPrep(C,a.profile,prepared.units,retryDraft):[];
+        check(retryChanges,'Retry 59 equipment or arts no longer available');
         const st={...m,id:'stage-59',metadata:{stageId:59,campaign:true,act:6,actStage:9}};
         const content=Object.freeze({...stageSeed,id:59,local:59,actStage:9,active:4,requires:[58],name:'마지막 마당',goal:'가름진을 연결하고 교각을 되찾기',
           objective:D59.objective,w:st.width,h:st.height,wind:[0],victoryRule:{kind:'scripted',target:'act6-native-59'}});
@@ -68,6 +70,7 @@
           }
           const ui=appUI(a);check(ui,'Normal 59 controls absent');const btn=document.createElement('button');
           btn.type='button';btn.dataset.act6QaLookout='';styleAction(btn);btn.addEventListener('click',event=>{if(event.isTrusted&&event.currentTarget===btn)action(a,event);});s.button=btn;ui.append(btn);
+          applyFieldPrep(a,retryChanges);
           tick59(a);if(!s.return59)startAct6Opening(a,s,59);return true;
         }catch(error){a.stopBattle();a.showTitle();throw error;}finally{mounting59.delete(previous);}
       }
@@ -180,6 +183,30 @@
         const item=option59(s,e);
         if(s.button){s.button.textContent=item?.label??r.summary??'휘겸과 함께 교각 아래를 살핀다';s.button.disabled=!item;s.button.dataset.act6Mission=item?.id??'';}
         if((r.complete||r.failed)&&!a.done)e.checkEnd();else speak59State(a,s,r);
+      }
+      function failedNormal59(a,s){
+        return !!(s&&scope59(a,s.engine,s)&&a.done&&s.b.phase==='lost'&&!s.return59);
+      }
+      function offerRetry59(a,s){
+        const ui=appUI(a);
+        if(!ui||s.retry59||!failedNormal59(a,s)||typeof retryBoundary59!=='function'||boundarySession(a)?.port.inspect(a)?.to!==59)return;
+        const controls=()=>{
+          const owns=()=>failedNormal59(a,s)&&!a.dialogue;
+          if(!owns()||a.modal.classList.contains('open'))return;
+          const actors=Object.values(s.previous.boundary.full);
+          fieldPrepForm(a,{actors,
+            context:'마지막 마당에 처음 들어섰을 때의 네 사람을 정비합니다. 쓰러진 뒤의 몸이나 장비를 가져오지 않습니다.',
+            isCurrent:owns,submit:(draft,changes)=>{
+              if(!retryBoundary59(a,changes.length?draft:null))a.notify('마지막 마당의 입장 기록을 확인할 수 없습니다.');
+            }
+          });
+        };
+        s.retry59=latePrepButton(ui,59,controls,'정비하고 다시 걷기');
+        const button=document.createElement('button');button.type='button';button.textContent='그대로 다시 걷기';styleAction(button);ui.append(button);
+        button.addEventListener('click',event=>{
+          if(event.isTrusted&&failedNormal59(a,s)&&!a.dialogue&&!a.modal.classList.contains('open')&&!retryBoundary59(a,null))
+            a.notify('마지막 마당의 입장 기록을 확인할 수 없습니다.');
+        });
       }
       function terminalNormal59(a,s){
         if(!scope59(a,s.engine,s)||s.b.phase!=='won'||s.owner59.project()?.complete!==true)return null;

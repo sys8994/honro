@@ -1,6 +1,6 @@
       // This browser trial is opt-in. Bind the stock codec to an independent,
       // run-specific physical key; do not race or write the legacy campaign key.
-      const boundarySessions=new WeakMap(), boundaryButton=new WeakMap();
+      const boundarySessions=new WeakMap(), boundaryButton=new WeakMap(), fieldRetry59=new WeakMap();
       const boundaryAllowed=id=>Number.isInteger(id)&&id>=52&&id<=60;
       const nativeKey='honro-first-act-profile-1', markerKey='honroAct6ChapterBoundary';
       const routePins=id=>boundaryAllowed(id)?descriptor.boundary?.pins?.[id]??null:null;
@@ -36,7 +36,8 @@
           verifyOwner(a,e,t,to){const s=active.get(a);return a===app&&owned()&&tx?.to===to&&tx.owns()&&
             a.engine===e&&s?.engine===e&&s.b===e.b&&s.normal51&&s.terminal===t&&eligible(a,to);},
           verifyCold(a,w,to){return a===app&&owned()&&w===shadow&&cold?.id===to&&cold.still()&&!a.engine&&a.screen==='rest';},
-          verifyRetry57(a,w){return a===app&&owned()&&w===shadow&&failedNormal57(a,active.get(a));}
+          verifyRetry57(a,w){return a===app&&owned()&&w===shadow&&failedNormal57(a,active.get(a));},
+          verifyRetry59(a,w){return a===app&&owned()&&w===shadow&&failedNormal59(a,active.get(a));}
         });
         const item={owned,stored,proxy,shadow,port,transact(spec){tx=spec;},restoring(spec){cold=spec;},slot};
         boundarySessions.set(app,item);return item;
@@ -44,6 +45,14 @@
       function retryBoundary57(app){
         const cx=boundarySession(app);
         return cx?.port.permitFailed57Retry(app,cx.shadow)===true;
+      }
+      function retryBoundary59(app,draft){
+        const cx=boundarySession(app);
+        if(!cx?.port.permitFailed59Retry(app,cx.shadow))return false;
+        if(draft)fieldRetry59.set(app,{profile:app.profile,raw:cx.stored(),draft});
+        else fieldRetry59.delete(app);
+        app.showRest();
+        return true;
       }
       async function beforeBoundaryAdvance(app,id,grant,owns){
         if(!descriptor.boundary||!boundaryAllowed(id))return true;
@@ -73,7 +82,12 @@
          case 56:cold56.set(q,{});return mountCold56(app,grant,body,stays,q);
          case 57:cold57.set(q,{});return mountCold57(app,grant,body,stays,q);
          case 58:cold58.add(q);return mountCold58(app,grant,body,stays,q);
-         case 59:cold59.add(q);return mountCold59(app,grant,body,stays,q);
+         case 59:{
+          const retry=fieldRetry59.get(app),cx=boundarySession(app);
+          const draft=retry?.profile===app.profile&&retry.raw===cx?.stored()?retry.draft:null;
+          cold59.add(q);
+          return mountCold59(app,grant,body,stays,q,draft).then(ok=>{if(ok)fieldRetry59.delete(app);return ok;});
+         }
          case 60:cold60.add(q);return mountCold60(app,grant,body,stays,q);
          default:return false;
         }

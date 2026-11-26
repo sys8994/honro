@@ -239,7 +239,7 @@ export async function createAct6WebQa(project,repoRoot,env=process.env,release=n
   source=replaceOne(source,'function goalState(app,e){if(e?.b?.honroStage===57)','function goalState(app,e){if(e?.b?.honroStage===58)return active.get(app)?.owner58?.project();if(e?.b?.honroStage===57)');
   source=replaceOne(source,'        if(e.b.honroStage===57){stage57UI','        if(e.b.honroStage===58){stage58UI(app,s,e);return true;}\n        if(e.b.honroStage===57){stage57UI');
   source=replaceOne(source,'const terminal=s.b.honroStage===57?', 'const terminal=s.b.honroStage===58?terminalNormal58(app,s):s.b.honroStage===57?');
-  source=replaceOne(source,'        if(terminal?.stage===56&&s.normal51)',"        if(terminal?.stage===57&&s.normal51){const btn=document.createElement('button');btn.type='button';btn.dataset.act6QaNext='58';styleAction(btn);btn.textContent='네 사람과 마지막 문턱을 넘는다';appUI(app)?.append(btn);issue(app,btn,58); }\n        if(terminal?.stage===56&&s.normal51)");
+  source=replaceOne(source,'        if(terminal?.stage===56&&s.normal51)',"        if(terminal?.stage===57&&s.normal51){const btn=document.createElement('button');btn.type='button';btn.dataset.act6QaNext='58';styleAction(btn);btn.textContent='네 사람과 마지막 문턱을 넘는다';appUI(app)?.append(btn);issue(app,btn,58);offerPrep58(app,s); }\n        if(terminal?.stage===56&&s.normal51)");
   source=replaceOne(source,'release,context53,release53,tick54,tick55,tick56,tick57,keepAction:', 'release,context53,release53,tick54,tick55,tick56,tick57,tick58,keepAction:');
 
   const ninthRaw=await readFile(new URL('./data/act6-qa/ninth.json',import.meta.url));
@@ -286,6 +286,7 @@ export async function createAct6WebQa(project,repoRoot,env=process.env,release=n
   source=replaceOne(source,'function goalState(app,e){if(e?.b?.honroStage===59)','function goalState(app,e){if(e?.b?.honroStage===60)return goal60(app,e);if(e?.b?.honroStage===59)');
   source=replaceOne(source,'        if(e.b.honroStage===59){stage59UI','        if(e.b.honroStage===60){stage60UI(app,s,e);return true;}\n        if(e.b.honroStage===59){stage59UI');
   source=replaceOne(source,'const terminal=s.b.honroStage===59?', 'const terminal=s.b.honroStage===60?terminalNormal60(app,s):s.b.honroStage===59?');
+  source=replaceOne(source,'        app.done=true;app.cancelInput();',"        app.done=true;app.cancelInput();\n        if(s.b.honroStage===59&&s.b.phase==='lost')offerRetry59(app,s);");
   if(endingStock){
     const endingOutcome='        app.done=true;app.cancelInput();';
     source=replaceOne(source,endingOutcome,endingOutcome+'\n        if(terminal?.stage===60&&s.normal51)mountEndingNormal60(app,s,terminal);');

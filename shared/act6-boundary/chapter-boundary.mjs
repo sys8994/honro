@@ -141,7 +141,7 @@ const recipes={
    }}
 };
 const reject=reason=>({ok:false,reason,keepOriginal:true});
-export function createChapterBoundary({slot,key,storage,locks,normalize,hash,verifyOwner,verifyCold,releasePin,verifyRelay54,verifyBridge,verifyEave,verifyReturn=()=>false,verifyThread=()=>false,verifyD=()=>false,legacyD=()=>false,verifyRetry57=()=>false,ownedStore=(a,w)=>a?.profileStore===w,originalProfile=a=>a.profile}){
+export function createChapterBoundary({slot,key,storage,locks,normalize,hash,verifyOwner,verifyCold,releasePin,verifyRelay54,verifyBridge,verifyEave,verifyReturn=()=>false,verifyThread=()=>false,verifyD=()=>false,legacyD=()=>false,verifyRetry57=()=>false,verifyRetry59=()=>false,ownedStore=(a,w)=>a?.profileStore===w,originalProfile=a=>a.profile}){
  if(!slot||!key||typeof locks?.request!=='function'||typeof hash!=='function'||!storage||typeof normalize!=='function'||typeof verifyOwner!=='function'||typeof verifyCold!=='function'||typeof releasePin!=='function'||typeof verifyRelay54!=='function'||typeof verifyBridge!=='function'||typeof verifyEave!=='function')return null;
  const written=new WeakSet(),booted=new WeakMap(),working=new WeakSet();
  const digest=v=>hash(JSON.stringify(v)), read=()=>storage.getItem(key), exclusive=f=>locks.request('honro:profile-slot:'+slot,{mode:'exclusive'},f);
@@ -231,5 +231,12 @@ export function createChapterBoundary({slot,key,storage,locks,normalize,hash,ver
   booted.delete(app);
   return true;
  }
- return Object.freeze({checkpoint,restore,inspect,permitFailed57Retry});
+ function permitFailed59Retry(app,store){
+  if(working.has(app)||!ownedStore(app,store)||!verifyRetry59(app,store))return false;
+  const state=inspect(app);
+  if(state.kind!=='restorable'||state.to!==59)return false;
+  booted.delete(app);
+  return true;
+ }
+ return Object.freeze({checkpoint,restore,inspect,permitFailed57Retry,permitFailed59Retry});
 }

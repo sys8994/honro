@@ -8,6 +8,29 @@
         verifyPrevious:(r,d,p)=>{const s=mounting58.get(r);return d===descriptor58&&signed58.has(p)&&s?.packet===p&&(s.stays()&&(!s.coldLease||cold58.has(s.coldLease)));},
         verifyAdmission:(a,e,q)=>{const s=active.get(a);return scope58(a,e,s)&&s.prepared58===q&&q.units.every((u,i)=>e.b.units[i]===u||e.b.units.includes(u));}
       });
+      function offerPrep58(a,s){
+        const ui=appUI(a);if(!ui||s.prep58||!eligible58(a,s))return;
+        s.prep58=latePrepButton(ui,58,()=>{
+          const owns=()=>eligible58(a,s)&&!inflight.has(a)&&!a.dialogue;
+          if(!owns()||a.modal.classList.contains('open'))return;
+          const actors=s.engine.b.units.filter(u=>u.side===0&&!u.summoned);
+          const original=s.terminal;
+          if(actors.length!==4||!actors.every(u=>same(u,original.crew[u.cls])&&s.engine.grounded(u)))return;
+          fieldPrepForm(a,{actors,
+            context:'곽진이 돌아올 길을 맡습니다. 네 사람이 마지막 문턱을 넘기 전에 장비와 기예를 바꿀 수 있습니다.',
+            isCurrent:()=>owns()&&s.terminal===original&&actors.every(u=>same(u,original.crew[u.cls])&&s.engine.grounded(u)),
+            submit:(_draft,changes)=>{
+              if(!changes.length)return;
+              applyFieldPrep(a,changes);
+              // Keep the outgoing receipt exactly in step with the live
+              // bodies. Guard proof, positions and claim flags stay untouched.
+              const full=Object.fromEntries(actors.map(u=>[u.cls,structuredClone(u)]));
+              s.terminal={...original,crew:full,boundary:{...original.boundary,full}};
+              a.notify('네 사람의 정비를 마쳤습니다.');
+            }
+          });
+        });
+      }
       async function enterNormal58(a,grant,prev){
         check(eligible58(a,prev)&&active.get(a)===prev,'No live 57 reunion authority');
         const e=prev.engine,previous=prev.terminal,{packet,compiled}=grant,m=packet.map,p=structuredClone(a.profile);

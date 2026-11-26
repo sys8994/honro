@@ -10,13 +10,14 @@ export function thresholdPrepChoices(C,profile,actors,u){
  });
  return {known,equipment};
 }
-export function planThresholdPrep(C,profile,actors,draft){
+export function planThresholdPrep(C,profile,actors,draft,{count=4,custody=actors}={}){
  if(!draft)return [];
- if(actors.length!==4||new Set(actors.map(u=>u.cls)).size!==4||Object.keys(draft).length!==4)return null;
+ if(actors.length!==count||new Set(actors.map(u=>u.cls)).size!==count||Object.keys(draft).length!==count||
+   !actors.every(u=>custody.includes(u)&&u.side===0&&!u.summoned&&!u.dead&&u.hp>0))return null;
  try{
   const changes=[];
   for(const u of actors){
-   const v=draft[u.cls],base=C.baseSkill(u.cls),available=thresholdPrepChoices(C,profile,actors,u);
+   const v=draft[u.cls],base=C.baseSkill(u.cls),available=thresholdPrepChoices(C,profile,custody,u);
    if(!v||!Array.isArray(v.skills)||v.skills.length!==3||!Array.isArray(v.gear)||v.gear.length!==2)return null;
    const skills=v.skills.filter(Boolean),gear=v.gear.filter(Boolean);
    if(v.skills.some(id=>typeof id!=='string')||new Set(skills).size!==skills.length||
@@ -30,12 +31,19 @@ export function planThresholdPrep(C,profile,actors,draft){
    if(gearChanged){
     // Use the same equipment stat rules as the camp, but don't refill or
     // clear use-once equipment state. An increased maximum isn't free HP/MP.
+    // applyHero owns the derived stats. Give it detached mutable state and
+    // never let changing equipment refill pools or restore movement already spent.
+    next.equipmentState=structuredClone(u.equipmentState);
     C.applyHero(next,{...profile.heroes[u.cls],ranks:u.ranks,equipmentIds:gear},false,'equipment');
+    next.hp=Math.min(next.hp,u.hp);
+    next.focus=Math.min(next.focus,u.focus);
+    next.shield=u.shield;
+    next.moveLeft=Math.max(0,next.maxMove-Math.max(0,u.maxMove-u.moveLeft));
    }
    changes.push({u,next});
   }
   // Two different actors may select the same currently unassigned shared item.
-  const equipped=actors.flatMap(u=>(changes.find(c=>c.u===u)?.next??u).equipmentIds??[]);
+  const equipped=custody.flatMap(u=>(changes.find(c=>c.u===u)?.next??u).equipmentIds??[]);
   return new Set(equipped).size===equipped.length?changes:null;
  }catch{return null;}
 }
