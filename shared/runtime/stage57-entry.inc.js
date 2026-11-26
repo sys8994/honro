@@ -123,7 +123,7 @@
         if(!rows||a.engine!==e||a.done||a.dialogue||e.b.phase!=='aim')return false;
         const dlg='act6-field-57-'+id;
         return G.HonroStory.start(a,rows.map(([who,line],i)=>[who,line,{kind:'character',storyId:dlg,rowId:dlg+'-'+i}]),
-          {id:dlg,title:a.stage.name});
+          {id:dlg,title:a.stage.name,presentationOnly:true});
       }
       function stage57UI(a,s,e,split=false){
         if(!scope57(a,e,s)||a.dialogue||a.modal.classList.contains('open'))return;

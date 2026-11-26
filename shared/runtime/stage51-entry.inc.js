@@ -76,7 +76,7 @@
         state.openingOffered=true;
         const dlg='act6-opening-'+id;
         return G.HonroStory.start(app,rows.map(([who,line],i)=>[who,line,{kind:'character',storyId:dlg,rowId:dlg+'-'+i}]),
-          {id:dlg,title:app.stage.name});
+          {id:dlg,title:app.stage.name,presentationOnly:true});
       }
       const field52Dialogue=Object.freeze({
         cliff:[
@@ -106,7 +106,7 @@
         if(!rows||app.engine!==e||b?.honroStage!==52||b.phase!=='aim'||app.done||app.dialogue)return false;
         const dlg='act6-field-52-'+id;
         return G.HonroStory.start(app,rows.map(([who,line],i)=>[who,line,{kind:'character',storyId:dlg,rowId:dlg+'-'+i}]),
-          {id:dlg,title:app.stage.name});
+          {id:dlg,title:app.stage.name,presentationOnly:true});
       }
       function showAct6Milestone(a,s,id,rows){
         const e=s?.engine,b=e?.b;
@@ -115,7 +115,7 @@
         const seen=s.speechMilestones??=new Set(),key='act6-milestone-'+b.honroStage+'-'+id;
         if(seen.has(key))return false;
         const accepted=G.HonroStory.start(a,rows.map(([who,line],i)=>[who,line,{kind:'character',storyId:key,rowId:key+'-'+i}]),
-          {id:key,title:a.stage.name});
+          {id:key,title:a.stage.name,presentationOnly:true});
         if(accepted)seen.add(key);
         return accepted;
       }
