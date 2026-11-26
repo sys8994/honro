@@ -45,6 +45,45 @@
         cold54.delete(key);
         return mountFrom53(app,grant,data.terminal,data.custody.mage,data.stageSeed,data.budget);
       }
+      // Non-walkable deep rock extends the signed N foothill beyond its straight
+      // west art closure. The same owner is mounted in the ordinary gallery;
+      // no new collision, sockets, clip of the playable top, or packet change.
+      function withWestFoothill54(landmarks){
+        const host=landmarks.find(l=>l.id==='art-g00-foothill'&&l.asset?.id==='g00-foothill');
+        if(!host||host.x||host.y||host.scale!==1||host.rotation||host.collisionIds?.length!==0)return landmarks;
+        const face=(fill,vertices)=>({fill,points:vertices.map(([x,y])=>({x,y}))});
+        const id='m54-foothill-west-buried-joint',bounds={x:-1212,y:2846,w:1082,h:846};
+        const visual=[
+          face('#39332f',[[-208,2902],[-317,2915],[-417,2932],[-483,2919],[-599,2964],[-737,2921],[-835,2931],
+            [-978,2846],[-1066,2868],[-1115,2915],[-1212,2949],[-1170,3080],[-1112,3204],[-1073,3383],
+            [-973,3440],[-852,3558],[-680,3564],[-494,3655],[-340,3692],[-203,3607],[-130,3340],[-148,3162]]),
+          face('#4a4139',[[-208,2902],[-317,2915],[-417,2932],[-483,2919],[-599,2964],[-737,2921],[-835,2931],
+            [-978,2846],[-1066,2868],[-1115,2915],[-1061,2953],[-968,2949],[-918,2983],[-797,2997],[-726,3050],
+            [-623,3032],[-565,3067],[-440,3025],[-378,3047],[-241,3012]]),
+          face('#423a34',[[-1170,3080],[-1095,3122],[-992,3111],[-894,3162],[-753,3151],[-664,3209],[-518,3207],
+            [-422,3167],[-322,3206],[-163,3155],[-185,3294],[-331,3330],[-492,3310],[-633,3353],
+            [-724,3299],[-839,3318],[-969,3249],[-1112,3204]]),
+          face('#36302d',[[-1073,3383],[-973,3440],[-852,3558],[-680,3564],[-494,3655],[-340,3692],[-203,3607],
+            [-175,3504],[-294,3518],[-481,3420],[-637,3460],[-783,3399],[-917,3421]]),
+          face('#51463c',[[-843,2971],[-726,2990],[-669,3002],[-615,2989],[-554,3001],[-626,3028],[-716,3042],[-787,3001]])
+        ];
+        const asset={id,anchor:{x:0,y:0},renderer:'shape',category:'terrain-art',layer:'back',bounds,
+          visual,collision:[],sockets:[],params:{paintBeyondTerrainDomain:true}};
+        const joinId=id+'-strata',join={...asset,id:joinId,layer:'prop',bounds:{x:-454,y:2926,w:351,h:370},visual:[
+          face('#554942',[[-449,2936],[-364,2929],[-302,2943],[-250,2926],[-191,2947],[-103,2955],[-123,2987],
+            [-207,3001],[-263,2996],[-320,3010],[-393,2991],[-454,3005]]),
+          face('#443a35',[[-421,3022],[-363,3014],[-295,3031],[-224,3008],[-180,3010],[-112,3004],[-137,3068],
+            [-199,3083],[-247,3078],[-314,3108],[-353,3094],[-434,3115]]),
+          face('#433a36',[[-419,3133],[-316,3113],[-258,3115],[-200,3091],[-149,3089],[-163,3147],[-209,3156],
+            [-229,3197],[-312,3238],[-400,3236],[-392,3182],[-451,3169]]),
+          face('#3a3430',[[-408,3239],[-342,3241],[-276,3217],[-221,3200],[-165,3191],[-174,3229],[-206,3266],
+            [-272,3296],[-331,3287],[-383,3272]])
+        ]};
+        // A few broken strata cross the screen-facing joint; a single long
+        // stripe would keep a visible seam even with the ink disabled.
+        return [{...host,id:'art-'+id,asset,layer:'back',depthLayer:'L2',collisionIds:[]},...landmarks,
+          {...host,id:'art-'+joinId,asset:join,layer:'prop',depthLayer:'L1',collisionIds:[]}];
+      }
       function mountFrom53(app,grant,t,mage,stageSeed,budget,view=null){
         const m=grant.packet.map;
         const spawn=grant.packet.spawn,support=grant.packet.charts.N.terrain.find(x=>x.id===spawn.support),y=C.topAt(support,spawn.x);
@@ -65,6 +104,7 @@
         }
         Object.assign(u,{x:spawn.x,y,spawnX:spawn.x,spawnY:y,vx:0,vy:0,moveLeft:u.maxMove,airborne:false,jumping:false});
         check(C.validTerrainContactPose(b.terrain,u),'Original Damheo cannot stand on 54 foothill');
+        b.honroLandmarks=withWestFoothill54(b.honroLandmarks);
         b.honroGeometryReady=true;b.honroGeometryRevision=2;b.honroContactRevision=2;
         app.stopBattle();
         if(view){
@@ -154,7 +194,7 @@
         if(!scope54(app,e,s)||u?.cls!=='mage'||!e.canAct()||!s.wallAxis.isWall(u)||!e.grounded(u)||u.y>B.exitY||!s.owner54.readyAfterGuard(app,e))return;
         const {origin,layout}=s.foothill54,{gallery}=rail54Assets.get(s.packet);
         s.wallAxis.dispose();s.wallAxis=null;
-        Object.assign(e.b,layout,{terrain:gallery.terrain,honroWorldTerrain:gallery.worldTerrain,honroLandmarks:gallery.landmarks,
+        Object.assign(e.b,layout,{terrain:gallery.terrain,honroWorldTerrain:gallery.worldTerrain,honroLandmarks:withWestFoothill54(gallery.landmarks),
           honroElements:gallery.elements,honroSurfaceZones:gallery.materials,sceneVersion:(e.b.sceneVersion??0)+1});
         const x=origin.x+B.exitY-u.y,y=C.topAt(e.b.terrain.find(t=>t.id==='foothill'),x);
         Object.assign(u,{x,y,spawnX:x,spawnY:y,vx:0,vy:0,airborne:false,jumping:false});

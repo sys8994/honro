@@ -1,0 +1,4489 @@
+{
+  "base": "b0f169aa8a17e5df047b6fdd68dc90aafe08e258",
+  "entries": {
+    "44": {
+      "PC": {
+        "viewport": [
+          1440,
+          900
+        ],
+        "DPR": 1,
+        "nativeGeometrySHA256": "42caba04aecef9f9b8cebe1e7d6ba1d67a77f1d97efd3d387634f6ee8497aeb6",
+        "physicalRegions": [],
+        "overview": {
+          "actual": [
+            3400,
+            1313.5,
+            0.21176470588235294
+          ],
+          "css": [
+            1440,
+            769.1875
+          ],
+          "play": {
+            "left": 0,
+            "top": 0,
+            "right": 6800,
+            "bottom": 2627
+          },
+          "visual": {
+            "left": NaN,
+            "right": NaN,
+            "top": NaN,
+            "bottom": NaN
+          },
+          "focus": {
+            "left": -320,
+            "top": -1800,
+            "right": 7120,
+            "bottom": 2867
+          }
+        },
+        "angles": {
+          "overview": [
+            3400,
+            1313.5,
+            0.21176470588235294
+          ],
+          "w-n": [
+            0,
+            0,
+            0.58
+          ],
+          "c-n": [
+            3400,
+            0,
+            0.58
+          ],
+          "e-n": [
+            6800,
+            0,
+            0.58
+          ],
+          "w-c": [
+            0,
+            1313.5,
+            0.58
+          ],
+          "c-c": [
+            3400,
+            1313.5,
+            0.58
+          ],
+          "e-c": [
+            6800,
+            1313.5,
+            0.58
+          ],
+          "w-s": [
+            0,
+            2627,
+            0.58
+          ],
+          "c-s": [
+            3400,
+            2627,
+            0.58
+          ],
+          "e-s": [
+            6800,
+            2627,
+            0.58
+          ]
+        },
+        "initialActors": [
+          {
+            "id": "p-archer",
+            "x": 252.34,
+            "y": 1998.83,
+            "grounded": true
+          },
+          {
+            "id": "p-mage",
+            "x": 325.39,
+            "y": 1998.83,
+            "grounded": true
+          },
+          {
+            "id": "p-knight",
+            "x": 398.44,
+            "y": 1998.83,
+            "grounded": true
+          },
+          {
+            "id": "p-occultist",
+            "x": 471.48,
+            "y": 1998.83,
+            "grounded": true
+          }
+        ]
+      },
+      "M": {
+        "viewport": [
+          390,
+          844
+        ],
+        "DPR": 1,
+        "nativeGeometrySHA256": "42caba04aecef9f9b8cebe1e7d6ba1d67a77f1d97efd3d387634f6ee8497aeb6",
+        "physicalRegions": [],
+        "overview": {
+          "actual": [
+            3400,
+            1313.5,
+            0.057352941176470586
+          ],
+          "css": [
+            390,
+            647.609375
+          ],
+          "play": {
+            "left": 0,
+            "top": 0,
+            "right": 6800,
+            "bottom": 2627
+          },
+          "visual": {
+            "left": NaN,
+            "right": NaN,
+            "top": NaN,
+            "bottom": NaN
+          },
+          "focus": {
+            "left": -320,
+            "top": -1800,
+            "right": 7120,
+            "bottom": 2867
+          }
+        },
+        "angles": {
+          "overview": [
+            3400,
+            1313.5,
+            0.057352941176470586
+          ],
+          "w-n": [
+            0,
+            0,
+            0.58
+          ],
+          "c-n": [
+            3400,
+            0,
+            0.58
+          ],
+          "e-n": [
+            6800,
+            0,
+            0.58
+          ],
+          "w-c": [
+            0,
+            1313.5,
+            0.58
+          ],
+          "c-c": [
+            3400,
+            1313.5,
+            0.58
+          ],
+          "e-c": [
+            6800,
+            1313.5,
+            0.58
+          ],
+          "w-s": [
+            0,
+            2627,
+            0.58
+          ],
+          "c-s": [
+            3400,
+            2627,
+            0.58
+          ],
+          "e-s": [
+            6800,
+            2627,
+            0.58
+          ]
+        },
+        "initialActors": [
+          {
+            "id": "p-archer",
+            "x": 252.34,
+            "y": 1998.83,
+            "grounded": true
+          },
+          {
+            "id": "p-mage",
+            "x": 325.39,
+            "y": 1998.83,
+            "grounded": true
+          },
+          {
+            "id": "p-knight",
+            "x": 398.44,
+            "y": 1998.83,
+            "grounded": true
+          },
+          {
+            "id": "p-occultist",
+            "x": 471.48,
+            "y": 1998.83,
+            "grounded": true
+          }
+        ]
+      }
+    },
+    "51": {
+      "PC": {
+        "viewport": [
+          1440,
+          900
+        ],
+        "DPR": 1,
+        "nativeGeometrySHA256": "af199936cd95bbf1257e972736f5e3cddbdd5ddb9b0f0cc4159e1ac610a5f7ef",
+        "physicalRegions": [],
+        "overview": {
+          "actual": [
+            3600,
+            2700,
+            0.21176470588235294
+          ],
+          "css": [
+            1440,
+            769.1875
+          ],
+          "play": {
+            "left": 0,
+            "top": 0,
+            "right": 7200,
+            "bottom": 5400
+          },
+          "visual": {
+            "left": NaN,
+            "right": NaN,
+            "top": NaN,
+            "bottom": NaN
+          },
+          "focus": {
+            "left": -320,
+            "top": -1800,
+            "right": 7520,
+            "bottom": 5640
+          }
+        },
+        "angles": {
+          "overview": [
+            3600,
+            2700,
+            0.21176470588235294
+          ],
+          "w-n": [
+            0,
+            0,
+            0.58
+          ],
+          "c-n": [
+            3600,
+            0,
+            0.58
+          ],
+          "e-n": [
+            7200,
+            0,
+            0.58
+          ],
+          "w-c": [
+            0,
+            2700,
+            0.58
+          ],
+          "c-c": [
+            3600,
+            2700,
+            0.58
+          ],
+          "e-c": [
+            7200,
+            2700,
+            0.58
+          ],
+          "w-s": [
+            0,
+            5400,
+            0.58
+          ],
+          "c-s": [
+            3600,
+            5400,
+            0.58
+          ],
+          "e-s": [
+            7200,
+            5400,
+            0.58
+          ]
+        },
+        "initialActors": [
+          {
+            "id": "p-archer",
+            "x": 97,
+            "y": 4761.792682926829,
+            "grounded": true
+          },
+          {
+            "id": "p-mage",
+            "x": 170,
+            "y": 4762.682926829269,
+            "grounded": true
+          },
+          {
+            "id": "p-knight",
+            "x": 248,
+            "y": 4763.634146341464,
+            "grounded": true
+          },
+          {
+            "id": "p-occultist",
+            "x": 330,
+            "y": 4764.634146341464,
+            "grounded": true
+          }
+        ]
+      },
+      "M": {
+        "viewport": [
+          390,
+          844
+        ],
+        "DPR": 1,
+        "nativeGeometrySHA256": "af199936cd95bbf1257e972736f5e3cddbdd5ddb9b0f0cc4159e1ac610a5f7ef",
+        "physicalRegions": [],
+        "overview": {
+          "actual": [
+            3600,
+            2700,
+            0.057352941176470586
+          ],
+          "css": [
+            390,
+            647.609375
+          ],
+          "play": {
+            "left": 0,
+            "top": 0,
+            "right": 7200,
+            "bottom": 5400
+          },
+          "visual": {
+            "left": NaN,
+            "right": NaN,
+            "top": NaN,
+            "bottom": NaN
+          },
+          "focus": {
+            "left": -320,
+            "top": -1800,
+            "right": 7520,
+            "bottom": 5640
+          }
+        },
+        "angles": {
+          "overview": [
+            3600,
+            2700,
+            0.057352941176470586
+          ],
+          "w-n": [
+            0,
+            0,
+            0.58
+          ],
+          "c-n": [
+            3600,
+            0,
+            0.58
+          ],
+          "e-n": [
+            7200,
+            0,
+            0.58
+          ],
+          "w-c": [
+            0,
+            2700,
+            0.58
+          ],
+          "c-c": [
+            3600,
+            2700,
+            0.58
+          ],
+          "e-c": [
+            7200,
+            2700,
+            0.58
+          ],
+          "w-s": [
+            0,
+            5400,
+            0.58
+          ],
+          "c-s": [
+            3600,
+            5400,
+            0.58
+          ],
+          "e-s": [
+            7200,
+            5400,
+            0.58
+          ]
+        },
+        "initialActors": [
+          {
+            "id": "p-archer",
+            "x": 97,
+            "y": 4761.792682926829,
+            "grounded": true
+          },
+          {
+            "id": "p-mage",
+            "x": 170,
+            "y": 4762.682926829269,
+            "grounded": true
+          },
+          {
+            "id": "p-knight",
+            "x": 248,
+            "y": 4763.634146341464,
+            "grounded": true
+          },
+          {
+            "id": "p-occultist",
+            "x": 330,
+            "y": 4764.634146341464,
+            "grounded": true
+          }
+        ]
+      }
+    },
+    "52": {
+      "PC": {
+        "viewport": [
+          1440,
+          900
+        ],
+        "DPR": 1,
+        "nativeGeometrySHA256": "5b01292cdc1adcde6e5ae14753f715d9749de753ea483e0b9080ac025d23239b",
+        "physicalRegions": [],
+        "overview": {
+          "actual": [
+            3125,
+            3125,
+            0.21176470588235294
+          ],
+          "css": [
+            1440,
+            769.1875
+          ],
+          "play": {
+            "left": 0,
+            "top": 0,
+            "right": 6250,
+            "bottom": 6250
+          },
+          "visual": {
+            "left": NaN,
+            "right": NaN,
+            "top": NaN,
+            "bottom": NaN
+          },
+          "focus": {
+            "left": -320,
+            "top": -1800,
+            "right": 6570,
+            "bottom": 6490
+          }
+        },
+        "angles": {
+          "overview": [
+            3125,
+            3125,
+            0.21176470588235294
+          ],
+          "w-n": [
+            0,
+            0,
+            0.58
+          ],
+          "c-n": [
+            3125,
+            0,
+            0.58
+          ],
+          "e-n": [
+            6250,
+            0,
+            0.58
+          ],
+          "w-c": [
+            0,
+            3125,
+            0.58
+          ],
+          "c-c": [
+            3125,
+            3125,
+            0.58
+          ],
+          "e-c": [
+            6250,
+            3125,
+            0.58
+          ],
+          "w-s": [
+            0,
+            6250,
+            0.58
+          ],
+          "c-s": [
+            3125,
+            6250,
+            0.58
+          ],
+          "e-s": [
+            6250,
+            6250,
+            0.58
+          ]
+        },
+        "initialActors": [
+          {
+            "id": "p-archer",
+            "x": 1200,
+            "y": 1224.5833333333333,
+            "grounded": true
+          },
+          {
+            "id": "p-mage",
+            "x": 1290,
+            "y": 1258.75,
+            "grounded": true
+          },
+          {
+            "id": "p-knight",
+            "x": 1080,
+            "y": 1166.111111111111,
+            "grounded": true
+          },
+          {
+            "id": "p-occultist",
+            "x": 1000,
+            "y": 1151.888888888889,
+            "grounded": true
+          }
+        ]
+      },
+      "M": {
+        "viewport": [
+          390,
+          844
+        ],
+        "DPR": 1,
+        "nativeGeometrySHA256": "5b01292cdc1adcde6e5ae14753f715d9749de753ea483e0b9080ac025d23239b",
+        "physicalRegions": [],
+        "overview": {
+          "actual": [
+            3125,
+            3125,
+            0.057352941176470586
+          ],
+          "css": [
+            390,
+            647.609375
+          ],
+          "play": {
+            "left": 0,
+            "top": 0,
+            "right": 6250,
+            "bottom": 6250
+          },
+          "visual": {
+            "left": NaN,
+            "right": NaN,
+            "top": NaN,
+            "bottom": NaN
+          },
+          "focus": {
+            "left": -320,
+            "top": -1800,
+            "right": 6570,
+            "bottom": 6490
+          }
+        },
+        "angles": {
+          "overview": [
+            3125,
+            3125,
+            0.057352941176470586
+          ],
+          "w-n": [
+            0,
+            0,
+            0.58
+          ],
+          "c-n": [
+            3125,
+            0,
+            0.58
+          ],
+          "e-n": [
+            6250,
+            0,
+            0.58
+          ],
+          "w-c": [
+            0,
+            3125,
+            0.58
+          ],
+          "c-c": [
+            3125,
+            3125,
+            0.58
+          ],
+          "e-c": [
+            6250,
+            3125,
+            0.58
+          ],
+          "w-s": [
+            0,
+            6250,
+            0.58
+          ],
+          "c-s": [
+            3125,
+            6250,
+            0.58
+          ],
+          "e-s": [
+            6250,
+            6250,
+            0.58
+          ]
+        },
+        "initialActors": [
+          {
+            "id": "p-archer",
+            "x": 1200,
+            "y": 1224.5833333333333,
+            "grounded": true
+          },
+          {
+            "id": "p-mage",
+            "x": 1290,
+            "y": 1258.75,
+            "grounded": true
+          },
+          {
+            "id": "p-knight",
+            "x": 1080,
+            "y": 1166.111111111111,
+            "grounded": true
+          },
+          {
+            "id": "p-occultist",
+            "x": 1000,
+            "y": 1151.888888888889,
+            "grounded": true
+          }
+        ]
+      }
+    },
+    "53": {
+      "PC": {
+        "viewport": [
+          1440,
+          900
+        ],
+        "DPR": 1,
+        "nativeGeometrySHA256": "1975fbb8604190cab02c6bdebd64d244a85d7b9d7b145bb0f0df0c04dc1e4c19",
+        "physicalRegions": [],
+        "overview": {
+          "actual": [
+            1770,
+            1500,
+            0.21176470588235294
+          ],
+          "css": [
+            1440,
+            769.1875
+          ],
+          "play": {
+            "left": 0,
+            "top": 0,
+            "right": 3540,
+            "bottom": 3000
+          },
+          "visual": {
+            "left": NaN,
+            "right": NaN,
+            "top": NaN,
+            "bottom": NaN
+          },
+          "focus": {
+            "left": -320,
+            "top": -1800,
+            "right": 3860,
+            "bottom": 3240
+          }
+        },
+        "angles": {
+          "overview": [
+            1770,
+            1500,
+            0.21176470588235294
+          ],
+          "w-n": [
+            0,
+            0,
+            0.58
+          ],
+          "c-n": [
+            1770,
+            0,
+            0.58
+          ],
+          "e-n": [
+            3540,
+            0,
+            0.58
+          ],
+          "w-c": [
+            0,
+            1500,
+            0.58
+          ],
+          "c-c": [
+            1770,
+            1500,
+            0.58
+          ],
+          "e-c": [
+            3540,
+            1500,
+            0.58
+          ],
+          "w-s": [
+            0,
+            3000,
+            0.58
+          ],
+          "c-s": [
+            1770,
+            3000,
+            0.58
+          ],
+          "e-s": [
+            3540,
+            3000,
+            0.58
+          ]
+        },
+        "initialActors": [
+          {
+            "id": "p-mage",
+            "x": 425,
+            "y": 2477,
+            "grounded": true
+          }
+        ]
+      },
+      "M": {
+        "viewport": [
+          390,
+          844
+        ],
+        "DPR": 1,
+        "nativeGeometrySHA256": "1975fbb8604190cab02c6bdebd64d244a85d7b9d7b145bb0f0df0c04dc1e4c19",
+        "physicalRegions": [],
+        "overview": {
+          "actual": [
+            1770,
+            1500,
+            0.057352941176470586
+          ],
+          "css": [
+            390,
+            647.609375
+          ],
+          "play": {
+            "left": 0,
+            "top": 0,
+            "right": 3540,
+            "bottom": 3000
+          },
+          "visual": {
+            "left": NaN,
+            "right": NaN,
+            "top": NaN,
+            "bottom": NaN
+          },
+          "focus": {
+            "left": -320,
+            "top": -1800,
+            "right": 3860,
+            "bottom": 3240
+          }
+        },
+        "angles": {
+          "overview": [
+            1770,
+            1500,
+            0.057352941176470586
+          ],
+          "w-n": [
+            0,
+            0,
+            0.58
+          ],
+          "c-n": [
+            1770,
+            0,
+            0.58
+          ],
+          "e-n": [
+            3540,
+            0,
+            0.58
+          ],
+          "w-c": [
+            0,
+            1500,
+            0.58
+          ],
+          "c-c": [
+            1770,
+            1500,
+            0.58
+          ],
+          "e-c": [
+            3540,
+            1500,
+            0.58
+          ],
+          "w-s": [
+            0,
+            3000,
+            0.58
+          ],
+          "c-s": [
+            1770,
+            3000,
+            0.58
+          ],
+          "e-s": [
+            3540,
+            3000,
+            0.58
+          ]
+        },
+        "initialActors": [
+          {
+            "id": "p-mage",
+            "x": 425,
+            "y": 2477,
+            "grounded": true
+          }
+        ]
+      }
+    },
+    "54": {
+      "PC": {
+        "viewport": [
+          1440,
+          900
+        ],
+        "DPR": 1,
+        "nativeGeometrySHA256": "a643809a10911fab68227eb55518bdab6839638cafd7f4febda18bfcdd8e9a47",
+        "physicalRegions": [],
+        "overview": {
+          "actual": [
+            1600,
+            1500,
+            0.21176470588235294
+          ],
+          "css": [
+            1440,
+            769.1875
+          ],
+          "play": {
+            "left": 0,
+            "top": 0,
+            "right": 3200,
+            "bottom": 3000
+          },
+          "visual": {
+            "left": NaN,
+            "right": NaN,
+            "top": NaN,
+            "bottom": NaN
+          },
+          "focus": {
+            "left": -320,
+            "top": -1800,
+            "right": 3520,
+            "bottom": 3240
+          }
+        },
+        "angles": {
+          "overview": [
+            1600,
+            1500,
+            0.21176470588235294
+          ],
+          "w-n": [
+            0,
+            0,
+            0.58
+          ],
+          "c-n": [
+            1600,
+            0,
+            0.58
+          ],
+          "e-n": [
+            3200,
+            0,
+            0.58
+          ],
+          "w-c": [
+            0,
+            1500,
+            0.58
+          ],
+          "c-c": [
+            1600,
+            1500,
+            0.58
+          ],
+          "e-c": [
+            3200,
+            1500,
+            0.58
+          ],
+          "w-s": [
+            0,
+            3000,
+            0.58
+          ],
+          "c-s": [
+            1600,
+            3000,
+            0.58
+          ],
+          "e-s": [
+            3200,
+            3000,
+            0.58
+          ]
+        },
+        "initialActors": [
+          {
+            "id": "p-mage",
+            "x": 250,
+            "y": 2655.6363636363635,
+            "grounded": true
+          }
+        ],
+        "matchedPatch": {
+          "view": "w-s",
+          "beforeSHA256": "74536e576febb6248c137e9da6d8187b4a59ee99e757b3c4c21591e85957d12b",
+          "afterSHA256": "b009fd89fccdda8a8bad47b37feb9516843348792032b65cc78799f5567650b6",
+          "sameColliderAndEntryActors": true
+        }
+      },
+      "M": {
+        "viewport": [
+          390,
+          844
+        ],
+        "DPR": 1,
+        "nativeGeometrySHA256": "a643809a10911fab68227eb55518bdab6839638cafd7f4febda18bfcdd8e9a47",
+        "physicalRegions": [],
+        "overview": {
+          "actual": [
+            1600,
+            1500,
+            0.057352941176470586
+          ],
+          "css": [
+            390,
+            647.609375
+          ],
+          "play": {
+            "left": 0,
+            "top": 0,
+            "right": 3200,
+            "bottom": 3000
+          },
+          "visual": {
+            "left": NaN,
+            "right": NaN,
+            "top": NaN,
+            "bottom": NaN
+          },
+          "focus": {
+            "left": -320,
+            "top": -1800,
+            "right": 3520,
+            "bottom": 3240
+          }
+        },
+        "angles": {
+          "overview": [
+            1600,
+            1500,
+            0.057352941176470586
+          ],
+          "w-n": [
+            0,
+            0,
+            0.58
+          ],
+          "c-n": [
+            1600,
+            0,
+            0.58
+          ],
+          "e-n": [
+            3200,
+            0,
+            0.58
+          ],
+          "w-c": [
+            0,
+            1500,
+            0.58
+          ],
+          "c-c": [
+            1600,
+            1500,
+            0.58
+          ],
+          "e-c": [
+            3200,
+            1500,
+            0.58
+          ],
+          "w-s": [
+            0,
+            3000,
+            0.58
+          ],
+          "c-s": [
+            1600,
+            3000,
+            0.58
+          ],
+          "e-s": [
+            3200,
+            3000,
+            0.58
+          ]
+        },
+        "initialActors": [
+          {
+            "id": "p-mage",
+            "x": 250,
+            "y": 2655.6363636363635,
+            "grounded": true
+          }
+        ],
+        "matchedPatch": {
+          "view": "w-s",
+          "beforeSHA256": "b44152364ee0765f5ac1ded3d005724218c9982adab6a6c549990ae885fa9d1b",
+          "afterSHA256": "3da89de91a66328299e97ae009290b7e1c9fa487e2eac1639ab009ce1614b1a9",
+          "sameColliderAndEntryActors": true
+        }
+      }
+    },
+    "55": {
+      "PC": {
+        "viewport": [
+          1440,
+          900
+        ],
+        "DPR": 1,
+        "nativeGeometrySHA256": "70dbc05599923b826f335976b38f94331321829d9585fde57dc190e0908feece",
+        "physicalRegions": [],
+        "overview": {
+          "actual": [
+            3400,
+            1600,
+            0.21176470588235294
+          ],
+          "css": [
+            1440,
+            769.1875
+          ],
+          "play": {
+            "left": 0,
+            "top": 0,
+            "right": 6800,
+            "bottom": 3200
+          },
+          "visual": {
+            "left": NaN,
+            "right": NaN,
+            "top": NaN,
+            "bottom": NaN
+          },
+          "focus": {
+            "left": -320,
+            "top": -1800,
+            "right": 7120,
+            "bottom": 3440
+          }
+        },
+        "angles": {
+          "overview": [
+            3400,
+            1600,
+            0.21176470588235294
+          ],
+          "w-n": [
+            0,
+            0,
+            0.58
+          ],
+          "c-n": [
+            3400,
+            0,
+            0.58
+          ],
+          "e-n": [
+            6800,
+            0,
+            0.58
+          ],
+          "w-c": [
+            0,
+            1600,
+            0.58
+          ],
+          "c-c": [
+            3400,
+            1600,
+            0.58
+          ],
+          "e-c": [
+            6800,
+            1600,
+            0.58
+          ],
+          "w-s": [
+            0,
+            3200,
+            0.58
+          ],
+          "c-s": [
+            3400,
+            3200,
+            0.58
+          ],
+          "e-s": [
+            6800,
+            3200,
+            0.58
+          ]
+        },
+        "initialActors": [
+          {
+            "id": "p-knight",
+            "x": 176,
+            "y": 586.9090909090909,
+            "grounded": true
+          },
+          {
+            "id": "p-archer",
+            "x": 1232,
+            "y": 1162.909090909091,
+            "grounded": true
+          },
+          {
+            "id": "p-occultist",
+            "x": 2688,
+            "y": 1700.3076923076924,
+            "grounded": true
+          }
+        ],
+        "matchedPatch": {
+          "view": "overview",
+          "beforeSHA256": "e2d70d4c9d7eeb33d1b805706d97a5d2e2ded4cc8bb0fb2e60b3dedec1102158",
+          "afterSHA256": "ed4bf1369bf33bb7d2ff2db21d959ed7e2505d1867723a71762f8a8159aa8e9d",
+          "sameColliderAndEntryActors": true
+        }
+      },
+      "M": {
+        "viewport": [
+          390,
+          844
+        ],
+        "DPR": 1,
+        "nativeGeometrySHA256": "70dbc05599923b826f335976b38f94331321829d9585fde57dc190e0908feece",
+        "physicalRegions": [],
+        "overview": {
+          "actual": [
+            3400,
+            1600,
+            0.057352941176470586
+          ],
+          "css": [
+            390,
+            647.609375
+          ],
+          "play": {
+            "left": 0,
+            "top": 0,
+            "right": 6800,
+            "bottom": 3200
+          },
+          "visual": {
+            "left": NaN,
+            "right": NaN,
+            "top": NaN,
+            "bottom": NaN
+          },
+          "focus": {
+            "left": -320,
+            "top": -1800,
+            "right": 7120,
+            "bottom": 3440
+          }
+        },
+        "angles": {
+          "overview": [
+            3400,
+            1600,
+            0.057352941176470586
+          ],
+          "w-n": [
+            0,
+            0,
+            0.58
+          ],
+          "c-n": [
+            3400,
+            0,
+            0.58
+          ],
+          "e-n": [
+            6800,
+            0,
+            0.58
+          ],
+          "w-c": [
+            0,
+            1600,
+            0.58
+          ],
+          "c-c": [
+            3400,
+            1600,
+            0.58
+          ],
+          "e-c": [
+            6800,
+            1600,
+            0.58
+          ],
+          "w-s": [
+            0,
+            3200,
+            0.58
+          ],
+          "c-s": [
+            3400,
+            3200,
+            0.58
+          ],
+          "e-s": [
+            6800,
+            3200,
+            0.58
+          ]
+        },
+        "initialActors": [
+          {
+            "id": "p-knight",
+            "x": 176,
+            "y": 586.9090909090909,
+            "grounded": true
+          },
+          {
+            "id": "p-archer",
+            "x": 1232,
+            "y": 1162.909090909091,
+            "grounded": true
+          },
+          {
+            "id": "p-occultist",
+            "x": 2688,
+            "y": 1700.3076923076924,
+            "grounded": true
+          }
+        ],
+        "matchedPatch": {
+          "view": "overview",
+          "beforeSHA256": "a61dcabbee04cd6ef9a2c655eb2e531ebe1dc1c0fe7796995974ae26d7ab36e3",
+          "afterSHA256": "ee9097926000cea16b4b1d92fcab927ab9293f025736de67eabc0c6bcd5334e2",
+          "sameColliderAndEntryActors": true
+        }
+      }
+    },
+    "56": {
+      "PC": {
+        "viewport": [
+          1440,
+          900
+        ],
+        "DPR": 1,
+        "nativeGeometrySHA256": "7e5df57255912b1adadec5b4da1769f9d4199b454a5206a3a5bd5e207191f1e7",
+        "physicalRegions": [],
+        "overview": {
+          "actual": [
+            3360,
+            2520,
+            0.21176470588235294
+          ],
+          "css": [
+            1440,
+            769.1875
+          ],
+          "play": {
+            "left": 0,
+            "top": 0,
+            "right": 6720,
+            "bottom": 5040
+          },
+          "visual": {
+            "left": NaN,
+            "right": NaN,
+            "top": NaN,
+            "bottom": NaN
+          },
+          "focus": {
+            "left": -320,
+            "top": -1800,
+            "right": 7040,
+            "bottom": 5280
+          }
+        },
+        "angles": {
+          "overview": [
+            3360,
+            2520,
+            0.21176470588235294
+          ],
+          "w-n": [
+            0,
+            0,
+            0.58
+          ],
+          "c-n": [
+            3360,
+            0,
+            0.58
+          ],
+          "e-n": [
+            6720,
+            0,
+            0.58
+          ],
+          "w-c": [
+            0,
+            2520,
+            0.58
+          ],
+          "c-c": [
+            3360,
+            2520,
+            0.58
+          ],
+          "e-c": [
+            6720,
+            2520,
+            0.58
+          ],
+          "w-s": [
+            0,
+            5040,
+            0.58
+          ],
+          "c-s": [
+            3360,
+            5040,
+            0.58
+          ],
+          "e-s": [
+            6720,
+            5040,
+            0.58
+          ]
+        },
+        "initialActors": [
+          {
+            "id": "p-mage",
+            "x": 928,
+            "y": 1136,
+            "grounded": true
+          }
+        ]
+      },
+      "M": {
+        "viewport": [
+          390,
+          844
+        ],
+        "DPR": 1,
+        "nativeGeometrySHA256": "7e5df57255912b1adadec5b4da1769f9d4199b454a5206a3a5bd5e207191f1e7",
+        "physicalRegions": [],
+        "overview": {
+          "actual": [
+            3360,
+            2520,
+            0.057352941176470586
+          ],
+          "css": [
+            390,
+            647.609375
+          ],
+          "play": {
+            "left": 0,
+            "top": 0,
+            "right": 6720,
+            "bottom": 5040
+          },
+          "visual": {
+            "left": NaN,
+            "right": NaN,
+            "top": NaN,
+            "bottom": NaN
+          },
+          "focus": {
+            "left": -320,
+            "top": -1800,
+            "right": 7040,
+            "bottom": 5280
+          }
+        },
+        "angles": {
+          "overview": [
+            3360,
+            2520,
+            0.057352941176470586
+          ],
+          "w-n": [
+            0,
+            0,
+            0.58
+          ],
+          "c-n": [
+            3360,
+            0,
+            0.58
+          ],
+          "e-n": [
+            6720,
+            0,
+            0.58
+          ],
+          "w-c": [
+            0,
+            2520,
+            0.58
+          ],
+          "c-c": [
+            3360,
+            2520,
+            0.58
+          ],
+          "e-c": [
+            6720,
+            2520,
+            0.58
+          ],
+          "w-s": [
+            0,
+            5040,
+            0.58
+          ],
+          "c-s": [
+            3360,
+            5040,
+            0.58
+          ],
+          "e-s": [
+            6720,
+            5040,
+            0.58
+          ]
+        },
+        "initialActors": [
+          {
+            "id": "p-mage",
+            "x": 928,
+            "y": 1136,
+            "grounded": true
+          }
+        ]
+      }
+    },
+    "57": {
+      "PC": {
+        "viewport": [
+          1440,
+          900
+        ],
+        "DPR": 1,
+        "nativeGeometrySHA256": "819e91a67756f2356b4d524f7fce48d4a295d9470c77943ad173129dc88aef4c",
+        "physicalRegions": [],
+        "overview": {
+          "actual": [
+            3600,
+            1800,
+            0.21176470588235294
+          ],
+          "css": [
+            1440,
+            769.1875
+          ],
+          "play": {
+            "left": 0,
+            "top": 0,
+            "right": 7200,
+            "bottom": 3600
+          },
+          "visual": {
+            "left": NaN,
+            "right": NaN,
+            "top": NaN,
+            "bottom": NaN
+          },
+          "focus": {
+            "left": -320,
+            "top": -1800,
+            "right": 7520,
+            "bottom": 3840
+          }
+        },
+        "angles": {
+          "overview": [
+            3600,
+            1800,
+            0.21176470588235294
+          ],
+          "w-n": [
+            0,
+            0,
+            0.58
+          ],
+          "c-n": [
+            3600,
+            0,
+            0.58
+          ],
+          "e-n": [
+            7200,
+            0,
+            0.58
+          ],
+          "w-c": [
+            0,
+            1800,
+            0.58
+          ],
+          "c-c": [
+            3600,
+            1800,
+            0.58
+          ],
+          "e-c": [
+            7200,
+            1800,
+            0.58
+          ],
+          "w-s": [
+            0,
+            3600,
+            0.58
+          ],
+          "c-s": [
+            3600,
+            3600,
+            0.58
+          ],
+          "e-s": [
+            7200,
+            3600,
+            0.58
+          ]
+        },
+        "initialActors": [
+          {
+            "id": "p-archer",
+            "x": 2408,
+            "y": 3234.7586206896553,
+            "grounded": true
+          },
+          {
+            "id": "p-knight",
+            "x": 3584,
+            "y": 3271.1111111111113,
+            "grounded": true
+          },
+          {
+            "id": "p-occultist",
+            "x": 5024,
+            "y": 3099.1428571428573,
+            "grounded": true
+          }
+        ]
+      },
+      "M": {
+        "viewport": [
+          390,
+          844
+        ],
+        "DPR": 1,
+        "nativeGeometrySHA256": "819e91a67756f2356b4d524f7fce48d4a295d9470c77943ad173129dc88aef4c",
+        "physicalRegions": [],
+        "overview": {
+          "actual": [
+            3600,
+            1800,
+            0.057352941176470586
+          ],
+          "css": [
+            390,
+            647.609375
+          ],
+          "play": {
+            "left": 0,
+            "top": 0,
+            "right": 7200,
+            "bottom": 3600
+          },
+          "visual": {
+            "left": NaN,
+            "right": NaN,
+            "top": NaN,
+            "bottom": NaN
+          },
+          "focus": {
+            "left": -320,
+            "top": -1800,
+            "right": 7520,
+            "bottom": 3840
+          }
+        },
+        "angles": {
+          "overview": [
+            3600,
+            1800,
+            0.057352941176470586
+          ],
+          "w-n": [
+            0,
+            0,
+            0.58
+          ],
+          "c-n": [
+            3600,
+            0,
+            0.58
+          ],
+          "e-n": [
+            7200,
+            0,
+            0.58
+          ],
+          "w-c": [
+            0,
+            1800,
+            0.58
+          ],
+          "c-c": [
+            3600,
+            1800,
+            0.58
+          ],
+          "e-c": [
+            7200,
+            1800,
+            0.58
+          ],
+          "w-s": [
+            0,
+            3600,
+            0.58
+          ],
+          "c-s": [
+            3600,
+            3600,
+            0.58
+          ],
+          "e-s": [
+            7200,
+            3600,
+            0.58
+          ]
+        },
+        "initialActors": [
+          {
+            "id": "p-archer",
+            "x": 2408,
+            "y": 3234.7586206896553,
+            "grounded": true
+          },
+          {
+            "id": "p-knight",
+            "x": 3584,
+            "y": 3271.1111111111113,
+            "grounded": true
+          },
+          {
+            "id": "p-occultist",
+            "x": 5024,
+            "y": 3099.1428571428573,
+            "grounded": true
+          }
+        ]
+      }
+    },
+    "58": {
+      "PC": {
+        "viewport": [
+          1440,
+          900
+        ],
+        "DPR": 1,
+        "nativeGeometrySHA256": "7ada70cd8a76a7060218d3a98d20a7d1beb4b102d19aa3ceee6630b175a91a00",
+        "physicalRegions": [
+          [
+            "local-sealed-axis",
+            {
+              "x": 320,
+              "y": 0
+            },
+            true
+          ],
+          [
+            "m58-gallery-right-axis",
+            {
+              "x": 320,
+              "y": 0
+            },
+            false
+          ],
+          [
+            "m58-gallery-upper-axis",
+            {
+              "x": 0,
+              "y": -320
+            },
+            false
+          ]
+        ],
+        "overview": {
+          "actual": [
+            3600,
+            1800,
+            0.21176470588235294
+          ],
+          "css": [
+            1440,
+            769.1875
+          ],
+          "play": {
+            "left": 0,
+            "top": 0,
+            "right": 7200,
+            "bottom": 3600
+          },
+          "visual": {
+            "left": NaN,
+            "right": NaN,
+            "top": NaN,
+            "bottom": NaN
+          },
+          "focus": {
+            "left": -320,
+            "top": -1800,
+            "right": 7520,
+            "bottom": 3840
+          }
+        },
+        "angles": {
+          "overview": [
+            3600,
+            1800,
+            0.21176470588235294
+          ],
+          "w-n": [
+            0,
+            0,
+            0.58
+          ],
+          "c-n": [
+            3600,
+            0,
+            0.58
+          ],
+          "e-n": [
+            7200,
+            0,
+            0.58
+          ],
+          "w-c": [
+            0,
+            1800,
+            0.58
+          ],
+          "c-c": [
+            3600,
+            1800,
+            0.58
+          ],
+          "e-c": [
+            7200,
+            1800,
+            0.58
+          ],
+          "w-s": [
+            0,
+            3600,
+            0.58
+          ],
+          "c-s": [
+            3600,
+            3600,
+            0.58
+          ],
+          "e-s": [
+            7200,
+            3600,
+            0.58
+          ]
+        },
+        "initialActors": [
+          {
+            "id": "p-mage",
+            "x": 2780.0411461911017,
+            "y": 3458.9557962670997,
+            "grounded": true
+          },
+          {
+            "id": "p-archer",
+            "x": 2645.071904787871,
+            "y": 3480.5154081688293,
+            "grounded": true
+          },
+          {
+            "id": "p-knight",
+            "x": 2876.9935676570512,
+            "y": 3430.808319067308,
+            "grounded": true
+          },
+          {
+            "id": "p-occultist",
+            "x": 2987.090305485276,
+            "y": 3399.1170555756353,
+            "grounded": true
+          }
+        ]
+      },
+      "M": {
+        "viewport": [
+          390,
+          844
+        ],
+        "DPR": 1,
+        "nativeGeometrySHA256": "7ada70cd8a76a7060218d3a98d20a7d1beb4b102d19aa3ceee6630b175a91a00",
+        "physicalRegions": [
+          [
+            "local-sealed-axis",
+            {
+              "x": 320,
+              "y": 0
+            },
+            true
+          ],
+          [
+            "m58-gallery-right-axis",
+            {
+              "x": 320,
+              "y": 0
+            },
+            false
+          ],
+          [
+            "m58-gallery-upper-axis",
+            {
+              "x": 0,
+              "y": -320
+            },
+            false
+          ]
+        ],
+        "overview": {
+          "actual": [
+            3600,
+            1800,
+            0.057352941176470586
+          ],
+          "css": [
+            390,
+            647.609375
+          ],
+          "play": {
+            "left": 0,
+            "top": 0,
+            "right": 7200,
+            "bottom": 3600
+          },
+          "visual": {
+            "left": NaN,
+            "right": NaN,
+            "top": NaN,
+            "bottom": NaN
+          },
+          "focus": {
+            "left": -320,
+            "top": -1800,
+            "right": 7520,
+            "bottom": 3840
+          }
+        },
+        "angles": {
+          "overview": [
+            3600,
+            1800,
+            0.057352941176470586
+          ],
+          "w-n": [
+            0,
+            0,
+            0.58
+          ],
+          "c-n": [
+            3600,
+            0,
+            0.58
+          ],
+          "e-n": [
+            7200,
+            0,
+            0.58
+          ],
+          "w-c": [
+            0,
+            1800,
+            0.58
+          ],
+          "c-c": [
+            3600,
+            1800,
+            0.58
+          ],
+          "e-c": [
+            7200,
+            1800,
+            0.58
+          ],
+          "w-s": [
+            0,
+            3600,
+            0.58
+          ],
+          "c-s": [
+            3600,
+            3600,
+            0.58
+          ],
+          "e-s": [
+            7200,
+            3600,
+            0.58
+          ]
+        },
+        "initialActors": [
+          {
+            "id": "p-mage",
+            "x": 2780.0411461911017,
+            "y": 3458.9557962670997,
+            "grounded": true
+          },
+          {
+            "id": "p-archer",
+            "x": 2645.071904787871,
+            "y": 3480.5154081688293,
+            "grounded": true
+          },
+          {
+            "id": "p-knight",
+            "x": 2876.9935676570512,
+            "y": 3430.808319067308,
+            "grounded": true
+          },
+          {
+            "id": "p-occultist",
+            "x": 2987.090305485276,
+            "y": 3399.1170555756353,
+            "grounded": true
+          }
+        ]
+      }
+    },
+    "59": {
+      "PC": {
+        "viewport": [
+          1440,
+          900
+        ],
+        "DPR": 1,
+        "nativeGeometrySHA256": "a756fe7af142c3ccdf46a3f4fd8f6e19430b2e9b71c414237ed0194c593cc20e",
+        "physicalRegions": [],
+        "overview": {
+          "actual": [
+            3900,
+            2350,
+            0.21176470588235294
+          ],
+          "css": [
+            1440,
+            769.1875
+          ],
+          "play": {
+            "left": 0,
+            "top": 0,
+            "right": 7800,
+            "bottom": 4700
+          },
+          "visual": {
+            "left": NaN,
+            "right": NaN,
+            "top": NaN,
+            "bottom": NaN
+          },
+          "focus": {
+            "left": -320,
+            "top": -1800,
+            "right": 8120,
+            "bottom": 4940
+          }
+        },
+        "angles": {
+          "overview": [
+            3900,
+            2350,
+            0.21176470588235294
+          ],
+          "w-n": [
+            0,
+            0,
+            0.58
+          ],
+          "c-n": [
+            3900,
+            0,
+            0.58
+          ],
+          "e-n": [
+            7800,
+            0,
+            0.58
+          ],
+          "w-c": [
+            0,
+            2350,
+            0.58
+          ],
+          "c-c": [
+            3900,
+            2350,
+            0.58
+          ],
+          "e-c": [
+            7800,
+            2350,
+            0.58
+          ],
+          "w-s": [
+            0,
+            4700,
+            0.58
+          ],
+          "c-s": [
+            3900,
+            4700,
+            0.58
+          ],
+          "e-s": [
+            7800,
+            4700,
+            0.58
+          ]
+        },
+        "initialActors": [
+          {
+            "id": "p-archer",
+            "x": 1404.1436464088397,
+            "y": 1452.259315857529,
+            "grounded": true
+          },
+          {
+            "id": "p-knight",
+            "x": 3041.71270718232,
+            "y": 2891.4450237335614,
+            "grounded": true
+          },
+          {
+            "id": "p-occultist",
+            "x": 5458.563535911602,
+            "y": 2493.635514745934,
+            "grounded": true
+          },
+          {
+            "id": "p-mage",
+            "x": 5907.458563535912,
+            "y": 2378.056253139126,
+            "grounded": true
+          }
+        ]
+      },
+      "M": {
+        "viewport": [
+          390,
+          844
+        ],
+        "DPR": 1,
+        "nativeGeometrySHA256": "a756fe7af142c3ccdf46a3f4fd8f6e19430b2e9b71c414237ed0194c593cc20e",
+        "physicalRegions": [],
+        "overview": {
+          "actual": [
+            3900,
+            2350,
+            0.057352941176470586
+          ],
+          "css": [
+            390,
+            647.609375
+          ],
+          "play": {
+            "left": 0,
+            "top": 0,
+            "right": 7800,
+            "bottom": 4700
+          },
+          "visual": {
+            "left": NaN,
+            "right": NaN,
+            "top": NaN,
+            "bottom": NaN
+          },
+          "focus": {
+            "left": -320,
+            "top": -1800,
+            "right": 8120,
+            "bottom": 4940
+          }
+        },
+        "angles": {
+          "overview": [
+            3900,
+            2350,
+            0.057352941176470586
+          ],
+          "w-n": [
+            0,
+            0,
+            0.58
+          ],
+          "c-n": [
+            3900,
+            0,
+            0.58
+          ],
+          "e-n": [
+            7800,
+            0,
+            0.58
+          ],
+          "w-c": [
+            0,
+            2350,
+            0.58
+          ],
+          "c-c": [
+            3900,
+            2350,
+            0.58
+          ],
+          "e-c": [
+            7800,
+            2350,
+            0.58
+          ],
+          "w-s": [
+            0,
+            4700,
+            0.58
+          ],
+          "c-s": [
+            3900,
+            4700,
+            0.58
+          ],
+          "e-s": [
+            7800,
+            4700,
+            0.58
+          ]
+        },
+        "initialActors": [
+          {
+            "id": "p-archer",
+            "x": 1404.1436464088397,
+            "y": 1452.259315857529,
+            "grounded": true
+          },
+          {
+            "id": "p-knight",
+            "x": 3041.71270718232,
+            "y": 2891.4450237335614,
+            "grounded": true
+          },
+          {
+            "id": "p-occultist",
+            "x": 5458.563535911602,
+            "y": 2493.635514745934,
+            "grounded": true
+          },
+          {
+            "id": "p-mage",
+            "x": 5907.458563535912,
+            "y": 2378.056253139126,
+            "grounded": true
+          }
+        ]
+      }
+    },
+    "60": {
+      "PC": {
+        "viewport": [
+          1440,
+          900
+        ],
+        "DPR": 1,
+        "nativeGeometrySHA256": "f9354f05cab581c28331461699b55eda9b473f1e29c8dee15ccc87223cd8697f",
+        "physicalRegions": [],
+        "overview": {
+          "actual": [
+            3600,
+            2050,
+            0.21176470588235294
+          ],
+          "css": [
+            1440,
+            769.1875
+          ],
+          "play": {
+            "left": 0,
+            "top": 0,
+            "right": 7200,
+            "bottom": 4100
+          },
+          "visual": {
+            "left": NaN,
+            "right": NaN,
+            "top": NaN,
+            "bottom": NaN
+          },
+          "focus": {
+            "left": -320,
+            "top": -1800,
+            "right": 7520,
+            "bottom": 4340
+          }
+        },
+        "angles": {
+          "overview": [
+            3600,
+            2050,
+            0.21176470588235294
+          ],
+          "w-n": [
+            0,
+            0,
+            0.58
+          ],
+          "c-n": [
+            3600,
+            0,
+            0.58
+          ],
+          "e-n": [
+            7200,
+            0,
+            0.58
+          ],
+          "w-c": [
+            0,
+            2050,
+            0.58
+          ],
+          "c-c": [
+            3600,
+            2050,
+            0.58
+          ],
+          "e-c": [
+            7200,
+            2050,
+            0.58
+          ],
+          "w-s": [
+            0,
+            4100,
+            0.58
+          ],
+          "c-s": [
+            3600,
+            4100,
+            0.58
+          ],
+          "e-s": [
+            7200,
+            4100,
+            0.58
+          ]
+        },
+        "initialActors": [
+          {
+            "id": "p-archer",
+            "x": 4988.950276243094,
+            "y": 2846.84605047036,
+            "grounded": true
+          },
+          {
+            "id": "p-knight",
+            "x": 5104.972375690608,
+            "y": 2860.162732295329,
+            "grounded": true
+          },
+          {
+            "id": "p-occultist",
+            "x": 5237.5690607734805,
+            "y": 2880.353591160221,
+            "grounded": true
+          },
+          {
+            "id": "p-mage",
+            "x": 5303.867403314917,
+            "y": 2167.646408839779,
+            "grounded": true
+          }
+        ]
+      },
+      "M": {
+        "viewport": [
+          390,
+          844
+        ],
+        "DPR": 1,
+        "nativeGeometrySHA256": "f9354f05cab581c28331461699b55eda9b473f1e29c8dee15ccc87223cd8697f",
+        "physicalRegions": [],
+        "overview": {
+          "actual": [
+            3600,
+            2050,
+            0.057352941176470586
+          ],
+          "css": [
+            390,
+            647.609375
+          ],
+          "play": {
+            "left": 0,
+            "top": 0,
+            "right": 7200,
+            "bottom": 4100
+          },
+          "visual": {
+            "left": NaN,
+            "right": NaN,
+            "top": NaN,
+            "bottom": NaN
+          },
+          "focus": {
+            "left": -320,
+            "top": -1800,
+            "right": 7520,
+            "bottom": 4340
+          }
+        },
+        "angles": {
+          "overview": [
+            3600,
+            2050,
+            0.057352941176470586
+          ],
+          "w-n": [
+            0,
+            0,
+            0.58
+          ],
+          "c-n": [
+            3600,
+            0,
+            0.58
+          ],
+          "e-n": [
+            7200,
+            0,
+            0.58
+          ],
+          "w-c": [
+            0,
+            2050,
+            0.58
+          ],
+          "c-c": [
+            3600,
+            2050,
+            0.58
+          ],
+          "e-c": [
+            7200,
+            2050,
+            0.58
+          ],
+          "w-s": [
+            0,
+            4100,
+            0.58
+          ],
+          "c-s": [
+            3600,
+            4100,
+            0.58
+          ],
+          "e-s": [
+            7200,
+            4100,
+            0.58
+          ]
+        },
+        "initialActors": [
+          {
+            "id": "p-archer",
+            "x": 4988.950276243094,
+            "y": 2846.84605047036,
+            "grounded": true
+          },
+          {
+            "id": "p-knight",
+            "x": 5104.972375690608,
+            "y": 2860.162732295329,
+            "grounded": true
+          },
+          {
+            "id": "p-occultist",
+            "x": 5237.5690607734805,
+            "y": 2880.353591160221,
+            "grounded": true
+          },
+          {
+            "id": "p-mage",
+            "x": 5303.867403314917,
+            "y": 2167.646408839779,
+            "grounded": true
+          }
+        ]
+      }
+    }
+  },
+  "mobileReceipts": {
+    "B": {
+      "stage": 54,
+      "label": "B",
+      "historicalSignedSource": "visual-atlas/capture-input-b.json",
+      "entryPoint": "normal rest/resume",
+      "currentRuntime": "b0f169aa",
+      "inputObserved": true,
+      "storeSHA256": "54f7c884306e187b183693b3ce101c00f8e443ab1d01680d51d81bf465456b9e",
+      "result": {
+        "before": {
+          "id": "p-mage",
+          "x": 3240,
+          "y": 454.59999999999854,
+          "vx": 0,
+          "vy": 0,
+          "hp": 1701.9,
+          "dead": false,
+          "embedded": false,
+          "grounded": true,
+          "support": "b-inner-jamb"
+        },
+        "stepped": {
+          "id": "p-mage",
+          "x": 3240,
+          "y": 384.24999999999807,
+          "vx": 0,
+          "vy": 0,
+          "hp": 1701.9,
+          "dead": false,
+          "embedded": false,
+          "grounded": true,
+          "support": "b-inner-jamb"
+        },
+        "jump": {
+          "id": "p-mage",
+          "x": 3193.339278920593,
+          "y": 384.24999999999807,
+          "vx": -584.3000891838092,
+          "vy": 0,
+          "hp": 1701.9,
+          "dead": false,
+          "embedded": false,
+          "grounded": false,
+          "support": null
+        },
+        "landed": {
+          "id": "p-mage",
+          "x": 3240,
+          "y": 384.24999999999807,
+          "vx": 0,
+          "vy": 0,
+          "hp": 1701.9,
+          "dead": false,
+          "embedded": false,
+          "grounded": true,
+          "support": "b-inner-jamb"
+        }
+      }
+    },
+    "C": {
+      "stage": 56,
+      "label": "C",
+      "historicalSignedSource": "mobile-seams/captured-c-source.json",
+      "entryPoint": "normal rest/resume",
+      "currentRuntime": "b0f169aa",
+      "inputObserved": true,
+      "storeSHA256": "d9aec9856620de826d6704ac8aebbb92330a1159e99c33efe46899c1fba8ca01",
+      "result": {
+        "ceiling": {
+          "stage": 56,
+          "id": "p-mage",
+          "x": 736,
+          "y": 900,
+          "vx": 0,
+          "vy": 0,
+          "gravity": {
+            "x": 0,
+            "y": -320
+          },
+          "grounded": true,
+          "support": "c-eave-soffit",
+          "normal": {
+            "x": 0,
+            "y": 1
+          },
+          "play": [
+            1400,
+            1440
+          ],
+          "health": 1708.9,
+          "focus": 692,
+          "loadout": [
+            "M01",
+            "M10",
+            "M07"
+          ],
+          "equipment": {
+            "version": 1
+          },
+          "others": []
+        },
+        "landed": {
+          "stage": 56,
+          "id": "p-mage",
+          "x": 928,
+          "y": 1136,
+          "vx": 0,
+          "vy": 0,
+          "gravity": {
+            "x": 0,
+            "y": 320
+          },
+          "grounded": true,
+          "support": "A-upper-veranda",
+          "normal": {
+            "x": 0,
+            "y": -1
+          },
+          "play": [
+            6720,
+            5040
+          ],
+          "health": 1708.9,
+          "focus": 692,
+          "loadout": [
+            "M01",
+            "M10",
+            "M07"
+          ],
+          "equipment": {
+            "version": 1
+          },
+          "others": [
+            {
+              "id": "draft-pressure-0",
+              "x": 1936,
+              "y": 3784.0650406504064
+            },
+            {
+              "id": "draft-pressure-1",
+              "x": 3456,
+              "y": 2247.2
+            },
+            {
+              "id": "draft-pressure-2",
+              "x": 5872,
+              "y": 3694.8321167883214
+            },
+            {
+              "id": "a6-56-opening-1",
+              "x": 1512,
+              "y": 1136
+            },
+            {
+              "id": "a6-56-opening-2",
+              "x": 2545,
+              "y": 1136
+            }
+          ]
+        },
+        "flight": [
+          {
+            "x": 736,
+            "y": 900,
+            "vy": 0,
+            "gravity": {
+              "x": 0,
+              "y": -320
+            },
+            "grounded": true
+          },
+          {
+            "x": 736,
+            "y": 900,
+            "vy": 0,
+            "gravity": {
+              "x": 0,
+              "y": -320
+            },
+            "grounded": true
+          },
+          {
+            "x": 736,
+            "y": 900,
+            "vy": 0,
+            "gravity": {
+              "x": 0,
+              "y": -320
+            },
+            "grounded": true
+          },
+          {
+            "x": 736,
+            "y": 900,
+            "vy": 0,
+            "gravity": {
+              "x": 0,
+              "y": -320
+            },
+            "grounded": true
+          },
+          {
+            "x": 736,
+            "y": 900,
+            "vy": 0,
+            "gravity": {
+              "x": 0,
+              "y": -320
+            },
+            "grounded": true
+          },
+          {
+            "x": 736,
+            "y": 900,
+            "vy": 0,
+            "gravity": {
+              "x": 0,
+              "y": -320
+            },
+            "grounded": true
+          },
+          {
+            "x": 736,
+            "y": 900,
+            "vy": 0,
+            "gravity": {
+              "x": 0,
+              "y": -320
+            },
+            "grounded": true
+          },
+          {
+            "x": 736,
+            "y": 900,
+            "vy": 0,
+            "gravity": {
+              "x": 0,
+              "y": -320
+            },
+            "grounded": true
+          },
+          {
+            "x": 736,
+            "y": 900,
+            "vy": 0,
+            "gravity": {
+              "x": 0,
+              "y": -320
+            },
+            "grounded": true
+          },
+          {
+            "x": 736,
+            "y": 900,
+            "vy": 0,
+            "gravity": {
+              "x": 0,
+              "y": -320
+            },
+            "grounded": true
+          },
+          {
+            "x": 736,
+            "y": 900,
+            "vy": 0,
+            "gravity": {
+              "x": 0,
+              "y": -320
+            },
+            "grounded": true
+          },
+          {
+            "x": 746.0500000000001,
+            "y": 900,
+            "vy": 0,
+            "gravity": {
+              "x": 0,
+              "y": -320
+            },
+            "grounded": true
+          },
+          {
+            "x": 756.1000000000001,
+            "y": 900,
+            "vy": 0,
+            "gravity": {
+              "x": 0,
+              "y": -320
+            },
+            "grounded": true
+          },
+          {
+            "x": 766.1500000000002,
+            "y": 900,
+            "vy": 0,
+            "gravity": {
+              "x": 0,
+              "y": -320
+            },
+            "grounded": true
+          },
+          {
+            "x": 776.2000000000003,
+            "y": 900,
+            "vy": 0,
+            "gravity": {
+              "x": 0,
+              "y": -320
+            },
+            "grounded": true
+          },
+          {
+            "x": 786.2500000000003,
+            "y": 900,
+            "vy": 0,
+            "gravity": {
+              "x": 0,
+              "y": -320
+            },
+            "grounded": true
+          },
+          {
+            "x": 796.3000000000004,
+            "y": 900,
+            "vy": 0,
+            "gravity": {
+              "x": 0,
+              "y": -320
+            },
+            "grounded": true
+          },
+          {
+            "x": 806.3500000000005,
+            "y": 900,
+            "vy": 0,
+            "gravity": {
+              "x": 0,
+              "y": -320
+            },
+            "grounded": true
+          },
+          {
+            "x": 816.4000000000005,
+            "y": 900,
+            "vy": 0,
+            "gravity": {
+              "x": 0,
+              "y": -320
+            },
+            "grounded": true
+          },
+          {
+            "x": 826.4500000000006,
+            "y": 900,
+            "vy": 0,
+            "gravity": {
+              "x": 0,
+              "y": -320
+            },
+            "grounded": true
+          },
+          {
+            "x": 836.5000000000007,
+            "y": 900,
+            "vy": 0,
+            "gravity": {
+              "x": 0,
+              "y": -320
+            },
+            "grounded": true
+          },
+          {
+            "x": 856.6000000000008,
+            "y": 900,
+            "vy": 0,
+            "gravity": {
+              "x": 0,
+              "y": -320
+            },
+            "grounded": true
+          },
+          {
+            "x": 866.6500000000009,
+            "y": 900,
+            "vy": 0,
+            "gravity": {
+              "x": 0,
+              "y": -320
+            },
+            "grounded": true
+          },
+          {
+            "x": 876.700000000001,
+            "y": 900,
+            "vy": 0,
+            "gravity": {
+              "x": 0,
+              "y": -320
+            },
+            "grounded": true
+          },
+          {
+            "x": 913.5500000000012,
+            "y": 900,
+            "vy": 0,
+            "gravity": {
+              "x": 0,
+              "y": -320
+            },
+            "grounded": true
+          },
+          {
+            "x": 923.6000000000013,
+            "y": 900,
+            "vy": 0,
+            "gravity": {
+              "x": 0,
+              "y": -320
+            },
+            "grounded": true
+          },
+          {
+            "x": 928,
+            "y": 992.7997667104112,
+            "vy": 21.32400233296879,
+            "gravity": {
+              "x": 0,
+              "y": 320
+            },
+            "grounded": false
+          },
+          {
+            "x": 928,
+            "y": 996.2190572371744,
+            "vy": 50.60970702148674,
+            "gravity": {
+              "x": 0,
+              "y": 320
+            },
+            "grounded": false
+          },
+          {
+            "x": 928,
+            "y": 1001.0120804639453,
+            "vy": 74.54080306009001,
+            "gravity": {
+              "x": 0,
+              "y": 320
+            },
+            "grounded": false
+          },
+          {
+            "x": 928,
+            "y": 1003.00845692182,
+            "vy": 82.51185379456369,
+            "gravity": {
+              "x": 0,
+              "y": 320
+            },
+            "grounded": false
+          },
+          {
+            "x": 928,
+            "y": 1005.204059833141,
+            "vy": 90.47991575863938,
+            "gravity": {
+              "x": 0,
+              "y": 320
+            },
+            "grounded": false
+          },
+          {
+            "x": 928,
+            "y": 1007.5988144973264,
+            "vy": 98.44499007296588,
+            "gravity": {
+              "x": 0,
+              "y": 320
+            },
+            "grounded": false
+          },
+          {
+            "x": 928,
+            "y": 1012.9854804219997,
+            "vy": 114.36618023286576,
+            "gravity": {
+              "x": 0,
+              "y": 320
+            },
+            "grounded": false
+          },
+          {
+            "x": 928,
+            "y": 1015.9772424213282,
+            "vy": 122.32229831763644,
+            "gravity": {
+              "x": 0,
+              "y": 320
+            },
+            "grounded": false
+          },
+          {
+            "x": 928,
+            "y": 1019.1678576511816,
+            "vy": 130.2754332310528,
+            "gravity": {
+              "x": 0,
+              "y": 320
+            },
+            "grounded": false
+          },
+          {
+            "x": 928,
+            "y": 1026.1453495878577,
+            "vy": 146.17275801760098,
+            "gravity": {
+              "x": 0,
+              "y": 320
+            },
+            "grounded": false
+          },
+          {
+            "x": 928,
+            "y": 1029.9320772572587,
+            "vy": 154.1169501265736,
+            "gravity": {
+              "x": 0,
+              "y": 320
+            },
+            "grounded": false
+          },
+          {
+            "x": 928,
+            "y": 1033.917360082321,
+            "vy": 162.05816353587383,
+            "gravity": {
+              "x": 0,
+              "y": 320
+            },
+            "grounded": false
+          },
+          {
+            "x": 928,
+            "y": 1038.1011236141678,
+            "vy": 169.9963993623744,
+            "gravity": {
+              "x": 0,
+              "y": 320
+            },
+            "grounded": false
+          },
+          {
+            "x": 928,
+            "y": 1042.4832934318376,
+            "vy": 177.93165872252936,
+            "gravity": {
+              "x": 0,
+              "y": 320
+            },
+            "grounded": false
+          },
+          {
+            "x": 928,
+            "y": 1047.0637951422732,
+            "vy": 185.86394273237406,
+            "gravity": {
+              "x": 0,
+              "y": 320
+            },
+            "grounded": false
+          },
+          {
+            "x": 928,
+            "y": 1051.842554380311,
+            "vy": 193.79325250752538,
+            "gravity": {
+              "x": 0,
+              "y": 320
+            },
+            "grounded": false
+          },
+          {
+            "x": 928,
+            "y": 1056.8194968086711,
+            "vy": 201.71958916318195,
+            "gravity": {
+              "x": 0,
+              "y": 320
+            },
+            "grounded": false
+          },
+          {
+            "x": 928,
+            "y": 1061.9945481179468,
+            "vy": 209.64295381412418,
+            "gravity": {
+              "x": 0,
+              "y": 320
+            },
+            "grounded": false
+          },
+          {
+            "x": 928,
+            "y": 1067.3676340265934,
+            "vy": 217.56334757471458,
+            "gravity": {
+              "x": 0,
+              "y": 320
+            },
+            "grounded": false
+          },
+          {
+            "x": 928,
+            "y": 1072.938680280919,
+            "vy": 225.48077155889771,
+            "gravity": {
+              "x": 0,
+              "y": 320
+            },
+            "grounded": false
+          },
+          {
+            "x": 928,
+            "y": 1078.7076126550728,
+            "vy": 233.39522688020057,
+            "gravity": {
+              "x": 0,
+              "y": 320
+            },
+            "grounded": false
+          },
+          {
+            "x": 928,
+            "y": 1084.6743569510354,
+            "vy": 241.3067146517326,
+            "gravity": {
+              "x": 0,
+              "y": 320
+            },
+            "grounded": false
+          },
+          {
+            "x": 928,
+            "y": 1090.8388389986083,
+            "vy": 249.2152359861858,
+            "gravity": {
+              "x": 0,
+              "y": 320
+            },
+            "grounded": false
+          },
+          {
+            "x": 928,
+            "y": 1097.2009846554029,
+            "vy": 257.1207919958351,
+            "gravity": {
+              "x": 0,
+              "y": 320
+            },
+            "grounded": false
+          },
+          {
+            "x": 928,
+            "y": 1103.760719806831,
+            "vy": 265.02338379253825,
+            "gravity": {
+              "x": 0,
+              "y": 320
+            },
+            "grounded": false
+          },
+          {
+            "x": 928,
+            "y": 1110.517970366094,
+            "vy": 272.92301248773623,
+            "gravity": {
+              "x": 0,
+              "y": 320
+            },
+            "grounded": false
+          },
+          {
+            "x": 928,
+            "y": 1117.4726622741716,
+            "vy": 280.8196791924531,
+            "gravity": {
+              "x": 0,
+              "y": 320
+            },
+            "grounded": false
+          },
+          {
+            "x": 928,
+            "y": 1124.6247214998132,
+            "vy": 288.7133850172966,
+            "gravity": {
+              "x": 0,
+              "y": 320
+            },
+            "grounded": false
+          }
+        ]
+      }
+    },
+    "D": {
+      "stage": 58,
+      "label": "D",
+      "historicalSignedSource": "visual-atlas/capture-input-d.json",
+      "entryPoint": "normal rest/resume",
+      "currentRuntime": "b0f169aa",
+      "inputObserved": true,
+      "storeSHA256": "cd9320fa2d15a43f53096f1b91d392941ca64fa89df80174a94f8832095c234d",
+      "result": {
+        "enter": {
+          "stage": 58,
+          "active": "p-mage",
+          "phase": "aim",
+          "round": 1,
+          "side": 0,
+          "shot": 0,
+          "flags": {},
+          "notice": "",
+          "actors": [
+            {
+              "id": "p-mage",
+              "cls": "mage",
+              "side": 0,
+              "x": 2796.1269454892226,
+              "y": 3454.285725503129,
+              "vx": 0,
+              "vy": 0,
+              "hp": 1653.9,
+              "maxHp": 2050,
+              "shield": 0,
+              "r": 22,
+              "h": 92,
+              "ammo": null,
+              "loadout": [
+                "M01",
+                "M10",
+                "M07"
+              ],
+              "dead": false,
+              "actorsMoved": false,
+              "move": 3075,
+              "grounded": true,
+              "family": {
+                "x": 0,
+                "y": 320
+              },
+              "contact": "local-lower-08-body",
+              "normal": null
+            },
+            {
+              "id": "p-archer",
+              "cls": "archer",
+              "side": 0,
+              "x": 2642.4873589353174,
+              "y": 3479.961576914711,
+              "vx": 0,
+              "vy": 0,
+              "hp": 1720,
+              "maxHp": 1720,
+              "shield": 0,
+              "r": 22,
+              "h": 92,
+              "ammo": null,
+              "loadout": [
+                "A01",
+                "A14",
+                "A02",
+                "A05"
+              ],
+              "dead": false,
+              "actorsMoved": false,
+              "move": 2921,
+              "grounded": true,
+              "family": {
+                "x": 0,
+                "y": 320
+              },
+              "contact": "local-lower-08-body",
+              "normal": null
+            },
+            {
+              "id": "p-knight",
+              "cls": "knight",
+              "side": 0,
+              "x": 2896.5416349131865,
+              "y": 3425.1330737348812,
+              "vx": 0,
+              "vy": 0,
+              "hp": 3846,
+              "maxHp": 3846,
+              "shield": 0,
+              "r": 22,
+              "h": 92,
+              "ammo": null,
+              "loadout": [
+                "S00",
+                "S01",
+                "S03"
+              ],
+              "dead": false,
+              "actorsMoved": false,
+              "move": 4081,
+              "grounded": true,
+              "family": {
+                "x": 0,
+                "y": 320
+              },
+              "contact": "local-lower-08-body",
+              "normal": null
+            },
+            {
+              "id": "p-occultist",
+              "cls": "occultist",
+              "side": 0,
+              "x": 2984.966891671321,
+              "y": 3399.7237452367654,
+              "vx": 0,
+              "vy": 0,
+              "hp": 2304,
+              "maxHp": 2304,
+              "shield": 0,
+              "r": 22,
+              "h": 92,
+              "ammo": null,
+              "loadout": [
+                "O01",
+                "O04",
+                "O03",
+                "O06"
+              ],
+              "dead": false,
+              "actorsMoved": false,
+              "move": 3132,
+              "grounded": true,
+              "family": {
+                "x": 0,
+                "y": 320
+              },
+              "contact": "local-lower-08-body",
+              "normal": null
+            },
+            {
+              "id": "a6-58-opening-1",
+              "cls": "knight",
+              "side": 1,
+              "x": 3220,
+              "y": 3329.3793103448274,
+              "vx": 0,
+              "vy": 0,
+              "hp": 655,
+              "maxHp": 655,
+              "shield": 0,
+              "r": 32,
+              "h": 88,
+              "ammo": null,
+              "loadout": [
+                "HBM01"
+              ],
+              "dead": false,
+              "actorsMoved": false,
+              "move": 550,
+              "grounded": true,
+              "family": {
+                "x": 0,
+                "y": 320
+              },
+              "contact": "local-lower-08-body",
+              "normal": null
+            },
+            {
+              "id": "a6-58-opening-2",
+              "cls": "occultist",
+              "side": 1,
+              "x": 3580,
+              "y": 3072.4666666666667,
+              "vx": 0,
+              "vy": 0,
+              "hp": 595,
+              "maxHp": 595,
+              "shield": 0,
+              "r": 22,
+              "h": 115,
+              "ammo": null,
+              "loadout": [
+                "HSH01",
+                "HSH02"
+              ],
+              "dead": false,
+              "actorsMoved": false,
+              "move": 550,
+              "grounded": true,
+              "family": {
+                "x": 0,
+                "y": 320
+              },
+              "contact": "m58-west-stone-step",
+              "normal": null
+            },
+            {
+              "id": "a6-58-opening-3",
+              "cls": "knight",
+              "side": 1,
+              "x": 3910,
+              "y": 3361.657142857143,
+              "vx": 0,
+              "vy": 0,
+              "hp": 755,
+              "maxHp": 755,
+              "shield": 0,
+              "r": 38,
+              "h": 116,
+              "ammo": null,
+              "loadout": [
+                "HBM03"
+              ],
+              "dead": false,
+              "actorsMoved": false,
+              "move": 550,
+              "grounded": true,
+              "family": {
+                "x": 0,
+                "y": 320
+              },
+              "contact": "local-lower-08-body",
+              "normal": null
+            },
+            {
+              "id": "a6-58-opening-4",
+              "cls": "occultist",
+              "side": 1,
+              "x": 4625,
+              "y": 3149,
+              "vx": 0,
+              "vy": 0,
+              "hp": 595,
+              "maxHp": 595,
+              "shield": 0,
+              "r": 22,
+              "h": 115,
+              "ammo": null,
+              "loadout": [
+                "HSH01",
+                "HSH02"
+              ],
+              "dead": false,
+              "actorsMoved": false,
+              "move": 550,
+              "grounded": true,
+              "family": {
+                "x": 0,
+                "y": 320
+              },
+              "contact": "local-lower-08-body",
+              "normal": null
+            }
+          ],
+          "landmarks": [
+            {
+              "id": "art-mumyeongsa-hall-sill",
+              "x": 0,
+              "y": 0,
+              "visual": 7
+            },
+            {
+              "id": "art-m58-roof-rock-returns",
+              "x": 0,
+              "y": 0,
+              "visual": 11
+            },
+            {
+              "id": "art-m58-timber-hall-rear",
+              "x": 0,
+              "y": 0,
+              "visual": 40
+            },
+            {
+              "id": "art-m58-suspended-hall",
+              "x": 0,
+              "y": 0,
+              "visual": 42
+            },
+            {
+              "id": "art-m58-tile-eaves",
+              "x": 0,
+              "y": 0,
+              "visual": 10
+            },
+            {
+              "id": "art-m58-east-bedded-joint",
+              "x": 0,
+              "y": 0,
+              "visual": 10
+            }
+          ]
+        },
+        "before": {
+          "id": "p-mage",
+          "cls": "mage",
+          "side": 0,
+          "x": 2796.1269454892226,
+          "y": 3454.285725503129,
+          "vx": 0,
+          "vy": 0,
+          "hp": 1653.9,
+          "maxHp": 2050,
+          "shield": 0,
+          "r": 22,
+          "h": 92,
+          "ammo": null,
+          "loadout": [
+            "M01",
+            "M10",
+            "M07"
+          ],
+          "dead": false,
+          "actorsMoved": false,
+          "move": 3075,
+          "grounded": true,
+          "family": {
+            "x": 0,
+            "y": 320
+          },
+          "contact": "local-lower-08-body",
+          "normal": null
+        },
+        "after": {
+          "id": "p-mage",
+          "cls": "mage",
+          "side": 0,
+          "x": 2621.353325121981,
+          "y": 3475.4328553832815,
+          "vx": 0,
+          "vy": 0,
+          "hp": 1653.9,
+          "maxHp": 2050,
+          "shield": 0,
+          "r": 22,
+          "h": 92,
+          "ammo": null,
+          "loadout": [
+            "M01",
+            "M10",
+            "M07"
+          ],
+          "dead": false,
+          "actorsMoved": false,
+          "move": 2894.100000000005,
+          "grounded": true,
+          "family": {
+            "x": 0,
+            "y": 320
+          },
+          "contact": "local-lower-08-body",
+          "normal": null
+        }
+      }
+    },
+    "R": {
+      "stage": 59,
+      "label": "R",
+      "historicalSignedSource": "mobile-seams/captured-r-source.json",
+      "entryPoint": "normal rest/resume",
+      "currentRuntime": "b0f169aa",
+      "inputObserved": true,
+      "storeSHA256": "eaeb1fcbdfe385cedeebc3f4e8804ae25e89e5c2b1ba4c8796c9a5c34a5bbec7",
+      "result": {
+        "enter": {
+          "stage": 59,
+          "quiet": true,
+          "pending": true,
+          "round": 1,
+          "active": "p-archer",
+          "enemies": [],
+          "landmark": [
+            {
+              "fill": "#514c40",
+              "points": [
+                {
+                  "x": 3078,
+                  "y": 3387.1428571428573
+                },
+                {
+                  "x": 3132,
+                  "y": 3367.714285714286
+                },
+                {
+                  "x": 3208,
+                  "y": 3348
+                },
+                {
+                  "x": 3350,
+                  "y": 3270.655172413793
+                },
+                {
+                  "x": 3400,
+                  "y": 3239.0689655172414
+                },
+                {
+                  "x": 3410,
+                  "y": 3271.551724137931
+                },
+                {
+                  "x": 3314,
+                  "y": 3341.5172413793102
+                },
+                {
+                  "x": 3240,
+                  "y": 3370.344827586207
+                },
+                {
+                  "x": 3120,
+                  "y": 3429.1428571428573
+                }
+              ]
+            },
+            {
+              "fill": "#82775f",
+              "points": [
+                {
+                  "x": 3100,
+                  "y": 3391.8571428571427
+                },
+                {
+                  "x": 3190,
+                  "y": 3367.1428571428573
+                },
+                {
+                  "x": 3249,
+                  "y": 3345.3793103448274
+                },
+                {
+                  "x": 3217,
+                  "y": 3384.0344827586205
+                },
+                {
+                  "x": 3145,
+                  "y": 3400
+                }
+              ]
+            },
+            {
+              "fill": "#978865",
+              "points": [
+                {
+                  "x": 3108,
+                  "y": 3364.5714285714284
+                },
+                {
+                  "x": 3208,
+                  "y": 3336
+                },
+                {
+                  "x": 3260,
+                  "y": 3307.310344827586
+                },
+                {
+                  "x": 3350,
+                  "y": 3257.655172413793
+                },
+                {
+                  "x": 3400,
+                  "y": 3230.0689655172414
+                },
+                {
+                  "x": 3400,
+                  "y": 3252.0689655172414
+                },
+                {
+                  "x": 3350,
+                  "y": 3279.655172413793
+                },
+                {
+                  "x": 3260,
+                  "y": 3329.310344827586
+                },
+                {
+                  "x": 3208,
+                  "y": 3358
+                },
+                {
+                  "x": 3108,
+                  "y": 3386.5714285714284
+                }
+              ]
+            },
+            {
+              "fill": "#675848",
+              "points": [
+                {
+                  "x": 3129,
+                  "y": 3052.310344827586
+                },
+                {
+                  "x": 3181,
+                  "y": 3044.310344827586
+                },
+                {
+                  "x": 3181,
+                  "y": 3333.714285714286
+                },
+                {
+                  "x": 3131,
+                  "y": 3341
+                }
+              ]
+            },
+            {
+              "fill": "#75604c",
+              "points": [
+                {
+                  "x": 3331,
+                  "y": 2954.310344827586
+                },
+                {
+                  "x": 3375,
+                  "y": 2948.310344827586
+                },
+                {
+                  "x": 3376,
+                  "y": 3230.310344827586
+                },
+                {
+                  "x": 3327,
+                  "y": 3262.344827586207
+                }
+              ]
+            },
+            {
+              "fill": "#857058",
+              "points": [
+                {
+                  "x": 3134,
+                  "y": 3054.310344827586
+                },
+                {
+                  "x": 3147,
+                  "y": 3051.310344827586
+                },
+                {
+                  "x": 3146,
+                  "y": 3341
+                },
+                {
+                  "x": 3134,
+                  "y": 3341
+                }
+              ]
+            },
+            {
+              "fill": "#5b4d41",
+              "points": [
+                {
+                  "x": 3333,
+                  "y": 2959.310344827586
+                },
+                {
+                  "x": 3345,
+                  "y": 2955.310344827586
+                },
+                {
+                  "x": 3342,
+                  "y": 3262.344827586207
+                },
+                {
+                  "x": 3330,
+                  "y": 3262.344827586207
+                }
+              ]
+            },
+            {
+              "fill": "#4d3d36",
+              "points": [
+                {
+                  "x": 3097,
+                  "y": 3029.310344827586
+                },
+                {
+                  "x": 3264,
+                  "y": 2962.310344827586
+                },
+                {
+                  "x": 3403,
+                  "y": 2923.310344827586
+                },
+                {
+                  "x": 3450,
+                  "y": 2930.310344827586
+                },
+                {
+                  "x": 3427,
+                  "y": 2962.310344827586
+                },
+                {
+                  "x": 3268,
+                  "y": 3005.310344827586
+                },
+                {
+                  "x": 3110,
+                  "y": 3075.310344827586
+                }
+              ]
+            },
+            {
+              "fill": "#686054",
+              "points": [
+                {
+                  "x": 3078,
+                  "y": 3018.310344827586
+                },
+                {
+                  "x": 3240,
+                  "y": 2953.310344827586
+                },
+                {
+                  "x": 3404,
+                  "y": 2908.310344827586
+                },
+                {
+                  "x": 3458,
+                  "y": 2910.310344827586
+                },
+                {
+                  "x": 3441,
+                  "y": 2933.310344827586
+                },
+                {
+                  "x": 3252,
+                  "y": 2975.310344827586
+                },
+                {
+                  "x": 3097,
+                  "y": 3041.310344827586
+                }
+              ]
+            },
+            {
+              "fill": "#a08861",
+              "points": [
+                {
+                  "x": 3238,
+                  "y": 2968.310344827586
+                },
+                {
+                  "x": 3263,
+                  "y": 2959.310344827586
+                },
+                {
+                  "x": 3265,
+                  "y": 3003.310344827586
+                },
+                {
+                  "x": 3243,
+                  "y": 3008.310344827586
+                }
+              ]
+            },
+            {
+              "fill": "#a08861",
+              "points": [
+                {
+                  "x": 3253,
+                  "y": 3296.310344827586
+                },
+                {
+                  "x": 3260,
+                  "y": 3307.310344827586
+                },
+                {
+                  "x": 3280,
+                  "y": 3296.2758620689656
+                },
+                {
+                  "x": 3271,
+                  "y": 3285.2758620689656
+                }
+              ]
+            }
+          ],
+          "actors": [
+            {
+              "id": "p-archer",
+              "cls": "archer",
+              "x": 3067.0610148194514,
+              "y": 3376.268281480157,
+              "hp": 591.9000000000001,
+              "focus": 404,
+              "shield": 0,
+              "loadout": [
+                "A01",
+                "A14",
+                "A02",
+                "A05"
+              ],
+              "equipment": {
+                "version": 1
+              },
+              "grounded": true,
+              "valid": true,
+              "gravity": {
+                "x": 0,
+                "y": 320
+              },
+              "support": "m59-return-gate-stone"
+            },
+            {
+              "id": "p-knight",
+              "cls": "knight",
+              "x": 3138.783530834313,
+              "y": 3355.7761340473394,
+              "hp": 2798.1,
+              "focus": 477,
+              "shield": 0,
+              "loadout": [
+                "S00",
+                "S01",
+                "S03"
+              ],
+              "equipment": {
+                "version": 1
+              },
+              "grounded": true,
+              "valid": true,
+              "gravity": {
+                "x": 0,
+                "y": 320
+              },
+              "support": "m59-return-gate-stone"
+            },
+            {
+              "id": "p-occultist",
+              "cls": "occultist",
+              "x": 3007.762399782332,
+              "y": 3393.210742919334,
+              "hp": 886.3999999999999,
+              "focus": 751,
+              "shield": 0,
+              "loadout": [
+                "O01",
+                "O04",
+                "O03",
+                "O06"
+              ],
+              "equipment": {
+                "version": 1
+              },
+              "grounded": true,
+              "valid": true,
+              "gravity": {
+                "x": 0,
+                "y": 320
+              },
+              "support": "m59-return-gate-stone"
+            },
+            {
+              "id": "p-mage",
+              "cls": "mage",
+              "x": 3247.105966034877,
+              "y": 3314.4242946014474,
+              "hp": 734.0000000000002,
+              "focus": 724,
+              "shield": 0,
+              "loadout": [
+                "M01",
+                "M10",
+                "M07"
+              ],
+              "equipment": {
+                "version": 1
+              },
+              "grounded": true,
+              "valid": true,
+              "gravity": {
+                "x": 0,
+                "y": 320
+              },
+              "support": "m59-return-gate-stone"
+            }
+          ]
+        },
+        "crossed": [
+          {
+            "from": {
+              "id": "p-occultist",
+              "cls": "occultist",
+              "x": 3007.762399782332,
+              "y": 3393.210742919334,
+              "hp": 886.3999999999999,
+              "focus": 751,
+              "shield": 0,
+              "loadout": [
+                "O01",
+                "O04",
+                "O03",
+                "O06"
+              ],
+              "equipment": {
+                "version": 1
+              },
+              "grounded": true,
+              "valid": true,
+              "gravity": {
+                "x": 0,
+                "y": 320
+              },
+              "support": "m59-return-gate-stone"
+            },
+            "to": {
+              "id": "p-occultist",
+              "cls": "occultist",
+              "side": 0,
+              "x": 2887.8134938507933,
+              "y": 3427.66705017235,
+              "vx": 0,
+              "vy": 0,
+              "hp": 886.3999999999999,
+              "maxHp": 2304,
+              "shield": 0,
+              "r": 22,
+              "h": 92,
+              "ammo": null,
+              "loadout": [
+                "O01",
+                "O04",
+                "O03",
+                "O06"
+              ],
+              "dead": false,
+              "actorsMoved": false,
+              "move": 3132,
+              "grounded": true,
+              "family": {
+                "x": 0,
+                "y": 320
+              },
+              "contact": "m59-return-gate-stone",
+              "normal": null
+            }
+          },
+          {
+            "from": {
+              "id": "p-archer",
+              "cls": "archer",
+              "x": 3067.0610148194514,
+              "y": 3376.268281480157,
+              "hp": 591.9000000000001,
+              "focus": 404,
+              "shield": 0,
+              "loadout": [
+                "A01",
+                "A14",
+                "A02",
+                "A05"
+              ],
+              "equipment": {
+                "version": 1
+              },
+              "grounded": true,
+              "valid": true,
+              "gravity": {
+                "x": 0,
+                "y": 320
+              },
+              "support": "m59-return-gate-stone"
+            },
+            "to": {
+              "id": "p-archer",
+              "cls": "archer",
+              "side": 0,
+              "x": 2886.6256965373277,
+              "y": 3428.011894553679,
+              "vx": 0,
+              "vy": 0,
+              "hp": 591.9000000000001,
+              "maxHp": 1720,
+              "shield": 0,
+              "r": 22,
+              "h": 92,
+              "ammo": null,
+              "loadout": [
+                "A01",
+                "A14",
+                "A02",
+                "A05"
+              ],
+              "dead": false,
+              "actorsMoved": false,
+              "move": 2921,
+              "grounded": true,
+              "family": {
+                "x": 0,
+                "y": 320
+              },
+              "contact": "m59-return-gate-stone",
+              "normal": null
+            }
+          },
+          {
+            "from": {
+              "id": "p-knight",
+              "cls": "knight",
+              "x": 3138.783530834313,
+              "y": 3355.7761340473394,
+              "hp": 2798.1,
+              "focus": 477,
+              "shield": 0,
+              "loadout": [
+                "S00",
+                "S01",
+                "S03"
+              ],
+              "equipment": {
+                "version": 1
+              },
+              "grounded": true,
+              "valid": true,
+              "gravity": {
+                "x": 0,
+                "y": 320
+              },
+              "support": "m59-return-gate-stone"
+            },
+            "to": {
+              "id": "p-knight",
+              "cls": "knight",
+              "side": 0,
+              "x": 2889.7956802744566,
+              "y": 3427.0915766945127,
+              "vx": 0,
+              "vy": 0,
+              "hp": 2798.1,
+              "maxHp": 3846,
+              "shield": 0,
+              "r": 22,
+              "h": 92,
+              "ammo": null,
+              "loadout": [
+                "S00",
+                "S01",
+                "S03"
+              ],
+              "dead": false,
+              "actorsMoved": false,
+              "move": 4081,
+              "grounded": true,
+              "family": {
+                "x": 0,
+                "y": 320
+              },
+              "contact": "m59-return-gate-stone",
+              "normal": null
+            }
+          },
+          {
+            "from": {
+              "id": "p-mage",
+              "cls": "mage",
+              "x": 3247.105966034877,
+              "y": 3314.4242946014474,
+              "hp": 734.0000000000002,
+              "focus": 724,
+              "shield": 0,
+              "loadout": [
+                "M01",
+                "M10",
+                "M07"
+              ],
+              "equipment": {
+                "version": 1
+              },
+              "grounded": true,
+              "valid": true,
+              "gravity": {
+                "x": 0,
+                "y": 320
+              },
+              "support": "m59-return-gate-stone"
+            },
+            "to": {
+              "id": "p-mage",
+              "cls": "mage",
+              "side": 0,
+              "x": 5907.458563535912,
+              "y": 2378.056253139126,
+              "vx": 0,
+              "vy": 0,
+              "hp": 734.0000000000002,
+              "maxHp": 2050,
+              "shield": 0,
+              "r": 22,
+              "h": 92,
+              "ammo": null,
+              "loadout": [
+                "M01",
+                "M10",
+                "M07"
+              ],
+              "dead": false,
+              "actorsMoved": false,
+              "move": 3075,
+              "grounded": true,
+              "family": {
+                "x": 0,
+                "y": 320
+              },
+              "contact": "finale-cutout-near-body",
+              "normal": null
+            }
+          }
+        ],
+        "after": {
+          "stage": 59,
+          "quiet": false,
+          "pending": false,
+          "round": 1,
+          "active": "p-mage",
+          "enemies": [
+            "qa-immediate-bridge-threat",
+            "finale-first-west-ledge",
+            "finale-first-west-talus",
+            "finale-first-west-bank",
+            "finale-first-west-turn",
+            "finale-first-bridge-foot",
+            "finale-first-east-bell",
+            "finale-first-east-bend",
+            "finale-first-east-stone",
+            "finale-first-east-ward"
+          ],
+          "landmark": null,
+          "actors": [
+            {
+              "id": "p-archer",
+              "cls": "archer",
+              "x": 1404.1436464088397,
+              "y": 1452.259315857529,
+              "hp": 591.9000000000001,
+              "focus": 404,
+              "shield": 0,
+              "loadout": [
+                "A01",
+                "A14",
+                "A02",
+                "A05"
+              ],
+              "equipment": {
+                "version": 1
+              },
+              "grounded": true,
+              "valid": true,
+              "gravity": {
+                "x": 0,
+                "y": 320
+              },
+              "support": "finale-cutout-west-terrace"
+            },
+            {
+              "id": "p-knight",
+              "cls": "knight",
+              "x": 3041.71270718232,
+              "y": 2891.4450237335614,
+              "hp": 2798.1,
+              "focus": 477,
+              "shield": 0,
+              "loadout": [
+                "S00",
+                "S01",
+                "S03"
+              ],
+              "equipment": {
+                "version": 1
+              },
+              "grounded": true,
+              "valid": true,
+              "gravity": {
+                "x": 0,
+                "y": 320
+              },
+              "support": "finale-cutout-near-body"
+            },
+            {
+              "id": "p-occultist",
+              "cls": "occultist",
+              "x": 5458.563535911602,
+              "y": 2493.635514745934,
+              "hp": 886.3999999999999,
+              "focus": 751,
+              "shield": 0,
+              "loadout": [
+                "O01",
+                "O04",
+                "O03",
+                "O06"
+              ],
+              "equipment": {
+                "version": 1
+              },
+              "grounded": true,
+              "valid": true,
+              "gravity": {
+                "x": 0,
+                "y": 320
+              },
+              "support": "finale-cutout-near-body"
+            },
+            {
+              "id": "p-mage",
+              "cls": "mage",
+              "x": 5907.458563535912,
+              "y": 2378.056253139126,
+              "hp": 734.0000000000002,
+              "focus": 724,
+              "shield": 0,
+              "loadout": [
+                "M01",
+                "M10",
+                "M07"
+              ],
+              "equipment": {
+                "version": 1
+              },
+              "grounded": true,
+              "valid": true,
+              "gravity": {
+                "x": 0,
+                "y": 320
+              },
+              "support": "finale-cutout-near-body"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "chartDiagnostic": {
+    "L": {
+      "fixture": {
+        "x": 550,
+        "y": 2684.7272727272725,
+        "id": "foothill",
+        "width": 3200,
+        "height": 3000
+      },
+      "foot": {
+        "id": "p-mage",
+        "cls": "mage",
+        "side": 0,
+        "level": 25,
+        "hp": 1708.9,
+        "maxHp": 2050,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "pos": [
+          2638.73,
+          2780.86
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "foothill",
+        "fixed": false,
+        "objective": false,
+        "role": "mage",
+        "summoned": false,
+        "ally": false
+      },
+      "gravity": {
+        "x": 0,
+        "y": 320
+      }
+    },
+    "C": {
+      "fixture": {
+        "x": 2359,
+        "y": 2930,
+        "id": "mid-contact",
+        "width": 3000,
+        "height": 3200
+      },
+      "foot": {
+        "id": "p-mage",
+        "cls": "mage",
+        "side": 0,
+        "level": 25,
+        "hp": 1708.9,
+        "maxHp": 2050,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "pos": [
+          2884,
+          708.96
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "mid-contact",
+        "fixed": false,
+        "objective": false,
+        "role": "mage",
+        "summoned": false,
+        "ally": false
+      },
+      "gravity": {
+        "x": 0,
+        "y": 320
+      }
+    },
+    "return-L": {
+      "fixture": {
+        "x": 2884,
+        "y": 708.96,
+        "id": "mid-contact",
+        "width": 3200,
+        "height": 3000
+      },
+      "foot": {
+        "id": "p-mage",
+        "cls": "mage",
+        "side": 0,
+        "level": 25,
+        "hp": 1708.9,
+        "maxHp": 2050,
+        "loadout": [
+          "M01",
+          "M10",
+          "M07"
+        ],
+        "pos": [
+          2337.04,
+          2930
+        ],
+        "h": 92,
+        "r": 22,
+        "awake": true,
+        "dead": false,
+        "airborne": false,
+        "grounded": true,
+        "validContact": true,
+        "support": "mid-contact",
+        "fixed": false,
+        "objective": false,
+        "role": "mage",
+        "summoned": false,
+        "ally": false
+      },
+      "gravity": {
+        "x": 0,
+        "y": 320
+      }
+    }
+  }
+}

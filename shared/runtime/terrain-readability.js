@@ -26,7 +26,7 @@ const hiddenCampaignInk={
    'b-dummy-east':[[3538,3847,375,982]],'b-dummy-south':[[3308,3847,862,1142]],
   },
   54:{
-   foothill:[[3259,3511,1410,3345],[1410,3345,-311,-59],[-311,-59,-345,1590]],
+   foothill:[[-251,-249,2918,3232],[-251,-128,3229,3253],[3259,3511,1410,3345],[1410,3345,-311,-59],[-311,-59,-345,1590]],
    'east-spine':[[3480,3585,996,2110],[996,2110,-385,-280],[-385,-280,890,2004]],
    'b-inner-jamb':[[3538,3542,375,867]],
    'b-dummy-east':[[3538,3847,375,982]],'b-dummy-south':[[3308,3847,862,1142]],
@@ -108,8 +108,18 @@ function prepare(b){const ts=G.HonroTerrainDomain?.render(b)||b.terrain||[],prio
  }
  const q={source:ts,version:b.sceneVersion,groups,builds:(prior?.builds||0)+1};cache.set(b,q);return q;
 }
+// The bell site's authored vector deck shows each traversable lip already.
+const bell55PaintedEdges=new Set(['west-ring-descent','arrival-core-terrace','right-return-rise',
+ 'east-upper-end','west-lower-branch','east-lower-branch']);
+function bell55OwnsReadability(b){
+ return b?.mode==='campaign'&&b.honroStage===55&&b.honroCanonical===true&&b.honroCustom===false&&
+  b.honroMapOrigin==='campaign'&&b.honroAuthoredId==='stage-55'&&b.honroLandmarks?.some(l=>
+   l.id==='ch05-v2-local-native-art'&&l.asset?.id===l.id&&l.x===0&&l.y===0&&l.scale===1&&
+   l.rotation===0&&l.collisionIds?.length===0&&l.asset.visual?.length>0);
+}
 S.terrainReadability=function(c,b,view){const q=prepare(b),raster=this._staticCacheBuild?this._worldRasterScale(b,this.canvas.clientWidth):this.scale,unit=1/Math.max(.05,raster);
- c.save();c.lineJoin='round';c.lineCap='butt';for(const group of q.groups){const authoredTerrain=b.terrain?.find(t=>t.id===group.id);if(authoredTerrain&&G.HonroAct4PilotArt?.movingDeckCovered?.(authoredTerrain,b))continue;if(authoredTerrain&&b.honroMap?.nativeArt?.authoredWalkRim===true&&G.HonroAct4PilotArt?.covered(authoredTerrain,b))continue;if(G.HonroStage5PositioningArt?.omitReadability(group,b)||G.HonroStage2LayeredRoadArt?.omitReadability(group,b)||G.HonroStage18BellArt?.omitReadability(group,b)||G.HonroStage30FerryArt?.omitReadability(group,b)||G.HonroStage12QuarryArt?.omitReadability(group,b)||G.HonroStage23EscortArt?.omitReadability(group,b)||G.HonroStage8BierArt?.omitReadability(group,b))continue;const box=group.bounds;if(view&&(box.right<view.left-8*unit||box.left>view.right+8*unit||box.bottom<view.top-8*unit||box.top>view.bottom+8*unit))continue;
+ const bell=bell55OwnsReadability(b);
+ c.save();c.lineJoin='round';c.lineCap='butt';for(const group of q.groups){if(bell&&bell55PaintedEdges.has(group.id))continue;const authoredTerrain=b.terrain?.find(t=>t.id===group.id);if(authoredTerrain&&G.HonroAct4PilotArt?.movingDeckCovered?.(authoredTerrain,b))continue;if(authoredTerrain&&b.honroMap?.nativeArt?.authoredWalkRim===true&&G.HonroAct4PilotArt?.covered(authoredTerrain,b))continue;if(G.HonroStage5PositioningArt?.omitReadability(group,b)||G.HonroStage2LayeredRoadArt?.omitReadability(group,b)||G.HonroStage18BellArt?.omitReadability(group,b)||G.HonroStage30FerryArt?.omitReadability(group,b)||G.HonroStage12QuarryArt?.omitReadability(group,b)||G.HonroStage23EscortArt?.omitReadability(group,b)||G.HonroStage8BierArt?.omitReadability(group,b))continue;const box=group.bounds;if(view&&(box.right<view.left-8*unit||box.left>view.right+8*unit||box.bottom<view.top-8*unit||box.top>view.bottom+8*unit))continue;
   c.strokeStyle=STYLE.edgeInk;c.lineWidth=STYLE.edgePixels*unit;c.stroke(group.edge);
   c.lineWidth=STYLE.topInkPixels*unit;c.stroke(group.top);
   c.strokeStyle=group.wood?STYLE.woodLight:STYLE.topLight;c.lineWidth=STYLE.topLightPixels*unit;c.stroke(group.top);
