@@ -133,18 +133,18 @@
           ['소단','그럴게요. 담허님 쪽에서도 당길 수 있게 이번엔 너무 단단히 조이지 않을게요.']
         ]
       });
-      function canPrep55(a,s){
+      function canPrep55(a,s,goal){
         const e=a.engine,b=e?.b;
         return !!b&&scope55(a,e,s)&&!a.done&&b.round===1&&b.side===0&&b.phase==='aim'&&!b.shot&&!b.volley&&!b.projectiles?.length&&
           ['archer','knight'].every(role=>b.units.some(u=>u.side===0&&!u.summoned&&u.cls===role&&u.hp>0&&!u.dead&&!u.acted&&
             u.x===u.spawnX&&u.y===u.spawnY&&u.moveLeft===u.maxMove&&e.grounded(u)))&&
-          s.owner55.project(a,e)?.targets?.[0]?.id==='reach-bell';
+          (goal??s.owner55.project(a,e))?.targets?.[0]?.id==='reach-bell';
       }
       function tick55(a){
         const s=active.get(a),e=a.engine;
         if(e?.b.honroStage!==55||!s?.owner55)return;
         const r=s.owner55.project(a,e);if(!r)return;
-        if(s.prep55)s.prep55.hidden=!canPrep55(a,s);
+        if(s.prep55)s.prep55.hidden=!canPrep55(a,s,r);
         if(s.button){s.button.textContent=r.summary;s.button.disabled=r.complete||r.failed;s.button.dataset.act6Binding=r.binding;s.button.dataset.act6Mark=r.targets?.[0]?.id??'';}
         if(s.support55){const reason=s.seated55.unavailableReason();
           s.support55.disabled=!!reason||r.complete||r.failed;

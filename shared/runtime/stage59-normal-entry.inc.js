@@ -58,7 +58,7 @@
           }
         }
         const old={profile:a.profile,stage:a.stage,stageId:a.stageId,training:a.training,selectedByUnit:a.selectedByUnit,done:a.done};
-        const s={old,b,packet,previous,terminal:null,ordinaryRest:true,normal51:true,prepared59:prepared,source59:source};
+        const s={old,b,packet,previous,terminal:null,ordinaryRest:true,normal51:true,prepared59:prepared,source59:source,retryDraft59:retryDraft};
         a.close();active.set(a,s);Object.assign(a,{stageId:59,stage:content,training:false,selectedByUnit:{}});
         try{
           a.mount(b,{freshReport:true,reportScope:'custom'});
@@ -194,7 +194,7 @@
           const owns=()=>failedNormal59(a,s)&&!a.dialogue;
           if(!owns()||a.modal.classList.contains('open'))return;
           const actors=Object.values(s.previous.boundary.full);
-          fieldPrepForm(a,{actors,
+          fieldPrepForm(a,{actors,draft:s.retryDraft59,
             context:'마지막 마당에 처음 들어섰을 때의 네 사람을 정비합니다. 쓰러진 뒤의 몸이나 장비를 가져오지 않습니다.',
             isCurrent:owns,submit:(draft,changes)=>{
               if(!retryBoundary59(a,changes.length?draft:null))a.notify('마지막 마당의 입장 기록을 확인할 수 없습니다.');
@@ -204,7 +204,7 @@
         s.retry59=latePrepButton(ui,59,controls,'정비하고 다시 걷기');
         const button=document.createElement('button');button.type='button';button.textContent='그대로 다시 걷기';styleAction(button);ui.append(button);
         button.addEventListener('click',event=>{
-          if(event.isTrusted&&failedNormal59(a,s)&&!a.dialogue&&!a.modal.classList.contains('open')&&!retryBoundary59(a,null))
+          if(event.isTrusted&&failedNormal59(a,s)&&!a.dialogue&&!a.modal.classList.contains('open')&&!retryBoundary59(a,s.retryDraft59))
             a.notify('마지막 마당의 입장 기록을 확인할 수 없습니다.');
         });
       }

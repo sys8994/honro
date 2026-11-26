@@ -32,3 +32,6 @@ body:has(#modal.open .equipment-dialog) :is(#notice,#equipment-acquired){visibil
 .equipment-inventory .equipment-detail{display:flex;flex-direction:column;max-height:calc(100dvh - 90px);overflow:hidden}.equipment-detail-head,.equipment-detail-actions{flex:none}.equipment-detail-copy{min-height:0;overflow-y:auto;overscroll-behavior:contain}.equipment-detail-head{padding-right:6px}
 
 .equipment-inventory .equipment-detail-actions{align-self:stretch}
+
+/* Keep optional field preparation readable over turn and defeat notices. */
+body:has(#modal.open .act6-threshold-prep) :is(#turn-banner,#notice){visibility:hidden}
