@@ -1,3 +1,4 @@
+import json
 from browser_support import launch,ROOT
 from playwright.sync_api import sync_playwright
 from urllib.parse import urlparse,unquote
@@ -29,6 +30,39 @@ with sync_playwright() as pw:
   page.locator('#dialogue-root [data-action="dialogue-skip"]').click(timeout=5000)
   page.wait_for_function('!HonroApp.dialogue',timeout=6000)
   assert page.evaluate('HonroApp.engine.b.phase')=='aim'
+  if id==52:
+   marks=json.loads((ROOT/'shared/data/act6-qa/first-two.json').read_text())['rows']['52']['mission']['marks']
+   button=page.locator('[data-act6-qa-lookout]')
+   def position(index,target=None):
+    return page.evaluate("""({mark,target})=>{
+     const a=HonroApp,e=a.engine,b=e.b,C=HONRO_CORE,
+      u=b.units.find(v=>v.side===0&&v.cls===mark.cls),
+      t=b.terrain.find(v=>v.id===mark.support);
+      const at=()=>{Object.assign(b,{side:0,phase:'aim',active:u.id,projectiles:[]});Object.assign(u,{x:mark.x,y:C.topAt(t,mark.x),vx:0,vy:0,airborne:false,jumping:false,acted:false,moveLeft:u.maxMove,moving:0});};
+      at();
+      if(target==='stone'){
+       const stone=e.unit('cliff-stone');
+       for(let i=0;i<7&&!stone.dead;i++){
+        at();u.focus=u.maxFocus;u.facing=1;
+        if(!e.fire('A01',75,.55))throw Error('shot not admitted');
+        const p=b.projectiles.find(v=>v.owner===u.id&&v.skill==='A01');
+        Object.assign(p,{x:stone.x,y:stone.y-stone.h*.65-28,vx:0,vy:650});
+        for(let j=0;j<25&&b.projectiles.includes(p);j++)e.stepProjectile(p,1/120);
+       }if(!stone.dead)throw Error('stone not down');
+      }
+      if(target==='keeper'){const k=e.unit(mark.afterEnemy);e.hurt(k,1000000,null,false,undefined,undefined,'environment');if(!k.dead)throw Error('keeper not down');}
+      at();a.updateHUD(true);return e.grounded(u);
+    }""",{'mark':marks[index],'target':target})
+   assert position(0)
+   button.click();assert not page.evaluate('HonroApp.dialogue')
+   for i,target,word in [(0,'stone','맞혔습니다'),(1,'keeper','석교 쪽은 비웠소'),(2,None,'묶었어요')]:
+    assert position(i,target)
+    button.click()
+    assert word in page.locator('#dialogue-root').inner_text()
+    page.locator('#dialogue-root [data-action="dialogue-skip"]').click()
+    assert not page.evaluate('HonroApp.dialogue')
+   assert not page.evaluate('HonroApp.done')
+   print('VERIFIED CLIFF → BRIDGE → BELL; INVALID CLIFF NO DIALOGUE',flush=True)
   print('ENTRY AND SKIP',id,flush=True)
   page.reload(wait_until='domcontentloaded')
   page.wait_for_function('!!window.HonroApp',timeout=90000)

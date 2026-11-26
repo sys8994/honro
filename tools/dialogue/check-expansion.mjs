@@ -71,6 +71,11 @@ if(opens.includes('const opening51and52')){
   for(const r of m[2].matchAll(/\['([^']+)','([^']+)'\]/g))row(Number(m[1]),r[1],r[2],newRows);
  }
 }
+if(opens.includes('const field52Dialogue=Object.freeze({')){
+ const block=opens.split('const field52Dialogue=Object.freeze({')[1].split('});')[0];
+ assert(text('shared/act6-app-qa.mjs').includes('if(s.normal51)show52FieldDialogue(app,s,id);'));
+ for(const r of block.matchAll(/\['([^']+)','([^']+)'\]/g))row(52,r[1],r[2],newRows);
+}
 const before=unique(baseRows),now=unique(newRows),isInAct=(n,i)=>Math.ceil(n/10)===i+1;
 const report=released.map((baseline,i)=>{
  const added=[...now].filter(([key,r])=>!before.has(key)&&isInAct(r.n,i)).map(([,r])=>r);

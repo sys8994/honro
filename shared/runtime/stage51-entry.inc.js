@@ -26,6 +26,36 @@
         return G.HonroStory.start(app,rows.map(([who,line],i)=>[who,line,{kind:'character',storyId:dlg,rowId:dlg+'-'+i}]),
           {id:dlg,title:app.stage.name});
       }
+      const field52Dialogue=Object.freeze({
+        cliff:[
+          ['설오','맞혔습니다. 위로 올라와서 보니 지지석 뒤로 석교가 보입니다.'],
+          ['휘겸','다리까지 길이 보이오? 짐을 내려놓고 뛰어야 할 데가 있는지 먼저 봐 주시오.'],
+          ['설오','저한테선 다리 위만 보입니다. 교각 아래는 안 보이니 내려가실 땐 조심하십시오.'],
+          ['휘겸','그럼 나는 아래를 보겠소. 종터 쪽엔 아직 아무도 보내지 마시오.'],
+          ['소단','여기 있을게요. 종터에 가기 전까진 함부로 매듭을 잡지 않을게요.']
+        ],
+        bridge:[
+          ['휘겸','석교 쪽은 비웠소. 건너는 사람은 나를 보고 오시오.'],
+          ['소단','휘겸 씨, 제가 건너갈 때까지 거기서 한 번만 더 불러 주세요.'],
+          ['휘겸','내가 서 있는 쪽으로 건너와요. 조급해하지 마시오.'],
+          ['설오','저는 절벽 쪽에서 더 오는 것이 없는지 보겠습니다. 종터에 닿으면 알려 주십시오.'],
+          ['담허','먼저 가게. 돌아올 때도 이 다리를 쓸 수 있는지 내가 마지막으로 보겠네.']
+        ],
+        bell:[
+          ['소단','묶었어요. 손을 떼면 풀릴지 모르니까, 일단 여기 계속 있을게요.'],
+          ['담허','내가 닿을 때까진 당기지 말게. 안쪽에서도 누가 잡아당기는지 모를 일이네.'],
+          ['소단','급하게 당기지 않을게요. 다만 안에서 너무 멀어지면, 제가 먼저 부를 거예요.'],
+          ['휘겸','아직 들어가지 마시오. 사람부터 세고, 종터에 다 모인 뒤에 하시오.'],
+          ['설오','남은 분을 제가 봐 오겠습니다. 무슨 소리가 들려도 절 안에 먼저 들어가진 마십시오.']
+        ]
+      });
+      function show52FieldDialogue(app,state,id){
+        const rows=field52Dialogue[id],e=state.engine,b=e?.b;
+        if(!rows||app.engine!==e||b?.honroStage!==52||b.phase!=='aim'||app.done||app.dialogue)return false;
+        const dlg='act6-field-52-'+id;
+        return G.HonroStory.start(app,rows.map(([who,line],i)=>[who,line,{kind:'character',storyId:dlg,rowId:dlg+'-'+i}]),
+          {id:dlg,title:app.stage.name});
+      }
       function enterNormal51(app,grant,carried){
         const m=grant.packet.map,d=grant.packet.mission;
         check(carried.profile===app.profile&&app.profile===app.normalProfile&&!app.engine,'Normal Stage51 rest changed');

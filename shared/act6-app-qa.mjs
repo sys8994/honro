@@ -62,6 +62,8 @@ export async function createAct6WebQa(project,repoRoot,env=process.env,release=n
   const normal=await readFile(new URL('./runtime/stage51-entry.inc.js',import.meta.url),'utf8');
   const outsideEncounters=(await readFile(new URL('./act6-mumyeongsa/exterior-encounters.mjs',import.meta.url),'utf8')).replace(/^export /gm,'');
   source=replaceOne(source,'      function enter(app,id,ticket){',outsideEncounters+'\n'+normal+'\n      function enter(app,id,ticket){');
+  source=replaceOne(source,'          e.checkEnd();app.updateHUD(true);',
+    '          e.checkEnd();app.updateHUD(true);if(s.normal51)show52FieldDialogue(app,s,id);');
   source=replaceOne(source,'try{return enter(app,51,null);}finally{restGrants.delete(app);}', 'try{return enterNormal51(app,grant,carried);}finally{restGrants.delete(app);}');
   source=replaceOne(source,'        permits.delete(app);\n        const {packet,compiled,known}=grant','        permits.delete(app);\n        if(id===52&&active.get(app)?.normal51===true)return enterNormal52(app,grant,active.get(app));\n        const {packet,compiled,known}=grant');
   source=replaceOne(source,'terminal?.stage===51&&!s.ordinaryRest','terminal?.stage===51&&(!s.ordinaryRest||s.normal51===true)');
