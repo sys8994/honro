@@ -195,14 +195,16 @@ export function installExteriorEncounters(app,e,paused=()=>false,admit=()=>true,
    refresh();lastX=u.x;lastY=u.y;lastRound=b.round;
   }
   if(b.projectiles.length||e.settleBusy()||!e.grounded(u))return;
-  const pulse=siege.find(({wave,next})=>next<wave.units.length&&b.round>=wave.round);
-  if(pulse&&siegeOpen?.()){
+  // A blocked lip must not starve the other flank. At most one siege unit
+  // enters per tick, and a deferred squad retains its place within its flank.
+  if(siege.length&&siegeOpen?.())for(const pulse of siege){
+   if(pulse.next>=pulse.wave.units.length||b.round<pulse.wave.round)continue;
    if(pulse.warning===null){
     pulse.warning=clock;pulse.availableAt=clock+.85;app.notify(pulse.wave.label);
    }else if(clock>=pulse.availableAt&&eligible.size<plan.active&&
             [...siegeIssued].filter(alive).length<plan.siegeAlive&&
             spawn(pulse.wave.units[pulse.next],pulse.wave.id,pulse.next,true)){
-    pulse.next++;pulse.availableAt=clock+.35;refresh();
+    pulse.next++;pulse.availableAt=clock+.35;refresh();break;
    }
   }
   for(const marker of markers){

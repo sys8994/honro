@@ -743,7 +743,7 @@ async function test60(incoming){
  stateChecks[60]={attackers:enemies(b).length,shots:b.shot,souls:ready.souls,memorial:seal.names,
   receipt:JSON.parse(finale).honroEndingReceipt,ordinaryProfileUnchanged:true,title:app.screen};
 }
-async function testBellSiege(){
+async function testBellSiege(blocked=false){
  const p=await pack(55),c=compiled(p),profile=rawProfile(55),prior=previous(55);
  const units=[
   ...p.slots.map(([cls,x,y])=>C.makeUnit(cls,0,x,y,{...prior.external[cls],x,y,acted:false,airborne:false})),
@@ -764,6 +764,14 @@ async function testBellSiege(){
   // Advance real encounter clock after a settled approach; no simulated damage or impact to trigger waves.
   for(let i=0;i<150;i++)exterior.tick(1/60);
  };
+ if(blocked){
+  foot(e,players(b).find(u=>u.cls==='archer'),771,'west-ring-descent');
+  drive(2,550,'west-ring-descent');assert.equal(issued().length,0,'both west seats are occupied');
+  drive(4,2500,support);
+  assert.equal(issued().length,2,'a blocked west approach cannot starve the east attack');
+  assert(issued().every(u=>u.honroSpawnSource==='bell-siege-lip'&&e.grounded(u)));
+  return;
+ }
  drive(1,550,'west-ring-descent');assert.equal(issued().length,0);
  drive(2,550,'west-ring-descent');assert.equal(issued().length,2);
  assert(issued().every(u=>u.honroEncounterSupport==='west-ring-descent'&&u.facing===1&&u.awake&&e.grounded(u)));
@@ -874,6 +882,7 @@ async function auditRosters(){
 }
 const run=async(name,fn)=>{try{await fn();console.log('PASS',name);}catch(error){console.error('FAIL',name,error.stack);process.exitCode=1;}};
 await run('55 repeating two-front siege and objective cutoff',testBellSiege);
+await run('55 independently admits the east wave when west seats are blocked',()=>testBellSiege(true));
 await run('58 exact admission, three phases, counterplay, loss and R',test58);
 let winner59;
 await run('59 both grounds, real contact, guard, final threat and loss',async()=>{winner59=await test59('guard');});
