@@ -4,6 +4,46 @@
 const S=G.HonroScene.prototype,C=G.HONRO_CORE;
 const path=d=>new Path2D(d),paint=(c,p,fill,stroke='#151d21',width=2)=>{if(fill){c.fillStyle=fill;c.fill(p);}if(stroke){c.strokeStyle=stroke;c.lineWidth=width;c.lineJoin='round';c.stroke(p);}};
 const paths={
+ // Stage-specific material faces, anchored to the part that already moves.
+ cartWoodFaces:path('M-43 -56 L-35 -55 -31 -46 -5 -43 -2 -36 -30 -38 -26 -26 -33 -25Z M11 -54 L17 -53 13 -45 31 -43 28 -36 16 -38 11 -29 5 -28Z'),
+ cartLoadFaces:path('M-42 -66 L-31 -79 -19 -75 -26 -72 -29 -65 -19 -63 -27 -61Z M-17 -71 L-5 -86 6 -80 3 -76 -4 -75 -7 -68 -19 -65Z M10 -72 L25 -82 37 -68 28 -67 23 -72 18 -68Z'),
+ cartForgedJoints:path('M-44 -56 L-37 -57 -35 -53 -37 -51 -40 -52 -39 -49 -43 -49Z M35 -54 L41 -54 39 -49 33 -48 34 -50 37 -51Z M-50 -64 L-38 -64 -40 -59 -46 -58 -50 -60Z M28 -69 L37 -71 43 -66 40 -63 31 -65Z'),
+ cartWheelFlange:path('M-40 -16 L-34 -21 -28 -22 -24 -19 -30 -18 -32 -15 -38 -12 -39 -6 -42 -9Z M19 -10 L23 -17 29 -20 35 -18 39 -13 37 -7 35 -13 30 -16 25 -13 23 -8Z'),
+ cartOakScars:path('M-34 -48 Q-20 -48 -14 -44 L-8 -45 M-32 -30 Q-24 -30 -18 -29 L-12 -28 M11 -41 L17 -43 24 -41 M-34 -63 L-24 -65 -14 -66 M6 -66 Q16 -67 26 -69'),
+ cartHubStraps:path('M-35 -14 L-32 -16 -29 -13 -30 -10 -33 -9Z M26 -13 L29 -15 33 -13 32 -10 29 -9Z'),
+ pickWear:path('M-33 -77 Q-23 -88 -12 -90 L-14 -86 -18 -85 -20 -83 -24 -81 -27 -80Z M12 -91 Q25 -91 36 -83 L30 -84 27 -86 23 -86 18 -89Z'),
+ pickSocket:path('M-9 -89 Q-2 -92 7 -89 L8 -85 4 -82 4 -73 -2 -74 -4 -80 -8 -83Z M-6 -85 L-2 -87 5 -86 6 -84 2 -83 -3 -83Z'),
+ pickTimber:path('M-2 -78 L1 -75 2 -63 3 -57 2 -51 3 -43 3 -36 4 -27 3 -19 5 -7 3 -6 0 -19 0 -31 -1 -42 -2 -51 -1 -60Z'),
+ pickWrap:path('M-2 -35 L3 -36 4 -31 -1 -29Z M-1 -24 L4 -25 5 -20 0 -18Z'),
+ pickCut:path('M-12 -88 Q-8 -89 -6 -88 M14 -88 Q22 -88 28 -86 M-2 -41 L2 -42 M0 -14 L4 -15'),
+ wheelShoulder:path('M1 -5 L11 -6 17 -6 23 -6 29 -7 34 -7 37 -6 38 -3 32 -2 24 -3 17 -2 11 -2 6 -1Z'),
+ wheelPaddleLip:path('M35 -22 L43 -23 51 -24 52 -19 47 -19 42 -18 38 -17 37 -12 35 -15Z'),
+ wheelPaddleGrain:path('M39 -14 L44 -15 47 -16 51 -16 53 -12 53 -9 49 -8 46 -6 43 -6 42 -10Z'),
+ wheelPeg:path('M27 -3 L29 -5 32 -5 34 -3 34 1 31 2 28 1Z'),
+ wheelLock:path('M-8 -6 L-3 -10 4 -9 8 -6 8 -2 4 4 -3 5 -8 2Z M-4 -3 L0 -5 4 -4 4 0 1 2 -3 1Z'),
+ wheelRimJoin:path('M34 -7 L37 -7 40 -6 42 -1 41 2 37 3 35 2 36 -1 34 -3Z'),
+ lanternLotus:path('M-22 -65 Q-16 -62 -9 -61 L-10 -56 -16 -58 -19 -61Z M-8 -61 Q-2 -59 5 -61 L3 -56 -2 -54 -6 -56Z M7 -61 L16 -63 21 -66 19 -61 13 -58 8 -57Z'),
+ lanternFootpath:path('M-22 -15 L-15 -22 -12 -23 -11 -19 -16 -14 -16 -10 -24 -10Z M5 -25 L12 -24 19 -20 21 -15 16 -16 12 -19 7 -20Z M-27 -6 L-21 -7 -14 -6 -13 -3 -25 -3Z'),
+ lanternCapLip:path('M-31 -104 Q-22 -105 -16 -110 L-13 -111 -14 -107 -10 -105 -16 -104 -24 -103Z M12 -111 L17 -109 22 -107 29 -105 32 -104 25 -103 20 -103 15 -105Z'),
+ resonanceLayers:path('M-22 -83 Q-28 -66 -26 -58 L-19 -50 -22 -44 -17 -39 -15 -31 -18 -26 -22 -34 -25 -45 -31 -57 -28 -70Z M11 -85 L18 -76 24 -62 24 -53 20 -44 17 -32 12 -28 14 -38 15 -47 18 -57 14 -70Z M-17 -27 L-12 -25 -10 -21 -10 -16 -6 -9 -7 -5 -10 -9 -14 -15 -16 -13 -19 -17Z'),
+ resonanceWrap:path('M-16 -66 Q-8 -61 -2 -62 L4 -67 8 -72 13 -75 14 -71 10 -68 6 -63 0 -60 -4 -56 -12 -58 -16 -60Z M-19 -45 L-14 -47 -8 -48 0 -53 8 -56 13 -55 11 -51 6 -50 2 -47 -7 -44 -14 -42Z'),
+ resonanceRibs:path('M-23 -61 Q-23 -54 -18 -51 L-16 -47 M-16 -59 L-13 -53 -13 -50 M7 -64 Q9 -61 7 -57 L5 -54 M15 -49 L13 -44 13 -37 M-13 -39 L-11 -34 -12 -29 M-8 -32 L-5 -27 -2 -26'),
+ resonanceFacePlanes:path('M-10 -91 L-5 -95 -1 -96 3 -93 6 -92 3 -88 0 -88 -3 -91 -8 -87Z M-9 -80 L-5 -78 -1 -79 1 -78 6 -78 4 -74 1 -74 -2 -75 -6 -74Z'),
+ echoLayers:path('M-23 -81 L-18 -88 -17 -84 -20 -78 -18 -73 -20 -67 -24 -62 -23 -55 -27 -49 -30 -53 -30 -63Z M20 -66 L28 -60 27 -51 23 -46 24 -38 20 -33 15 -26 12 -20 8 -16 10 -27 15 -36 17 -46 21 -50Z M-26 -47 L-21 -45 -19 -38 -16 -33 -17 -27 -15 -22 -12 -18 -13 -13 -18 -18 -21 -19 -23 -16 -24 -21 -23 -24 -24 -32Z'),
+ echoFolds:path('M-27 -74 Q-22 -74 -20 -68 L-21 -64 -25 -56 -24 -51 -29 -51 -31 -56 -29 -65Z M-14 -48 L-9 -50 -1 -53 9 -60 11 -58 7 -52 0 -48 -5 -43 -10 -42Z M1 -33 L6 -42 10 -43 8 -38 6 -33 4 -29 -1 -27Z'),
+ echoFacePlanes:path('M-10 -90 L-6 -95 -3 -97 2 -94 5 -91 1 -89 -3 -91 -7 -87Z M-9 -78 L-5 -75 -2 -76 2 -75 5 -76 3 -71 -1 -70 -5 -71Z'),
+ echoRend:path('M-12 -90 Q-17 -84 -14 -80 L-15 -76 -19 -75 -18 -81 -20 -83 Q-17 -88 -12 -90Z'),
+ echoTrailing:path('M-26 -59 Q-25 -55 -26 -51 M-17 -44 L-14 -38 -14 -33 M17 -55 L16 -51 13 -48 M-20 -24 L-16 -20 -16 -17 M16 -31 Q14 -29 12 -25 L12 -21'),
+ bellWear:path('M-15 -59 L-11 -57 -12 -51 -15 -46 -16 -36 -20 -30 -19 -38 -17 -44Z M12 -61 L16 -58 17 -53 18 -47 18 -42 21 -35 20 -31 16 -35 16 -42 14 -47Z'),
+ bellMouthInside:path('M-22 -21 Q-10 -17 0 -17 Q10 -17 22 -21 L22 -18 Q11 -13 0 -13 Q-11 -13 -22 -18Z M-10 -14 L-5 -13 -3 -9 2 -9 6 -13 10 -14 7 -7 2 -5 -4 -6 -7 -8Z'),
+ bellLeaf:path('M-10 -15 Q0 -12 10 -15 L5 -13 0 -12 -4 -13Z M-6 -44 Q-3 -47 0 -44 L1 -41 -2 -38 -6 -39Z'),
+ bellCastEdge:path('M-17 -60 Q-15 -57 -14 -55 M13 -55 L16 -52 M-18 -33 Q-13 -31 -12 -27 M10 -29 Q13 -33 17 -32'),
+ hoistBeamFaces:path('M-73 -166 L-61 -166 -52 -165 -49 -163 -51 -160 -64 -160 -74 -158Z M-26 -166 L-17 -166 -11 -165 4 -165 12 -166 21 -167 23 -163 13 -160 -5 -161 -12 -160 -24 -160Z M44 -166 L65 -167 72 -166 72 -162 66 -160 53 -161 48 -160Z'),
+ hoistTenons:path('M-51 -153 L-44 -154 -40 -152 -41 -145 -45 -142 -49 -142 -50 -145Z M29 -151 L36 -153 42 -153 44 -150 43 -144 38 -142 29 -143Z M-49 -27 L-44 -28 -42 -24 -43 -20 -48 -19 -51 -21Z M42 -25 L49 -27 52 -24 52 -21 47 -20 43 -21Z'),
+ hoistSplices:path('M-46 -125 L-43 -128 -39 -120 -41 -105 -44 -96 -45 -84 -48 -77 -47 -95 -44 -113Z M47 -98 L50 -90 51 -77 53 -68 53 -57 49 -60 48 -73 46 -83 45 -94Z M-19 -115 L-13 -108 1 -94 7 -86 5 -83 -3 -91 -9 -98 -16 -104 -21 -110Z'),
+ hoistWeightFaces:path('M-28 -32 L-25 -52 -19 -61 -18 -70 -11 -76 -8 -73 -12 -61 -18 -55 -18 -45 -22 -40 -22 -29 -25 -25Z M8 -80 L17 -73 21 -66 20 -57 24 -51 24 -39 20 -29 17 -25 16 -33 18 -40 15 -49 16 -58 13 -63Z M-23 -21 L-19 -24 -16 -19 -7 -18 -3 -15 1 -14 -23 -13Z'),
+ hoistWeightBand:path('M-19 -64 L-16 -63 -13 -56 -15 -44 -13 -37 -12 -31 -15 -29 -18 -32 -19 -42 -19 -50 -21 -57Z M16 -65 L19 -61 18 -55 19 -47 21 -39 22 -32 19 -28 16 -31 15 -39 14 -44 14 -52 16 -57Z'),
+
  spiritSkull:path('M-11 -94 L-3 -101 7 -94 11 -84 5 -72 -3 -70 -12 -81Z'),
  spiritSocket:path('M-10 -87 L-3 -83 -5 -78 -11 -82Z M1 -84 L8 -88 7 -80 2 -78Z'),
  spiritJaw:path('M-8 -75 L-3 -72 5 -75 3 -67 -3 -65 -8 -69Z'),
@@ -59,7 +99,7 @@ const paths={
 function drawBell(c){
  paint(c,paths.bellCrown,'#8c9173','#b0af8a',1.8);
  paint(c,paths.bell,'#7d896b','#bdba91',1.8);paint(c,paths.bellShade,'#435a51',null);
- paint(c,paths.bellPanel,'#81724f','#b5a577',.7);paint(c,paths.bellRim,'#9e9872');paint(c,paths.bellLip,'#25322e','#b1a37a',.7);
+ paint(c,paths.bellPanel,'#81724f','#b5a577',.7);paint(c,paths.bellWear,'#67715a',null);paint(c,paths.bellCastEdge,null,'#ad9c71',.8);paint(c,paths.bellRim,'#9e9872');paint(c,paths.bellLip,'#25322e','#b1a37a',.7);paint(c,paths.bellMouthInside,'#202d29',null);paint(c,paths.bellLeaf,'#9a8863',null);
  c.strokeStyle='#bbb38b';c.lineWidth=2;c.beginPath();c.moveTo(-16,-65);c.quadraticCurveTo(0,-60,16,-65);c.stroke();
  c.fillStyle='#41574e';c.strokeStyle='#b4a77a';c.beginPath();c.ellipse(-3,-40,7,8,0,0,Math.PI*2);c.fill();c.stroke();
 }
@@ -94,36 +134,36 @@ S.unitBody=function(c,u,charge){
    c.strokeStyle='#9b987c';c.lineWidth=3;c.beginPath();c.moveTo(-27,-78);c.lineTo(0,-101);c.lineTo(29,-72);c.stroke();
    for(const [x,y,z] of [[-28,-14,.55],[28,-7,.58],[0,5,.88]]){c.save();c.translate(x,y+Math.sin(t*1.7+x)*2);c.rotate(Math.sin(t+x)*.045+attack*.12);c.scale(z,z);drawBell(c);c.restore();}
   }else if(kind==='echo'){
-   paint(c,paths.echo,'#637879','#b4bca6',1.7);paint(c,paths.echoPlane,'#394f55',null);
+   paint(c,paths.echo,'#637879','#b4bca6',1.7);paint(c,paths.echoPlane,'#394f55',null);paint(c,paths.echoLayers,'#527174',null);paint(c,paths.echoFolds,'#708481',null);paint(c,paths.echoRend,'#87958c',null);paint(c,paths.echoTrailing,null,'#a2b19c',.85);
    paint(c,paths.echoFace,'#c1bea4');paint(c,paths.echoJaw,'#9eaa97');
-   paint(c,paths.echoShoulder,'#6e706a','#233136',1);paint(c,paths.echoTendon,null,'#a4a08a',1.8);paint(c,paths.spiritSkull,'#aa9f88','#344046',1);paint(c,paths.spiritSocket,'#19292d',null);paint(c,paths.spiritJaw,'#807666','#252f33',1);
+   paint(c,paths.echoShoulder,'#6e706a','#233136',1);paint(c,paths.echoTendon,null,'#a4a08a',1.8);paint(c,paths.spiritSkull,'#aa9f88','#344046',1);paint(c,paths.spiritSocket,'#19292d',null);paint(c,paths.spiritJaw,'#807666','#252f33',1);paint(c,paths.echoFacePlanes,'#c4b799',null);
   }else{
-   paint(c,paths.resonance,'#788b80','#bec2a8',1.7);paint(c,paths.resonancePlane,'#425b5d',null);paint(c,paths.resonanceGap,'#203b43','#9cae9e',1.1);paint(c,paths.resonanceTendon,'#8b8172','#364847',1);paint(c,paths.spiritSkull,'#9c8c75','#33413c',1);paint(c,paths.spiritSocket,'#202c2b',null);paint(c,paths.spiritJaw,'#70634f','#263b38',1);
+   paint(c,paths.resonance,'#788b80','#bec2a8',1.7);paint(c,paths.resonancePlane,'#425b5d',null);paint(c,paths.resonanceLayers,'#576f6b',null);paint(c,paths.resonanceWrap,'#8d9781','#556b5f',.75);paint(c,paths.resonanceRibs,null,'#9da990',.8);paint(c,paths.resonanceGap,'#203b43','#9cae9e',1.1);paint(c,paths.resonanceTendon,'#8b8172','#364847',1);paint(c,paths.spiritSkull,'#9c8c75','#33413c',1);paint(c,paths.spiritSocket,'#202c2b',null);paint(c,paths.spiritJaw,'#70634f','#263b38',1);paint(c,paths.resonanceFacePlanes,'#baa888',null);
    c.strokeStyle='#c7b689';c.lineWidth=3;c.beginPath();c.moveTo(-4,-91);c.lineTo(2,-83);c.moveTo(-10,-29);c.lineTo(6,-32);c.stroke();
   }
  }else if(kind==='minecart'){
   c.rotate(Math.sin(t*8)*(u.moving?.018:.005));paint(c,paths.cartLoad,'#4e5c59','#9caa96',1.7);
-  paint(c,paths.cart,'#766950','#b2a384',1.8);paint(c,paths.cartSide,'#3e4942',null);paint(c,paths.cartBrace,'#343e39','#9b9d83',1.2);paint(c,paths.cartRim,'#8a7a59');paint(c,paths.cartPlanks,null,'#342d28',1.4);paint(c,paths.cartIron,'#536267','#9a9b8b',.8);paint(c,paths.cartOre,'#82857b','#3b4848',.8);
-  paint(c,paths.wheel,'#3e4a43','#a2a58d',2);paint(c,paths.cartSpokes,null,'#a39777',1.8);paint(c,paths.wheelHub,'#9d9571');
+  paint(c,paths.cart,'#766950','#b2a384',1.8);paint(c,paths.cartSide,'#3e4942',null);paint(c,paths.cartWoodFaces,'#9b855e',null);paint(c,paths.cartOakScars,null,'#6b583f',.95);paint(c,paths.cartBrace,'#343e39','#9b9d83',1.2);paint(c,paths.cartRim,'#8a7a59');paint(c,paths.cartPlanks,null,'#342d28',1.4);paint(c,paths.cartIron,'#536267','#9a9b8b',.8);paint(c,paths.cartOre,'#82857b','#3b4848',.8);paint(c,paths.cartLoadFaces,'#68756f',null);paint(c,paths.cartForgedJoints,'#79837e','#474d45',.75);
+  paint(c,paths.wheel,'#3e4a43','#a2a58d',2);paint(c,paths.cartSpokes,null,'#a39777',1.8);paint(c,paths.wheelHub,'#9d9571');paint(c,paths.cartWheelFlange,'#677261',null);paint(c,paths.cartHubStraps,'#b2a582',null);
  }else if(kind==='picks'){
-  for(const [x,y,a] of [[-27,-3,-.5],[23,-6,.6],[0,-14,.1]]){c.save();c.translate(x,y);c.rotate(a+Math.sin(t*2+x)*.05+(braced?-.28:recovering?.21:device?attack*.22:0));paint(c,paths.pick,'#7d6b50','#b8ac8b',1.4);paint(c,paths.pickHead,'#536760','#aeb5a1',1.7);paint(c,paths.pickBlade,'#a2ad98',null);c.restore();}
+  for(const [x,y,a] of [[-27,-3,-.5],[23,-6,.6],[0,-14,.1]]){c.save();c.translate(x,y);c.rotate(a+Math.sin(t*2+x)*.05+(braced?-.28:recovering?.21:device?attack*.22:0));paint(c,paths.pick,'#7d6b50','#b8ac8b',1.4);paint(c,paths.pickHead,'#536760','#aeb5a1',1.7);paint(c,paths.pickBlade,'#a2ad98',null);paint(c,paths.pickWear,'#c3c0a8',null);paint(c,paths.pickTimber,'#9a8059',null);paint(c,paths.pickSocket,'#3d5352','#929b84',.75);paint(c,paths.pickWrap,'#5b5447',null);paint(c,paths.pickCut,null,'#afa98c',.8);c.restore();}
  }else if(kind==='waterwheel'){
   c.save();c.translate(0,-55);c.rotate(braced?.56:recovering?.96:t*.24+(device?attack*.58:0));
-  for(let j=0;j<8;j++){c.save();c.rotate(j*Math.PI/4);paint(c,paths.wheelSpoke,j%2?'#6b634d':'#847657','#192e30',1.8);paint(c,paths.wheelPaddle,j%2?'#576254':'#7b7d62','#a2a489',1.7);c.restore();}
+  for(let j=0;j<8;j++){c.save();c.rotate(j*Math.PI/4);paint(c,paths.wheelSpoke,j%2?'#6b634d':'#847657','#192e30',1.8);paint(c,paths.wheelPaddle,j%2?'#576254':'#7b7d62','#a2a489',1.7);paint(c,paths.wheelShoulder,j%2?'#837559':'#9b8662',null);if(j%2===0){paint(c,paths.wheelPaddleLip,'#a18e68',null);paint(c,paths.wheelPaddleGrain,'#53665f',null);}else paint(c,paths.wheelPeg,'#394c46','#9f9375',.65);c.restore();}
   c.strokeStyle='#172d30';c.lineWidth=12;c.beginPath();c.arc(0,0,38,0,Math.PI*2);c.stroke();c.strokeStyle='#9d9470';c.lineWidth=7;c.stroke();
-  paint(c,paths.wheelCenter,'#556359','#b4ac85',2);c.restore();
+  for(let j=0;j<8;j++){c.save();c.rotate(j*Math.PI/4);paint(c,paths.wheelRimJoin,j%2?'#7d725b':'#ab9471','#4b5c50',.65);c.restore();}paint(c,paths.wheelCenter,'#556359','#b4ac85',2);paint(c,paths.wheelLock,'#88846c','#536b60',.7);c.restore();
  }else if(kind==='stoneLantern'){
   // Octagonal shaft, lotus-bearing tiers, fire chamber and shallow stone roof.
   paint(c,paths.lantern,'#7c887b','#b3b9a1',1.8);paint(c,paths.lanternShade,'#475f59',null);
   paint(c,paths.window,'#243d3b','#a8ad8e',1.2);c.fillStyle='#bdb188';c.fillRect(-11,-96,7,12);
   paint(c,paths.lanternRoof,'#8c947e','#c0bda0',1.8);
-  paint(c,paths.lanternMasonry,'#a6aa91',null);paint(c,paths.lanternSeams,null,'#55645b',1.1);
+  paint(c,paths.lanternMasonry,'#a6aa91',null);paint(c,paths.lanternLotus,'#60766a',null);paint(c,paths.lanternCapLip,'#b1ac92',null);paint(c,paths.lanternFootpath,'#687c6c',null);paint(c,paths.lanternSeams,null,'#55645b',1.1);
  }else if(kind==='hoist'){
-  paint(c,paths.hoist,'#75664c','#b7a883',2);paint(c,paths.hoistShade,'#3d4b43',null);paint(c,paths.hoistJoint,'#48584e','#a5a48b',1.3);
+  paint(c,paths.hoist,'#75664c','#b7a883',2);paint(c,paths.hoistShade,'#3d4b43',null);paint(c,paths.hoistJoint,'#48584e','#a5a48b',1.3);paint(c,paths.hoistBeamFaces,'#97805c',null);paint(c,paths.hoistSplices,'#836c4f',null);paint(c,paths.hoistTenons,'#6b796b','#424c43',.75);
   paint(c,paths.hoistPulley,'#394740','#91886a',1.1);paint(c,paths.hoistRivets,'#b2a17d','#414540',.6);
   c.save();c.translate(0,-143);c.scale(.8,.8);paint(c,paths.wheelCenter,'#928968','#b9b18f',2);c.restore();
   const sway=Math.sin(t*1.5)*10;c.strokeStyle='#aca68b';c.lineWidth=3;c.beginPath();c.moveTo(-5,-143);c.lineTo(sway-6,-70);c.moveTo(5,-143);c.lineTo(sway+6,-71);c.stroke();
-  c.translate(sway,0);paint(c,paths.hoistWeight,'#5a6a60','#aab2a0',2);paint(c,paths.hoistWeightShade,'#354d48',null);
+  c.translate(sway,0);paint(c,paths.hoistWeight,'#5a6a60','#aab2a0',2);paint(c,paths.hoistWeightShade,'#354d48',null);paint(c,paths.hoistWeightFaces,'#77877b',null);paint(c,paths.hoistWeightBand,'#637167','#3b554b',.8);
   c.strokeStyle='#a3997b';c.lineWidth=4;c.beginPath();c.moveTo(-20,-65);c.lineTo(-16,-29);c.lineTo(21,-30);c.lineTo(17,-68);c.stroke();
  }
  else{c.restore();return body.call(this,c,u,charge);}

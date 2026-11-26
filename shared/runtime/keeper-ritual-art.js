@@ -1,6 +1,12 @@
 (function(G){'use strict';
 // Retained human/cloth/bronze contours. No terrain, actor size or game state writes.
 const S=G.HonroScene.prototype,path=d=>new Path2D(d),P={
+ fatigue:path('M-9 -84 L-5 -81 -8 -73 -10 -70 -11 -64 -15 -60 -14 -68 -12 -74Z M8 -76 L13 -71 12 -64 15 -61 14 -55 10 -57 9 -64 7 -69Z'),
+ garmentLining:path('M-15 -49 L-12 -52 -10 -47 -11 -42 -10 -35 -15 -23 -16 -13 -19 -10 -20 -13 -17 -27 -16 -39Z M6 -42 L10 -45 12 -38 11 -32 13 -25 15 -17 16 -9 12 -7 10 -15 7 -22 6 -31Z'),
+ cuffBinding:path('M-24 -62 L-20 -62 -18 -60 -16 -60 -13 -57 -15 -54 -20 -54 -24 -56Z'),
+ sleeveFacing:path('M15 -82 L19 -83 23 -79 21 -75 20 -70 17 -67 14 -67 14 -70 16 -73 17 -77Z'),
+ bronzeBevel:path('M-6 -9 L-3 -11 -1 -12 1 -11 3 -10 4 -8 2 -8 0 -9 -2 -8 -3 -4 -4 -1 -5 -1Z M-5 3 L-3 7 0 9 3 8 5 6 5 8 3 10 -1 11 -4 9 -6 6Z'),
+ strapKnot:path('M-1 -59 L2 -58 4 -55 3 -53 -1 -52 -4 -54 -4 -56 -2 -58Z M0 -52 L2 -51 1 -47 0 -45 -2 -46 -2 -50Z'),
  robe:path('M-9-90Q-18-89-21-80L-18-59-23-10-17-2-6-6 0-16 8-3 23-8 17-51 21-78Q17-87 7-90L0-85Z'),
  dark:path('M1-85L8-90 17-80 12-56 21-10 10-6 1-22-5-58Z'),
  light:path('M-12-85L-6-80-13-58-18-12-21-10-16-55Z M6-54L11-47 15-11 10-9Z'),
@@ -29,15 +35,15 @@ const S=G.HonroScene.prototype,path=d=>new Path2D(d),P={
  bound:path('M-18-60Q-4-65 15-59M-17-57Q0-61 15-56M-16-54Q-1-58 15-53'),
  shoe:path('M-13-6L-5-5-1 0-3 3-17 2-18-1Z M6-6L14-7 22-1 21 2 7 2Z')};
 function paint(c,p,fill,stroke='#18282a',w=1){if(fill){c.fillStyle=fill;c.fill(p);}if(stroke){c.strokeStyle=stroke;c.lineWidth=w;c.stroke(p);}}
-function plate(c,x,y,angle,index,dim=false){c.save();c.translate(x,y);c.rotate(angle);paint(c,P.plate,dim?'#5d6355':'#9b8962','#303c35',.9);paint(c,P.plateFace,dim?'#34483e':'#526f60',null);paint(c,index===1?P.moon:P.circle,null,dim?'#68766a':'#b6b394',.8);c.restore();}
+function plate(c,x,y,angle,index,dim=false){c.save();c.translate(x,y);c.rotate(angle);paint(c,P.plate,dim?'#5d6355':'#9b8962','#303c35',.9);paint(c,P.plateFace,dim?'#34483e':'#526f60',null);paint(c,P.bronzeBevel,dim?'#6e7160':'#beaa79',null);paint(c,index===1?P.moon:P.circle,null,dim?'#68766a':'#b6b394',.8);c.restore();}
 function draw(c,u,b,time){
  const ritual=b?.keeperRitual,st=b?.honroState?.keeperStaging,pose=st?.pose||(u.honroSubdued?'weak':'gripping'),bound=pose==='bound',released=bound||pose==='released',cast=ritual?.cast?Math.sin(Math.min(1,ritual.cast.elapsed/.8)*Math.PI):st?.cue?1:0,weak=pose==='weak',move=u.moving?Math.sin(time*8)*1.1:0;
  c.save();c.lineJoin='round';c.lineCap='round';c.translate(0,Math.abs(move)*-.18);c.rotate((u.hurt>0?-.035:0)+(weak?.025:0));
- paint(c,P.shoe,'#26302e');paint(c,P.robe,'#343d38');paint(c,P.dark,'#202c2b',null);paint(c,P.light,'#566154',null);paint(c,P.hem,null,'#1b2c2b',.9);
- paint(c,P.neck,'#a28c70');paint(c,P.collar,'#b0ab92','#394338',.65);paint(c,P.sash,'#292e29');paint(c,P.belt,'#605e49','#252f2b',.6);
+ paint(c,P.shoe,'#26302e');paint(c,P.robe,'#343d38');paint(c,P.dark,'#202c2b',null);paint(c,P.light,'#566154',null);paint(c,P.garmentLining,'#505246',null);paint(c,P.fatigue,'#58645a',null);paint(c,P.hem,null,'#1b2c2b',.9);
+ paint(c,P.neck,'#a28c70');paint(c,P.collar,'#b0ab92','#394338',.65);paint(c,P.sash,'#292e29');paint(c,P.belt,'#605e49','#252f2b',.6);paint(c,P.strapKnot,'#948461','#33382d',.73);
  c.save();c.rotate(weak?.055:0);paint(c,P.topknot,'#292c27');paint(c,P.head,'#b39a79');paint(c,P.face,'#796e57',null);paint(c,P.knot,'#262f2e');paint(c,P.wrap,'#333a35');paint(c,P.brow,null,'#30392e',.6);paint(c,P.beard,'#6d7568',null);c.restore();
- paint(c,P.leftSleeve,'#3d4941');paint(c,P.hand,'#b19b7a','#2c3930',.7);
- c.save();c.translate(3,-79);c.rotate(released?.9:cast*-.12+(weak?.1:Math.sin(time*1.5)*.012));c.translate(-3,79);paint(c,P.sleeve,'#343f38');paint(c,P.fingers,'#b29a77','#28392f',.65);paint(c,P.fingerLines,null,'#655a45',.55);
+ paint(c,P.leftSleeve,'#3d4941');paint(c,P.cuffBinding,'#6b6651','#303930',.75);paint(c,P.hand,'#b19b7a','#2c3930',.7);
+ c.save();c.translate(3,-79);c.rotate(released?.9:cast*-.12+(weak?.1:Math.sin(time*1.5)*.012));c.translate(-3,79);paint(c,P.sleeve,'#343f38');paint(c,P.sleeveFacing,'#697264',null);paint(c,P.fingers,'#b29a77','#28392f',.65);paint(c,P.fingerLines,null,'#655a45',.55);
  if(!released){for(const[i,x,y]of [[0,11,-50],[1,23,-44],[2,34,-52]]){c.strokeStyle='#202e2b';c.lineWidth=1;c.beginPath();c.moveTo(20,-74);c.quadraticCurveTo(x+2,-63,x,y-12);c.stroke();plate(c,x,y,Math.sin(time*1.9+i)*.04+cast*(i-1)*.16,i,weak);}}c.restore();
  c.save();c.translate(-14,-53);c.scale(.66,.66);paint(c,P.ring,'#8d805d','#2c4038',1);c.restore();
  if(bound){paint(c,P.bound,null,'#171f1e',2);for(let i=0;i<3;i++)plate(c,[-22,-4,15][i],-2,[.9,-.8,.3][i],i,true);}
