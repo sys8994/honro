@@ -29,6 +29,10 @@ const paths={
  lantern:path('M-32 0L-29-9 29-9 33 0Z M-25-9L-19-22-9-28H10L21-21 26-9Z M-8-28L-7-64H8L9-28Z M-22-64L-11-76H12L24-64Z M-25-76L-23-104-13-109H15L25-103 26-76Z'),
  lanternShade:path('M6-28L6-64 14-71 24-64 10-61 11-28Z M15-109L25-103 26-76 16-76Z M10-27L21-21 26-9 12-9Z'),
  lanternRoof:path('M-34-105Q-20-110-12-119L-5-121-4-127 1-133 6-127 6-121 14-118Q24-109 35-105L32-101-31-101Z'),
+ lanternMasonry:path('M-19-21L-10-24-8-19-13-13-23-12Z M-7-64L-1-65-2-29-8-28Z M-24-80L-16-79-16-75-24-76Z M-31-104L-17-110-22-104-9-102-31-101Z M9-114L14-117 29-107 18-108Z'),
+ lanternSeams:path('M-22-67L-12-68-8-71 M-11-12L-7-15 8-15 M-4-54L1-55 M18-96L21-93'),
+ hoistPulley:path('M-24-158L19-158 24-149 20-135-20-135-25-145Z M-16-146L-20-135-28-129-32-131-21-145Z M17-144L23-133 31-130 32-135 23-147Z'),
+ hoistRivets:path('M-44-149L-40-149-40-145-44-145Z M34-149L38-149 38-145 34-145Z M-47-25L-43-25-43-21-47-21Z M45-25L49-25 49-21 45-21Z'),
  window:path('M-15-82L-15-100-5-103 4-100V-82Z M15-99L21-97 21-83 15-82Z'),
  hoist:path('M-61 0L-43-173H-29L-42 0Z M42 0L27-173H42L60 0Z M-76-169H74V-151H-76Z M-41-144L43-52 40-34-48-130Z'),
  hoistShade:path('M-34-169L-29-169-42 0-48 0Z M35-169L42-169 60 0 52 0Z M-76-156H74V-151H-76Z'),
@@ -113,8 +117,10 @@ S.unitBody=function(c,u,charge){
   paint(c,paths.lantern,'#7c887b','#b3b9a1',1.8);paint(c,paths.lanternShade,'#475f59',null);
   paint(c,paths.window,'#243d3b','#a8ad8e',1.2);c.fillStyle='#bdb188';c.fillRect(-11,-96,7,12);
   paint(c,paths.lanternRoof,'#8c947e','#c0bda0',1.8);
+  paint(c,paths.lanternMasonry,'#a6aa91',null);paint(c,paths.lanternSeams,null,'#55645b',1.1);
  }else if(kind==='hoist'){
   paint(c,paths.hoist,'#75664c','#b7a883',2);paint(c,paths.hoistShade,'#3d4b43',null);paint(c,paths.hoistJoint,'#48584e','#a5a48b',1.3);
+  paint(c,paths.hoistPulley,'#394740','#91886a',1.1);paint(c,paths.hoistRivets,'#b2a17d','#414540',.6);
   c.save();c.translate(0,-143);c.scale(.8,.8);paint(c,paths.wheelCenter,'#928968','#b9b18f',2);c.restore();
   const sway=Math.sin(t*1.5)*10;c.strokeStyle='#aca68b';c.lineWidth=3;c.beginPath();c.moveTo(-5,-143);c.lineTo(sway-6,-70);c.moveTo(5,-143);c.lineTo(sway+6,-71);c.stroke();
   c.translate(sway,0);paint(c,paths.hoistWeight,'#5a6a60','#aab2a0',2);paint(c,paths.hoistWeightShade,'#354d48',null);

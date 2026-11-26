@@ -4,12 +4,16 @@
 const V=G.HonroAct23V4,S=G.HonroAct23V4Chapter21,P=G.HonroScene.prototype,clone=x=>JSON.parse(JSON.stringify(x));
 const original=G.HONRO_MONSTERS?.assets?.possessedGuard;if(!original)return;
 const a=clone(original);a.id='v4.gate-empty-armor';a.palette={...a.palette,cloth:'#655948',clothLight:'#968265',bone:'#727b70',boneShade:'#3d4945'};
-const head=a.parts.find(p=>p.id==='head');head.paths=[{d:'M-11 -108 Q0 -115 11 -107 L12 -94 5 -86 -6 -88 -12 -98Z',fill:'ink',stroke:'metal',width:1.6,lod:0}];
+const head=a.parts.find(p=>p.id==='head');head.paths=[{d:'M-11 -108 Q0 -115 11 -107 L12 -94 5 -86 -6 -88 -12 -98Z',fill:'ink',stroke:'metal',width:1.6,lod:0},
+ {d:'M-11 -108 Q0 -115 11 -107 L8 -101 Q0 -105 -10 -101Z',fill:'metal',stroke:'ink',width:.8,lod:0},
+ {d:'M-12 -99 L-7 -97 -5 -88 -9 -89Z M11 -101 L12 -94 5 -86 4 -92 7 -98Z',fill:'metalLight',stroke:'ink',width:.8,lod:0},
+ {d:'M-3 -110 Q1 -112 4 -109 L6 -105 -4 -106Z',fill:'metalLight',width:0,lod:1}];
 const torso=a.parts.find(p=>p.id==='torso');torso.paths.push({d:'M-9 -91 Q0 -95 10 -89 L7 -78 -7 -79Z',fill:'ink',width:0,lod:0});
 // The same retained diamond is used by the later old banner. It is separate
 // from the current guard's blue horizontal insignia and all village tags.
 torso.paths.push({d:'M-4 -78 L3 -86 10 -78 3 -70Z M3 -82 L7 -78 3 -74 -1 -78Z',fill:'metalLight',stroke:'ink',width:1,lod:0});
 const spearArmor=clone(a);spearArmor.id='v4.han-empty-spear';spearArmor.parts.find(p=>p.id==='weapon').paths=[];
+spearArmor.parts.find(p=>p.id==='torso').paths.push({d:'M-15 -79 L-11 -77 -13 -66 -17 -62 -18 -70Z M14 -77 L17 -79 19 -69 16 -64 13 -70Z',fill:'metalLight',stroke:'ink',width:.9,lod:0});
 const visual=G.HonroVectorParts.create({[a.id]:a,[spearArmor.id]:spearArmor}),body=P.unitBody;
 P.unitBody=function(c,u,...args){if(!G.HonroAct23V4Chapter21Reviewed?.enabled()&&!(G.HonroAct23V4Chapter29Reviewed?.active(this.battle)&&u.honroV4ArmorIdentity==='old-empty'))return body.call(this,c,u,...args);if(u.id==='v4.gate-cart')return;if(u.honroV4Injured){body.call(this,c,u,...args);c.save();c.strokeStyle='#c3b99a';c.lineWidth=6;c.beginPath();c.moveTo(u.x-17,u.y-u.h*.62);c.lineTo(u.x+18,u.y-u.h*.72);c.stroke();c.restore();return;}if(!u.honroV4ArmorIdentity)return body.call(this,c,u,...args);
  if(u.honroV4ArmorIdentity==='current-dead'){body.call(this,c,u,...args);c.save();c.translate(u.x,u.y-u.h*.7);c.fillStyle='#8aa6b3';c.fillRect(-8,-3,16,5);c.restore();return;}
