@@ -66,25 +66,36 @@
             function masteryChoices(){
               const h=hero(),ids=[C.baseSkill(u.cls),...C.TALENTS.filter(n=>n.cls===u.cls&&h.ranks[n.id]===8).map(n=>n.id)];
               const {label,field}=select('통달할 기예',[['','기예 선택'],...ids.filter(id=>!C.masteryLearned(h,id)).map(id=>[id,`${C.SKILLS[id].name} · Lv.${C.masteryLevel(id)} · ${C.masteryCost(id)} SP`])],'');
-              const description=document.createElement('p'),notice=document.createElement('small'),commit=document.createElement('button');
+              const description=document.createElement('p'),notice=document.createElement('small'),commit=document.createElement('button'),demo=document.createElement('button');
               notice.textContent=`보유 ${C.pointsLeft(h,u.cls)} SP · 통달 확정 후 투자 반환 불가`;
               commit.type='button';commit.textContent='통달 확정';commit.disabled=true;
+              demo.type='button';demo.textContent='통달 시연';demo.disabled=true;
+              const clearDemo=()=>{const old=app.modal.querySelector('[data-field-mastery-preview]');if(old){old.remove();app.preview=null;app.previewRequest=null;}};
+              demo.addEventListener('click',event=>{
+                if(!event.isTrusted||!open()||!field.value)return;
+                clearDemo();
+                const shell=document.createElement('section'),canvas=document.createElement('canvas'),readout=document.createElement('p');
+                shell.className='skill-preview-shell';shell.dataset.fieldMasteryPreview='';
+                canvas.id='previewcanvas';canvas.width=720;canvas.height=360;canvas.setAttribute('aria-label',C.SKILLS[field.value].name+' 통달 시연');
+                readout.className='preview-observation';shell.append(canvas,readout);demo.after(shell);
+                app.detailSkill=field.value;app.prepareSkillPreview(field.value,hero(),canvas,'mastered');
+              });
               field.addEventListener('change',()=>{
                 const id=field.value,reason=id&&C.masteryReason(hero(),u.cls,id);
                 description.textContent=id?C.MASTERY_RULES[id][1]+(reason?` · ${reason}`:''):'';
-                commit.disabled=!id||!!reason;
+                clearDemo();demo.disabled=!id;commit.disabled=!id||!!reason;
               });
               commit.addEventListener('click',async ev=>{
                 if(!ev.isTrusted||!open()||commit.disabled)return;
                 const id=field.value;commit.disabled=true;field.disabled=true;
                 if(await saveAct6Mastery(app,u,id,open)){
                   status.textContent=C.SKILLS[id].name+' 통달 완료';
-                  if(open())masteryChoices();
+                  if(open()){clearDemo();masteryChoices();}
                 }else if(open()){field.disabled=false;commit.disabled=false;status.textContent='통달을 기록하지 못했습니다.';}
               });
               const known=document.createElement('small');
               known.textContent=h.masteries?.length?`통달 완료 ${h.masteries.map(id=>C.SKILLS[id].name).join(' · ')}`:'';
-              card.replaceChildren(title,known,label,description,notice,commit,status);
+              card.replaceChildren(title,known,label,description,notice,demo,commit,status);
             }
             masteryChoices();
           }

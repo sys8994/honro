@@ -67,13 +67,19 @@ export function campView(p:Profile,cls:ClassId,portraits:Record<string,string>,h
  }).join('')}</div></section>`).join('')}</div>
  </div></div></main>`;
 }
+function masteryAction(h:HeroProgress,id:string) {
+ if(masteryLearned(h,id))return '<span class="mastery-complete">통달 완료</span>';
+ const reason=masteryReason(h,SKILLS[id].cls,id),cost=masteryCost(id);
+ return `<button type="button" class="btn primary" data-action="mastery-review" data-skill="${id}"
+  ${reason?'disabled':''} data-tooltip="${esc(reason||'통달 확정 전에 효과를 확인합니다')}">통달 ${cost} SP</button>`;
+}
 function masteryPanel(h:HeroProgress,id:string) {
  const definition=MASTERY_RULES[id];if(!definition)return '';
  const learned=masteryLearned(h,id),reason=masteryReason(h,SKILLS[id].cls,id),cost=masteryCost(id);
  return `<section class="mastery-panel" aria-label="통달">
- <div class="mastery-heading"><strong>${learned?'통달 완료':'통달'}</strong><span>${learned?'투자 고정':`Lv.${masteryLevel(id)} · ${cost} SP`}</span></div>
+ <div class="mastery-heading"><strong>${learned?'통달 완료':'통달 효과'}</strong><span>${learned?'투자 고정':`Lv.${masteryLevel(id)} · ${cost} SP`}</span></div>
  <p>${esc(definition[1])}</p>
- ${learned?'':`<button type="button" class="btn" data-action="mastery-review" data-skill="${id}" ${reason?'disabled':''}>통달 ${cost} SP</button>${reason?`<small>${esc(reason)}</small>`:''}`}
+ ${!learned&&reason?`<small>${esc(reason)}</small>`:''}
  </section>`;
 }
 function masteryPreview(id:string,h:HeroProgress) {
@@ -86,14 +92,14 @@ function masteryPreview(id:string,h:HeroProgress) {
  </div>`;
 }
 export function talentView(p:Profile,id:string,closeButton:string){
- if(SKILLS[id]?.basic){const s=SKILLS[id];return `<div class="talent-detail talent-v5 skill-modal-frame"><header class="skill-detail-controls"><div class="skill-modal-title"><div class="talent-heading">${skillStamp(id,30)}<h2>${s.name}</h2></div>${closeButton}</div><span class="skill-basic-note">기본 공격</span></header><div class="skill-modal-body" tabindex="0"><p class="skill-mechanics">${esc(skillPlayNotes(id))}</p>${damageVarianceView(s)}${existenceAttackView(s)}<section class="skill-preview-shell">${masteryPreview(id,p.heroes[s.cls])}<canvas aria-label="${esc(s.name)} 시연" id="skill-preview" width="720" height="360"></canvas><p class="preview-observation" role="status" aria-live="off"></p></section>${masteryPanel(p.heroes[s.cls],id)}</div></div>`;}
+ if(SKILLS[id]?.basic){const s=SKILLS[id];return `<div class="talent-detail talent-v5 skill-modal-frame"><header class="skill-detail-controls"><div class="skill-modal-title"><div class="talent-heading">${skillStamp(id,30)}<h2>${s.name}</h2></div>${closeButton}</div><div class="dialog-actions skill-detail-actions"><span class="skill-basic-note">기본 공격</span>${masteryAction(p.heroes[s.cls],id)}</div></header><div class="skill-modal-body" tabindex="0"><p class="skill-mechanics">${esc(skillPlayNotes(id))}</p>${damageVarianceView(s)}${existenceAttackView(s)}${masteryPanel(p.heroes[s.cls],id)}<section class="skill-preview-shell">${masteryPreview(id,p.heroes[s.cls])}<canvas aria-label="${esc(s.name)} 시연" id="skill-preview" width="720" height="360"></canvas><p class="preview-observation" role="status" aria-live="off"></p></section></div></div>`;}
  const n=TALENT_MAP[id],s=SKILLS[id],h=p.heroes[n.cls],rank=h.ranks[id]||0,reason=trainReason(h,id),refundReason=untrainReason(h,id),br=BRANCHES[n.cls][n.branch],equipped=p.loadouts[n.cls].includes(id),next=Math.min(8,rank+1);
  const before=skillGrowthRows(id,rank),after=skillGrowthRows(id,next);
  const preview=`<section class="skill-preview-shell">${masteryPreview(id,h)}<canvas aria-label="${esc(s.name)} 시연" id="skill-preview" data-skill="${id}" width="720" height="360"></canvas><p class="preview-context">선택 기예의 조건을 갖춘 자동 시연입니다. 상시 기예는 미적용 결과와 비교합니다.</p><p class="preview-observation" role="status" aria-live="off"></p></section>`;
- const actions=`<div class="dialog-actions skill-detail-actions" aria-label="기예 수련과 장착">${!s.passive&&rank>0&&id!==baseSkill(n.cls)?`<button class="btn" data-action="equip-prompt" data-skill="${id}">${equipped?'슬롯 변경':'장착'}</button>${equipped?`<button class="btn ghost" data-action="unequip-skill" data-skill="${id}">장착 해제</button>`:''}`:''}<button class="btn" data-action="rank-minus-detail" data-talent="${id}" ${refundReason?'disabled':''} data-tooltip="${esc(refundReason||'1 SP 회수')}">−1 SP 회수</button><button class="btn primary" data-action="train" data-talent="${id}" ${reason?'disabled':''} data-tooltip="${esc(reason||'1 SP 투자')}">${rank>=8?'최대 레벨':rank?'+1 SP 강화':'+1 SP 습득'}</button></div>`;
+ const actions=`<div class="dialog-actions skill-detail-actions" aria-label="기예 수련과 장착">${!s.passive&&rank>0&&id!==baseSkill(n.cls)?`<button class="btn" data-action="equip-prompt" data-skill="${id}">${equipped?'슬롯 변경':'장착'}</button>${equipped?`<button class="btn ghost" data-action="unequip-skill" data-skill="${id}">장착 해제</button>`:''}`:''}<button class="btn" data-action="rank-minus-detail" data-talent="${id}" ${refundReason?'disabled':''} data-tooltip="${esc(refundReason||'1 SP 회수')}">−1 SP 회수</button>${rank===8?masteryAction(h,id):`<button class="btn primary" data-action="train" data-talent="${id}" ${reason?'disabled':''} data-tooltip="${esc(reason||'1 SP 투자')}">${rank?'+1 SP 강화':'+1 SP 습득'}</button>`}</div>`;
  const controls=`<header class="skill-detail-controls"><div class="skill-modal-title"><div class="talent-heading">${skillStamp(id,35)}<div><div class="micro-label">${br.name} · ${tier(id)}단계</div><h2>${n.name}</h2><span class="ability-type">${s.passive?'패시브 · 습득 시 자동 적용':equipped?'액티브 · 장착 중':'액티브'}</span></div></div>${closeButton}</div><div class="rank-banner"><strong>Lv.${rank}<small> / 8</small></strong>${pip(rank)}<span>${pointsLeft(h,n.cls)} SP</span></div>${actions}</header>`;
- const summary=`<section class="skill-modal-summary">${skillPlayNotes(id)?'':`<p class="skill-desc">${esc(n.desc)}</p>`}<p class="skill-mechanics">${esc(skillPlayNotes(id))}</p>${damageVarianceView(s)}${!s.passive?existenceAttackView(s):''}</section>`;
- const stats=`<section class="skill-modal-stats"><div class="effect-compare ${rank>=8?'at-max':''}"><div class="effect-heading"><span>효과</span><span>${rank?'현재':'미습득'}</span><span>${rank<8?`Lv.${next}`:'최대'}</span></div>${after.map((row,i)=>`<div class="effect-row"><span>${row.label}</span><span>${rank?before[i]?.value||'—':'—'}</span><strong>${row.value}</strong></div>`).join('')}</div>${rank<8?`<div class="upgrade-requirement">${reason||`강화 가능 · 용병 Lv.${requiredRankLevel(n,next)}`}<span>${rank?'강화':'습득'} 1 SP</span></div>`:'<div class="upgrade-requirement">8랭크 완료</div>'}${masteryPanel(h,id)}</section>`;
+ const summary=`<section class="skill-modal-summary">${skillPlayNotes(id)?'':`<p class="skill-desc">${esc(n.desc)}</p>`}<p class="skill-mechanics">${esc(skillPlayNotes(id))}</p>${damageVarianceView(s)}${!s.passive?existenceAttackView(s):''}${masteryPanel(h,id)}</section>`;
+ const stats=`<section class="skill-modal-stats"><div class="effect-compare ${rank>=8?'at-max':''}"><div class="effect-heading"><span>효과</span><span>${rank?'현재':'미습득'}</span><span>${rank<8?`Lv.${next}`:'최대'}</span></div>${after.map((row,i)=>`<div class="effect-row"><span>${row.label}</span><span>${rank?before[i]?.value||'—':'—'}</span><strong>${row.value}</strong></div>`).join('')}</div>${rank<8?`<div class="upgrade-requirement">${reason||`강화 가능 · 용병 Lv.${requiredRankLevel(n,next)}`}<span>${rank?'강화':'습득'} 1 SP</span></div>`:'<div class="upgrade-requirement">8랭크 완료</div>'}</section>`;
  return `<div class="talent-detail skill-modal-frame talent-v5 ${s.passive?'passive-detail':''}" style="--branch:${br.color}">${controls}<div class="skill-modal-body" tabindex="0"><div class="skill-modal-grid">${summary}<section class="skill-modal-preview">${preview}</section>${stats}</div></div></div>`;
 }
 export function ultimateView(p:Profile,cls:ClassId,close:string){

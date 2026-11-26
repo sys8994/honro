@@ -86,7 +86,7 @@ function setup(app,selectedId,h,canvas,options={}){
  if(variant&&selectedId==='A12')b.terrain.push({id:'preview-return-wall',x:920,y:860,w:12,h:140,mat:'wood',hp:99999,maxHp:99999,indestructible:true});
  if(variant&&selectedId==='A13')b.terrain.push({id:'preview-reacquire-step',x:790,y:713,w:35,h:82,mat:'rock',hp:99999,maxHp:99999,indestructible:true});
  if(id==='O06'&&!passive)b.units[1].armor=.35;
- if(id==='M10'||id==='O13'||id==='O08'||scenario.ally){const ally=C.makeUnit('knight',0,id==='O08'?180:variant&&id==='A06'?600:passive?.ally?650:780,floor,{id:'preview-ally',name:'동행',h:130,hp:300,maxHp:1200,focus:20,maxFocus:200,moveLeft:100,maxMove:900,acted:true,loadout:['S00'],ranks:{S00:1}});b.units.push(ally);}
+ if(id==='M10'||id==='O13'||id==='O08'||scenario.ally){const ally=C.makeUnit('knight',0,id==='O08'?180:variant&&id==='A06'?600:scenario.ally?650:780,floor,{id:'preview-ally',name:'동행',h:130,hp:300,maxHp:1200,focus:20,maxFocus:200,moveLeft:100,maxMove:900,acted:true,loadout:['S00'],ranks:{S00:1}});b.units.push(ally);}
  if(bounce)b.terrain.push({id:'preview-wall',x:1140,y:620,w:40,h:380,mat:'rock',hp:99999,maxHp:99999,indestructible:true});
  if(['O02','O04','O05'].includes(id))b.terrain.push({id:'preview-phase-wall',x:id==='O05'?1270:690,y:540,w:35,h:460,mat:'rock',hp:99999,maxHp:99999,indestructible:true});
  if(id==='M12')b.terrain.push({id:'preview-reflect-ceiling',x:650,y:570,w:530,h:35,mat:'rock',hp:99999,maxHp:99999,indestructible:true});
@@ -187,6 +187,9 @@ function tick(app,p,dt){
    if(anchor&&t)order={age:anchor.age,delta:0,heading:Math.atan2(t.y-t.h*.5-anchor.y,t.x-anchor.x)};
   }
   p.fired=e.fire(p.passive?.incoming?p.incoming:p.castId,p.aim.angle,p.aim.power,!!p.passive?.incoming,order);p.started=p.age;
+ }
+ if(p.variant&&p.id==='SP04'&&p.fired&&b.phase==='aim'&&b.side===0&&e.active!==u){
+  if(!e.select(u.id))e.wait();
  }
  if(p.passive?.turns&&p.fired&&(p.hold||p.finishedAt===null)&&b.phase==='aim'&&b.side===0&&!b.projectiles.length&&p.age>(p.nextAction||1.8)){
   const casts=p.metrics.casts.filter(v=>v.side===0),sequence=p.passive.sequence||[],next=sequence[casts.length];

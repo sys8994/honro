@@ -20,7 +20,7 @@ with sync_playwright() as pw, serve_game() as origin:
             const a=HonroApp,c=HONRO_CORE,h=a.profile.heroes.archer;
             a.profile.settings.sound=false;a.profile.settings.music=false;a.updateAudio();
             h.xp=c.xpAtLevel(21);Object.assign(h.ranks,{A11:1,A09:8});
-            a.showCamp('archer');a.talent('A09');
+            a.showCamp('archer');
         }""")
 
         def press(locator):
@@ -29,6 +29,14 @@ with sync_playwright() as pw, serve_game() as origin:
             else:
                 locator.click()
 
+        press(page.locator("#camp-tab-skills"))
+        training = page.locator('details[data-camp-details="training"]')
+        if training.count() and training.get_attribute("open") is None:
+            press(training.locator("summary").first)
+        branch = page.locator('[data-action=branch][data-id="1"]')
+        if branch.is_visible():
+            press(branch)
+        press(page.locator('button.tree-node[data-skill=A09]'))
         open_mastery = page.locator("[data-action=mastery-review]")
         assert open_mastery.is_disabled()
         assert "경지 22" in page.locator(".mastery-panel").inner_text()
@@ -38,6 +46,10 @@ with sync_playwright() as pw, serve_game() as origin:
         assert page.evaluate("k=>localStorage.getItem(k)", KEY) == before
         assert page.evaluate("!HonroApp.profile.heroes.archer.masteries?.length")
         page.screenshot(path=str(OUT / f"{name}-compare.png"))
+        page.wait_for_function("""HonroApp.preview?.variant==='mastered' &&
+            HonroApp.preview.control?.metrics.damage>0 &&
+            HonroApp.preview.metrics.damage>HonroApp.preview.control.metrics.damage""")
+        damage = page.evaluate("()=>[HonroApp.preview.control.metrics.damage,HonroApp.preview.metrics.damage]")
         press(page.locator("[data-action=mastery-preview][data-mode=base]"))
         page.wait_for_function("HonroApp.preview?.variant==='base' && HonroApp.preview.fired")
         assert page.evaluate("!HonroApp.preview.metrics.masteryIds.size")
@@ -60,15 +72,15 @@ with sync_playwright() as pw, serve_game() as origin:
         assert page.evaluate("(k)=>JSON.parse(localStorage.getItem(k)).heroes.archer.masteries", KEY) == ["A09"]
 
         page.reload()
-        page.wait_for_function("HonroApp.profile.heroes.archer.masteries?.includes('A09')")
+        page.wait_for_function("window.HonroApp?.profile.heroes.archer.masteries?.includes('A09')")
         page.evaluate("()=>{HonroApp.showCamp('archer');HonroApp.talent('A09');}")
         assert "통달 완료" in page.locator(".mastery-panel").inner_text()
         assert page.locator("[data-action=rank-minus-detail]").is_disabled()
-        rect = page.locator(".modal .dialog").bounding_box() or page.locator("#modal .dialog").bounding_box()
+        rect = page.locator("#modal .dialog").bounding_box()
         assert rect and rect["width"] <= width and rect["height"] <= height
         assert not errors, errors
         results.append({"display": name, "input": "tap" if touch else "click", "width": width,
-                        "unlockLevel": 22, "SP": points - 5, "previewIsolated": True, "coldReload": True})
+                        "unlockLevel": 22, "SP": points - 5, "previewDamage": damage, "previewIsolated": True, "coldReload": True})
         print("PASS", name, "tier lock, real comparison, cancel, confirm, SP and reload", flush=True)
         page.close()
     browser.close()

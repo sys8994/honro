@@ -71,7 +71,7 @@
           const ui=appUI(a);check(ui,'Normal 59 controls absent');const btn=document.createElement('button');
           btn.type='button';btn.dataset.act6QaLookout='';styleAction(btn);btn.addEventListener('click',event=>{if(event.isTrusted&&event.currentTarget===btn)action(a,event);});s.button=btn;ui.append(btn);
           applyFieldPrep(a,retryChanges);
-          tick59(a);if(!s.return59)startAct6Opening(a,s,59);return true;
+          applyNativeGrowth(a,s);tick59(a);if(!s.return59)startAct6Opening(a,s,59);return true;
         }catch(error){a.stopBattle();a.showTitle();throw error;}finally{mounting59.delete(previous);}
       }
       function bindNormal59(a,e,s){

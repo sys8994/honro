@@ -10,6 +10,7 @@ p.add_argument("--build", type=Path, default=Path.cwd())
 p.add_argument("--chromium", default="/usr/bin/chromium")
 p.add_argument("--out", type=Path, default=Path("_local/reports/act6-field-prep"))
 p.add_argument("--stage", type=int, choices=[55,57,59], required=True)
+p.add_argument("--mastery", action="store_true", help="Check the signed mastery choice at the Stage 58 threshold")
 o = p.parse_args()
 root=o.build.resolve()
 o.out.mkdir(parents=True,exist_ok=True)
@@ -98,6 +99,7 @@ def check57(browser):
     ctx=seeded_context(browser,57,mobile=False)
     page=ctx.new_page()
     page.on("pageerror",lambda e: print("PAGEERROR",e,flush=True))
+    page.on("console",lambda msg: print("CONSOLE",msg.text,flush=True) if msg.type in ("warning","error") else None)
     enter(page,57)
     page.evaluate("""()=>{
       const a=HonroApp,e=a.engine,b=e.b,C=HONRO_CORE;
@@ -151,6 +153,26 @@ def check57(browser):
     before=page.evaluate(ROSTER)
     save=page.evaluate(SAVE)
     sel=choose(page,58,'담허','itm_da_02',['설오','휘겸','소단','담허'])
+    if o.mastery:
+        # Capture only the new signed field. The campaign slot, original actors
+        # and previous terminal receipt all retain their original bytes.
+        modal=page.locator(".open .act6-threshold-prep")
+        mage=modal.locator("details").filter(has_text="담허")
+        mage.get_by_label("통달할 기예").select_option("M01")
+        mage.get_by_role("button",name="통달 시연").click()
+        page.wait_for_function("HonroApp.preview?.variant==='mastered' && HonroApp.preview.metrics.masteryIds.has('M01')")
+        assert page.evaluate(SAVE)==save
+        page.screenshot(path=o.out/"stage-58-mastery-preview.png")
+        mage.get_by_role("button",name="통달 확정").click()
+        page.wait_for_function("HonroApp.engine.b.heroes.mage.masteries?.includes('M01')")
+        committed=page.evaluate(SAVE)
+        key=next(k for k in committed if k.startswith("honro-campaign-act6-boundary"))
+        before_body=json.loads(save[key])["honroAct6ChapterBoundary"]["body"]
+        after_body=json.loads(committed[key])["honroAct6ChapterBoundary"]["body"]
+        assert after_body.pop("fieldMasteries")=={"mage":["M01"]}
+        assert before_body==after_body
+        assert committed["honro-first-act-profile-1"]==save["honro-first-act-profile-1"]
+        save=committed
     sel.click()
     after=page.evaluate(ROSTER);no_refill(before,after)
     assert after['mage']['equipmentIds']==['itm_da_02'],after
@@ -159,7 +181,12 @@ def check57(browser):
     page.wait_for_function("HonroApp.engine?.b.honroStage===58")
     base.dismiss_dialogue(page)
     warm=page.evaluate(ROSTER)
-    assert warm['mage']==after['mage'],(warm,after)
+    if o.mastery:
+        no_refill(dict(sorted(after.items())),dict(sorted(warm.items())))
+        assert warm["mage"]["equipmentIds"]==after["mage"]["equipmentIds"]
+        assert page.evaluate("HonroApp.engine.b.heroes.mage.masteries?.includes('M01')")
+    else:
+        assert warm['mage']==after['mage'],(warm,after)
     page.reload(wait_until='domcontentloaded')
     page.wait_for_function("!!window.HonroApp")
     base.action(page,"rest").click()
@@ -169,6 +196,9 @@ def check57(browser):
     base.dismiss_dialogue(page)
     cold=page.evaluate(ROSTER)
     assert warm==cold,(warm,cold)
+    if o.mastery:
+        assert page.evaluate("HonroApp.engine.b.heroes.mage.masteries?.includes('M01')")
+        assert page.evaluate("HONRO_CORE.levelOf(HonroApp.engine.b.heroes.mage)")==30
     page.screenshot(path=o.out/"stage-58-resumed.png")
     print("Warm and cold 58 agree; roster proof accepted",flush=True)
 

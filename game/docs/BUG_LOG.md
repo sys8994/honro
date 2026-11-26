@@ -6159,6 +6159,18 @@ Lv20 이후 필요 XP 인상을 적용했다. 4~5막 성장 예산은 기존 적
 독립 실엔진에서 같은 상황을 실행한다. 무명사 정비의 통달은 장 경계 소유
 검사와 별도 저장에서 확정하며, 기존 장 경계의 인물·임무 영수증은 보존한다.
 
-검수 명령은 `node tests/skill-mastery.mjs`, `python tests/skill-mastery-browser.py`,
-`node tests/act6-native-state.mjs`, `npm run build`다. 브라우저 검수의 레벨과
-전투 조건은 격리된 입력이며, 무명사 전체 수동 플레이는 별도 범위다.
+- `node tests/skill-mastery.mjs`에서 84개 발동을 같은 조건의 기본·8랭크
+  시연과 대조했다. 티어, 정확한 수련점 지출, 반환 제한, 기존 XP 변환,
+  무명사 6장 완료의 Lv30 도달, 경계 XP 중복 지급 방지도 통과했다.
+- `python tests/skill-mastery-browser.py`에서 PC 클릭과 모바일 터치
+  에뮬레이션으로 전로시의 잠금, 비교, 취소, 확정, 새로고침을 확인했다.
+  같은 시연의 피해는 123에서 209로 바뀌었으며 확정 전 프로필은 그대로였다.
+- `python tests/act6-field-prep-browser.py --stage 57 --mastery --out
+  _local/reports/skill-mastery`에서 정상 서명 체크포인트를 열고 7장 정비의
+  통달을 시연·확정했다. 8장에 바로 들어갈 때와 저장에서 이어갈 때의
+  통달, 자원, 인물 인계가 일치했다.
+- `node tests/act6-native-state.mjs`의 기존 12개 상태 검사, 엄격 TypeScript
+  검사, `npm run build`의 게임·워크숍 빌드가 통과했다. `camp-skill-ux`,
+  `skill-redesign`, `hwigyeom-p5`, `sodan-followup`의 기존 실패는 기준
+  커밋 `e2dbb22b`에서도 동일했다. 무명사 연속 수동 플레이와 실기기 검수는
+  별도 범위다.

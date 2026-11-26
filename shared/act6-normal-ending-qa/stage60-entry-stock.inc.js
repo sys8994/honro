@@ -68,7 +68,7 @@
           s.walk=button('act6QaWalk','다른 동행에게 걸음을 넘긴다',()=>{return a.canInput()&&s.owner60.nativeInteraction('end-walk');});
           s.memorial=button('act6QaMemorial','휘겸이 곽진과 곁에 남은 사람의 이름을 기록한다',()=>memorial60(a,s));s.memorial.hidden=true;
           s.advance=button('act6QaEndingNext','다음',()=>advance60(a,s));s.advance.hidden=true;
-          tick60(a,1/120);showAct6Milestone(a,s,'arrival',finale60Dialogue.arrival);return true;
+          applyNativeGrowth(a,s);tick60(a,1/120);showAct6Milestone(a,s,'arrival',finale60Dialogue.arrival);return true;
         }catch(error){a.stopBattle();a.showTitle();throw error;}
       }
       function bindNormal60(a,e,s){

@@ -14,7 +14,7 @@ export function masteryEffect(e: Engine, id: string, at: Vec, size=48, end?:Vec)
 }
 export const center=(u:Unit):Vec=>({x:u.x,y:u.y-u.h*.5});
 export function masteryOnce(e:Engine, id:string, token:string) {
- const key='mastery:'+id+':'+token;const seen=e.b.shotDamage||=( {});
+ const key='mastery:'+id+':'+token;const seen=e.b.shotDamage??={};
  if(seen[key])return false;seen[key]=1;return true;
 }
 export function masteryEcho(e:Engine,p:Projectile,id:string,origin:Vec,range:number,fraction:number,excluded:string[],limit=1) {
@@ -55,6 +55,7 @@ export function masteryHit(e:Engine,actor:Unit|undefined,target:Unit,amount:numb
    case 'O05': if(p.wraithBurst&&p.wraithMarked?.includes(target.id))bonus=.8;break;
   }
  }
+ if(bonus)masteryEffect(e,id,impact,Math.min(140,Math.max(35,p?.blast||50)),p?.trail?.at(-3));
  if(p?.echoSource&&mastered(e,actor,'O15')){
   const prior=target.masterySoulHit;
   if(prior?.shot===p.shot&&Math.abs((p.launchX??p.x)-prior.x)>90&&masteryOnce(e,'O15',actor.id)){bonus+=.8;masteryEffect(e,'O15',impact,48,{x:p.launchX??p.x,y:p.launchY??p.y});}
@@ -82,6 +83,5 @@ export function masteryHit(e:Engine,actor:Unit|undefined,target:Unit,amount:numb
  if(direct&&mastered(e,actor,'MP03')&&actor.masteryRefund&&SKILLS[id]?.cls==='mage'){
   bonus+=.4;delete actor.masteryRefund;masteryEffect(e,'MP03',impact,42,center(actor));
  }
- if(bonus){masteryEffect(e,id,impact,Math.min(140,Math.max(35,p?.blast||50)),p?.trail?.at(-3));return amount*(1+bonus);}
- return amount;
+ return amount*(1+bonus);
 }

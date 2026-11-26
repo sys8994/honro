@@ -213,3 +213,5 @@
 .mastery-confirm{padding:1rem}
 
 .tree-node.mastery-trained .node-sub em{color:#ecd394;border-color:#c9a85b}
+
+.mastery-complete{display:grid;place-items:center;color:#e8d4a3;min-height:42px}

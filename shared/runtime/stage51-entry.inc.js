@@ -71,7 +71,18 @@
           ['설오','알겠습니다. 도착하기 전에 아무도 혼자 아래로는 내려가지 마십시오.']
         ]
       });
+      function applyNativeGrowth(app,state){
+        const b=state.engine?.b;
+        if(!state.normal51||!b||app.engine!==state.engine||b!==state.b||state.growthApplied)return;
+        // Admission has already verified the unchanged incoming custody. Its
+        // authenticated destination now owns the new progression snapshot.
+        if(typeof restoreAct6Masteries==='function')restoreAct6Masteries(app,b);
+        else G.HonroProgression.mountAct6Progress(b,app.profile);
+        state.growthApplied=true;
+        app.updateHUD(true);
+      }
       function startAct6Opening(app,state,id){
+        applyNativeGrowth(app,state);
         if(app.engine!==state.engine||app.screen!=='battle'||app.dialogue||state.openingOffered)return false;
         const rows=act6Openings[id];if(!rows)return false;
         state.openingOffered=true;
