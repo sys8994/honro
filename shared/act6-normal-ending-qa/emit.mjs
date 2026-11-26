@@ -11,7 +11,7 @@ const moduleText=async (p,name)=>{
 };
 export async function normal60EndingSource(){
  const stock=await readFile(here('../runtime/profile-store.js'),'utf8');
- assert.equal(SHA(stock),'84249ab3fc58605270e2b08ecdeec46e72cfb5b8d8c274ba609e6e504f2e7ee5');
+ assert.equal(SHA(stock),'0c4118c955e87c79d0fe8177d63526575a9c457b192ba9efff179fe4eb0bbb00');
  const cards={
    Wide:{asset:'dawn-pc.webp',mime:'image/webp',w:1672,h:941,sha256:'cb000c13e990325498c7996f423b6b459cc586d8ee4d20912b7a1db79944e25f'},
    Portrait:{asset:'dawn-mobile.webp',mime:'image/webp',w:941,h:1672,sha256:'56e249516f335f8762883a94715a49043aee8c4598847d27c90f15289f461a61'}

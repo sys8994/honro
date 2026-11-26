@@ -1,3 +1,4 @@
+import {mastered,masteryEffect,masteryEcho,masteryOnce} from './masteryCombat';
 import {gearHas,gearState,gearCycle,gearMove,gearAlly,gearBody,gearPass} from './equipmentCombat';
 import {equipmentParam} from './equipment';
 import type {DamageOrigin} from './damageVariance';
@@ -68,12 +69,13 @@ function stroke(e:Engine,u:Unit,range:number,facing=u.facing,color='#dbe2dd',var
 }
 function strike(e:Engine,u:Unit,t:Unit,damage:number,s:Skill,shot:number,autonomous=false,origin?:DamageOrigin){
  // A short-lived damage descriptor is not a projectile in the battlefield.
- const p={equipment:origin?.equipment,attackSide:origin?.attackSide,damageRoll:origin?.damageRoll,autonomous,skill:s.id,owner:u.id,side:u.side,shot,damage,skillRank:u.ranks[s.id]||1,launchX:u.x,launchY:u.y,vx:u.facing,vy:0} as Projectile;
+ const p={mastery:origin?.mastery,masteryHarmony:origin?.masteryHarmony,equipment:origin?.equipment,attackSide:origin?.attackSide,damageRoll:origin?.damageRoll,autonomous,skill:s.id,owner:u.id,side:u.side,shot,damage,skillRank:u.ranks[s.id]||1,launchX:u.x,launchY:u.y,vx:u.facing,vy:0} as Projectile;
  e.hurt(t,damage,u.id,true,p,at(u));
 }
 export function startWarriorCast(e:Engine,s:Skill,u:Unit){
  if(!s.martial||s.passive)return;
  const roots=e.b.projectiles.filter(p=>p.shot===e.b.shot&&p.owner===u.id),p=roots[0];
+ const follow=u.meleeFollow==='ready'&&u.meleeFollowOrigin?.mastery;
  if(u.meleeFollow==='ready')u.meleeFollow='spent';
  if(meleeSkill(s)||s.mode==='bladeScreen'){
   e.b.projectiles=e.b.projectiles.filter(p=>!roots.includes(p));
@@ -82,15 +84,19 @@ export function startWarriorCast(e:Engine,s:Skill,u:Unit){
    const rank=u.ranks[s.id]||1,before=u.hp;
    u.hp=Math.min(u.maxHp,u.hp+Math.round(u.maxHp*(.02+.005*(rank-1))));
    healed(e.b,u,u.id,before,s.id);if(u.hp>before)e.fx('ring',u.x,u.y-u.h*.5,'#b8d2bc',28);
-   u.martialGuard={equipment:p.equipment,attackSide:p.attackSide,damageRoll:p.damageRoll,round:e.b.round,reduction:.25+.10*(rank-1)/7,counter:true,rank,angle:-rad(u.angle),span:meleeSpan(u,s,power)};stroke(e,u,45);return;
+   u.martialGuard={equipment:p.equipment,attackSide:p.attackSide,damageRoll:p.damageRoll,round:e.b.round,reduction:.25+.10*(rank-1)/7+(p.mastery?.2:0),mastery:p.mastery,counter:true,rank,angle:-rad(u.angle),span:meleeSpan(u,s,power)};stroke(e,u,45);return;
   }
   if(s.mode==='bladeScreen'){u.bladeScreen={round:e.b.round,rank:u.ranks[s.id]||1,hits:0,facing:u.facing};stroke(e,u,110);return;}
   const lifeCost=s.mode==='lifeSlash'?Math.floor(u.hp/3):0;
   if(lifeCost){const replaced=Math.floor(lifeCost/2),mp=replaced*equipmentParam(u,'hw_life','focusPerHp',.25);if(gearHas(p,'hw_life')&&u.focus>=mp){u.focus-=mp;u.hp-=lifeCost-replaced;}else u.hp-=lifeCost;}
-  u.meleeAction={equipment:p.equipment,attackSide:p.attackSide,damageRoll:p.damageRoll,skill:s.id,elapsed:0,index:0,damage:damage+(lifeCost*(1.08+.405*((u.ranks[s.id]||1)-1)/7)),range:meleeRange(u,s,s.mode==='lifeSlash'?0:power),power,shot:e.b.shot,lifeCost,angle:-rad(u.angle),span:meleeSpan(u,s,power)};
+  if(mastered(e,u,'SP01')&&power>=.98)masteryEffect(e,'SP01',at(u),meleeRange(u,s,power)*1.3);
+  const extend=(mastered(e,u,'SP01')&&power>=.98?1.3:1)*(s.id==='S00'&&p.mastery&&u.masteryGuarded?1.3:1);
+  if(s.id==='S00')delete u.masteryGuarded;
+  u.meleeAction={mastery:p.mastery,masteryHarmony:p.masteryHarmony,masteryFollow:follow,equipment:p.equipment,attackSide:p.attackSide,damageRoll:p.damageRoll,skill:s.id,elapsed:0,index:0,damage:damage+(lifeCost*(1.08+.405*((u.ranks[s.id]||1)-1)/7)),range:meleeRange(u,s,s.mode==='lifeSlash'?0:power)*extend,power,shot:e.b.shot,lifeCost,angle:-rad(u.angle),span:meleeSpan(u,s,power)*(mastered(e,u,'SP01')&&power>=.98?1.3:1)+(p.mastery&&s.id==='S03'?rad(40):0)};
   if(power<.30&&s.mode!=='lifeSlash')u.martialGuard={round:e.b.round,reduction:.12*(1-power/.30)};
   return;
  }
+ if(['rush','blade'].includes(s.branch||'')&&mastered(e,u,'SP01'))u.masteryOtherBranch=true;
  if(s.branch==='rush'){
   p.body=true;p.radius=u.r;Object.assign(p,e.projectileOrigin(u,s,u.angle));p.returnX=u.x;p.returnY=u.y;
   p.launchX=p.x;p.launchY=p.y;p.apexY=p.y;p.trail=[{x:p.x,y:p.y}];u.airborne=true;u.vx=u.vy=0;
@@ -112,16 +118,31 @@ export function tickWarrior(e:Engine,dt:number){
   if(u.bladeScreen&&u.bladeScreen.round<e.b.round)delete u.bladeScreen;
   const a=u.meleeAction;
   if(a){
-   const previous=a.elapsed;a.elapsed+=dt;const s=SKILLS[a.skill],count=s.mode==='meleeCombo'?COMBO_HITS[(u.ranks[s.id]||1)-1]:s.mode==='meleeTurn'?2:1,delay=s.mode==='lifeSlash'?.20:.075,interval=s.mode==='meleeCombo'?.10:.19;
+   const previous=a.elapsed;a.elapsed+=dt;const s=SKILLS[a.skill],count=s.mode==='meleeCombo'?COMBO_HITS[(u.ranks[s.id]||1)-1]+(a.mastery?1:0):s.mode==='meleeTurn'?2:1,delay=s.mode==='lifeSlash'?.20:.075,interval=s.mode==='meleeCombo'?.10:.19;
    // Cross a real swing's windup once; loading midway does not replay a past start.
    for(let index=a.index;a.elapsed>previous&&index<count&&index*interval<=a.elapsed;index++)if(previous===0||previous<index*interval)e.skillSound('swing',u.id,s.id,a.shot,`stroke:${index}`);
    while(a.index<count&&a.elapsed>=delay+a.index*interval){
     const turn=s.mode==='meleeTurn'&&a.index===1,angle=(a.angle??-rad(u.angle))+(turn?Math.PI:0),span=a.span??meleeSpan(u,s,a.power),facing=Math.cos(angle)<0?-1:1;
     const targets=e.b.units.filter(t=>(foe(u,t)||gearHas(a,'co_cursed')&&a.index===0&&!t.dead&&t.side===0&&!t.summoned&&!t.enthrall&&t.id!==u.id)&&e.attackAllows(t,u.id,{autonomous:s.mode==='meleeCombo'||a.index>0})&&meleeContains(e,u,t,a.range,angle,span));
+    const hit=(t:Unit)=>{
+     let gain=0;
+     if(a.mastery) {
+      if(s.id==='S00'&&a.power>=.98)gain+=.5;
+      if(s.id==='S02')gain+=.9;
+      if(s.id==='S03'&&!meleeContains(e,u,t,a.range,angle,meleeSpan(u,s,a.power)))gain+=.6;
+      if(s.id==='S05'&&turn&&a.masteryTargets?.length&&!a.masteryTargets.includes(t.id))gain+=.9;
+      if(s.id==='S07'&&a.index===count-1)gain+=2;
+     }
+     if(a.masteryFollow){gain+=.7;delete a.masteryFollow;masteryEffect(e,'S13',at(t),54,at(u));}
+     if(mastered(e,u,'SP01')&&u.masteryOtherBranch){gain+=.4;delete u.masteryOtherBranch;masteryEffect(e,'SP01',at(t),58,at(u));}
+     if(gain)masteryEffect(e,s.id,at(t),Math.min(140,a.range),at(u));
+     strike(e,u,t,a.damage*(1+gain),s,a.shot,s.mode==='meleeCombo'||a.index>0,a);
+    };
     if(s.mode==='meleeCombo'){
      const current=targets.find(t=>t.id===a.target)||targets.sort((x,y)=>Math.hypot(x.x-u.x,x.y-u.y)-Math.hypot(y.x-u.x,y.y-u.y))[0];
-     if(current){a.target=current.id;strike(e,u,current,a.damage,s,a.shot,s.mode==='meleeCombo'||a.index>0,a);}
-    }else for(const t of targets)strike(e,u,t,a.damage,s,a.shot,s.mode==='meleeCombo'||a.index>0,a);
+     if(current){a.target=current.id;hit(current);}
+    }else for(const t of targets)hit(t);
+    if(!turn&&s.id==='S05'&&a.mastery)a.masteryTargets=targets.map(t=>t.id);
     for(const t of e.b.terrain){const contact=meleeTerrainContact(e,u,t,a.range,angle,span);if(contact){e.damageTerrain(t,a.damage*(s.terrain||1),0,u.id,{autonomous:s.mode==='meleeCombo'||a.index>0} as Projectile);e.fx('spark',contact.x,contact.y,'#cfb783',22);}}
     stroke(e,u,a.range,facing,s.mode==='lifeSlash'?'#d8c4bd':'#dbe2dd',s.mode==='lifeSlash'?2:a.index%2,angle,span);a.index++;
    }
@@ -129,11 +150,12 @@ export function tickWarrior(e:Engine,dt:number){
   }
   const guard=u.martialGuard;
   if(guard?.counter&&e.b.side!==u.side){
-   const range=SKILLS.S08.radius+(guard.attacker?72:0),span=(guard.span??meleeSpan(u,SKILLS.S08))+(guard.attacker?rad(20):0),angle=guard.angle??-rad(u.angle);
+   const range=(SKILLS.S08.radius+(guard.attacker?72:0))*(guard.mastery&&guard.attacker?1.4:1),span=(guard.span??meleeSpan(u,SKILLS.S08))+(guard.attacker?rad(20):0),angle=guard.angle??-rad(u.angle);
    const targets=e.b.units.filter(t=>foe(u,t)&&e.attackAllows(t,u.id,{autonomous:true})&&meleeContains(e,u,t,range,angle,span));
    if(targets.length){e.skillSound('block',u.id,'S08',e.b.shot,targets[0].id);guard.counter=false;
     const tactical=gearHas(guard,'hw_guard')&&gearState(u).counterCycle!==gearCycle(e.b),factor=guard.equipment?.skillDamage||1;
-    for(const t of targets){strike(e,u,t,52*u.attack*(1.10+.20*((guard.rank||1)-1)/7)*factor,SKILLS.S08,e.b.shot,true,guard);if(tactical&&!t.dead&&!t.boss&&!t.honroMidboss&&!t.fixed)gearMove(e,t,Math.sign(t.x-u.x||u.facing)*100);}
+    if(guard.mastery&&guard.attacker)masteryEffect(e,'S08',at(u),range,at(targets[0]));
+    for(const t of targets){strike(e,u,t,52*u.attack*(1.10+.20*((guard.rank||1)-1)/7)*factor*(guard.mastery&&guard.attacker?1.6:1),SKILLS.S08,e.b.shot,true,guard);if(tactical&&!t.dead&&!t.boss&&!t.honroMidboss&&!t.fixed)gearMove(e,t,Math.sign(t.x-u.x||u.facing)*100);}
     if(tactical){gearState(u).counterCycle=gearCycle(e.b);gearMove(e,u,-Math.sign(Math.cos(angle)||u.facing)*120);}
     stroke(e,u,range,Math.cos(angle)<0?-1:1,'#dbe2dd',0,angle,span);}
   }
@@ -185,8 +207,8 @@ function bladeHit(e:Engine,p:Projectile,t:Unit){
  const u=e.unit(p.owner)!;
  if(p.mode==='bladePull'){
   e.hurt(t,p.damage,p.owner,true,p,p);
-  pullToFront(e,u,t);
-  if(foe(u,t)&&e.attackAllows(t,u.id,{autonomous:true})&&meleeContains(e,u,t,SKILLS.S00.radius,u.facing===1?0:Math.PI)){strike(e,u,t,52*u.attack*.85,SKILLS.S00,p.shot,true,p);stroke(e,u,SKILLS.S00.radius);}
+  const pulled=(!p.mastery||Math.hypot(t.x-u.x,t.y-u.y)<(p.flightRange?.distance??1500)*1.3)&&pullToFront(e,u,t);
+  if(foe(u,t)&&e.attackAllows(t,u.id,{autonomous:true})&&meleeContains(e,u,t,SKILLS.S00.radius,u.facing===1?0:Math.PI)){if(pulled&&p.mastery)masteryEffect(e,'S10',at(u),65,at(t));strike(e,u,t,52*u.attack*.85*(pulled&&p.mastery?1.9:1),SKILLS.S00,p.shot,true,p);stroke(e,u,SKILLS.S00.radius);}
  }else e.hurt(t,p.damage,p.owner,true,p,p);
 }
 function land(e:Engine,p:Projectile,h?:Collision){
@@ -195,6 +217,12 @@ function land(e:Engine,p:Projectile,h?:Collision){
  // walls for a floor, nor assign an unchecked fallback when that search fails.
  u.x=p.x;u.y=p.y+u.h*.5;u.landing=.24;
  const s=SKILLS[p.skill];
+ if(p.mastery&&p.mode==='warriorSweep'&&p.hit.length>=2){
+  const last=e.unit(p.hit.at(-1)!);
+  if(last&&!last.dead){masteryEffect(e,'S06',at(last),60,p);e.hurt(last,p.damage*.8,p.owner,false,{...p,mastery:false,masteryEcho:true,autonomous:true},p);}
+ }
+ if(p.mastery&&p.mode==='warriorDive'&&p.dived&&p.y-(p.apexY??p.y)>=280&&h?.terrain)
+  masteryEcho(e,p,'S04',{x:h.x+h.n.x*8,y:h.y+h.n.y*8},p.blast+80,.35,p.hit,2);
  if(p.mode==='warriorDive'){
   const factor=p.dived?1.35+Math.min(.30,Math.max(0,p.y-(p.apexY||p.y))/1800):.75,radius=p.dived?p.blast:80;
   for(const t of e.b.units.filter(t=>foe(u,t))){const d=Math.hypot(t.x-p.x,t.y-t.h*.45-p.y);if(d<radius+t.r)e.hurt(t,p.damage*factor*(1-.65*clamp(d/radius,0,1)),p.owner,true,p,p);}
@@ -204,12 +232,12 @@ function land(e:Engine,p:Projectile,h?:Collision){
   if(t)e.hurt(t,p.damage,p.owner,true,p,p);stroke(e,u,95);
   if(t&&gearHas(p,'hw_jump_cost')){const dx=-Math.sign(p.vx||u.facing)*180;if(!gearMove(e,u,dx))gearState(u).landingRetreat=dx;}
  }
- if(s.id==='S13'){u.meleeFollow='landing';u.meleeFollowOrigin={attackSide:p.attackSide,damageRoll:p.damageRoll,round:e.b.round};}
+ if(s.id==='S13'){u.meleeFollow='landing';u.meleeFollowOrigin={mastery:p.mastery,attackSide:p.attackSide,damageRoll:p.damageRoll,round:e.b.round};}
  e.remove(p);
 }
 /** First contact releases one short, transverse, cover-aware pressure cut. */
 function burstBlade(e:Engine,p:Projectile,point:Vec){
- const rank=p.skillRank||1,half=110+(rank-1)*60/7,speed=Math.max(1,Math.hypot(p.vx,p.vy)),normal={x:-p.vy/speed,y:p.vx/speed};
+ const rank=p.skillRank||1,half=(110+(rank-1)*60/7)*(p.mastery?1.6:1),speed=Math.max(1,Math.hypot(p.vx,p.vy)),normal={x:-p.vy/speed,y:p.vx/speed};
  const a={x:point.x-normal.x*half,y:point.y-normal.y*half},b={x:point.x+normal.x*half,y:point.y+normal.y*half},attack={...p,autonomous:true};
  for(const t of e.b.units){if(!e.guidanceTarget(e.unit(p.owner),t)||!e.attackAllows(t,p.owner,attack))continue;
   const hit=segRect(a,b,t.x-t.r,t.y-t.h,t.r*2,t.h,24);if(!hit)continue;
@@ -217,6 +245,7 @@ function burstBlade(e:Engine,p:Projectile,point:Vec){
   if(e.projectileCollision(point,contact,1,p.owner,[],false))continue;
   e.hurt(t,p.damage,p.owner,true,attack,point);
  }
+ if(p.mastery){const u=e.unit(p.owner)!;u.masteryBladeWard={a,b,round:e.b.round};masteryEffect(e,'S14',a,8,b);}
  e.emit('fx',{name:'inkLine',x:a.x,y:a.y,x2:b.x,y2:b.y,color:'#dae1d3',size:7});e.fx('inkImpact',point.x,point.y,'#d8e2d9',half);e.emit('sound',{name:'sword'});e.remove(p);
 }
 export function stepWarrior(e:Engine,p:Projectile,dt:number){
@@ -237,7 +266,10 @@ export function stepWarrior(e:Engine,p:Projectile,dt:number){
   // Orbit centre follows the aimed projectile; independently moving blades are automatic.
   const orbitAttack={...p,autonomous:true};
   for(const blade of p.orbit.blades){const before=orbitPoint({...p,...a},blade,Math.max(0,p.age-dt)),after=orbitPoint({...p,x:end.x,y:end.y},blade),block=e.projectileCollision(before,after,5,p.owner,[],false),stop=block||after;
-   for(const t of e.b.units.filter(t=>!t.dead&&e.attackAllows(t,p.owner,orbitAttack)&&t.id!==p.owner)){if((blade.hits[t.id]||0)>=2||p.age-(blade.lastHits[t.id]??-10)<.28)continue;if(segRect(before,stop,t.x-t.r,t.y-t.h,t.r*2,t.h,8)){blade.hits[t.id]=(blade.hits[t.id]||0)+1;blade.lastHits[t.id]=p.age;e.hurt(t,p.damage,p.owner,true,orbitAttack,stop);}}
+   for(const t of e.b.units.filter(t=>!t.dead&&e.attackAllows(t,p.owner,orbitAttack)&&t.id!==p.owner)){if((blade.hits[t.id]||0)>=2||p.age-(blade.lastHits[t.id]??-10)<.28)continue;if(segRect(before,stop,t.x-t.r,t.y-t.h,t.r*2,t.h,8)){blade.hits[t.id]=(blade.hits[t.id]||0)+1;blade.lastHits[t.id]=p.age;
+    const third=p.mastery&&blade.hits[t.id]===1&&p.orbit.blades.filter(b=>b.hits[t.id]).length===3;
+    if(third)masteryEffect(e,'S12',stop,58);
+    e.hurt(t,p.damage*(third?2:1),p.owner,true,orbitAttack,stop);}}
   }
  }else {
   const targets=e.b.units.filter(t=>!t.dead&&e.attackAllows(t,p.owner,p)&&t.id!==u.id&&!p.hit.includes(t.id)&&(!rush||foe(u,t))).map(t=>({t,h:segRect(a,end,t.x-t.r,t.y-t.h,t.r*2,t.h,rush?35:p.radius)})).filter(v=>v.h).sort((a,b)=>a.h!.t-b.h!.t);
@@ -248,7 +280,11 @@ export function stepWarrior(e:Engine,p:Projectile,dt:number){
    }p.hit.push(t.id);
    if(rush){if(p.mode==='warriorDive')continue;if(p.mode==='warriorLeap'){p.x=a.x+(end.x-a.x)*h!.t;p.y=a.y+(end.y-a.y)*h!.t;land(e,p,{...h!,x:p.x,y:p.y,unit:t});return true;}
     e.hurt(t,p.damage,p.owner,true,p,end);stroke(e,{...u,x:end.x,y:end.y+u.h*.5},70);
-    if(p.mode==='warriorDrive'&&!t.fixed&&!t.airborne&&!t.jumping&&e.surface(t.x,t.y-5,t.y+5))e.impulse(t,Math.sign(p.vx||u.facing)*300,0,p);
+    if(p.mode==='warriorDrive'&&!t.fixed&&!t.airborne&&!t.jumping&&e.surface(t.x,t.y-5,t.y+5)){
+     const direction=Math.sign(p.vx||u.facing);
+     if(p.mastery&&!t.boss&&!t.honroObjectiveTarget)t.masteryWallDrive={owner:p.owner,damage:p.damage*.6,until:e.b.round};
+     e.impulse(t,direction*300,0,p);
+    }
    }else {if(p.mode==='bladeBurst'){burstBlade(e,p,{x:a.x+(end.x-a.x)*h!.t,y:a.y+(end.y-a.y)*h!.t});return true;}bladeHit(e,p,t);if(p.mode!=='bladePierce'){e.remove(p);return true;}}
   }
  }
@@ -274,7 +310,7 @@ export function restoreWarriorFollow(b:Battle){
 }
 export function finishWarrior(e:Engine){
  const u=e.active;if(!u)return false;
- if(u.meleeFollow==='landing'&&!u.dead){u.meleeFollow='ready';u.acted=false;u.moveLeft=0;e.b.phase='aim';e.b.cast=undefined;e.message('파진연격 · 평참 또는 검술 한 번');e.emit('change');e.emit('save');return true;}
+ if(u.meleeFollow==='landing'&&!u.dead){u.meleeFollow='ready';u.acted=false;u.moveLeft=u.meleeFollowOrigin?.mastery?u.maxMove*.3:0;if(u.meleeFollowOrigin?.mastery)masteryEffect(e,'S13',at(u),75);e.b.phase='aim';e.b.cast=undefined;e.message('파진연격 · 평참 또는 검술 한 번');e.emit('change');e.emit('save');return true;}
  // Reaching action completion while ready means the optional sword was declined
  // (defend/item/wait). Landing above is the only path that grants the reservation.
  if(u.meleeFollow==='ready'||u.meleeFollow==='spent')clearWarriorFollow(u);

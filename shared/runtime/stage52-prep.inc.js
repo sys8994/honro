@@ -18,7 +18,7 @@
             app.modal.classList.contains('open'))return;
           const e=state.engine,actors=owner.thresholdParty(app,e);
           if(!actors){app.notify('네 사람이 종터에 모이면 정비할 수 있습니다.');return;}
-          fieldPrepForm(app,{actors,draft:state.prepDraft,
+          fieldPrepForm(app,{actors,draft:state.prepDraft,mastery:true,
             context:'담허가 안으로 들기 전, 네 사람의 장비와 기예를 바꿀 수 있습니다.',
             isCurrent:()=>active.get(app)===state&&runtime(app)&&!!owner.thresholdParty(app,e),
             submit:(draft,changes)=>{
@@ -28,7 +28,7 @@
           });
         });
       }
-      function fieldPrepForm(app,{actors,custody=actors,draft:beforeDraft,context,isCurrent,submit,clear=()=>{},clearText='변경 없이 닫기'}){
+      function fieldPrepForm(app,{actors,custody=actors,draft:beforeDraft,context,mastery=false,isCurrent,submit,clear=()=>{},clearText='변경 없이 닫기'}){
         if(!isCurrent())return;
         app.open('<h2 id="act6-prep-title">전열 정비</h2><p><span data-prep-context></span> 체력과 혼기는 회복되지 않습니다.</p><div data-prep-roster></div><p data-prep-feedback role="status"></p><div class="actions"><button type="button" data-prep-clear>변경 없이 닫기</button><button type="button" class="primary" data-prep-apply>정비 적용</button></div>','act6-threshold-prep');
         app.modal.querySelector('.dialog').setAttribute('aria-labelledby','act6-prep-title');
@@ -58,6 +58,35 @@
             const current=before?.skills[i]??u.loadout[i+1]??'';
             const {label,field}=select('기예 '+(i+1),[['','비워 둠'],...available.known.map(id=>[id,C.SKILLS[id].name])],current);
             details.append(label);inputs[u.cls].skills.push(field);
+          }
+          if(mastery&&descriptor.releaseEnabled&&typeof saveAct6Mastery==='function'){
+            const card=document.createElement('section'),title=document.createElement('strong'),status=document.createElement('p');
+            card.className='mastery-panel';title.textContent='통달';status.setAttribute('role','status');card.append(title);details.append(card);
+            const hero=()=>{const h=structuredClone(app.engine.b.heroes[u.cls]);h.xp=G.HonroProgression.act6EntryXP(app.profile,u.cls,app.stageId===57?58:app.stageId);return h;};
+            function masteryChoices(){
+              const h=hero(),ids=[C.baseSkill(u.cls),...C.TALENTS.filter(n=>n.cls===u.cls&&h.ranks[n.id]===8).map(n=>n.id)];
+              const {label,field}=select('통달할 기예',[['','기예 선택'],...ids.filter(id=>!C.masteryLearned(h,id)).map(id=>[id,`${C.SKILLS[id].name} · Lv.${C.masteryLevel(id)} · ${C.masteryCost(id)} SP`])],'');
+              const description=document.createElement('p'),notice=document.createElement('small'),commit=document.createElement('button');
+              notice.textContent=`보유 ${C.pointsLeft(h,u.cls)} SP · 통달 확정 후 투자 반환 불가`;
+              commit.type='button';commit.textContent='통달 확정';commit.disabled=true;
+              field.addEventListener('change',()=>{
+                const id=field.value,reason=id&&C.masteryReason(hero(),u.cls,id);
+                description.textContent=id?C.MASTERY_RULES[id][1]+(reason?` · ${reason}`:''):'';
+                commit.disabled=!id||!!reason;
+              });
+              commit.addEventListener('click',async ev=>{
+                if(!ev.isTrusted||!open()||commit.disabled)return;
+                const id=field.value;commit.disabled=true;field.disabled=true;
+                if(await saveAct6Mastery(app,u,id,open)){
+                  status.textContent=C.SKILLS[id].name+' 통달 완료';
+                  if(open())masteryChoices();
+                }else if(open()){field.disabled=false;commit.disabled=false;status.textContent='통달을 기록하지 못했습니다.';}
+              });
+              const known=document.createElement('small');
+              known.textContent=h.masteries?.length?`통달 완료 ${h.masteries.map(id=>C.SKILLS[id].name).join(' · ')}`:'';
+              card.replaceChildren(title,known,label,description,notice,commit,status);
+            }
+            masteryChoices();
           }
           if(u===(actors.find(actor=>actor.cls==='mage')??actors[0]))details.open=true;
         }

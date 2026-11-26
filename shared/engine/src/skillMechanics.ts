@@ -1,3 +1,4 @@
+import {mastered,masteryEffect,masteryEcho,masteryOnce,center} from './masteryCombat';
 import {gearHas,gearBody,gearAddFrost,gearFinish,gearState} from './equipmentCombat';
 import {equipmentParam,equipmentPrimary} from './equipment';
 import {keeperEchoVelocity} from './keeperRitual';
@@ -62,9 +63,9 @@ export function redrawDamage(e:Engine,p:Projectile,u:Unit,target:Unit,amount:num
   }
  }
  const key=`redesign:${p.shot}:${p.skill}:${target.id}`;
- if(p.skill==='A15'&&p.child){const n=e.b.shotDamage[key]||0;e.b.shotDamage[key]=n+1;amount*=([1,.70,.50,.35][n]||0);}
+ if(p.skill==='A15'&&p.child){const n=e.b.shotDamage[key]||0;e.b.shotDamage[key]=n+1;amount*=([p.mastery?1.6:1,.70,.50,.35][n]||0);if(p.mastery&&n===0)masteryEffect(e,'A15',point,44);}
  if(p.secondary){
-  const limit=p.skill==='A08'?(p.rootDamage||p.damage)*.65*(p.damageRoll??1):p.skill==='M13'?3:2;
+  const limit=p.skill==='A08'?(p.rootDamage||p.damage)*(p.mastery?1.05:.65)*(p.damageRoll??1):p.skill==='M13'?3:2;
   const used=e.b.shotDamage[key]||0;
   if(p.skill==='A08'){amount=Math.max(0,Math.min(amount,limit-used));e.b.shotDamage[key]=used+amount;}
   else {if(used>=limit)return 0;e.b.shotDamage[key]=used+1;}
@@ -76,8 +77,13 @@ export function recordRedesignDamage(e:Engine,p:Projectile|undefined,src:Unit,ta
  if(!p||!newSkill(p)||p.skill!=='A06'||!enemy(p,target)||src.dead||src.hp<=0)return;
  const r=rank(p);for(const [field,max,fraction,cap] of [['hp','maxHp',lerpRank(.05,.12,r),.15],['focus','maxFocus',lerpRank(.03,.07,r),.18]] as const){
   const boosted=field==='focus'&&gearBody(p)&&gearHas(p,'se_recover')&&p.equipment!.lowFocus;
-  const key=`recover:${p.shot}:${field}`,used=e.b.shotDamage[key]||0,n=Math.min(actual*fraction*(boosted?2:1),src[max]*(boosted?.25:cap)-used,src[max]-src[field]);
+  const key=`recover:${p.shot}:${field}`,used=e.b.shotDamage[key]||0,n=Math.min(actual*fraction*(boosted?2:1),src[max]*(boosted?.25:p.mastery?cap+(field==='hp'?.06:.08):cap)-used,src[max]-src[field]);
   src[field]+=Math.max(0,n);e.b.shotDamage[key]=used+Math.max(0,n);
+ }
+ if(p.mastery&&src.hp>=src.maxHp){
+  const ally=e.actors(0).filter(t=>t.id!==src.id&&!t.summoned&&!t.enthrall&&t.hp<t.maxHp&&Math.hypot(t.x-src.x,t.y-src.y)<360)
+      .sort((a,b)=>a.hp/a.maxHp-b.hp/b.maxHp)[0];
+  if(ally&&masteryOnce(e,'A06',String(p.shot))){const before=ally.hp;ally.hp=Math.min(ally.maxHp,ally.hp+Math.min(actual*.06,src.maxHp*.1));healed(e.b,ally,src.id,before,'A06');masteryEffect(e,'A06',center(src),44,center(ally));}
  }
  e.emit('fx',{name:'inkLine',x:p.x,y:p.y,x2:src.x,y2:src.y-src.h*.5,color:'#bfc9c6',size:1});
 }
@@ -124,7 +130,7 @@ export function initRedesignCast(e:Engine,s:Skill,u:Unit,actualKiSpent=e.manaCos
  const roots=e.b.projectiles.filter(p=>p.owner===u.id&&p.shot===e.b.shot);
  for(const p of roots){if(s.mode==='waveBounce')p.reflectionVersion=1;if(s.id==='M02')p.fuseAt=iceGourdFuse(u.lastPower);p.apexY=p.y;p.rootDamage=p.damage;if(s.branch==='distance'&&s.id!=='A10'&&u.prepared)p.preparedRank=u.prepared.rank;}
  if(s.branch==='distance'&&s.id!=='A10')delete u.prepared;
- if(s.mode==='prepare'){e.b.projectiles=e.b.projectiles.filter(p=>!roots.includes(p));const rank=u.ranks[s.id]||1;u.prepared={rank,expires:e.b.round+2};u.focus=Math.min(u.maxFocus,u.focus+u.maxFocus*preparedShot(rank).focus);e.fx('ring',u.x,u.y-u.h*.6,'#c8cebf',22);}
+ if(s.mode==='prepare'){e.b.projectiles=e.b.projectiles.filter(p=>!roots.includes(p));const rank=u.ranks[s.id]||1;const mastery=mastered(e,u,'A10');u.prepared={rank,expires:e.b.round+(mastery?4:2)};if(mastery){u.masteryPrepare=true;masteryEffect(e,'A10',center(u),52);}u.focus=Math.min(u.maxFocus,u.focus+u.maxFocus*preparedShot(rank).focus);e.fx('ring',u.x,u.y-u.h*.6,'#c8cebf',22);}
  if(['waveRing','waveBagua'].includes(s.mode))for(const p of roots){
   const plan=redesignPrediction(e,u,s,u.angle,u.lastPower)!;p.targetPoint={x:plan.x,y:plan.y};p.plannedTime=plan.time;p.phaseMode='all';
   if(s.mode==='waveRing'){p.x=u.x;p.y=u.y-u.h*.5;p.targetPoint={x:p.x,y:p.y};p.blast=180+720*u.lastPower;p.vx=p.vy=0;}
@@ -132,14 +138,15 @@ export function initRedesignCast(e:Engine,s:Skill,u:Unit,actualKiSpent=e.manaCos
 }
 export function finishRedesign(e:Engine,reviewed:boolean){
  const b=e.b,u=e.active;if(!u)return false;
- if(u.retreat){delete u.retreat;return false;}
+ if(u.retreat){delete u.retreat;delete u.masteryRetreatJump;return false;}
  const cast=b.cast;
  if(cast&&cast.owner===u.id&&!cast.refunded){
   cast.refunded=true;const s=SKILLS[cast.skill],r=passiveRank(u,'MP03');
-  if(r&&cast.enemyDamage===0&&['gourd','wave'].includes(s.branch||'')){u.focus=Math.min(u.maxFocus,u.focus+cast.cost*passiveTuning(r).missRefund);e.fx('text',u.x,u.y-u.h-14,'#becbc6',14,'회기');}
+  if(r&&cast.enemyDamage===0&&['gourd','wave'].includes(s.branch||'')){u.focus=Math.min(u.maxFocus,u.focus+cast.cost*(mastered(e,u,'MP03')?.96:passiveTuning(r).missRefund));if(mastered(e,u,'MP03')){u.masteryRefund=true;masteryEffect(e,'MP03',center(u));}e.fx('text',u.x,u.y-u.h-14,'#becbc6',14,'회기');}
  }
+ if(reviewed&&cast?.skill==='A10'&&u.masteryPrepare){delete u.masteryPrepare;u.retreat=true;u.moveLeft=u.maxMove*.5;b.phase='aim';b.cast=undefined;b.resolveAge=0;e.emit('change');e.emit('save');return true;}
  if(b.mode!=='practice'&&reviewed&&cast?.owner===u.id&&SKILLS[cast.skill]?.cls==='archer'&&cast.skill!=='A10'&&passiveRank(u,'AP03')&&!u.dead){
-  u.retreat=true;u.moveLeft=u.maxMove*passiveTuning(passiveRank(u,'AP03')).retreat;b.phase='aim';b.cast=undefined;b.resolveAge=0;e.message('이탈보 · 이동/점프만 가능 · 대기로 종료');e.emit('change');e.emit('save');return true;
+  u.retreat=true;const mp=mastered(e,u,'AP03');u.moveLeft=u.maxMove*Math.min(1,passiveTuning(passiveRank(u,'AP03')).retreat+(mp?.3:0));if(mp){u.masteryRetreatJump=true;masteryEffect(e,'AP03',center(u),100);}b.phase='aim';b.cast=undefined;b.resolveAge=0;e.message('이탈보 · 이동/점프만 가능 · 대기로 종료');e.emit('change');e.emit('save');return true;
  }
  return false;
 }
@@ -157,19 +164,19 @@ export function applyQueuedArrowTurn(e:Engine,p:Projectile){
  const order=p.turnOrder;
  if(!order||p.turned||p.age+1e-8<order.age)return;
  if(order.heading===undefined){applyArrowTurn(e,p,order.delta);return;}
- const angle=Math.atan2(p.vy,p.vx),delta=order.heading-angle,max=rad(120);
+ const angle=Math.atan2(p.vy,p.vx),delta=order.heading-angle,max=rad(p.mastery?160:120);
  applyArrowTurn(e,p,clamp(Math.atan2(Math.sin(delta),Math.cos(delta)),-max,max));
- p.turnStraight=500;
+ p.turnStraight=p.mastery?800:500;if(p.mastery)masteryEffect(e,'A09',p,65,{x:p.x+p.vx*.14,y:p.y+p.vy*.14});
 }
 export function turnArrow(e:Engine,point?:Vec){
  const b=e.b,p=steerableArrow(b);if(!p)return false;
  const u=e.unit(p.owner)!,a=Math.atan2(p.vy,p.vx),desired=point?Math.atan2(point.y-p.y,point.x-p.x):-rad(u.angle);
- const max=rad(lerpRank(45,80,rank(p))),delta=clamp(Math.atan2(Math.sin(desired-a),Math.cos(desired-a)),-max,max);
+ const max=rad(p.mastery?160:lerpRank(45,80,rank(p))),delta=clamp(Math.atan2(Math.sin(desired-a),Math.cos(desired-a)),-max,max);
  // Released arrows turn together. Queued arrows repeat the bend at the same
  // flight age, keeping the original launch spread and one input per cast.
  const order={age:p.age,delta};
  if(b.volley&&inTurnVolley(b,b.volley.template))b.volley.template.turnOrder=order;
- for(const arrow of b.projectiles)if(inTurnVolley(b,arrow)){arrow.turnOrder=order;applyArrowTurn(e,arrow,delta);}
+ for(const arrow of b.projectiles)if(inTurnVolley(b,arrow)){arrow.turnOrder=order;applyArrowTurn(e,arrow,delta);if(arrow.mastery){arrow.turnStraight=800;masteryEffect(e,'A09',arrow,65,{x:arrow.x+arrow.vx*.14,y:arrow.y+arrow.vy*.14});}}
  return true;
 }
 /** Read-only continuation from the arrow's current state, with the same one-time steering. */
@@ -220,19 +227,28 @@ export function geometryHits(g:SkillGeometry,u:Pick<Unit,'x'|'y'|'h'|'r'>){
  return {count:Math.min(3,count),center:d<=70+u.r,interior:false};
 }
 export const geometryBoost=(u:Unit,s:Skill,boost=jucheonBoost(u,s))=>(1+passiveTuning(passiveRank(u,'MP01')).geometry)*(1+Math.min(.05,boost/3));
-function emitGeometry(e:Engine,g:SkillGeometry){
+function emitGeometry(e:Engine,g:SkillGeometry,mastery=false){
  // Serialize the exact hit shape as one event; renderer does no independent geometry reconstruction.
- e.emit('fx',{name:'skillGeometry',x:g.x,y:g.y,color:'#ced4cd',text:JSON.stringify(g),size:g.radius});
+ e.emit('fx',{name:'skillGeometry',x:g.x,y:g.y,color:mastery?'#a6ead3':'#ced4cd',text:JSON.stringify(g),size:g.radius});
 }
 function strikeGeometry(e:Engine,p:Projectile,g:SkillGeometry,directContact?:Collision,covered=false){
  const directTarget=directContact?.unit;
  const weakContact=p.skill==='M03'&&p.mode==='waveArc'&&directTarget&&e.monsterWeakPoint(directTarget)?directContact:undefined;
- emitGeometry(e,g);
+ emitGeometry(e,g,!!p.mastery);
+ if(g.kind==='ring'&&p.mastery)emitGeometry(e,{...g,radius:g.radius*.78,thickness:g.thickness*.7},true);
  e.emit('sound',{name:'qiWave'});
  for(const u of e.b.units.filter(u=>!u.dead&&u.id!==p.owner)){if(covered&&e.projectileCollision(g.impact||g,at(u),1,p.owner,[],false))continue;const h=geometryHits(g,u);let amount=p.damage*Math.max(h.count,u.id===directTarget?.id?1:0);
-  if(g.kind==='triangle'&&!h.count&&h.interior)amount=p.damage*16/38;
-  if(g.kind==='ring')amount*=Math.max(.28,220/Math.max(220,g.radius));
-  if(g.kind==='bagua'&&h.center)amount+=p.damage*62/34;
+  if(g.kind==='triangle'&&!h.count&&h.interior)amount=p.damage*16/38*(p.mastery?2:1);
+  if(g.kind==='ring'){
+   amount*=Math.max(p.mastery?.52:.28,220/Math.max(220,g.radius));
+   if(!amount&&p.mastery&&geometryHits({...g,radius:g.radius*.78,thickness:g.thickness*.7},u).count)amount=p.damage*.6;
+  }
+  if(g.kind==='bagua'&&h.center)amount+=p.damage*62/34*(p.mastery?1.8:1);
+  if(p.mastery&&g.kind==='bagua'&&h.count>=2&&e.guidanceTarget(e.unit(p.owner),u))
+   u.masteryExposure={id:p.skill,owner:p.owner,until:e.b.round+1,gain:.3};
+  if(amount&&mastered(e,e.unit(p.owner),'MP01')&&masteryOnce(e,'MP01',String(p.shot))){amount*=1.4;masteryEffect(e,'MP01',g,g.radius*.35);}
+  if(amount&&p.effectBoost&&mastered(e,e.unit(p.owner),'MP05')&&masteryOnce(e,'MP05',String(p.shot))){amount*=1.4;masteryEffect(e,'MP05',g,g.radius*.35);}
+  if(amount&&p.mastery)masteryEffect(e,p.skill,at(u),40);
   if(amount){
    const hp=u.hp,shield=u.shield||0;
    // An aimed M03 can hit the face only on the unit physically struck by
@@ -260,22 +276,33 @@ function gourdBurst(e:Engine,p:Projectile){
   if(gearHas(p,'da_sky')&&gearBody(p)){const eligible=[...e.blastUnitTargets(p.x,p.y,p.blast,p.owner,false,p)].filter(({unit:t})=>e.guidanceTarget(u,t)).sort((a,b)=>a.distance-b.distance||a.unit.id.localeCompare(b.unit.id));p.equipment!.focusTarget=eligible[0]?.unit.id;}
   p.mode='skyWait';p.targetPoint={x:p.x,y:p.y};p.vx=p.vy=0;p.age=0;p.fuseAt=undefined;e.emit('fx',{name:'inkLine',x:p.x,y:p.y-220,x2:p.x,y2:p.y,color:'#a8bbc6',size:1});e.emit('sound',{name:'ceramic'});return;
  }
- e.blast(p.x,p.y,p.blast,p.damage,p.owner,false,p);
+ const circulation=p.effectBoost&&mastered(e,u,'MP05')&&masteryOnce(e,'MP05',String(p.shot));
+ if(circulation)masteryEffect(e,'MP05',p,p.blast);
+ const strength=(p.mastery&&p.mode==='gourdFire'?1.6:1)*(circulation?1.4:1);
+ if(strength>1)masteryEffect(e,p.skill,p,p.blast);
+ e.blast(p.x,p.y,p.blast,p.damage*strength,p.owner,false,p);
+ if(p.mastery&&p.mode==='gourdFire'){
+  const surface=e.surface(p.x,p.y-14,p.y+85);
+  if(surface)(e.b.masteryEmbers??=[]).push({x:p.x,y:surface.y-10,round:e.b.round,shot:p.shot,p:{...p,trail:[],hit:[]}});
+ }
+ if(p.mastery&&p.masteryManual&&p.bounces&&p.mode==='gourdIce')masteryEffect(e,'M02',p,p.blast);
  if(p.mode==='gourdFire'||p.mode==='gourdIce'){
+  if(mastered(e,u,'MP01'))masteryEffect(e,'MP01',p,p.blast*.6);
   const ice=p.mode==='gourdIce',frost=ice&&gearHas(p,'da_heal')&&gearBody(p),count=5+r;if(frost)gearAddFrost(e,p);
-  for(let i=0;i<count;i++){const a=(i+.5)*Math.PI*2/count+(e.random()-.5)*.35;const q=spawnChild(e,p,ice?'frostChip':'fireChip',Math.cos(a)*330,Math.sin(a)*330,p.damage*(ice?.16:.18)*secondary*(frost?.75:1),10);q.maxAge=.48;}
-  if(ice)for(const t of e.b.units.filter(t=>enemy(p,t)&&e.attackAllows(t,p.owner,p)&&Math.hypot(t.x-p.x,t.y-t.h*.5-p.y)<p.blast+t.r))t.slowed={factor:lerpRank(.20,.35,r),expires:e.b.round+1};
+  for(let i=0;i<count;i++){const a=(i+.5)*Math.PI*2/count+(e.random()-.5)*.35;const q=spawnChild(e,p,ice?'frostChip':'fireChip',Math.cos(a)*330,Math.sin(a)*330,p.damage*(ice?.16:.18)*secondary*(frost?.75:1)*(ice&&p.mastery&&p.masteryManual&&p.bounces?1.6:1)*(mastered(e,u,'MP01')&&i===0?1.5:1),10);q.maxAge=.48;}
+  if(ice)for(const t of e.b.units.filter(t=>enemy(p,t)&&e.attackAllows(t,p.owner,p)&&Math.hypot(t.x-p.x,t.y-t.h*.5-p.y)<p.blast+t.r))t.slowed={factor:lerpRank(.20,.35,r)+(p.mastery&&p.masteryManual&&p.bounces?.2:0),expires:e.b.round+1};
  }
  if(p.mode==='gourdThunder')for(const t of e.b.units.filter(t=>!t.dead&&e.attackAllows(t,p.owner,{...p,autonomous:true})&&Math.hypot(t.x-p.x,t.y-t.h*.5-p.y)<=260+10*(r-1))){
-  e.emit('fx',{name:'lightningBolt',x:p.x,y:p.y,x2:t.x,y2:t.y-t.h*.5,color:'#a8cfff',size:2.8});e.hurt(t,p.damage*.45*secondary,p.owner,false,{...p,secondary:false,autonomous:true},p);
+  e.emit('fx',{name:'lightningBolt',x:p.x,y:p.y,x2:t.x,y2:t.y-t.h*.5,color:'#a8cfff',size:2.8});e.hurt(t,p.damage*.45*secondary*(p.mastery?1.5:1),p.owner,false,{...p,secondary:false,autonomous:true},p);
+  if(p.mastery&&masteryOnce(e,'M04',String(p.shot)))masteryEcho(e,p,'M04',center(t),220,.5,[t.id]);
  }
- if(p.mode==='gourdBurst'){p.mode='microEmitter';p.age=0;p.vx=p.vy=0;p.emissions=0;p.fuseAt=undefined;return;}
+ if(p.mode==='gourdBurst'){if(p.mastery)masteryEffect(e,'M13',p,p.blast);p.mode='microEmitter';p.age=0;p.vx=p.vy=0;p.emissions=0;p.fuseAt=undefined;return;}
  e.remove(p);
 }
 export function iceGourdReady(e:Engine){return e.b.phase==='flight'&&e.b.projectiles.some(p=>p.owner===e.b.active&&p.mode==='gourdIce'&&!p.secondary);}
 export function detonateIceGourd(e:Engine){
  if(!iceGourdReady(e))return false;
- for(const p of [...e.b.projectiles])if(p.owner===e.b.active&&p.mode==='gourdIce'&&!p.secondary)gourdBurst(e,p);
+ for(const p of [...e.b.projectiles])if(p.owner===e.b.active&&p.mode==='gourdIce'&&!p.secondary){p.masteryManual=!!p.mastery;gourdBurst(e,p);}
  e.emit('change');e.emit('save');return true;
 }
 function placeStake(e:Engine,p:Projectile,h:Collision){
@@ -290,10 +317,10 @@ function placeStake(e:Engine,p:Projectile,h:Collision){
    const home=renewPair?e.contactSurface(owner.x,owner.y-4,owner.y+5):e.surface(owner.x,owner.y-8,owner.y+80);
    if(renewPair&&!home){e.remove(p);return;}
    if(renewPair)b.stakes=b.stakes.filter(s=>!gates.includes(s));
-   if(home)b.stakes.push({attackSide:p.attackSide,damageRoll:p.damageRoll,id:b.nextId++,skill:p.skill,owner:p.owner,side:p.side,x:owner.x,y:home.y,rank:rank(p),damage:0,shot:p.shot,effectBoost:p.effectBoost,expires:b.round+stakeDuration(p.skill,rank(p))});
+   if(home)b.stakes.push({mastery:p.mastery,attackSide:p.attackSide,damageRoll:p.damageRoll,id:b.nextId++,skill:p.skill,owner:p.owner,side:p.side,x:owner.x,y:home.y,rank:rank(p),damage:0,shot:p.shot,effectBoost:p.effectBoost,expires:b.round+stakeDuration(p.skill,rank(p))});
   }else if(gates.length>=2)b.stakes=b.stakes.filter(s=>s.id!==gates[0].id);
  }
- b.stakes.push({attackSide:p.attackSide,damageRoll:p.damageRoll,id:b.nextId++,skill:p.skill,owner:p.owner,side:p.side,x,y:floor,rank:rank(p),damage:p.damage,shot:p.shot,effectBoost:p.effectBoost,expires:b.round+stakeDuration(p.skill,rank(p))});
+ b.stakes.push({mastery:p.mastery,attackSide:p.attackSide,damageRoll:p.damageRoll,id:b.nextId++,skill:p.skill,owner:p.owner,side:p.side,x,y:floor,rank:rank(p),damage:p.damage,shot:p.shot,effectBoost:p.effectBoost,expires:b.round+stakeDuration(p.skill,rank(p))});
  e.fx('spark',x,floor,'#a89b7f',15);e.remove(p);
  if(!e.skillSound('plant',p.owner,p.skill,p.shot))e.emit('sound',{name:'ceramic'});
 }
@@ -301,19 +328,27 @@ function placeStake(e:Engine,p:Projectile,h:Collision){
 /** One shared enemy-only hop for body and first ground contacts. */
 function chainArrowHop(e:Engine,p:Projectile,r:number){
  if((p.chain||0)>=Math.round(lerpRank(1,5,r)))return false;
- const next=e.b.units.filter(t=>e.guidanceTarget(e.unit(p.owner),t)&&!p.hit.includes(t.id)&&Math.hypot(t.x-p.x,t.y-t.h*.5-p.y)<=260&&!e.projectileCollision(p,{x:t.x,y:t.y-t.h*.5},1,p.owner,[],false)).sort((a,b)=>Math.hypot(a.x-p.x,a.y-a.h*.5-p.y)-Math.hypot(b.x-p.x,b.y-b.h*.5-p.y))[0];
- if(!next)return false;const dx=next.x-p.x,dy=next.y-next.h*.5-p.y,d=Math.max(.001,Math.hypot(dx,dy));p.vx=dx/d*900;p.vy=dy/d*900;p.damage*=.72;p.chain=(p.chain||0)+1;p.autonomous=true;return true;
+ const options=e.b.units.filter(t=>e.guidanceTarget(e.unit(p.owner),t)&&!p.hit.includes(t.id)&&Math.hypot(t.x-p.x,t.y-t.h*.5-p.y)<=260&&!e.projectileCollision(p,{x:t.x,y:t.y-t.h*.5},1,p.owner,[],false)).sort((a,b)=>Math.hypot(a.x-p.x,a.y-a.h*.5-p.y)-Math.hypot(b.x-p.x,b.y-b.h*.5-p.y));
+ const next=options[0],extra=options[1];if(!next)return false;
+ if(extra&&p.mastery&&!p.masterySplit&&(p.chain||0)<=Math.round(lerpRank(1,5,r))-2){
+  p.masterySplit=true;p.hit.push(extra.id);
+  const origin={...p,mastery:false,masteryEcho:true,autonomous:true};
+  e.hurt(extra,p.damage*.45,p.owner,false,origin,p);p.chain=(p.chain||0)+1;
+  masteryEffect(e,'A03',p,55,at(extra));
+ }
+ const dx=next.x-p.x,dy=next.y-next.h*.5-p.y,d=Math.max(.001,Math.hypot(dx,dy));p.vx=dx/d*900;p.vy=dy/d*900;p.damage*=.72;p.chain=(p.chain||0)+1;p.autonomous=true;return true;
 }
 /** Hook only redesigned impacts; collision detection and integration remain in Engine. */
 export function redesignImpact(e:Engine,p:Projectile,h:Collision){
  if(!newSkill(p))return false;
  const s=SKILLS[p.skill],u=e.unit(p.owner)!,r=rank(p);p.x=h.x;p.y=h.y;
- if(p.secondary){if(h.unit){e.hurt(h.unit,p.damage,p.owner,false,p,h);if(p.mode==='frostChip'&&enemy(p,h.unit))h.unit.slowed={factor:lerpRank(.20,.35,r),expires:e.b.round+1};}e.remove(p);return true;}
+ if(p.secondary){if(h.unit){e.hurt(h.unit,p.damage,p.owner,false,p,h);if(p.mode==='frostChip'&&enemy(p,h.unit))h.unit.slowed={factor:lerpRank(.20,.35,r)+(p.mastery&&p.masteryManual&&p.bounces?.2:0),expires:e.b.round+1};}e.remove(p);return true;}
  if(p.mode==='waveArc'){
-  const reversed=!!h.terrain&&gearHas(p,'da_arc')&&gearBody(p),g=skillGeometry(s,r,h.x+(reversed?h.n.x*2:0),h.y+(reversed?h.n.y*2:0),Math.atan2(p.vy,p.vx)+(reversed?Math.PI:0),u.lastPower,undefined,undefined,geometryBoost(u,s,p.effectBoost));if(reversed){g.span*=1.2;g.x=g.impact!.x;g.y=g.impact!.y;}
-  strikeGeometry(e,p,g,h,reversed);e.remove(p);return true;
+  const enhanced=!!h.terrain&&p.mastery;const reversed=!!h.terrain&&gearHas(p,'da_arc')&&gearBody(p),g=skillGeometry(s,r,h.x+(reversed?h.n.x*2:0),h.y+(reversed?h.n.y*2:0),(enhanced?Math.atan2(h.n.y,h.n.x):Math.atan2(p.vy,p.vx))+(reversed?Math.PI:0),u.lastPower,undefined,undefined,geometryBoost(u,s,p.effectBoost));if(reversed){g.span*=1.2;g.x=g.impact!.x;g.y=g.impact!.y;}
+  if(enhanced){g.span*=1.4;p.damage*=1.6;}strikeGeometry(e,p,g,h,reversed||enhanced);e.remove(p);return true;
  }
  if(p.mode==='qiPulse'){
+  if(h.terrain&&p.mastery)masteryEcho(e,p,'M01',{x:h.x+h.n.x*8,y:h.y+h.n.y*8},p.blast+115,.6,h.unit?[h.unit.id]:[],2);
   e.blast(p.x,p.y,p.blast,p.damage,p.owner,false,p);e.emit('sound',{name:'qiWave'});e.remove(p);return true;
  }
  if(s.branch==='stake'){if(h.terrain)placeStake(e,p,h);return true;}
@@ -329,7 +364,7 @@ export function redesignImpact(e:Engine,p:Projectile,h:Collision){
    // Retain launch age, credit, shot and owner: descendants share the original
    // 12-second lifetime and never reset their generation on a terrain corner.
    p.contacts=[...(p.contacts||[]),{x:h.x,y:h.y}];p.bounces++;
-   p.damage*=focused?.90:WAVE_REFLECTION_DECAY;p.x=h.x+h.n.x*(p.radius+1);p.y=h.y+h.n.y*(p.radius+1);
+   p.damage*=p.mastery?.98:focused?.90:WAVE_REFLECTION_DECAY;if(p.mastery)masteryEffect(e,'M11',h,45);p.x=h.x+h.n.x*(p.radius+1);p.y=h.y+h.n.y*(p.radius+1);
    p.child=true;p.autonomous=true;p.trail=[{x:p.x,y:p.y}];
    for(const [i,v] of velocities.entries()){
     const q=i===0?p:{...p,id:e.b.nextId++,hit:[...p.hit],contacts:[...p.contacts],trail:[{x:p.x,y:p.y}]};
@@ -351,13 +386,16 @@ export function redesignImpact(e:Engine,p:Projectile,h:Collision){
  if(h.unit){
   const target=h.unit,prior=p.outboundHits?.includes(target.id),factor=p.returning?(p.terrainReturn?(prior?.84:1):.7*(prior?1.2:1)):1;
   const before=target.hp;e.hurt(target,p.damage*factor,p.owner,true,p,h);p.hit.push(target.id);
-  if(p.mode==='push'){if(gearHas(p,'se_push')&&gearBody(p)&&!p.equipment!.pushMarked&&enemy(p,target)){p.equipment!.pushMarked=true;gearState(target).wallSlow={owner:p.owner,until:e.b.round+1};}e.impulse(target,Math.sign(p.vx)*280,-130,p);target.shove={attackSide:e.attackSide(p.owner,p),friendlyFireApplied:e.friendlyFireMultiplier(target,p.owner,p)<1,autonomous:e.autonomousAttack(p.owner,p),owner:p.owner,damage:(before-target.hp)*.18,remaining:Math.round(lerpRank(2,5,r)),hit:[target.id],life:1.5};}
-  if(p.mode==='pierce'&&p.pierces<[1,1,2,2,3,3,4,5][r-1]){p.pierces++;p.damage*=.88;return true;}
+  if(p.mode==='push'){if(gearHas(p,'se_push')&&gearBody(p)&&!p.equipment!.pushMarked&&enemy(p,target)){p.equipment!.pushMarked=true;gearState(target).wallSlow={owner:p.owner,until:e.b.round+1};}e.impulse(target,Math.sign(p.vx)*280,-130,p);target.shove={attackSide:e.attackSide(p.owner,p),friendlyFireApplied:e.friendlyFireMultiplier(target,p.owner,p)<1,autonomous:e.autonomousAttack(p.owner,p),owner:p.owner,damage:(before-target.hp)*(p.mastery?.42:.18),mastery:!!p.mastery,remaining:Math.round(lerpRank(2,5,r)),hit:[target.id],life:1.5};}
+  if(p.mode==='pierce'&&p.pierces<[1,1,2,2,3,3,4,5][r-1]+(p.mastery?2:0)){p.pierces++;p.damage*=p.mastery?.98:.88;if(p.mastery)masteryEffect(e,'A02',h,45);return true;}
   if(p.mode==='pierce')gearFinish(e,p,target.id);
   if(p.mode==='return'&&p.hit.length<=1)return true;
   if(p.mode==='chainArrow'&&chainArrowHop(e,p,r))return true;
  }
  if(h.terrain){
+  if(p.mastery&&p.returning&&h.terrain.mat==='wood'&&h.terrain.w<=90&&!p.masterySplit){
+   p.masterySplit=true;p.x+=Math.sign(p.vx)*(h.terrain.w+8);masteryEffect(e,'A12',h,40);return true;
+  }
   if(p.terrainReturn&&!p.returning){
    const from={x:h.x+h.n.x*(p.radius+1),y:h.y+h.n.y*(p.radius+1)};
    const dx=u.x-from.x,dy=u.y-u.h*.5-from.y,length=Math.hypot(dx,dy);
@@ -371,17 +409,20 @@ export function redesignImpact(e:Engine,p:Projectile,h:Collision){
    }
   }
   if(p.skill==='A11'&&gearHas(p,'se_drop')&&gearBody(p)&&!p.equipment!.bounced&&h.n.y<-.35&&p.vy>0){const a=p.equipment!;a.dropBonus=trajectoryMultiplier(p,u,h);a.bounced=true;a.travelX=h.x;a.travelY=h.y+h.n.y*(p.radius+1);a.travelMax=600;p.x=a.travelX;p.y=a.travelY;p.vx=Math.sign(p.vx||u.facing)*Math.max(400,Math.abs(p.vx));p.vy=0;p.prevVy=0;p.gravityScale=0;p.damage*=.65;p.bounces++;e.fx('spark',p.x,p.y,p.color,24);return true;}
-  e.damageTerrain(h.terrain,p.damage*s.terrain,0,p.owner,p);
+  const intact=!h.terrain.broken;
+  e.damageTerrain(h.terrain,p.damage*(p.mastery&&p.skill==='A07'?7.5:s.terrain),0,p.owner,p);
+  if(intact&&h.terrain.broken&&p.mastery&&p.skill==='A07')masteryEcho(e,p,'A07',{x:h.x-h.n.x*(h.terrain.w+4),y:h.y-h.n.y*6},180,.75,[],2);
   e.emit('sound',{name:'arrowhit'});
   if(p.mode==='chainArrow'&&!p.chain){p.x+=h.n.x*(p.radius+2);p.y+=h.n.y*(p.radius+2);if(chainArrowHop(e,p,r))return true;}
-  if(p.mode==='pierce'&&h.terrain.mat==='wood'&&h.terrain.w<=90&&p.pierces<[1,1,2,2,3,3,4,5][r-1]){p.pierces++;p.damage*=.88;p.x+=Math.sign(p.vx)*(h.terrain.w+8);return true;}
+  if(p.mode==='pierce'&&h.terrain.mat==='wood'&&h.terrain.w<=90&&p.pierces<[1,1,2,2,3,3,4,5][r-1]+(p.mastery?2:0)){p.pierces++;p.damage*=p.mastery?.98:.88;p.x+=Math.sign(p.vx)*(h.terrain.w+8);return true;}
  }
- if(h.terrain&&p.mode==='pierce'&&p.pierces>=[1,1,2,2,3,3,4,5][r-1])gearFinish(e,p);
+ if(h.terrain&&p.mode==='pierce'&&p.pierces>=[1,1,2,2,3,3,4,5][r-1]+(p.mastery?2:0))gearFinish(e,p);
+ if(p.skill==='A11'&&p.mastery&&h.y-(p.apexY??h.y)>=450)masteryEcho(e,p,'A11',{x:h.x+h.n.x*6,y:h.y+h.n.y*6},130,.5,h.unit?[h.unit.id]:[],2);
  if(p.mode==='breakArrow'){
   for(const t of e.b.units.filter(t=>!t.dead&&e.attackAllows(t,p.owner,p)&&t.id!==h.unit?.id&&Math.hypot(t.x-p.x,t.y-t.h*.5-p.y)<70+t.r)){e.hurt(t,p.damage*.55,p.owner,false,p,h);e.impulse(t,Math.sign(t.x-p.x)*230,-110,p);}
   if(h.unit)e.impulse(h.unit,Math.sign(p.vx)*280,-120,p);e.fx('spark',p.x,p.y,'#aca799',30);
  }
- if(p.mode==='ironFlower'){p.mode='ironEmitter';p.age=0;p.emissions=0;p.vx=p.vy=0;p.x+=h.n.x*9;p.y+=h.n.y*9;return true;}
+ if(p.mode==='ironFlower'){if(p.mastery)masteryEffect(e,'A08',p,65,{x:p.x+p.vx*.11,y:p.y+p.vy*.11});p.launchDirection=Math.atan2(p.vy,p.vx);p.mode='ironEmitter';p.age=0;p.emissions=0;p.vx=p.vy=0;p.x+=h.n.x*9;p.y+=h.n.y*9;return true;}
  e.fx('spark',p.x,p.y,p.color,18);e.remove(p);return true;
 }
 
@@ -409,7 +450,8 @@ export function redesignStep(e:Engine,p:Projectile,dt:number){
     const ceiling=e.collision(head,sky,3,p.owner,[],false);
     e.emit('fx',{name:'lightningBolt',x:head.x,y:ceiling?.y??sky.y,x2:head.x,y2:head.y,color:'#a8cfff',size:3.5,lightningSeed:cheonroeVisualSeed(p.id,t.id)});
    }
-   e.blast(end.x,end.y,p.blast,p.damage,p.owner,false,p,0,undefined,targets);e.remove(p);
+   if(p.mastery)masteryEffect(e,'M05',end,p.blast,{x:end.x,y:end.y-190});
+   e.blast(end.x,end.y,p.blast,p.damage*(p.mastery?1.8:1),p.owner,false,p,0,undefined,targets);e.remove(p);
   }return true;
  }
  if(p.mode==='microWait'){
@@ -418,12 +460,12 @@ export function redesignStep(e:Engine,p:Projectile,dt:number){
  if(p.mode==='ironEmitter'||p.mode==='microEmitter'){
   const iron=p.mode==='ironEmitter',count=iron?8+2*(r-1):6+r,duration=iron?1.5:1;
   while((p.emissions||0)<count&&(p.emissions||0)*duration/count<=p.age){
-   p.emissions=(p.emissions||0)+1;const a=e.random()*Math.PI*2;
+   p.emissions=(p.emissions||0)+1;const sample=e.random(),a=iron&&p.mastery&&(p.emissions%2===0)?(p.launchDirection||0)+(sample-.5)*1.2:sample*Math.PI*2;
    if(iron){const q=spawnChild(e,p,'ironChip',Math.cos(a)*560,Math.sin(a)*560,p.damage*.20);q.maxAge=.60;}
    else {const radius=Math.sqrt(e.random())*240,x=p.x+Math.cos(a)*radius,seedY=p.y+Math.sin(a)*radius;
-    const y=seedY;
+    const y=p.mastery&&p.emissions%2===0?Math.min(seedY,p.y):seedY;
     const secondary=(1+passiveTuning(passiveRank(u,'MP01')).gourdSecondary)*(1+(p.effectBoost||0)*.5);
-    const q=spawnChild(e,p,'microWait',0,0,p.damage*14/48*secondary,55);q.x=x;q.y=y;q.maxAge=undefined;q.fuseAt=.04+e.random()*.16;}
+    const q=spawnChild(e,p,'microWait',0,0,p.damage*14/48*secondary*(p.mastery?1.6:1),55);q.x=x;q.y=y;q.maxAge=undefined;q.fuseAt=.04+e.random()*.16;}
   }
   if(p.age>=duration)e.remove(p);return true;
  }
@@ -458,21 +500,30 @@ export function useGate(e:Engine,u=e.active){
  const hpBefore=u.hp;if(r>=4)u.hp=Math.min(u.maxHp,u.hp+u.maxHp*(r===4?.06:.08)*boost);
  healed(e.b,u,to.owner,hpBefore,'M09');(globalThis as any).HonroObjectiveContributions?.movement(e.b,u,to.owner,fromPoint,{x,y});
  if(r>=6)u.moveLeft=Math.min(u.maxMove,u.moveLeft+u.maxMove*(r===6?.16:.24)*boost);
+ if(to.mastery&&!to.authoredPassage){u.masteryArrival=e.b.teamEnds[1]+1;u.masteryArrivalGuard=true;u.shield=Math.max(u.shield,Math.round(u.maxHp*.21));u.shieldUntil=u.masteryArrival;masteryEffect(e,'M09',spot,60);}
  if(r===8){u.arrivalGuard=e.b.teamEnds[1]+1;(u as any).honroArrivalGuardOwner=to.owner;}
  e.skillSound('gate-arrive',u.id,'M09',e.b.round);e.fx('ring',x,y,'#bbc4b5',28);e.emit('change');e.emit('save');return true;
 }
 export function tickRedesign(e:Engine,dt:number){
  const b=e.b;
+ if(b.masteryEmbers?.length)b.masteryEmbers=b.masteryEmbers.filter(ember=>{
+  if(b.round>ember.round+1)return false;
+  if(b.side!==1)return true;
+  const target=e.combatEnemies().find(t=>!t.dead&&Math.abs(t.x-ember.x)<78&&Math.abs(t.y-ember.y)<36&&e.grounded(t));
+  if(!target)return true;
+  masteryEcho(e,ember.p,'M06',ember,145,.6,[]);
+  return false;
+ });
  for(const u of b.units){
   if(u.eaterCapturedBy)continue;
   if(u.prepared&&u.prepared.expires<b.round)delete u.prepared;
-  if(u.arrivalGuard!==undefined&&u.arrivalGuard<=b.teamEnds[1])delete u.arrivalGuard;
+  if(u.arrivalGuard!==undefined&&u.arrivalGuard<=b.teamEnds[1]){delete u.arrivalGuard;delete u.masteryArrivalGuard;delete u.masteryArrival;}
   if(u.slowed&&u.slowed.expires<b.round)delete u.slowed;
   const shove=u.shove;if(!shove)continue;shove.life-=dt;
   if(shove.life<=0||u.dead||Math.abs(u.vx)<20){delete u.shove;continue;}
   for(const v of b.units.filter(v=>!v.dead&&e.attackAllows(v,shove.owner,shove)&&v.side===u.side&&v.id!==u.id&&!shove.hit.includes(v.id))){
    if(Math.abs(v.x-u.x)>v.r+u.r||Math.abs(v.y-u.y)>(u.h+v.h)*.5)continue;
-   shove.hit.push(v.id);e.hurt(v,shove.damage,shove.owner,false,undefined,undefined,'normal','A05',shove);e.impulse(v,u.vx*.70,-80);
+   shove.hit.push(v.id);if(shove.mastery)masteryEffect(e,'A05',at(v),40,at(u));e.hurt(v,shove.damage,shove.owner,false,undefined,undefined,'normal','A05',shove);e.impulse(v,u.vx*.70,-80);
    if(shove.remaining>1)v.shove={...shove,remaining:shove.remaining-1,damage:shove.damage*.70,hit:[...shove.hit],life:1};delete u.shove;break;
   }
  }
@@ -484,20 +535,20 @@ export function tickRedesign(e:Engine,dt:number){
   if(z.skill==='M09')continue;
   const caster=e.unit(z.owner);if(!caster)continue;const boost=(1+passiveTuning(passiveRank(caster,'MP01')).geometry)*(1+(z.effectBoost||0)),trigger=stakeRanges(e,z).trigger;
   const nearby=b.units.filter(u=>!u.dead&&!u.eaterCapturedBy&&(z.skill==='M10'?u.side===z.side||((u as any).honroAlly&&z.side===0):enemy(z,u))&&Math.min(Math.hypot(u.x-z.x,u.y-z.y),Math.hypot(u.x-z.x,u.y-u.h*.5-z.y))<trigger+u.r);
-  const p={attackSide:z.attackSide,damageRoll:z.damageRoll,owner:z.owner,side:z.side,skill:z.skill,skillRank:z.rank,shot:z.shot,x:z.x,y:z.y,damage:z.damage,hit:[],id:z.id,vx:0,vy:0,prevVy:0,age:0,radius:3,blast:95,wind:0,mode:'stake',color:'#b9c4b1',bounces:0,pierces:0,apex:true,phase:0,body:false,returnX:z.x,returnY:z.y,trail:[],child:false,rolled:0} as Projectile;
+  const p={mastery:z.mastery,attackSide:z.attackSide,damageRoll:z.damageRoll,owner:z.owner,side:z.side,skill:z.skill,skillRank:z.rank,shot:z.shot,x:z.x,y:z.y,damage:z.damage,hit:[],id:z.id,vx:0,vy:0,prevVy:0,age:0,radius:3,blast:95,wind:0,mode:'stake',color:'#b9c4b1',bounces:0,pierces:0,apex:true,phase:0,body:false,returnX:z.x,returnY:z.y,trail:[],child:false,rolled:0} as Projectile;
   if(z.skill==='M07'||z.skill==='M08'){triggerOffensiveStake(e,z,nearby,p,boost);continue;}
   const available=z.skill==='M10'?nearby.filter(u=>z.usedRounds?.[u.id]!==b.round):nearby;
   if(!z.active&&available.length&&(z.skill==='M10'||z.lastTriggerRound!==b.round)){
    z.lastTriggerRound=b.round;const t=available[0];
-   if(z.skill==='M10'){e.skillSound('heal',z.owner,z.skill,z.shot,`${z.id}:${b.round}`);z.usedRounds??={};for(const ally of available){z.usedRounds[ally.id]=b.round;const hpBefore=ally.hp;ally.hp=Math.min(ally.maxHp,ally.hp+ally.maxHp*(.06+.01*z.rank)*boost*(z.equipmentHealScale||1));healed(b,ally,z.owner,hpBefore,z.skill);ally.focus=Math.min(ally.maxFocus,ally.focus+ally.maxFocus*(.07+.01*z.rank)*boost);ally.moveLeft=Math.min(ally.maxMove,ally.moveLeft+ally.maxMove*(.12+.03*z.rank)*boost);e.fx('ring',ally.x,ally.y,'#bfcbb6',35);}}
+   if(z.skill==='M10'){e.skillSound('heal',z.owner,z.skill,z.shot,`${z.id}:${b.round}`);z.usedRounds??={};for(const ally of available){z.usedRounds[ally.id]=b.round;const first=z.mastery&&!(z.masteryUsed??=[]).includes(ally.id);if(first)z.masteryUsed!.push(ally.id);if(z.mastery)masteryEffect(e,'M10',center(ally),48,{x:z.x,y:z.y});const hpBefore=ally.hp;ally.hp=Math.min(ally.maxHp,ally.hp+ally.maxHp*(.06+.01*z.rank+(z.mastery?.08:0))*boost*(z.equipmentHealScale||1));healed(b,ally,z.owner,hpBefore,z.skill);ally.focus=Math.min(ally.maxFocus,ally.focus+ally.maxFocus*(.07+.01*z.rank+(z.mastery?.08:0))*boost);ally.moveLeft=Math.min(ally.maxMove,ally.moveLeft+ally.maxMove*(.12+.03*z.rank+(first?.2:0))*boost);e.fx('ring',ally.x,ally.y,'#bfcbb6',35);}}
    if(z.skill==='M99'){e.skillSound('trigger',z.owner,z.skill,z.shot,`${z.id}:${b.round}`);z.active=true;z.inside=[];z.crossed={};z.budgetTurns={};for(const v of b.units.filter(v=>enemy(z,v)&&Math.hypot(v.x-z.x,v.y-z.y)<220)){e.hurt(v,z.damage,z.owner,false,p,z);z.inside.push(v.id);}}
   }
   if(z.active){
    for(const u of b.units.filter(u=>enemy(z,u))){const d=Math.hypot(u.x-z.x,u.y-z.y),token=`${b.round}:${b.teamEnds[u.side]}`,was=z.inside!.includes(u.id);
-    if(d<=220){u.slowed={factor:Math.min(.55,.45*boost),expires:b.round};if(!was)z.inside!.push(u.id);z.budgetTurns??={};if(z.budgetTurns[u.id]!==token){z.budgetTurns[u.id]=token;u.moveLeft*=1-Math.min(.45,.35*boost);}}
+    if(d<=220){u.slowed={factor:z.mastery?.65:Math.min(.55,.45*boost),expires:b.round};if(!was)z.inside!.push(u.id);z.budgetTurns??={};if(z.budgetTurns[u.id]!==token){z.budgetTurns[u.id]=token;u.moveLeft*=1-Math.min(.45,.35*boost);}}
     else if(was){
      // Leaving is an event: repeated upward impulses would keep this unit airborne forever.
-     z.inside!.splice(z.inside!.indexOf(u.id),1);if(z.crossed![u.id]!==token){z.crossed![u.id]=token;e.skillSound('trigger',z.owner,z.skill,z.shot,`${z.id}:${token}`);e.hurt(u,z.damage*22/35,z.owner,false,p,z);}
+     z.inside!.splice(z.inside!.indexOf(u.id),1);if(z.crossed![u.id]!==token){z.crossed![u.id]=token;e.skillSound('trigger',z.owner,z.skill,z.shot,`${z.id}:${token}`);e.hurt(u,z.damage*22/35*(z.mastery?1.7:1),z.owner,false,p,z);if(z.mastery)masteryEffect(e,'M99',at(u),50,z);}
      if(!u.boss&&!u.fixed){e.impulse(u,(z.x-u.x)*2,-60);u.moveLeft=0;}else u.breaks=Math.max(1,u.breaks);
     }
    }

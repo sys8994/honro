@@ -1,7 +1,7 @@
 // Candidate writer: mount via trusted same-origin normal campaign owner only.
 // readCurrentExact belongs to the same profile slot and MUST get current bytes;
 // ProfileStore.original() is deliberately not allowed as its implementation.
-export function createFixedWriter({app,seal,authorize,frame,readCurrentExact,normalize,runExclusive}){
+export function createFixedWriter({app,seal,authorize,frame,readCurrentExact,normalize,runExclusive,settle=()=>true}){
  if(!authorize?.(seal,app)||typeof readCurrentExact!=='function'||typeof normalize!=='function'||typeof runExclusive!=='function')return null;
  const flag='act6.endingCompleted';
  return async (request)=>runExclusive(async ()=>{
@@ -25,6 +25,7 @@ export function createFixedWriter({app,seal,authorize,frame,readCurrentExact,nor
   let normalized;try{normalized=normalize(current.bytes);}catch{return {ok:false,reason:'invalid-live-slot'};}
   if(JSON.stringify(normalized)!==JSON.stringify(app.normalProfile))return {ok:false,reason:'stale-owner-profile'};
   const next=structuredClone(normalized);
+  if(!settle(next))return {ok:false,reason:'invalid-growth-award'};
   next.honroFlags={...(next.honroFlags??{}),[flag]:true};
   next.honroEndingReceipt={revision:'act6-reunion-v1',winner:seal.knight,key:seal.key,terminalSha:seal.terminalSha,recordedGuardIds:seal.actorIds.slice()};
   // Exact same-slot reread occurs while held; callers must route every writer

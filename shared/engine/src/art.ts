@@ -1,3 +1,4 @@
+import { MASTERY_COLORS } from './masteryData';
 import {drawWarriorProjectile,drawSwordCut,drawCirculation} from './warriorVisuals';
 import {drawAimDirection,drawRedesignProjectile,drawRedesignGuide,drawGuideContinuation,drawEchoGuides,guidePrediction,guideStroke,drawInkGeometry,drawInkImpact,drawLightningBolt,drawQiBurst,drawFireBloom,SKILL_FX_SECONDS} from './skillVisuals';
 import type { Unit, Terrain, Battle, FX, Event, Profile, ClassId } from './types';
@@ -249,14 +250,39 @@ export class Renderer {
             if (size > 65)
                 this.shake = Math.max(this.shake, Math.min(size / 35, 4));
         }
-        if (kind === 'swordCut' || kind === 'circulation' || kind === 'qiBurst' || kind === 'fireBloom' || kind === 'lightningBolt' || kind === 'inkImpact' || kind === 'inkLine' || kind === 'skillGeometry' || kind === 'ring' || kind === 'rune' || kind === 'meteor' || kind === 'slash' || kind === 'text' || kind === 'line')
-            this.fxs.push({ kind: kind as FX['kind'], x, y, vx: 0, vy: kind === 'text' ? -32 : 0, age: 0, life: SKILL_FX_SECONDS[kind as keyof typeof SKILL_FX_SECONDS] ?? (kind === 'text' ? 1.35 : kind === 'meteor' ? 1.4 : .6), color, size, text: e.text, critical:e.critical, lightningSeed:e.lightningSeed, x2: e.x2, y2: e.y2 });
+        if (kind.startsWith('mastery:') || kind === 'swordCut' || kind === 'circulation' || kind === 'qiBurst' || kind === 'fireBloom' || kind === 'lightningBolt' || kind === 'inkImpact' || kind === 'inkLine' || kind === 'skillGeometry' || kind === 'ring' || kind === 'rune' || kind === 'meteor' || kind === 'slash' || kind === 'text' || kind === 'line')
+            this.fxs.push({ kind: kind as FX['kind'], x, y, vx: 0, vy: kind === 'text' ? -32 : 0, age: 0, life: SKILL_FX_SECONDS[kind as keyof typeof SKILL_FX_SECONDS] ?? (kind.startsWith('mastery:')?.38:kind === 'text' ? 1.35 : kind === 'meteor' ? 1.4 : .6), color, size, text: e.text, critical:e.critical, lightningSeed:e.lightningSeed, x2: e.x2, y2: e.y2 });
         if (this.fxs.length > 370) {
             // Target lightning is a complete hit snapshot, never a particle budget.
             // Keep every live ray; only decorative effects use the existing cap.
             let excess=this.fxs.length-370;
             this.fxs=this.fxs.filter(f=>f.kind==='lightningBolt'||excess--<=0);
         }
+    }
+
+    private drawMastery(c:C,f:FX,t:number) {
+        const kind=f.kind.slice(8),radius=Math.max(6,Math.min(220,f.size))*(.68+t*.32);
+        const x2=f.x2??f.x+radius,y2=f.y2??f.y;
+        const angle=Math.atan2(y2-f.y,x2-f.x);
+        c.strokeStyle=f.color;c.lineWidth=1.5+2*(1-t);c.beginPath();
+        if(kind==='tether'||kind==='ray'||kind==='wall'){
+            if(kind==='wall'){
+                c.moveTo(f.x,f.y);c.lineTo(x2,y2);
+                c.moveTo(f.x-4*Math.sin(angle),f.y+4*Math.cos(angle));c.lineTo(x2-4*Math.sin(angle),y2+4*Math.cos(angle));
+            }else{
+                c.moveTo(f.x,f.y);c.quadraticCurveTo((f.x+x2)/2,(f.y+y2)/2-(kind==='tether'?radius*.3:3),x2,y2);
+                c.moveTo(f.x+7,f.y);c.arc(f.x,f.y,7,0,Math.PI*2);
+            }
+        }else if(kind==='ward'){
+            c.ellipse(f.x,f.y,radius*.56,radius,0,-1.45,4.5);
+            c.moveTo(f.x+radius*.3,f.y);c.ellipse(f.x,f.y,radius*.3,radius*.68,0,0,Math.PI*2);
+        }else if(kind==='arc'){
+            c.arc(f.x,f.y,radius,angle-.9,angle+.9);
+        }else{
+            c.arc(f.x,f.y,radius,0,Math.PI*2);
+            c.moveTo(f.x+radius*.72,f.y);c.arc(f.x,f.y,radius*.72,0,Math.PI*2);
+        }
+        c.stroke();
     }
 
     /** Reuse the production ARCFALL projectile/fx rendering inside other shells. */
@@ -274,6 +300,7 @@ export class Renderer {
             else if(f.kind==='lightningBolt')drawLightningBolt(c,f.x,f.y,f.x2??f.x,f.y2??f.y,f.size,t,f.lightningSeed);
             if(f.kind==='inkLine')line(c,f.x,f.y,f.x2??f.x,f.y2??f.y,f.color,f.size);
             if(f.kind==='skillGeometry'&&f.text)drawInkGeometry(c,JSON.parse(f.text),t);
+            if(f.kind.startsWith('mastery:'))this.drawMastery(c,f,t);
             if(f.kind==='inkImpact')drawInkImpact(c,f.x,f.y,f.size,t);
             if(f.kind==='spark') line(c,f.x,f.y,f.x-f.vx*.028,f.y-f.vy*.028,f.color,f.size);
             if(f.kind==='ring'){c.strokeStyle=f.color;c.lineWidth=2.5*(1-t)+.5;c.beginPath();c.arc(f.x,f.y,Math.max(1,f.size*(.25+.75*t)),0,Math.PI*2);c.stroke();if(t<.3)circle(c,f.x,f.y,f.size*(.2+t),f.color+'19');}
@@ -583,6 +610,7 @@ export class Renderer {
             c.save();
             c.globalAlpha = alpha;
             if(f.kind==='skillGeometry'&&f.text)drawInkGeometry(c,JSON.parse(f.text),t);
+            if(f.kind.startsWith('mastery:'))this.drawMastery(c,f,t);
             if(f.kind==='inkImpact')drawInkImpact(c,f.x,f.y,f.size,t);
             if(f.kind==='swordCut')drawSwordCut(c,f.x,f.y,f.size,t,f.x2,f.y2,f.color,f.text);
             else if(f.kind==='circulation')drawCirculation(c,f.x,f.y,f.size,t);
@@ -1570,6 +1598,15 @@ export class Renderer {
     if(p.mode==='cataclysmCharge'){this.glow(c,p.x,p.y-28,75,'#d2a4ff',.36);c.save();c.globalCompositeOperation='lighter';for(let i=0;i<3;i++){c.globalAlpha=.35-i*.08;line(c,p.x-75-i*20,p.y-38+i*8,p.x+18,p.y-28,'#d9bcff',8-i*2);}c.restore();} }
     projectile(c: C, p: Battle['projectiles'][number]) {
         if(p.mode==='convergeSpirit'&&p.age<(p.curve?.delay||0))return;
+        if(p.mastery&&!p.secondary&&!p.followup&&p.trail.length>2){
+            const from=p.trail[Math.max(0,p.trail.length-5)],cls=SKILLS[p.skill]?.cls;
+            if(cls){c.save();c.globalAlpha=.72;
+                const dx=p.x-from.x,dy=p.y-from.y,length=Math.max(1,Math.hypot(dx,dy)),nx=-dy/length,ny=dx/length;
+                const gap=cls==='archer'?3:cls==='mage'?6:4;
+                line(c,from.x+nx*gap,from.y+ny*gap,p.x+nx*gap*.3,p.y+ny*gap*.3,MASTERY_COLORS[cls],1.6);
+                if(cls==='archer'||cls==='mage')line(c,from.x-nx*gap,from.y-ny*gap,p.x-nx*gap*.3,p.y-ny*gap*.3,MASTERY_COLORS[cls],1);
+                c.restore();}
+        }
         if(drawRedesignProjectile(c,p))return;
         const angle = Math.atan2(p.vy, p.vx), occult=p.skill?.[0]==='O'||p.skill?.startsWith('LO')||['nightParade','nightBolt','spiritRain'].includes(p.mode), ultimate=['arcaneJudgment','starHunt','arcBolt','hunterBolt','nightParade','nightBolt'].includes(p.mode)||p.skill==='M99'||p.skill==='A99'||p.skill==='O99', advanced = ['meteor', 'emberOrb', 'frostOrb', 'stormOrb','arcaneJudgment','starHunt','reverseGhost','nightParade'].includes(p.mode), arrow = p.skill[0] === 'A' || p.mode==='hunterBolt', color = p.color;
         c.save();

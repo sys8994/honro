@@ -6,8 +6,8 @@ const C=G.HONRO_CORE,ROSTER=['archer','mage','knight','occultist'],KEY='honro-fi
         C.sanitizeLoadout(p, c); p.saved = null; p.cleared = {}; p.party = ['archer']; p.recruited = ['archer']; p.lastStage = 1; p.mapNode = 1; p.schema = 5; p.game = 'honro'; p.seen = {}; p.record = []; p.honroFlags = {}; p.settings = { ...p.settings, orientation: 'auto', music: true, musicVolume: .65, speed: 1.5, playerSpeed: 1.5, sound: true, volume: .55, minimapVisible: true, debugTerrainOutline: false, haptics: true }; return G.HonroEquipment.fresh(p); }
     function migrateGrowth(p,revision){
         for(const roster of [p.heroes,p.saved?.heroes,p.honroBattle?.heroes])if(roster)for(const cls of ROSTER){const hero=roster[cls];if(!hero)continue;if(!Number.isInteger(hero.statTraining))hero.statTraining=Object.values(hero.statRanks||{}).reduce((sum,n)=>sum+(Number.isInteger(n)&&n>0?n:0),0);delete hero.statRanks;}
-        if(revision>=13)return;
-        const convert=revision<=10?C.migrateLegacyXp9:C.migrateXp12;
+        if(revision>=14||revision===13&&p.cleared?.[50])return;
+        const convert=revision<=10?C.migrateLegacyXp9:revision<=12?C.migrateXp12:C.migrateMasteryXP;
         const oldBattleXp=new Map([p.saved,p.honroBattle].filter(Boolean).map(b=>[b,Math.max(...ROSTER.map(cls=>Number.isFinite(b.heroes?.[cls]?.xp)?b.heroes[cls].xp:0))]));
         for(const roster of [p.heroes,p.saved?.heroes,p.honroBattle?.heroes])if(roster)for(const cls of ROSTER){const hero=roster[cls];if(hero&&Number.isFinite(hero.xp))hero.xp=convert(hero.xp);}
         for(const battle of [p.saved,p.honroBattle])if(battle){
@@ -17,7 +17,7 @@ const C=G.HONRO_CORE,ROSTER=['archer','mage','knight','occultist'],KEY='honro-fi
                 const shift=Math.max(0,newHero-(oldBattleXp.get(battle)||0));battle.honroGrowth.limit.start+=shift;battle.honroGrowth.limit.end+=shift;
             }
         }
-        p.revision=13;
+        p.revision=14;
     }
 
 // Official late-act snapshots reference immutable, shipped artwork.

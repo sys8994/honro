@@ -1,3 +1,5 @@
+import { MASTERY_RULES } from './masteryData';
+export { MASTERY_RULES } from './masteryData';
 import {equipmentStats,validateEquipmentIds,equipmentActor} from './equipment';
 import {damageSpread} from './damageVariance';
 import {GATE_SEARCH_RADIUS} from './gateTravel';
@@ -143,9 +145,24 @@ export const baseSkill = (cls: ClassId) => cls === 'mage' ? 'M01' : cls === 'arc
  * increase was too uniform in play.  This power curve is deliberately convex:
  * early levels remain quick while late levels demand progressively larger gains.
  */
-export function xpToNext(level: number) {
+export function previousXpToNext(level: number) {
  const l=clamp(Math.floor(level),1,MAX_LEVEL);
  return l>=MAX_LEVEL?0:Math.round((180+90*Math.pow(l-1,1.65))*1.5);
+}
+export function xpToNext(level: number) {
+ const l=clamp(Math.floor(level),1,MAX_LEVEL),old=previousXpToNext(l);
+ return l<20?old:Math.round(old*(1.20+(l-20)*.025));
+}
+export function previousXpAtLevel(level:number) {
+ let xp=0;for(let l=1;l<Math.min(MAX_LEVEL,level);l++)xp+=previousXpToNext(l);return xp;
+}
+export function migrateMasteryXP(raw:number) {
+ const xp=clamp(Math.floor(raw),0,previousXpAtLevel(MAX_LEVEL));
+ let level=1;
+ while(level<MAX_LEVEL&&xp>=previousXpAtLevel(level+1))level++;
+ if(level===MAX_LEVEL)return xpAtLevel(level);
+ const progress=(xp-previousXpAtLevel(level))/previousXpToNext(level);
+ return xpAtLevel(level)+Math.floor(progress*xpToNext(level));
 }
 export function xpAtLevel(level: number) { let sum = 0; for (let i = 1; i < clamp(level, 1, MAX_LEVEL); i++) sum += xpToNext(i); return sum; }
 export const XP_CAP = xpAtLevel(MAX_LEVEL);
@@ -171,7 +188,35 @@ export function levelOf(hero: HeroProgress | number) { const xp = typeof hero ==
 export function xpFraction(h: HeroProgress) { const l = levelOf(h); return l === MAX_LEVEL ? 1 : (h.xp - xpAtLevel(l)) / xpToNext(l); }
 export function freshHero(cls: ClassId): HeroProgress { const second=cls==='mage'?'M03':cls==='archer'?'A05':cls==='knight'?'S09':'O06'; return { xp: 0, ranks: cls!=='occultist'?{[baseSkill(cls)]:1}:{[baseSkill(cls)]:1,[second]:1}, statTraining:0, kills: 0, damage: 0, skillRevision:1, martialRevision:1,occultRevision:cls==='occultist'?1:undefined }; }
 export function freshRoster(): Roster { return { mage: freshHero('mage'), archer: freshHero('archer'), knight: freshHero('knight'), occultist: freshHero('occultist') }; }
-export function pointsEarned(h: HeroProgress) { return 3 + (levelOf(h) - 1) * 2; }
+export function pointsEarned(h: HeroProgress) {
+ const level=levelOf(h);
+ return 3+(level-1)*2+Math.max(0,level-19);
+}
+export function masteryLevel(id: string) { return MASTERY_RULES[id] ? 20+2*(TALENT_MAP[id]?.row??0) : Infinity; }
+export function masteryCost(id: string) { return SKILLS[id]?.basic ? 8 : 5; }
+export function masteryLearned(h: HeroProgress, id: string) { return h.masteries?.includes(id)??false; }
+export function masteryReason(h: HeroProgress, cls:ClassId, id: string) {
+ const s=SKILLS[id];
+ if(!MASTERY_RULES[id]||s?.cls!==cls||s.enemyOnly)return '통달할 수 없는 기예입니다';
+ if(masteryLearned(h,id))return '통달 완료 · 투자 반환 불가';
+ if(levelOf(h)<masteryLevel(id))return `인물 Lv.${masteryLevel(id)} 필요`;
+ if(!s.basic&&h.ranks[id]!==8)return '기예 8랭크 필요';
+ if(pointsLeft(h,cls)<masteryCost(id))return `${masteryCost(id)} SP 필요`;
+ return '';
+}
+export function learnMastery(h: HeroProgress, cls: ClassId, id: string) {
+ if(masteryReason(h,cls,id))return false;
+ (h.masteries??=[]).push(id);
+ return true;
+}
+export function masteryRankFloor(h: HeroProgress,id:string) {
+ if(masteryLearned(h,id))return SKILLS[id]?.basic?1:8;
+ for(const mastered of h.masteries??[]){
+  let ancestor=TALENT_MAP[mastered]?.prereq;
+  while(ancestor){if(ancestor===id)return 1;ancestor=TALENT_MAP[ancestor]?.prereq;}
+ }
+ return 0;
+}
 export const STAT_KEYS=['hp','mp','attack','armor','critChance','critMultiplier','move'] as const;
 export type StatKey=typeof STAT_KEYS[number];
 export const STAT_LABELS:Record<StatKey,string>={hp:'체력',mp:'기력',attack:'공격',armor:'방어',critChance:'치명 확률',critMultiplier:'치명 배율',move:'이동력'};
@@ -186,7 +231,7 @@ export const STAT_GAINS:Record<ClassId,Record<StatKey,number>>={
 export function statTrainingRank(h:HeroProgress){return h.statTraining??Object.values(h.statRanks||{}).reduce((sum,n)=>sum+n,0);}
 export function investStat(h:HeroProgress,cls:ClassId,delta=1){if(![1,-1].includes(delta))return false;const old=statTrainingRank(h);if(delta>0&&(pointsLeft(h,cls)<1||old>=60)||delta<0&&old<=0)return false;h.statTraining=old+delta;delete h.statRanks;return true;}
 export function statGainLabel(cls:ClassId,key:StatKey){const n=STAT_GAINS[cls][key];return key==='critMultiplier'?`+${+n.toFixed(4)}×`:key==='armor'||key==='critChance'?`+${+(n*100).toFixed(2)}%p`:`+${+(n*100).toFixed(2)}%`;}
-export function pointsSpent(h: HeroProgress, cls: ClassId) { return Object.entries(h.ranks).reduce((s, [id, r]) => s + (TALENT_MAP[id]?.cls === cls ? r - (id === baseSkill(cls) ? 1 : 0) : 0), 0)+statTrainingRank(h); }
+export function pointsSpent(h: HeroProgress, cls: ClassId) { return Object.entries(h.ranks).reduce((s, [id, r]) => s + (TALENT_MAP[id]?.cls === cls ? r - (id === baseSkill(cls) ? 1 : 0) : 0), 0)+statTrainingRank(h)+(h.masteries??[]).reduce((sum,id)=>sum+(SKILLS[id]?.cls===cls?masteryCost(id):0),0); }
 export function pointsLeft(h: HeroProgress, cls: ClassId) { return Math.max(0, pointsEarned(h) - (h.honroDebugSkills ? statTrainingRank(h) : pointsSpent(h, cls))); }
 export function trainReason(h: HeroProgress, id: string) { const n = TALENT_MAP[id]; if (!n)
     return '알 수 없는 기술'; if (!h.ranks[baseSkill(n.cls)])
@@ -200,6 +245,7 @@ export function train(h: HeroProgress, id: string) { if (trainReason(h, id))
 export function untrainReason(h: HeroProgress, id: string) {
  const n=TALENT_MAP[id]; if(!n)return '알 수 없는 기술';
  const rank=h.ranks[id]||0; if(rank<=0)return '미습득 기술';
+ if(rank<=masteryRankFloor(h,id))return '통달에 잠긴 경지입니다';
  if(id===baseSkill(n.cls)&&rank<=1)return '기본기는 Lv.1 아래로 내릴 수 없습니다';
  // A rank above 1 can always be refunded because prerequisites only require Lv.1.
  if(rank>1||h.honroDebugSkills)return '';
@@ -212,7 +258,11 @@ export function untrain(h: HeroProgress, id: string) {
  const next=(h.ranks[id]||0)-1; if(next>0)h.ranks[id]=next; else delete h.ranks[id];
  return true;
 }
-export function resetTalents(h: HeroProgress, cls: ClassId) { h.ranks = { [baseSkill(cls)]: 1 }; h.statTraining=0;delete h.statRanks; }
+export function resetTalents(h: HeroProgress, cls: ClassId) {
+ const ranks: HeroProgress['ranks']={[baseSkill(cls)]:1};
+ for(const id of Object.keys(h.ranks)){const floor=masteryRankFloor(h,id);if(floor)ranks[id]=floor;}
+ h.ranks=ranks;h.statTraining=0;delete h.statRanks;
+}
 export function autoTrain(h:HeroProgress,cls:ClassId){
  const owned=()=>TALENTS.filter(n=>n.cls===cls&&n.branch<3&&(h.ranks[n.id]||0)>0);
  let guard=100;
@@ -242,11 +292,12 @@ export function criticalStats(cls:ClassId,level=1,ranks:Record<string,number>={}
  return {critChance:Math.min(.65,base[0]+L*base[2]+passiveTuning(pass).criticalChance),critMultiplier:Math.min(3,base[1]+L*base[3]+passiveTuning(pass).criticalMultiplier)};
 }
 export function stakeDuration(id:string,rank=1){return (id==='M09'?6:id==='M10'?4:2)+Math.max(0,rank-1);}
-export function heroStats(h:HeroProgress,cls:ClassId,loadout:string[]=[]){const level=levelOf(h),i=CLASS_IDS.indexOf(cls),L=level-1;
+export function heroStats(h:HeroProgress,cls:ClassId,loadout:string[]=[],authoredReference=false){const level=levelOf(h),i=CLASS_IDS.indexOf(cls),L=level-1;
+ const advanced=authoredReference?0:Math.max(0,level-19),vitalLevels=L+advanced*.35,attackLevels=L+advanced*.25;
  const rank=(id:string)=>TALENT_MAP[id]?.cls===cls?rankPower(h.ranks[id]||0):0,vitality=cls==='knight'?durabilityPower(h.ranks.SP02||0):0,mobility=0,leap=rank('SP03'),defense=vitality;
  const hpBase=[390,365,610,460][i], hpGain=[32,30,48,36][i], armorBase=[.06,.08,.22,.11][i];
- const gain=STAT_GAINS[cls],invested=(key:StatKey)=>statTrainingRank(h)*gain[key],hp=(hpBase+L*hpGain)*(1+vitality*.05)*(1+invested('hp')),atkBase=[1.75,1.75,1.75,1.86][i],atkGain=[.18,.18,.18,.19][i],crit=criticalStats(cls,level,h.ranks),mp=Math.round(([120,96,104,144][i]+L*[8,6,7,9.5][i])*(1+(cls==='mage'?passiveTuning(h.ranks.MP02||0).maxMana:0))*(1+invested('mp')));
- const base={...crit,critChance:Math.min(.75,crit.critChance+invested('critChance')),critMultiplier:Math.min(3.5,crit.critMultiplier+invested('critMultiplier')),level,hp:Math.round(hp),mp,attack:(atkBase+L*atkGain)*(1+invested('attack')),armor:Math.min(HERO_ARMOR_CAP,armorBase+L*.008+defense*.03+invested('armor')),move:Math.round(([1120,1100,1210,1150][i]+L*36)*(1+mobility*.08+leap*.10)*(1+invested('move'))),speed:Math.round(([282,305,300,296][i]+L*5)*(1+mobility*.04)),regen:[14,14,14,18][i]+Math.floor(L*.6)+(cls==='mage'?passiveTuning(h.ranks.MP02||0).manaRegenFlat+mp*passiveTuning(h.ranks.MP02||0).manaRegenMax:0)};
+ const gain=STAT_GAINS[cls],invested=(key:StatKey)=>statTrainingRank(h)*gain[key],hp=(hpBase+vitalLevels*hpGain)*(1+vitality*.05)*(1+invested('hp')),atkBase=[1.75,1.75,1.75,1.86][i],atkGain=[.18,.18,.18,.19][i],crit=criticalStats(cls,level,h.ranks),mp=Math.round(([120,96,104,144][i]+vitalLevels*[8,6,7,9.5][i])*(1+(cls==='mage'?passiveTuning(h.ranks.MP02||0).maxMana:0))*(1+invested('mp')));
+ const base={...crit,critChance:Math.min(.75,crit.critChance+invested('critChance')),critMultiplier:Math.min(3.5,crit.critMultiplier+invested('critMultiplier')),level,hp:Math.round(hp),mp,attack:(atkBase+attackLevels*atkGain)*(1+invested('attack')),armor:Math.min(HERO_ARMOR_CAP,armorBase+L*.008+defense*.03+invested('armor')),move:Math.round(([1120,1100,1210,1150][i]+L*36)*(1+mobility*.08+leap*.10)*(1+invested('move'))),speed:Math.round(([282,305,300,296][i]+L*5)*(1+mobility*.04)),regen:[14,14,14,18][i]+Math.floor(L*.6)+(cls==='mage'?passiveTuning(h.ranks.MP02||0).manaRegenFlat+mp*passiveTuning(h.ranks.MP02||0).manaRegenMax:0)};
  return equipmentStats(base,h.equipmentIds||[],cls);}
 export function applyHero(u:Unit,h:HeroProgress,full=false,reason:'growth'|'equipment'|'restore'='growth'){
  const ids=equipmentActor(u)?(h.equipmentIds??u.equipmentIds??[]):[],s=heroStats({...h,equipmentIds:ids},u.cls,u.loadout),dh=s.hp-u.maxHp,dm=s.mp-u.maxFocus,oldMove=u.maxMove,preserve=reason!=='growth',refill=full&&!preserve;

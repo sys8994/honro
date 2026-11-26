@@ -201,3 +201,15 @@
 .honro #app .honro-compact-hud .combat-status[data-monster-signal=true] .status-trigger>.status-glyph{display:flex}
 .honro #app .honro-compact-hud .combat-status[data-monster-signal=true] .combat-passives{display:none}
 .honro #app .honro-compact-hud .combat-status[data-monster-signal=true] .status-trigger::after{content:'상태!';color:#e2ba87}
+
+.mastery-panel{margin:1rem 0;padding:.8rem;border:1px solid #a68e5c70;background:#a68e5c12;border-radius:.5rem}
+.mastery-heading{display:flex;justify-content:space-between;gap:.7rem;align-items:baseline}
+.mastery-heading strong{color:#e8d4a3}
+.mastery-panel p,.mastery-panel small{display:block;margin:.45rem 0;color:#e3ded2}
+.mastery-panel .btn{min-height:42px}
+.mastery-preview{display:flex;gap:.4rem;flex-wrap:wrap;margin:0 0 .4rem}
+.mastery-preview button{min-height:38px;padding:.25rem .75rem;border:1px solid #a68e5c70;background:#262220;color:#eee6d1;border-radius:.3rem}
+.mastery-preview button[aria-pressed="true"]{background:#60513a;border-color:#dcbe85}
+.mastery-confirm{padding:1rem}
+
+.tree-node.mastery-trained .node-sub em{color:#ecd394;border-color:#c9a85b}

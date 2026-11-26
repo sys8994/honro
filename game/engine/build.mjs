@@ -6,7 +6,7 @@ import {fileURLToPath} from 'node:url';
 
 export function scopeNormal51Engine(s){
   const bytes=Buffer.from(s),hash=createHash('sha1').update('blob '+bytes.length+'\0').update(bytes).digest('hex');
-  if(hash!=='179577c60480df55415c4281dd4362cd7357d06b')throw Error('Unexpected pinned Stage51 engine '+hash);
+  if(hash!=='2b715dadd94bc6758043f79128cadf42624f52f6')throw Error('Unexpected pinned Stage51 engine '+hash);
   const a='get stage() { return STAGES[this.b.stageId - 1]; }';
   if(s.split(a).length!==2)throw Error('Stage51 live engine hook source drift');
   return s.replace(a,'get stage() { return normal51Provider.content(this.b) || STAGES[this.b.stageId - 1]; }');

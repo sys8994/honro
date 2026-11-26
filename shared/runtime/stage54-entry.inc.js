@@ -21,9 +21,10 @@
           fireMissionSkill:(app,e,q)=>{
             const s=active.get(app);
             if(!scope54(app,e,s)||s.owner54!==chart||q.owner!=='stage-54'||q.actor!==e.active||q.skill!=='M09')return false;
+            const priorMastery=e.masterySuppressed;e.masterySuppressed=true;
             const load=q.actor.loadout,old=Object.getOwnPropertyDescriptor(load,'includes'),original=load.includes,before=JSON.stringify(load);
             try{Object.defineProperty(load,'includes',{configurable:true,value:(x,...more)=>x==='M09'||original.call(load,x,...more)});return e.fire(q.skill,q.angle,q.power);}
-            finally{if(old)Object.defineProperty(load,'includes',old);else delete load.includes;check(JSON.stringify(load)===before,'Scoped 54 M09 altered loadout');}
+            finally{e.masterySuppressed=priorMastery;if(old)Object.defineProperty(load,'includes',old);else delete load.includes;check(JSON.stringify(load)===before,'Scoped 54 M09 altered loadout');}
           }
         });
         return {packet,known,chart};

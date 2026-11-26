@@ -8,7 +8,7 @@ import path from 'node:path';
 
 const hash=(value,algorithm='sha256')=>createHash(algorithm).update(value).digest('hex');
 const terrainSourceSHA='6b01d867cab98268bcd8d4f328f4166c90d091b64bf69d0a1e1eb6da51e245ca';
-const pinnedMain='d73360989a51f142e9da9d59c0da81adf55c8e2f';
+const pinnedMain='ccfdb8c5d0b2f3f4d3129071f943e7ffb4482c68';
 export async function assertQaWebRoot(repoRoot,env=process.env){
  const root=await realpath(repoRoot), tmp=await realpath(tmpdir());
  assert.equal(path.dirname(root),tmp,'Act6 Web pilot requires a disposable direct temporary checkout');
@@ -330,7 +330,7 @@ export async function createAct6WebQa(project,repoRoot,env=process.env,release=n
   const stageAdv='            if(!owns()||inflight.get(app)!==original)return;';
   source=replaceOne(source,stageAdv,stageAdv+
    "\n            if(!await beforeBoundaryAdvance(app,id,{known},owns)){app.notify('다음 장을 기록하지 못했습니다. 다시 시도해 주십시오.');return;}\n            if(!owns()||inflight.get(app)!==original)return;");
-  source=replaceOne(source,'offerRest:app=>fiftyUI.offer(app)','offerRest:app=>offerBoundaryRest(app)||fiftyUI.offer(app)');
+  source=replaceOne(source,'offerRest:app=>fiftyUI.offer(app)','restoreAct6Masteries,offerRest:app=>offerBoundaryRest(app)||fiftyUI.offer(app)');
  }
  if(source.includes('function mountB53('))source=replaceOne(source,'release,context53,release53,','release,context53,release53,tick53,adjustNativeWallAngle,');
  if(source.includes('function defend59('))source=replaceOne(source,'tickExterior:(a,dt)=>active.get(a)?.exterior?.tick(dt),bind','tickExterior:(a,dt)=>active.get(a)?.exterior?.tick(dt),defend59,bind');
@@ -404,6 +404,7 @@ export function makeQaMain(main,source,descriptor,terrainArt=null,journeyArt=nul
   ['qa51.offer(this); if(this.profileStore.locked','qa51.offer(this); act6EndingReplan.installDebug(this); if(this.profileStore.locked'],
   ['this.audio?.update(inBattle&&!this.engine.noncombatWalk()', 'if(act6EndingReplan.silenceStock(this)){this.audio?.music?.setPaused(true);this.updateMusicLabel();return;}\n            this.audio?.update(inBattle&&!this.engine.noncombatWalk()']);
  if(source.includes('function enterNormal51('))edits.push(
+  ['G.HonroProgression.initialize(b,this.profile);C.applySpBalanceMigration(b);','G.HonroProgression.initialize(b,this.profile);C.applySpBalanceMigration(b);if(qa51.isNormal(this))'+(source.includes('function restoreAct6Masteries(')?'qa51.restoreAct6Masteries(this,b);':'G.HonroProgression.mountAct6Progress(b,this.profile);')],
   ['            G.HonroObjectives.updateSettlement(b,st,state.objectiveReady);','            if(!qa51.isNormal(this))G.HonroObjectives.updateSettlement(b,st,state.objectiveReady);']);
  if(source.includes('function enterNormal53('))edits.push(
   ['(id===51||id===52)&&!training?qa51.launch', '(id===51||id===52||id===53||id===54||id===55||id===56||id===57||id===58||id===59||id===60)&&!training?qa51.launch'],

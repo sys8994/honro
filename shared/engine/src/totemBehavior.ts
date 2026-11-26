@@ -1,3 +1,4 @@
+import {mastered,masteryEffect,masteryEcho,masteryOnce} from './masteryCombat';
 /** Offensive stakes activate only during the opposing team's turn. Their saved
  * per-target ledgers prevent both repeated contact and splash re-hits. */
 import type {Engine} from './engine';
@@ -25,22 +26,25 @@ export function lureStakeFor(e:Engine,u:Unit){
 export function triggerOffensiveStake(e:Engine,z:Stake,nearby:Unit[],p:Projectile,boost:number){return e.audioScope(z.owner,z.skill,z.shot,()=>triggerStake(e,z,nearby,p,boost));}
 function triggerStake(e:Engine,z:Stake,nearby:Unit[],p:Projectile,boost:number){
  const b=e.b;if(b.side===z.side||b.side===2||!['enemy','aim','flight','review'].includes(b.phase))return;
+ const first=z.lastTriggerRound===undefined;
  z.usedRounds??={};
  // Each stake is an independent cast; each enemy can take its damage once per round.
  const fresh=nearby.filter(u=>z.usedRounds![u.id]!==b.round);if(!fresh.length)return;
  z.lastTriggerRound=b.round;const audio=e.skillSound('trigger',z.owner,z.skill,z.shot,`${z.id}:${b.round}`);
  if(z.skill==='M07'){
-  const x=z.x,y=z.y-20,radius=stakeRanges(e,z).effect;
+  const x=z.x,y=z.y-20,radius=stakeRanges(e,z).effect,scale=(z.mastery&&first?1.8:1)*(mastered(e,e.unit(z.owner),'MP01')&&first?1.4:1);
+  if(scale>1)masteryEffect(e,z.mastery?'M07':'MP01',{x,y},radius);
   e.fx('burst',x,y,p.color,radius);e.fx('ring',x,y,p.color,radius);if(!audio)e.emit('sound',{name:'hit',value:radius});
   for(const u of b.units){
    if(u.dead||z.usedRounds[u.id]===b.round)continue;
    const d=Math.hypot(u.x-x,u.y-u.h*.45-y);if(d>=radius+u.r)continue;
-   z.usedRounds[u.id]=b.round;e.hurt(u,z.damage*(.42+.58*(1-clamp(d/radius,0,1))),z.owner,false,p,{x,y});
+   z.usedRounds[u.id]=b.round;e.hurt(u,z.damage*scale*(.42+.58*(1-clamp(d/radius,0,1))),z.owner,false,p,{x,y});
    if(!u.dead&&z.damage>15)e.impulse(u,Math.sign(u.x-x||1)*(1-d/(radius+u.r))*95,-45);
   }
+  if(z.mastery&&first)masteryEcho(e,p,'M07',{x,y},radius+110,.6,Object.keys(z.usedRounds),2);
   for(const u of fresh)z.usedRounds[u.id]=b.round;
   for(const t of [...b.terrain]){if(t.broken||t.hp>=9999)continue;const d=Math.hypot(x-clamp(x,t.x,t.x+t.w),y-clamp(y,Math.min(t.y,t.y+(t.slope||0)),t.y+t.h));if(d<radius)e.damageTerrain(t,z.damage*(SKILLS[z.skill]?.terrain||1)*(.5+.5*(1-d/radius)),0,z.owner);}
  }else{
-  for(const u of fresh){z.usedRounds[u.id]=b.round;e.hurt(u,z.damage,z.owner,false,p,z);if(!u.boss){u.moveLeft=0;delete u.aiMove;delete u.moveTarget;u.moving=0;}e.fx('ring',u.x,u.y,p.color,45);}
+  for(const u of fresh){z.usedRounds[u.id]=b.round;e.hurt(u,z.damage,z.owner,false,p,z);if(!u.boss){u.moveLeft=0;if(z.mastery){u.slowed={factor:.60,expires:b.round+1};masteryEffect(e,'M08',u,45,{x:z.x,y:z.y});}delete u.aiMove;delete u.moveTarget;u.moving=0;}e.fx('ring',u.x,u.y,p.color,45);}
  }
 }

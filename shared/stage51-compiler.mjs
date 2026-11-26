@@ -4,7 +4,7 @@ const pin=(src,expected)=>{const bytes=Buffer.from(src);const got=createHash('sh
 export function scope51(src,name){
  if(name!=='shared/runtime/progression.js'&&name!=='shared/map/compiler.js')return src;
  if(name==='shared/runtime/progression.js') {
-  pin(src,'8d778f426fe4d5a37d0e9f9cc588b6f9a85e423e');
+  pin(src,'cfdd4f8892f876735d40aba2ff53ed7407d5cdfb');
   src=one(src,'const budget=id=>{const p=plan(id),','const budget=(id,override)=>{const p=override||plan(id),');
   src=one(src,'clone(state.limit):budget(id);','clone(state.limit):budget(id,normal51Provider.budget(b));');
  }

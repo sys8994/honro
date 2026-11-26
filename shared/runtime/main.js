@@ -180,13 +180,13 @@
             this.saveCampAllocation(cls);this.showCamp(cls);
         }
 
-        saveCampAllocation(cls=this.cls){G.HonroProgression.markCampAllocation(this.profile,cls);this.persist();}
+        saveCampAllocation(cls=this.cls){G.HonroProgression.markCampAllocation(this.profile,cls);return this.persist();}
 
         sig(id){return C.icon('skill:'+id,'',28);}
 
         open(html, kind = '') { const acquired=document.getElementById('equipment-acquired');if(acquired)acquired.hidden=true;G.HonroTooltips?.hide(true); G.HonroUnitInfo?.portraitClosed?.(this);this.cancelOptionalWork();G.HonroCampaignEntry?.cancel(this);this.modalKind=kind;this.cancelInput(); if(!this.modal.classList.contains('open')){const active=document.activeElement;this.modalReturnFocus=active?.matches?.('button,input,select,textarea,a[href],[tabindex]')?active:this.root?.querySelector('button');} const close=`<button class="close" data-action="close" aria-label="닫기">${fa('xmark',18)}</button>`;this.modal.innerHTML = `<section class="dialog ${kind}" role="dialog" aria-modal="true"${kind==='clear-report'?' aria-labelledby="clear-report-title"':html.includes('class="menu-fixed"')?' aria-labelledby="menu-title"':''}>${html.includes('class="skill-modal-title"')?html.replace('<div class="skill-modal-title">','<div class="skill-modal-title">'+close):html.includes('class="menu-fixed"')||html.includes('class="report-shell"')?html:close+html}</section>`; this.modal.classList.add('open'); this.drawPortraits(); this.updateAudio(); this.modal.querySelector('[data-action="close"]')?.focus({preventScroll:true}); }
         close() { G.HonroTooltips?.hide(true); G.HonroUnitInfo?.portraitClosed?.(this);this.cancelOptionalWork();G.HonroCampaignEntry?.cancel(this);this.modalKind='';this.pendingJourneyLaunch=null;const wasOpen=this.modal.classList.contains('open'),previous=this.modalReturnFocus;this.modal.classList.remove('open'); this.modal.innerHTML = ''; this.preview = null; this.last = performance.now();this.modalReturnFocus=null;if(wasOpen)(previous?.isConnected?previous:this.root?.querySelector('[data-action="pause"],button'))?.focus?.({preventScroll:true}); if(this.engine)this.updateAudio(); }
-        dismissModal(){if(this.modalKind==='clear-report'){G.HonroClearReportUI.close(this);return;}if(this.modalKind==='journey-confirm'&&this.pendingJourneyLaunch){const returnMenu=this.pendingJourneyLaunch.returnMenu;this.pendingJourneyLaunch=null;if(returnMenu==='pause')this.pause();else this.close();return;}if(['settings-dialog','settings-help','pause-retry','menu-confirm'].includes(this.modalKind)){G.HonroMenuUI.back(this);return;}if(this.modalKind==='result')this.resultContinue();else if(this.equipReturn){const context=this.equipReturn;this.equipReturn=null;this.restoreTalent(context);}else this.close();}
+        dismissModal(){if(this.modalKind==='mastery-confirm-dialog'){this.settleMastery();return;}if(this.modalKind==='clear-report'){G.HonroClearReportUI.close(this);return;}if(this.modalKind==='journey-confirm'&&this.pendingJourneyLaunch){const returnMenu=this.pendingJourneyLaunch.returnMenu;this.pendingJourneyLaunch=null;if(returnMenu==='pause')this.pause();else this.close();return;}if(['settings-dialog','settings-help','pause-retry','menu-confirm'].includes(this.modalKind)){G.HonroMenuUI.back(this);return;}if(this.modalKind==='result')this.resultContinue();else if(this.equipReturn){const context=this.equipReturn;this.equipReturn=null;this.restoreTalent(context);}else this.close();}
         resultContinue(){if(this.resultDismissed||!this.modal.classList.contains('open'))return;if(G.HonroCampaignEntry?.defer(this,G.HonroCampaignEntry.next(this),()=>this.resultContinue()))return;this.resultDismissed=true;this.close();if(this.customMap)this.showRest();else G.HonroRestJourney.resultContinue(this);}
         talentContext(id){const dialog=this.modal.querySelector('.skill-modal-body')||this.modal.querySelector('.dialog');return {id,scroll:dialog?.scrollTop||0,armory:$('armory')?.scrollTop||0,canvas:$('previewcanvas'),preview:this.preview,action:document.activeElement?.dataset?.action};}
         restoreTalent(context){this.talent(context.id,context);const dialog=this.modal.querySelector('.skill-modal-body')||this.modal.querySelector('.dialog');if(dialog)dialog.scrollTop=context.scroll;if($('armory'))$('armory').scrollTop=context.armory;if(context.action)this.modal.querySelector(`[data-action="${context.action}"]`)?.focus({preventScroll:true});}
@@ -213,11 +213,11 @@
             this.trainingClass='archer';this.trainingSkill='A01';
             this.launch(1,true,'A01');G.HonroTraining.open(this);
         }
-        prepareSkillPreview(id,h,canvas){
+        prepareSkillPreview(id,h,canvas,variant=null){
             if(!canvas)return;
             const request={id,canvas,dialog:this.modal.firstElementChild,profile:this.profile};this.previewRequest=request;
             const owns=()=>this.previewRequest===request&&this.profile===request.profile&&this.detailSkill===id&&this.modal.classList.contains('open')&&this.modal.firstElementChild===request.dialog&&canvas.isConnected&&$('previewcanvas')===canvas;
-            const setup=()=>{if(!owns())return;this.previewRequest=null;this.preview=G.HonroSkillPreview.setup(this,id,h,canvas);};
+            const setup=()=>{if(!owns())return;this.previewRequest=null;this.preview=G.HonroSkillPreview.setup(this,id,h,canvas,{variant});};
             if(G.HonroSkillPreview){setup();return;}
             const status=document.createElement('p');status.dataset.previewLoad='';status.setAttribute('role','status');canvas.after(status);
             const start=()=>{if(!owns())return;status.textContent='미리보기 준비 중…';
@@ -231,6 +231,40 @@
             const canvas=$('previewcanvas');
             if(context?.preview&&context.canvas&&canvas){canvas.replaceWith(context.canvas);this.preview=context.preview;this.preview.h=clone(h);return;}
             this.prepareSkillPreview(id,h,canvas);
+        }
+        previewMastery(id,variant){
+            if(this.detailSkill!==id||!C.MASTERY_RULES[id]||!['current','base','mastered'].includes(variant))return;
+            const canvas=$('previewcanvas');if(!canvas)return;
+            this.modal.querySelectorAll('[data-preview-load]').forEach(node=>node.remove());
+            for(const button of this.modal.querySelectorAll('[data-action="mastery-preview"]'))
+                button.setAttribute('aria-pressed',String(button.dataset.mode===variant));
+            this.preview=null;this.prepareSkillPreview(id,this.profile.heroes[S[id].cls],canvas,variant==='current'?null:variant);
+        }
+        reviewMastery(id){
+            const skill=S[id];if(!skill||this.screen!=='camp'||this.profileStore.locked||this.training)return;
+            const h=this.profile.heroes[skill.cls];if(C.masteryReason(h,skill.cls,id))return;
+            this.masteryReturn={...this.talentContext(id),profile:this.profile};
+            const cost=C.masteryCost(id);
+            this.open(`<div class="mastery-confirm"><h2>${skill.name} 통달</h2><p>${C.MASTERY_RULES[id][1]}</p><p>${cost} SP가 소모되며 통달 비용${skill.basic?'':'과 기예 8랭크, 필요한 선행 경지'}는 되돌릴 수 없습니다.</p><div class="dialog-actions"><button type="button" class="btn" data-action="mastery-cancel">돌아가기</button><button type="button" class="btn primary" data-action="mastery-commit" data-skill="${id}">${cost} SP로 확정</button></div></div>`,'mastery-confirm-dialog');
+        }
+        settleMastery(id){
+            const ctx=this.masteryReturn;this.masteryReturn=null;
+            if(!ctx)return;
+            if(id===ctx.id&&ctx.profile===this.profile&&this.screen==='camp'&&!this.profileStore.locked&&!this.training){
+                const cls=S[id].cls,hero=this.profile.heroes[cls],previous=hero.masteries?.slice(),pending=this.profile.honroCampPending?.[cls];
+                const learned=C.learnMastery(hero,cls,id);
+                if(!learned){this.restoreTalent(ctx);return;}
+                if(!this.debugMode&&!this.customMap&&this.saveCampAllocation(cls)!==true){
+                    if(previous)hero.masteries=previous;else delete hero.masteries;
+                    if(!pending&&this.profile.honroCampPending)delete this.profile.honroCampPending[cls];
+                    this.restoreTalent(ctx);return;
+                }
+                this.showCamp(cls);
+                this.restoreTalent({...ctx,preview:null,canvas:null});
+                this.previewMastery(id,'mastered');
+                return;
+            }
+            this.restoreTalent(ctx);
         }
         canEquip(id){const s=S[id];return !!s&&s.cls===this.cls&&!s.passive&&!s.basic&&!s.enemyOnly&&C.knownSkills(this.profile.heroes[this.cls],this.cls).includes(id);}
         equip(id,slot){if(!this.canEquip(id))return;if(!this.equipReturn)this.equipReturn=this.modal.querySelector('.talent-dialog,.ultimate-dialog')?this.talentContext(id):null;this.equipIncoming=id;this.slotIndex=Number.isInteger(slot)&&slot>0&&slot<4?slot:Math.max(1,this.profile.loadouts[this.cls].indexOf(id));this.open(G.HonroUI.equipChoice(this.profile,this.cls,id,this.slotIndex),'equip-dialog');}
@@ -989,6 +1023,14 @@
                 case 'talent':
                     this.talent(sk);
                     break;
+                case 'mastery-preview':
+                    this.previewMastery(sk,el.dataset.mode);break;
+                case 'mastery-review':
+                    this.reviewMastery(sk);break;
+                case 'mastery-cancel':
+                    this.settleMastery();break;
+                case 'mastery-commit':
+                    this.settleMastery(sk);break;
                 case 'rank-plus':
                     this.changeRank(sk, 1, false);
                     break;

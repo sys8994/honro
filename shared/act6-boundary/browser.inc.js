@@ -27,6 +27,7 @@
           verifyBridge:(id,r)=>validBrokenRailCrossing(brokenRail,id,r),
           verifyEave:validTornEave,
           verifyReturn:verifyReturnGate,
+          verifyMasteries:(p,to,picks)=>!!G.HonroProgression.act6MasteryPicks(p,to===57?58:to,picks),
           verifyThread:validSodanThread,
           verifyD:(actor,proof,options)=>verifyHallD56(C,capturedHallSlice,actor,proof,options),legacyD:legacyHallExit56,
           ownedStore:(a,w)=>a===app&&w===shadow&&owned(),originalProfile:a=>a===app&&owned()?normalize(normal):null,
@@ -41,6 +42,28 @@
         });
         const item={owned,stored,proxy,shadow,port,transact(spec){tx=spec;},restoring(spec){cold=spec;},slot};
         boundarySessions.set(app,item);return item;
+      }
+      function restoreAct6Masteries(app,b){
+        const cx=boundarySession(app),saved=cx?.port?.readMasteries(app,b.honroStage);
+        G.HonroProgression.mountAct6Progress(b,app.profile,saved);
+      }
+      async function saveAct6Mastery(app,actor,id,owns){
+        const cx=boundarySession(app),s=active.get(app),e=s?.engine,to=e?.b.honroStage;
+        const still=()=>owns()&&active.get(app)===s&&s?.normal51===true&&app.engine===e&&e.b.units.includes(actor)&&
+          actor.side===0&&!actor.summoned&&!actor.dead&&[52,57].includes(to);
+        if(!cx?.port||!still()||app.debugMode||!descriptor.releaseEnabled)return false;
+        const cls=actor.cls,picks=cx.port.readMasteries(app,to);
+        if(!picks)return false;
+        const hero=structuredClone(e.b.heroes[cls]);hero.xp=G.HonroProgression.act6EntryXP(app.profile,cls,to===57?58:to);
+        if(C.masteryReason(hero,cls,id))return false;
+        cx.transact({to,owns:still});
+        try{
+          if(!await cx.port.commitMastery({app,engine:e,store:cx.shadow,to,expectedRaw:cx.proxy.getItem(nativeKey),check:still,cls,id}))return false;
+          const updated=cx.port.readMasteries(app,to);
+          const approved=updated&&G.HonroProgression.act6MasteryPicks(app.profile,to===57?58:to,updated);
+          if(!approved?.[cls])return false;
+          e.b.heroes[cls].masteries=approved[cls];return true;
+        }finally{cx.transact(null);}
       }
       function retryBoundary57(app){
         const cx=boundarySession(app);

@@ -1,7 +1,7 @@
 import {createFixedWriter} from '../stage60-stock-save-race/writer-fixed.mjs';
 // The App must grant this same lock to its other writers for its exact slot.
 // No fallback to unlocked writes, ephemeral in-memory or cross-origin storage.
-export function createEndingWritePort({authorize,ownedSlot,readSameSlot,normalize,locks}){
+export function createEndingWritePort({authorize,ownedSlot,readSameSlot,normalize,locks,settleGrowth=()=>true}){
  if([authorize,ownedSlot,readSameSlot,normalize].some(x=>typeof x!=='function'))throw TypeError('60 same-slot ports unavailable');
  return async function writeFinal(app,e,proof,request,stillCurrent){
   const slot=ownedSlot(app,e,proof);
@@ -13,7 +13,7 @@ export function createEndingWritePort({authorize,ownedSlot,readSameSlot,normaliz
    names:[proof.names.gwakjin.name,...proof.names.guardWitnesses.map(v=>v.name)]});
   const own=()=>stillCurrent()&&authorize(app,e,proof)&&ownedSlot(app,e,proof)===slot;
   const writer=createFixedWriter({app,seal,authorize:(candidate,a)=>candidate===seal&&a===app&&own(),
-    frame:request.frameProof,readCurrentExact:()=>own()?readSameSlot(slot):null,normalize,
+    frame:request.frameProof,settle:p=>settleGrowth(p,e.b),readCurrentExact:()=>own()?readSameSlot(slot):null,normalize,
     runExclusive:fn=>locks.request('honro:profile-slot:'+slot,{mode:'exclusive'},()=>own()?fn():{ok:false,reason:'60-slot-authority-changed'})});
   return writer?writer(request):{ok:false,reason:'60-writer-unavailable'};
  };

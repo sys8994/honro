@@ -1,3 +1,4 @@
+import {masteryEffect,center} from './masteryCombat';
 import {gearHas,gearState} from './equipmentCombat';
 import {initializeReturningWraith} from './returningWraith';
 import {passiveTuning} from './passiveBalance';
@@ -84,5 +85,12 @@ export function stepConvergingSpirit(e:Engine,p:Projectile,dt:number){
   if(h){p.hit.push(u.id);e.hurt(u,p.damage,p.owner,true,p,next);}
  }
  if(p.age===dt||Math.floor(p.age*20)!==Math.floor((p.age-dt)*20)){p.trail.push(next);if(p.trail.length>14)p.trail.shift();}
- if(t>=1){for(const u of e.b.units)if(!u.dead&&(e.damageGeometry(u)?e.damageDistance(u,c.goal)<p.blast:Math.hypot(u.x-c.goal.x,u.y-u.h*.5-c.goal.y)<p.blast+u.r))e.hurt(u,p.damage*.55,p.owner,false,p,c.goal);e.remove(p);}
+ if(t>=1){
+  if(p.mastery&&p.curve&&p.curve.delay===0){
+   masteryEffect(e,'O16',c.goal,88);
+   const owner=e.unit(p.owner);
+   for(const u of e.combatEnemies())if(owner&&e.guidanceTarget(owner,u)&&!u.fixed&&!u.boss&&!u.honroObjectiveTarget&&Math.hypot(u.x-c.goal.x,u.y-u.h*.5-c.goal.y)<120&&
+    !e.projectileCollision(c.goal,center(u),1,p.owner,[],false))e.impulse(u,Math.sign(c.goal.x-u.x||1)*160,-35,p);
+  }
+  for(const u of e.b.units)if(!u.dead&&(e.damageGeometry(u)?e.damageDistance(u,c.goal)<p.blast:Math.hypot(u.x-c.goal.x,u.y-u.h*.5-c.goal.y)<p.blast+u.r))e.hurt(u,p.damage*.55*(p.mastery?1.9:1),p.owner,false,p,c.goal);e.remove(p);}
 }

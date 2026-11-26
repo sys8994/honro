@@ -141,7 +141,7 @@ const recipes={
    }}
 };
 const reject=reason=>({ok:false,reason,keepOriginal:true});
-export function createChapterBoundary({slot,key,storage,locks,normalize,hash,verifyOwner,verifyCold,releasePin,verifyRelay54,verifyBridge,verifyEave,verifyReturn=()=>false,verifyThread=()=>false,verifyD=()=>false,legacyD=()=>false,verifyRetry57=()=>false,verifyRetry59=()=>false,ownedStore=(a,w)=>a?.profileStore===w,originalProfile=a=>a.profile}){
+export function createChapterBoundary({slot,key,storage,locks,normalize,hash,verifyOwner,verifyCold,releasePin,verifyRelay54,verifyBridge,verifyEave,verifyReturn=()=>false,verifyThread=()=>false,verifyD=()=>false,legacyD=()=>false,verifyRetry57=()=>false,verifyRetry59=()=>false,verifyMasteries=()=>false,ownedStore=(a,w)=>a?.profileStore===w,originalProfile=a=>a.profile}){
  if(!slot||!key||typeof locks?.request!=='function'||typeof hash!=='function'||!storage||typeof normalize!=='function'||typeof verifyOwner!=='function'||typeof verifyCold!=='function'||typeof releasePin!=='function'||typeof verifyRelay54!=='function'||typeof verifyBridge!=='function'||typeof verifyEave!=='function')return null;
  const written=new WeakSet(),booted=new WeakMap(),working=new WeakSet();
  const digest=v=>hash(JSON.stringify(v)), read=()=>storage.getItem(key), exclusive=f=>locks.request('honro:profile-slot:'+slot,{mode:'exclusive'},f);
@@ -169,6 +169,7 @@ export function createChapterBoundary({slot,key,storage,locks,normalize,hash,ver
  function shape(stamp,p,pin,id){
   const {body:x,sha}=stamp??{},r=recipes[id];
   return !!(x&&r&&pinOkay(pin,id)&&x.schema===schema&&x.slot===slot&&x.runId===p?.equipment?.runId&&x.kind===r.kind&&x.from===r.from&&x.to===id&&
+   (!Object.hasOwn(x,'fieldMasteries')||verifyMasteries(p,id,x.fieldMasteries))&&
    x.profileSHA===digest(naked(p))&&same(pin,releasePin(id))&&pinCompatible(x.pin,pin,id)&&x.generation>=1&&Number.isSafeInteger(x.generation)&&x.parent&&(x.parent==='initial'&&x.generation===1||hash64(x.parent)&&x.generation>1)&&
    x.terminal?.stage===r.from&&([51,52].includes(r.from)?x.terminal.won===undefined:x.terminal.won===true)&&x.terminal.settlement===false&&x.terminalSHA===digest(x.terminal)&&x.custodySHA===digest(x.custody)&&
    x.stageSeed?.id===r.from&&x.budget?.id===r.from&&r.validate(x.terminal,x.custody,verifyRelay54,verifyBridge,verifyEave,verifyReturn,verifyD,legacyD)&&
@@ -184,7 +185,8 @@ export function createChapterBoundary({slot,key,storage,locks,normalize,hash,ver
      (old&&!retired(old,baseline)&&(old?.body?.to>r.from||!shape(old,baseline,releasePin(old.body.to),old.body.to))))return reject('prior-or-custody');
   const t=json(terminal),p=json(cap);
   const data={schema,slot,runId:baseline.equipment.runId,from:r.from,to,kind:r.kind,generation:old?old.body.generation+1:1,parent:old?.sha??'initial',pin:json(pin),
-   profileSHA:digest(naked(baseline)),terminal:t,terminalSHA:digest(t),custody:p,custodySHA:digest(p),stageSeed:json(stageSeed),budget:json(budget)};
+   profileSHA:digest(naked(baseline)),terminal:t,terminalSHA:digest(t),custody:p,custodySHA:digest(p),stageSeed:json(stageSeed),budget:json(budget),
+   ...(old?.body?.fieldMasteries?{fieldMasteries:json(old.body.fieldMasteries)}:{})};
   const stamp={body:data,sha:digest(data)};if(!shape(stamp,baseline,pin,to))return reject('invalid-new-checkpoint');
   const rev=app.profileImportSequence,activeProfile=app.profile,profileText=JSON.stringify(activeProfile);
   try{working.add(app);return await exclusive(()=>{
@@ -224,6 +226,32 @@ export function createChapterBoundary({slot,key,storage,locks,normalize,hash,ver
    return pin&&shape(stamp,loaded,pin,id)?{kind:'restorable',to:id}:{kind:'invalid'};
   }catch{return {kind:'invalid'};}
  }
+ function readMasteries(app,to){
+  try{
+   const loaded=normalize(read()),stamp=loaded?.[keyField],committed=originalProfile(app);
+   if(!committed||priorUnsafe(loaded)||!compatibleLegacy(loaded,committed)||!shape(stamp,loaded,releasePin(to),to))return null;
+   return json(stamp.body.fieldMasteries??{});
+  }catch{return null;}
+ }
+ async function commitMastery({app,engine,store,to,expectedRaw,check,cls,id}){
+  if(![52,57].includes(to)||app?.engine!==engine||!ownedStore(app,store)||store?.locked||working.has(app)||!check()||typeof expectedRaw!=='string')return false;
+  try{
+   working.add(app);
+   return await exclusive(()=>{
+    if(read()!==expectedRaw||app.engine!==engine||!check())return false;
+    const loaded=normalize(expectedRaw),stamp=loaded?.[keyField],committed=originalProfile(app);
+    if(!committed||priorUnsafe(loaded)||!compatibleLegacy(loaded,committed)||!shape(stamp,loaded,releasePin(to),to))return false;
+    const fieldMasteries=json(stamp.body.fieldMasteries??{});
+    (fieldMasteries[cls]??=[]).push(id);
+    // By the final threshold, the earned Stage 57 catch-up is available for the next battle.
+    if(!verifyMasteries(loaded,to,fieldMasteries))return false;
+    const body={...stamp.body,fieldMasteries},next={body,sha:digest(body)};
+    if(!shape(next,loaded,releasePin(to),to)||!store.save({...loaded,[keyField]:next}))return false;
+    const stored=normalize(read())?.[keyField];
+    return same(stored,next);
+   });
+  }catch{return false;}finally{working.delete(app);}
+ }
  function permitFailed57Retry(app,store){
   if(working.has(app)||!ownedStore(app,store)||!verifyRetry57(app,store))return false;
   const state=inspect(app);
@@ -238,5 +266,5 @@ export function createChapterBoundary({slot,key,storage,locks,normalize,hash,ver
   booted.delete(app);
   return true;
  }
- return Object.freeze({checkpoint,restore,inspect,permitFailed57Retry,permitFailed59Retry});
+ return Object.freeze({checkpoint,restore,inspect,readMasteries,commitMastery,permitFailed57Retry,permitFailed59Retry});
 }

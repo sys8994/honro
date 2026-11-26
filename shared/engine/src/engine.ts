@@ -1,3 +1,4 @@
+import {mastered,masteryHit,masteryEffect,masteryEcho,masteryOnce,center as masteryCenter} from './masteryCombat';
 import {finishMonsterPatterns,validateMonsterPatterns,observeMonsterPattern,monsterPatternResponse,monsterTurn,prepareMonsterPattern,monsterActionCompleted,monsterMovementBudget,monsterSkillBlocked,recordMonsterSkill,clearMonsterCondition,monsterRedirect,monsterDefense,monsterHit,monsterPriorityTarget,monsterRound,tickMonsterPatterns} from './monsterPatterns';
 import {enemyEffectEligible,interruptEnemyEffect,validateEnemyEffects,observeEnemyEffectWarning,offerEnemyEffectResponses,enemyEffectActionCompleted,prepareEnemyEffect,resolveEnemyEffect,enemyEffectDamage,enemyEffectMovementBudget,tickEnemyEffects,clearEnemyEffects,releaseEnemySoftBind} from './enemyEffects';
 import {wreckDamage,damageNearest,damageContact,damageAim,damageCritical} from './wreckDamage';
@@ -85,6 +86,7 @@ export interface Prediction {
 /** Seconds an enemy shows its decided shot before releasing it. */
 export const ENEMY_AIM_TELEGRAPH=.45;
 export class Engine {
+    masterySuppressed=false;
     b: Battle;
     onEvent: (e: Event) => void;
     private counter = 0;
@@ -686,6 +688,7 @@ export class Engine {
         delete u.platformDrop;delete u.moveTarget;
         u.moving = 0;
         const e = this.effective(s, u);
+        const mastery=mastered(this,u,skillId);
         const gear=gearCapture(u,s,e.damage,this.grounded(u),gearCycle(b),gearTactical(b));
         const actualKiSpent=this.manaCost(s,u,power);gearPay(u,actualKiSpent,gearTactical(b));
         u.cooldowns ??= {}; if(s.cooldown)u.cooldowns[skillId]=b.round+s.cooldown+1;
@@ -705,10 +708,15 @@ export class Engine {
         if(beastKind(u))return startBeastCast(this,u,s,e.damage,targetFor(this,u),damageRoll);
         const origin = this.projectileOrigin(u, s, u.angle);
         const attackSide=this.allegiance(u);
-        const make = (a: number, damage = e.damage, child = false) => { const origin=this.projectileOrigin(u,s,a),v = this.velocity(u, s, a, u.lastPower); const p: Projectile = { equipment:gear?structuredClone(gear):undefined, damageRoll, attackSide, id: b.nextId++, skill: skillId, owner: u.id, side: u.side, x: origin.x, y: origin.y, vx: v.vx, vy: v.vy, prevVy: v.vy, age: 0, radius: BODY.has(s.mode) ? u.r : ARROWS.has(s.mode) ? 3 : s.mode === 'shieldthrow' ? 9 : 6, damage, blast: e.radius, wind: s.wind, mode: s.mode, color: s.color, bounces: 0, pierces: 0, apex: false, hit: [], phase: 0, body: BODY.has(s.mode), returnX: u.x, returnY: u.y, trail: [origin], child, rolled: 0, shot: b.shot, emissions: 0, fieldHits: [], amplification: 1, launchX:origin.x,launchY:origin.y, repeatIndex:0,carry:[], skillRank:s.ultimate?1:(u.ranks[s.id]||1),drag:dragFor(s), gravityScale:s.gravity??1, phaseMode:s.phase, fuseAt:s.fuse? s.fuse*(s.mode==='phaseWraith'?(.55+u.lastPower*1.05):1):undefined }; initializePlayerRange(p,u,s);if(s.id==='O05')initializeReturningWraith(p);projectileCredit(b,p,u);b.projectiles.push(p); return p; };
+        const make = (a: number, damage = e.damage, child = false) => { const origin=this.projectileOrigin(u,s,a),v = this.velocity(u, s, a, u.lastPower); const p: Projectile = { mastery:mastery||undefined,masteryPower:mastery?u.lastPower:undefined,equipment:gear?structuredClone(gear):undefined, damageRoll, attackSide, id: b.nextId++, skill: skillId, owner: u.id, side: u.side, x: origin.x, y: origin.y, vx: v.vx, vy: v.vy, prevVy: v.vy, age: 0, radius: BODY.has(s.mode) ? u.r : ARROWS.has(s.mode) ? 3 : s.mode === 'shieldthrow' ? 9 : 6, damage, blast: e.radius, wind: s.wind, mode: s.mode, color: s.color, bounces: 0, pierces: 0, apex: false, hit: [], phase: 0, body: BODY.has(s.mode), returnX: u.x, returnY: u.y, trail: [origin], child, rolled: 0, shot: b.shot, emissions: 0, fieldHits: [], amplification: 1, launchX:origin.x,launchY:origin.y, repeatIndex:0,carry:[], skillRank:s.ultimate?1:(u.ranks[s.id]||1),drag:dragFor(s), gravityScale:s.gravity??1, phaseMode:s.phase, fuseAt:s.fuse? s.fuse*(s.mode==='phaseWraith'?(.55+u.lastPower*1.05):1):undefined }; initializePlayerRange(p,u,s);if(p.mastery&&s.id==='S10'&&p.flightRange?.distance)p.flightRange.distance*=1.3;if(s.id==='O05')initializeReturningWraith(p);projectileCredit(b,p,u);b.projectiles.push(p); return p; };
         if (s.mode === 'triple') {
             const plan=multishotProfile(s,u.ranks[s.id]||1)!;
-            for(const angle of volleyAngles(s,plan.rank,u.angle))make(angle,e.damage*plan.damageScale);
+            const angles=volleyAngles(s,plan.rank,u.angle);
+            for(const [i,angle] of angles.entries()){
+                const narrow=mastery&&u.lastPower>=.98;
+                const p=make(narrow?u.angle+(angle-u.angle)*.6:angle,e.damage*plan.damageScale);
+                if(narrow&&(i===0||i===angles.length-1))p.masteryEdge=true;
+            }
         }
         else if(s.mode==='twinCrescent'){const a=make(u.angle-4,e.damage,true),c=make(u.angle+4,e.damage,true);a.mode=c.mode='crescent';a.autonomous=c.autonomous=false;}
         else
@@ -719,7 +727,7 @@ export class Engine {
         }
         beginOccultCast(this,u,s,b.projectiles.filter(p=>p.owner===u.id&&p.shot===b.shot),actualKiSpent);
         const castBonus=beginPlayerCast(this,u,s,actualKiSpent);
-        for(const p of b.projectiles.filter(p=>p.owner===u.id&&p.shot===b.shot)){p.effectBoost=castBonus.effectBoost;p.sizeBoost=s.martial&&s.branch==='blade'?1+passiveTuning(passiveRank(u,'SP01')).bladeGeometry:1;}
+        for(const p of b.projectiles.filter(p=>p.owner===u.id&&p.shot===b.shot)){p.effectBoost=castBonus.effectBoost;p.masteryHarmony=castBonus.harmony&&mastered(this,u,'SP04')||undefined;p.sizeBoost=s.martial&&s.branch==='blade'?1+passiveTuning(passiveRank(u,'SP01')).bladeGeometry:1;}
         initRedesignCast(this,s,u,actualKiSpent);startWarriorCast(this,s,u);
         const rank=passiveRank(u,'AP01');
         if(rank>0 && ARROWS.has(s.mode)){const roots=b.projectiles.filter(p=>p.owner===u.id&&p.shot===b.shot);b.volley={template:JSON.parse(JSON.stringify(roots[s.mode==='triple'?Math.floor(roots.length/2):0])),remaining:volleyCount(rank)-1,elapsed:0,interval:VOLLEY_INTERVAL,index:0,angle:u.angle,power:u.lastPower};}
@@ -783,9 +791,9 @@ export class Engine {
         return terrainSurface(this.collisionTerrain({x,y:0},{x,y:0},3),x,min,max,Infinity,(t,edge)=>!!this.dropEdges(u,t)?.includes(edge));
     }
     jumpCost(u:Unit){return gearJumpCost(this.b,u,Math.max(25,75-passiveRank(u,'SP03')*5));}
-    jump(u = this.active) { if(this.noncombatWalk()&&u?.side===0)u.moveLeft=u.maxMove; if (!u || u.dead || u.eaterCapturedBy || u.summonKind==='eater' || u.meleeFollow==='ready' || u.equipmentState?.motion || u.fixed || u.airborne || u.moveLeft < this.jumpCost(u) || !this.grounded(u))
-        return false; const cost=this.jumpCost(u);delete u.platformDrop;delete u.moveTarget;if(equipmentActor(u))gearState(u).jumpCycle=gearCycle(this.b); u.jumping = true; u.vy = -660*(1+passiveRank(u,'SP03')*.02)*((u.equipmentIds?.includes('itm_co_11')&&equipmentActor(u)?1.3:1)>1?Math.sqrt(.9):1); u.moveLeft = Math.max(0, u.moveLeft - cost); u.landing = 0; this.fx('spark', u.x, u.y, '#d7d0b8', 20); this.emit('sound', { name: 'jump' }); return true; }
-    walk(u:Unit,direction:number,dt:number,requireSupport=false){if(u.eaterCapturedBy||u.summonKind==='eater')return false;if(u.meleeFollow==='ready'||u.platformDrop&&u.platformDrop.phase!=='land')return;if(this.noncombatWalk()&&u.side===0)u.moveLeft=u.maxMove;const result=walkTerrain(this,u,direction,dt*(1-Math.max(u.slowed?.factor||0,gearFrostSlow(this,u)))*(u.jumping&&(u.equipmentIds?.includes('itm_co_11')&&equipmentActor(u)?1.3:1)>1?1.3/Math.sqrt(.9):1),requireSupport);if(this.noncombatWalk()&&u.side===0)u.moveLeft=u.maxMove;return result;}
+    jump(u = this.active) { if(this.noncombatWalk()&&u?.side===0)u.moveLeft=u.maxMove; if (!u || u.dead || u.eaterCapturedBy || u.summonKind==='eater' || u.meleeFollow==='ready' || u.equipmentState?.motion || u.fixed || u.airborne || u.moveLeft < this.jumpCost(u)*(u.masteryRetreatJump?.5:1) || !this.grounded(u))
+        return false; const cost=this.jumpCost(u)*(u.masteryRetreatJump?.5:1);delete u.masteryRetreatJump;if(mastered(this,u,'SP03'))u.masteryJumpPending=true;delete u.platformDrop;delete u.moveTarget;if(equipmentActor(u))gearState(u).jumpCycle=gearCycle(this.b); u.jumping = true; u.vy = -660*(1+passiveRank(u,'SP03')*.02)*((u.equipmentIds?.includes('itm_co_11')&&equipmentActor(u)?1.3:1)>1?Math.sqrt(.9):1); u.moveLeft = Math.max(0, u.moveLeft - cost); u.landing = 0; this.fx('spark', u.x, u.y, '#d7d0b8', 20); this.emit('sound', { name: 'jump' }); return true; }
+    walk(u:Unit,direction:number,dt:number,requireSupport=false){if(u.eaterCapturedBy||u.summonKind==='eater')return false;if(u.meleeFollow==='ready'&&!u.meleeFollowOrigin?.mastery||u.platformDrop&&u.platformDrop.phase!=='land')return;if(this.noncombatWalk()&&u.side===0)u.moveLeft=u.maxMove;const result=walkTerrain(this,u,direction,dt*(1-Math.max(u.slowed?.factor||0,gearFrostSlow(this,u)))*(u.jumping&&(u.equipmentIds?.includes('itm_co_11')&&equipmentActor(u)?1.3:1)>1?1.3/Math.sqrt(.9):1),requireSupport);if(this.noncombatWalk()&&u.side===0)u.moveLeft=u.maxMove;return result;}
     canTurnArrow(){return !!steerableArrow(this.b);}
     turnArrow(point?:Vec){if(!turnArrow(this,point))return false;this.emit('save');return true;}
     useGate(){return useGate(this);}
@@ -800,7 +808,7 @@ export class Engine {
     move(direction: number, dt: number) { if (!this.canAct())
         return; const u = this.active!;
         // S13's grounded bonus action permits turning, but never locomotion.
-        if(u.meleeFollow==='ready'){
+        if(u.meleeFollow==='ready'&&!u.meleeFollowOrigin?.mastery){
             if(!this.grounded(u)||!Number.isFinite(direction)||!direction||dt<=0)return;
             const facing=Math.sign(direction);
             if(facing!==u.facing){u.angle=clamp(180-u.angle,AIM_MIN,AIM_MAX);u.facing=facing;}
@@ -1001,6 +1009,9 @@ export class Engine {
         const crit=canCritical?critProfile(p||{skill:'',skillRank:1} as Projectile,src!,rawSrc):undefined;
         const critical=canCritical&&this.random()<crit!.chance;
         const criticalMultiplier=critical?crit!.multiplier:1;
+        if(damageSource==='normal'&&rawSrc&&u.masteryBetrayUntil!==undefined&&u.masteryBetrayUntil>=this.b.round&&rawSrc.side===u.side&&rawSrc.id!==u.id){
+            dmg*=2;delete u.masteryBetrayUntil;masteryEffect(this,'O07',masteryCenter(u),55,masteryCenter(rawSrc));
+        }
         const primary=equipmentPrimary(rawSrc,p,damageSource),conditionBonuses:number[]=[];
         if(src?.side===0 && direct && src.cls==='archer' && !p?.skill.startsWith('A'))conditionBonuses.push(.04*equippedRank(src,'AP02'));
         // Jucheon is applied at cast time, never on old or secondary on-hit hooks.
@@ -1020,6 +1031,19 @@ export class Engine {
         if(damageSource==='normal'&&src?.side===0&&src.cls==='occultist'&&(rawSrc?.summoned||rawSrc?.enthrall)&&u.side===1&&((u.curseOwner===src.id&&(u.curseTurns||0)>0)||(u.earthbind?.owner===src.id&&u.earthbind.until>=this.b.round)))conditionBonuses.push(passiveTuning(passiveRank(src,'OP02')).markedSummonDamage);
         const preCondition=1+conditionBonuses.reduce((sum,bonus)=>sum+bonus,0);
         dmg*=preCondition*criticalMultiplier;
+        if(damageSource==='normal'&&rawSrc&&src&&u.side!==src.side){
+            if(rawSrc.masterySummonFirst&&(rawSrc.masterySummon==='O11'||rawSrc.masterySummon==='O09'||rawSrc.masterySummon==='OP04')){
+                dmg*=rawSrc.masterySummon==='OP04'?1.6:1.8;rawSrc.masterySummonFirst=false;
+                masteryEffect(this,rawSrc.masterySummon,masteryCenter(u),54,masteryCenter(rawSrc));
+            }
+            if(rawSrc.masteryShared&&rawSrc.summoned){delete rawSrc.masteryShared;dmg*=1.6;masteryEffect(this,'OP03',masteryCenter(u),54,masteryCenter(rawSrc));}
+            if((rawSrc.summoned||rawSrc.enthrall)&&mastered(this,src,'OP02')&&
+                (u.curseOwner===src.id||u.earthbind?.owner===src.id)&&masteryOnce(this,'OP02',u.id)){
+                u.masteryExposure={id:'OP02',owner:src.id,until:this.b.round,gain:.4};
+                masteryEffect(this,'OP02',masteryCenter(rawSrc),40,masteryCenter(u));
+            }
+        }
+        if(damageSource==='normal'&&src)dmg=masteryHit(this,src,u,dmg,p?.skill||damageSkill||'',direct,!!critical,p,source);
         if(p&&src&&newSkill(p))dmg=redrawDamage(this,p,src,u,dmg,source||p,direct,!!critical);
         let armorWithoutSupport=Math.max(0,u.armor),armor = Math.max(0,u.armor-(u.curseArmor||0));
         if (u.role === 'guard' && source)
@@ -1043,8 +1067,8 @@ export class Engine {
             this.fx('text', u.x, u.y - u.h - 20, '#f4d39c', 15, '핵심 적중');
         }
         const pierce=direct&&p?.preparedRank?preparedShot(p.preparedRank).pierce:0;
-        const defenseMultiplier=regionMultiplier*(damageSource==='normal'?1-Math.max(0,clamp(armor*(p?.skill==='S02'?.65:1),0,HERO_ARMOR_CAP)-pierce):1)
-            *(u.arrivalGuard!==undefined?.90:1)*(damageSource==='normal'?monsterDefense(this,u,p&&Math.abs(p.vy)>Math.abs(p.vx)*.85?{x:u.x,y:u.y-u.h-200}:source||(rawSrc?{x:rawSrc.x,y:rawSrc.y-rawSrc.h*.44}:undefined)):1)
+        const defenseMultiplier=regionMultiplier*(damageSource==='normal'?1-Math.max(0,clamp(armor*(p?.skill==='S02'?(p.mastery?.50:.65):1),0,HERO_ARMOR_CAP)-pierce):1)
+            *(u.arrivalGuard!==undefined?(u.masteryArrivalGuard?.83:.90):1)*(damageSource==='normal'?monsterDefense(this,u,p&&Math.abs(p.vy)>Math.abs(p.vx)*.85?{x:u.x,y:u.y-u.h-200}:source||(rawSrc?{x:rawSrc.x,y:rawSrc.y-rawSrc.h*.44}:undefined)):1)
             *(u.martialGuard&&u.martialGuard.round>=this.b.round?1-u.martialGuard.reduction:1);
         let attack=damageSource==='normal'?(damageSkill&&SKILLS[damageSkill]?attackForSkill(SKILLS[damageSkill]):attackForHit(p,rawSrc,src,SKILLS)):undefined;
         // The captured vector is assigned once to the cast's damage, including its physical fragments. Never convert an echo, summon or persistent receipt.
@@ -1072,6 +1096,7 @@ export class Engine {
         const contribution=beginHit(this.b,u,rawSrc,src,p,attack,owner,layers.finalDamage*friendlyFire,dmg,defenseMultiplier,armor,armorWithoutSupport,contributionDamageLimit*friendlyFire,damageSource==='normal');
         Object.assign(contribution,{reportOrigin:p?.honroReportSource||provenance?.honroReportSource,reportOwner:owner,reportSkill:provenance?.skill||damageSkill||p?.skill,reportSource:damageSource});
         if(u.summonKind==='eater'){dmg=Math.min(dmg,u.hp);u.shield=0;}
+        if(u.martialGuard&&!u.martialGuard.counter&&mastered(this,u,'S00')&&rawSrc&&this.guidanceTarget(u,rawSrc))u.masteryGuarded=true;
         if(u.martialGuard?.counter&&u.martialGuard.round>=this.b.round&&rawSrc&&this.guidanceTarget(u,rawSrc))u.martialGuard.attacker=rawSrc.id;
         const enemyEffectHpBefore=u.hp;
         const absorbed = damageSource==='eaterTransfer'?0:Math.min(u.shield, dmg);
@@ -1081,7 +1106,7 @@ export class Engine {
         if(damageSource==='normal')dmg=gearGuard(this,u,owner,p||provenance,dmg);
         if(u.side===0&&u.cls==='occultist'&&!u.summoned&&!u.enthrall&&passiveRank(u,'OP03')&&dmg>0){
             const near=this.actors(0).filter(v=>v.summoned&&v.summonOwner===u.id&&Math.hypot(v.x-u.x,v.y-u.y)<340).sort((a,c)=>Math.hypot(a.x-u.x,a.y-u.y)-Math.hypot(c.x-u.x,c.y-u.y))[0];
-            if(near){const shared=Math.min(Math.round(dmg*passiveTuning(passiveRank(u,'OP03')).soulShare),Math.round(u.maxHp*passiveTuning(passiveRank(u,'OP03')).soulShareCap),near.hp);dmg-=shared;this.hurt(near,shared,owner,false,undefined,source,'salheun',damageSkill||p?.skill);}
+            if(near){const shared=Math.min(Math.round(dmg*passiveTuning(passiveRank(u,'OP03')).soulShare),Math.round(u.maxHp*passiveTuning(passiveRank(u,'OP03')).soulShareCap),near.hp);dmg-=shared;this.hurt(near,shared,owner,false,undefined,source,'salheun',damageSkill||p?.skill);if(shared>0&&!near.dead&&mastered(this,u,'OP03')){near.masteryShared=true;masteryEffect(this,'OP03',masteryCenter(u),46,masteryCenter(near));}}
         }
         if (absorbed)
             this.fx('ring', u.x, u.y - u.h * .5, '#b1daf4', 32);
@@ -1097,7 +1122,7 @@ export class Engine {
                 dmg=(globalThis as any).HonroQuestTargets.damage(this,u,dmg,owner,p||provenance);
                 if(!dmg){endHit(this.b,u,contribution);return;}
             }else u.hp = Math.max((this.b.mode==='practice'&&this.b.practiceCombat&&u.side!==1)||(u as any).honroNonlethal?1:((globalThis as any).HonroAct5?.damageFloor(this.b,u)||0), u.hp - dmg);
-            if(u.hp===0&&!u.lastStandUsed&&equippedRank(u,'SP05')){u.lastStandUsed=true;u.hp=Math.max(1,Math.round(u.maxHp*passiveTuning(passiveRank(u,'SP05')).lastStandHp));u.martialGuard={round:this.b.round,reduction:passiveTuning(passiveRank(u,'SP05')).lastStandGuard};this.fx('spark',u.x,u.y-u.h*.5,'#ccd3c4',24);this.fx('text',u.x,u.y-u.h-25,'#f4d6a3',18,'불굴');}
+            if(u.hp===0&&!u.lastStandUsed&&equippedRank(u,'SP05')){u.lastStandUsed=true;if(mastered(this,u,'SP05')){u.masteryLastStandRound=this.b.round+1;masteryEffect(this,'SP05',masteryCenter(u),85);for(const v of this.combatEnemies())if(!v.fixed&&!v.boss&&!v.honroObjectiveTarget&&Math.hypot(v.x-u.x,v.y-u.y)<130)this.impulse(v,Math.sign(v.x-u.x||1)*220,-60);}u.hp=Math.max(1,Math.round(u.maxHp*passiveTuning(passiveRank(u,'SP05')).lastStandHp));u.martialGuard={round:this.b.round,reduction:passiveTuning(passiveRank(u,'SP05')).lastStandGuard};this.fx('spark',u.x,u.y-u.h*.5,'#ccd3c4',24);this.fx('text',u.x,u.y-u.h-25,'#f4d6a3',18,'불굴');}
             const actual=Math.max(0,hpBefore-u.hp);keeperPressure(this,u,owner,actual);
             // Commit this HP interval before on-hit effects can recursively hurt again.
             endHit(this.b,u,contribution);
@@ -1112,10 +1137,12 @@ export class Engine {
                 const wardRank=passiveRank(src,'MP04');
                 if(damageSource==='normal'&&p&&wardRank&&src.cls==='mage'&&!src.summoned&&SKILLS[p.skill]?.cls==='mage'&&src.mageWardShot!==p.shot){
                     src.mageWardShot=p.shot;
-                    const ally=this.actors(0).filter(v=>!v.summoned&&!v.enthrall&&v.id!==src.id&&Math.hypot(v.x-u.x,(v.y-v.h*.5)-(u.y-u.h*.5))<520).sort((a,b)=>Math.hypot(a.x-u.x,a.y-u.y)-Math.hypot(b.x-u.x,b.y-u.y))[0]||src;
+                    const nearby=this.actors(0).filter(v=>!v.summoned&&!v.enthrall&&v.id!==src.id&&Math.hypot(v.x-u.x,(v.y-v.h*.5)-(u.y-u.h*.5))<520).sort((a,b)=>Math.hypot(a.x-u.x,a.y-u.y)-Math.hypot(b.x-u.x,b.y-u.y));
+                    const recipients=nearby.length?nearby.slice(0,mastered(this,src,'MP04')?2:1):[src];
+                    for(const [i,ally] of recipients.entries()){if(i===1)masteryEffect(this,'MP04',masteryCenter(ally),42,masteryCenter(src));
                     const shieldBefore=ally.shield;ally.shield=Math.max(ally.shield,Math.min(Math.round(ally.maxHp*passiveTuning(wardRank).wardCap),ally.shield+Math.round(ally.maxHp*passiveTuning(wardRank).ward)));
                     shielded(this.b,ally,src.id,shieldBefore);ally.shieldUntil=Math.max(ally.shieldUntil||0,this.b.teamEnds[1]+1);
-                    this.fx('ring',ally.x,ally.y-ally.h*.5,'#b4d8d1',34);
+                    this.fx('ring',ally.x,ally.y-ally.h*.5,'#b4d8d1',34);}
                 }
                 if(p&&!newSkill(p)&&equippedRank(src,'MP03')&&src.refundShot!==p.shot){src.refundShot=p.shot;src.focus=Math.min(src.maxFocus,src.focus+5*equippedRank(src,'MP03'));this.fx('rune',src.x,src.y-src.h*.5,'#98d9db',30);}
                 u.aggroUntil = this.b.round + 3;
@@ -1154,6 +1181,15 @@ export class Engine {
         if(damageSource==='normal'||u.dead)monsterHit(this,u,owner,direct,p,Math.max(0,enemyEffectHpBefore-u.hp));
         enemyEffectDamage(this,u,p,Math.max(0,enemyEffectHpBefore-u.hp));
         if(damageSource==='normal'&&direct&&enemyEffectHpBefore>u.hp)gearHighGround(this,u,owner,p);
+        if(damageSource==='normal'&&p&&!p.masteryEcho&&src&&u.side!==src.side&&enemyEffectHpBefore>u.hp){
+            if(p.mastery&&p.skill==='O03'&&masteryOnce(this,'O03',u.id))masteryEffect(this,'O03',masteryCenter(u),45);
+            if(p.soulBoost&&mastered(this,src,'OP05')&&masteryOnce(this,'OP05',String(p.shot)))
+                masteryEcho(this,p,'OP05',masteryCenter(u),210,.5,[u.id]);
+            if(p.masteryHarmony&&mastered(this,src,'SP04')&&masteryOnce(this,'SP04',src.id)){
+                const ally=this.heroesAlive().filter(v=>v.id!==src.id&&Math.hypot(v.x-src.x,v.y-src.y)<380).sort((a,b)=>Math.abs(a.x-src.x)-Math.abs(b.x-src.x))[0];
+                if(ally){ally.martialGuard={round:this.b.round,reduction:passiveTuning(passiveRank(src,'SP04')).harmonyGuard};masteryEffect(this,'SP04',masteryCenter(src),40,masteryCenter(ally));}
+            }
+        }
         tickEnemyEffects(this,0);
         if(u.summonKind==='eater'){
             if(rawSrc&&this.allegiance(rawSrc)===0&&dmg>0){const shared=Math.min(dmg,Math.max(0,u.maxHp-(u.eaterTransferred||0)));u.eaterTransferred=(u.eaterTransferred||0)+shared;for(const target of this.b.units.filter(v=>v.eaterCapturedBy===u.id&&!v.dead))this.hurt(target,shared,owner,false,undefined,source,'eaterTransfer',damageSkill||p?.skill);}
@@ -1164,7 +1200,17 @@ export class Engine {
     impulse(u: Unit, vx: number, vy: number,attack?:Partial<Projectile>) { if (u.dead || u.eaterCapturedBy || u.summonFloating) return;
         ({vx,vy}=gearImpulse(this,u,vx,vy,attack));if(u.equipmentState&&(Math.abs(vx)+Math.abs(vy)>0)){delete u.equipmentState.motion;delete u.equipmentState.landingRetreat;}
         if(flyingEnemy(u)){knockbackFlyingEnemy(this,u,vx,vy);return;}
-        if(u.fixed)return; delete u.platformDrop; delete u.moveTarget; const resist=1-knockbackResistance(passiveRank(u,'SP02'));  u.vx = clamp(u.vx + vx*resist, -480, 480); u.vy = Math.min(u.vy, vy*resist); if (vy < 0)
+        if(u.fixed)return;
+        let resist=1-knockbackResistance(passiveRank(u,'SP02'));
+        if(attack&&attack.side!==u.side&&u.masteryArrival!==undefined&&u.masteryArrival>this.b.teamEnds[1]){
+            resist*=.25;delete u.masteryArrival;masteryEffect(this,'M09',masteryCenter(u),55);
+        }
+        if(attack&&attack.side!==u.side&&mastered(this,u,'SP02')&&this.grounded(u)&&u.masteryShareRound!==this.b.round&&Math.abs(vx)>70){
+            u.masteryShareRound=this.b.round;
+            const before=u.shield;u.shield=Math.max(u.shield,Math.round(u.maxHp*Math.min(.2,Math.abs(vx)*(1-resist)/1350)));
+            shielded(this.b,u,u.id,before);u.shieldUntil=Math.max(u.shieldUntil||0,this.b.teamEnds[1]+1);masteryEffect(this,'SP02',masteryCenter(u),50);
+        }
+        delete u.platformDrop; delete u.moveTarget;  u.vx = clamp(u.vx + vx*resist, -480, 480); u.vy = Math.min(u.vy, vy*resist); if (vy < 0)
         u.jumping = false; }
     damageTerrain(t: Terrain, amount: number, depth = 0, owner = this.b.active, attack?:Partial<Projectile>) {
         if(gearPreservesWood(this,t,owner,attack))return;
@@ -1350,8 +1396,8 @@ export class Engine {
         target.curseOwner=owner.id;
         const provenance=target as any;if((kind==='weak'||kind==='bind')&&!(target.curseAttack||0))provenance.honroWeakOwner=owner.id;if(kind==='weak'&&!(target.curseArmor||0))provenance.honroArmorOwner=owner.id;if((kind==='dot'||kind==='chain')&&damage>=(target.curseDamage||0)){target.curseDamageOrigin={attackSide:this.attackSide(owner.id,attack),damageRoll:attack?.damageRoll};provenance.honroDotOwner=owner.id;provenance.honroDotSkill=attack?.skill;provenance.honroDotReport=attack?.honroReportSource||(globalThis as any).HonroClearReport?.origin(this.b,owner.id,attack?.skill);}
         if(kind==='weak'&&attack?.skill==='O06'&&gearHas(attack,'so_weak')&&gearBody(attack))gearState(target).weak={owner:owner.id,expires:this.b.round+duration-1,spread:false,used:false};
-        if(kind==='weak'){target.curseTurns=Math.max(target.curseTurns||0,duration);target.curseAttack=Math.max(target.curseAttack||0,(attack?.skill==='O06'?equipmentParam(owner,'so_weak','weakAttackReduction',.12):.12)*strength);target.curseArmor=Math.max(target.curseArmor||0,.13*strength);}
-        if(kind==='betray'){target.curseTurns=Math.max(target.curseTurns||0,duration);target.betrayalUntil=Math.max(target.betrayalUntil||0,this.b.round+duration-1);}
+        if(kind==='weak'){target.curseTurns=Math.max(target.curseTurns||0,duration);const improved=attack?.skill==='O06'&&attack.mastery?1.5:1;target.curseAttack=Math.max(target.curseAttack||0,(attack?.skill==='O06'?equipmentParam(owner,'so_weak','weakAttackReduction',.12):.12)*strength*improved);target.curseArmor=Math.max(target.curseArmor||0,.13*strength*improved);if(improved>1){target.masteryExposure={id:'O06',owner:owner.id,until:this.b.round+1,gain:.2};masteryEffect(this,'O06',masteryCenter(target),46,masteryCenter(owner));}}
+        if(kind==='betray'){if(attack?.mastery){target.masteryBetrayUntil=this.b.round+duration-1;masteryEffect(this,'O07',masteryCenter(target),42,masteryCenter(owner));}target.curseTurns=Math.max(target.curseTurns||0,duration);target.betrayalUntil=Math.max(target.betrayalUntil||0,this.b.round+duration-1);}
         if(kind==='dot'||kind==='chain'){if(damage>=(target.curseDamage||0))target.curseAutonomous=this.autonomousAttack(owner.id,attack);target.curseTurns=Math.max(target.curseTurns||0,duration);target.curseDamage=Math.max(target.curseDamage||0,Math.round(damage));}
         if(kind==='bind'){keeperBindingReplaced(target);target.curseTurns=Math.max(target.curseTurns||0,duration);target.bound=Math.max(target.bound,2);target.curseAttack=Math.max(target.curseAttack||0,.18);}
         this.skillSound('status',owner.id,attack?.skill||this.audioContext?.skill,attack?.shot,target.id);this.fx('spark',target.x,target.y-target.h*.55,kind==='betray'?'#bd9c8f':'#c1b399',30);
@@ -1367,12 +1413,14 @@ export class Engine {
         const power=ENTHRALL_POWER[clamp(rank,1,8)-1],ratio=target.hp/target.maxHp;
         target.enthrall={attackSide:this.allegiance(owner),damageRoll:origin?.damageRoll,owner:owner.id,actions:ENTHRALL_ACTIONS[clamp(rank,1,8)-1]+(empowered?1:0),captureRatio:ratio,originalMaxHp:target.maxHp,originalAttack:target.attack,originalArmor:target.armor,power};
         this.skillSound('status',owner.id,reportSkill,undefined,target.id);target.side=0;(target as any).honroReportSkill=reportSkill;ownerRegistered(this.b,target);target.maxHp=Math.max(1,Math.round(target.maxHp*power));target.hp=Math.max(1,Math.round(target.maxHp*ratio));target.attack*=power;target.armor=clamp(target.armor*power,0,.75);target.acted=true;
+        if(origin?.mastery&&reportSkill==='O09'){target.masterySummon='O09';target.masterySummonFirst=true;target.masteryRelease=true;}
         this.fx('ring',target.x,target.y-target.h*.5,'#beb89a',55);this.emit('change');return true;
     }
     private releaseEnemy(target:Unit){
         const state=target.enthrall;if(!state)return;
         const ratio=Math.min(state.captureRatio,target.hp/Math.max(1,target.maxHp));
         target.side=1;target.maxHp=state.originalMaxHp;target.hp=Math.max(0,Math.round(target.maxHp*ratio));target.attack=state.originalAttack;target.armor=state.originalArmor;target.acted=true;delete target.enthrall;
+        if(target.masteryRelease){target.slowed={factor:.5,expires:this.b.round+1};delete target.masterySummon;delete target.masterySummonFirst;masteryEffect(this,'O09',masteryCenter(target));}
         if(target.hp<=0)target.dead=true;
         this.fx('ring',target.x,target.y-target.h*.5,'#9b9c8b',42);this.emit('change');
     }
@@ -1391,17 +1439,19 @@ export class Engine {
         const b=this.b;b.occultTraps??=[];
         for(const trap of [...b.occultTraps]){
             if(trap.expires<b.round){b.occultTraps=b.occultTraps!.filter(z=>z.id!==trap.id);continue;}
-            const owner=this.unit(trap.owner),target=this.actors(1).find(v=>this.attackAllows(v,trap.owner,trap)&&Math.hypot(v.x-trap.x,v.y-v.h*.5-trap.y)<v.r+38);
+            const owner=this.unit(trap.owner),target=this.actors(1).find(v=>v.id!==trap.masteryVictim&&this.attackAllows(v,trap.owner,trap)&&Math.hypot(v.x-trap.x,v.y-v.h*.5-trap.y)<v.r+38);
             if(!owner||!target)continue;
             if(trap.skill==='O08')this.manifest(target,owner,trap.rank,-Math.floor(MANIFEST_TURNS[clamp(trap.rank,1,8)-1]/2));
             else this.applyCurse(target,owner,trap.skill==='O06'?'weak':'betray',trap.damage,trap.rank,0,true,trap);
-            if(trap.damage>0)this.hurt(target,trap.damage,owner.id,false,undefined,undefined,'normal',trap.skill,trap);
+            if(trap.damage>0)this.hurt(target,trap.damage*(mastered(this,owner,'OP01')&&!trap.masteryVictim?1.7:1),owner.id,false,undefined,undefined,'normal',trap.skill,trap);
+            if(mastered(this,owner,'OP01')&&!trap.masteryVictim){trap.masteryVictim=target.id;trap.damage*=.5;masteryEffect(this,'OP01',{x:trap.x,y:trap.y},44);continue;}
             this.fx('spark',trap.x,trap.y,'#c2b9a0',25);b.occultTraps=b.occultTraps!.filter(z=>z.id!==trap.id);
         }
         for(const anchor of b.units){if(anchor.dead||anchor.summonKind!=='earthbound')continue;
             const token=String(b.round),cx=anchor.x,cy=anchor.y-anchor.h*.5;anchor.auraHits??={};
             for(const target of this.actors(1))if(this.attackAllows(target,anchor.id)&&anchor.auraHits[target.id]!==token&&Math.hypot(target.x-cx,target.y-target.h*.5-cy)<EARTHBIND.auraRadius+target.r){
-                anchor.auraHits[target.id]=token;this.applyEarthSlow(target,EARTHBIND.auraSlow);this.hurt(target,anchor.maxHp*EARTHBIND.auraDamage,anchor.id,false,undefined,undefined,'normal',undefined,anchor.summonDamageOrigin);
+                const first=anchor.masterySummon==='O10'&&anchor.masterySummonFirst;if(first){anchor.masterySummonFirst=false;masteryEffect(this,'O10',masteryCenter(anchor),90);}
+                anchor.auraHits[target.id]=token;this.applyEarthSlow(target,first?.55:EARTHBIND.auraSlow);this.hurt(target,anchor.maxHp*EARTHBIND.auraDamage*(first?2:1),anchor.id,false,undefined,undefined,'normal',undefined,anchor.summonDamageOrigin);
             }
         }
     }
@@ -1411,6 +1461,7 @@ export class Engine {
         if(owner&&rank&&u.summonKind!=='earthbound'){
             owner.focus=Math.min(owner.maxFocus,owner.focus+owner.maxFocus*passiveTuning(rank).expiryRecovery);
             owner.nextSummonDiscount=Math.max(owner.nextSummonDiscount||0,passiveTuning(rank).expiryDiscount);
+            if(mastered(this,owner,'OP04')){owner.masteryGift=true;masteryEffect(this,'OP04',masteryCenter(u),42,masteryCenter(owner));}
             this.fx('spark',u.x,u.y-u.h*.5,'#c8c1a9',24);
         }
         this.skillSound('depart',u.summonOwner,(u as any).honroReportSkill,undefined,u.id);if(u.summonKind==='eater')releaseEater(this,u);else {u.dead=true;u.hp=0;}return true;
@@ -1424,7 +1475,7 @@ export class Engine {
         const ground=support?{t:support,y:topAt(support,x,y)}:this.surface(clamp(x,30,this.b.width-30),y-80,this.b.height+120);
         const floating=['lantern','echo','earthbound'].includes(kind);const sy=floating?clamp(y,90,this.b.height-170):(ground?.y??groundY(this.b.terrain,x));
         const base={stalker:{hp:175,atk:.84,h:58,r:17,dur:4},lantern:{hp:138,atk:.78,h:54,r:16,dur:4},charger:{hp:205,atk:1.00,h:66,r:19,dur:4},warden:{hp:255,atk:.46,h:72,r:21,dur:5},host:{hp:230,atk:1.06,h:70,r:21,dur:4},eater:{hp:EATER_BASE_HP,atk:0,h:EATER_SIZE.h,r:EATER_SIZE.r,dur:4},echo:{hp:170,atk:0,h:64,r:20,dur:4},earthbound:{hp:145,atk:0,h:68,r:21,dur:3}}[kind];
-        const hp=Math.round(base.hp*hpScale*(.78+owner.level*.027));
+        const hp=Math.round(base.hp*hpScale*(.78+owner.level*.027)*(kind==='eater'&&origin?.mastery?1.4:1));
         const dur=kind==='eater'?eaterTuning(rank).turns:['charger','host','earthbound'].includes(kind)?base.dur:SPIRIT_TURNS[clamp(rank,1,8)-1]+(empowered?1:0);
         const grounded=kind==='stalker'||kind==='warden'||kind==='eater';
         const summon=makeUnit('occultist',kind==='eater'?1:0,clamp(x,30,this.b.width-30),sy,{id:`summon-${this.b.nextId++}`,name:{stalker:'배회령',lantern:'등불귀',charger:'돌격귀',warden:'호혼령',host:'문지기귀',eater:'먹귀',echo:'반향령',earthbound:'지박령'}[kind],role:`summon-${kind}`,summoned:true,summonOwner:owner.id,summonKind:kind,summonRank:rank,summonExpires:this.b.round+dur-1,hp,maxHp:hp,r:base.r,h:base.h,attack:owner.attack*base.atk*atkScale,armor:kind==='eater'?0:kind==='warden'?.20:.07,focus:0,maxFocus:0,regen:0,loadout:[],fixed:floating,summonFloating:!grounded,acted:true,moveLeft:0,maxMove:grounded?SUMMON_TUNING[kind].move:0,walkSpeed:grounded?SUMMON_TUNING[kind].speed:0,ranks:{...owner.ranks},awake:true,xpBudget:0});
@@ -1433,6 +1484,8 @@ export class Engine {
             const echoes=this.b.units.filter(v=>!v.dead&&v.summonKind==='echo'&&v.summonOwner===owner.id);
             if(echoes.length>=ECHO_LIMIT[clamp(rank,1,8)-1])echoes.sort((a,c)=>(a.summonExpires||0)-(c.summonExpires||0))[0].dead=true;
         }
+        if(origin?.mastery&&reportSkill){summon.masterySummon=reportSkill;summon.masterySummonFirst=true;masteryEffect(this,reportSkill,masteryCenter(summon),50);}
+        if(owner.masteryGift){delete owner.masteryGift;if(!summon.masterySummon)summon.masterySummon='OP04';summon.masterySummonFirst=true;summon.masteryGift=true;}
         summon.summonDamageOrigin={attackSide:origin?.attackSide??this.allegiance(owner),damageRoll:origin?.damageRoll};(summon as any).honroReportSkill=reportSkill;summon.spawnX=summon.x;summon.spawnY=summon.y;this.b.units.push(summon);ownerRegistered(this.b,summon);if(kind==='eater')captureEater(this,summon);this.fx('ring',summon.x,summon.y-summon.h*.45,'#aeb9aa',48);this.fx('spark',summon.x,summon.y-summon.h*.45,'#c4c7b4',24);this.skillSound('summon',owner.id,reportSkill,undefined,summon.id);return summon;
     }
     private summonAtProjectile(p:Projectile,kind:Unit['summonKind'],landing?:Collision){const owner=this.creditUnit(this.unit(p.owner));if(!owner||!kind)return;this.spawnSummon(owner,kind,p.x,p.y,1,p.skillRank||1,!!p.soulBoost,landing,p.skill,p);this.remove(p);}
@@ -1451,11 +1504,11 @@ export class Engine {
         b.phase='summon';b.side=0;b.turnAge=0;b.reviewDamage={};b.volley=undefined;
         this.message(`소환귀 차례 · ${queue.length}`);this.emit('change');this.emit('save');return queue.length;
     }
-    private launchSummonBolt(s:Unit,target:Unit){
+    private launchSummonBolt(s:Unit,target:Unit,gain=1){
         const x=s.x,y=s.y-s.h*.52,dx=this.damageAim(target).x-x,dy=this.damageAim(target).y-y,n=Math.max(1,Math.hypot(dx,dy));
         const owner=s.summonOwner?this.unit(s.summonOwner):undefined,bounded=!!owner&&playerRangeApplies(owner,SKILLS.O12);
         if(bounded&&n>PLAYER_LANTERN_RANGE.reach+target.r)return;
-        const p:Projectile={attackSide:s.summonDamageOrigin?.attackSide,damageRoll:s.summonDamageOrigin?.damageRoll,id:this.b.nextId++,skill:'O12',owner:s.id,side:0,x,y,vx:dx/n*1250,vy:dy/n*1250,prevVy:dy/n*1250,age:0,radius:6,damage:s.attack*SUMMON_TUNING.lantern.damage,blast:0,wind:0,mode:'summonBolt',color:'#acdded',bounces:0,pierces:0,apex:true,hit:[],phase:0,body:false,returnX:s.x,returnY:s.y,trail:[{x,y}],child:true,autonomous:true,rolled:0,shot:this.b.shot,emissions:99,fieldHits:[],amplification:1,launchX:x,launchY:y,gravityScale:0,drag:.006,phaseMode:'all',targetId:target.id,skillRank:1,...(bounded?{rangeRevision:1 as const,flightRange:{x,y,distance:PLAYER_LANTERN_RANGE.distance,seconds:PLAYER_LANTERN_RANGE.seconds},flightAge:0}:{})};
+        const p:Projectile={attackSide:s.summonDamageOrigin?.attackSide,damageRoll:s.summonDamageOrigin?.damageRoll,id:this.b.nextId++,skill:'O12',owner:s.id,side:0,x,y,vx:dx/n*1250,vy:dy/n*1250,prevVy:dy/n*1250,age:0,radius:6,damage:s.attack*SUMMON_TUNING.lantern.damage*gain,blast:0,wind:0,mode:'summonBolt',color:'#acdded',bounces:0,pierces:0,apex:true,hit:[],phase:0,body:false,returnX:s.x,returnY:s.y,trail:[{x,y}],child:true,autonomous:true,rolled:0,shot:this.b.shot,emissions:99,fieldHits:[],amplification:1,launchX:x,launchY:y,gravityScale:0,drag:.006,phaseMode:'all',targetId:target.id,skillRank:1,...(bounded?{rangeRevision:1 as const,flightRange:{x,y,distance:PLAYER_LANTERN_RANGE.distance,seconds:PLAYER_LANTERN_RANGE.seconds},flightAge:0}:{})};
         this.b.projectiles.push(p);
     }
     private stepSummonBolt(p:Projectile,dt:number){
@@ -1489,7 +1542,12 @@ export class Engine {
             if(!t.start){
                 const owner=u.summonOwner?this.unit(u.summonOwner):u.enthrall?.owner?this.unit(u.enthrall.owner):undefined,mark=owner?passiveRank(owner,'OP02'):0;
                 const enemies=this.actors(1).filter(v=>this.attackAllows(v,u.id)).sort((a,c)=>Math.hypot(a.x-u.x,a.y-a.h*.5-u.y+u.h*.5)-(mark&&(a.curseOwner===owner?.id||a.earthbind?.owner===owner?.id)?170+mark*35:0)-Math.hypot(c.x-u.x,c.y-c.h*.5-u.y+u.h*.5)+(mark&&(c.curseOwner===owner?.id||c.earthbind?.owner===owner?.id)?170+mark*35:0));
-                let target=enemies[0];if(kind==='warden'){target=this.heroesAlive().sort((a,c)=>Math.hypot(a.x-u.x,a.y-u.y)-Math.hypot(c.x-u.x,c.y-u.y))[0]||target;}
+                let target=enemies[0];
+                if(kind==='stalker'&&u.masterySummon==='O11'&&!u.masteryRedirect&&owner){
+                    const marked=enemies.find(v=>v.curseOwner===owner.id&&!this.projectileCollision(masteryCenter(u),masteryCenter(v),1,u.id,[],false));
+                    if(marked&&target!==marked){target=marked;u.masteryRedirect=true;masteryEffect(this,'O11',masteryCenter(u),48,masteryCenter(marked));}
+                }
+                if(kind==='warden'){target=this.heroesAlive().sort((a,c)=>Math.hypot(a.x-u.x,a.y-u.y)-Math.hypot(c.x-u.x,c.y-u.y))[0]||target;}
                 if(!target){t.index=t.queue.length;return;}
                 t.targetId=target.id;t.start={x:u.x,y:u.y};const dx=target.x-u.x,dy=target.y-target.h*.5-(u.y-u.h*.5),distance=groundBound?Math.abs(dx):Math.hypot(dx,dy),stop=kind==='lantern'?cfg.reach*.58:cfg.reach*.62,travel=Math.min(cfg.move,Math.max(0,distance-stop));
                 t.destination={x:clamp(u.x+dx/(distance||1)*travel,30,b.width-30),y:groundBound?u.y:clamp(u.y+dy/(distance||1)*travel,60,b.height-30)};
@@ -1509,17 +1567,18 @@ export class Engine {
         }
         if(t.stage==='attack'){
             const center={x:u.x,y:u.y-u.h*.5};
-            if(kind==='warden'){let n=0;for(const ally of this.actors(0)){if(Math.hypot(ally.x-center.x,ally.y-ally.h*.5-center.y)>cfg.reach)continue;const shieldBefore=ally.shield;if(!ally.summoned&&!ally.enthrall&&ally.wardenRecoveryRound!==b.round){ally.wardenRecoveryRound=b.round;const before=ally.hp,r=Math.max(1,Math.min(8,u.summonRank||1));ally.hp=Math.min(ally.maxHp,ally.hp+Math.round(ally.maxHp*(.025+.005*(r-1))));ally.focus=Math.min(ally.maxFocus,ally.focus+Math.round(ally.maxFocus*(.035+.005*(r-1))));healed(b,ally,u.id,before,(u as any).honroReportSkill);if(ally.hp>before)this.fx('text',ally.x,ally.y-ally.h-10,'#b8d7bc',12,'+'+(ally.hp-before));}ally.shield=Math.max(ally.shield,Math.round(22+u.attack*10));shielded(b,ally,u.summonOwner||u.id,shieldBefore);(ally as any).honroSoulAffinityOwner=u.summonOwner||u.id;(ally as any).honroSoulDefenseOwner=u.summonOwner||u.id;ally.shieldUntil=b.teamEnds[1]+1;ally.soulAffinityBonus=Math.max(ally.soulAffinityBonus||0,.06+.01*(u.summonRank||1));ally.soulDefenseBonus=Math.max(ally.soulDefenseBonus||0,.06+.01*(u.summonRank||1));ally.soulBonusUntil=b.round+1;n++;}this.fx('ring',center.x,center.y,'#9ccfd7',220);if(!this.skillSound('heal',u.id,(u as any).honroReportSkill||'O13',b.round,undefined,true))this.emit('sound',{name:'spiritSummon'});this.message(`${u.name} · ${n}명 방호`);}
+            if(kind==='warden'){const weakest=this.actors(0).filter(t=>!t.summoned&&!t.enthrall&&Math.hypot(t.x-center.x,t.y-t.h*.5-center.y)<=cfg.reach).sort((a,z)=>a.hp/a.maxHp-z.hp/z.maxHp)[0];let n=0;for(const ally of this.actors(0)){if(Math.hypot(ally.x-center.x,ally.y-ally.h*.5-center.y)>cfg.reach)continue;const shieldBefore=ally.shield;if(!ally.summoned&&!ally.enthrall&&ally.wardenRecoveryRound!==b.round){ally.wardenRecoveryRound=b.round;const before=ally.hp,r=Math.max(1,Math.min(8,u.summonRank||1));ally.hp=Math.min(ally.maxHp,ally.hp+Math.round(ally.maxHp*(.025+.005*(r-1)+(u.masterySummon==='O13'&&ally===weakest?.06:0))));ally.focus=Math.min(ally.maxFocus,ally.focus+Math.round(ally.maxFocus*(.035+.005*(r-1))));healed(b,ally,u.id,before,(u as any).honroReportSkill);if(ally.hp>before)this.fx('text',ally.x,ally.y-ally.h-10,'#b8d7bc',12,'+'+(ally.hp-before));}ally.shield=Math.max(ally.shield,Math.round((22+u.attack*10)*(u.masterySummon==='O13'?1.7:1)*(u.masteryGift?1.6:1)));if(ally===weakest&&(u.masterySummon==='O13'||u.masteryGift))masteryEffect(this,u.masteryGift?'OP04':'O13',center,48,masteryCenter(ally));shielded(b,ally,u.summonOwner||u.id,shieldBefore);(ally as any).honroSoulAffinityOwner=u.summonOwner||u.id;(ally as any).honroSoulDefenseOwner=u.summonOwner||u.id;ally.shieldUntil=b.teamEnds[1]+1;ally.soulAffinityBonus=Math.max(ally.soulAffinityBonus||0,.06+.01*(u.summonRank||1));ally.soulDefenseBonus=Math.max(ally.soulDefenseBonus||0,.06+.01*(u.summonRank||1));ally.soulBonusUntil=b.round+1;n++;}if(n)delete u.masteryGift;this.fx('ring',center.x,center.y,'#9ccfd7',220);if(!this.skillSound('heal',u.id,(u as any).honroReportSkill||'O13',b.round,undefined,true))this.emit('sound',{name:'spiritSummon'});this.message(`${u.name} · ${n}명 방호`);}
             else if(kind==='lantern'){
                 const targets=this.actors(1).filter(e=>this.attackAllows(e,u.id)&&Math.hypot(e.x-center.x,e.y-e.h*.5-center.y)<=cfg.reach+e.r).sort((a,c)=>(c.curseOwner===u.summonOwner?1:0)-(a.curseOwner===u.summonOwner?1:0)).slice(0,(u.summonRank||1)<4?1:2);
                 if(targets.length)this.onAttackStart?.(u.id);
-                for(const target of targets)this.launchSummonBolt(u,target);
+                const gain=(u.masterySummon==='O12'&&targets.length===2?1.7:1)*(u.masteryGift?1.6:1);if(targets.length&&gain>1){masteryEffect(this,u.masteryGift?'OP04':'O12',center,50,masteryCenter(targets[0]));delete u.masteryGift;}for(const target of targets)this.launchSummonBolt(u,target,gain);
                 this.fx('rune',center.x,center.y,'#c4e6ef',90);this.message(`${u.name} · ${targets.length}명 동시 추적탄`);if(targets.length&&!this.skillSound('launch',u.id,(u as any).honroReportSkill||'O01',b.round,undefined,true))this.emit('sound',{name:'spiritCast'});
             }else{
                 const target=this.actors(1).filter(v=>this.attackAllows(v,u.id)).sort((a,c)=>Math.hypot(a.x-center.x,a.y-a.h*.5-center.y)-Math.hypot(c.x-center.x,c.y-c.h*.5-center.y))[0];
                 if(target&&Math.hypot(target.x-center.x,target.y-target.h*.5-center.y)<=cfg.reach+target.r){
                     this.onAttackStart?.(u.id);
-                    this.hurt(target,u.attack*cfg.damage,u.id,true,undefined,center,'normal',undefined,u.enthrall||u.summonDamageOrigin);
+                    const gifted=u.masteryGift&&u.masterySummon!=='OP04';if(gifted){delete u.masteryGift;masteryEffect(this,'OP04',center,42,masteryCenter(target));}
+                    this.hurt(target,u.attack*cfg.damage*(gifted?1.6:1),u.id,true,undefined,center,'normal',undefined,u.enthrall||u.summonDamageOrigin);
                     if(kind==='charger')this.impulse(target,Math.sign(target.x-u.x||u.facing)*350,-160);
                     this.emit('fx',{name:'line',x:center.x,y:center.y,x2:target.x,y2:target.y-target.h*.5,color:'#caa8e6',size:8});this.fx('slash',target.x,target.y-target.h*.5,'#caa8e6',82);if(!this.skillSound('launch',u.id,(u as any).honroReportSkill||'O01',b.round,undefined,true))this.emit('sound',{name:'sword'});this.message(`${u.name} · ${target.name} 공격`);
                 }else this.message(`${u.name} · 추적 계속`);
@@ -1554,13 +1613,13 @@ export class Engine {
             this.remove(p);return true;
         }
         if(p.mode==='curseManifest'){
-            for(const t of this.b.units)if(!t.dead&&this.attackAllows(t,p.owner,p)&&Math.hypot(t.x-p.x,t.y-t.h*.5-p.y)<p.blast+t.r){if(t.side===1)this.manifest(t,owner,p.skillRank||1,p.soulBoost?1:0);this.hurt(t,p.damage,p.owner,false,p,p);}
+            for(const t of this.b.units)if(!t.dead&&this.attackAllows(t,p.owner,p)&&Math.hypot(t.x-p.x,t.y-t.h*.5-p.y)<p.blast*(p.mastery?1.5:1)+t.r){if(t.side===1){this.manifest(t,owner,p.skillRank||1,p.soulBoost?1:0);if(p.mastery){t.masteryExposure={id:'O08',owner:owner.id,until:this.b.round+1,gain:.5};masteryEffect(this,'O08',masteryCenter(t),45);}}this.hurt(t,p.damage,p.owner,false,p,p);}
             if(h?.terrain&&passiveRank(owner,'OP01')){this.b.occultTraps??=[];this.b.occultTraps.push({attackSide:p.attackSide,damageRoll:p.damageRoll,id:this.b.nextId++,x:p.x,y:p.y,owner:owner.id,skill:p.skill,rank:p.skillRank||1,autonomous:this.autonomousAttack(p.owner,p),damage:p.damage,expires:this.b.round+1+Math.floor(passiveRank(owner,'OP01')/3)});if(this.b.occultTraps.length>24)this.b.occultTraps.shift();}
             this.remove(p);return true;
         }
         if(p.mode==='curseEnthrall'){if(h?.unit)this.captureEnemy(h.unit,owner,p.skillRank||1,!!p.soulBoost,p.skill,p);this.remove(p);return true;}
         if(p.mode==='curseEarth'){
-            for(const t of this.b.units)if(!t.dead&&this.attackAllows(t,p.owner,p)&&Math.hypot(t.x-p.x,t.y-t.h*.5-p.y)<p.blast+t.r){if(t.side===1){(t as any).honroEarthSkill=p.skill;(t as any).honroEarthReport=p.honroReportSource;t.earthbind={equipmentPull:gearHas(p,'so_converge')&&gearBody(p)?{x:t.x,y:t.y,used:false}:undefined,attackSide:p.attackSide,damageRoll:p.damageRoll,owner:owner.id,until:this.b.round+2+Math.floor(((p.skillRank||1)-1)*4/7)+(p.soulBoost?1:0),damage:p.damage*EARTHBIND.roundDamage,autonomous:this.autonomousAttack(p.owner,p)};t.curseOwner=owner.id;this.applyEarthSlow(t,EARTHBIND.slow);}this.hurt(t,p.damage,p.owner,false,p,p);}
+            for(const t of this.b.units)if(!t.dead&&this.attackAllows(t,p.owner,p)&&Math.hypot(t.x-p.x,t.y-t.h*.5-p.y)<p.blast+t.r){if(t.side===1){(t as any).honroEarthSkill=p.skill;(t as any).honroEarthReport=p.honroReportSource;t.earthbind={mastery:p.mastery,equipmentPull:gearHas(p,'so_converge')&&gearBody(p)?{x:t.x,y:t.y,used:false}:undefined,attackSide:p.attackSide,damageRoll:p.damageRoll,owner:owner.id,until:this.b.round+2+Math.floor(((p.skillRank||1)-1)*4/7)+(p.soulBoost?1:0),damage:p.damage*EARTHBIND.roundDamage,autonomous:this.autonomousAttack(p.owner,p)};t.curseOwner=owner.id;this.applyEarthSlow(t,EARTHBIND.slow);}this.hurt(t,p.damage,p.owner,false,p,p);}
             this.fx('ring',p.x,p.y,'#b9ae91',p.blast);this.remove(p);return true;
         }
         if(p.mode==='curseDot'||p.mode==='curseChain'){
@@ -1593,6 +1652,10 @@ export class Engine {
         if(redesignImpact(this,p,h))return;
         if((CURSES.has(p.mode)||SUMMONS.has(p.mode))&&this.occultImpact(p,h))return;
         if(p.mode==='spiritConverge'){convergeAt(this,p);return;}
+        if(p.skill==='O01'&&p.mastery&&h.terrain){
+            masteryEffect(this,'O01',h,60,{x:h.x-h.n.y*75,y:h.y+h.n.x*75});
+            this.blast(p.x,p.y,p.blast,p.damage*1.5,p.owner,false,p);this.remove(p);return;
+        }
         if(p.mode==='spiritLance'){
             if(h.unit)this.hurt(h.unit,p.damage,p.owner,true,p,h);else this.emit('sound',{name:'spiritImpact'});this.fx('burst',p.x,p.y,p.color,36);this.remove(p);return;
         }
@@ -1883,7 +1946,20 @@ export class Engine {
         }
         if((p.echoDelay||0)>0){p.echoDelay=Math.max(0,p.echoDelay!-dt);if(!p.echoDelay){this.fx('spark',p.x,p.y,'#c5c9b8',20);if(!this.skillSound('launch',p.owner,p.skill,p.shot,undefined,true))this.emit('sound',{name:'spiritCast'});}return;}
         if(gearTravelSpent(p)){this.remove(p);return;}
+        if(p.masteryLightBlade&&Math.abs(p.x-(p.launchX??p.x))>=200){p.gravityScale=1;delete p.masteryLightBlade;}
         if(p.turnOrder)applyQueuedArrowTurn(this,p);
+        for(const defender of this.b.units){
+            const ward=defender.masteryBladeWard;if(!ward)continue;
+            if(defender.dead||ward.round!==this.b.round){delete defender.masteryBladeWard;continue;}
+            if(p.side===defender.side||p.body||p.damage<=0)continue;
+            const next={x:p.x+p.vx*dt,y:p.y+p.vy*dt};
+            const cross=(a:Vec,b:Vec,c:Vec)=>(b.x-a.x)*(c.y-a.y)-(b.y-a.y)*(c.x-a.x);
+            if(Math.max(p.x,next.x)+2<Math.min(ward.a.x,ward.b.x)||Math.min(p.x,next.x)-2>Math.max(ward.a.x,ward.b.x)||
+                Math.max(p.y,next.y)+2<Math.min(ward.a.y,ward.b.y)||Math.min(p.y,next.y)-2>Math.max(ward.a.y,ward.b.y))continue;
+            if(cross(ward.a,ward.b,p)*cross(ward.a,ward.b,next)<=0&&cross(p,next,ward.a)*cross(p,next,ward.b)<=0){
+                p.damage*=.45;delete defender.masteryBladeWard;masteryEffect(this,'S14',ward.a,15,ward.b);break;
+            }
+        }
         p.age += dt;if(p.flightAge!==undefined)p.flightAge+=dt;
         if(p.wraithVersion!==1&&flightRangeSpent(p)&&endPlayerFlight(this,p))return;
         if(p.mode==='convergeSpirit'){stepConvergingSpirit(this,p,dt);return;}
@@ -1902,14 +1978,14 @@ export class Engine {
         }
         if(stepReturningWraith(this,p,dt))return;
         if(p.fuseAt!==undefined&&p.age>=p.fuseAt){
-            if(p.mode==='phaseWraith'){this.blast(p.x,p.y,p.blast,p.damage,p.owner,false,p);this.remove(p);return;}
+            if(p.mode==='phaseWraith'){const bonus=p.mastery?.4*Math.min(2,p.hit.length):0;if(bonus)masteryEffect(this,'O02',p,p.blast);this.blast(p.x,p.y,p.blast,p.damage*(1+bonus),p.owner,false,p);this.remove(p);return;}
             if(SUMMONS.has(p.mode)){this.occultImpact(p);return;}
             if(p.mode==='wraithReturn'&&p.phase===0){p.phase=1;p.phaseMode='all';p.fuseAt=undefined;p.vx=-p.vx*.92;const owner=this.unit(p.owner),returnY=(owner?.y??p.returnY)-(owner?.h??70)*.62;p.vy=clamp((returnY-p.y)*2.2,-220,80);p.hit=[];this.fx('rune',p.x,p.y,p.color,58);}
         }
         // Low-gravity ultimate must open its gate inside the playable sky even when its ballistic apex would be far above the camera.
         if(p.mode==='nightParade'&&!p.ultimateBurst&&(p.age>1.35||p.y<-620)){p.ultimateBurst=true;if(this.launchUltimateChildren(p))return;}
         if(p.mode==='reverseGhost'&&(flightRangeSpent(p)||p.y<-420||p.age>2.55)){
-            this.fx('burst',p.x,p.y,p.color,90);for(let i=-3;i<=3;i++){const c:Projectile={...p,id:this.b.nextId++,mode:'spiritRain',vx:i*70,vy:210+Math.abs(i)*22,prevVy:210,age:0,gravityScale:.55,phaseMode:undefined,fuseAt:undefined,damage:p.damage*.48,blast:p.blast*.62,radius:5,child:true,autonomous:true,hit:[],trail:[],apex:true};this.b.projectiles.push(c);}this.remove(p);return;
+            this.fx('burst',p.x,p.y,p.color,90);for(let i=-3;i<=3;i++){const c:Projectile={...p,id:this.b.nextId++,mode:'spiritRain',vx:i*70*(p.mastery?1.5:1),vy:210+Math.abs(i)*22,prevVy:210,age:0,gravityScale:.55,phaseMode:undefined,fuseAt:undefined,damage:p.damage*.48,blast:p.blast*.62,radius:5,child:true,autonomous:true,hit:[],trail:[],apex:true};this.b.projectiles.push(c);}this.remove(p);return;
         }
         if (p.phase === 2) {
             const nx = p.x + p.vx * dt, sf = this.surface(nx, p.y - 22, p.y + 42);
@@ -1955,6 +2031,18 @@ export class Engine {
                 this.bodyFinish(p, h || undefined);
             }
             return;
+        }
+        if(p.mastery&&p.skill==='A13'&&!p.masteryReacquired){
+            const prev=p.targetId?this.unit(p.targetId):undefined;
+            if(prev&&this.collision(p,this.damageAim(prev),1,p.owner,[],false)){p.masteryLost=prev.id;delete p.targetId;}
+            const lost=p.masteryLost?this.unit(p.masteryLost):undefined;
+            if(lost&&this.guidanceTarget(u,lost)&&!this.collision(p,this.damageAim(lost),1,p.owner,[],false)){p.targetId=lost.id;p.masteryReacquired=true;masteryEffect(this,'A13',p,45,masteryCenter(lost));}
+            if(!p.targetId&&!p.masteryLost)p.targetId=this.combatEnemies().find(t=>this.guidanceTarget(u,t)&&!this.collision(p,this.damageAim(t),1,p.owner,[],false))?.id;
+        }
+        if(p.mastery&&p.skill==='O04'&&!p.masteryCrossed){
+            const next={x:p.x+p.vx*dt,y:p.y+p.vy*dt};
+            const wall=this.projectileCollision(p,next,2,p.owner,[],false);
+            if(wall?.terrain){p.masteryCrossed=true;masteryEffect(this,'O04',wall,48,{x:p.x+p.vx*.11,y:p.y+p.vy*.11});}
         }
         if((p.mode==='homing'||p.mode==='seekChild')&&p.age>.12&&!this.inWaterfall(p)){const v=this.steer(p.x,p.y,p.vx,p.vy,u,dt,p.targetId?this.b.units.filter(t=>t.id!==p.targetId).map(t=>t.id):p.hit,p.mode==='seekChild');p.vx=v.vx;p.vy=v.vy;}
         const motion = (p.turnStraight||0)>0||p.terrainReturn&&p.returning
@@ -2097,6 +2185,18 @@ export class Engine {
     }
     private contactDamage(u:Unit,vx:number,vy:number,n:Vec,kind:'fall'|'wall',silent=false,scale=1,dropUnits?:number){
         if(silent||u.dead||u.summoned||(u.impactCooldown||0)>0)return;
+        if(kind==='wall'){
+            const drive=u.masteryWallDrive;
+            if(drive&&drive.until>=this.b.round){
+                delete u.masteryWallDrive;this.hurt(u,drive.damage,drive.owner,false,undefined,masteryCenter(u),'normal','S15');
+                masteryEffect(this,'S15',masteryCenter(u),56);
+            }
+            const shove=u.shove;
+            if(shove?.mastery){
+                delete u.shove;this.hurt(u,shove.damage,shove.owner,false,undefined,masteryCenter(u),'normal','A05',shove);
+                masteryEffect(this,'A05',masteryCenter(u),50);
+            }
+        }
         // A voluntary jump may stop at a real ceiling without becoming a
         // damaging knockback. impulse() already clears jumping for upward
         // external force; retain damage for that case, excessive speed and walls.
@@ -2105,7 +2205,12 @@ export class Engine {
         if(damage<=0)return;u.impactCooldown=.30;
         this.hurt(u,damage,'',false);this.fx('text',u.x,u.y-u.h-25,'#edb699',13,kind==='fall'?'낙하 충격':'충돌 충격');
     }
-    landUnit(u: Unit,silent=false) { const voluntary=u.jumping;if (u.jumping || u.vy > 95) {
+    landUnit(u: Unit,silent=false) { const voluntary=u.jumping;
+        if(!silent&&voluntary&&u.masteryJumpPending&&u.masteryJumpRound!==this.b.round){
+            u.masteryJumpRound=this.b.round;u.moveLeft=Math.min(u.maxMove,u.moveLeft+u.maxMove*.3);
+            masteryEffect(this,'SP03',{x:u.x,y:u.y},55);
+        }
+        if(!silent)delete u.masteryJumpPending;if (u.jumping || u.vy > 95) {
         u.landing = .26;
         if(!silent)this.fx('spark', u.x, u.y, '#c9c3b1', 18);
     } if(u.platformDrop?.phase==='fall'){u.platformDrop.phase='land';u.platformDrop.elapsed=0;u.platformDrop.contacts=[];} u.jumping = false; u.vy = 0;if(voluntary&&!silent)gearJumpLanding(this,u); }
@@ -2469,9 +2574,10 @@ export class Engine {
                 this.fx('text', u.x, u.y - u.h - 18, '#eed59b', 15, '기절 · 행동 불가');
             }
             delete u.moveTarget;delete u.aiMove;
-            u.moveLeft = u.bound > 0 ? u.maxMove * .45 : u.maxMove;gearTurn(u);enemyEffectMovementBudget(u);monsterMovementBudget(this,u);
+            u.moveLeft = u.bound > 0 ? u.maxMove * .45 : u.maxMove;if(u.masteryRelease&&!u.enthrall&&u.side===1&&u.slowed&&u.slowed.expires>=b.round){u.moveLeft*=1-u.slowed.factor;delete u.masteryRelease;}if(u.masteryLastStandRound===b.round){u.moveLeft+=u.maxMove*.5;masteryEffect(this,'SP05',masteryCenter(u),48);}gearTurn(u);enemyEffectMovementBudget(u);monsterMovementBudget(this,u);
             if (u.side !== 2)
-                u.focus = clamp(u.focus + gearRegen(u,u.regen), 0, u.maxFocus);
+                u.focus = clamp(u.focus + gearRegen(u,u.regen)*(mastered(this,u,'MP02')?1.5:1), 0, u.maxFocus);
+            if(mastered(this,u,'MP02')&&u.focus<u.maxFocus*.25&&(u.masteryRegenRound??-2)<=b.round-2){u.masteryRegenRound=b.round;u.focus=Math.min(u.maxFocus,u.focus+u.maxFocus*.2);masteryEffect(this,'MP02',masteryCenter(u),55);}
         }
         if(b.mode==='practice'&&b.practiceCombat){b.cast=undefined;for(const u of b.units.filter(u=>u.side===0&&!u.summoned&&!u.dead)){u.focus=u.maxFocus;u.cooldowns={};delete u.retreat;}}
         b.zones = b.zones.filter(z => z.expires >= b.round);

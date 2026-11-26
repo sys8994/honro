@@ -63,7 +63,8 @@ export function create60StockSlot(G,{live,factory,writePort,basePath='/',origin=
   staged.profile=staged.normalProfile=copy;
   staged.profileStore=Object.freeze({get locked(){return initial.locked},save(p){return locked&&own()&&initial.save(p);}});
   const write=writePort({authorize:(a,eng,p)=>a===staged&&eng===e&&p===proof&&own(),
-   ownedSlot:()=>key,readSameSlot:k=>k===key?(raw()??baseline):null,normalize:stock.migrate,locks:lockPort});
+   ownedSlot:()=>key,readSameSlot:k=>k===key?(raw()??baseline):null,normalize:stock.migrate,locks:lockPort,
+   settleGrowth:(p,b)=>!released||!G.HonroProgression?.settleAct6Growth||G.HonroProgression.settleAct6Growth(p,b)});
   return (req,still)=>write(staged,e,proof,req,still);
  }
  return Object.freeze({open,completed});

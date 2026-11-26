@@ -16,7 +16,7 @@
           const actors=s.engine.b.units.filter(u=>u.side===0&&!u.summoned);
           const original=s.terminal;
           if(actors.length!==4||!actors.every(u=>same(u,original.crew[u.cls])&&s.engine.grounded(u)))return;
-          fieldPrepForm(a,{actors,
+          fieldPrepForm(a,{actors,mastery:true,
             context:'곽진이 돌아올 길을 맡습니다. 네 사람이 마지막 문턱을 넘기 전에 장비와 기예를 바꿀 수 있습니다.',
             isCurrent:()=>owns()&&s.terminal===original&&actors.every(u=>same(u,original.crew[u.cls])&&s.engine.grounded(u)),
             submit:(_draft,changes)=>{

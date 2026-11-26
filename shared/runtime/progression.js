@@ -41,9 +41,24 @@ function legacyCampaignAnchor(last=20){
  }
  return Math.max(...roster.map(cls=>xp[cls]));
 }
-const budget=id=>{const p=plan(id),current=p.rewardCurve==='current',start=current?(id===21?legacyCampaignAnchor(20):xpAt(p.entryLevel)):rewardXpAt(p.entryLevel),end=current?xpAt(p.exitLevel):rewardXpAt(p.exitLevel),total=end-start;return {start,end,total,combat:Math.round(total*config.combatShare)};};
-function entryHero(st){const h=C.freshHero('archer');h.xp=plan(st.id).rewardCurve==='current'?budget(st.id).start:rewardXpAt(plan(st.id).entryLevel);h.ranks.A01=Math.min(4,1+Math.floor((C.levelOf(h)-1)/3));return h;}
-function referenceStats(st){const h=entryHero(st),stats=C.heroStats(h,'archer',['A01']);return {...stats,shot:C.SKILLS.LA01.damage*(C.skillBalanceFactor?.(C.SKILLS.LA01)||1)*stats.attack*1.18*C.skillDamageFactor(h.ranks.A01)*.96};}
+const oldCurrentAt=level=>{const n=Math.floor(level);return C.previousXpAtLevel(n)+Math.round((level-n)*C.previousXpToNext(n));};
+const growthExit=id=>config.growthExits?.[Math.ceil(id/10)]?.[(id-1)%10];
+const budget=id=>{const p=plan(id),current=p.rewardCurve==='current',quote=id<=30?oldCurrentAt:xpAt;
+ const start=current?(id===21?legacyCampaignAnchor(20):id===31?oldCurrentAt(p.entryLevel):quote(growthExit(id-1)??p.entryLevel)):rewardXpAt(p.entryLevel);
+ const end=current?quote(growthExit(id)??p.exitLevel):rewardXpAt(p.exitLevel);
+ const total=end-start;return {start,end,total,combat:Math.round(total*config.combatShare)};
+};
+// Enemy and signed late-stage body recipes are calibrated to the authored
+// encounter reference, independent of the player XP reward curve.
+function entryHero(st){
+ const p=plan(st.id),h=C.freshHero('archer');
+ const previous=p.rewardCurve==='current'?(st.id===21?legacyCampaignAnchor(20):oldCurrentAt(p.entryLevel)):rewardXpAt(p.entryLevel);
+ h.xp=C.migrateMasteryXP(previous);h.ranks.A01=Math.min(4,1+Math.floor((C.levelOf(h)-1)/3));return h;
+}
+function referenceStats(st){
+ const h=entryHero(st),stats=C.heroStats(h,'archer',['A01'],true);
+ return {...stats,shot:C.SKILLS.LA01.damage*(C.skillBalanceFactor?.(C.SKILLS.LA01)||1)*stats.attack*1.18*C.skillDamageFactor(h.ranks.A01)*.96};
+}
 function tuneEnemy(st,u,kind){
   const p=plan(st.id),r=referenceStats(st);
   const weight={bat:.68,crow:.78,lantern:.80,ghost:1,human:1,shade:1.15,beast:1.25,warden:1.6,mourner:1.45}[kind]||1;
@@ -212,7 +227,7 @@ function reconcileCampAllocations(profile){
   for(const cls of C.CLASS_IDS){
     const h=profile.heroes[cls],old=battle.heroes?.[cls];if(!h||!old)continue;
     const ids=new Set([...Object.keys(h.ranks),...Object.keys(old.ranks)]);
-    if([...ids].some(id=>(h.ranks[id]||0)!==(old.ranks[id]||0))||C.statTrainingRank(h)!==C.statTrainingRank(old))markCampAllocation(profile,cls);
+    if([...ids].some(id=>(h.ranks[id]||0)!==(old.ranks[id]||0))||C.statTrainingRank(h)!==C.statTrainingRank(old)||JSON.stringify(h.masteries||[])!==JSON.stringify(old.masteries||[]))markCampAllocation(profile,cls);
   }
 }
 function syncRoster(profile,b){
@@ -220,13 +235,55 @@ function syncRoster(profile,b){
   for(const cls of C.CLASS_IDS){
     const h=profile.heroes[cls];
     if(profile.honroCampPending?.[cls]&&h&&heroes[cls]){
-      heroes[cls].ranks=clone(h.ranks);
+      heroes[cls].ranks=clone(h.ranks);if(h.masteries)heroes[cls].masteries=clone(h.masteries);else delete heroes[cls].masteries;
       if(h.honroDebugSkills){heroes[cls].honroDebugSkills=true;heroes[cls].xp=h.xp;}
       heroes[cls].statTraining=C.statTrainingRank(h);delete heroes[cls].statRanks;
     }
   }
   profile.heroes=heroes;
 }
+const act6Xp=[0,14172,28343,47068,68993,96184,131711];
+function act6EntryXP(profile,cls,stage){
+  const source=profile.heroes[cls],entry=profile.revision===13?C.migrateMasteryXP(source.xp):source.xp;
+  return stage>=58?C.XP_CAP:Math.min(C.XP_CAP,entry+act6Xp[Math.max(0,Math.min(6,stage-51))]);
+}
+function act6MasteryPicks(profile,stage,picks){
+  if(!picks||typeof picks!=='object'||Array.isArray(picks))return null;
+  const approved={};
+  for(const [cls,ids] of Object.entries(picks)){
+    if(!C.CLASS_IDS.includes(cls)||!Array.isArray(ids)||ids.length>16||new Set(ids).size!==ids.length)return null;
+    const hero=clone(profile.heroes[cls]);hero.xp=act6EntryXP(profile,cls,stage);
+    for(const id of ids)if(typeof id!=='string'||!C.learnMastery(hero,cls,id))return null;
+    approved[cls]=hero.masteries||[];
+  }
+  return approved;
+}
+function mountAct6Progress(b,profile,picks){
+  const stage=b.honroStage;
+  if(!Number.isInteger(stage)||stage<51||stage>60||b.mode!=='campaign'||!b.honroCanonical||
+    b.honroCustom||b.honroJourneyReplay||!profile.cleared?.[50])return;
+  const masteries=picks&&act6MasteryPicks(profile,stage,picks);
+  for(const cls of C.CLASS_IDS){
+    const hero=b.heroes[cls],source=profile.heroes[cls];if(!hero||!source)continue;
+    // Derive the earned award from the authenticated destination, on live and
+    // cold entry. No checkpoint replay can compound the same chapter slice.
+    hero.xp=act6EntryXP(profile,cls,stage);
+    if(masteries?.[cls])hero.masteries=masteries[cls];
+    for(const unit of b.units)if(unit.cls===cls&&unit.side===0&&!unit.summoned&&!unit.honroAlly&&!unit.honroCivilian&&!unit.enthrall){
+      if(unit.level!==C.levelOf(hero))C.applyHero(unit,hero,false,'restore');
+    }
+  }
+}
+function settleAct6Growth(profile,b){
+  if(b.honroStage!==60||!b.honroCanonical||b.honroCustom||b.honroJourneyReplay||
+    !C.CLASS_IDS.every(cls=>b.heroes[cls]?.xp===C.XP_CAP))return false;
+  for(const cls of C.CLASS_IDS){
+    const hero=profile.heroes[cls];hero.xp=b.heroes[cls].xp;
+    if(b.heroes[cls].masteries?.length)hero.masteries=clone(b.heroes[cls].masteries);
+  }
+  profile.revision=14;
+  return true;
+}
 function persist(app){if(app.engine?.b.honroGrowth){rememberLimit(app.engine.b);app.profile.honroGrowth=clone(app.engine.b.honroGrowth.ledger);}}
-G.HonroProgression={version:config.version,contributionVersion:4,isContributionBattle,contributionState,registerOwner,recordDamage,recordThreat,recordHeal,reconcileWounds,recordControl,recordBlock,shieldAdded,shieldConsumed,objective,flushContribution,completeContribution,plan,budget,xpAt,rewardXpAt,legacyCampaignAnchor,joinLevel,partyJoinLevel,recruit,recruitAtEntry,repairRecruits,entryHero,referenceStats,tuneEnemy,tuneMidboss,tuneBoss,initialize,enemyXP,awardCombat,defeat,complete,persist,markCampAllocation,reconcileCampAllocations,syncRoster};
+G.HonroProgression={version:config.version,contributionVersion:4,isContributionBattle,contributionState,registerOwner,recordDamage,recordThreat,recordHeal,reconcileWounds,recordControl,recordBlock,shieldAdded,shieldConsumed,objective,flushContribution,completeContribution,plan,budget,xpAt,rewardXpAt,legacyCampaignAnchor,joinLevel,partyJoinLevel,recruit,recruitAtEntry,repairRecruits,entryHero,referenceStats,tuneEnemy,tuneMidboss,tuneBoss,initialize,enemyXP,awardCombat,defeat,complete,persist,markCampAllocation,reconcileCampAllocations,syncRoster,act6EntryXP,act6MasteryPicks,mountAct6Progress,settleAct6Growth};
 })(globalThis);

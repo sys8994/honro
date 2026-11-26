@@ -40,23 +40,53 @@ const passiveScenarios={
  OP05:{cast:'O10',survivorHp:2400,kind:'passive-remnants',label:'적 셋의 잔혼을 모아 다음 혼행 강화',metric:'remnants',sequence:['O10','O01'],turns:true,positions:[780,810,840,1100],hp:25}
 };
 function groundAim(e,u,s,goal,floor=1000){let aim={angle:28,power:.5},best=Infinity;for(const angle of [15,28,42])for(let power=.25;power<=.9;power+=.025){const hit=e.predict(u,s,angle,power,undefined,false),d=Math.abs(hit.x-goal)+Math.abs(hit.y-floor);if(d<best){best=d;aim={angle,power};}}return aim;}
+function evaluateAtPower(e,u,s,t,power,seed) {
+ let best=null,score=Infinity;
+ for(const step of [0,2,-2,4,-4,8,-8,12,-12,16,-16,20,-20,24,-24]){
+  const angle=seed+step;if(angle<-85||angle>265)continue;
+  const hit=e.predict(u,s,angle,power,t,false),d=hit.unit===t.id?0:hit.closest;
+  if(d<score){best={angle,power};score=d;if(!d)break;}
+ }
+ return best;
+}
 function setup(app,selectedId,h,canvas,options={}){
- const passive=passiveScenarios[selectedId],id=passive?.cast||selectedId,s=C.SKILLS[id],scenario={...(scenarios[id]||{kind:'single'}),...passive},profile=structuredClone(app.profile);profile.heroes[s.cls]=structuredClone(h);profile.heroes[s.cls].ranks={[C.baseSkill(s.cls)]:1,[id]:s.basic?1:Math.max(1,h.ranks[id]||0)};if(passive){profile.heroes[s.cls].ranks[selectedId]=options.passiveOff?0:Math.max(1,h.ranks[selectedId]||0);for(const next of passive.sequence||[])profile.heroes[s.cls].ranks[next]=1;}profile.loadouts[s.cls]=[id];
+ const variant=options.variant??null;
+ const passive=passiveScenarios[selectedId]?{...passiveScenarios[selectedId]}:undefined;
+ if(variant&&selectedId==='AP05')passive.sequence=['A01','A01','A01'];
+ const id=passive?.cast||selectedId,s=C.SKILLS[id],scenario={...(scenarios[id]||{kind:'single'}),...passive},profile=structuredClone(app.profile);profile.heroes[s.cls]=structuredClone(h);profile.heroes[s.cls].ranks={[C.baseSkill(s.cls)]:1,[id]:s.basic?1:Math.max(1,h.ranks[id]||0)};if(passive){profile.heroes[s.cls].ranks[selectedId]=options.passiveOff?0:Math.max(1,h.ranks[selectedId]||0);for(const next of passive.sequence||[])profile.heroes[s.cls].ranks[next]=1;}profile.loadouts[s.cls]=[id];
+ if(variant){
+  const targetScenarios={A01:{positions:[700]},A14:{positions:[2300]},A06:{ally:true},A13:{positions:[1080],heights:[140]},
+   A12:{positions:[750]},A04:{positions:[920,920,920],heights:[70,123,170]},AP04:{positions:[1890]},
+   AP01:{positions:[1200],movable:true},AP05:{sequence:['A01','A01','A01']},MP04:{ally:true},S01:{positions:[670]},S07:{hp:2400,positions:[460]},S03:{positions:[500,468],heights:[0,168],flying:[1],targetHeight:28,targetRadius:8},
+   S15:{positions:[703,800]},SP04:{ally:true,positions:[470,700,920],hp:5500},O01:{positions:[790]},O10:{positions:[820,975]},OP05:{positions:[780,810,840,1050,1165]}};
+  Object.assign(scenario,targetScenarios[selectedId]);
+ }
+ const displayHero=profile.heroes[s.cls];
+ displayHero.masteries=variant==='mastered'?[selectedId]:variant==='base'?[]:(h.masteries||[]).filter(id=>id===selectedId);
+ if(variant&&!s.basic)displayHero.ranks[id]=8;
+ if(variant&&passive)displayHero.ranks[selectedId]=8;
  const b=C.createBattle(1,profile,'practice',{party:[s.cls],wind:0}),floor=1000;
  Object.assign(b,{width:2400,height:1400,practiceCombat:true,terrain:[{id:'preview-floor',x:0,y:floor,w:2400,h:400,mat:'rock',hp:99999,maxHp:99999,indestructible:true}],waters:[],drafts:[],fields:[],zones:[],stakes:[],projectiles:[],wind:0,honroStage:1,honroBackdrop:'forest',honroLandmarks:[],honroMarkers:[],honroSurfaceZones:[],routePoints:[],sceneVersion:b.sceneVersion+1});
  const hero=b.units.find(u=>u.side===0);b.units=[hero];Object.assign(hero,{x:360,y:floor,spawnX:360,spawnY:floor,h:130,r:23,hp:900,maxHp:1200,focus:scenario.focus??9999,maxFocus:scenario.maxFocus??9999,attack:1,acted:false,loadout:[id],ranks:{...profile.heroes[s.cls].ranks},vx:0,vy:0,airborne:false,jumping:false});
  if(passive?.metric==='critical'||id==='A99')b.rng=0;
  // Reproducible demo seed: the normal critical roll still decides the result.
- if(id==='A14'&&!passive)b.rng=7;
+ if(id==='A14'&&!passive)b.rng=variant?0:7;
  if(passive){const stats=C.heroStats(profile.heroes[s.cls],s.cls);Object.assign(hero,{maxHp:stats.hp,hp:passive.lowHealth?15:Math.round(stats.hp*.75),maxFocus:stats.mp,focus:['mana','expiry'].includes(passive.metric)?Math.round(stats.mp*.35):stats.mp,attack:stats.attack,maxMove:stats.move,moveLeft:stats.move,regen:stats.regen,armor:stats.armor,critChance:stats.critChance,critMultiplier:stats.critMultiplier});if(passive.turns||passive.lowHealth)b.mode='campaign';if(passive.lowHealth)b.practiceCombat=false;}
  const close=s.branch==='sword',ring=id==='M14',bounce=['M11','M12'].includes(id),positions=[...(scenario.positions||(close?[460,560]:[840,955,1070]))];
  if(id==='S05')positions[1]=260;
  if(id==='S10')positions.splice(0,positions.length,830);
  if(id==='O03')positions.splice(0,positions.length,1000,1130,1260);
  if(id==='M10'||id==='M09'||id==='O13'||id==='O15')positions.splice(0,positions.length,1050);if(id==='O14')positions.splice(0,positions.length,800);
- for(const [i,x] of positions.entries()){const u=C.makeUnit('knight',1,x,floor-(scenario.heights?.[i]||0),{id:'preview-target-'+i,name:'표적',h:115,r:27,honroType:'beast',honroVariant:'hound',hp:scenario.hp||2400,maxHp:scenario.maxHp||scenario.hp||2400,armor:0,attack:.5,awake:true,fixed:!scenario.movable,loadout:['LA01'],focus:9999,maxFocus:9999});if(id==='A99')u.existenceDefense={form:1,qi:1,soul:1};if(scenario.survivorHp&&i===positions.length-1)u.hp=u.maxHp=scenario.survivorHp;if(passive?.incomingAfter)u.attack=4;if(scenario.flying?.includes(i))Object.assign(u,{honroType:'bat',honroVariant:'bat',fixed:true,h:scenario.targetHeight||65,r:scenario.targetRadius||25});b.units.push(u);}
+ for(const [i,x] of positions.entries()){const u=C.makeUnit('knight',1,x,floor-(scenario.heights?.[i]||0),{id:'preview-target-'+i,name:'표적',h:115,r:27,honroType:'beast',honroVariant:'hound',hp:scenario.hp||2400,maxHp:scenario.maxHp||scenario.hp||2400,armor:0,attack:.5,awake:true,fixed:!scenario.movable,loadout:['LA01'],focus:9999,maxFocus:9999});if(id==='A99')u.existenceDefense={form:1,qi:1,soul:1};if(scenario.survivorHp&&(i===positions.length-1||variant&&selectedId==='OP05'&&i>=3))u.hp=u.maxHp=scenario.survivorHp;if(passive?.incomingAfter)u.attack=4;if(scenario.flying?.includes(i))Object.assign(u,{honroType:'bat',honroVariant:'bat',fixed:true,h:scenario.targetHeight||65,r:scenario.targetRadius||25});b.units.push(u);}
+ if(variant&&selectedId==='A06')hero.hp=hero.maxHp;
+ if(variant&&selectedId==='MP02')hero.focus=Math.round(hero.maxFocus*.02);
+ if(variant&&selectedId==='MP04')b.units.push(C.makeUnit('archer',0,700,floor,
+  {id:'preview-second-ally',name:'둘째 동행',h:120,hp:300,maxHp:1200,acted:true,loadout:['A01'],ranks:{A01:1}}));
+ if(variant&&selectedId==='S15')b.terrain.push({id:'preview-drive-wall',x:735,y:870,w:32,h:130,mat:'rock',hp:99999,maxHp:99999,indestructible:true});
+ if(variant&&selectedId==='A12')b.terrain.push({id:'preview-return-wall',x:920,y:860,w:12,h:140,mat:'wood',hp:99999,maxHp:99999,indestructible:true});
+ if(variant&&selectedId==='A13')b.terrain.push({id:'preview-reacquire-step',x:790,y:713,w:35,h:82,mat:'rock',hp:99999,maxHp:99999,indestructible:true});
  if(id==='O06'&&!passive)b.units[1].armor=.35;
- if(id==='M10'||id==='O13'||id==='O08'||passive?.ally){const ally=C.makeUnit('knight',0,id==='O08'?180:passive?.ally?650:780,floor,{id:'preview-ally',name:'동행',h:130,hp:300,maxHp:1200,focus:20,maxFocus:200,moveLeft:100,maxMove:900,acted:true,loadout:['S00'],ranks:{S00:1}});b.units.push(ally);}
+ if(id==='M10'||id==='O13'||id==='O08'||scenario.ally){const ally=C.makeUnit('knight',0,id==='O08'?180:variant&&id==='A06'?600:passive?.ally?650:780,floor,{id:'preview-ally',name:'동행',h:130,hp:300,maxHp:1200,focus:20,maxFocus:200,moveLeft:100,maxMove:900,acted:true,loadout:['S00'],ranks:{S00:1}});b.units.push(ally);}
  if(bounce)b.terrain.push({id:'preview-wall',x:1140,y:620,w:40,h:380,mat:'rock',hp:99999,maxHp:99999,indestructible:true});
  if(['O02','O04','O05'].includes(id))b.terrain.push({id:'preview-phase-wall',x:id==='O05'?1270:690,y:540,w:35,h:460,mat:'rock',hp:99999,maxHp:99999,indestructible:true});
  if(id==='M12')b.terrain.push({id:'preview-reflect-ceiling',x:650,y:570,w:530,h:35,mat:'rock',hp:99999,maxHp:99999,indestructible:true});
@@ -66,12 +96,12 @@ function setup(app,selectedId,h,canvas,options={}){
  if(id==='O06'||id==='O07')for(const target of b.units.filter(v=>v.side===1))target.attack=1;
  for(const [i,height] of (scenario.heights||[]).entries()){if(height>0&&!scenario.flying?.includes(i))b.terrain.push({id:'preview-platform-'+i,x:positions[i]-65,y:floor-height,w:130,h:height,mat:'rock',hp:99999,maxHp:99999,indestructible:true});}
  b.active=hero.id;b.side=0;b.phase='aim';b.queue=[];
- const pr={id:selectedId,castId:id,passive,quiet:options.quiet,b,canvas,hero,age:0,acc:0,fired:false,follow:false,cycle:0,trace:{before:[],after:[]},turns:0,events:[],h:structuredClone(h),scenario,enemyActions:0,finishedAt:null};
+ const pr={id:selectedId,castId:id,passive,variant,quiet:options.quiet,b,canvas,hero,age:0,acc:0,fired:false,follow:false,cycle:0,trace:{before:[],after:[]},turns:0,events:[],h:structuredClone(h),scenario,enemyActions:0,finishedAt:null};
  pr.scene=new G.HonroScene(canvas);pr.scene.manual=true;pr.scene.skillPreview=true;pr.scene.scale=pr.scene.scale||1;pr.scene.x=pr.scene.x||0;pr.scene.y=pr.scene.y||0;pr.e=new C.Engine(b,event=>{
-  pr.events.push(event);pr.metrics?.events.add(event.name||event.type);if(event.name==='skillGeometry'&&pr.metrics){const geometry=JSON.parse(event.text);pr.metrics.geometry.add(geometry.kind);pr.metrics.geometryDetails.push(geometry);}if(pr.events.length>300)pr.events.shift();pr.scene.event(event);
+  pr.events.push(event);pr.metrics?.events.add(event.name||event.type);if(event.name?.startsWith('mastery:'))pr.metrics?.masteryIds.add(event.text);if(event.name==='skillGeometry'&&pr.metrics){const geometry=JSON.parse(event.text);pr.metrics.geometry.add(geometry.kind);pr.metrics.geometryDetails.push(geometry);}if(pr.events.length>300)pr.events.shift();pr.scene.event(event);
   if(event.name==='skillGeometry'&&pr.bounds){const points=C.geometryPaths(JSON.parse(event.text)).flat();for(const p of points){pr.bounds.left=Math.min(pr.bounds.left,p.x-20);pr.bounds.right=Math.max(pr.bounds.right,p.x+20);pr.bounds.top=Math.min(pr.bounds.top,p.y-20);pr.bounds.bottom=Math.max(pr.bounds.bottom,p.y+20);}}
  },true);pr.e.checkEnd=()=>false;
- pr.metrics={events:new Set(),modes:new Set(),geometry:new Set(),geometryDetails:[],maxProjectiles:0,returning:false,wraithReturn:false,apex:false,prepared:false,enthrall:false,manifest:false,earthbind:false,captured:false,prisonCross:false,effectBoost:0,projectiles:new Set(),followups:new Set(),secondary:new Set(),bounces:0,damage:0,hits:[],orbiters:0,sharedDamage:0,heroHpMin:hero.hp,heroHpMax:hero.hp,guard:false,counter:false,traps:0,curse:0,soulBoost:false,shield:0,jucheon:0,jucheonReady:false,harmony:false,lastStand:false,remnants:0,expiry:0,jump:0,retreat:0,summons:0,stakes:0,casts:[]};
+ pr.metrics={events:new Set(),masteryIds:new Set(),modes:new Set(),geometry:new Set(),geometryDetails:[],maxProjectiles:0,returning:false,wraithReturn:false,apex:false,prepared:false,enthrall:false,manifest:false,earthbind:false,captured:false,prisonCross:false,effectBoost:0,projectiles:new Set(),followups:new Set(),secondary:new Set(),bounces:0,damage:0,hits:[],orbiters:0,sharedDamage:0,heroHpMin:hero.hp,heroHpMax:hero.hp,guard:false,counter:false,traps:0,curse:0,soulBoost:false,shield:0,jucheon:0,jucheonReady:false,harmony:false,lastStand:false,remnants:0,expiry:0,jump:0,retreat:0,summons:0,stakes:0,casts:[]};
  pr.metrics.expiryRecovered=0;const expireSummon=pr.e.expireSummon.bind(pr.e);pr.e.expireSummon=(target)=>{const owner=pr.e.unit(target.summonOwner),focus=owner?.focus||0,result=expireSummon(target);if(result&&owner)pr.metrics.expiryRecovered+=Math.max(0,owner.focus-focus);return result;};
  const hurt=pr.e.hurt.bind(pr.e);pr.e.hurt=(target,...args)=>{const hp=target.hp,shield=target.shield;const result=hurt(target,...args);const actual=hp-target.hp;if(target.summoned&&String(args[1]).startsWith('preview-target'))pr.metrics.sharedDamage+=Math.max(0,actual)+Math.max(0,shield-target.shield);if(actual>0){pr.metrics.hits.push({target:target.id,damage:actual,source:args[1],skill:args[3]?.skill});if(target.id.startsWith('preview-target'))pr.metrics.damage+=actual;}return result;};
  const enemyAction=pr.e.enemyAction.bind(pr.e),fire=pr.e.fire.bind(pr.e);
@@ -112,6 +142,21 @@ function setup(app,selectedId,h,canvas,options={}){
   const goal=passive?.goal??(['O11','O12'].includes(id)?650:id==='M09'?780:id==='M10'||['O13','O14','O15'].includes(id)?760:840);
   aim=groundAim(pr.e,hero,s,goal,floor);
  }else aim=shortShot(pr.e,hero,s,target);
+ if(variant&&['A01','A04','S00','SP01','A14','AP04','SP04'].includes(selectedId)){
+  if(close)aim={...aim,power:1};
+  else {
+   const chosen=b.units[1];const trials=evaluateAtPower(pr.e,hero,s,chosen,1,aim.angle);
+   if(trials)aim=trials;
+  }
+ }
+ if(variant&&selectedId==='O01'){
+  aim={angle:-36,power:.5};
+  const hit=pr.e.predict(hero,s,aim.angle,aim.power,undefined,true,true);
+  if(hit.terrain)b.units[1].x=hit.x+48;
+ }
+ if(variant&&selectedId==='A12')aim=groundAim(pr.e,hero,s,995);
+ if(variant&&selectedId==='AP01')aim={angle:2.25,power:.9};
+ if(variant&&selectedId==='S04')aim={angle:62,power:.98};
  pr.aim=aim;hero.angle=aim.angle;hero.lastPower=aim.power;
  if(passive?.metric==='expiry')hero.focus=Math.min(hero.maxFocus,pr.e.manaCost(s,hero,aim.power)+10);
  // Survive the charm itself, then die to the real follow-up: avoid creating a spirit inside the still-resolving charm blast.
@@ -123,8 +168,12 @@ function setup(app,selectedId,h,canvas,options={}){
  if(id==='A99')pr.flightRight=2050;
  if(close)pr.bounds.top=floor-235;if(ring){pr.bounds.left=hero.x-365;pr.bounds.right=hero.x+365;pr.bounds.top=floor-385;}
  pr.initial={terrain:b.terrain.map(t=>({id:t.id,mat:t.mat,hp:t.hp})),hero:{hp:hero.hp,focus:hero.focus,x:hero.x,y:hero.y,maxHp:hero.maxHp,maxFocus:hero.maxFocus,armor:hero.armor,move:hero.maxMove,critChance:hero.critChance,critMultiplier:hero.critMultiplier},targets:b.units.filter(u=>u.side===1).map(u=>({id:u.id,x:u.x,y:u.y,hp:u.hp}))};
- if(passive?.incoming){const enemy=b.units[1];enemy.attack=passive.lowHealth?20:4;b.active=enemy.id;b.side=1;b.phase='enemy';pr.aim=shortShot(pr.e,enemy,C.SKILLS.LA01,hero);}
- if(passive&&!options.noControl){pr.control=setup(app,selectedId,h,canvas,{passiveOff:true,noControl:true,quiet:true});pr.control.hold=true;}
+ if(passive?.incoming){
+  const enemy=b.units[1];enemy.attack=passive.lowHealth?20:4;b.active=enemy.id;b.side=1;b.phase='enemy';
+  pr.incoming=variant&&selectedId==='SP02'?'LA05':'LA01';enemy.loadout=[pr.incoming];
+  pr.aim=shortShot(pr.e,enemy,C.SKILLS[pr.incoming],hero);
+ }
+ if((passive&&!variant||variant==='mastered')&&!options.noControl){pr.control=setup(app,selectedId,h,canvas,{variant:variant?'base':null,passiveOff:!variant,noControl:true,quiet:true});pr.control.hold=true;}
  return pr;
 }
 function ready(p,id){const u=p.hero,b=p.b;b.active=u.id;b.side=0;b.phase='aim';u.acted=false;u.retreat=false;u.focus=9999;u.loadout=[id];u.ranks[id]??=1;u.cooldowns={};}
@@ -137,7 +186,7 @@ function tick(app,p,dt){
    const pr=e.predict(u,s,p.aim.angle,p.aim.power),anchor=pr.turnSamples?.find(v=>v.age>=.48)??pr.turnSamples?.at(-1),t=b.units[1];
    if(anchor&&t)order={age:anchor.age,delta:0,heading:Math.atan2(t.y-t.h*.5-anchor.y,t.x-anchor.x)};
   }
-  p.fired=e.fire(p.passive?.incoming?'LA01':p.castId,p.aim.angle,p.aim.power,!!p.passive?.incoming,order);p.started=p.age;
+  p.fired=e.fire(p.passive?.incoming?p.incoming:p.castId,p.aim.angle,p.aim.power,!!p.passive?.incoming,order);p.started=p.age;
  }
  if(p.passive?.turns&&p.fired&&(p.hold||p.finishedAt===null)&&b.phase==='aim'&&b.side===0&&!b.projectiles.length&&p.age>(p.nextAction||1.8)){
   const casts=p.metrics.casts.filter(v=>v.side===0),sequence=p.passive.sequence||[],next=sequence[casts.length];
@@ -147,6 +196,8 @@ function tick(app,p,dt){
  }
 
  if((p.fired||p.jumped)&&!u.dead){
+  if(p.variant&&p.id==='AP01'&&p.age>1.15&&!b.projectiles.some(q=>q.owner===u.id&&!q.followup)&&b.units[1].x>840)e.walk(b.units[1],-1,dt,true);
+
   if(p.id==='A09'){const q=b.projectiles.find(q=>q.skill==='A09');if(q){p.trace[q.turned?'after':'before'].push({x:q.x,y:q.y});if(!q.turned)p.turnVelocity={before:{vx:q.vx,vy:q.vy}};else if(!p.follow){p.follow=true;p.turns++;p.turnVelocity??={};p.turnVelocity.after={vx:q.vx,vy:q.vy};}}}
   if(p.id==='M02'&&!p.follow&&b.projectiles.some(q=>!q.secondary&&q.bounces>0&&Math.hypot(q.x-b.units[1].x,q.y-b.units[1].y+55)<q.blast*.8)){p.follow=e.detonateIceGourd();}
   if(p.id==='S04'&&!p.follow&&b.projectiles.some(q=>q.body&&q.x>b.units[1].x-65)){p.follow=C.manualDive(e);}
@@ -181,11 +232,12 @@ function tick(app,p,dt){
  if(!p.passive&&p.fired&&p.age>2.4&&noMotion&&reaction&&summonDone&&(!needsFollow||p.follow))p.finishedAt??=p.age;
  // O05 may still be falling on a deep map; its Engine guard is120s.
  const cycleLimit=p.id==='O05'&&b.projectiles.some(q=>q.skill==='O05'&&q.wraithVersion===1)?123:(p.passive?24:22);
- if(!p.hold&&(p.finishedAt!==null&&p.age-p.finishedAt>1.3||p.age>cycleLimit)){const cycle=p.cycle+1;app.preview=setup(app,p.id,p.h,p.canvas);app.preview.cycle=cycle;}
+ if(!p.hold&&(p.finishedAt!==null&&p.age-p.finishedAt>1.3||p.age>cycleLimit)){const cycle=p.cycle+1;app.preview=setup(app,p.id,p.h,p.canvas,{variant:p.variant});app.preview.cycle=cycle;}
 }
 function passiveResolved(p){const m=p.metrics;switch(p.passive.metric){case 'followups':return m.followups.size>0;case 'retreat':return m.retreat>100;case 'jucheon':return m.effectBoost>0;case 'harmony':return m.harmony&&m.casts.filter(v=>v.side===0).length>=4;case 'lastStand':return m.lastStand;case 'expiry':return m.expiry>0;case 'remnants':return m.soulBoost;case 'trap':return m.traps>0&&m.curse>0;case 'marked':return m.summons>0&&m.hits.some(v=>String(v.source).startsWith('summon'));case 'share':return m.sharedDamage>0;case 'shield':return m.shield>0;case 'focus':return p.b.phase!=='flight';case 'jump':return m.jump>0&&p.e.grounded(p.hero);case 'mana':return p.b.round>=2;default:return m.damage>0;}}
 function snapshot(p){const m=p.metrics;return {camera:{scale:p.scene.scale,x:p.scene.x,y:p.scene.y,actorPixels:p.hero.h*p.scene.scale},id:p.id,cast:p.castId,age:p.age,fired:p.fired,follow:p.follow,turns:p.turns,kind:p.scenario.kind,rank:p.hero.ranks[p.id]||0,initial:p.initial,terrain:p.b.terrain.map(t=>({id:t.id,mat:t.mat,hp:t.hp,broken:!!t.broken})),hero:{hp:p.hero.hp,focus:p.hero.focus,maxHp:p.hero.maxHp,maxFocus:p.hero.maxFocus,x:p.hero.x,y:p.hero.y,critChance:p.hero.critChance,critMultiplier:p.hero.critMultiplier,dead:p.hero.dead},targets:p.b.units.filter(u=>u.id.startsWith('preview-target')).map(u=>({id:u.id,x:u.x,y:u.y,hp:u.hp,maxHp:u.maxHp,armor:u.curseArmor||0,curse:u.curseTurns||0,dead:u.dead,type:u.honroType,grounded:p.e.grounded(u),flying:['bat','crow','lantern'].includes(u.honroType)&&u.fixed})),metrics:Object.fromEntries(Object.entries(m).map(([k,v])=>[k,v instanceof Set?[...v]:v])),ally:p.b.units.find(v=>v.id==='preview-ally')?{hp:p.b.units.find(v=>v.id==='preview-ally').hp,focus:p.b.units.find(v=>v.id==='preview-ally').focus,move:p.b.units.find(v=>v.id==='preview-ally').moveLeft}:null,jumpCost:p.jumpCost,control:p.control?snapshot(p.control):null};}
 function describe(p){const m=p.metrics,q=p.control,number=x=>Math.round(x*100)/100,compare=(a,b)=>`${number(a)} → ${number(b)}`;
+ if(q&&!p.passive)return `누적 피해 ${compare(q.metrics.damage,m.damage)}`;
  if(q){const c=q.metrics;switch(p.passive.metric){
  case 'critical':return `치명 확률 ${compare(q.hero.critChance*100,p.hero.critChance*100)}% · 배율 ${compare(q.hero.critMultiplier,p.hero.critMultiplier)}`;
  case 'mana':return `최대 기력 ${compare(q.hero.maxFocus,p.hero.maxFocus)} · 현재 기력 ${compare(q.hero.focus,p.hero.focus)}`;
@@ -218,6 +270,6 @@ function describe(p){const m=p.metrics,q=p.control,number=x=>Math.round(x*100)/1
  return `${p.scenario.kind} · 명중 ${new Set(m.hits.filter(v=>v.target.startsWith('preview-target')).map(v=>v.target)).size}명 · 피해 ${number(m.damage)}${m.summons?' · 소환 '+m.summons:''}`;
 }
 const activeLabels={single:'기본 발사',distance:'먼 표적 정밀 사격',execution:'먼 거리의 약해진 적',line:'일렬 관통',recovery:'명중 후 체력·기력 회수',prepare:'집중 후 강화 사격',apex:'최고점 이후 낙하',offset:'높은 발판의 표적 추적',return:'나가는 길과 돌아오는 길',push:'적을 밀어 뒤의 적과 충돌',spread:'비행 군집에 펼치는 부채꼴',break:'파괴 가능한 목재', 'ground-chain':'적 사이 연속 도약',fragments:'명중 뒤 파편', 'delayed-burst':'착탄 뒤 후속 폭발','bounce-ice':'반사 뒤 재입력 폭발',lightning:'군집에 연결되는 번개',sky:'착탄 뒤 수직 천뢰',arc:'충돌 방향의 양옆 원호',reflection:'벽·천장 반사',ring:'원주 타격 · 중심은 안전',bagua:'팔각형과 기선',trap:'진목을 밟은 적',lure:'진목 쪽으로 유인',prison:'봉쇄 경계 통과', 'healing-stake':'손상된 동행이 진목 이용',gate:'진목 사이 상호작용',melee:'전방 베기',turn:'앞뒤 베기',combo:'처치 후 다음 적으로 연속 베기',counter:'회복·방어 후 적 공격에 반격',life:'체력을 써서 일격 강화',rush:'비행 중 베고 착지',sweep:'비행 경로 연속 베기','ground-air':'지상 적 운반·비행 적 통과',pull:'적을 끌어온 뒤 베기','burst-blade':'충돌점에서 수직 검압',orbit:'공전하는 검기의 다중 명중','phase-wall':'벽을 통과하는 혼행','reverse-rain':'위로 솟은 뒤 원혼비','reverse-path':'원래 궤적을 거슬러 귀환',weakness:'공격·방어 약화',betrayal:'적의 공격 대상 변경',manifest:'숨은 혼령 현형',enthrall:'적을 동맹으로 섭혼',earthbound:'저주 후 사망한 자리에 지박령',summon:'소환 뒤 소환령의 차례',warden:'동행 방호·회복',eater:'포획 후 먹귀 피해 전달',echo:'소환 뒤 혼행 동시 사격',converge:'흩어졌다 귀결점으로 모이는 혼령'};
-function updateReadout(p){const el=p.canvas.closest?.('.skill-preview-shell')?.querySelector('.preview-observation');if(!el)return;const text=`${p.scenario.label||activeLabels[p.scenario.kind]||'격리 시연'} · ${C.SKILLS[p.id].passive?'미적용 → 적용 비교 · ':''}${describe(p).replace(p.scenario.kind+' · ','')}`;if(el.textContent!==text)el.textContent=text;}
+function updateReadout(p){const el=p.canvas.closest?.('.skill-preview-shell')?.querySelector('.preview-observation');if(!el)return;const text=`${p.scenario.label||activeLabels[p.scenario.kind]||'격리 시연'} · ${p.variant==='mastered'?`${C.SKILLS[p.id].basic?'기본':'8랭크'} → 통달 · `:p.variant==='base'?'기본 시연 · ':C.SKILLS[p.id].passive?'미적용 → 적용 비교 · ':''}${describe(p).replace(p.scenario.kind+' · ','')}`;if(el.textContent!==text)el.textContent=text;}
 G.HonroSkillPreview={setup,tick,scenarios,passiveScenarios,snapshot,describe};
 })(globalThis);

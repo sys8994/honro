@@ -1,3 +1,4 @@
+import {mastered,masteryEffect,center} from './masteryCombat';
 import {passiveTuning} from './passiveBalance';
 import type {Engine} from './engine';
 import type {Unit,Skill,Projectile} from './types';
@@ -29,7 +30,11 @@ export function recordSalheun(e:Engine,p:Projectile|undefined,u:Unit,t:Unit,actu
  if(first){h.action=p.shot;h.recorded=0;h.cap=Math.max(actual,(p.rootDamage||p.damage)*(p.damageRoll??1))*1.5;h.projectiles=[];}
  // Snapshot past turns before recording this action. Echo has a separate source
  // and never re-enters projectile on-hit, critical, healing or history paths.
- const echo=first?h.entries.reduce((sum,v)=>{const age=turn-v.turn;return sum+(age>=1? v.damage*SALHEUN_RATIO[r-1]*Math.pow(.55,age-1):0);},0):0;
+ let echo=first?h.entries.reduce((sum,v)=>{const age=turn-v.turn;return sum+(age>=1? v.damage*SALHEUN_RATIO[r-1]*Math.pow(.55,age-1):0);},0):0;
+ if(first&&mastered(e,u,'AP05')){
+  const earlier=h.entries.filter(v=>v.turn<turn).sort((a,b)=>a.turn-b.turn);
+  if(earlier.length>1){const old=earlier[0];echo+=old.damage*SALHEUN_RATIO[r-1]*(1-Math.pow(.55,turn-old.turn-1));masteryEffect(e,'AP05',center(t),48,center(u));}
+ }
  const weight=h.projectiles.length===0?1:.35;
  if(!h.projectiles.includes(p.id)){
   h.projectiles.push(p.id);const eligible=Math.max(0,Math.min(actual*weight,h.cap-h.recorded));h.recorded+=eligible;

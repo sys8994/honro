@@ -107,6 +107,7 @@ export interface HeroProgress {
     occultRevision?: number;
     xp: number;
     ranks: Record<string, number>;
+    masteries?: string[];
     statRanks?: Record<string, number>;
     statTraining?: number;
     kills: number;
@@ -139,6 +140,30 @@ export interface AIMovePlan {
     intent:string;
 }
 export interface Unit {
+    masteryExposure?: {id:string;owner:string;until:number;gain:number};
+    masterySoulHit?: {shot:number;x:number};
+    masteryArrowHits?: Record<string,number>;
+    masteryRefund?: boolean;
+    masteryPrepare?: boolean;
+    masteryGuarded?: boolean;
+    masteryOtherBranch?: boolean;
+    masteryRedirect?: boolean;
+    masteryWallDrive?: {owner:string;damage:number;until:number};
+    masteryBladeWard?: {a:Vec;b:Vec;round:number};
+    masteryArrival?: number;
+    masteryArrivalGuard?: boolean;
+    masteryRegenRound?: number;
+    masteryLastStandRound?: number;
+    masteryRetreatJump?: boolean;
+    masteryJumpRound?: number;
+    masteryJumpPending?: boolean;
+    masteryShareRound?: number;
+    masteryShared?: boolean;
+    masteryBetrayUntil?: number;
+    masterySummon?: string;
+    masterySummonFirst?: boolean;
+    masteryGift?: boolean;
+    masteryRelease?: boolean;
     honroMonsterSpecies?:string;
     honroMonsterGroup?:string;
     honroMonsterPattern?:MonsterPatternKind;
@@ -168,13 +193,13 @@ export interface Unit {
     jucheonReady?: boolean;
     swordChain?: string[];
     harmony?: boolean;
-    martialGuard?: DamageOrigin & {round:number;reduction:number;counter?:boolean;rank?:number;angle?:number;span?:number;attacker?:string};
+    martialGuard?: DamageOrigin & {round:number;reduction:number;counter?:boolean;rank?:number;angle?:number;span?:number;attacker?:string;mastery?:boolean};
     bladeScreen?: {round:number;rank:number;hits:number;facing:number};
     bladeStored?: number;
     meleeFollowOrigin?: DamageOrigin & {round?:number};
     meleeFollow?: 'landing'|'ready'|'spent';
     beastAction?: DamageOrigin & {skill:string;target:string;elapsed:number;damage:number;shot:number;facing:number;travel:number;struck:boolean};
-    meleeAction?: DamageOrigin & {skill:string;elapsed:number;index:number;damage:number;range:number;power:number;shot:number;target?:string;lifeCost?:number;angle?:number;span?:number};
+    meleeAction?: DamageOrigin & {skill:string;elapsed:number;index:number;damage:number;range:number;power:number;shot:number;target?:string;lifeCost?:number;angle?:number;span?:number;masteryTargets?:string[];masteryFollow?:boolean};
     mageWardShot?: number;
     retreat?: boolean;
     prepared?: {rank:number;expires:number};
@@ -317,6 +342,17 @@ export interface Unit {
 /** Persisted cast provenance is independent of later capture/release allegiance. */
 export interface CombatReportSource {cls?:string|null;side?:Side;kind:string;skill:string;id?:string|null;parent?:string|null;}
 export interface Projectile extends DamageOrigin {
+    mastery?: boolean;
+    masteryEcho?: boolean;
+    masteryPower?: number;
+    launchDirection?: number;
+    masteryEdge?: boolean;
+    masteryReacquired?: boolean;
+    masteryCrossed?: boolean;
+    masteryLost?: string;
+    masteryLightBlade?: boolean;
+    masterySplit?: boolean;
+    masteryManual?: boolean;
     enemyEffectAttack?: EnemyEffectAttack;
     enemyEffectWind?: number;
     honroReportSource?: CombatReportSource;
@@ -471,10 +507,11 @@ export interface Battle {
     practiceCombat?: boolean;
     skillRevision?: number;
     cast?: {owner:string;skill:string;shot:number;cost:number;enemyDamage:number;refunded?:boolean};
-    stakes?: (DamageOrigin & {equipmentHealScale?:number;effectBoost?:number;id:number;skill:string;owner:string;side:Side;x:number;y:number;rank:number;damage:number;shot:number;active?:boolean;expires?:number;authoredPassage?:true;lastTriggerRound?:number;usedRounds?:Record<string,number>;inside?:string[];crossed?:Record<string,string>;budgetTurns?:Record<string,string>})[];
+    stakes?: (DamageOrigin & {equipmentHealScale?:number;effectBoost?:number;id:number;skill:string;owner:string;side:Side;x:number;y:number;rank:number;damage:number;shot:number;masteryUsed?:string[];active?:boolean;expires?:number;authoredPassage?:true;lastTriggerRound?:number;usedRounds?:Record<string,number>;inside?:string[];crossed?:Record<string,string>;budgetTurns?:Record<string,string>})[];
     physics?:PhysicsEnvironment;
     summonTurn?:{queue:string[];index:number;stage:'approach'|'attack'|'wait';elapsed:number;hold:number;start?:Vec;destination?:Vec;targetId?:string;returnActive:string;practice:boolean;afterActor?:boolean};
-    occultTraps?: (DamageOrigin & {autonomous?:boolean;id:number;x:number;y:number;owner:string;skill:string;rank:number;damage:number;expires:number})[];
+    masteryEmbers?: {x:number;y:number;round:number;shot:number;p:Projectile}[];
+    occultTraps?: (DamageOrigin & {autonomous?:boolean;masteryVictim?:string;id:number;x:number;y:number;owner:string;skill:string;rank:number;damage:number;expires:number})[];
     vertical?: boolean;
     routePoints?: Vec[];
     volley?: {template: Projectile; remaining: number; elapsed: number; interval: number; index: number; angle: number; power: number};
@@ -540,7 +577,7 @@ export interface Battle {
 export interface FX {
     lightningSeed?: number;
     critical?: boolean;
-    kind: 'swordCut' | 'circulation' | 'qiBurst' | 'fireBloom' | 'lightningBolt' | 'inkImpact' | 'inkLine' | 'skillGeometry' | 'burst' | 'ring' | 'text' | 'line' | 'meteor' | 'slash' | 'spark' | 'rune';
+    kind: `mastery:${string}` | 'swordCut' | 'circulation' | 'qiBurst' | 'fireBloom' | 'lightningBolt' | 'inkImpact' | 'inkLine' | 'skillGeometry' | 'burst' | 'ring' | 'text' | 'line' | 'meteor' | 'slash' | 'spark' | 'rune';
     x: number;
     y: number;
     vx: number;
