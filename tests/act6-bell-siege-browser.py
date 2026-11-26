@@ -40,7 +40,7 @@ with sync_playwright() as p:
  page.on('pageerror',lambda e:errors.append(str(e)))
  page.on('console',lambda e:print(e.type,e.text[:420],flush=True) if e.type=='warning' else None)
  page.add_init_script("for(const [k,v] of Object.entries("+json.dumps(seeds)+"))localStorage.setItem(k,v);")
- page.goto(origin+'/honro/',wait_until='domcontentloaded')
+ page.goto(origin+'/honro/',wait_until='commit',timeout=120000)
  page.wait_for_function('!!window.HonroApp',timeout=120000)
  finish='for(let i=0;HonroApp.dialogue&&i<30;i++)HonroStory.finish(HonroApp)'
  page.evaluate('HonroApp.showRest();'+finish)
