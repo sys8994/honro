@@ -59,6 +59,32 @@
       "channel": "dialogue"
     },
     {
+      "id": "A3.S29.INTRO.05",
+      "speaker_channel": "휘겸 · dialogue",
+      "condition": "boss_arena_enter; 낡은 군기를 세운 한태록의 빈 갑주가 휘겸의 문장을 봄; 한태록 실제현장생존 문답중만; 죽은보스에게 길을 부탁하지 않음.",
+      "text": "당신한테서 그날 일을 들을 줄 알았소. 허나 지금 내 뒤에도 빠져나갈 사람이 있소.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S29.INTRO",
+      "order": 5,
+      "speaker": "휘겸",
+      "channel": "dialogue"
+    },
+    {
+      "id": "A3.S29.INTRO.06",
+      "speaker_channel": "소단 · dialogue",
+      "condition": "boss_arena_enter; 낡은 군기를 세운 한태록의 빈 갑주가 휘겸의 문장을 봄; 한태록 실제현장생존 문답중만; 죽은보스에게 길을 부탁하지 않음.",
+      "text": "휘겸 씨, 창을 내려놓을 것 같지 않아요. 거기 계속 서 있으면 찔려요.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S29.INTRO",
+      "order": 6,
+      "speaker": "소단",
+      "channel": "dialogue"
+    },
+    {
       "id": "A3.S29.PHASE1.01",
       "speaker_channel": "한태록 · dialogue",
       "condition": "boss_phase_1_enter; 물리 차폐 뒤의 한태록과 실제 방패병·궁수 군진이 배치됨; 한태록 생존을 그룹 시작과 행 재생 직전에 확인, 사망 시 pending 폐기",
@@ -228,6 +254,32 @@
       "channel": "dialogue"
     },
     {
+      "id": "A3.S29.GATE.03",
+      "speaker_channel": "휘겸 · dialogue",
+      "condition": "sluice_reclaimed; 한태록 패배와 기존 관문 상호작용을 마쳐 출구가 확보됨",
+      "text": "저분이 내 말을 들었는지 모르겠소. 그래도 나루에서 기다리는 사람한테는 우리가 가야지.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S29.GATE",
+      "order": 3,
+      "speaker": "휘겸",
+      "channel": "dialogue"
+    },
+    {
+      "id": "A3.S29.GATE.04",
+      "speaker_channel": "설오 · dialogue",
+      "condition": "sluice_reclaimed; 한태록 패배와 기존 관문 상호작용을 마쳐 출구가 확보됨",
+      "text": "먼저 나가 보겠습니다. 물 쪽에서 더 움직이는 건 없는지 보고 부르겠습니다.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S29.GATE",
+      "order": 4,
+      "speaker": "설오",
+      "channel": "dialogue"
+    },
+    {
       "id": "A3.S29.TRACE.01",
       "speaker_channel": "담허 · dialogue",
       "condition": "hyeonmuk_trace_observed; 새 잔영 이벤트에서 표식과 한순간 설치 동작이 실제 보임; 종이 현묵 기록 아님; 진목 표식 실제목격 및 담허 현장생존; 짧은손짓만, 종이편지/현묵대화/새술법/검은공간 연결 없음.",
@@ -264,6 +316,45 @@
       "group": "A3.S29.TRACE",
       "order": 3,
       "speaker": "담허",
+      "channel": "dialogue"
+    },
+    {
+      "id": "A3.S29.TRACE.04",
+      "speaker_channel": "휘겸 · dialogue",
+      "condition": "hyeonmuk_trace_observed; 새 잔영 이벤트에서 표식과 한순간 설치 동작이 실제 보임; 종이 현묵 기록 아님",
+      "text": "들리지 않았다는 말, 잘못 들으신 건 아니오?",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S29.TRACE",
+      "order": 4,
+      "speaker": "휘겸",
+      "channel": "dialogue"
+    },
+    {
+      "id": "A3.S29.TRACE.05",
+      "speaker_channel": "담허 · dialogue",
+      "condition": "hyeonmuk_trace_observed; 새 잔영 이벤트에서 표식과 한순간 설치 동작이 실제 보임; 종이 현묵 기록 아님",
+      "text": "그 말까지는 들었네. 그다음에 무슨 일을 했는지는 이 손짓만 보고는 모르겠어.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S29.TRACE",
+      "order": 5,
+      "speaker": "담허",
+      "channel": "dialogue"
+    },
+    {
+      "id": "A3.S29.TRACE.06",
+      "speaker_channel": "소단 · dialogue",
+      "condition": "hyeonmuk_trace_observed; 새 잔영 이벤트에서 표식과 한순간 설치 동작이 실제 보임; 종이 현묵 기록 아님",
+      "text": "살아 있는 사람이 저걸 했다면, 누가 그만하라고 했을지도 모르잖아요. 그 사람도 찾아야 하는 거 아니에요?",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S29.TRACE",
+      "order": 6,
+      "speaker": "소단",
       "channel": "dialogue"
     },
     {

@@ -198,6 +198,45 @@
       "channel": "dialogue"
     },
     {
+      "id": "A3.S30.THIRTEEN.05",
+      "speaker_channel": "설오 · dialogue",
+      "condition": "ferryman_testimony; 구조한 현재 나루 사공과 대화; 모든 호송 완료 후 안전함",
+      "text": "두 아이도 그때 함께 내려갔습니까? 다른 배를 탔다면 거기서부터 다시 찾아야 합니다.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S30.THIRTEEN",
+      "order": 5,
+      "speaker": "설오",
+      "channel": "dialogue"
+    },
+    {
+      "id": "A3.S30.THIRTEEN.06",
+      "speaker_channel": "나루 사공 · dialogue",
+      "condition": "ferryman_testimony; 구조한 현재 나루 사공과 대화; 모든 호송 완료 후 안전함",
+      "text": "나한텐 한 무리였소. 하구에 묻되 내가 지금 어디 있는지 안다고는 하지 마시오.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S30.THIRTEEN",
+      "order": 6,
+      "speaker": "나루 사공",
+      "channel": "dialogue"
+    },
+    {
+      "id": "A3.S30.THIRTEEN.07",
+      "speaker_channel": "연실 · dialogue",
+      "condition": "ferryman_testimony; 구조한 현재 나루 사공과 대화; 모든 호송 완료 후 안전함",
+      "text": "제가 장부 들고 갈게요. 이름을 보면 기억하는 분이 있을 수도 있어요.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S30.THIRTEEN",
+      "order": 7,
+      "speaker": "연실",
+      "channel": "dialogue"
+    },
+    {
       "id": "A3.S30.ROUTE.01",
       "speaker_channel": "휘겸 · dialogue",
       "condition": "coastal_route_confirmed; 현재 강 방향과 이미 확보한 이송도를 한 화면에서 대조; 새 종이 수집 없음",
@@ -221,6 +260,32 @@
       "group": "A3.S30.ROUTE",
       "order": 2,
       "speaker": "담허",
+      "channel": "dialogue"
+    },
+    {
+      "id": "A3.S30.ROUTE.03",
+      "speaker_channel": "설오 · dialogue",
+      "condition": "coastal_route_confirmed; 현재 강 방향과 이미 확보한 이송도를 한 화면에서 대조; 새 종이 수집 없음",
+      "text": "저는 하구에 닿는 대로 부두마다 물어보겠습니다. 찾는 사람과 옛 수레가 같은 길로 갔다면 어디서 갈라졌는지부터 알아야 합니다.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S30.ROUTE",
+      "order": 3,
+      "speaker": "설오",
+      "channel": "dialogue"
+    },
+    {
+      "id": "A3.S30.ROUTE.04",
+      "speaker_channel": "휘겸 · dialogue",
+      "condition": "coastal_route_confirmed; 현재 강 방향과 이미 확보한 이송도를 한 화면에서 대조; 새 종이 수집 없음",
+      "text": "연실 씨가 묻는 동안 내가 옛길이 닿는 데를 보겠소. 먼저 본 사람은 부두로 돌아옵시다.",
+      "audience": "현장 동행",
+      "delivery": "scene",
+      "once": true,
+      "group": "A3.S30.ROUTE",
+      "order": 4,
+      "speaker": "휘겸",
       "channel": "dialogue"
     },
     {
