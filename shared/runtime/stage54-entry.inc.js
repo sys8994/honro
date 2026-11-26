@@ -60,7 +60,7 @@
           const k=JSON.stringify(v);check(new Map(grant.known).get(k)===h,'Stage54 N terrain mismatch');fingerprints.set(k,h);
         }
         const u=b.units[0];
-        for(const k of [...carryFields,'equipmentIds','gearBonuses','attack','armor','maxMove','walkSpeed','regen']){
+        for(const k of [...carryFields,'equipmentIds','gearBonuses','attack','armor','critChance','critMultiplier','maxMove','walkSpeed','regen']){
           if(Object.hasOwn(mage,k))u[k]=structuredClone(mage[k]);else delete u[k];
         }
         Object.assign(u,{x:spawn.x,y,spawnX:spawn.x,spawnY:y,vx:0,vy:0,moveLeft:u.maxMove,airborne:false,jumping:false});

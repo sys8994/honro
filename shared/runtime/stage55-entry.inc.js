@@ -31,7 +31,7 @@
       }
       function mountFrom54(a,grant,t,stageSeed,budget){
         const m=grant.packet.map,p=structuredClone(a.profile);
-        const party=[],exactFields=[...carryFields,'equipmentIds','gearBonuses','attack','armor','maxMove','walkSpeed','regen'];
+        const party=[],exactFields=[...carryFields,'equipmentIds','gearBonuses','attack','armor','critChance','critMultiplier','maxMove','walkSpeed','regen'];
         for(const [role,x,y] of grant.packet.slots){
           const old=t.external[role],auth=D55.entry[role];
           check(old?.cls===role&&old.side===0&&!old.dead&&old.hp>0&&auth?.[0]===x,'Unverified external actor or 55 role slot');

@@ -56,12 +56,14 @@ export async function createAct6WebQa(project,repoRoot,env=process.env,release=n
  const rest=await readFile(new URL('./runtime/act6-fifty-rest-qa.mjs',import.meta.url),'utf8');
  assert.equal(hash(rest),'10a7e17d918c9cd3f58eb2382433cac534776b72a26f1c672130d82ccb83ec84');
  let first=await readFile(new URL('./runtime/act6-first-missions.mjs',import.meta.url),'utf8');
- assert.equal(hash(first),'1bbbfff697c2664ce873f97393faa714bf89a5d0f047111631d5108fdc4f49cf');
+ assert.equal(hash(first),'82bc8352ada6c06202186c467d236f9d858f4fff6698bff206f5f7a34d74ffb1');
  assert.equal(first.split('export function createFirstMissionOwner').length,2);
  if(env.HONRO_ACT6_QA_NORMAL51==='1'){
   const normal=await readFile(new URL('./runtime/stage51-entry.inc.js',import.meta.url),'utf8');
   const outsideEncounters=(await readFile(new URL('./act6-mumyeongsa/exterior-encounters.mjs',import.meta.url),'utf8')).replace(/^export /gm,'');
-  source=replaceOne(source,'      function enter(app,id,ticket){',outsideEncounters+'\n'+normal+'\n      function enter(app,id,ticket){');
+  const thresholdPrep=(await readFile(new URL('./runtime/act6-threshold-prep.mjs',import.meta.url),'utf8')).replace(/^export /gm,'');
+  const prepUI=await readFile(new URL('./runtime/stage52-prep.inc.js',import.meta.url),'utf8');
+  source=replaceOne(source,'      function enter(app,id,ticket){',outsideEncounters+'\n'+thresholdPrep+'\n'+prepUI+'\n'+normal+'\n      function enter(app,id,ticket){');
   source=replaceOne(source,'          e.checkEnd();app.updateHUD(true);',
     '          e.checkEnd();app.updateHUD(true);if(s.normal51)show52FieldDialogue(app,s,id);');
   source=replaceOne(source,'try{return enter(app,51,null);}finally{restGrants.delete(app);}', 'try{return enterNormal51(app,grant,carried);}finally{restGrants.delete(app);}');

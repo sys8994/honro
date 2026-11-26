@@ -193,11 +193,12 @@
         if(!event.isTrusted||s.engine!==e||app.screen!=='battle'||app.done||app.dialogue||app.modal.classList.contains('open'))return true;
         const id=owner.project(app,e)?.targets?.[0]?.id;
         if(!id)return true;
-        const result=owner.interact(app,e,id);
+        const result=owner.interact(app,e,id,s.prepDraft&&s.prepButton?actors=>planThresholdPrep(C,app.profile,actors,s.prepDraft):null);
         app.notify(result.ok?result.label:result.reason);
         if(result.ok){
           const goal=owner.project(app,e);
           if(s.button){s.button.textContent=goal.summary;s.button.disabled=goal.complete;}
+          if(s.prepButton)s.prepButton.hidden=goal.targets?.[0]?.id!=='threshold';
           e.checkEnd();app.updateHUD(true);
         }
         return true;

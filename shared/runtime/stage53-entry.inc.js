@@ -65,7 +65,7 @@
         }
         const raw=b.units.filter(u=>u.side===0&&!u.summoned);
         check(raw.length===1&&raw[0].id===mage.id,'Damheo must be the original solo body');
-        for(const k of [...carryFields,'equipmentIds','gearBonuses','attack','armor','maxMove','walkSpeed','regen']){
+        for(const k of [...carryFields,'equipmentIds','gearBonuses','attack','armor','critChance','critMultiplier','maxMove','walkSpeed','regen']){
           if(Object.hasOwn(mage,k))raw[0][k]=structuredClone(mage[k]);else delete raw[0][k];
         }
         raw[0].moveLeft=raw[0].maxMove;

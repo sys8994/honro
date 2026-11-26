@@ -62,7 +62,7 @@ export function createFirstMissionOwner({C,manifest,verifyMounted,fingerprint}) 
    const b=g.marks.find(m=>m.id==='bell');
    return alive.every(u=>Math.abs(u.x-b.x)<=350&&Math.abs(u.y-b.y)<=220&&e.contactSurface(u.x,u.y-4,u.y+4)?.t.id===b.support);
  }
- function interact(app,e,id){
+ function validateInteraction(app,e,id){
    const g=current(app,e),reject=reason=>({ok:false,reason});
    const u=e.active;
    if(!g||e.b.phase!=='aim'||!u||!g.r.includes(u)||u.dead||!e.canAct()||!e.grounded(u))return reject('현재 차례의 지상 아군만 작업할 수 있습니다.');
@@ -73,6 +73,21 @@ export function createFirstMissionOwner({C,manifest,verifyMounted,fingerprint}) 
    if(id==='cliff'&&!g.visible)return reject('설오가 실제 사격으로 지지석을 확보해야 합니다.');
    if(id==='overlook'&&(!done(e.unit('crest-champion'))||!checkAll(e,g,id)))return reject('경계암귀를 해소하고 네 사람이 관찰턱에 모여야 합니다.');
    if(id==='threshold'&&!checkAll(e,g,id))return reject('네 사람이 종터에 모여야 합니다.');
+   return {ok:true,g,m,u};
+ }
+ function thresholdParty(app,e){
+   const result=validateInteraction(app,e,'threshold');
+   return result.ok&&result.g.source.kind==='normal-owned-release'&&result.g.d.id===52?result.g.r.slice():null;
+ }
+ function interact(app,e,id,prepare){
+   const result=validateInteraction(app,e,id);
+   if(!result.ok)return result;
+   const {g,m,u}=result;
+   if(id==='threshold'&&g.d.id===52&&g.source.kind==='normal-owned-release'&&prepare){
+     const changes=prepare(g.r.slice());
+     if(!changes)return {ok:false,reason:'전열 정비의 기예와 장비를 확인해 주세요.'};
+     for(const {u:actor,next} of changes)Object.assign(actor,next);
+   }
    g.entered.push(id);note(g,pfx+id,u.id);
    return {ok:true,label:m.label};
  }
@@ -86,5 +101,5 @@ export function createFirstMissionOwner({C,manifest,verifyMounted,fingerprint}) 
    if(!g||e.b.phase!=='won'||!s?.complete||settled.has(e))return null;
    settled.add(e);return {stage:g.d.id,flags:Object.fromEntries(g.d.terminalFlags.map(k=>[k,true])),actors:sorted(roster(e.b)),events:structuredClone(g.ordered),settlement:false};
  }
- return Object.freeze({mount,project,interact,terminal});
+ return Object.freeze({mount,project,interact,terminal,thresholdParty});
 }

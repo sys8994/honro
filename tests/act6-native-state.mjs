@@ -17,6 +17,7 @@ import {validTornEave} from '../shared/act6-mumyeongsa/torn-eave.mjs';
 import {validSodanThread} from '../shared/act6-mumyeongsa/sodan-thread.mjs';
 import {verifyStage54Relay} from '../shared/runtime/stage54-pilot-owner.mjs';
 import {createChapterBoundary} from '../shared/act6-boundary/chapter-boundary.mjs';
+import {planThresholdPrep} from '../shared/runtime/act6-threshold-prep.mjs';
 import {createFirstMissionOwner} from '../shared/runtime/act6-first-missions.mjs';
 import {prepareEnding} from '../shared/runtime/stage60-ending.mjs';
 import {endingCardFor} from '../shared/runtime/stage60-card.mjs';
@@ -313,6 +314,7 @@ async function testFirstMissions(){
  for(const id of [51,52]){
   const packet=intake.rows[id],p=await pack(id),c=compiled(p),rules={...packet.mission,runtimeReleaseEnabled:true};
   const units=clone(packet.owner.actors);
+  if(id===51)units.find(u=>u.side===0&&u.cls==='mage').ranks=clone(profile.heroes.mage.ranks);
   if(previous)for(const u of units.filter(row=>row.side===0))Object.assign(u,previous.actors.find(row=>row.cls===u.cls));
   const {app,e,b}=carrier(id,p,c,profile,units,rules.objective);
   Object.assign(app.stage,{act:6,actStage:rules.actStage});
@@ -340,13 +342,35 @@ async function testFirstMissions(){
    at(threshold);assert(!interact(threshold.id).ok);
    at(bell);assert(interact(bell.id).ok);
    at(threshold);assert(!interact(threshold.id).ok);
-   allAt(bell);at(threshold);assert(interact(threshold.id).ok);
+   assert.equal(mission.thresholdParty(app,e),null);
+   allAt(bell);at(threshold);
+   const actors=mission.thresholdParty(app,e);
+   assert.equal(actors?.length,4);
+   const mage=actors.find(u=>u.cls==='mage'),profileBefore=JSON.stringify(profile),before=clone(mage);
+   const draft=Object.fromEntries(actors.map(u=>[u.cls,{skills:[1,2,3].map(i=>u.loadout[i]??''),
+    gear:['personal','common'].map(slot=>u.equipmentIds?.find(id=>C.EQUIPMENT_MAP[id].slot===slot)??'')}]));
+   assert.deepEqual(planThresholdPrep(C,profile,actors,draft),[]);
+   const invalid=clone(draft);invalid.mage.skills[0]='UNLEARNED';
+   assert.equal(planThresholdPrep(C,profile,actors,invalid),null);
+   assert.equal(mission.interact(app,e,threshold.id,()=>null).ok,false);
+   assert.deepEqual(mage,before);assert.equal(mission.project(app,e).complete,false);
+   draft.mage.skills=['M07','M10',''];
+   draft.mage.gear[0]='itm_da_02';
+   assert(mission.interact(app,e,threshold.id,party=>planThresholdPrep(C,profile,party,draft)).ok);
+   assert.deepEqual(mage.loadout,['M01','M07','M10','']);
+   assert(mage.equipmentIds.includes('itm_da_02'));
+   assert(mage.hp<=before.hp&&mage.focus<=before.focus);
+   assert.deepEqual(mage.equipmentState,before.equipmentState);
+   assert.equal(JSON.stringify(profile),profileBefore);
+   assert.equal(mission.thresholdParty(app,e),null);
+   r.prep={loadout:mage.loadout,equipment:mage.equipmentIds,noRefill:true,noProfileMutation:true};
   }
   assert.equal(mission.project(app,e).complete,true);
   b.phase='lost';assert.equal(mission.terminal(app,e),null);
   b.phase='won';previous=mission.terminal(app,e);
   assert.equal(previous.stage,id);assert.equal(mission.terminal(app,e),null);
   assert.deepEqual(Object.keys(previous.flags),rules.terminalFlags);
+  if(r.prep)assert.deepEqual(previous.actors.find(u=>u.cls==='mage').loadout,r.prep.loadout);
   r.events=previous.events.map(v=>v.key);r.flags=previous.flags;r.noLossTerminal=true;
   results[id]=r;
  }

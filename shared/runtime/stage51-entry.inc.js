@@ -244,10 +244,13 @@
         try{
           app.mount(b,{freshReport:true,reportScope:'custom'});
           check(app.engine===state.engine&&app.engine.stage===content&&app.engine.b===b&&app.profile===app.normalProfile&&app.scene&&app.screen==='battle','Stock normal 52 mount refused');
+          // An older 51 receipt may omit uneventful actors' gear state. Admission
+          // must compare that receipt as written; subsequent 52→53 requires v1.
+          for(const u of b.units)if(u.side===0&&!u.summoned&&!u.honroAlly)u.equipmentState??={version:1};
           state.exterior=installExteriorEncounters(app,app.engine);
           const ui=appUI(app);check(ui,'Normal battle objective owner absent');const button=document.createElement('button');
           button.type='button';button.dataset.act6QaLookout='';styleAction(button);button.textContent=d.marks[0].label;
           button.addEventListener('click',event=>{if(event.isTrusted&&event.currentTarget===button)action(app,event);});
-          state.button=button;ui.append(button);startAct6Opening(app,state,52);return true;
+          state.button=button;ui.append(button);add52Preparation(app,state,ui);startAct6Opening(app,state,52);return true;
         }catch(error){app.stopBattle();app.showTitle();throw error;}
       }
