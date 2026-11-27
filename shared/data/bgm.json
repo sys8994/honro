@@ -1,73 +1,29 @@
 [
-  {
-    "id": "main",
-    "file": "main.mp3",
-    "title": "혼로",
-    "gitBlob": "12fa25bef170b60de432272743efe44b16bdd50d",
-    "role": "main",
-    "acts": []
-  },
-  {
-    "id": "battle-1",
-    "file": "battle-1.mp3",
-    "title": "장막 너머의 음",
-    "gitBlob": "2b3ff078d462f90e305254a331c1b1f4e68abc36",
-    "role": "battle",
-    "acts": [
-      1,
-      3
-    ]
-  },
-  {
-    "id": "battle-2",
-    "file": "battle-2.mp3",
-    "title": "하늘의 그림자",
-    "gitBlob": "051618688414ba24857652d56a7e5998acc713ac",
-    "role": "battle",
-    "acts": [
-      1,
-      3
-    ]
-  },
-  {
-    "id": "battle-3",
-    "file": "battle-3.mp3",
-    "title": "산 자와 남은 자",
-    "gitBlob": "9453899607e80e5582b5b16a06f82d427baa4f7d",
-    "role": "battle",
-    "acts": [
-      1,
-      3
-    ]
-  },
-  {
-    "id": "battle-4",
-    "file": "battle-4.mp3",
-    "title": "불길의 춤",
-    "gitBlob": "60a45c9b9be5a45fe3a24477ce57c18310122083",
-    "role": "battle",
-    "acts": [
-      2
-    ]
-  },
-  {
-    "id": "battle-5",
-    "file": "battle-5.mp3",
-    "title": "암막",
-    "gitBlob": "6dda465e00296d8d45735d9b684080d01da72816",
-    "role": "battle",
-    "acts": [
-      2
-    ]
-  },
-  {
-    "id": "battle-6",
-    "file": "battle-6.mp3",
-    "title": "불완전한 의식",
-    "gitBlob": "9f72159db7d34b1845c8e3f0a526986653ea46c7",
-    "role": "battle",
-    "acts": [
-      2
-    ]
-  }
+  {"id": "01", "file": "01_메인_혼로.mp3", "title": "혼로", "place": "메인", "role": "main", "gitBlob": "08c987af96a6b9b1b31fe91c2bfce0563ffe4862"},
+  {"id": "11", "file": "11_연목_고갯마루.mp3", "title": "고갯마루", "place": "연목", "role": "stage", "gitBlob": "fb9cbc30b683a59eea98d0b343e1261478cab090"},
+  {"id": "12", "file": "12_연목_물그늘.mp3", "title": "물그늘", "place": "연목", "role": "stage", "gitBlob": "441aade2df0297e2e2db253f68d487f122054225"},
+  {"id": "13", "file": "13_연목_그림자밟기.mp3", "title": "그림자밟기", "place": "연목", "role": "stage", "gitBlob": "5db6ff2486f1ac2669a71a70295b2a98a5df9783"},
+  {"id": "14", "file": "14_연목보스전_살풀이.mp3", "title": "살풀이", "place": "연목보스전", "role": "event", "gitBlob": "db7fc3e20a75ce591d8884a5f207f6ae446db720"},
+  {"id": "21", "file": "21_동굴_돌문.mp3", "title": "돌문", "place": "동굴", "role": "stage", "gitBlob": "2d9b2025e7c3f9a2ee204d5d30578b7e0d30c3f7"},
+  {"id": "22", "file": "22_동굴_산울림.mp3", "title": "산울림", "place": "동굴", "role": "stage", "gitBlob": "4e4a4dc5b06991e0a91b9b56c7a3ef2c5a5e07bb"},
+  {"id": "23", "file": "23_동굴_숨은 물길.mp3", "title": "숨은 물길", "place": "동굴", "role": "stage", "gitBlob": "dbe19d7affe38195be96e5fcbac89538279fb132"},
+  {"id": "24", "file": "24_천도_넋전.mp3", "title": "넋전", "place": "천도", "role": "stage", "gitBlob": "1fe865645325022fb47d9c492432244b81dc7731"},
+  {"id": "31", "file": "31_도시_저잣거리.mp3", "title": "저잣거리", "place": "도시", "role": "stage", "gitBlob": "c9f3c6bda444da4a5f4f2851132cab2125a31a3a"},
+  {"id": "32", "file": "32_도시_먹자국.mp3", "title": "먹자국", "place": "도시", "role": "stage", "gitBlob": "640f81f44282dca2b85349c1a2ca515e39b371e0"},
+  {"id": "33", "file": "33_도시_빗장.mp3", "title": "빗장", "place": "도시", "role": "stage", "gitBlob": "b49e655aa9b7a06586e1c437320c6c21a2da2739"},
+  {"id": "41", "file": "41_해안_뱃노래.mp3", "title": "뱃노래", "place": "해안", "role": "stage", "gitBlob": "28cf5f66e59e75b4c45f426740552a5baaf3d9a2"},
+  {"id": "42", "file": "42_해안_밀물.mp3", "title": "밀물", "place": "해안", "role": "stage", "gitBlob": "db95fa181be628f253f305bb8646f6302f4cd772"},
+  {"id": "43", "file": "43_저문골_빈 고샅.mp3", "title": "빈 고샅", "place": "저문골", "role": "stage", "gitBlob": "de78951721a9f97ea13157f324b7caba03ded90f"},
+  {"id": "51", "file": "51_귀림_봉홧불.mp3", "title": "봉홧불", "place": "귀림", "role": "stage", "gitBlob": "51ad7f4b23d2a15e772a38ee3a078a8e5ad4ffb8"},
+  {"id": "52", "file": "52_귀림_꽃상여.mp3", "title": "꽃상여", "place": "귀림", "role": "stage", "gitBlob": "81ac1d38e3a1a71fe7aef9f2b8d8b7a0f2f54eeb"},
+  {"id": "53", "file": "53_하늘우물_두레박.mp3", "title": "두레박", "place": "하늘우물", "role": "stage", "gitBlob": "d3a6891239df55eafc1039a8c86f16cfeff233ab"},
+  {"id": "54", "file": "54_하늘우물_물이 하늘로 간다.mp3", "title": "물이 하늘로 간다", "place": "하늘우물", "role": "stage", "gitBlob": "c0c0f65f345ac7764719c7ea37b6f0e2f6f8fc29"},
+  {"id": "61", "file": "61_무명사외부_산문.mp3", "title": "산문", "place": "무명사외부", "role": "stage", "gitBlob": "9e6f3ce56367185185ac27aa2e6193eb6e7ec820"},
+  {"id": "62", "file": "62_무명사외부_빈 종터.mp3", "title": "빈 종터", "place": "무명사외부", "role": "stage", "gitBlob": "5ac372eb79659f2c591954a63189417188b6d9da"},
+  {"id": "63", "file": "63_무명사_뒤집힌 처마.mp3", "title": "뒤집힌 처마", "place": "무명사", "role": "stage", "gitBlob": "bdd4d2aa76c4057f9597d2c437072c69976dcf4b"},
+  {"id": "64", "file": "64_무명사_이승 저승.mp3", "title": "이승 저승", "place": "무명사", "role": "stage", "gitBlob": "b78827ea349175dd6d4797b485551ef686619f04"},
+  {"id": "65", "file": "65_무명사보스전_파계.mp3", "title": "파계", "place": "무명사보스전", "role": "event", "gitBlob": "d2d21ae0110c05fe5cda155dd5e19286f9b03662"},
+  {"id": "66", "file": "66_최종전투_가름진.mp3", "title": "가름진", "place": "최종전투", "role": "stage", "gitBlob": "f448a0df3698dba9b168680a79ce665a44a4b05a"},
+  {"id": "67", "file": "67_천도_길닦음.mp3", "title": "길닦음", "place": "천도", "role": "stage", "gitBlob": "5a28f7b11005534bf4484be71ed376624dc75784"},
+  {"id": "99", "file": "99_엔딩_마중.mp3", "title": "마중", "place": "엔딩", "role": "ending", "gitBlob": "08c987af96a6b9b1b31fe91c2bfce0563ffe4862"}
 ]

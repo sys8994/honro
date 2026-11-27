@@ -4,7 +4,7 @@ import argparse
 import json
 import mimetypes
 from pathlib import Path
-from urllib.parse import urlparse
+from urllib.parse import urlparse, unquote
 from playwright.sync_api import sync_playwright
 
 arg=argparse.ArgumentParser()
@@ -20,7 +20,7 @@ origin='https://sys8994.github.io'
 errors=[]
 
 def local(route):
-    path=urlparse(route.request.url).path.removeprefix('/honro/')
+    path=unquote(urlparse(route.request.url).path).removeprefix('/honro/')
     file=(root/(path or 'index.html')).resolve()
     if not file.is_relative_to(root) or not file.is_file():return route.fulfill(status=404)
     mime={'.js':'text/javascript','.mjs':'text/javascript','.webp':'image/webp'}.get(file.suffix,mimetypes.guess_type(file)[0])
@@ -116,6 +116,7 @@ with sync_playwright() as p:
         assert r.get_attribute('data-ending-beat')=='1'
         page.screenshot(path=out/f'credits-{width}.png')
         assert r.locator('h1').inner_text()=='혼로'
+        assert r.locator('.he-song').inner_text()=='엔딩곡 · 마중'
         if wide:
             page.keyboard.down('Escape');page.clock.run_for(1000);page.keyboard.up('Escape')
             assert r.count()==1

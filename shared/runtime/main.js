@@ -811,18 +811,22 @@
         updateAudio(){
             // The battlefield owns its theme until we actually leave it, including
             // outro/result screens and ESC. Combat phase is not a navigation state.
-            const b=this.engine?.b,inBattle=(this.endingGallery?.debug?.screen||this.screen)==='battle'&&!!b;
+            const b=this.engine?.b,inBattle=this.screen==='battle'&&!!b;
             const session=inBattle?(this.training?(this.trainingMusicSession||b.session):b.session):undefined;
-            const stage=Number(b?.honroStage||this.stageId),act=stage>=11&&stage<=20?2:1;
-            this.audio?.update(inBattle&&!this.engine.noncombatWalk()?'battle':'main',document.hidden||!!G.HonroAct3Void?.blocked(this),session,inBattle&&(stage===9||stage===10)?3:undefined,act);
+            const stage=Number(b?.honroStage||this.stageId),story=b?.honroState;
+            const binding=story?.sodanBinding,flags=story?.flags;
+            const event=stage===10
+                ? story?.sodanCoop||binding?.remaining===0||(binding?.phase&&binding.phase!=='bound')
+                : stage===58&&flags?.localBossManifested&&!(flags.localDaedosaDefeated&&b.honroDaedosa?.nodeDead);
+            this.audio?.update(inBattle?'battle':'main',document.hidden||!!G.HonroAct3Void?.blocked(this),session,stage,!!event);
             this.updateMusicLabel();
         }
-        updateMusicLabel(){
+        updateMusicLabel(cinematicAudio){
             const label=this.musicLabel||(this.musicLabel=$('bgm-now-playing')),music=this.audio?.music;
             if(!label)return;
             // Report the audible stream, including the old track while the next one loads.
-            const audio=music?.enabled&&!music.paused&&music.volume>0
-                ?[music.current,music.outgoing].find(a=>a&&!a.paused&&!a.ended&&!a.muted&&!a.error&&a.readyState>=2&&a.volume>0):null;
+            const streams=cinematicAudio?[cinematicAudio]:music?.enabled&&!music.paused&&music.volume>0?[music.current,music.outgoing]:[];
+            const audio=streams.find(a=>a&&!a.paused&&!a.ended&&!a.muted&&!a.error&&a.readyState>=2&&a.volume>0);
             if(!audio){if(!label.hidden)label.hidden=true;return;}
             const source=audio.currentSrc||audio.src;
             if(source!==this.musicLabelSource){
@@ -1246,8 +1250,8 @@
             }catch{this.notify('기록의 지형 그림을 확인하지 못해 내보내지 못했습니다.');}
         }
         frame(now) {
-            if(this.endingGallery?.debug){this.prev=now;requestAnimationFrame(t=>this.frame(t));return;}
             this.updateAudio();
+            if(this.endingGallery?.debug){this.prev=now;requestAnimationFrame(t=>this.frame(t));return;}
             try {
                 const dt = Math.min(.06, Math.max(0, (now - this.prev) / 1000));
                 this.prev = now;G.HonroClearReport.time(this,now);

@@ -480,6 +480,8 @@ catch(error){if(globalThis.HonroStartup)globalThis.HonroStartup.failed(error);el
   await writeGenerated(destination,gameHtml());
   await writeGenerated(path.join(root,'index.html'),gameHtml());
   await writeGenerated(path.join(root,'HONRO_WORKSHOP.html'),workshopHtml);
+  // The public listening page can read this small catalog without loading the game manifest.
+  await writeGenerated(path.join(root,'assets/bgm/catalog.json'),await read('shared/data/bgm.json'));
   await writeGenerated(path.join(root,'workshop/HONRO_MAP_WORKSHOP.html'),'<!doctype html><meta charset="utf-8"><meta http-equiv="refresh" content="0;url=../HONRO_WORKSHOP.html"><a href="../HONRO_WORKSHOP.html">HONRO Workshop</a>');
   const currentFiles=[...files.values()].sort((a,b)=>a.path.localeCompare(b.path));
   // Superseded, never-published full-library copies are not useful rollback

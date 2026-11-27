@@ -71,7 +71,7 @@
  }
  function track(s){
   if(!assets.track||s.audio)return s.audio;
-  const a=new G.Audio(assets.track);a.preload='auto';a.loop=false;s.audio=a;return a;
+  const a=new G.Audio(assets.track);a.preload='auto';a.loop=true;s.audio=a;return a;
  }
  const volume=s=>s.app.profile?.settings?.music===false?0:clamp(Number(s.app.profile?.settings?.musicVolume??.5)||0,0,1);
  function prime(s){
@@ -86,8 +86,8 @@
   const a=track(s),v=volume(s);if(!a||!v||doc.hidden||s.closed||!s.playing)return;
   a.volume=v;
   const elapsed=Math.max(0,(G.performance.now()-s.playing.audioOrigin)/1000);
-  if(Number.isFinite(a.duration)&&elapsed>=a.duration)return;
-  if(a.readyState>0&&Math.abs(a.currentTime-elapsed)>.22){a.currentTime=elapsed;}
+  const position=Number.isFinite(a.duration)&&a.duration>0?elapsed%a.duration:elapsed;
+  if(a.readyState>0&&Math.abs(a.currentTime-position)>.22){a.currentTime=position;}
   try{a.play()?.catch(()=>{if(!s.closed&&s.playing){s.audioPlay.hidden=false;}});}catch{s.audioPlay.hidden=false;}
  }
  function mark(s){
@@ -244,5 +244,5 @@
   x.debugControls=a=>formerControls(a).replace('</div></section>','<button type="button" data-action="debug-act-ending-preview" data-id="60">6막</button></div></section>');
   x.previewDebug=(a,id)=>Number(id)===60?debug(a):formerPreview(a,id);
  }
- return Object.freeze({installDebug,silenceStock:app=>sessions.has(app),open,intro,play,prewarm});
+ return Object.freeze({installDebug,silenceStock:app=>sessions.has(app),currentAudio:app=>sessions.get(app)?.audio,open,intro,play,prewarm});
 }

@@ -40,6 +40,8 @@
 /* Music credit: permanent on menus; in battle it appears for a few seconds per track so it never covers the aim readout. */
 #bgm-now-playing{font-size:10px;transition:opacity .6s ease}
 body:has(#app .battle-screen) #bgm-now-playing:not(.fresh){opacity:0}
+body:has(.he-root[data-ending-phase="stills"]) #bgm-now-playing{z-index:4001}
+body:has(.he-root[data-ending-phase="stills"]) #bgm-now-playing:not(.fresh){opacity:0}
 /* Story dialogue on the rest screen: the hub actions are inert underneath, so do not let them peek out below the panel. */
 .story-lock .rest-actions{visibility:hidden}
 /* Settings: fullscreen is a quick secondary toggle under the title, not the loudest element of the dialog. */

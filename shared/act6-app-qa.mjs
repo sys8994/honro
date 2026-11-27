@@ -8,7 +8,7 @@ import path from 'node:path';
 
 const hash=(value,algorithm='sha256')=>createHash(algorithm).update(value).digest('hex');
 const terrainSourceSHA='6b01d867cab98268bcd8d4f328f4166c90d091b64bf69d0a1e1eb6da51e245ca';
-const pinnedMain='d73360989a51f142e9da9d59c0da81adf55c8e2f';
+const pinnedMain='3da838cc05ba29df1c2a03ceea136a4f6ff8eb76';
 export async function assertQaWebRoot(repoRoot,env=process.env){
  const root=await realpath(repoRoot), tmp=await realpath(tmpdir());
  assert.equal(path.dirname(root),tmp,'Act6 Web pilot requires a disposable direct temporary checkout');
@@ -402,7 +402,7 @@ export function makeQaMain(main,source,descriptor,terrainArt=null,journeyArt=nul
   ['        adjustAngle(u, v) {','        adjustAngle(u, v) { '+(source.includes('function adjustNativeWallAngle(')?'if(qa51.adjustNativeWallAngle(this,u,v))return; ':'')+(descriptor.bProof?'if(qa51.adjustBProofAngle(this,u,v))return;':'')]);
  if(endingReplan)edits.push(
   ['qa51.offer(this); if(this.profileStore.locked','qa51.offer(this); act6EndingReplan.installDebug(this); if(this.profileStore.locked'],
-  ['this.audio?.update(inBattle&&!this.engine.noncombatWalk()', 'if(act6EndingReplan.silenceStock(this)){this.audio?.music?.setPaused(true);this.updateMusicLabel();return;}\n            this.audio?.update(inBattle&&!this.engine.noncombatWalk()']);
+  ['        updateAudio(){', '        updateAudio(){\n            if(act6EndingReplan.silenceStock(this)){this.audio?.music?.setPaused(true);this.updateMusicLabel(act6EndingReplan.currentAudio(this));return;}']);
  if(source.includes('function enterNormal51('))edits.push(
   ['            G.HonroObjectives.updateSettlement(b,st,state.objectiveReady);','            if(!qa51.isNormal(this))G.HonroObjectives.updateSettlement(b,st,state.objectiveReady);']);
  if(source.includes('function enterNormal53('))edits.push(

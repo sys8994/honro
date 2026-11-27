@@ -86,13 +86,23 @@ export async function runtimeEntries({vector=true,render=true,app=false,producti
   const file=async source=>code(source,await read(source));
   const data=(name,value)=>parts.push({name,global:name,data:value,code:'globalThis.'+name+'='+JSON.stringify(value)+';'});
   const bgmMetadata=JSON.parse(await read('shared/data/bgm.json'));
-  const bgm=(await readdir(path.join(root,'assets/bgm'))).filter(f=>/\.mp3$/i.test(f)).sort();
-  const expectedBgm=['main.mp3',...Array.from({length:6},(_,i)=>`battle-${i+1}.mp3`)];
-  if(bgm.length!==7||JSON.stringify(bgmMetadata.map(t=>t.file))!==JSON.stringify(expectedBgm)||bgmMetadata.some(t=>!bgm.includes(t.file)))throw Error('BGM requires exactly main.mp3 and battle-1.mp3 through battle-6.mp3');
+  const bgmFiles=(await readdir(path.join(root,'assets/bgm'))).filter(f=>/\.mp3$/i.test(f));
+  const slots=new Map(bgmMetadata.map((t,i)=>[t.id,i]));
+  if(bgmMetadata[0]?.id!=='01'||!slots.has('99')||slots.size!==bgmMetadata.length||bgmFiles.length!==slots.size||
+    bgmMetadata.some(t=>!/^\d{2}$/.test(t.id)||t.file!==`${t.id}_${t.place}_${t.title}.mp3`||!bgmFiles.includes(t.file)))throw Error('BGM catalog and MP3 filenames disagree');
+  const scores=JSON.parse(await read('shared/data/bgm-stages.json'));
+  if(Object.keys(scores).length!==60)throw Error('Expected a BGM score for all 60 chapters');
+  const stageTracks={};
+  for(let stage=1;stage<=60;stage++){
+    const score=scores[stage];
+    if(!score?.loop?.length||[score.start,...score.loop,...(score.event?[score.event]:[])].some(id=>!slots.has(id)))throw Error('Invalid BGM score for chapter '+stage);
+    stageTracks[stage]={start:slots.get(score.start),loop:score.loop.map(id=>slots.get(id)),...(score.event?{event:slots.get(score.event)}:{})};
+  }
   await file('shared/runtime/fullscreen-input.js');
   await file('shared/runtime/title-markup.js');
-  data('HONRO_BGM_TRACKS',bgmMetadata.map(t=>'assets/bgm/'+t.file));
-  data('HONRO_BGM_METADATA',bgmMetadata.map(({id,file,title})=>({id,file,title})));
+  data('HONRO_BGM_TRACKS',bgmMetadata.map(t=>'assets/bgm/'+t.file+'?v='+t.gitBlob));
+  data('HONRO_BGM_METADATA',bgmMetadata.map(({id,file,place,title})=>({id,file,place,title})));
+  data('HONRO_BGM_STAGES',stageTracks);
   const skillImages=await validateSkillIcons({allowPending:true});
   if(skillImages.errors.length)throw Error(skillImages.errors.join('\n'));
   data('HONRO_SKILL_ICON_MANIFEST',{...skillImages.source,complete:skillImages.complete,icons:Object.fromEntries(Object.entries(skillImages.source.icons).map(([id,item])=>[id,{...item,url:item.status==='ready'?item.file:null}]))});

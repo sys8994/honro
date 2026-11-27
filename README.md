@@ -4,7 +4,7 @@
 
 대사 원칙 v2와 부모 원고의 별도 통합·정확한 SHA·검사 및 시작 전송량/옛 검사 한계는 [서사 통합 기록](game/docs/story/narrative-voice-v2-release-20261022/README.md)을 참고합니다.
 
-현재 BGM·승인된 11장·master 실루엣 개선을 결합한 부모 검토본은 [최종 통합 기록](game/docs/bgm-stage11-release-20261022/README.md)을 따릅니다. 아래 단독 BGM 검수의 소스/빌드와 이번 통합의 소스/빌드를 구분합니다.
+혼로의 배경음 27곡은 [청취 페이지](tools/bgm-title-review.html)에서 들을 수 있습니다. 장별 시작곡·순환·보스전과 엔딩의 재생 기준은 [BGM 목록](assets/bgm/README.md)에 있습니다.
 
 **스토리 제작 기준(2026-10-14):** [새 기준서와 적용 범위](game/docs/story/README.md). 두 사용자 v1.0 문서를 채택하며, 기존 구현·저장·검증 이력은 보존합니다. 4–6막은 후반 기획이며 이번 새 스테이지 구현 범위가 아닙니다.
 
@@ -42,7 +42,7 @@ ES 모듈과 JSON을 불러오므로 로컬에서도 HTTP를 사용합니다. �
 - 기본 주소 `https://<사용자>.github.io/<저장소>/`는 `index.html`을 통해 게임으로 이동합니다. 쿼리와 `#` 뒤의 진입 옵션도 유지합니다.
 - 게임 직접 주소: `https://<사용자>.github.io/<저장소>/HONRO.html`
 - 편집기 직접 주소: `https://<사용자>.github.io/<저장소>/HONRO_WORKSHOP.html`
-- 배포 필수 파일은 `index.html`, `HONRO.html`, `web/` 전체와 `assets/bgm/`의 MP3 7개입니다. 편집기도 공개하려면 `HONRO_WORKSHOP.html`을 함께 포함합니다. `npm run build`가 두 HTML과 콘텐츠 해시 자산을 함께 최신화합니다. Playtest는 `web/entries/game.<hash>.html?embedded=1`을 직접 열며 기존 공개 주소와 저장키는 유지합니다.
+- 배포 필수 파일은 `index.html`, `HONRO.html`, `web/` 전체와 `assets/bgm/`의 MP3 27개와 청취용 목록입니다. 편집기도 공개하려면 `HONRO_WORKSHOP.html`을 함께 포함합니다. `npm run build`가 두 HTML과 콘텐츠 해시 자산을 함께 최신화합니다. Playtest는 `web/entries/game.<hash>.html?embedded=1`을 직접 열며 기존 공개 주소와 저장키는 유지합니다.
 
 Pages는 파일명의 대소문자를 구분합니다. [GitHub 공식 안내](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site)를 참고합니다.
 

@@ -1,12 +1,9 @@
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
-import {createHash} from 'node:crypto';
 import path from 'node:path';
 import sharp from 'sharp';
 import {cuts,intro,names,selectEndingCue} from './cues.mjs';
 const dir='shared/act6-ending-replan';
-const TEMP_TRACK_FILE='assets/bgm/main.mp3';
-const TEMP_TRACK_SHA1='12fa25bef170b60de432272743efe44b16bdd50d';
 function splice(src,anchor,replacement){
  assert.equal(src.split(anchor).length,2,'Unreviewed Stage60 presentation anchor: '+anchor);
  return src.replace(anchor,()=>replacement);
@@ -15,9 +12,9 @@ export async function prepareEndingReplan({root,emit,descriptor}){
  assert(descriptor.releaseEnabled&&descriptor.boundary&&descriptor.normalEndingAssets);
  const read=(name,encoding)=>readFile(path.join(root,dir,name),encoding);
  const base=descriptor.basePath;assert.equal(base,'/honro/');
- const bytes=await readFile(path.join(root,TEMP_TRACK_FILE));
- const blob=createHash('sha1').update('blob '+bytes.length+'\0').update(bytes).digest('hex');
- assert.equal(blob,TEMP_TRACK_SHA1,'Temporary ending track must be the registered title track');
+ const catalog=JSON.parse(await readFile(path.join(root,'shared/data/bgm.json'),'utf8'));
+ const ending=catalog.find(t=>t.id==='99');
+ assert(ending?.role==='ending','Missing ending BGM 99');
  const done=await Promise.all(cuts.map(async ({id})=>{
   const media={};
   for(const [side,w,h] of [['land',1920,1080],['port',1080,1920]]){
@@ -32,7 +29,7 @@ export async function prepareEndingReplan({root,emit,descriptor}){
  return Object.freeze({
   code:await read('presentation.inc.js','utf8'),css:await read('presentation.css','utf8'),
   nativeHost:await read('native-host.inc.js','utf8'),
-  assets:{stills:Object.fromEntries(done),track:base+TEMP_TRACK_FILE,credit},
+  assets:{stills:Object.fromEntries(done),track:'assets/bgm/'+ending.file+'?v='+ending.gitBlob,credit:{...credit,song:ending.title}},
   timeline:{intro,names,cuts}
  });
 }

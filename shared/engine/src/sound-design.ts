@@ -146,6 +146,6 @@ export class AudioEngine {
     }
     pause(){this.skills.stopAll();this.music.clearDucking();for(const voice of this.voices){try{voice.stop();}catch{}}this.voices.clear();this.dialogueVoice=null;this.pending=[];}
     setTheme(_n:number){}
-    update(state?:MusicState,paused=false,battleSession?:string,firstBattleTrack?:number,battleAct?:number){this.paused=paused;this.skills.setPaused(paused);if(paused)this.pause();this.music.setPaused(paused);if(state)this.music.select(state,battleSession,firstBattleTrack,battleAct);this.music.tick();}
+    update(state?:MusicState,paused=false,battleSession?:string,stage?:number,event?:boolean){this.paused=paused;this.skills.setPaused(paused);if(paused)this.pause();this.music.setPaused(paused);if(state)this.music.select(state,battleSession,stage,event);this.music.tick();}
     dispose(){this.skills.dispose();this.disposed=true;this.pause();this.music.dispose();void this.context?.close();}
 }
