@@ -21,7 +21,8 @@ export async function compileCampaignStills({root,emit,sharp}){
   assert.ok(typeof c.alt==='string'&&c.alt.trim(),'Missing alt text: '+c.id);
   assert.ok(Array.isArray(c.beats)&&c.beats.length>0&&c.beats.every(x=>typeof x==='string'&&x.trim()),'Missing narration: '+c.id);
   assert.ok(Number.isFinite(c.duration)&&c.duration>0,'Invalid still duration: '+c.id);
-  if(c.existing)continue;
+  assert.ok(c.overrideArt===undefined||(c.existing&&c.overrideArt===true),'Invalid legacy art override: '+c.id);
+  if(c.existing&&!c.overrideArt)continue;
   c.assets=Object.fromEntries(await Promise.all([['land',1920,1080],['port',1080,1920]].map(async ([side,width,height])=>{
    const bytes=await readFile(path.join(dir,'stills',`${c.id}-${side}.webp`));
    const m=await sharp(bytes).metadata();

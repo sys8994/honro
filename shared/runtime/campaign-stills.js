@@ -41,7 +41,7 @@ function close(app){const s=sessions.get(app);if(!s)return false; sessions.delet
 function open(app,authored,stock,mode,options,finish){
  const t=prepareSequence(authored,stock),stills={};
  for(const c of t.cuts){
-  if(c.existing){
+  if(c.existing&&!c.overrideArt){
    if(!stock?.image)return false;
    stills[c.id]={land:stock.image,port:stock.portraitImage||stock.image};
   }else stills[c.id]=c.assets;

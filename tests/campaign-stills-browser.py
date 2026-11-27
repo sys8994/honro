@@ -13,6 +13,7 @@ parser.add_argument("--out", type=Path, default=Path("_local/reports/campaign-st
 args = parser.parse_args()
 args.out.mkdir(parents=True, exist_ok=True)
 DATA = json.loads(Path("shared/campaign-stills/content.json").read_text())
+REVISED_COMPOSITIONS = {"opening-03", "act1-3", "act3-3", "act5-2"}
 BASE_PROFILE = """()=>{const a=HonroApp;
  a.stopBattle();a.close();a.debugMode=false;a.training=false;a.customMap=null;
  a.profile=HONRO_TOOLS.fresh();a.normalProfile=a.profile;a.persist();a.showTitle();
@@ -56,6 +57,25 @@ def capture_cut(page, ident, prefix):
     return first
 
 
+def capture_revision_pair(page, cut):
+    if not cut.get("overrideArt") and cut["id"] not in REVISED_COMPOSITIONS:
+        return
+    ident = cut["id"]
+    for side, width, viewport in (
+        ("port", 1080, {"width": 390, "height": 844}),
+        ("land", 1920, {"width": 1440, "height": 900}),
+        ("port", 1080, {"width": 390, "height": 844}),
+    ):
+        page.set_viewport_size(viewport)
+        page.wait_for_function(
+            """([id, side, width])=>{const n=document.querySelector('[data-campaign-stills]');
+            const i=n?.querySelector('.he-still');
+            return n?.dataset.endingStill===id&&i?.currentSrc.includes(`campaign-still-${id}-${side}.`)
+              &&i.complete&&i.naturalWidth===width;}""", arg=[ident, side, width])
+        if side == "land":
+            capture_cut(page, ident, "desktop")
+
+
 with sync_playwright() as p, serve_game() as url:
     browser = launch(p)
     page = browser.new_page(viewport={"width": 1440, "height": 900}, has_touch=True)
@@ -82,6 +102,7 @@ with sync_playwright() as p, serve_game() as url:
     for cut in DATA["opening"]:
         if cut["id"] != DATA["opening"][0]["id"]:
             capture_cut(page, cut["id"], "mobile")
+        capture_revision_pair(page, cut)
         for i, _ in enumerate(cut["beats"]):
             advance(page, intro, touch=i % 2 == 0)
     intro.wait_for(state="detached")
@@ -112,6 +133,7 @@ with sync_playwright() as p, serve_game() as url:
         viewer.wait_for()
         for index, cut in enumerate(cuts):
             capture_cut(page, cut["id"], "mobile")
+            capture_revision_pair(page, cut)
             if index != 2:
                 for i, _ in enumerate(cut["beats"]):
                     advance(page, viewer, touch=i == 0)

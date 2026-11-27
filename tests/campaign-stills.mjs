@@ -8,12 +8,12 @@ const code=await readFile(new URL('../shared/runtime/campaign-stills.js',import.
 const cut=(id,options)=>({id,alt:id,motion:'still',beats:[id],duration:6,assets:{land:id+'-land',port:id+'-port'},...options});
 const art=stage=>[cut('payoff',{existing:true}),cut('bridge'),cut('foreshadow')];
 const data={opening:[0,1,2,3,4].map(i=>cut('opening-'+i)),endings:{20:art(20),30:art(30)}};
-function harness(overrides={}){
+function harness(overrides={},content=data){
  const runtime={HonroStoryContent:{version:9},HONRO_ACT_ENDINGS:{20:{image:'stock20',portraitImage:'stock20mobile'},30:{image:'stock30'}}};
  let view,saveCount=0,continueCount=0;
  const app={profile:{cleared:{},seen:{},lastStage:1},screen:'title',cancelInput(){},close(){},persist(){saveCount++;},...overrides};
  const player=(G,assets,css,t)=>({open(a,mode,leave,opts){const result={close(){result.closed=true;}};view={mode,assets,t,opts,leave,result};return result;},prewarm(){},play(){}});
- const sandbox={...runtime,campaignStillsData:data,campaignStillsPlayer:player,campaignStillsCueAt:selectEndingCue,campaignStillsCss:''};
+ const sandbox={...runtime,campaignStillsData:content,campaignStillsPlayer:player,campaignStillsCueAt:selectEndingCue,campaignStillsCss:''};
  vm.runInNewContext(code,sandbox);
  const api=sandbox.HonroCampaignStills;
  return {api,app,get view(){return view;},get saves(){return saveCount;},get advances(){return continueCount;},start:()=>api.openFresh(app,()=>continueCount++)};
@@ -57,6 +57,15 @@ test('only approved canonical evidence IDs are distributed and the original art 
   assert.equal(state.stillBeat,expect[0].length);
   assert.equal(h.saves,1);
  }
+});
+test('a campaign cut can replace both orientations without changing the legacy ending art',()=>{
+ const original=data.endings[20];
+ const revised={...data,endings:{...data.endings,20:[{...original[0],overrideArt:true},...original.slice(1)]}};
+ const h=harness({},revised);
+ assert.ok(h.api.showEnding(h.app,{stage:20},{image:'legacy-land',portraitImage:'legacy-port',lines:[]},'gallery',()=>{}));
+ assert.equal(h.view.assets.stills.payoff.land,'payoff-land');
+ assert.equal(h.view.assets.stills.payoff.port,'payoff-port');
+ assert.equal(h.saves,0);
 });
 test('debug never leaks unidentified old lines or writes a cursor',()=>{
  const h=harness(),state={stage:20,debug:{}};
