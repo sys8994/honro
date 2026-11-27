@@ -1,0 +1,1 @@
+import{loadData,loadProject}from"./load-data.36ebfa6c4287ef7a.js";globalThis.HONRO_TERRAIN_ZOOM_ART=await loadData("web/data/HONRO_TERRAIN_ZOOM_ART.5b6f3a39a555b004.json",[["40",0,"src"],["40",1,"src"],["40",2,"src"],["40",3,"src"],["40",4,"src"],["44",0,"src"],["45",0,"src"],["46",0,"src"],["48",0,"src"],["49",0,"src"],["50",0,"src"]],{svgSources:false});
