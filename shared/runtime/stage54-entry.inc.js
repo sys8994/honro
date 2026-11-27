@@ -118,7 +118,7 @@
         try{
           app.mount(b,{freshReport:true,reportScope:'custom'});
           check(app.engine===s.engine&&app.engine.stage===content&&app.scene&&app.screen==='battle','Normal 54 chart mount failed');
-          if(t.bridge)mountBrokenReceive54(app,s,t.bridge,view);
+          mountBrokenReceive54(app,s,t.bridge,view);
           const ui=appUI(app);check(ui,'Normal 54 controls absent');const button=document.createElement('button');
           button.type='button';button.dataset.act6QaLookout='';styleAction(button);button.textContent='첫 받침에서 건너기';
           button.addEventListener('click',event=>{if(event.isTrusted&&event.currentTarget===button)action(app,event);});s.button=button;
@@ -132,8 +132,11 @@
         s.engine=e;e.checkEnd=()=>app.checkMission(e);return true;
       }
       function mountBrokenReceive54(app,s,receipt,view){
-        const e=s.engine,b=s.b,hero=e.active,B=brokenRail,to=receipt.to,origin={x:hero.x,y:hero.y};
-        check(validBrokenRailCrossing(B,hero.id,receipt),'Broken rail receipt refused');
+        const e=s.engine,b=s.b,hero=e.active,B=brokenRail,origin={x:hero.x,y:hero.y};
+        // Early signed saves predate the crossing sample. They still start on the
+        // receiving sill. Only a recorded crossing supplies velocity or a witness.
+        const to=receipt===undefined?{x:B.wall.left,y:B.crossY,vx:0,vy:0}:receipt?.to;
+        check(receipt===undefined||validBrokenRailCrossing(B,hero.id,receipt),'Broken rail receipt refused');
         const {rail,data}=rail54Assets.get(s.packet),[x,y]=B.guard;
         const guard=C.makeUnit('archer',1,x,y,{id:'mumyeongsa-b-wall-guard',name:'기둥그림자',h:88,r:23,hp:600,maxHp:600,
           focus:140,maxFocus:140,loadout:['LA01'],ranks:{LA01:1},awake:true,role:'bow',attack:.9,walkSpeed:290,maxMove:420,moveLeft:420});

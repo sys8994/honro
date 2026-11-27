@@ -12,6 +12,7 @@ import sharp from 'sharp';
 import {minify} from 'terser';
 import {planWebAssetRetention,selectPublishedGenerations,publishedRetention} from './web-retention.mjs';
 import {emitJsonParts,webJsonPartBytes} from './web-json-parts.mjs';
+import {createBrokenRail,validBrokenRailCrossing} from './act6-mumyeongsa/broken-rail.mjs';
 import {STAGE55} from './runtime/stage55-pilot-owner.mjs';
 import {owner56} from './runtime/stage56-owner.mjs';
 import {STAGE59} from './runtime/stage59-owner.mjs';
@@ -244,6 +245,7 @@ export async function buildWeb({vector=true,destination=path.join(root,'HONRO.ht
       const fixtures=JSON.parse(await read('shared/act6-debug-stages/fixtures.json'));
       assert.deepEqual(Object.keys(fixtures),Object.keys(descriptors.boundary.pins));
       const rows={};
+      const rail=createBrokenRail(JSON.parse(await read('shared/act6-b-slice/layout.json')));
       for(const [id,{body,profile}] of Object.entries(fixtures)){
         const pin=descriptors.boundary.pins[id],label='Act6 debug chapter '+id;
         assert.equal(body.to,pin.to,label);
@@ -253,6 +255,12 @@ export async function buildWeb({vector=true,destination=path.join(root,'HONRO.ht
         assert(profile.cleared[50],label);
         for(const [key,value] of Object.entries({profile,custody:body.custody,terminal:body.terminal})){
           assert.equal(hash(JSON.stringify(value)),body[key+'SHA'],label+' '+key);
+        }
+        if(pin.to===54){
+          const {mage}=body.custody,bridge=body.terminal.bridge;
+          assert(validBrokenRailCrossing(rail,mage.id,bridge),label+' B crossing');
+          assert.equal(mage.x,bridge.to.x,label+' wall contact x');
+          assert.equal(mage.y,bridge.to.y,label+' wall contact y');
         }
         const current={...body,pin};
         rows[id]={profile,body:current,bodySHA:hash(JSON.stringify(current))};
