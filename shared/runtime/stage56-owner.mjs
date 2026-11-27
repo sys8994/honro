@@ -30,7 +30,7 @@ export function createStage56Owner({authorize,previousOutcome,projectScene=()=>{
  keyed.add(e);
  const flags=Object.fromEntries(kList.map(k=>[k,false])),order=[],events=[],action=()=>b.phase==='aim'&&e.active===m&&e.canAct()&&m.hp>0&&!m.dead&&!b.projectiles?.length;
  const support=()=>e.contactSurface(m.x,m.y-3,m.y+4)?.t.id,live=()=>e.grounded(m),near=(x,id,r=180)=>live()&&support()===id&&Math.abs(m.x-x)<=r;
- let seeded=null,ward=null,reflow=null,done=false,oldExit=false,scopeFrame='quiet',seconds=0,gapAttackAt=null,terminal=null;
+ let seeded=null,ward=null,reflow=null,done=false,oldExit=false,scopeFrame='quiet',seconds=0,gapAttackAt=null,terminal=null,distantWarning=false;
  const oldFire=e.fire.bind(e);e.fire=(...args)=>{const who=e.active,result=oldFire(...args);if(result&&resolvedGap&&who===resolvedGap&&args[0]==='HBM01')gapAttackAt=seconds;return result;};
  const emit=(k)=>{if(!flags[k]){flags[k]=true;order.push(k);observe(k);}};
  const say=(x)=>e.message(x);
@@ -81,6 +81,14 @@ const fieldsBefore=()=>structuredClone(b.physics?.regions??[]);
  const nativeTick=e.tick.bind(e);
  e.tick=(dt)=>{
   seconds+=dt;
+  // The far procession begins to hesitate while Dam-heo walks to the observation point.
+  // This is only a sensory warning: do not move the reflow physics, failure flag,
+  // trusted readNarrowing action, or native stage/settlement proof to this event.
+  if(seeded&&!distantWarning&&!flags.firstGarmjinFailed&&scopeFrame==='forward'&&
+     b.phase==='aim'&&e.active===m&&m.hp>0&&!m.dead&&Math.abs(m.x-seeded.point.x)>=45){
+   distantWarning=true;
+   say('소단: 먼 길의 발소리가 조금씩 늦어져요. 줄은 더 당기지 않을게요. 돌턱에서 흐름을 확인해 주세요.');
+  }
   if(ward&&reflow==='warned'&&b.side===1&&b.active===ward.id&&b.phase==='enemy'&&b.round>=ward.turn){
    if(live()&&support()===B&&m.x<strip.left-10&&Math.abs(m.x-ward.pose.x)>120){
     reflow='evaded';events.push({key:'native-evade',pose:{x:m.x,y:m.y},support:support(),opponent:b.active,phase:b.phase,round:b.round,actorSetter:false});
