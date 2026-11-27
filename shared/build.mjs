@@ -316,7 +316,7 @@ function stage33CoastRestore(b,library){
   }
   if(render){
     const zoomArt={};
-    for(const stage of [40,46,48,49]){
+    for(const stage of [40,44,46,48,49]){
       const rows=JSON.parse(await read('shared/assets/terrain-zoom/'+stage+'.json'));
       for(const row of rows){
         const bytes=await readFile(path.join(root,'shared/assets/terrain-zoom',row.file));
@@ -327,6 +327,7 @@ function stage33CoastRestore(b,library){
     }
     data('HONRO_TERRAIN_ZOOM_ART',zoomArt);
     await file('shared/runtime/terrain-zoom-art.js');
+    await file('shared/runtime/campaign-terrain-finish.js');
   }
   if(app){
     data('HONRO_SKILL_AUDIO',await skillAudioData());

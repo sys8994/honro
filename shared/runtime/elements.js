@@ -1,10 +1,51 @@
 (function(G){'use strict';
 const Scene=G.HonroScene,Q=G.HonroGeometry;
 const nativeLandmark=Scene.prototype.landmark;
+// The large Act 6 cliff and terrace owners use immutable, filled world-space faces.
+ // Keep their exact path and paint order, and omit faces wholly outside this backing tile.
+const cliffPaths=new WeakMap();
+function tileFaces(c,asset,inst,scene){
+ const b=scene?.battle;
+ if(!scene?._staticCacheBuild||![51,52].includes(b?.honroStage)||!b.honroCanonical||
+    b.honroCustom!==false||b.honroMapOrigin!=='campaign'||inst.x||inst.y||inst.rotation||(inst.scale??1)!==1||
+    asset.anchor?.x||asset.anchor?.y||!asset.visual?.length)return false;
+ const m=c.getTransform();
+ if(m.a<=0||m.d<=0||m.b||m.c)return false;
+ let record=cliffPaths.get(asset);
+ if(!record||record.source!==asset.visual||record.version!==b.sceneVersion){
+  const simple=!['tree','rock','architecture'].includes(asset.category)&&asset.visual.every(face=>
+   face.fill&&!face.stroke&&face.closed!==false&&face.points?.length>=3);
+  const faces=simple?asset.visual.map(face=>{
+   let left=Infinity,top=Infinity,right=-Infinity,bottom=-Infinity;
+   const path=new Path2D();
+   face.points.forEach((p,i)=>{
+    if(i)path.lineTo(p.x,p.y);else path.moveTo(p.x,p.y);
+    left=Math.min(left,p.x);right=Math.max(right,p.x);top=Math.min(top,p.y);bottom=Math.max(bottom,p.y);
+   });
+   path.closePath();return {path,left,right,top,bottom,fill:face.fill,alpha:face.alpha??1};
+  }):null;
+  record={source:asset.visual,version:b.sceneVersion,faces};cliffPaths.set(asset,record);
+ }
+ if(!record.faces)return false;
+ const margin=5,left=(-m.e-margin)/m.a,top=(-m.f-margin)/m.d;
+ const right=(c.canvas.width-m.e+margin)/m.a,bottom=(c.canvas.height-m.f+margin)/m.d;
+ const visible=record.faces.filter(f=>f.right>=left&&f.left<=right&&f.bottom>=top&&f.top<=bottom);
+ c.save();try{
+  if(c.honroVisualLayer==='gameplay'){
+   const style=G.HonroVisualStyle.STYLE;c.strokeStyle=style.outline;
+   c.lineWidth=style.outlinePixels/Math.max(.05,m.a);c.lineJoin='round';
+   for(const f of visible)if(f.alpha>=.95)c.stroke(f.path);
+  }
+  const alpha=c.globalAlpha;
+  for(const f of visible){c.globalAlpha=alpha*f.alpha;c.fillStyle=f.fill;c.fill(f.path);}
+ }finally{c.restore();}
+ return true;
+}
 function draw(c,asset,inst,scene){
  const V=G.HonroVisualStyle;if(V)c=V.context(c,V.classify(inst,scene?.battle,asset)==='gameplay'?'gameplay':V.depth(inst,asset));
  if(G.HonroAct2SpatialArt?.element(c,asset,inst,scene))return;
  if(asset.vector&&G.HonroVectorArt?.draw(c,asset,inst))return;
+ if(asset.renderer!=='landmark'&&tileFaces(c,asset,inst,scene))return;
  c.save();
  if(asset.renderer==='landmark'){
   c.translate(inst.x,inst.y);c.rotate(inst.rotation||0);c.scale(inst.scale??1,inst.scale??1);

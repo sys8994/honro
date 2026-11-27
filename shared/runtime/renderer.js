@@ -146,7 +146,7 @@
             this._terrainZoom=null;
         }
         _trackTerrainZoom(b,w){
-            if(![40,46,48,49].includes(b.honroStage)||!b.honroCanonical||b.honroCustom!==false||b.honroMapOrigin!=='campaign'){
+            if(![40,44,46,48,49,51,52].includes(b.honroStage)||!b.honroCanonical||b.honroCustom!==false||b.honroMapOrigin!=='campaign'){
                 if(this._terrainZoom)this._releaseDomainTiles();
                 return;
             }
