@@ -11,7 +11,7 @@ export async function compileCampaignStills({root,emit,sharp}){
  for(const [stage,cuts] of Object.entries(data.endings)){
   assert.equal(cuts.length,3,`Expected three stills for stage ${stage}`);
   assert.deepEqual(cuts.map(c=>c.role),['payoff','bridge','foreshadow'],`Ending order for stage ${stage}: payoff → bridge → foreshadow`);
-  assert.equal(cuts.filter(c=>c.existing).length,1,`Retain one original image for stage ${stage}`);
+  assert.equal(cuts.filter(c=>c.existing).length,1,`Expected one legacy ending slot for stage ${stage}`);
  }
  const all=[...data.opening,...Object.values(data.endings).flat()], ids=new Set();
  assert.ok(data.opening.every(c=>!c.existing),'Opening cannot refer to legacy act cut data');

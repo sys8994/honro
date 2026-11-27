@@ -3,6 +3,7 @@ const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 const stamp=id=>'act-ending-v1:'+id;
 const neutralContent=id=>G.HonroCampaignStills?.hasEnding(id)&&G.HONRO_ACT_ENDINGS[id]?{...G.HONRO_ACT_ENDINGS[id],lines:[]}:null;
 function content(id,profile,prospective=false){
+ id=Number(id);
  const reviewed=G.HonroAct23V4ReviewedChapters?.endingContent(profile,id,prospective);
  if(reviewed===null)return (prospective||profile?.cleared?.[id])?neutralContent(id):null;
  return reviewed===undefined?(G.HonroAct23V4Chapter30Reviewed?.endingContent({profile},id,G.HONRO_ACT_ENDINGS[id])??G.HONRO_ACT_ENDINGS[id]):reviewed;
