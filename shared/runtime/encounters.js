@@ -75,6 +75,7 @@ function update(app,dt,state){
   hs.pendingEvents??=[];
   hs.encounterCooldown=Math.max(0,(hs.encounterCooldown||0)-dt);
   for(const ev of b.honroEvents||[]){
+    if(ev.honroCampaignReinforcement)continue; // The tactical warning owns admission.
     const key='event:'+ev.id;if(hs.flags[key])continue;
     if(ev.actor&&!b.units.some(u=>u.id===ev.actor&&!u.dead&&u.hp>0)){hs.flags[key]='cancelled:actor-unavailable';continue;}
     const enemies=e.alive(1).length;
@@ -102,7 +103,8 @@ function flush(app){
     if(G.HonroAllies.execute(app,ev.action?{...ev.action,source:ev.action.source||ev.id}:ev.action)===false)continue;
     const reinforcementIds=beforeIds?b.units.filter(u=>!beforeIds.has(u.id)&&u.side===1&&!u.honroObjectiveTarget).map(u=>u.id):null;
     if(reinforcementIds){hs.reinforcementEvents??={};hs.reinforcementEvents[id]=reinforcementIds;}
-    if(ev.entry){e.fx('ring',ev.entry.x,ev.entry.y-12,'#c8b286',95);e.fx('text',ev.entry.x,ev.entry.y-125,'#d4b790',16,'증원');}
+    const entry=ev.honroCampaignReinforcement?e.unit(reinforcementIds?.[0]):ev.entry;
+    if(entry){e.fx('ring',entry.x,entry.y-12,'#c8b286',95);e.fx('text',entry.x,entry.y-125,'#d4b790',16,'증원');}
     hs.flags[key]=true;if(combat(ev.action)){spawned=true;hs.lastCombatEventBoundary=boundary;}
     hs.eventLog??=[];hs.eventLog.push({id,phase:b.phase,round:b.round,side:b.side,teamEnds:[...b.teamEnds]});hs.eventLog=hs.eventLog.slice(-80);
     hs.pendingEvents=hs.pendingEvents.filter(v=>v!==id);

@@ -2,7 +2,8 @@
 // A fresh authored battle explicitly opts in. No Continue upgrades, global
 // activation/range/cap changes, new victory conditions or growth changes.
 const C=G.HONRO_CORE,E=G.HonroEncounters,W=G.HonroAllies,stages=new Set([6,8,9,11,12,16,17,18,21,23,24,30]);
-const active=b=>!!b&&!b.honroCustom&&stages.has(b.honroStage)&&b.honroEncounterDensityRevision===1&&(b.honroStage!==6||b.honroStage6PursuitRevision===1);
+const campaignResponse=b=>b.honroCampaignReinforcements===1&&b.honroMapOrigin==='campaign'&&b.honroStage>=24&&b.honroStage<=40;
+const active=b=>!!b&&!b.honroCustom&&(campaignResponse(b)||stages.has(b.honroStage)&&b.honroEncounterDensityRevision===1&&(b.honroStage!==6||b.honroStage6PursuitRevision===1));
 const alive=u=>u&&!u.dead&&u.hp>0,hero=u=>alive(u)&&u.side===0&&!u.summoned&&!u.enthrall;
 const memory=b=>(b.honroState.encounterDensity??={version:1,alert:{},warnings:{},entries:{}});
 const serial=b=>b.honroState.actorTurnSerial||0;
@@ -27,7 +28,7 @@ function installActivation(e){const b=e.b,defs=b.honroEncounterDensityActivation
 function tune(b,u,st,m){u.elite=false;u.armor=.04;G.HonroProgression.tuneEnemy(st,u,m.kind);
  if(b.honroStage===8)G.HonroStage8Bier.tuneOrdinary(b,u,st,m.kind,!!m.elite);
  else if(b.honroStage<=20){u.honroAct2Revision=2;u.honroAct2Elite=!!m.elite;G.HonroAct2.tuneEncounter(u,b.honroStage);}
- else{u.honroAct3Encounter=1;u.honroAct3Elite=!!m.elite;G.HonroAct3Encounters.tune(b,u,st);}
+ else if(b.honroStage<=30){u.honroAct3Encounter=1;u.honroAct3Elite=!!m.elite;G.HonroAct3Encounters.tune(b,u,st);}
  G.HonroProgression.enemyXP(b,u);
 }
 // All members reserve exact authored supported body positions together. The
@@ -38,6 +39,7 @@ function spawnMembers(app,action,at){const e=app.engine,b=e.b;if(!active(b)||!Ar
   const kind=m.kind,flying=!!G.HonroWorld.archetypes[kind]?.flying,x=m.x,y=m.y,support=m.support||m.surfaceId;
   if(!Number.isFinite(x)||!Number.isFinite(y)||!G.HonroWorld.archetypes[kind])return false;
   const contact=m.air&&flying?{y}:G.HonroMapEngine.surfaceY(b.terrain,x,y,support);if(!contact||!m.air&&(!support||Math.abs(contact.y-y)>.1))return false;
+  if(action.campaignApproach&&b.units.some(u=>alive(u)&&u.side!==1&&Math.hypot(u.x-x,(u.y-y)*.85)<170))return false;
   const u=G.HonroWorld.createEnemy(shadow,app.stage,x,kind,next+i,y,true);tune(b,u,app.stage,m);
   Object.assign(u,{honroContributionId:'wave:'+action.source+':'+i,id:'event-'+(next+i),awake:true,aggroUntil:b.round+3,honroSpawnSource:action.source,honroDensityBornRound:b.round,honroEncounterRole:m.role||m.honroDensityRole||'response',honroEncounterSupport:support,honroDensityCell:m.activationCell||null,honroCohort:m.cohort||m.honroCohort||'reinforcement',spawnX:x,spawnY:y,group:80+(b.honroEvents||[]).findIndex(ev=>ev.id===action.source)});
   shadow.units=[...b.units,...list];const point=G.HonroTerrain.place(shadow,u,{flying,maxDistance:0,clearance:18});
@@ -51,7 +53,13 @@ function spawnMembers(app,action,at){const e=app.engine,b=e.b;if(!active(b)||!Ar
  b.nextId=next+list.length;b.units.push(...list);b.honroCounters.spawned+=list.length;return true;
 }
 const own=ev=>ev?.honroDensityResponse===1;
-function ready(b,ev){const t=ev.honroDensityTrigger||{},done=b.honroState.act2?.done||b.honroState.act3?.done||{};return(!t.objectiveDone||done[t.objectiveDone])&&(!t.region||b.units.some(u=>hero(u)&&G.HonroAuthored.inside(u,t.region)));}
+function ready(e,ev){const b=e.b,t=ev.honroDensityTrigger||{},done=b.honroState.act2?.done||b.honroState.act3?.done||{};
+ if(ev.honroCampaignReinforcement){
+  const objectives=b.honroState.act23v4?.done||done;
+  return (!t.objectives||t.objectives.every(id=>objectives[id]))&&e.heroesAlive().some(u=>e.grounded(u)&&G.HonroAuthored.inside(u,t.region));
+ }
+ return (!t.objectiveDone||done[t.objectiveDone])&&(!t.region||b.units.some(u=>hero(u)&&G.HonroAuthored.inside(u,t.region)));
+}
 // The reauthored battle also strengthens legacy objective waves: an enemy
 // action advancing the serial alone is not a player's chance to respond.
 function warnings(b){const hs=b.honroState,m=memory(b),all={...m.warnings};
@@ -68,14 +76,14 @@ function observeWarnings(b){const m=memory(b),hs=b.honroState;m.existingWarnings
 function offer(app){if(ended(app)||paused(app))return;const e=app.engine,b=e.b,u=e.active;if(b.phase!=='aim'||b.side!==0||!hero(u)||u.acted)return;for(const [id,w] of Object.entries(warnings(b)))if(!w.opportunity&&!w.cancelled&&(b.honroStage!==6||id!=='pursuit'||G.HonroStage6Pursuit?.shown(app)))(w.offered??={})[u.id]={round:b.round,serial:serial(b)};}
 function prepare(app){const e=app.engine,b=e.b,mem=memory(b),hs=b.honroState;if(ended(app)){for(const ev of b.honroEvents||[])if((own(ev)||b.honroStage===9&&ev.honroTacticalWarning===1)&&!hs.flags['event:'+ev.id]){hs.flags['event:'+ev.id]='cancelled:battle-ended';const w=warnings(b)[ev.id];if(w)w.cancelled=true;hs.pendingEvents=(hs.pendingEvents||[]).filter(id=>id!==ev.id);}return;}
  observeWarnings(b);const action=e.honroDensityAction,u=action&&e.unit(action.id);if(action&&app.actorBoundary===action.id&&hero(u)&&u.acted)for(const id of action.waves){const w=warnings(b)[id];if(w&&!w.opportunity&&serial(b)>w.serial)w.opportunity={id:u.id,round:b.round,serial:serial(b)};}
- if(paused(app))return;hs.pendingEvents??=[];for(const ev of b.honroEvents||[]){if(!own(ev)||hs.flags['event:'+ev.id]||!ready(b,ev))continue;if(!mem.warnings[ev.id]){mem.warnings[ev.id]={serial:serial(b),round:b.round,offered:{}};app.event(ev.warning);app.dirty=true;}if(!hs.pendingEvents.includes(ev.id))hs.pendingEvents.push(ev.id);}
+ if(paused(app))return;hs.pendingEvents??=[];for(const ev of b.honroEvents||[]){if(!own(ev)||hs.flags['event:'+ev.id]||!ready(e,ev))continue;if(!mem.warnings[ev.id]){mem.warnings[ev.id]={serial:serial(b),round:b.round,offered:{}};app.event(ev.warning);app.dirty=true;}if(!hs.pendingEvents.includes(ev.id))hs.pendingEvents.push(ev.id);}
  offer(app);E.flush(app);
 }
 const cap=E.populationCap;E.populationCap=function(b){const n=b?.honroEncounterDensityPopulationCap;return active(b)&&Number.isInteger(n)&&n>0&&n<=120?n:cap(b);};
 const execute=W.execute;W.execute=function(app,action){const b=app.engine?.b;if(!active(b))return execute(app,action);observeWarnings(b);prepareOpportunity(app);if(action?.honroDensityResponse!==1){const w=warnings(b)[action?.source];if(w&&E.combat(action)&&(!w.opportunity||!safe(app)))return false;return execute(app,action);}const mem=memory(b),ev=b.honroEvents.find(ev=>ev.id===action.source),w=mem.warnings[action.source];if(!ev||!w?.opportunity||w.cancelled||!safe(app))return false;if(mem.entries[action.source])return true;
  const actions=action.actions||[action],choices=[actions,...(ev.honroDensityAlternatives||[])];for(const [index,rows]of choices.entries()){
   const members=rows.flatMap(q=>Array.from({length:q.n||1},(_,i)=>({...q,x:q.x+(i-((q.n||1)-1)/2)*(q.spacing||115),elite:q.honroDensityElite??q.elite,role:q.honroDensityRole??q.role,air:q.air===true})));
-  if(eCount(app)+members.length>E.populationCap(b))return false;const before=b.units.length;if(!spawnMembers(app,{...action,n:members.length},{members}))continue;mem.entries[action.source]={round:b.round,serial:serial(b),choice:index,ids:b.units.slice(before).map(u=>u.id)};return true;
+  if(eCount(app)+members.length>E.populationCap(b))return false;const before=b.units.length;if(!spawnMembers(app,{...action,n:members.length,campaignApproach:ev.honroCampaignReinforcement},{members}))continue;mem.entries[action.source]={round:b.round,serial:serial(b),choice:index,ids:b.units.slice(before).map(u=>u.id)};return true;
  }w.status='blocked';return false;
 };
 const eCount=app=>app.engine.alive(1).length;
@@ -87,7 +95,7 @@ function reserveQueue(e){const b=e.b;if(!active(b)||b.honroDensityQueueReserve!=
  const candidates=e.combatEnemies().filter(u=>u.stunnedRound!==b.round&&(b.honroStage!==6||u.honroSpawnSource==='pursuit')),waiting=u=>!!u&&(b.honroStage!==6||u.honroSpawnSource==='pursuit')&&Number.isInteger(u.honroDensityBornRound)&&u.lastAct<u.honroDensityBornRound;
  if(b.queue.some(id=>waiting(e.unit(id))))return b.queue;
  const heroes=e.heroesAlive(),distance=u=>Math.min(...heroes.map(h=>Math.hypot(h.x-u.x,h.y-u.y)));
- const displaced=e.enemyQueuePriority?.(e.unit(b.queue.at(-1))),relevant=u=>{const p=e.enemyQueuePriority?.(u);if(b.honroStage===6){const car=e.unit('objective');return !!p&&p.tier>0&&alive(car)&&Math.hypot(u.x-car.x,(u.y-car.y)*.8)<=1000;}return !!p&&p.tier>0&&(!displaced||p.tier>displaced.tier||p.tier===displaced.tier&&p.band<=displaced.band+1);};
+ const displaced=e.enemyQueuePriority?.(e.unit(b.queue.at(-1))),relevant=u=>{const p=e.enemyQueuePriority?.(u);if(b.honroStage===6){const car=e.unit('objective');return !!p&&p.tier>0&&alive(car)&&Math.hypot(u.x-car.x,(u.y-car.y)*.8)<=1000;}if(campaignResponse(b)&&u.honroSpawnSource?.startsWith('campaign-response-'))return !!p&&p.tier>0&&distance(u)<=1100;return !!p&&p.tier>0&&(!displaced||p.tier>displaced.tier||p.tier===displaced.tier&&p.band<=displaced.band+1);};
  const next=candidates.filter(u=>waiting(u)&&relevant(u)).sort((a,z)=>a.honroDensityBornRound-z.honroDensityBornRound||distance(a)-distance(z)||String(a.id).localeCompare(String(z.id)))[0];if(!next)return b.queue;
  const queue=b.queue.slice(0,Math.max(0,b.enemyLimit-1));queue.push(next.id);return queue;
 }

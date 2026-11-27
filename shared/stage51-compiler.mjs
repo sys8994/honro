@@ -9,7 +9,7 @@ export function scope51(src,name){
   src=one(src,'clone(state.limit):budget(id);','clone(state.limit):budget(id,normal51Provider.budget(b));');
  }
  if(name==='shared/map/compiler.js'){
-  pin(src,'8eaec6a3c9e9c415e651889f97ea81d3f2dd6f14');
+  pin(src,'9438b948a21d29d5d1f4715222bae7a628a03c6f');
   src=one(src,"content=G.HonroSplitCampaign?.content(profile,sid)||G.HONRO_CONTENT.stages[sid-1]","content=normal51Provider.request(st,project,profile,options)||G.HonroSplitCampaign?.content(profile,sid)||G.HONRO_CONTENT.stages[sid-1]");
   src=one(src,"Object.assign(b,clone(st.initialState||{}));\n const map=compile(st,project);","Object.assign(b,clone(st.initialState||{}));\n normal51Provider.bind(b,st,project,profile,options);\n const map=compile(st,project);");
  }
