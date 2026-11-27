@@ -274,7 +274,7 @@ function act5Landmark(c,l){
  const a=l.asset,z=l.scale??1,V=G.HonroVisualStyle,cc=V?V.context(c,V.classify(l,this.battle,a)==='gameplay'?'gameplay':V.depth(l,a)):c;
  let parts=stage48Parts.get(a);if(!parts){
   const unmask=part=>{const copy=node=>{const q={...node};if(q.clipPath==='native-source-alpha')delete q.clipPath;if(q.children)q.children=q.children.map(copy);return q;};return{...part,vector:{...part.vector,root:{tag:'g',children:[copy(part.vector.root)]}}};};
-  parts=[['body',unmask(a.continuousBody)],['joint',unmask(a.jointBody)],['source',a]].map(([key,asset])=>({asset,mask:new Path2D(a.compositionMasks[key].join(' '))}));stage48Parts.set(a,parts);
+  parts=[['body',unmask(a.continuousBody)],['joint',unmask(a.jointBody)],['source',a]].map(([key,asset])=>({asset,mask:maskPath(a.compositionMasks[key])}));stage48Parts.set(a,parts);
  }
  cc.save();try{cc.translate(l.x,l.y);cc.scale(z,z);for(const p of parts)stage45Body(this,cc,p.asset,p.mask);}finally{cc.restore();}return;
  }
@@ -298,7 +298,7 @@ function act5Landmark(c,l){
 
  if(['act5:near:49','act5:near:50'].includes(l.asset?.id)&&l.asset.shaftExterior&&!l.rotation){
   const a=l.asset,z=l.scale??1,V=G.HonroVisualStyle,cc=V?V.context(c,V.classify(l,this.battle,a)==='gameplay'?'gameplay':V.depth(l,a)):c;
-  let parts=stage49Parts.get(a);if(!parts){const body=a.shaftExterior,root={...body.vector.root};delete root.clipPath;parts={body:{...body,vector:{...body.vector,root}},mask:new Path2D(body.vector.clips['native-source-alpha'].join(' ')),sourceMask:new Path2D(a.sourcePreserved.join(' '))};stage49Parts.set(a,parts);}
+  let parts=stage49Parts.get(a);if(!parts){const body=a.shaftExterior,root={...body.vector.root};delete root.clipPath;parts={body:{...body,vector:{...body.vector,root}},mask:maskPath(body.vector.clips['native-source-alpha']),sourceMask:maskPath(a.sourcePreserved)};stage49Parts.set(a,parts);}
   cc.save();try{cc.translate(l.x,l.y);cc.scale(z,z);stage45Body(this,cc,parts.body,parts.mask);stage45Body(this,cc,a,parts.sourceMask);}finally{cc.restore();}return;
  }
  if(l.asset?.id==='act5:near:47'&&l.asset.shaftExterior&&!l.rotation){
@@ -354,13 +354,15 @@ S._landmarkPaintBounds=function(l){const q=bounds.call(this,l);if(!q||!active(l)
 const domainPaint=S._drawTerrainDomainTiles;
 S._drawTerrainDomainTiles=function(c,b,w,h){
  domainPaint.call(this,c,b,w,h);if(![41,42,43,44,45,46,47,48,49,50].includes(b.honroStage))return;
- const v=G.HonroBounds.viewport(this,w,h),d=b.honroTerrainBounds,size=512/this._worldRasterScale(b,w);
+ const v=G.HonroBounds.viewport(this,w,h),d=b.honroTerrainBounds,size=512/this._displayTileScale(b,w);
  const left=Math.floor(d.left/size)*size,top=Math.floor(d.top/size)*size,right=(Math.floor(d.right/size)+1)*size,bottom=(Math.floor(d.bottom/size)+1)*size;
  if(v.left>=left&&v.right<=right&&v.top>=top&&v.bottom<=bottom)return;
  c.save();c.beginPath();c.rect(v.left-1,v.top-1,v.right-v.left+2,v.bottom-v.top+2);// Stage43 exterior coverage must share the domain tiles' rounded device edge.
  if([43,48,49,50].includes(b.honroStage)){const m=c.getTransform();if(m.b===0&&m.c===0&&m.a!==0&&m.d!==0){const sx=Math.round(left*m.a+m.e),sy=Math.round(top*m.d+m.f),ex=Math.round(right*m.a+m.e),ey=Math.round(bottom*m.d+m.f);c.rect((sx-m.e)/m.a,(sy-m.f)/m.d,(ex-sx)/m.a,(ey-sy)/m.d);}else c.rect(left,top,right-left,bottom-top);}else c.rect(left,top,right-left,bottom-top);c.clip('evenodd');
- for(const l of G.HonroTerrainDomain.materialLandmarks(b))if(l.asset?.id==='act5:near:'+b.honroStage)this.landmark(c,l);
- c.restore();
+ try{
+  this._terrainExteriorPass=true;
+  for(const l of G.HonroTerrainDomain.materialLandmarks(b))if(l.asset?.id==='act5:near:'+b.honroStage)this.landmark(c,l);
+ }finally{this._terrainExteriorPass=false;c.restore();}
 };
 // Act 5 tile pacing (2026-11-24). Its near art costs 10-30 ms per 512 px tile (Stage46 17 ms
 // even on empty tiles), so a camera move that uncovered a row built 3-6 tiles in one frame
@@ -372,6 +374,9 @@ S._domainTileBudget=function(b,w){return act5Paced(b)?(w<900?1:2):Infinity;};
 S._domainTileLimit=function(b,w){return act5Paced(b)?(w<900?20:32):undefined;};
 S._domainTileFallback=function(c,b,w,left,top,size){
  if(!act5Paced(b))return false;
+ // The moving-zoom grid already renders every visible tile from the native art.
+ // Never rasterize the remainder of these shafts in a main-thread idle callback.
+ if(this._terrainZoom?.battle===b)return false;
  const key=(b.session||b.honroStage)+':'+(b.sceneVersion||0)+':'+b.width+'x'+b.height;let f=this._act5TileFallback;
  // The stand-in is painted after entry, off the first frames; until then tiles build at once.
  if(f?.key!==key){

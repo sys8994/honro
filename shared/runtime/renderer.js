@@ -134,7 +134,41 @@
         // Cache-owned offscreen surfaces only. drawImage consumes a snapshot;
         // release after the last draw, before dropping the final cache reference.
         _releaseRasterCanvas(cv){if(cv&&cv!==this.canvas){cv.width=1;cv.height=1;}}
-        _releaseDomainTiles(){if(!this._domainTiles)return;for(const tile of this._domainTiles.tiles.values())this._releaseRasterCanvas(tile.canvas);this._domainTiles.tiles.clear();this._domainTiles=null;}
+        _discardTileSet(set){
+            if(!set)return;
+            for(const tile of set.tiles.values())this._releaseRasterCanvas(tile.canvas);
+            set.tiles.clear();
+        }
+        _releaseDomainTiles(){
+            this._discardTileSet(this._domainTiles);
+            this._discardTileSet(this._alternateDomainTiles);
+            this._domainTiles=this._alternateDomainTiles=null;
+            this._terrainZoom=null;
+        }
+        _trackTerrainZoom(b,w){
+            if(![40,46,48,49].includes(b.honroStage)||!b.honroCanonical||b.honroCustom!==false||b.honroMapOrigin!=='campaign'){
+                if(this._terrainZoom)this._releaseDomainTiles();
+                return;
+            }
+            const appearance=(G.HonroAct2SpatialArt?.appearanceKey(b)||'')+':'+(G.HonroVisualStyle?.key()||'');
+            let motion=this._terrainZoom;
+            if(!motion||motion.battle!==b||motion.version!==b.sceneVersion||motion.appearance!==appearance||motion.width!==w){
+                this._releaseDomainTiles();
+                motion=this._terrainZoom={battle:b,version:b.sceneVersion,appearance,width:w,scale:this.scale,until:0,preview:false};
+            }
+            const now=performance.now();
+            if(Math.abs(this.scale-motion.scale)>.00001)motion.until=now+120;
+            motion.scale=this.scale;
+            motion.preview=now<motion.until;
+            G.HonroTerrainZoomArt?.prepare(this,b);
+        }
+        _displayTileScale(b,w){
+            if(!this._terrainZoom?.preview||this._terrainZoom.battle!==b)return this._worldRasterScale(b,w);
+            // During a gesture all positions share one geographic grid. Exact native tiles
+            // replace it after the fingers stop. Each missing region is painted on demand.
+            const minimum=G.HonroBounds.zoomLimits(w).min;
+            return Math.min(.32,Math.max(.075,minimum*(w<900?1.7:1.25)));
+        }
         _worldRasterScale(b,w){if(G.HonroTerrainDomain?.active(b)){const q=b?.honroMap?.nativeArt;if(b?.honroStage>=31&&b.honroStage<=40&&q?.version===1&&Array.isArray(q.coveredTerrainIds)){const h=Math.max(1,this.canvas.getBoundingClientRect().height),z=Math.max(.05,this.scale),d=this._pixelRatio(w,h,b),limit=w<900?12:24;let rs=Math.max(.05,2**(Math.ceil(Math.log2(z*d)*4)/4));while(rs>.05&&(Math.ceil(w*rs/(z*512))+1)*(Math.ceil(h*rs/(z*512))+1)>limit)rs/=Math.SQRT2;return Math.max(.05,rs);}return Math.min(.68,Math.max(.05,2**(Math.floor(Math.log2(this.scale*1.25)*4)/4)));}const mobile=w<900,maxPixels=mobile?3000000:6000000,desired=this.scale>.72?.68:this.scale>.38?.56:.42,cap=Math.sqrt(maxPixels/Math.max(1,b.width*b.height));return Math.max(.28,Math.min(desired,cap));}
         _isForeground(l){return l.asset?.params?.semanticLayer==='FORE'&&!l.asset?.collision?.length&&!l.collisionIds?.length&&!l.honroElementCollision&&G.HonroVisualStyle?.classify(l,this.battle)!=='gameplay';}
         _landmarkLayer(c,landmarks,layer){c.save();for(const l of landmarks){const foreground=this._isForeground(l);if(layer==='foreground'?!foreground:foreground||(l.layer||'back')!==layer)continue;c.globalAlpha=l.opacity??1;if(l.honroTerrainMaterialClip){c.save();c.clip(l.honroTerrainMaterialClip);this.landmark?.(c,l);c.restore();}else this.landmark?.(c,l);}c.restore();}
@@ -165,7 +199,7 @@
             if(bounds)return bounds.right+padding>=view.left&&bounds.left-padding<=view.right&&bounds.bottom+padding>=view.top&&bounds.top-padding<=view.bottom;
             const reach=3000*Math.max(.2,Math.abs(l.scale??l.size??1));return l.x+reach>=view.left&&l.x-reach<=view.right&&l.y+reach>=view.top&&l.y-reach<=view.bottom;
         }
-        _worldCacheKey(b,w){const rs=this._worldRasterScale(b,w);return`${b.session||b.honroStage}:${b.sceneVersion||0}:${b.width}x${b.height}:${rs.toFixed(3)}:${G.HonroAct2SpatialArt?.appearanceKey(b)||''}`;}
+        _worldCacheKey(b,w){const rs=this._displayTileScale(b,w);return`${b.session||b.honroStage}:${b.sceneVersion||0}:${b.width}x${b.height}:${rs.toFixed(3)}:${G.HonroAct2SpatialArt?.appearanceKey(b)||''}${this._terrainZoom?.battle===b&&this.scale<=.245?':overview':''}`;}
         _buildStaticWorld(b,w){
             this._releaseDomainTiles();
             const key=this._worldCacheKey(b,w);if(this._staticWorldCache?.key===key){this._cacheStats.worldHits++;return this._staticWorldCache;}
@@ -198,6 +232,7 @@
             c.save();c.setTransform(1,0,0,1,0,0);c.drawImage(cv,0,0);c.restore();return true;
         }
         _drawStaticWorldCached(c,b,w,h){
+            this._trackTerrainZoom(b,w);
             if(G.HonroTerrainDomain?.active(b)){
                 if(this._screenRaster(c,this._worldCacheKey(b,w),w,h,cc=>this._drawTerrainDomainTiles(cc,b,w,h),'_screenWorldCache')){if(this._domainTilesDeferred&&this._screenWorldCache)this._screenWorldCache.key='deferred';return;}
                 return this._drawTerrainDomainTiles(c,b,w,h);
@@ -434,13 +469,50 @@
    if(!entry[side])return stock;
    return stock.map(row=>row===l?{...row,asset:entry[side]}:row);
   }
+        _reuseZoomTiles(c,current,view,x,y,size){
+            const prior=this._alternateDomainTiles;
+            if(!this._terrainZoom||!prior||prior.appearance!==current.appearance)return false;
+            const left=Math.max(view.left,x),right=Math.min(view.right,x+size);
+            const top=Math.max(view.top,y),bottom=Math.min(view.bottom,y+size);
+            if(left>=right||top>=bottom)return false;
+            const span=512/prior.rs,tiles=[];
+            for(let j=Math.floor(top/span);j<Math.ceil(bottom/span);j++)
+                for(let i=Math.floor(left/span);i<Math.ceil(right/span);i++){
+                    const tile=prior.tiles.get(i+':'+j);
+                    if(!tile)return false;
+                    tiles.push(tile);
+                }
+            // Each pixel (including transparent shaft openings) has exactly one owner.
+            const m=c.getTransform(),snap=(v,k,e)=>(Math.round(v*k+e)-e)/k;
+            for(const tile of tiles){
+                const l=snap(Math.max(left,tile.left),m.a,m.e),r=snap(Math.min(right,tile.left+span),m.a,m.e);
+                const t=snap(Math.max(top,tile.top),m.d,m.f),b=snap(Math.min(bottom,tile.top+span),m.d,m.f);
+                const pad=2/prior.rs;
+                c.save();c.beginPath();c.rect(l,t,r-l,b-t);c.clip();
+                c.drawImage(tile.canvas,tile.left-pad,tile.top-pad,span+2*pad,span+2*pad);c.restore();
+            }
+            return true;
+        }
         _drawTerrainDomainTiles(c,b,w,h){
             // Geographically fixed tiles, never a bitmap cut at Play Bounds.
             // Pixel-aligned clips consume each gutter sample exactly once.
             const act6Foundation=[53,54].includes(b.honroStage)&&b.honroCanonical===true&&b.honroCustom===false&&b.honroMapOrigin==='campaign';
-            const rs=this._worldRasterScale(b,w),px=512,gutter=2,size=px/rs,v=G.HonroBounds.viewport(this,w,h),domain=b.honroStage===3||act6Foundation?this._naruRasterBounds(b):b.honroTerrainBounds,
-                key=this._worldCacheKey(b,w),limit=this._domainTileLimit?.(b,w)??(w<900?12:24),budget=this._domainTileBudget?.(b,w)??Infinity;let built=0;this._domainTilesDeferred=false;
-            let q=this._domainTiles;if(!q||q.key!==key){this._releaseDomainTiles();q=this._domainTiles={key,tiles:new Map(),rs};this._cacheStats.worldBuilds++;}
+            const rs=this._displayTileScale(b,w),px=512,gutter=2,size=px/rs,v=G.HonroBounds.viewport(this,w,h),domain=b.honroStage===3||act6Foundation?this._naruRasterBounds(b):b.honroTerrainBounds,
+                key=this._worldCacheKey(b,w),limit=this._domainTileLimit?.(b,w)??(w<900?12:24),
+                budget=this._terrainZoom?.battle===b?(w<900?1:2):(this._domainTileBudget?.(b,w)??Infinity);let built=0;this._domainTilesDeferred=false;
+            let q=this._domainTiles;
+            if(!q||q.key!==key){
+                let next=null;
+                if(this._terrainZoom?.battle===b){
+                    const other=this._alternateDomainTiles;
+                    if(other?.key===key)next=other;
+                    else this._discardTileSet(other);
+                    this._alternateDomainTiles=q;
+                }else this._discardTileSet(q);
+                q=this._domainTiles=next||{key,tiles:new Map(),rs,
+                    appearance:key.replace(b.width+'x'+b.height+':'+rs.toFixed(3)+':',b.width+'x'+b.height+':')};
+                if(!next)this._cacheStats.worldBuilds++;
+            }
             const minX=Math.floor(Math.max(v.left,domain.left)/size),maxX=Math.floor(Math.min(v.right,domain.right)/size),
                 minY=Math.floor(Math.max(v.top,domain.top)/size),maxY=Math.floor(Math.min(v.bottom,domain.bottom)/size),terrain=G.HonroTerrainDomain.render(b);
             const old=this._staticCacheBuild;this._staticCacheBuild=true;
@@ -448,7 +520,7 @@
                 const id=x+':'+y;let tile=q.tiles.get(id);if(tile){q.tiles.delete(id);q.tiles.set(id,tile);this._cacheStats.worldHits++;}
                 // Optional per-frame build budget: a missing tile beyond it shows a whole-domain
                 // low-resolution stand-in this frame and is built on a following frame.
-                else if(built>=budget&&this._domainTileFallback?.(c,b,w,x*size,y*size,size)){this._domainTilesDeferred=true;continue;}
+                else if(built>=budget&&(this._reuseZoomTiles(c,q,v,x*size,y*size,size)||this._domainTileFallback?.(c,b,w,x*size,y*size,size))){this._domainTilesDeferred=true;continue;}
                 else{built++;const start=performance.now(),cv=this._makeLayerCanvas(px+gutter*2,px+gutter*2);this._cacheStats.domainCanvasAllocations=(this._cacheStats.domainCanvasAllocations||0)+1;
                     const cc=cv.getContext('2d',{alpha:true}),left=x*size,top=y*size;cc.setTransform(rs,0,0,rs,gutter-left*rs,gutter-top*rs);
                     const view={left,top,right:left+size,bottom:top+size};

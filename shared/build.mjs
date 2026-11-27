@@ -314,6 +314,20 @@ function stage33CoastRestore(b,library){
     await file('shared/runtime/act5-art.js');
     await file('shared/runtime/act5-edge-art.js');
   }
+  if(render){
+    const zoomArt={};
+    for(const stage of [40,46,48,49]){
+      const rows=JSON.parse(await read('shared/assets/terrain-zoom/'+stage+'.json'));
+      for(const row of rows){
+        const bytes=await readFile(path.join(root,'shared/assets/terrain-zoom',row.file));
+        row.src='data:image/webp;base64,'+bytes.toString('base64');
+        delete row.file;
+      }
+      zoomArt[stage]=rows;
+    }
+    data('HONRO_TERRAIN_ZOOM_ART',zoomArt);
+    await file('shared/runtime/terrain-zoom-art.js');
+  }
   if(app){
     data('HONRO_SKILL_AUDIO',await skillAudioData());
     data('HONRO_MUKJONG_AUDIO',{src:'data:audio/mpeg;base64,'+(await readFile(path.join(root,'shared/assets/sfx/mukjong-b.mp3'))).toString('base64')});
