@@ -16,7 +16,7 @@ import {verifyReturnGate,watchReturnGate} from '../shared/act6-mumyeongsa/return
 import {createBrokenRail,validBrokenRailCrossing} from '../shared/act6-mumyeongsa/broken-rail.mjs';
 import {validTornEave} from '../shared/act6-mumyeongsa/torn-eave.mjs';
 import {validSodanThread, mountRetreatSodan, mountSodanSpirit, debitSodanThread, sodanInnerTree} from '../shared/act6-mumyeongsa/sodan-thread.mjs';
-import {verifyStage54Relay} from '../shared/runtime/stage54-pilot-owner.mjs';
+import {company54,verifyStage54Relay} from '../shared/runtime/stage54-pilot-owner.mjs';
 import {createChapterBoundary} from '../shared/act6-boundary/chapter-boundary.mjs';
 import {planThresholdPrep} from '../shared/runtime/act6-threshold-prep.mjs';
 import {createFirstMissionOwner} from '../shared/runtime/act6-first-missions.mjs';
@@ -130,7 +130,7 @@ function hurt(e,u,amount,owner='p-mage'){return e.hurt(u,amount,owner,true,undef
 
 async function test58(){
  const {e,b,app,owner,exterior}=await make58();
- assert.equal(players(b).length,4);assert.equal(enemies(b).length,4);assert(!e.unit('a6-c08-boss'));
+ assert.equal(players(b).length,4);assert.equal(enemies(b).length,ACT6_EXTERIOR_ENCOUNTERS[58].initial.length);assert(!e.unit('a6-c08-boss'));
  at58(e,'mage',3680);assert(!owner.interact('threshold').ok);assert(!e.unit('a6-c08-boss'));
  at58(e,'occultist',3496);assert(owner.interact('column').ok);
  assert(!e.unit('a6-c08-boss'),'column alone cannot summon');
@@ -536,7 +536,8 @@ function shot59(e,cls,skill,x,y,roleX,site){
 function volley59(h,round){
  Object.assign(h.b,{side:0,phase:'aim',round,projectiles:[]});h.b.teamEnds[1]=round-1;
  h.owner.tick();
- assert(enemies(h.b).length<=FRONTS59.totalCap,'alive cap exceeded');
+ assert(enemies(h.b).length<=FRONTS59.fieldCap,'field cap exceeded');
+ h.e.refreshActivation();assert(h.e.combatEnemies().length<=FRONTS59.totalCap,'awake cap exceeded');
 }
 function guard59(h,which,round,x=958*K){
  actor(h.e,'knight',x,near59);
@@ -803,7 +804,7 @@ const stockOriginals={
  51:{initial:4,roles:['watcher','pocket','armor','crest-champion'],conditions:[]},
  52:{initial:3,roles:['watch-range','bridge-keeper','return-guard'],conditions:[],exclude:['cliff-stone']},
  53:{initial:2,roles:['draft-lower-lane-guard','draft-upper-side-guard'],conditions:[]},
- 54:{initial:4,roles:['mumyeongsa-b-wall-guard','mumyeongsa-b-aperture-ghost','mumyeongsa-b-rear-shade','mumyeongsa-b-rear-guard'],
+ 54:{initial:1+company54.length,roles:['mumyeongsa-b-wall-guard',...company54.map(([id])=>'mumyeongsa-b-'+id)],
   conditions:[],phase:'B wall entry. The gallery starts after this company leaves.'},
  55:{initial:4,roles:['draft-pressure-0','draft-pressure-1','draft-pressure-2','draft-pressure-3'],conditions:[]},
  56:{initial:3,roles:['draft-pressure-0','draft-pressure-1','draft-pressure-2'],conditions:[['draft-pressure-3','real reversal after the second stake']]},
@@ -812,14 +813,14 @@ const stockOriginals={
   ['a6-c08-ink-echo-a','phase 3'],['a6-c08-ink-echo-b','phase 3']],exclude:['a6-c08-expansion-node','a6-c08-unsettled-ledger','a6-c08-margin-echo']},
 };
 function poseCandidate(e,row,plan,profile){
- const [role,site,x,hint,fixed=false]=row,support=plan.sites[site];
+ const [role,site,x,hint,fixed=false,,heightAbove=0]=row,support=plan.sites[site];
  const host=e.b.terrain.find(t=>t.id===support&&x>=t.x&&x<=t.x+t.w);
  const y=host?C.topAt(host,x,hint):NaN;
  const face=e.contactSurface(x,y-3,y+4);
  if(!face||face.t.id!==support||Math.abs(face.y-y)>.25||y<0||y>e.b.height)return {role,site,support,x,hint,y,legal:false};
- const unit=G.HonroUnits.create({id:'declared-geometry-probe',kind:role,team:'enemy',behavior:'aggressive',x,y,facing:-1},
+ const unit=G.HonroUnits.create({id:'declared-geometry-probe',kind:role,team:'enemy',behavior:'aggressive',x,y:y-heightAbove,facing:-1},
   {mode:'campaign',honroStage:50,honroMapOrigin:'campaign',honroCanonical:true},profile,G.HONRO_CONTENT.stages[49]);
- return {role,site,support,x,y,fixed,loadout:unit?.loadout??[],legal:!!unit?.loadout.length&&!unit.flying&&C.validTerrainContactPose(e.b.terrain,unit)};
+ return {role,site,support,x,y,fixed,loadout:unit?.loadout??[],legal:!!unit?.loadout.length&&(heightAbove?C.flyingEnemy(unit)&&C.flightClear(e,unit,unit):C.validTerrainContactPose(e.b.terrain,unit))};
 }
 async function auditRosters(){
  const {composeHall53}=await import('../shared/act6-mumyeongsa/stage53.mjs');
@@ -876,7 +877,7 @@ async function auditRosters(){
   declared:1+sentries59.length+scripted+parts.flat().reduce((n,k)=>n+k,0),
   requiredFormation:1+sentries59.length+scripted+parts.flatMap(groups=>groups.slice(0,FRONTS59.anchorGroups)).reduce((n,k)=>n+k,0),
   active:FRONTS59.totalCap,attackQueue:FRONTS59.attackCap,sentries:sentries59,groups:plans};
- assert.equal(ledger[59].declared,50);assert.equal(ledger[59].requiredFormation,41);
+ assert.equal(ledger[59].declared,71);assert.equal(ledger[59].requiredFormation,62);
  ledger[60]={target:targets[60],opening:0,declared:0,active:0,attackQueue:0,souls:(await pack(60)).quiet.souls.map(v=>v.id)};
  assert.deepEqual(failures,[],'every authored slot needs a legal attack position in the exact map');
 }

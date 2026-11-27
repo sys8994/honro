@@ -141,16 +141,17 @@
         const guard=C.makeUnit('archer',1,x,y,{id:'mumyeongsa-b-wall-guard',name:'기둥그림자',h:88,r:23,hp:600,maxHp:600,
           focus:140,maxFocus:140,loadout:['LA01'],ranks:{LA01:1},awake:true,role:'bow',attack:.9,walkSpeed:290,maxMove:420,moveLeft:420});
         check(s.owner54.admitGuard(app,e,s,guard),'The signed wall guard was refused');
-        const company=[
-          ['occultist','mumyeongsa-b-aperture-ghost','처마 구멍의 잔향',128,'HGS01','ghost'],
-          ['occultist','mumyeongsa-b-rear-shade','뒤쪽 매듭귀',548,'HSH01','shade'],
-          ['archer','mumyeongsa-b-rear-guard','아랫 돌턱 순라',661,'LA01','marksman']
-        ].map(([kind,id,name,y,skill,honroType])=>C.makeUnit(kind,1,x,y,{id,name,h:78,r:19,hp:325,maxHp:325,
-          focus:170,maxFocus:170,loadout:[skill],ranks:{[skill]:1},honroType,awake:true,role:kind==='archer'?'bow':'fire',
-          attack:.85,walkSpeed:250,maxMove:280,moveLeft:280}));
-        for(const u of company){check(s.owner54.admitCompany(app,e,s,u,'wall'),'Unverified B support foe');b.units.push(u);}
+        const wall=[guard];
+        for(const [key,name,kind,skill,honroType,face,at] of s.owner54.company54){
+          const lateral=face==='wall',id='mumyeongsa-b-'+key;
+          const u=C.makeUnit(kind,1,lateral?x:at,lateral?at:B.floor.top,{id,name,h:78,r:19,hp:325,maxHp:325,
+            focus:170,maxFocus:170,loadout:[skill],ranks:{[skill]:1},honroType,awake:false,role:kind==='archer'?'bow':'fire',
+            attack:.85,walkSpeed:250,maxMove:280,moveLeft:280});
+          check(s.owner54.admitCompany(app,e,s,u,'wall'),'Unverified B support foe');b.units.push(u);
+          if(lateral)wall.push(u);
+        }
         b.honroActiveLimit=b.enemyLimit=4;
-        if(b.honroCounters)b.honroCounters.initialEnemies=4;
+        if(b.honroCounters)b.honroCounters.initialEnemies=1+s.owner54.company54.length;
         const layout={terrain:data.terrain,honroWorldTerrain:data.worldTerrain,honroLandmarks:data.landmarks,honroElements:data.elements,
           honroSurfaceZones:data.materials,honroPlayBounds:rail.playBounds,honroTerrainBounds:rail.terrainBounds,width:rail.width,height:rail.height};
         s.foothill54={origin,layout:Object.fromEntries(Object.keys(layout).map(k=>[k,b[k]]))};
@@ -159,7 +160,14 @@
         s.guardB=guard;
         s.wallAxis=installBrokenRail({C,e,scene:app.scene,B,hero,foe:guard});
         s.wallAxis.adopt(hero);
-        for(const u of [guard,...company]){s.wallAxis.adopt(u);u.airborne=true;}
+        for(const u of wall){s.wallAxis.adopt(u);u.airborne=true;}
+        s.wallRefresh=e.refreshActivation;
+        e.refreshActivation=function(){
+          s.wallRefresh.call(e);
+          const near=e.actors(1).sort((a,z)=>Number(z===guard)-Number(a===guard)||
+            Math.hypot(a.x-hero.x,a.y-hero.y)-Math.hypot(z.x-hero.x,z.y-hero.y));
+          near.forEach((u,i)=>{u.awake=i<6;});
+        };
         e.refreshActivation();focusChart54(app,hero,view);
       }
       function focusChart54(app,u,view){
@@ -196,7 +204,7 @@
         const e=s.engine,u=e.active,B=brokenRail;
         if(!scope54(app,e,s)||u?.cls!=='mage'||!e.canAct()||!s.wallAxis.isWall(u)||!e.grounded(u)||u.y>B.exitY||!s.owner54.readyAfterGuard(app,e))return;
         const {origin,layout}=s.foothill54,{gallery}=rail54Assets.get(s.packet);
-        s.wallAxis.dispose();s.wallAxis=null;
+        s.wallAxis.dispose();s.wallAxis=null;e.refreshActivation=s.wallRefresh;
         Object.assign(e.b,layout,{terrain:gallery.terrain,honroWorldTerrain:gallery.worldTerrain,honroLandmarks:withWestFoothill54(gallery.landmarks),
           honroElements:gallery.elements,honroSurfaceZones:gallery.materials,sceneVersion:(e.b.sceneVersion??0)+1});
         const x=origin.x+B.exitY-u.y,y=C.topAt(e.b.terrain.find(t=>t.id==='foothill'),x);

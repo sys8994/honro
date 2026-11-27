@@ -62,10 +62,13 @@ export function paintStockRole(ctx,scene,u,spec,V,{tone=true}={}){
 }
 
 export function createStage59RolePaint(V){
- return (ctx,scene,u,context)=>{
+ const paint=(ctx,scene,u,context)=>{
   if(context?.stage!==59||!V)return false;
   const appearance=readRoleAppearance(context,u);
   if(!appearance||V.kind(u)!==appearance.kind||V.assets[appearance.kind]?.budget!=='catalog-redesign')return false;
   return paintStockRole(ctx,scene,u,appearance,V);
  };
+ // All other courtyard soldiers draw their ordinary full rig.
+ paint.accepts=u=>u.id==='qa-bell-shade'||Object.hasOwn(aliases,u.id);
+ return paint;
 }

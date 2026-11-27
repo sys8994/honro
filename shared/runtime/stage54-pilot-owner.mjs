@@ -8,6 +8,22 @@ const map={
  'C>L':{from:'C',to:'L',p:({x,y})=>({x:3000-y,y:x}),v:({x,y})=>({x:-y,y:x}),zone:[2855,2903],surface:'mid-contact',landing:'mid-contact',drop:125}
 };
 const steps=Object.keys(map);
+// Signed B-room roles. Wall bodies use tangent movement; sill bodies keep ordinary support.
+export const company54=Object.freeze([
+ ['aperture-ghost','처마 구멍의 잔향','occultist','HGS01','ghost','wall',128],
+ ['rear-shade','뒤쪽 매듭귀','occultist','HSH01','shade','wall',548],
+ ['rear-guard','아랫 돌턱 순라','archer','LA01','marksman','wall',661],
+ ['lintel-watch','처마머리 망꾼','archer','LA01','marksman','wall',32],
+ ['wall-knot','벽에 맺힌 혼','occultist','HSH01','shade','wall',506],
+ ['lower-echo','아래벽의 잔향','occultist','HGS01','ghost','wall',603],
+ ['sill-flank','돌문 밖 망꾼','archer','LA01','marksman','sill',2826],
+ ['sill-shade','문턱 그림자','occultist','HSH01','shade','sill',2895],
+ ['sill-vanguard','받침의 원혼','occultist','HGS01','ghost','sill',2960],
+ ['sill-bow','기둥 밑 사수','archer','LA01','marksman','sill',3022],
+ ['sill-rear','돌받침의 잔향','occultist','HGS01','ghost','sill',3086],
+ ['sill-pier','하단 경계병','archer','LA01','marksman','sill',3148],
+ ['sill-corner','모서리 매듭귀','occultist','HSH01','shade','sill',3210]
+]);
 const row=u=>Object.fromEntries(['id','cls','hp','maxHp','focus','maxFocus','h','r','tune','level','ranks','loadout','shield','equipmentState'].map(k=>[k,u[k]]));
 const response=(ok,reason)=>({ok,...(reason?{reason}:{})});
 // The native sweep returns the center of the padded projectile. Keep that
@@ -131,8 +147,8 @@ export async function createStage54ChartOwner({C,domain,charts,gallery=null,obse
   const g=get(a,e);
   if(!g||g.ticket!==ticket||u?.side!==1||u.dead||u.summoned||u.honroAlly||!u.loadout?.length||e.unit(u.id))return false;
   if(area==='wall'){
-   const expected={'mumyeongsa-b-aperture-ghost':'HGS01','mumyeongsa-b-rear-shade':'HSH01','mumyeongsa-b-rear-guard':'LA01'};
-   if(!g.foe||g.gallery||!geometry(e.b,'N')||u.loadout[0]!==expected[u.id])return false;
+   const expected=company54.find(([id])=>u.id==='mumyeongsa-b-'+id);
+   if(!g.foe||g.gallery||!geometry(e.b,'N')||!expected||u.cls!==expected[2]||sig(u.loadout)!==sig([expected[3]])||u.honroType!==expected[4])return false;
   }else if(area==='gallery'){
    if(!g.gallery||g.frame!=='N'||!galleryGeometry(e.b)||!u.id.startsWith('a6-54-')||!C.validTerrainContactPose(e.b.terrain,u))return false;
   }else return false;
@@ -204,6 +220,6 @@ export async function createStage54ChartOwner({C,domain,charts,gallery=null,obse
    ...(g.gallery?{gallery:{observed:structuredClone(g.observed),guard:g.foe.id}}:{}),settlement:false};
  }
  function inspect(a,e){const g=get(a,e);return g&&structuredClone({frame:g.frame,pending:g.pending,chart:g.order,m09:g.m09,camera:g.cameraEvents});}
- return Object.freeze({mount,admitGuard,admitCompany,beginGallery,observeGallery,enterEave,recordEave,chart,observe,relay,project,terminal,inspect,
+ return Object.freeze({company54,mount,admitGuard,admitCompany,beginGallery,observeGallery,enterEave,recordEave,chart,observe,relay,project,terminal,inspect,
   readyAfterGuard:(a,e)=>{const g=get(a,e);return !!g?.foe&&g.foe.dead===true&&g.foe.hp===0&&noTransients(g.b);},releaseEnabled:false});
 }

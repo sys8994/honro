@@ -2,7 +2,15 @@
 export const ACT6_EXTERIOR_ENCOUNTERS=Object.freeze({
   51:{active:8,attacks:5,sites:{
    lower:'mountain-main',ledge:'terrace-continuous'},
-   initial:[['hound','lower',874,4655],['shade','lower',1330,4405],['stag','ledge',1740,4000],['shade','ledge',3210,3280]],
+   initial:[['hound','lower',874,4655],['shade','lower',1330,4405],['stag','ledge',1740,4000],['shade','ledge',3210,3280],
+    // 하단 돌입대와 머리 위 망꾼
+    ['hound','lower',405,4750],['boar','lower',555,4689],['crow','lower',195,4763,true,-1,245],['bat','lower',370,4761,true,-1,190],['ghost','lower',1090,4560],['mourner','lower',1520,4387],
+    // 층계 엄호대
+    ['shade','ledge',650,4532],['warden','ledge',1070,4282],['lantern','ledge',1470,4025,true,-1,205],['ghost','ledge',2220,3758],['shade','ledge',2700,3374],
+    // 능선의 세 번째 전열
+    ['boar','lower',3000,3895],['warden','lower',3620,3496],['hound','lower',4450,3122],['mourner','lower',4910,2731],
+    // 전망대 외곽
+    ['shade','ledge',4880,2185],['stag','ledge',5750,1942],['warden','ledge',6230,1563]],
    waves:[
     {id:'lower-turn',label:'아랫길에서 추격해 옵니다.',at:[1050,4500],units:[['hound','lower',1575,4388],['hound','lower',1715,4340],['shade','ledge',1890,3960]]},
     {id:'split-ledge',label:'중턱 반대편에서 지키던 혼이 움직입니다.',at:[2850,3780],units:[['stag','lower',3885,3310],['hound','lower',3748,3405],['shade','ledge',3655,3130]]},
@@ -15,16 +23,36 @@ export const ACT6_EXTERIOR_ENCOUNTERS=Object.freeze({
    sites:{
    descent:'west-watch-and-descent',westArch:'broken-arch-west',eastArch:'broken-arch-east',return:'east-return-buttress',lowBridge:'return-lower-crossing'},
    initial:[['hound','descent',1725,1770],['shade','descent',1890,1980],['hound','westArch',2500,2475],
-    ['shade','eastArch',3990,2290],['stag','eastArch',4650,2489],['shade','lowBridge',3090,4560]],
+    ['shade','eastArch',3990,2290],['stag','eastArch',4650,2489],['shade','lowBridge',3090,4560],
+    // 서쪽 낙차 감시대
+    ['hound','descent',1370,1257],['ghost','descent',1450,1287],['crow','descent',1110,1170,true,-1,215],['bat','descent',1300,1258,true,-1,158],['boar','descent',1610,1606],['mourner','descent',2180,2298],
+    // 부서진 교각 서쪽
+    ['warden','westArch',2790,2462],['shade','westArch',3120,2295],['mourner','westArch',3460,2124],
+    // 동쪽 교두보와 공중 시야
+    ['boar','eastArch',4080,2332],['crow','eastArch',4250,2444,true,-1,195],['warden','eastArch',4460,2500],['ghost','eastArch',4870,2522],
+    // 종터로 이어지는 아래층
+    ['hound','lowBridge',2610,4510],['mourner','lowBridge',2850,4545],['shade','lowBridge',3590,4420],
+    // 돌아오는 쪽의 길목
+    ['warden','return',4200,4039],['hound','return',4800,3395]],
    waves:[
     {id:'cliff-watch',label:'암벽 아래 초병이 올라옵니다.',at:[1820,1850],units:[['hound','descent',2080,2180],['shade','westArch',2365,2455],['hound','westArch',2690,2470]]},
     {id:'broken-arch',label:'끊어진 석교 양쪽에서 응전합니다.',at:[2890,2370],units:[['stag','westArch',3000,2340],['shade','eastArch',3880,2280],['hound','eastArch',4145,2380]]},
     {id:'bell-approach',label:'낮은 종터 앞과 퇴로를 지키던 혼이 모입니다.',at:[4300,3890],units:[['shade','return',4480,3807],['hound','return',4620,3685],['shade','return',4710,3605],['stag','lowBridge',3740,4330]]},
    ]},
-  53:{active:6,attacks:4,roomReach:690,sites:{floor:'south',library:'library-balcony',beam:'sanctuary-beam'},
+  53:{active:6,attacks:4,roomReach:690,sites:{floor:'south',library:'library-balcony',beam:'sanctuary-beam',upper:'upper-threshold-footing'},
    groundFronts:{'a6-53-opening-3':[1560,2070],'a6-53-archive-balcony-3':[1510,2010],
     'a6-53-lost-sanctuary-2':[2010,2230],'a6-53-lost-sanctuary-3':[2230,2800]},
-   initial:[['hound','floor',740,2390],['shade','library',1320,1910],['stag','floor',1985,1590]],
+   initial:[['hound','floor',740,2390],['shade','library',1320,1910],['stag','floor',1985,1590],
+    // 산문과 서고 입구
+    ['ghost','floor',345,2477],['hound','floor',535,2477],['boar','floor',655,2438],['bat','floor',412,2477,true,-1,205],['crow','floor',600,2477,true,-1,310],['mourner','floor',915,2253],
+    // 책장 위 사선
+    ['shade','library',865,2132],['ghost','library',1050,2013],['lantern','library',1220,1947,true,-1,180],
+    // 성소 들보와 아래 갈림길
+    ['shade','beam',1770,1622],['mourner','beam',1910,1534],
+    // 상층 산문으로 가는 길
+    ['hound','floor',2330,1243],['warden','floor',2640,1060],['shade','floor',2970,1060],
+    // 산문 위의 파수
+    ['ghost','upper',2540,578],['shade','upper',2730,551]],
    waves:[
     {id:'gate-timber',label:'산문 뒤에서 바닥을 긁는 소리가 납니다.',at:[670,2390],units:[['hound','floor',970,2200],['shade','floor',1140,2075],['shade','library',1005,2040]]},
     {id:'archive-balcony',label:'서고 양편에서 혼이 움직입니다.',at:[1320,1960],units:[['hound','floor',1480,1880],['shade','floor',1620,1845],['hound','beam',1700,1650]]},
@@ -42,7 +70,15 @@ export const ACT6_EXTERIOR_ENCOUNTERS=Object.freeze({
    ]},
   55:{active:10,attacks:7,roomReach:975,priority:'draft-pressure-0',sites:{west:'west-ring-descent',court:'arrival-core-terrace',low:'west-lower-branch'},
    initial:[['hound','west',410,711],['hound','west',640,840],['shade','west',920,1000],['shade','west',1180,1135],
-    ['shade','court',1470,1325],['stag','court',2348,1596]],
+    ['shade','court',1470,1325],['stag','court',2348,1596],
+    // 서쪽 돌비탈 선두와 공중 엄호
+    ['hound','west',300,655],['ghost','west',475,750],['crow','west',220,611,true,-1,215],['bat','west',435,731,true,-1,255],['boar','west',555,794],['lantern','west',1050,1064,true,-1,190],
+    // 종터로 내려오는 전열
+    ['hound','court',1550,1347],['ghost','court',1740,1409],['warden','court',1860,1446],['crow','court',1900,1458,true,-1,230],['mourner','court',2220,1556],['shade','court',2005,1490],['bat','court',2600,1673,true,-1,290],
+    // 돌단의 후방과 아래 매복
+    ['ghost','court',2420,1618],
+    // 낮은 갈림길
+    ['shade','low',775,2486],['lantern','low',855,2549,true,-1,180]],
    waves:[
     {id:'west-bank',label:'서쪽 돌벽 너머에서 수의귀들이 내려옵니다.',at:[1380,1210],units:[
      [['shade','west',1070,1075],['shade','west',930,1010]],
@@ -77,9 +113,19 @@ export const ACT6_EXTERIOR_ENCOUNTERS=Object.freeze({
      [['stag','west',1126,1105,false,1],['stag','west',996,1034,false,1],['stag','west',808,932,false,1]],
      [['shade','court',2840,1747],['shade','court',2799,1734],['shade','court',2584,1668]]]},
    ]},
-  56:{active:7,attacks:5,priority:'draft-pressure-3',sites:{veranda:'A-upper-veranda',ascent:'B-01-center-stone-ascent',descent:'B-02-center-lower-short-climb',
+  56:{active:7,attacks:5,priority:'draft-pressure-3',sites:{veranda:'A-upper-veranda',balcony:'B-left-broken-balcony',ascent:'B-01-center-stone-ascent',descent:'B-02-center-lower-short-climb',
     lower:'B-central-lower-floor',return:'E-joined-ordinary-floor'},
-   initial:[['shade','veranda',1512,1136],['hound','veranda',2545,1136]],
+   initial:[['shade','veranda',1512,1136],['hound','veranda',2545,1136],
+    // 윗난간 첫 경계
+    ['ghost','veranda',832,1136],['hound','veranda',1030,1136],['bat','veranda',891,1136,true,-1,180],['crow','veranda',1070,1136,true,-1,285],['boar','veranda',1240,1136],['mourner','veranda',1770,1136],['warden','veranda',2170,1136],['shade','veranda',2900,1136],
+    // 갈라진 낮은 발코니
+    ['hound','balcony',1280,2608],['shade','balcony',1690,2608],
+    // 낭떠러지 아래 계단
+    ['boar','ascent',2770,2688],['shade','ascent',3250,2384],
+    // 가름진 아래턱
+    ['warden','lower',2370,3840],['shade','lower',2970,3840],
+    // 귀환 돌길
+    ['hound','return',3860,4054],['mourner','return',4590,4051],['shade','return',5700,3785]],
    waves:[
     {id:'upper-veranda',label:'윗난간 사이에서 수의귀가 다가옵니다.',at:[1590,1136],units:[['shade','veranda',1850,1136],['hound','veranda',2050,1136],['shade','veranda',2390,1136]]},
     {id:'deep-drop',label:'두 번째 진목 아래로 다시 적이 모입니다.',at:[3420,2300],units:[['hound','ascent',3120,2460],['shade','descent',3790,3360],['stag','descent',3970,3220]]},
@@ -90,7 +136,15 @@ export const ACT6_EXTERIOR_ENCOUNTERS=Object.freeze({
    groundFronts:{'a6-57-opening-1':[-840,3888],'a6-57-opening-2':[-840,4096],
     'a6-57-folding-ridge-1':[-840,4096],'a6-57-folding-ridge-2':[-840,4096],
     'a6-57-folding-ridge-3':[-840,4264],'a6-57-folding-ridge-4':[-840,4432]},
-   initial:[['hound','west',2220,3240],['hound','west',2770,3305],['shade','west',3170,3330],['stag','west',3920,3250],['shade','east',6700,2840,true]],
+   initial:[['hound','west',2220,3240],['hound','west',2770,3305],['shade','west',3170,3330],['stag','west',3920,3250],['shade','east',6700,2840,true],
+    // 갈라진 등성이 앞 추격대
+    ['hound','west',2535,3214],['ghost','west',2670,3298],['crow','west',2340,3256,true,-1,230],['bat','west',2570,3228,true,-1,185],['boar','west',2950,3291],['mourner','west',3395,3347],
+    // 서쪽 석교의 후속 전열
+    ['shade','west',3730,3276],['warden','west',4060,3262],['ghost','west',4370,3247],['hound','west',4630,3179],['shade','west',4900,3183],
+    // 합류 지점을 비워 둔 뒤쪽 감시대
+    ['mourner','west',5600,3018],['lantern','west',5780,2894,true,-1,250],
+    // 동쪽 바위턱 엄호
+    ['shade','east',6610,2781],['ghost','east',6860,2932],['boar','east',7140,3002]],
    waves:[
     {id:'folding-ridge',label:'부서진 난간 아래에서 추격대가 다가옵니다.',at:[3010,3290],units:[
      ['shade','west',2645,3285],['hound','west',2870,3295],['hound','west',3480,3320],
@@ -104,13 +158,25 @@ export const ACT6_EXTERIOR_ENCOUNTERS=Object.freeze({
      [['hound','west',5192,3060],['hound','west',4840,3224]],['shade','east',6970,3010,true]]},
    ]},
   58:{active:9,attacks:6,roomReach:950,priority:'a6-c08-boss',sites:{hull:'local-lower-08-body',entryDeck:'m58-west-stone-step',
-   gallery:'m58-rising-gallery',apse:'m58-east-deck'},
+   gallery:'m58-rising-gallery',apse:'m58-east-deck',upper:'m58-upper-deck',soffit:'m58-timber-soffit'},
    // The entrance guards cover the stair and ledge. Behind the east pier,
    // the apse and lower floor detach from their fire and have their own defenders.
    groundFronts:{'a6-58-opening-1':[0,4128],'a6-58-opening-2':[0,4292],
     'a6-58-entrance-columns-1':[0,4128],'a6-58-entrance-columns-2':[0,4200],
     'a6-58-entrance-columns-3':[0,4380]},
-   initial:[['hound','hull',3220,3330],['shade','entryDeck',3580,3072],['stag','hull',3910,3362],['shade','hull',4625,3150]],
+   initial:[['hound','hull',3220,3330],['shade','entryDeck',3580,3072],['stag','hull',3910,3362],['shade','hull',3700,3340],
+    // 법당 진입 양측과 머리 위
+    ['ghost','hull',2525,3454],['hound','hull',3080,3373],['bat','hull',2770,3465,true,-1,165],['crow','hull',2980,3401,true,-1,270],['lantern','hull',2900,3424,true,-1,150],['warden','hull',2360,3419],
+    // 돌계단과 기둥 사이
+    ['shade','entryDeck',3400,3080],['mourner','entryDeck',3650,3073],
+    // 기둥 아래 지상 반격로
+    ['boar','hull',3500,3247],['ghost','hull',3810,3365],['mourner','hull',4070,3310],['lantern','hull',4280,3244,true,-1,180],['shade','hull',4930,3048],['warden','hull',5250,2916],
+    // 올라가는 마루와 천장 위
+    ['shade','gallery',3835,3069],['ghost','upper',4160,3080],
+    // 들보 위의 감시대
+    ['shade','soffit',3980,2458],['ghost','soffit',4360,2426],
+    // 서쪽 회랑 후방
+    ['mourner','hull',2120,3487],['bat','hull',2190,3468,true,-1,210]],
    waves:[
     {id:'entrance-columns',label:'첫 기둥의 술식 뒤에서 잔향이 올라옵니다.',at:[3470,3250],units:[['shade','hull',3340,3260],['hound','hull',3475,3230],['shade','gallery',3730,3070]]},
     {id:'apse-lower',label:'윗마루에서 술식이, 아래 기둥 뒤에서 발소리가 다가옵니다.',phase:2,at:[4300,3070],
@@ -132,25 +198,27 @@ export function installExteriorEncounters(app,e,paused=()=>false,admit=()=>true,
  const campaign=G.HONRO_CONTENT.stages[49];
  const markers=plan.waves.map(wave=>({wave,next:0,warning:null}));
  const siege=plan.siege?.map(wave=>({wave,next:0,warning:null,availableAt:0}))??[];
- const issued=new WeakSet(),siegeIssued=new Set();
+ const issued=new WeakSet(),siegeIssued=new Set(),waveIssued=new Set();
  const spawn=(slot,name,index,isSiege=false)=>{
   if(Array.isArray(slot[0]))return slot.some(pose=>spawn(pose,name,index,isSiege));
-  const [kind,site,x,reference,fixed=false,facing=-1]=slot,support=plan.sites[site];
+  const [kind,site,x,reference,fixed=false,facing=-1,heightAbove=0]=slot,support=plan.sites[site];
   const host=b.terrain.find(t=>t.id===support&&x>=t.x&&x<=t.x+t.w);
   if(!host)return false;
-  const y=C.topAt(host,x,reference),face=e.contactSurface(x,y-3,y+4);
-  if(!face||face.t.id!==support||Math.abs(face.y-y)>.25||y<0||y>b.height)return false;
+  const floor=C.topAt(host,x,reference),face=e.contactSurface(x,floor-3,floor+4),y=floor-heightAbove;
+  if(!face||face.t.id!==support||Math.abs(face.y-floor)>.25||y<0||y>b.height)return false;
   const id=`a6-${stage}-${name}-${index+1}`;
   const u=G.HonroUnits.create({id,kind,team:'enemy',behavior:'aggressive',x,y,facing},entryState,app.profile,campaign);
-  if(!u?.loadout?.length||u.flying||!C.validTerrainContactPose(b.terrain,u))return false;
+  if(!u?.loadout?.length)return false;
+  if(heightAbove?(!C.flyingEnemy(u)||!C.flightClear(e,u,{x,y})):(!C.validTerrainContactPose(b.terrain,u)||C.flyingEnemy(u)))return false;
   const occupied=b.units.some(v=>v.hp>0&&!v.dead&&Math.abs(v.x-x)<v.r+u.r+8&&v.y-v.h<y&&y-u.h<v.y);
   if(occupied)return false;
-  const hp=({hound:655,shade:595,stag:755})[kind];
+  const hp=({hound:655,shade:595,stag:755,ghost:550,boar:760,warden:845,mourner:665,bat:435,crow:490,lantern:575})[kind];
   Object.assign(u,{hp,maxHp:hp,combatBaseHp:hp,attack:2.7,combatBaseAttack:2.7,group:700+b.units.length,fixed,
    spawnX:x,spawnY:y,awake:false,honroSpawnSource:name,honroEncounterSupport:support});
   if(!admit(u))return false;
   issued.add(u);
   if(isSiege)siegeIssued.add(u);
+  if(name!=='opening')waveIssued.add(u);
   b.units.push(u);
   return true;
  };
@@ -170,7 +238,10 @@ export function installExteriorEncounters(app,e,paused=()=>false,admit=()=>true,
    return u===priority&&localBoss||dist(u)<reach||u.aggroUntil>=b.round&&dist(u)<chase;
   });
   near.sort((a,z)=>Number(z===priority)-Number(a===priority)||dist(a)-dist(z)||a.id.localeCompare(z.id));
-  eligible=new Set(near.slice(0,plan.active));
+  // A newly arrived squad can contest its own flank without waking every opening guard.
+  const advancing=near.filter(u=>waveIssued.has(u)).slice(0,Math.floor(plan.active/3));
+  const order=new Set([...(near.includes(priority)?[priority]:[]),...advancing,...near]);
+  eligible=new Set([...order].slice(0,plan.active));
   for(const u of b.units.filter(alive))u.awake=eligible.has(u);
  }
  b.honroActiveLimit=b.enemyLimit=plan.attacks;
@@ -201,7 +272,7 @@ export function installExteriorEncounters(app,e,paused=()=>false,admit=()=>true,
    if(pulse.next>=pulse.wave.units.length||b.round<pulse.wave.round)continue;
    if(pulse.warning===null){
     pulse.warning=clock;pulse.availableAt=clock+.85;app.notify(pulse.wave.label);
-   }else if(clock>=pulse.availableAt&&eligible.size<plan.active&&
+   }else if(clock>=pulse.availableAt&&
             [...siegeIssued].filter(alive).length<plan.siegeAlive&&
             spawn(pulse.wave.units[pulse.next],pulse.wave.id,pulse.next,true)){
     pulse.next++;pulse.availableAt=clock+.35;refresh();break;
@@ -214,7 +285,7 @@ export function installExteriorEncounters(app,e,paused=()=>false,admit=()=>true,
    const [x,y]=wave.at;
    if(Math.abs(u.x-x)>525||Math.abs(u.y-y)>550)continue;
    if(marker.warning===null){marker.warning=clock;app.notify(wave.label);continue;}
-   if(clock-marker.warning<.85||eligible.size>=plan.active)continue;
+   if(clock-marker.warning<.85||[...waveIssued].filter(alive).length>=plan.active+2)continue;
    if(spawn(wave.units[marker.next],wave.id,marker.next)){
     marker.next++;refresh();
    }
