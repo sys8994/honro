@@ -57,6 +57,7 @@
         try{
           a.mount(b,{freshReport:true,reportScope:'custom'});
           check(scope56(a,a.engine,s)&&a.engine.stage===content&&a.scene&&a.screen==='battle','Native normal 56 mount failed');
+          stage56FlowLayer(a.scene,()=>s.eave56||s.d56||a.done?null:s.flow56);
           s.exterior=installExteriorEncounters(a,a.engine,()=>!!s.eave56||!!s.d56);
           const nearby=a.engine.combatEnemies.bind(a.engine);
           // During the marked shelf evasion, the original reflow actor gets
@@ -119,11 +120,11 @@
         ],
         activate:[
           ['담허','당기기는 하는군. 지금은 더 박을 일은 없어. 저쪽이 어떻게 바뀌는지 보고 오지.'],
-          ['소단','거리가 벌어져도 바로 잡아당기진 않을게요. 어디로 흐르는지 보신 다음에 대답해 주세요.'],
+          ['소단','진이 잡혀도 더 당기진 않을게요. 먼 쪽 혼들의 움직임까지 지켜보고 알려드릴게요.'],
           ['담허','그래. 그릇 안에 가둔 물이 아니라 길을 지나는 흐름이니, 서 있던 돌부터 확인하며 가세.']
         ],
         readNarrowing:[
-          ['담허','멎은 줄 알았더니 지나갈 자리를 내가 막았네. 지금 서 있는 데까지 밀려오겠어.'],
+          ['담허','저 너머 큰길까지 거꾸로 흐르네. 지금 선 돌턱으로도 밀려오겠어.'],
           ['소단','다시 세게 잡아당겨서 맞출 수는 없어요. 아래 낮은 턱이 움직이기 전에 비켜야 해요.'],
           ['담허','이 자리에서는 풀 수도 없군. 한 걸음 옮길 때까지는 아무도 줄을 당기지 마.'],
           ['소단','알겠어요. 저도 반대편에서 더 지켜볼게요. 저희가 서 있던 데로 몰리는 것만 먼저 볼게요.']
@@ -167,6 +168,10 @@
           focusChart54(a,u);a.updateHUD(true);
         }
         s.owner56.tick();const r=projectNormal56(a,e,s);
+        if(s.flow56!==r.scopeFrame){
+          s.flow56=r.scopeFrame;
+          if(s.flow56==='slowing')a.notify('소단 · 저 너머 혼들이 느려져요.');
+        }
         if(s.button){s.button.textContent=r.summary;s.button.disabled=r.complete||r.failed;s.button.dataset.act6Mission=r.appActions?.mission??'';if(s.d56)s.button.dataset.act6HallD='approach';}
         if((r.complete||r.failed)&&!a.done)e.checkEnd();
       }

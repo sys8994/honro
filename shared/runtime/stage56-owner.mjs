@@ -81,6 +81,12 @@ const fieldsBefore=()=>structuredClone(b.physics?.regions??[]);
  const nativeTick=e.tick.bind(e);
  e.tick=(dt)=>{
   seconds+=dt;
+  // The same grounded ledge leads from the first activation to the observation point.
+  // The far procession hesitates here. readNarrowing still owns the live reversal.
+  if(seeded&&scopeFrame==='forward'&&b.phase==='aim'&&e.active===m&&m.hp>0&&!m.dead&&
+     Math.abs(m.x-seeded.point.x)>=45&&near(5050,E,240)){
+   scopeFrame='slowing';
+  }
   if(ward&&reflow==='warned'&&b.side===1&&b.active===ward.id&&b.phase==='enemy'&&b.round>=ward.turn){
    if(live()&&support()===B&&m.x<strip.left-10&&Math.abs(m.x-ward.pose.x)>120){
     reflow='evaded';events.push({key:'native-evade',pose:{x:m.x,y:m.y},support:support(),opponent:b.active,phase:b.phase,round:b.round,actorSetter:false});
