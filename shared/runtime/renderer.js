@@ -139,6 +139,14 @@
             for(const tile of set.tiles.values())this._releaseRasterCanvas(tile.canvas);
             set.tiles.clear();
         }
+        _trimDomainTiles(set,limit){
+            if(!set)return;
+            while(set.tiles.size>limit){
+                const oldest=set.tiles.keys().next().value;
+                this._releaseRasterCanvas(set.tiles.get(oldest).canvas);
+                set.tiles.delete(oldest);
+            }
+        }
         _releaseDomainTiles(){
             this._discardTileSet(this._domainTiles);
             this._discardTileSet(this._alternateDomainTiles);
@@ -146,7 +154,7 @@
             this._terrainZoom=null;
         }
         _trackTerrainZoom(b,w){
-            if(![40,44,46,48,49,51,52].includes(b.honroStage)||!b.honroCanonical||b.honroCustom!==false||b.honroMapOrigin!=='campaign'){
+            if(![40,44,45,46,48,49,50,51,52,59].includes(b.honroStage)||!b.honroCanonical||b.honroCustom!==false||b.honroMapOrigin!=='campaign'){
                 if(this._terrainZoom)this._releaseDomainTiles();
                 return;
             }
@@ -164,12 +172,11 @@
         }
         _displayTileScale(b,w){
             if(!this._terrainZoom?.preview||this._terrainZoom.battle!==b)return this._worldRasterScale(b,w);
-            // During a gesture all positions share one geographic grid. Exact native tiles
-            // replace it after the fingers stop. Each missing region is painted on demand.
-            const minimum=G.HonroBounds.zoomLimits(w).min;
-            return Math.min(.32,Math.max(.075,minimum*(w<900?1.7:1.25)));
+            // Use the destination's real raster and grid. At minimum zoom the settled
+            // camera can keep the last gesture tile without another synchronous repaint.
+            return this._worldRasterScale(b,w,G.HonroBounds.zoomLimits(w).min);
         }
-        _worldRasterScale(b,w){if(G.HonroTerrainDomain?.active(b)){const q=b?.honroMap?.nativeArt;if(b?.honroStage>=31&&b.honroStage<=40&&q?.version===1&&Array.isArray(q.coveredTerrainIds)){const h=Math.max(1,this.canvas.getBoundingClientRect().height),z=Math.max(.05,this.scale),d=this._pixelRatio(w,h,b),limit=w<900?12:24;let rs=Math.max(.05,2**(Math.ceil(Math.log2(z*d)*4)/4));while(rs>.05&&(Math.ceil(w*rs/(z*512))+1)*(Math.ceil(h*rs/(z*512))+1)>limit)rs/=Math.SQRT2;return Math.max(.05,rs);}return Math.min(.68,Math.max(.05,2**(Math.floor(Math.log2(this.scale*1.25)*4)/4)));}const mobile=w<900,maxPixels=mobile?3000000:6000000,desired=this.scale>.72?.68:this.scale>.38?.56:.42,cap=Math.sqrt(maxPixels/Math.max(1,b.width*b.height));return Math.max(.28,Math.min(desired,cap));}
+        _worldRasterScale(b,w,zoom=this.scale){if(G.HonroTerrainDomain?.active(b)){const q=b?.honroMap?.nativeArt;if(b?.honroStage>=31&&b.honroStage<=40&&q?.version===1&&Array.isArray(q.coveredTerrainIds)){const h=Math.max(1,this.canvas.getBoundingClientRect().height),z=Math.max(.05,zoom),d=this._pixelRatio(w,h,b),limit=w<900?12:24;let rs=Math.max(.05,2**(Math.ceil(Math.log2(z*d)*4)/4));while(rs>.05&&(Math.ceil(w*rs/(z*512))+1)*(Math.ceil(h*rs/(z*512))+1)>limit)rs/=Math.SQRT2;return Math.max(.05,rs);}return Math.min(.68,Math.max(.05,2**(Math.floor(Math.log2(zoom*1.25)*4)/4)));}const mobile=w<900,maxPixels=mobile?3000000:6000000,desired=zoom>.72?.68:zoom>.38?.56:.42,cap=Math.sqrt(maxPixels/Math.max(1,b.width*b.height));return Math.max(.28,Math.min(desired,cap));}
         _isForeground(l){return l.asset?.params?.semanticLayer==='FORE'&&!l.asset?.collision?.length&&!l.collisionIds?.length&&!l.honroElementCollision&&G.HonroVisualStyle?.classify(l,this.battle)!=='gameplay';}
         _landmarkLayer(c,landmarks,layer){c.save();for(const l of landmarks){const foreground=this._isForeground(l);if(layer==='foreground'?!foreground:foreground||(l.layer||'back')!==layer)continue;c.globalAlpha=l.opacity??1;if(l.honroTerrainMaterialClip){c.save();c.clip(l.honroTerrainMaterialClip);this.landmark?.(c,l);c.restore();}else this.landmark?.(c,l);}c.restore();}
         _drawForeground(c,b,w,h,landmarks){
@@ -199,7 +206,7 @@
             if(bounds)return bounds.right+padding>=view.left&&bounds.left-padding<=view.right&&bounds.bottom+padding>=view.top&&bounds.top-padding<=view.bottom;
             const reach=3000*Math.max(.2,Math.abs(l.scale??l.size??1));return l.x+reach>=view.left&&l.x-reach<=view.right&&l.y+reach>=view.top&&l.y-reach<=view.bottom;
         }
-        _worldCacheKey(b,w){const rs=this._displayTileScale(b,w);return`${b.session||b.honroStage}:${b.sceneVersion||0}:${b.width}x${b.height}:${rs.toFixed(3)}:${G.HonroAct2SpatialArt?.appearanceKey(b)||''}${this._terrainZoom?.battle===b&&this.scale<=.245?':overview':''}`;}
+        _worldCacheKey(b,w){const rs=this._displayTileScale(b,w);return`${b.session||b.honroStage}:${b.sceneVersion||0}:${b.width}x${b.height}:${rs.toFixed(3)}:${G.HonroAct2SpatialArt?.appearanceKey(b)||''}${this._terrainZoom?.battle===b&&this._terrainZoom.art&&(this._terrainZoom.preview||this.scale<=.245)?':overview':''}`;}
         _buildStaticWorld(b,w){
             this._releaseDomainTiles();
             const key=this._worldCacheKey(b,w);if(this._staticWorldCache?.key===key){this._cacheStats.worldHits++;return this._staticWorldCache;}
@@ -565,9 +572,14 @@
                 c.save();c.beginPath();c.rect((sx-matrix.e)/matrix.a,(sy-matrix.f)/matrix.d,(ex-sx)/matrix.a,(ey-sy)/matrix.d);c.clip();c.drawImage(tile.canvas,0,0,px+gutter*2,px+gutter*2,tile.left-gutter/rs,tile.top-gutter/rs,size+gutter*2/rs,size+gutter*2/rs);c.restore();
             }
             this._staticCacheBuild=old;
-            while(q.tiles.size>limit){const oldest=q.tiles.keys().next().value;this._releaseRasterCanvas(q.tiles.get(oldest).canvas);q.tiles.delete(oldest);}
+            // Both scales share the existing per-device surface budget. Prefer live
+            // tiles, retaining only the most recently viewed tiles of the other scale.
+            const alternate=this._alternateDomainTiles;
+            this._trimDomainTiles(q,limit);
+            this._trimDomainTiles(alternate,Math.max(0,limit-q.tiles.size));
             this._releaseRasterCanvas(this._staticWorldCache?.canvas);
-            this._staticWorldCache={key,rs,bytes:q.tiles.size*(px+gutter*2)**2*4};
+            const count=q.tiles.size+(alternate?.tiles.size||0);
+            this._staticWorldCache={key,rs,bytes:count*(px+gutter*2)**2*4};
         }
         renderCacheStats(){return{...this._cacheStats,screenWorldBytes:this._screenWorldCache?.bytes||0,screenBackgroundBytes:this._screenBackgroundCache?.bytes||0,screenForegroundBytes:this._screenForegroundCache?.bytes||0,worldBytes:this._staticWorldCache?.bytes||0,worldScale:this._staticWorldCache?.rs||0,backgroundBytes:this._backgroundCache?.bytes||0};}
         collisionTerrainOutline(c,b,w,h){

@@ -6,7 +6,7 @@ const nativeLandmark=Scene.prototype.landmark;
 const cliffPaths=new WeakMap();
 function tileFaces(c,asset,inst,scene){
  const b=scene?.battle;
- if(!scene?._staticCacheBuild||![51,52].includes(b?.honroStage)||!b.honroCanonical||
+ if(!scene?._staticCacheBuild||![51,52,59].includes(b?.honroStage)||!b.honroCanonical||
     b.honroCustom!==false||b.honroMapOrigin!=='campaign'||inst.x||inst.y||inst.rotation||(inst.scale??1)!==1||
     asset.anchor?.x||asset.anchor?.y||!asset.visual?.length)return false;
  const m=c.getTransform();
