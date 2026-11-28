@@ -8,20 +8,22 @@ export function paintRelief(ground,map,images,density){
   c.save();c.setTransform(density,0,0,density,0,0);
   for(const ring of map.cliffs){
     const edge=loop(ring),xs=ring.map(p=>p[0]),ys=ring.map(p=>p[1]),x0=Math.min(...xs),x1=Math.max(...xs),y0=Math.min(...ys),y1=Math.max(...ys);
-    const depth=Math.min(95,(y1-y0)*.43);
+    const depth=Math.min(54,(y1-y0)*.28);
     c.save();c.clip(edge);const fog=c.createLinearGradient(0,y0,0,y1);
     fog.addColorStop(0,'#354b4b');fog.addColorStop(.53,'#61726a');fog.addColorStop(1,'#3f504b');
     c.fillStyle=fog;c.fillRect(x0,y0,x1-x0,y1-y0);
-    for(let band=0;band<3;band++){
-      const y=y0+(y1-y0)*(.28+band*.23),pts=[];
-      for(let x=x0-20;x<x1+26;x+=17)pts.push([x,y+13*Math.sin(x*.009+band*3.1)+7*Math.cos(x*.025+band)+rand()*4]);
-      c.fillStyle=['#586961','#455851','#364b42'][band];c.fill(loop([...pts,[x1+30,y1],[x0-20,y1]]));
-      c.globalAlpha=.36+band*.1;
-      for(let i=0;i<pts.length;i+=2){const [x,y]=pts[i],h=(17+rand()*12)*(1+band*.32);c.drawImage(images.get(i%4?'pine_a':'pine_b'),x-h/2,y-h*.7,h,h*.85);}
-      c.globalAlpha=1;
-    }
+    // Crop without distorting the distant conifers. The same negative space and
+    // contour that stop a walking unit clip the unplayable lower valley.
+    const plate=images.get('valley-depth'),ww=x1-x0,hh=y1-y0;
+    const scale=Math.max(ww/plate.width,hh/plate.height,.38),sw=ww/scale,sh=hh/scale;
+    const left=rand()*(plate.width-sw),top=(.22+rand()*.52)*(plate.height-sh);
+    c.drawImage(plate,left,top,sw,sh,x0,y0,ww,hh);
+    const haze=c.createLinearGradient(0,y0,0,y1);
+    haze.addColorStop(0,'rgba(24,44,42,.19)');haze.addColorStop(.55,'rgba(48,73,69,.10)');haze.addColorStop(1,'rgba(33,53,49,.29)');
+    c.fillStyle=haze;c.fillRect(x0,y0,ww,hh);
     // Shallow overhang and tall, lit fractured rock are at the back of the hollow.
-    const stone=images.get('rock'),pattern=c.createPattern(stone,'repeat');pattern.setTransform(new DOMMatrix([.51,.08,.025,.64,0,0]));
+    const pattern=c.createPattern(plate,'repeat');
+    pattern.setTransform(new DOMMatrix([.36,.03,-.06,.51,x0-90,y0-120]));
     const facets=[];
     for(let i=0;i<ring.length;i++){
       const [x,y]=ring[i],[z,w]=ring[(i+1)%ring.length],mid=(y+w)*.5;
@@ -32,13 +34,40 @@ export function paintRelief(ground,map,images,density){
     for(const q of facets){
       const p=loop(q.poly);c.fillStyle=pattern;c.fill(p);
       const shade=c.createLinearGradient(0,q.mid-3,0,q.mid+q.h);
-      shade.addColorStop(0,'rgba(86,95,80,.33)');shade.addColorStop(.72,'rgba(33,48,47,.39)');shade.addColorStop(1,'rgba(40,60,57,.73)');
+      shade.addColorStop(0,'rgba(68,71,55,.08)');shade.addColorStop(.7,'rgba(30,41,36,.24)');shade.addColorStop(1,'rgba(29,44,41,.42)');
       c.fillStyle=shade;c.fill(p);const col=(q.z-q.x)*.16+(q.w-q.y)*.54;
       c.fillStyle=col>0?'rgba(40,43,39,.20)':'rgba(179,177,150,.12)';c.fill(p);
-      if(rand()<.56)stroke([[q.x+2,q.y+4],[q.x+q.dx*.53,q.y+q.h*.44],[q.x+q.dx+3,q.y+q.h*.79]],'#23302d63',1+rand()*1.8);
-      if(rand()<.72)stroke([[q.x,q.y+2],[q.z,q.w+2]],'#98977c72',1.2+rand()*2);
+      if(rand()<.19)stroke([[q.x+2,q.y+4],[q.x+q.dx*.53,q.y+q.h*.44],[q.x+q.dx+3,q.y+q.h*.79]],'#23302d63',1+rand()*1.8);
+      if(rand()<.41)stroke([[q.x,q.y+2],[q.z,q.w+2]],'#98977c72',1.2+rand()*2);
     }
     c.restore();
+  }
+  // Plank rows end exactly at the walk mask. A snapped end has open space
+  // beyond its splinters, while the ferry's intact loading deck has a sill.
+  for(const deck of map.decks||[]){
+    const [x,y]=deck.start,[z,w]=deck.end,len=Math.hypot(z-x,w-y);
+    const tx=(z-x)/len,ty=(w-y)/len,nx=-ty,ny=tx,half=deck.width/2;
+    const at=(d,l,down=0)=>[x+tx*d+nx*l,y+ty*d+ny*l+down];
+    const span=(a,b,far,near,color)=>{const face=loop([a,b,far,near]);c.fillStyle=color;c.fill(face);};
+    span(at(3,-half,9),at(len,-half,9),at(len,half,12),at(3,half,12),'#1e2a26a6');
+    for(const side of [-1,1]){
+      const l=side*(half-2);span(at(0,l),at(len,l),at(len,l,7),at(0,l,7),'#3e3930');
+      for(let d=20;d<len-9;d+=69){
+        stroke([at(d,l,5),at(d,l,24)],'#393930',6);
+        stroke([at(d,l,6),at(d+16,l,19)],'#51483a',3);
+      }
+    }
+    const boards=Math.ceil(len/7.7);
+    for(let i=0;i<boards;i++){
+      const a=i*len/boards,b=(i+1)*len/boards-.5;
+      const split=deck.broken&&i===boards-1?2+rand()*3:0;
+      span(at(a,-half),at(b-split,-half),at(b,half),at(a,half),['#776c54','#706650','#85775d','#7a7059'][Math.floor(rand()*4)]);
+      stroke([at(a,-half),at(a,half)],'#aaa187a0',.9);
+      for(let g=0;g<3;g++){const edge=rand()*half*.9;stroke([at(a+2+g,-half+edge),at(a+2.6+g,half-edge*.7)],'#4b46384d',.7);}
+    }
+    for(let d=10;d<len-12;d+=65){const l=-half+2;
+      stroke([at(d,l),at(d,l,-12)],'#4b4638',4);
+      stroke([at(d,l,-10),at(Math.min(d+65,len-9),l,-10)],'#898064',2);}
   }
   for(const steps of map.stairs){
     for(let j=1;j<steps.length;j++){

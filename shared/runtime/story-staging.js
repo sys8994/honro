@@ -99,10 +99,13 @@ function move(app,s,step,dt,skip){
  const to=s.results[s.cursor]?.target||(step.towards?(alive(u)&&aim?{x:u.x+Math.sign(aim.x-u.x)*Math.min(step.distance||36,Math.abs(aim.x-u.x)),y:u.y}:null):point(b,step.to,s.context));
  if(!alive(u))return 'actor-unavailable';if(!to)return 'anchor-unavailable';if(!skip&&dt<=0)return null;
  if(u.airborne||u.jumping||Math.abs(u.vy||0)>3)return 'actor-airborne';
+ if(b.honroTopview&&G.HonroTopview.storyWalk){
+  const target=s.results[s.cursor]?.target||{...to};s.results[s.cursor]??={target};
+  return G.HonroTopview.storyWalk(app,u,target,dt,skip,step.speed||440);
+ }
  const distance=to.x-u.x,max=step.maxDistance||800;
  if(Math.abs(distance)>max)return 'route-too-long';
  if(Math.abs(distance)<.001)return 'arrived';
- if(b.honroTopview&&G.HonroTopview.storyWalk)return G.HonroTopview.storyWalk(app,u,to,dt,skip,step.speed||440);
  const surface=G.HonroMapEngine.surfaceY(b.terrain,to.x,to.y);if(!surface||Math.abs(surface.y-to.y)>80)return 'support-unavailable';
  const saved={fixed:u.fixed,moveLeft:u.moveLeft,walkSpeed:u.walkSpeed,bound:u.bound},before=u.x;
  const speed=Math.max(30,Math.abs(s.results[s.cursor]?.distance??distance)/Math.max(.05,(step.duration||600)/1000));

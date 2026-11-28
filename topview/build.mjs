@@ -37,7 +37,7 @@ async function titleShell(manifest, base) {
 export async function buildTopview() {
   await fs.mkdir(out, {recursive:true});
   const manifest = JSON.parse(await read('web/manifest.json'));
-  const core = await emit('core', (await minify(await buildCore(), {compress:false,mangle:false})).code);
+  const core = await emit('core', (await minify(await buildCore({topview:true}), {compress:false,mangle:false})).code);
   const loader = await emit('campaign-loader', (await read('shared/web-loader.js')).replace('/* JSON_POOL_DECODER */',unpackJson.toString()));
   const chapter = await emit('chapter', `import {loadCampaign} from './${path.basename(loader)}';
 globalThis.HONRO_PROJECT=await loadCampaign(${JSON.stringify(manifest.project)},[${projectAuthors.join(',')}],{firstStage:1});`);
@@ -49,13 +49,13 @@ globalThis.HONRO_PROJECT=await loadCampaign(${JSON.stringify(manifest.project)},
   // Replace spatially adapted owners in their original registration slot. Later
   // native chapter decorators must wrap these owners, including on a cold reload.
   const owners=new Map(Object.entries({HonroProfileStore:'profile-store',HonroObjectives:'objectives',
-    HonroMission:'mission',HonroAllies:'allies',HonroSodanWithdrawal:'sodan-withdrawal',HonroStage8Bier:'stage8-bier',HonroEncounterDensity:'encounter-density',HonroStoryStaging:'story-staging'}));
+    HonroInteractions:'interactions',HonroMission:'mission',HonroAllies:'allies',HonroSodanWithdrawal:'sodan-withdrawal',HonroStage8Bier:'stage8-bier',HonroEncounterDensity:'encounter-density',HonroStoryStaging:'story-staging',HonroStage2Airborne:'stage2-airborne',HonroStage5WaterGeometry:'stage5-waterfall-geometry'}));
   const inserted=new Set();
   let cores=0, projects=0, apps=0;
   for (const file of [...manifest.common, ...manifest.gameOnly]) {
     if (/\/campaign\.[a-f0-9]+\.js$/.test(file)) { modules.push(chapter); projects++; continue; }
     const body=await read(file);
-    if (/ordered-common-/.test(file)&&[...owners.keys()].some(k=>body.includes('G.'+k+'={'))){
+    if (/ordered-(?:common|game)-/.test(file)&&[...owners.keys()].some(k=>body.includes('G.'+k+'={'))){
       const boundary='await yieldIfNeeded();',parts=body.split(boundary);
       for(let i=0;i<parts.length;i++){
         const entry=[...owners].find(([name])=>parts[i].includes('G.'+name+'={'));
@@ -88,7 +88,7 @@ globalThis.HONRO_PROJECT=await loadCampaign(${JSON.stringify(manifest.project)},
   for (const entry of ['index.html','HONRO.html']) await writeGenerated(path.join(root,entry),publicHtml);
   const live = new Set([...modules,loader].map(file => path.basename(file)));
   for (const file of await fs.readdir(out)) {
-    if (/^(core|chapter|campaign-loader|native-combat-feedback|native-profile-store|native-objectives|native-mission|native-main)\.[a-f0-9]{16}\.mjs$/.test(file) && !live.has(file)) await fs.unlink(path.join(out,file));
+    if (/^(core|chapter|campaign-loader|native-combat-feedback|native-profile-store|native-objectives|native-mission|native-main|native-field-ordered-(?:common|game)-\d+)\.[a-f0-9]{16}\.mjs$/.test(file) && !live.has(file)) await fs.unlink(path.join(out,file));
   }
   console.log('Topview chapter ready, '+modules.length+' native/adapter modules');
   return publicHtml;

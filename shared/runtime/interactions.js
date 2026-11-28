@@ -17,8 +17,8 @@ function eligibility(app,m){
  if(result.ok)result=G.HonroAct1ReviewRepairs?.installation(app,m)||result;
  const e=app.engine,b=e?.b,u=e?.active;
  if(result.ok&&m.action==='climbSite'){
-  if(!e.grounded(u)||Math.abs(u.y-m.y)>58)result={ok:false,reason:'돌계단 입구와 같은 층에 서세요'};
-  else if(u.moveLeft<180)result={ok:false,reason:'이동도 180 필요'};
+  if(!e.grounded(u)||(!b.honroTopview&&Math.abs(u.y-m.y)>58))result={ok:false,reason:'돌계단 입구와 같은 층에 서세요'};
+  else if(u.moveLeft<(b.honroTopview?1:180))result={ok:false,reason:b.honroTopview?'이번 턴 이동도를 모두 썼습니다':'이동도 180 필요'};
   else if(!climbDestination(e,u,m))result={ok:false,reason:'건너편 길목이 막혀 있습니다'};
  }
  if(result.ok&&m.action==='rescue'){
@@ -31,6 +31,10 @@ function eligibility(app,m){
 function climbDestination(e,u,m){
  const p=m.to;
  if(!p||e.b.honroAct1SiteRevision!==1)return null;
+ if(e.b.honroTopview){
+  const t=G.HonroTopview.space,goal=t.free(p,u.r),start={x:u.x,y:u.y-u.h*.5};
+  return goal&&t.route(start,goal,u.r).length?goal:null;
+ }
  return G.HonroTerrain.place(e.b,u,{...p,flying:false,maxDistance:180,accept:(x,y)=>Math.abs(y-p.y)<40});
 }
 function rawEligibility(app,m){if(automaticMarker(app.engine?.b,m))return{ok:false,reason:app.engine.b.honroStage===11?G.HonroAct23V4Reviewed.instruction(app.engine.b):'이 목표는 자동 진행됩니다'};const e=app.engine,b=e?.b,u=e?.active;if(u?.retreat)return{ok:false,reason:'이탈보 · 이동/점프만 가능'};if(m?.action==='skillGate'){const plan=e?.gateResolution();return app.canInput()?plan||{ok:false,reason:'축지진목을 찾을 수 없음'}:{ok:false,reason:'현재 행동이 끝난 뒤'};}if(!e||!u||!m||m.collected||u.side!==0||u.dead)return{ok:false,reason:'상호작용할 수 없음'};const point=G.HonroObjectives.interactionTarget(b,m);if(!point)return{ok:false,reason:'구조할 주민이 없음'};const d=Math.hypot(u.x-point.x,(u.y-point.y)*.75);if(d>RANGE)return{ok:false,reason:'더 가까이 이동'};if(Math.abs(u.y-point.y)>150)return{ok:false,reason:'같은 층으로 이동'};if(m.action==='ritual'&&b.honroState.ritual?.active)return{ok:false,reason:'의식 유지 중 · 이탈 시 해제'};if(m.action==='ritual'&&(Math.abs(u.x-m.x)>125||Math.abs(u.y-m.y)>80||!e.grounded(u)))return{ok:false,reason:'받이진 안에 서세요'};if(m.requiredClass&&u.cls!==m.requiredClass)return{ok:false,reason:`${G.HONRO_CONTENT.hero[m.requiredClass]?.name||'지정 인물'} 필요`};if(!app.canInput())return{ok:false,reason:'현재 행동이 끝난 뒤'};if(m.action==='act2')return G.HonroAct2.eligibility(app,m);if(m.action==='act3')return G.HonroAct3.eligibility(app,m);if(m.action==='act5')return G.HonroAct5.eligibility(app,m);return{ok:true,reason:m.action==='ritual'?'의식 시작':'상호작용'};}
@@ -55,6 +59,10 @@ function use(app,m){const ok=eligibility(app,m);if(!ok.ok)return false;if(m?.act
  }
  if(m.action==='climbSite'){
   const p=climbDestination(e,u,m);if(!p)return false;
+  if(b.honroTopview){
+   u.tvPath=G.HonroTopview.space.route({x:u.x,y:u.y-u.h*.5},p,u.r);
+   app.dirty=true;app.updateHUD(true);refresh(app);return u.tvPath.length>0;
+  }
   Object.assign(u,p,{vx:0,vy:0});delete u.groundContact;delete u.moveTarget;delete u.platformDrop;
   u.moveLeft-=180;e.refreshActivation();app.dirty=true;app.updateHUD(true);refresh(app);return true;
  }

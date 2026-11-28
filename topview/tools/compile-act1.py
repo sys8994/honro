@@ -9,7 +9,7 @@ from shapely.ops import unary_union
 
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'editable/act1'))
-from fields import FIELDS
+from fields import FIELDS, DECKS
 TW, TH, CELL = 64,44,180
 # Sprite rectangle in projected map pixels, foot registration, physical radius in cells.
 SIZES={
@@ -50,6 +50,10 @@ def build(id,f):
         return Polygon(out).buffer(0)
     drops=[shape(p) for p in f.drops];water=[shape(p) for p in f.water]
     wet=unary_union(water);unwalkable=unary_union([wet,*drops])
+    decks=[dict(id=name, start=project(a), end=project(b), width=width, broken=broken)
+           for name,a,b,width,broken in DECKS.get(id,[])]
+    walkdecks=unary_union([LineString([d['start'],d['end']]).buffer(d['width']/2,cap_style=2) for d in decks])
+    unwalkable=unwalkable.difference(walkdecks)
     roads=[dict(id=f'길 {i+1}',width=(48 if i==0 else 34)+rng.randrange(7),points=[[round(x,2),round(y,2)] for x,y in smooth(path(s))]) for i,s in enumerate(f.roads)]
     lanes=unary_union([LineString(t['points']).buffer(t['width']/2+22) for t in roads])
     occupied=[];objects=[]
@@ -59,14 +63,20 @@ def build(id,f):
         objects.append(dict(id=f'{name}-{idx}',asset=name,x=round(x,3),y=round(y,3),width=round(w*factor,1),height=round(h*factor,1),anchor=[.5,ay],radius=round(r*factor,3),blocksMovement=blocking,blocksProjectile=blocking and name not in ('pine_a','pine_b','guardtree')))
         occupied.append(point.buffer(max(12,w*.21)))
     for asset,x,y in f.structures:add(asset,x,y)
-    reserve=unary_union([Point(project(p)).buffer(54) for p in f.places.values()])
+    sites=[project(p) for p in f.places.values()]
+    reserve=unary_union([Point(p).buffer(54) for p in sites]+[walkdecks.buffer(24)])
+    # The crown rises in screen space. A clear foot alone is insufficient if a
+    # foreground tree permanently covers the actor, a binding or the debtor's ledger.
+    crown_clearance=unary_union([box(x-64,y-12,x+64,y+104) for x,y in sites])
     for i in range(nx*ny//2):
         x,y=rng.uniform(.4,nx-.4),rng.uniform(.4,ny-.4);p=Point(x*TW,y*TH)
         if reserve.contains(p) or lanes.contains(p) or unwalkable.contains(p) or any(o.contains(p) for o in occupied):continue
         outside=min(x,y,nx-x,ny-y)<3.8
         if not outside and rng.random()>.49:continue
         a=rng.choices(['pine_a','pine_b','rock_large','rock_small','shrub'],weights=[4,4,1.5,1,2] if outside else [1,1.6,2.8,2,4])[0]
-        add(a,x,y,rng.uniform(.9,1.08))
+        factor=rng.uniform(.9,1.08)
+        if a.startswith('pine') and crown_clearance.contains(p):continue
+        add(a,x,y,factor)
     cols,rows=math.ceil(W/96)+2,math.ceil(H/24)+3
     grid=[]
     for i in range(cols*rows):
@@ -76,11 +86,11 @@ def build(id,f):
     anchors={n:{'x':p[0],'y':p[1]} for n,p in f.places.items()}
     stairs=[[list(project(p)) for p in row] for row in f.steps]
     return dict(width=nx,height=ny,tileWidth=TW,tileHeight=TH,cell=CELL,
-        meta=dict(title=f.title,stage=id,revision=1,source='editable/act1/fields.py',climate=f.climate),
+        meta=dict(title=f.title,stage=id,revision=2,source='editable/act1/fields.py',climate=f.climate),
         anchors=anchors,placements=f.actors,convoy=[dict(x=p[0]*CELL,y=p[1]*CELL) for p in map(spot,f.convoy)],
         grid=dict(width=cols,height=rows,tileWidth=96,tileHeight=48,offsetX=50,offsetY=24,materials=grid),trails=roads,objects=objects,
         terrain=['water' if wet.contains(Point((x+.5)*TW,(y+.5)*TH)) else 'rock' if unwalkable.contains(Point((x+.5)*TW,(y+.5)*TH)) else 'grass' for y in range(ny) for x in range(nx)],
-        river=rings(wet),blockedWater=rings(unwalkable),cliffs=[rings(p)[0][0] for p in drops],stairs=stairs)
+        river=rings(wet),blockedWater=rings(unwalkable),cliffs=[rings(p)[0][0] for p in drops],stairs=stairs,decks=decks)
 if __name__=='__main__':
     for id,f in FIELDS.items():
         m=build(id,f);dest=ROOT/f'data/act1-{id:02}.json';dest.write_text(json.dumps(m,ensure_ascii=False,separators=(',',':'))+'\n')

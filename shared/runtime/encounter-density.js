@@ -14,7 +14,7 @@ function installActivation(e){const b=e.b,defs=b.honroEncounterDensityActivation
  const refresh=e.refreshActivation.bind(e),combat=e.combatEnemies.bind(e);
  const update=write=>{const eligible=new Set(),mem=memory(b),heroes=e.heroesAlive();for(const [cell,spec]of Object.entries(defs)){
   const units=e.alive(1).filter(u=>u.honroDensityCell===cell);if(!units.length)continue;
-  const hit=units.some(u=>u.aggroUntil>0&&u.aggroUntil>=b.round),approached=heroes.some(h=>{const support=e.contactSurface(h.x,h.y-8,h.y+10)?.t.id,access=(spec.supports||[]).includes(support)||(spec.extra||[]).some(a=>a.support===support&&h.x>=(a.minX??-Infinity)&&h.x<=(a.maxX??Infinity));return access&&units.some(u=>Math.abs(h.y-u.y)<(spec.maxHeight??650)&&Math.hypot(h.x-u.x,h.y-u.y)<spec.radius);});
+  const hit=units.some(u=>u.aggroUntil>0&&u.aggroUntil>=b.round),approached=heroes.some(h=>{if(b.honroTopview)return units.some(u=>Math.hypot(h.x-u.x,h.y-u.y)<spec.radius&&!G.HonroTopview.space.nearest({x:h.x,y:h.y-h.h/2},{x:u.x,y:u.y-u.h/2},2,true));const support=e.contactSurface(h.x,h.y-8,h.y+10)?.t.id,access=(spec.supports||[]).includes(support)||(spec.extra||[]).some(a=>a.support===support&&h.x>=(a.minX??-Infinity)&&h.x<=(a.maxX??Infinity));return access&&units.some(u=>Math.abs(h.y-u.y)<(spec.maxHeight??650)&&Math.hypot(h.x-u.x,h.y-u.y)<spec.radius);});
   // Explicit opt-in one-round pursuit; reads do not renew the receipt.
   if(write&&approached&&spec.engagementRounds===1)(mem.engagedUntil??={})[cell]=b.round+1;
   const engaged=spec.engagementRounds===1&&Number.isFinite(mem.engagedUntil?.[cell])&&b.round<=mem.engagedUntil[cell];

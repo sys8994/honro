@@ -85,13 +85,20 @@ export function groundScene(Base, space, images, projection, field) {
           label({x:a.x,y:a.y-12},({2:'나루로 가는 길',6:'북문 쉼터',10:'동쪽 외문'})[b.honroStage],'#dfc996');
         }
         if(b.honroStage===5){
-          const lip=paintPoint(space.point('cleat')),pool=paintPoint(space.point('waterfallFoot')),opened=!!b.honroState.waterfallSight;
-          c.save();c.lineCap='round';
-          for(let n=0;n<18;n++){const side=(n-8.5)*2.5,wave=Math.sin(time*2+n*.71)*2;
-            c.beginPath();c.moveTo(lip.x-59+side,lip.y-54+Math.abs(side)*.16);
-            c.bezierCurveTo(lip.x-55+side+(opened?58:0),lip.y+24,pool.x+side+(opened?45:0),pool.y-30,pool.x+side+wave,pool.y);
-            c.lineWidth=3.4;c.strokeStyle=n%4===0?'#bbd4d488':'#6e9caa70';c.stroke();
-          }c.restore();
+          const course=b.tvWaterCourses?.[b.honroState.waterfallSight?'opened':'closed'];
+          if(course){
+            const vertices=course.map(paintPoint),ribbon=new Path2D();
+            vertices.forEach((p,i)=>i?ribbon.lineTo(p.x,p.y):ribbon.moveTo(p.x,p.y));ribbon.closePath();
+            c.save();c.clip(ribbon);c.fillStyle='#8cbdc35e';c.fill(ribbon);c.lineCap='round';
+            const [a,bend,base,right,bendR,end]=vertices,lerp=(p,q,t)=>({x:p.x+(q.x-p.x)*t,y:p.y+(q.y-p.y)*t});
+            for(let n=0;n<18;n++){
+              const t=(n+.5)/18,top=lerp(a,end,t),mid=lerp(bend,bendR,t),foot=lerp(base,right,t);
+              c.beginPath();c.moveTo(top.x,top.y);c.quadraticCurveTo(mid.x,mid.y,foot.x,foot.y);
+              c.lineWidth=n%3?.65:1.3;c.strokeStyle=n%3?'#c3dee23d':'#d1e8e95e';c.stroke();
+              c.lineWidth=.7+.65*Math.sin(n*8.2)**2;c.strokeStyle='#c3e5e65c';
+              c.setLineDash([4+(n*17)%23,12+(n*23)%32]);c.lineDashOffset=-time*(36+n%5*5)-n*n*3;c.stroke();c.setLineDash([]);
+            }c.restore();
+          }
         }
       }
       const wind=!map.meta.stage&&space.point('crosswind');

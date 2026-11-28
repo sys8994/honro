@@ -118,8 +118,9 @@ function prepareSpawn(b,st,a,hero){
  if(a.type==='sniperAmbush'&&!archer)return null;
  const list=[];
  for(let i=0;i<(a.n||1);i++){
-   const ambush=a.type==='sniperAmbush',id=b.nextId++,x=clamp(ambush?archer.x+420+(i%3)*160:a.x+(i-(a.n-1)/2)*(a.spacing??115),90,b.width-100);
-   const y=ambush?Math.max(120,archer.y-100-(i%2)*120):Number.isFinite(a.airY)?a.airY:a.y!==undefined?W.top(b,x,a.y,a.support):st.id===7&&!b.honroLayoutRevision?hero?.y:undefined;
+   const ambush=a.type==='sniperAmbush',id=b.nextId++,sky=b.honroTopview&&ambush?b.honroMap?.flightRegion:null;
+   const x=clamp(ambush?archer.x+420+(i%3)*160:a.x+(i-(a.n-1)/2)*(a.spacing??115),sky?sky.left+145+i*180:90,sky?sky.right-145-((a.n||1)-1-i)*180:b.width-100);
+   const y=ambush?clamp(archer.y-100-(i%2)*120,sky?sky.top+155:120,sky?sky.bottom-100:Infinity):Number.isFinite(a.airY)?a.airY:a.y!==undefined?W.top(b,x,a.y,a.support):st.id===7&&!b.honroLayoutRevision?hero?.y:undefined;
      const kind=ambush?'crow':a.kind,u=W.createEnemy(b,st,x,kind,id,y,Number.isFinite(a.airY));
      if(a.act3Authored){u.honroAct3Encounter=1;u.honroAct3Elite=!!a.elite&&i===0;u.honroCohort='reinforcement';G.HonroAct3Encounters.tune(b,u,st);G.HonroProgression.enemyXP(b,u);}
    if(b.honroEncounterRevision){u.combatBaseHp*=.6;u.hp=u.maxHp=Math.max(1,Math.round(u.maxHp*.6));}

@@ -8,6 +8,7 @@ from playwright.sync_api import sync_playwright
 from native_entry import enter_chapter
 parser=argparse.ArgumentParser()
 parser.add_argument('--mobile',action='store_true')
+parser.add_argument('--save-checkpoint',type=Path,help='Export the isolated normal chapter-2 save produced by this run.')
 parser.add_argument('--entry-only',action='store_true',help='Stop after opening the chapter and moving through the normal controls.')
 parser.add_argument('--viewport',help='CSS viewport, e.g. 390x844')
 parser.add_argument('--out',required=True,type=Path)
@@ -94,6 +95,10 @@ with sync_playwright() as p:
             raise SystemExit(0)
         arm_trace()
         tap(page.locator('[data-lock]'));assert page.locator('[data-lock]').get_attribute('aria-pressed')=='true'
+        if args.mobile:
+            anchor=page.evaluate("()=>{const a=HonroApp,p=a.engine.damageAim(a.engine.unit('watch-1-pass-1-1')),s=HonroTopview.space;return [p.x/s.width,p.y/s.height]}")
+            mini=page.locator('#minimap').bounding_box();point(mini['x']+anchor[0]*mini['width'],mini['y']+anchor[1]*mini['height'])
+            page.wait_for_timeout(180)
         tgt=page.evaluate("()=>{const a=HonroApp,e=a.engine,u=e.unit('watch-1-pass-1-1');const p=e.damageAim(u),q=a.scene.screenPoint(p.x,p.y);return {x:q.x,y:q.y-26*a.scene.zoomLevel};}")
         point(tgt['x'],tgt['y'])
         r=page.locator('#fire').bounding_box();x,y=r['x']+r['width']/2,r['y']+r['height']/2
@@ -163,12 +168,19 @@ with sync_playwright() as p:
         result=log['checks']['completion']
         if not result['storageIsolated'] or not all(result['flags'].get('event:'+name) for name in ['cart','more','witness','ridge']) or end['cast']!=18:
             raise AssertionError(('사건·증원·저장 격리',result,end))
-        title=page.locator('#modal [data-action="title"]:visible')
-        tap(title.first);page.wait_for_selector('.honro-title .title-actions')
-        log['checks']['returnToTitle']=state()['screen']=='title';note('데모 타이틀',state())
-        tap(page.locator('.honro-title .title-actions button[data-action]').first);page.wait_for_function("HonroApp.screen==='rest'");page.wait_for_function("performance.now()>=(HonroApp.journeyInputAfter||0)");tap(page.locator('[data-action=camp]:visible').first);page.wait_for_function("HonroApp.screen==='camp'")
-        log['checks']['camp']={'screen':state()['screen'],'text':page.locator('#app').inner_text()[:520]};note('동행과 장비',log['checks']['camp']);capture('camp')
-        if not log['checks']['returnToTitle'] or log['errors']:raise AssertionError(log['errors'])
+        tap(page.locator('#modal [data-action="result-continue"]:visible').first)
+        page.wait_for_function("HonroApp.engine?.b.honroStage===2 || HonroApp.screen==='rest'")
+        if page.evaluate("HonroApp.screen==='rest'"):
+            page.wait_for_function("performance.now()>=(HonroApp.journeyInputAfter||0)")
+            tap(page.locator('[data-action=journey-enter]:visible').first)
+        page.wait_for_function("HonroApp.engine?.b.honroTopview===1&&HonroApp.engine.b.honroStage===2")
+        log['checks']['nextChapter']=page.evaluate("()=>({stage:HonroApp.stage.id,place:HonroApp.stage.name,profile:HonroApp.profile.cleared[1]})")
+        note('행렬이 있는 2장 도착',log['checks']['nextChapter']);capture('next-chapter')
+        if args.save_checkpoint:
+            entry=page.evaluate("()=>localStorage.getItem(HonroTopview.profileKey)")
+            assert entry and json.loads(entry).get('honroBattle',{}).get('honroStage')==2
+            args.save_checkpoint.write_text(entry)
+        if log['errors']:raise AssertionError(log['errors'])
     except Exception as e:
         log['failure']=repr(e);note('검수 중단',state() if page.evaluate('!!window.HonroApp') else page.locator('body').inner_text());capture('failure');raise
     finally:

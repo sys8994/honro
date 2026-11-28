@@ -11,7 +11,7 @@ export function scopeNormal51Engine(s){
   if(s.split(a).length!==2)throw Error('Stage51 live engine hook source drift');
   return s.replace(a,'get stage() { return normal51Provider.content(this.b) || STAGES[this.b.stageId - 1]; }');
 }
-export async function buildCore({normal51=false}={}){
+export async function buildCore({normal51=false,topview=false}={}){
   const dir=path.join(path.dirname(fileURLToPath(import.meta.url)),'../../shared/engine/src');
   const files=(await readdir(dir)).filter(f=>f.endsWith('.ts')).sort();
   const modules=[];
@@ -22,5 +22,7 @@ export async function buildCore({normal51=false}={}){
     modules.push(`${JSON.stringify(f.slice(0,-3))}: function(module,exports,require){\n${out.outputText}\n}`);
   }
   const exports=['equipmentCombat','equipment','playerRange','skillAudioMap','waterfallPhysics','audio','bgm','campUI','icons','atlasControls','art','engine','data','world','store','math','progression','enemyAI','balance','balanceModel','passiveBalance','spBalanceModel','stageRules','atlasLayout','physics','projectileGrowth','mageGeometry','gateTravel','totemBehavior','skillMechanics','skillVisuals','warriorData','warriorMechanics','combatPassives','warriorVisuals','summons','locomotion','existence','damageVariance'];
-  return `const modules={${modules.join(',\n')}};const cache={};function load(id){id=id.replace(/^\\.\\//,'').replace(/\\.js$/,'');if(cache[id])return cache[id].exports;if(!modules[id])throw new Error('Missing internal module: '+id);const m={exports:{}};cache[id]=m;modules[id](m,m.exports,load);return m.exports;}\nglobalThis.HONRO_CORE={${exports.map(id=>`...load('${id}')`).join(',')}};`;
+  // The planar enemy navigator delegates authored pattern turns and targeting to the native owner.
+  const patterns=topview?",monsterTurn:load('monsterPatterns').monsterTurn,monsterPriorityTarget:load('monsterPatterns').monsterPriorityTarget":"";
+  return `const modules={${modules.join(',\n')}};const cache={};function load(id){id=id.replace(/^\\.\\//,'').replace(/\\.js$/,'');if(cache[id])return cache[id].exports;if(!modules[id])throw new Error('Missing internal module: '+id);const m={exports:{}};cache[id]=m;modules[id](m,m.exports,load);return m.exports;}\nglobalThis.HONRO_CORE={${exports.map(id=>`...load('${id}')`).join(',')}${patterns}};`;
 }

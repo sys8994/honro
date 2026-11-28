@@ -63,7 +63,7 @@ FIELDS={
 'start 6,10 westDeck 15,9 midDeck|start 5,14 westHead 12,18 16,21 pillarNest rescue 28,19 eastHead 35,15 exit|westHead 9,20 13,24 20,25 rescue|eastHead 30,12 34,9 exit',
 '12,11 16,10 20,9 25,9 28,11 26,14 23,16 19,17 15,15 11,14|31,4 37,3 42,3 42,8 37,7 33,8',
 '0,25 9,24 16,27 24,25 29,22 34,22 42,20 42,30 0,30',
-'broken_pier:12,12 broken_pier:18.5,12.4 broken_pier:27,11.5 lookout:8,9 shed:39.8,9.5 ruin_gate:38.6,11 stone_lantern:24,22',
+'broken_pier:13,16.9 broken_pier:24.3,19.6 lookout:8,9 shed:39.8,9.5 ruin_gate:38.6,11 stone_lantern:24,22',
 '9,15 11,17 13,19|31,16 30,14 30,12','rescue 28,19 eastHead 35,15 exit',
 'p-archer:start p-mage:start p-knight:start objective:rescue ally-ropeguard:westHead midboss-stage6:pillarNest marker-7:exit','ravine'),
 7:field('돌당골',(38,33),
@@ -80,7 +80,7 @@ FIELDS={
 '18,12 23,11 29,12 32,15 29,17 24,16 20,15|0,3 15,3 22,4 19,6 12,7 6,9 0,8|39,15 41,15 42,16 40,18 38,18',
 '0,30 11,29 22,31 33,29 40,28 47,27 54,25 54,34 0,34',
 'shed:11.3,16 shed:13.5,12 cargo:14.2,16.9 shrine:46,9.5 guardtree:36.9,19 ruin_gate:51,15 boulder:20,13.8',
-'16,16 18,17 20,18|44,13 43,16 43,19','bier 47,15 43,19 38,22 courtyard',
+'16,16 18,17 20,18|44,13 43,16 43,19','bier 47,15.4 43,19 38,22 courtyard',
 'p-archer:start p-mage:start p-knight:start bier-knot-0:knotWest bier-knot-1:knotEast boss:bier','store'),
 9:field('바람 없는 마당',(36,30),
 'start:4,20 receiverWest:10,16 well:18,15 receiverEast:27,12 sodan:31,9 exit:33,8 lookout:18,8',
@@ -98,4 +98,12 @@ FIELDS={
 'shrine:12.9,9.4 shrine:29.1,9.4 altar:21.3,10.7 guardtree:20,12.1 ruin_gate:36.9,20 stone_lantern:10.7,15.4 stone_lantern:32.3,15.4',
 '13,11 12,14 11,17|29,11 30,14 32,17','ritual 26,16 receiverEast outerEast exit',
 'p-archer:start p-mage:start p-knight:start boss:ritual sodan-binding:altar receiver-west:receiverWest receiver-east:receiverEast','ritual')
+}
+
+# Decks carry their own walkable footprint. At the collapsed bridge the two
+# abutments end over open air, leaving the rescue route along the lower bank.
+DECKS = {
+    3: [('ferry-quay', (9.6, 14.1), (16.1, 11.0), 49, False)],
+    6: [('west-remnant', (10.3, 9.4), (18.7, 11.2), 54, True),
+        ('east-remnant', (27.4, 12.0), (22.3, 10.9), 54, True)],
 }

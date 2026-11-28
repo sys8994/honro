@@ -5,7 +5,7 @@ import {spatialEngine} from './engine.mjs';
 import {groundScene} from './scene.mjs';
 import {riverPath} from './ground.mjs';
 import {animals} from './actors.mjs';
-import {projectBattle} from './campaign-field.mjs';
+import {projectBattle,configureAirspace} from './campaign-field.mjs';
 import {installChapterMotion} from './chapter-motion.mjs';
 import {bowPlane,actorBody} from './body.mjs';
 
@@ -59,7 +59,8 @@ const place=G.HonroTerrain.place;
 G.HonroTerrain.place=function(b,u,options){
   if(!b.honroTopview)return place.call(this,b,u,options);
   const pos=Number.isFinite(options?.x)&&Number.isFinite(options?.y)?{x:options.x,y:options.y}:center(u);
-  const others=b.units.filter(v=>v.id!==u.id),free=space.free(pos,u.r,options?.flying,others);
+  const others=b.units.filter(v=>v.id!==u.id),accept=options?.accept?(p=>options.accept(p.x,p.y+u.h*.5)):null;
+  const free=space.free(pos,u.r,options?.flying,others,accept,options?.clearance??4);
   const p=free&&(!Number.isFinite(options?.maxDistance)||Math.hypot(free.x-pos.x,free.y-pos.y)<=options.maxDistance)?free:null;
   return p?{x:p.x,y:p.y+u.h*.5}:null;
 };
@@ -67,6 +68,8 @@ const top=G.HonroWorld.top;
 G.HonroWorld.top=function(b,x,y,...args){return b.honroTopview?(Number.isFinite(y)?y:space.point(map.meta.stage?'start':'cart-wave').y):top.call(this,b,x,y,...args);};
 const loader=G.HonroCampaignLoader;
 const inAct=id=>Number.isInteger(id)&&id>=1&&id<=10;
+const journey=G.HonroJourneyContent, nativeNext=journey.next;
+journey.next=profile=>{const q=nativeNext(profile);return q&&inAct(q.stageId)?q:null;};
 G.HonroCampaignLoader={...loader,destination:profile=>Math.min(10,loader.destination(profile)),has:id=>inAct(id)&&loaded.has(id)&&loader.has(id),
   prewarmNext(id){if(id<10)loader.ensureStage(id+1).catch(()=>{});},
   async ensureStage(id){if(!inAct(id))throw Error('탑뷰 1막의 마지막 장은 소단 — 놓지 못한 밤입니다.');await Promise.all([loadField(id),loader.ensureStage(id)]);}
@@ -75,6 +78,7 @@ installChapterMotion(product);
 function prepare(b) {
   if(b.honroTopview){
     if(b.honroTopview!==1||!inAct(b.honroStage))throw Error('알 수 없는 탑뷰 지도 판본');
+    configureAirspace(b,space);
     if(b.tvTerrainRevision!==map.meta.revision){
       for(const u of b.units){
         if(u.dead)continue;delete u.tvPath;
@@ -180,7 +184,9 @@ G.HonroUnitInfo.tick=function(app){
 product.configure=function(App) {
   const P=App.prototype,mount=P.mount,launch=P.launch,cancel=P.cancelInput,charge=P.beginCharge,help=P.battleHelp,rest=P.showRest;
   P.showRest=function(...args){
-    if(this.profile.cleared[10]&&this.profile.seen?.['act-ending-v1:10']&&!this.profile.honroBattle&&!this.profile.honroActEnding&&!this.debugRestStage&&!this.profile.honroJourney?.restStageId){return this.showTitle();}
+    if(this.profile.cleared[10]&&this.profile.seen?.['act-ending-v1:10']&&!this.profile.honroBattle&&!this.profile.honroActEnding&&!this.debugRestStage&&!this.profile.honroJourney?.restStageId){
+      this.profile.honroJourney.restStageId=10;this.persist();if(this.screen==='act-ending')return this.showTitle();
+    }
     return rest.apply(this,args);
   };
   P.cancelInput=function(){product.resetFieldInput?.();return cancel.call(this);};

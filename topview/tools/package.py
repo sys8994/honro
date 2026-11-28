@@ -1,4 +1,4 @@
-"""Create an independent static root using the pinned Honro runtime and Act 1-1."""
+"""Create an independent static root using the pinned Honro runtime and Act I."""
 import argparse,json,re,shutil
 from pathlib import Path
 from urllib.parse import unquote,urlsplit
@@ -16,15 +16,16 @@ runtime=json.loads((root/'topview/generated/native.json').read_text())
 project=manifest['project']
 files={r['path'] for r in manifest['files']}
 pending=set(runtime['modules']+runtime['styles']+['index.html','HONRO.html','topview/index.html','topview/motions.html','topview/style.css','topview/generated/native.json','topview/data/yeonmok.json'])
-for folder in ['src','assets/actors','assets/props','assets/terrain']:
+for folder in ['data','src','assets/actors','assets/props','assets/terrain']:
     pending.update(str(p.relative_to(root)) for p in (root/'topview'/folder).rglob('*') if p.is_file())
-# Other chapters cannot be entered. Menus can show learned and locked techniques
+# Act I menus can show learned and locked techniques
 # and equipment, including their native icon, portrait and SFX catalogues.
 for file in files:
     if file.startswith(('web/fonts/','web/graphics/skill-icon-','web/graphics/honro_equipment_icons-','web/graphics/honro_skill_audio-','web/graphics/portrait-','web/graphics/npc-portrait-')):
         pending.add(file)
-score=json.loads((root/'shared/data/bgm-stages.json').read_text())['1']
-musicIds={'01',score['start'],*score['loop']}
+scores=json.loads((root/'shared/data/bgm-stages.json').read_text());musicIds={'01'}
+for id in range(1,11):
+    score=scores[str(id)];musicIds.update([score['start'],*score['loop']])
 catalog=json.loads((root/'shared/data/bgm.json').read_text())
 for row in catalog:
     if row['id'] in musicIds:pending.add('assets/bgm/'+row['file'])
@@ -38,10 +39,9 @@ while pending:
     if not src.is_file() or not src.resolve().is_relative_to(root):raise ValueError(name)
     dst.parent.mkdir(parents=True,exist_ok=True)
     if name==project:
-        # Preserve the hash-named native manifest and follow the one playable chapter.
-        data=json.loads(src.read_text())
-        index=next(i for i,stage in enumerate(data['catalog']) if stage['metadata']['stageId']==1)
-        pending.update([data['base'],data['shared'],data['stages'][index],data['stageLibraries'][index]])
+        data=json.loads(src.read_text());pending.update([data['base'],data['shared']])
+        for i,chapter in enumerate(data['catalog']):
+            if 1<=chapter['metadata']['stageId']<=10:pending.update([data['stages'][i],data['stageLibraries'][i]])
         shutil.copyfile(src,dst);copied.add(name);continue
     shutil.copyfile(src,dst);copied.add(name)
     if src.suffix not in {'.mjs','.js','.json','.css','.html'}:continue

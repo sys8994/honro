@@ -3,7 +3,7 @@
 // a convoy alert; shared proximity, targeting, flight, weapons and cap stay intact.
 const E=G.HonroEncounters,A=G.HonroAllies,C=G.HONRO_CORE;
 const ids=new Set(['foe-1','foe-4','foe-1-cluster','foe-4-cluster']);
-const active=b=>b?.honroStage===2&&b.honroCanonical&&(b.honroMapOrigin==='campaign'||b.honroStage2AirborneRevision===1)&&!b.honroCustom&&b.honroLayoutRevision===1&&(b.honroEscortGoalX===3340||b.honroStage2LayeredRevision===1&&b.honroEscortGoalX===4100);
+const active=b=>b?.honroStage===2&&b.honroCanonical&&(b.honroMapOrigin==='campaign'||b.honroStage2AirborneRevision===1)&&!b.honroCustom&&b.honroLayoutRevision===1&&(b.honroTopview&&b.honroStage2LayeredRevision===1||b.honroEscortGoalX===3340||b.honroStage2LayeredRevision===1&&b.honroEscortGoalX===4100);
 const roost=u=>!!u&&ids.has(u.id)&&u.side===1&&u.honroCluster==='shelf-roost'&&u.honroType===(u.id.startsWith('foe-1')?'crow':'bat')&&u.fixed;
 const alive=u=>u&&!u.dead&&u.hp>0;
 const stopped=app=>app.done||['won','lost'].includes(app.engine.b.phase);

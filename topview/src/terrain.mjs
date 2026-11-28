@@ -36,8 +36,8 @@ export function terrainSpace(map) {
     if(foundations.some(f=>(flight?f.obj.blocksProjectile:f.obj.blocksMovement)&&f.body.contains(p,r)))return false;
     return props.every(o=>!(flight?o.blocksProjectile:o.blocksMovement)||(p.x-o.x)**2+(p.y-o.y)**2>(r+o.r)**2);
   }
-  function free(p,r,flight=false,units=[]){
-    function ok(q){return legal(q,r,flight)&&units.every(u=>u.dead||Math.hypot(q.x-u.x,q.y-center(u).y)>r+u.r+4);}
+  function free(p,r,flight=false,units=[],accept,clearance=4){
+    function ok(q){return legal(q,r,flight)&&(!accept||accept(q))&&units.every(u=>u.dead||Math.hypot(q.x-u.x,q.y-center(u).y)>r+u.r+clearance);}
     if(ok(p))return p;
     for(let ring=1;ring<=15;ring++)for(let n=0;n<16;n++){
       const a=n*Math.PI/8,q={x:p.x+Math.cos(a)*ring*cell/7,y:p.y+Math.sin(a)*ring*cell/7};

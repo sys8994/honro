@@ -6,10 +6,17 @@ const near=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y);
 const clone=p=>({x:p.x,y:p.y});
 const limits=(n,a,b)=>Math.max(a,Math.min(b,n));
 
+// The opposite roost and the low funeral road now share a planar gorge. Both
+// the actual flying bodies and the announced reinforcements use these bounds.
+export function configureAirspace(b,space){
+  if(b.honroStage!==2||!b.honroMap?.flightRegion)return;
+  const upper=space.point('safeDescentUpper'),shelf=space.point('rightShelf'),basin=space.point('rightBasin');
+  Object.assign(b.honroMap.flightRegion,{left:upper.x-610,right:shelf.x+640,top:shelf.y-870,bottom:basin.y+690});
+}
 // Native actors, named sites and event positions are authored in the original
 // stage coordinates. Preserve their local grouping on the corresponding shelf.
 export function projectBattle(b,space){
-  const {map,cell}=space,old=b.honroMapAnchors,originalWidth=b.width,originalHeight=b.height;
+  const {map}=space,old=b.honroMapAnchors;
   const sites=Object.keys(old).filter(k=>map.anchors[k]).map(k=>({from:old[k],to:space.point(k)}));
   const points=sites.filter((v,i)=>sites.findIndex(w=>near(v.from,w.from)<1)===i);
   function warp(x,y){
@@ -23,9 +30,17 @@ export function projectBattle(b,space){
   function pointFor(id,x,y){
     const key=map.placements[id];return key?space.point(key):warp(x,y);
   }
+  // Each threatened household has its own named guards in the original mission.
+  // Put those same actors on the approach to their resident, within the native
+  // rescue challenge. Displacing or stunning the guard still opens the rescue.
+  const guardSites=new Map();
+  for(const marker of b.honroMarkers.filter(m=>m.rescueGuards?.length)){
+    const origin=space.point(map.placements[marker.target]);
+    marker.rescueGuards.forEach((id,i)=>guardSites.set(id,{x:origin.x+[-218,198,84][i%3],y:origin.y+[-43,79,118][i%3]}));
+  }
   const placed=[],groupCount=new Map();
   function seat(u,hidden=false){
-    const key=map.placements[u.id];let p=pointFor(u.id,u.x,u.y);
+    const key=map.placements[u.id];let p=guardSites.get(u.id)||pointFor(u.id,u.x,u.y);
     if(key){
       const n=groupCount.get(key)||0;groupCount.set(key,n+1);
       if(n){const offset=[[108,45],[44,117],[-106,65],[-80,-70],[75,-95]][(n-1)%5];p={x:p.x+offset[0],y:p.y+offset[1]};}
@@ -36,14 +51,18 @@ export function projectBattle(b,space){
     Object.assign(u,{x:dest.x,y:dest.y+u.h/2,spawnX:dest.x,spawnY:dest.y+u.h/2,vx:0,vy:0,tvHeading:{x:u.side===1?-1:1,y:0}});
     if(!hidden)placed.push(u);
   }
-  b.units.slice().sort((a,c)=>Number(map.placements[c.id]!=null)-Number(map.placements[a.id]!=null)).forEach(u=>seat(u));
+  b.units.slice().sort((a,c)=>(map.placements[c.id]?2:guardSites.has(c.id)?1:0)-(map.placements[a.id]?2:guardSites.has(a.id)?1:0)).forEach(u=>seat(u));
   for(const u of Object.values(b.honroStaging?.hidden||{}))seat(u,true);
   for(const t of b.honroQuestTargets||[]){const u=b.units.find(v=>v.id===t.id);if(u)Object.assign(t,{x:u.x-t.w/2,y:u.y-t.h});}
   for(const m of b.honroMarkers){
     const p=pointFor(m.id,m.x,m.y);const target=m.target&&b.units.find(u=>u.id===m.target);
     const dest=target?center(target):space.free(p,27)||space.landing(p,27);
     if(dest)Object.assign(m,dest);
-    if(m.action==='climbSite'&&m.to){const to=warp(m.to.x,m.to.y);Object.assign(m.to,space.free(to,28)||to);}
+    if(m.action==='climbSite'&&m.to){
+      const steps=map.stairs[m.id.endsWith('-0')?0:1],end=m.id.includes('down')?0:steps.length-1;
+      const coord=pt=>({x:pt[0]/map.tileWidth*map.cell,y:pt[1]/map.tileHeight*map.cell});
+      Object.assign(m,coord(steps[end?0:steps.length-1]));Object.assign(m.to,coord(steps[end]));
+    }
   }
   const raw=[...Object.values(old)].sort((a,b)=>a.x-b.x);
   function baseline(x){return raw.reduce((a,p)=>Math.abs(p.x-x)<Math.abs(a.x-x)?p:a,raw[0]).y;}
@@ -58,15 +77,34 @@ export function projectBattle(b,space){
     for(const q of w.any||[])condition(q);for(const q of w.all||[])condition(q);
   }
   for(const ev of b.honroEvents){condition(ev.when);action(ev.action);}
+  const relocateEntry=o=>{
+    if(!o||typeof o!=='object')return;
+    position(o);
+    if(Number.isFinite(o.maxBossX))o.maxBossX=warp(o.maxBossX,baseline(o.maxBossX)).x;
+    if(Number.isFinite(o.minBossX))o.minBossX=warp(o.minBossX,baseline(o.minBossX)).x;
+    for(const key of ['members','alternates','variants','points'])for(const child of o[key]||[])relocateEntry(child);
+  };
+  if(b.honroStage8BierSpec){
+    for(const o of Object.values(b.honroStage8BierSpec.entries))relocateEntry(o);
+    const movement=b.honroStage8BierSpec.movement;
+    movement.destinations=[{id:'central-court',...space.point('courtyard')}];
+    movement.routes=[{id:'east-courtyard',points:map.convoy}];
+  }
   for(const [name,p] of Object.entries(old)){const dest=map.anchors[name]?space.point(name):warp(p.x,p.y);Object.assign(p,dest);}
   for(const cells of [b.honroMap?.positioning?.cells||[]])for(const cell of cells){if(cell.region)condition({region:cell.region});}
   b.honroTopview=1;b.tvTerrainRevision=map.meta.revision;b.width=space.width;b.height=space.height;b.vertical=false;
   b.honroPlayBounds={x:0,y:0,w:b.width,h:b.height};b.honroTerrainBounds={...b.honroPlayBounds};
   for(const name of ['terrain','waters','drafts','fields','decor','honroElements','honroWorldTerrain','honroLandmarks','honroSurfaceZones','routePoints'])b[name]=[];
   const forces=[];
-  if(b.honroStage===5){const at=space.point('waterfallFoot');forces.push({id:'낙수',x:at.x-320,y:space.point('cleat').y-220,w:520,h:1150,gravity:{x:-80,y:390},projectileOnly:true});}
+  if(b.honroStage===5){
+    const lip=space.point('cleat'),base=space.point('waterfallFoot');
+    // The same course is used by the native fluid integrator, preview and sprite ribbons.
+    const edge=(offset,a=0)=>[{x:lip.x-190+offset,y:lip.y-240},{x:lip.x-170+offset+a,y:lip.y+10},{x:base.x+offset+a*.4,y:base.y},{x:base.x+107+offset+a*.4,y:base.y+5},{x:lip.x-63+offset+a,y:lip.y+10},{x:lip.x-83+offset,y:lip.y-240}];
+    b.tvWaterCourses={closed:edge(0),opened:edge(185,110)};
+    const points=b.tvWaterCourses.closed;b.terrain.push({id:'waterfall-veil',mat:'water',x:Math.min(...points.map(p=>p.x)),y:lip.y-240,w:480,h:base.y-lip.y+260,vertices:points,honroWaterFluidVertices:points,indestructible:true,broken:false});
+  }
   b.physics=G.HONRO_CORE.makePhysics({gravity:{x:0,y:0},regions:forces});
   if(b.honroStage===9)b.wind=0;
   if(b.honroStage===2)b.honroEscortGoalX=space.point('exit').x;
-  b.sceneVersion++;
+  configureAirspace(b,space);b.sceneVersion++;
 }

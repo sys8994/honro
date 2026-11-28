@@ -24,6 +24,7 @@ with sync_playwright() as pw:
             c.getContext('2d').drawImage(source,x*source.width/2+5,y*source.height/2+5,c.width,c.height,0,0,c.width,c.height);pics.set(id,c);
           }
           for(const id of ['dirt','rock'])pics.set(id,await bitmap('assets/terrain/'+id+'_texture.png'));
+          pics.set('valley-depth',await bitmap('assets/source/act1/valley-depth.webp'));
           const m=await (await fetch(new URL('data/'+key+'.json',root))).json();
           await Promise.all([...new Set(m.objects.map(o=>o.asset))].map(async id=>pics.set(id,await bitmap('assets/props/'+id+'.png'))));
           const {buildGround,bakePropShadows}=await mod('ground.mjs'),{paintRelief}=await mod('relief.mjs'),{groundProjection}=await mod('space.mjs');
