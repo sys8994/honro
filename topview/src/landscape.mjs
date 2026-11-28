@@ -1,6 +1,6 @@
 // The bank tiles include the two receiving decks, gravel shelf and contact
 // shadows. Their transparent river opens onto two independently moving surfaces.
-const asset=name=>new URL('../assets/terrain/yeonmok/'+name,import.meta.url).href;
+const asset=(name,folder='yeonmok')=>new URL('../assets/terrain/'+folder+'/'+name,import.meta.url).href;
 export function fieldLandscape(canvas,map,field){
   const {width,height,tile,density:d}=field;
   if(field.revision!==map.meta.revision||width!==map.width*map.tileWidth||height!==map.height*map.tileHeight)
@@ -20,8 +20,8 @@ export function fieldLandscape(canvas,map,field){
     const el=document.createElement('div'),w=Math.min(tile,width-x),h=Math.min(tile,height-y);
     el.className='tv-bank-tile';
     Object.assign(el.style,{left:x*d+'px',top:y*d+'px',width:w*d+'px',height:h*d+'px',
-      backgroundImage:'url('+asset('preview.webp')+')',backgroundSize:width*d+'px '+height*d+'px',backgroundPosition:-x*d+'px '+-y*d+'px'});
-    plane.append(el);tiles.push({el,x,y,w,h,url:asset('bank-'+x/tile+'-'+y/tile+'.webp')});
+      backgroundImage:'url('+asset('preview.webp',field.folder)+')',backgroundSize:width*d+'px '+height*d+'px',backgroundPosition:-x*d+'px '+-y*d+'px'});
+    plane.append(el);tiles.push({el,x,y,w,h,url:asset('bank-'+x/tile+'-'+y/tile+'.webp',field.folder)});
   }
   // Base saturation was baked at the chapter's opening daylight. Native
   // clock multiplication colours land, river and actors in one compositor layer.

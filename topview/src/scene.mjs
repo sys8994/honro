@@ -50,7 +50,7 @@ export function groundScene(Base, space, images, projection, field) {
     focusUnit(id,duration,speaker){if(speaker)this.storyFocus(id);}
     render(e,dt,selected,power,charging){
       this.lastEngine=e;const c=this.ctx,b=e.b,{w,h,d:dpr}=this.viewport=this.size(b);
-      const hero=b.units.find(u=>!u.side&&!u.dead)||b.units[0];
+      const hero=(e.active?.side===0&&!e.active.dead?e.active:null)||b.units.find(u=>!u.side&&!u.dead)||b.units[0];
       const focus=this.storyFrozen&&this.tvStory?this.tvStory:center(hero),p=projection.forward(focus.x,focus.y);
       this.fieldFocus=p;this.placeCamera(p.x+this.panOffset.x,p.y+this.panOffset.y,this.zoomLevel,false);const k=this.zoomLevel;
       this.x=focus.x;this.y=focus.y;
@@ -73,8 +73,29 @@ export function groundScene(Base, space, images, projection, field) {
         const a=paintPoint(m);ring(a,m.type==='exit'?19:8,m.type==='exit'?'#eed38b':'#e3a35a','#d8b66628');
         if(m.type==='exit')label({x:a.x,y:a.y-9},m.label,'#f0d999');
       }
-      const wind=space.point('crosswind');
-      for(let i=0;i<5;i++){const a={x:wind.x+(i-2)*.54*cell,y:wind.y+(i%2)*50};
+      if(map.meta.stage){
+        for(const m of b.honroMarkers){
+          if(m.collected||!m.action||m.action==='climbSite')continue;
+          const target=m.target&&b.units.find(u=>u.id===m.target);if(target?.dead)continue;
+          const a=paintPoint(target?center(target):m);
+          ring(a,12,'#cbb67b','#b1964925');label({x:a.x,y:a.y+17},m.label||m.id,'#e0cda0');
+        }
+        if([2,6,10].includes(b.honroStage)){
+          const a=paintPoint(space.point('exit'));ring(a,22,'#d2c090','#998b4724');
+          label({x:a.x,y:a.y-12},({2:'나루로 가는 길',6:'북문 쉼터',10:'동쪽 외문'})[b.honroStage],'#dfc996');
+        }
+        if(b.honroStage===5){
+          const lip=paintPoint(space.point('cleat')),pool=paintPoint(space.point('waterfallFoot')),opened=!!b.honroState.waterfallSight;
+          c.save();c.lineCap='round';
+          for(let n=0;n<18;n++){const side=(n-8.5)*2.5,wave=Math.sin(time*2+n*.71)*2;
+            c.beginPath();c.moveTo(lip.x-59+side,lip.y-54+Math.abs(side)*.16);
+            c.bezierCurveTo(lip.x-55+side+(opened?58:0),lip.y+24,pool.x+side+(opened?45:0),pool.y-30,pool.x+side+wave,pool.y);
+            c.lineWidth=3.4;c.strokeStyle=n%4===0?'#bbd4d488':'#6e9caa70';c.stroke();
+          }c.restore();
+        }
+      }
+      const wind=!map.meta.stage&&space.point('crosswind');
+      for(let i=0;wind&&i<5;i++){const a={x:wind.x+(i-2)*.54*cell,y:wind.y+(i%2)*50};
         line([a,{x:a.x-50,y:a.y+145}],'#b6e4c7a6',1.5,[4,3]);}
       for(const u of b.units){
         if(u.dead&&!this.departures.has(u.id))this.departures.set(u.id,this.time);

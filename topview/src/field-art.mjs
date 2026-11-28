@@ -4,16 +4,18 @@ import {drawScenery} from './canopy.mjs';
 import {riverPath} from './ground.mjs';
 
 function surface(w=160,h=160){const c=document.createElement('canvas');c.width=w;c.height=h;return c;}
-const span=100,pad=88,sample=1.6;
+
 // Keep painted bodies at native atlas density through maximum desktop zoom.
 // Occlusion and contact shadows use their own smaller monochrome surfaces.
 const bodySample=2.6;
-function stamp(ctx,canvas,x,y){ctx.drawImage(canvas,x-span/2,y-pad,span,span);}
+
 function silhouette(ctx,image,color){
   ctx.clearRect(0,0,ctx.canvas.width,ctx.canvas.height);ctx.drawImage(image,0,0,ctx.canvas.width,ctx.canvas.height);
   ctx.globalCompositeOperation='source-in';ctx.fillStyle=color;ctx.fillRect(0,0,ctx.canvas.width,ctx.canvas.height);ctx.globalCompositeOperation='source-over';
 }
 export function fieldActors(images,projection){
+  const expanded=images.has('empty_bier'),span=expanded?168:100,pad=expanded?115:88,sample=160/span;
+  const stamp=(ctx,canvas,x,y)=>ctx.drawImage(canvas,x-span/2,y-pad,span,span);
   const actors=new Map(),clip=surface(),flash=surface();
   const contact=surface(96,36),g=contact.getContext('2d');g.scale(48,18);
   const ao=g.createRadialGradient(1,1,0,1,1,1);
@@ -27,7 +29,7 @@ export function fieldActors(images,projection){
     }
     const b=actorBody(u),heading=u.tvHeading||{x:1,y:0},v=projection.forward(heading.x,heading.y);
     const row=angleRow(v.x,v.y),pose=poseOf(u,charging,active),stride=u.tvStride||0;
-    const animation=pose==='idle'?Math.floor((time+item.phase)*14):pose==='walk'&&b.kind!=='woodcutter'?spriteFrame(b.kind,pose,row,stride).col:0;
+    const animation=pose==='idle'?Math.floor((time+item.phase)*14):pose==='walk'&&b.kind!=='woodcutter'?(Math.floor(stride/42)%8):0;
     const key=[row,pose,animation,b.kind].join('|');
     if(item.key!==key){
       item.key=key;const c=item.art.getContext('2d');c.clearRect(0,0,item.art.width,item.art.height);c.save();c.scale(bodySample,bodySample);

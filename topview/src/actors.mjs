@@ -22,6 +22,11 @@ export function spriteFrame(kind,pose,row,stride){
     }
     return frame('seolo-states',row,{idle:0,recover:1,hurt:2,dead:3}[pose]??0,160,160);
   }
+  if(['damheo','hwigyeom','sodan'].includes(kind)){
+    const step=Math.floor(stride/75)%2,phase=pose==='walk'?step:['prepare','attack','recover'].includes(pose)?2:0;
+    // The painted profiles face screen right. Mirror the left-facing octants.
+    return {...frame(kind,[0,1,2,3,3,3,2,1][row],phase,176,192),flip:row>0&&row<4};
+  }
   const direction=row>4?8-row:row;
   const col=pose==='walk'?1+Math.floor(stride/42)%2:{idle:0,prepare:3,attack:4,recover:3,hurt:5,dead:6}[pose];
   return {...frame('turns-'+kind,col,direction,216,192),flip:row>4};
@@ -77,9 +82,18 @@ function idleBody(c,im,f,kind,x,y,width,size,t){
   }
 }
 export function paintSprite(c,images,kind,pose,row,stride,x,y,size,time=0){
-  const npc=kind==='woodcutter',imNpc=npc&&images.get(kind);
+  const npc=kind==='woodcutter'||(!animals.includes(kind)&&!['seolo','damheo','hwigyeom','sodan'].includes(kind)),imNpc=npc&&images.get(kind);
   const f=npc?frame(kind,0,0,imNpc.width,imNpc.height):spriteFrame(kind,pose,row,stride),im=images.get(f.image);
   const width=size*f.width/f.height;
+  if(npc&&kind!=='woodcutter'){
+    const faces=['porter','villager','villager_woman','possessed','medium','mourner','shade'],animate=faces.includes(kind);
+    c.save();c.translate(x,y);
+    if(animate&&row>0&&row<5)c.scale(-1,1);
+    if(animate&&pose==='dead'){c.rotate(.95);c.globalAlpha*=.72;}
+    else if(animate&&pose==='walk')c.rotate(.018*Math.sin(stride/24));
+    const breath=animate&&pose==='idle'?.55*Math.sin(time*1.6):0;
+    c.drawImage(im,-width/2,-size+breath,width,size-breath);c.restore();return;
+  }
   c.save();c.translate(x,y);if(f.flip)c.scale(-1,1);
   if(kind==='seolo'&&pose!=='walk')c.translate(0,5*size/160);
   if(kind==='hound'||kind==='boar'||kind==='stag')c.translate(0,6*size/192);

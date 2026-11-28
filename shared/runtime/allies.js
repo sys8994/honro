@@ -5,7 +5,8 @@ const aiming=new WeakMap();
  * Turn schedule: heroes -> summons -> allied NPCs -> enemies. All queue state is serialized. */
 function attach(app,e){const b=e.b,baseTransition=e.completeTeamTransition.bind(e),baseTick=e.tick.bind(e);
  recoverFixedRescueTargets(e);
- e.completeTeamTransition=function(){if(e.checkEnd())return;const hs=b.honroState;const list=b.units.filter(u=>u.honroAlly&&!u.dead&&u.hp>0&&u.allyRole!=='channeler');if(b.honroStage===2&&list.length&&!list.some(u=>u.allyRole==='porter')){const bearer=list.find(u=>u.allyRole==='guard')||list[0];bearer.allyOriginalRole??=bearer.allyRole;bearer.allyRole='porter';app.event('남은 호위가 상여채를 이어받았다.',{kind:'narration',source:'escort-handoff'});}if(b.side===0&&list.length&&hs.allyDoneRound!==b.round){hs.allyDoneRound=b.round;hs.allyQueue={ids:list.map(u=>u.id),index:0,returnActive:b.active,phase:'begin',elapsed:0,started:false};b.phase='ally';b.turnAge=0;e.emit('save');return;}if(b.side===0&&b.honroStage===2&&!list.length){const car=e.unit('objective'),nearHero=e.heroesAlive().find(u=>car&&Math.hypot(u.x-car.x,u.y-car.y)<820),clear=!e.alive(1).length;if(car&&(nearHero||clear)){const block=b.terrain.find(t=>t.honroBlocker&&!t.broken&&t.x>car.x-35&&t.x<car.x+720);const lead=nearHero?.x??car.x+900;car.x=Math.max(car.x,Math.min(car.x+(clear?420:240),lead+180,block?block.x-105:(b.honroEscortGoalX??b.width-180)));car.y=W.top(b,car.x,car.y);}}baseTransition();};
+ e.completeTeamTransition=function(){if(e.checkEnd())return;const hs=b.honroState;const list=b.units.filter(u=>u.honroAlly&&!u.dead&&u.hp>0&&u.allyRole!=='channeler');if(b.honroStage===2&&list.length&&!list.some(u=>u.allyRole==='porter')){const bearer=list.find(u=>u.allyRole==='guard')||list[0];bearer.allyOriginalRole??=bearer.allyRole;bearer.allyRole='porter';app.event('남은 호위가 상여채를 이어받았다.',{kind:'narration',source:'escort-handoff'});}if(b.side===0&&list.length&&hs.allyDoneRound!==b.round){hs.allyDoneRound=b.round;hs.allyQueue={ids:list.map(u=>u.id),index:0,returnActive:b.active,phase:'begin',elapsed:0,started:false};b.phase='ally';b.turnAge=0;e.emit('save');return;}if(b.side===0&&b.honroStage===2&&!list.length){const car=e.unit('objective'),nearHero=e.heroesAlive().find(u=>car&&Math.hypot(u.x-car.x,u.y-car.y)<820),clear=!e.alive(1).length;if(car&&(nearHero||clear)&&b.honroTopview){G.HonroTopview.escortAdvance(e,car,clear?420:240);}
+else if(car&&(nearHero||clear)){const block=b.terrain.find(t=>t.honroBlocker&&!t.broken&&t.x>car.x-35&&t.x<car.x+720);const lead=nearHero?.x??car.x+900;car.x=Math.max(car.x,Math.min(car.x+(clear?420:240),lead+180,block?block.x-105:(b.honroEscortGoalX??b.width-180)));car.y=W.top(b,car.x,car.y);}}baseTransition();};
  e.tick=function(dt=C.STEP){if(b.phase==='ally'){tick(app,e,dt,baseTransition);C.tickRedesign(e,dt);return;}baseTick(dt);};
 }
 // Older builds let fixed rescue residents walk off ledges without gravity.
@@ -59,7 +60,11 @@ function tick(app,e,dt,transition){const b=e.b,hs=b.honroState,q=hs.allyQueue;if
  // support while Engine.stepUnits intentionally excludes fixed bodies. Also
  // handle a save made midway through the old invalid movement phase.
  if(q.phase==='move'&&u.fixed){q.phase='act';q.elapsed=0;u.vx=u.vy=0;delete u.moveTarget;delete u.aiMove;}
- if(q.phase==='move'){
+ if(q.phase==='move'&&b.honroTopview){
+  const finished=u.allyRole==='porter'?G.HonroTopview.carriageTurn(e,u,q,dt):G.HonroTopview.allyWalk(e,u,q,dt);
+  if(finished||q.elapsed>1.7){q.phase='act';q.elapsed=0;u.vx=u.vy=0;}
+ }
+ if(q.phase==='move'&&!b.honroTopview){
   const target=e.unit(q.targetId),distance=q.dest-u.x,old=u.x;e.walk(u,Math.sign(distance),dt);e.stepUnits(dt);
   if(Math.abs(u.x-old)<.01&&Math.abs(distance)>30&&e.grounded(u)&&u.moveLeft>80)e.jump(u);
   const car=e.unit('objective');if(u.allyRole==='porter'&&car&&!car.dead&&q.carTarget>car.x){car.x=Math.min(q.carTarget,car.x+dt*480);car.y=W.top(b,car.x,car.y);}

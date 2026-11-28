@@ -102,6 +102,7 @@ function move(app,s,step,dt,skip){
  const distance=to.x-u.x,max=step.maxDistance||800;
  if(Math.abs(distance)>max)return 'route-too-long';
  if(Math.abs(distance)<.001)return 'arrived';
+ if(b.honroTopview&&G.HonroTopview.storyWalk)return G.HonroTopview.storyWalk(app,u,to,dt,skip,step.speed||440);
  const surface=G.HonroMapEngine.surfaceY(b.terrain,to.x,to.y);if(!surface||Math.abs(surface.y-to.y)>80)return 'support-unavailable';
  const saved={fixed:u.fixed,moveLeft:u.moveLeft,walkSpeed:u.walkSpeed,bound:u.bound},before=u.x;
  const speed=Math.max(30,Math.abs(s.results[s.cursor]?.distance??distance)/Math.max(.05,(step.duration||600)/1000));

@@ -2,6 +2,12 @@
 // Dimensions below are measured inside the painted pose cells in map pixels.
 export const bowPlane = 26;
 const bodies = {
+  damheo:[64,.54,.16,.30],hwigyeom:[66,.55,.17,.31],sodan:[60,.52,.16,.29],
+  porter:[61,.51,.20,.27],medium:[60,.52,.19,.27],villager:[58,.50,.18,.29],villager_woman:[57,.50,.19,.27],
+  possessed:[62,.53,.19,.28],mourner:[64,.49,.22,.27],shade:[66,.52,.19,.30],lantern:[35,.54,.25,.28],
+  warden:[76,.50,.19,.31],ferry_warden:[80,.52,.24,.33],pier_warden:[78,.45,.30,.29],
+  empty_bier:[77,.48,.43,.31],funeral_bier:[72,.46,.44,.30],litter:[42,.44,.77,.25],
+  binding:[52,.52,.20,.30],ruin_gate:[82,.44,.64,.32],
   seolo: [64, .55, .16, .30], woodcutter: [42, .54, .20, .30],
   hound: [63, .36, .16, .20], boar: [70, .37, .20, .21],
   stag: [75, .43, .17, .19], crow: [46, .33, .26, .15],
@@ -9,11 +15,24 @@ const bodies = {
 };
 export const spriteSize = kind => bodies[kind][0];
 export function actorKind(u) {
-  return u.id==='npc-woodcutter'?'woodcutter':u.side===0?'seolo':u.honroVariant||u.honroType;
+  if(u.id==='npc-woodcutter')return 'woodcutter';
+  if(u.honroObjectiveTarget)return 'binding';
+  if(u.id==='midboss-stage3')return 'ferry_warden';
+  if(u.id==='midboss-stage6')return 'pier_warden';
+  if(u.name==='설오'||u.side===0&&u.cls==='archer')return 'seolo';
+  if(u.name==='담허'||u.side===0&&u.cls==='mage')return 'damheo';
+  if(u.name==='휘겸'||u.side===0&&u.cls==='knight')return 'hwigyeom';
+  if(u.name==='소단'||u.side===0&&u.cls==='occultist')return 'sodan';
+  if(['점복무녀','연실','춘례'].includes(u.name))return 'medium';
+  if(u.name?.includes('도깨비불')||u.name==='시종 꼭두')return 'lantern';
+  const kind=u.honroVariant||u.honroType;
+  if(kind==='bier')return u.side===1?'empty_bier':'funeral_bier';
+  if(kind==='ally')return u.allyRole==='porter'||u.name==='백산'?'porter':u.name==='월이'?'villager_woman':'villager';
+  return ({civilian:'litter',gate:'ruin_gate',human:'possessed'})[kind]||(bodies[kind]?kind:'ghost');
 }
 export function actorBody(u) {
   const kind=actorKind(u),[size,chest,width,height]=bodies[kind]||bodies.ghost;
-  const lift=!u.dead&&(kind==='crow'||kind==='bat')?12:0;
+  const lift=!u.dead&&(kind==='crow'||kind==='bat'||kind==='lantern')?12:0;
   const heading=u.tvHeading,side=heading?Math.abs(heading.x):1;
   const broad=['hound','boar','stag'].includes(kind)?1+.55*side:1;
   return {kind,size,lift,chest:size*chest+lift,rx:size*width*broad,ry:size*height};

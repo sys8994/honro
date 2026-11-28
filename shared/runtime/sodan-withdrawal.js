@@ -5,7 +5,7 @@ function ready(b){return active(b)&&!!b.honroState?.sodanCoop&&(b.honroState.coo
 const partyIds=['p-archer','p-mage','p-knight','boss'];
 function exit(b){const p=b.honroMapAnchors?.exit||(b.honroMarkers||[]).find(m=>m.type==='exit')||{x:b.width-140};return {id:'sodan-safe-exit',kind:'exit',x:p.x,y:G.HonroWorld.top(b,p.x,p.y,p.support),support:p.support,label:'동쪽 외문'};}
 function gate(b,goal=exit(b)){const x=goal.x-125;return{x,y:G.HonroWorld.top(b,x,goal.y,goal.support)};}
-function present(u,b,goal,door){return alive(u)&&u.x>=door.x+Math.max(12,u.r*.5)&&u.x<=b.width-20&&!u.airborne&&!u.jumping&&Math.abs(u.vy)<3&&Math.abs(u.y-G.HonroWorld.top(b,u.x,goal.y,goal.support))<10;}
+function present(u,b,goal,door){if(b.honroTopview)return alive(u)&&!u.airborne&&!u.jumping&&G.HonroTopview.atExit(b,u,goal);return alive(u)&&u.x>=door.x+Math.max(12,u.r*.5)&&u.x<=b.width-20&&!u.airborne&&!u.jumping&&Math.abs(u.vy)<3&&Math.abs(u.y-G.HonroWorld.top(b,u.x,goal.y,goal.support))<10;}
 function progress(b,goal=exit(b)){const door=gate(b,goal);return partyIds.filter(id=>present(b.units.find(u=>u.id===id),b,goal,door)).length;}
 function failure(b){return ready(b)&&!['withdrawing','safe'].includes(memory(b)?.phase)&&partyIds.some(id=>!alive(b.units.find(u=>u.id===id)))?'동쪽 외문으로 피하기 전에 동행을 잃었다.':null;}
 const escapeLines=[
@@ -30,7 +30,8 @@ function tick(app,dt=0){const e=app.engine,b=e.b;if(!ready(b)||['won','lost'].in
  // lower road with the ordinary body sweep; she never takes a player slot.
  sodan.fixed=false;delete sodan.aiMove;delete sodan.moveTarget;
  const end=Math.min(goal.x+68,b.width-35);
- if(sodan.x<end-2&&dt>0){
+ if(b.honroTopview&&dt>0){G.HonroTopview.sodanWalk(e,sodan,goal,dt);}
+ else if(sodan.x<end-2&&dt>0){
   sodan.walkSpeed=310;
   sodan.moveLeft=Math.max(4,sodan.moveLeft||0);
   e.walk(sodan,Math.min(1,(end-sodan.x)/(sodan.walkSpeed*dt)),dt,true);

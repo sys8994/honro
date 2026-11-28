@@ -45,7 +45,7 @@ function segmentsCross(a,z,p,q){const dx=z.x-a.x,dy=z.y-a.y,ex=q.x-p.x,ey=q.y-p.
  const t=(px*ey-py*ex)/den,u=(px*dy-py*dx)/den;return t>=0&&t<=1&&u>=0&&u<=1;
 }
 function polygonsOverlap(a,z){const av=C.poly(a),zv=C.poly(z);if(av.some(p=>C.terrainContains(z,p.x,p.y))||zv.some(p=>C.terrainContains(a,p.x,p.y)))return true;for(let i=0;i<av.length;i++)for(let j=0;j<zv.length;j++)if(segmentsCross(av[i],av[(i+1)%av.length],zv[j],zv[(j+1)%zv.length]))return true;return false;}
-function terrainBlockers(e,u,from=u,to=u){const b=e.b,left=Math.min(from.x,to.x)-u.r,right=Math.max(from.x,to.x)+u.r,top=Math.min(from.y,to.y)-u.h,bottom=Math.max(from.y,to.y);
+function terrainBlockers(e,u,from=u,to=u){if(e.b.honroTopview){const a={x:from.x,y:from.y-u.h/2},z={x:to.x,y:to.y-u.h/2},space=G.HonroTopview.space;return !space.legal(z,u.r)||space.nearest(a,z,u.r)?[{kind:'terrain',id:'terrain',label:'전장의 지형'}]:[];}const b=e.b,left=Math.min(from.x,to.x)-u.r,right=Math.max(from.x,to.x)+u.r,top=Math.min(from.y,to.y)-u.h,bottom=Math.max(from.y,to.y);
  if(left<0||right>b.width||top<12||bottom>b.height)return[{kind:'terrain',id:'bounds',label:'전장 가장자리'}];
  const supports=u.fixed?[]:[...contacts(e,from),...contacts(e,to)],lines=[],xs=new Set([left,right]);
  for(const {t,indices}of supports){const ps=C.poly(t);for(const i of indices){const a=ps[i],z=ps[(i+1)%ps.length],lo=Math.max(left,a.x),hi=Math.min(right,z.x);if(hi<lo)continue;const slope=(z.y-a.y)/(z.x-a.x),intercept=a.y-slope*a.x;lines.push({lo,hi,slope,intercept});for(const x of [lo,hi]){xs.add(x);if(x>left)xs.add(Math.max(left,x-.00001));if(x<right)xs.add(Math.min(right,x+.00001));}if(Math.abs(slope)>1e-9){const x=(bottom-intercept)/slope;if(x>lo&&x<hi)xs.add(x);}}}
@@ -65,7 +65,7 @@ function bodyBlockers(e,u,from=u,to=u){const box={x:Math.min(from.x,to.x)-u.r-2,
 function flightBlockers(e,u,from,to){if(!C.flyingEnemy||!C.flightBounds)return[];const box=q=>({left:q.x-u.r-5,right:q.x+u.r+5,head:q.y-u.h-4,feet:q.y+4}),overlap=(a,z)=>Math.max(0,Math.min(a.right,z.right)-Math.max(a.left,z.left))*Math.max(0,Math.min(a.feet,z.feet)-Math.max(a.head,z.head));
  return e.b.units.filter(v=>v.id!==u.id&&alive(v)&&!v.enthrall&&!v.eaterCapturedBy&&C.flyingEnemy(v)).filter(v=>{const r=C.flightBounds(v),before=overlap(box(from),r),after=overlap(box(to),r);return after>1e-6&&!(after<before-1e-6);}).map(v=>({kind:'enemy',id:v.id,label:v.name||'날짐승'}));}
 const temporary=['fixed','moveLeft','walkSpeed','bound','slowed'];
-function walkStep(e,u,target,distance=4,speed=900){const previous={x:u.x,y:u.y},probe={...u,r:u.r,h:u.h},saved=Object.fromEntries(temporary.map(k=>[k,{has:Object.hasOwn(probe,k),value:probe[k]}]));
+function walkStep(e,u,target,distance=4,speed=900){if(e.b.honroTopview)return G.HonroTopview.bierStep(e,u,target,distance);const previous={x:u.x,y:u.y},probe={...u,r:u.r,h:u.h},saved=Object.fromEntries(temporary.map(k=>[k,{has:Object.hasOwn(probe,k),value:probe[k]}]));
  Object.assign(probe,{fixed:false,moveLeft:distance+1,walkSpeed:speed,bound:0,slowed:undefined});
  e.walk(probe,Math.sign(target.x-probe.x),Math.min(distance,Math.abs(target.x-probe.x))/speed,true);
  const blocked=bodyBlockers(e,probe,previous,probe);for(const [k,v]of Object.entries(saved)){if(v.has)probe[k]=v.value;else delete probe[k];}
@@ -89,7 +89,7 @@ function heroesOnRoad(app){const e=app.engine,b=e.b,u=boss(b),mv=spec(b).movemen
  return[...out.values()];
 }
 function withRoadHeroes(app,blocked){if(!blocked?.some(v=>v.kind==='hero'))return blocked;const ids=new Set(blocked.map(v=>v.kind+':'+v.id));return[...blocked,...heroesOnRoad(app).filter(v=>!ids.has('hero:'+v.id))];}
-function chooseRoute(app){const b=app.engine.b,u=boss(b),movement=spec(b).movement||{},destinations=movement.destinations||[],routes=movement.routes||[];let blockers=[];
+function chooseRoute(app){if(app.engine.b.honroTopview)return G.HonroTopview.bierRoute(app);const b=app.engine.b,u=boss(b),movement=spec(b).movement||{},destinations=movement.destinations||[],routes=movement.routes||[];let blockers=[];
  for(const to of destinations){
   // A blocked final body cannot be rescued by a longer approach. Test each
   // exact courtyard endpoint first, without spending thousands of walk steps.
@@ -173,11 +173,11 @@ function advanceScene(app,dt,skip=false){const e=app.engine,b=e.b,m=memory(b),s=
  // A subpixel budget tail can be smaller than walkStep's progress epsilon.
  // Resume from the same validated pose next frame instead of inventing a gap.
  while(budget>.01&&s.cursor<s.steps.length){const step=s.steps[s.cursor];if(step.type==='dialogue'){s.complete=true;settle(app);break;}const u=boss(b),to=step.to;if(!s.applied[s.cursor]){s.focusActor=u.id;if(!skip)app.scene?.storyFocus?.(u.id,120);}
-  if(Math.abs(u.x-to.x)<.15){if(Math.abs(u.y-to.y)>1.5){blockMotion(app,[{kind:'route',id:'height',label:'이어지지 않는 지지면'}]);return false;}s.results[s.cursor]={status:'arrived',x:u.x,y:u.y};s.cursor++;s.elapsed=0;changed=true;continue;}
+  if((b.honroTopview?Math.hypot(u.x-to.x,u.y-to.y):Math.abs(u.x-to.x))<.15){if(Math.abs(u.y-to.y)>1.5){blockMotion(app,[{kind:'route',id:'height',label:'이어지지 않는 지지면'}]);return false;}s.results[s.cursor]={status:'arrived',x:u.x,y:u.y};s.cursor++;s.elapsed=0;changed=true;continue;}
   const r=walkStep(e,u,to,Math.min(4,budget));if(r.blocked){blockMotion(app,r.blocked);return false;}
   // Copy only actual locomotion outputs. No HP, action, AI, mana or ordinary
   // movement allowance is borrowed across frames or saved as a temporary value.
-  for(const k of ['x','y','facing','angle','moving','walkPhase'])if(Object.hasOwn(r.pose,k))u[k]=r.pose[k];m.lastValidPose={x:u.x,y:u.y};s.applied[s.cursor]=true;s.results[s.cursor]={status:'moving',x:u.x,y:u.y};s.elapsed+=r.distance/900*1000;u.honroScenePose={kind:'move',time:s.elapsed/1000};budget-=Math.max(r.distance,.001);changed=true;
+  for(const k of ['x','y','facing','angle','moving','walkPhase','tvHeading','tvStride'])if(Object.hasOwn(r.pose,k))u[k]=r.pose[k];m.lastValidPose={x:u.x,y:u.y};s.applied[s.cursor]=true;s.results[s.cursor]={status:'moving',x:u.x,y:u.y};s.elapsed+=r.distance/900*1000;u.honroScenePose={kind:'move',time:s.elapsed/1000};budget-=Math.max(r.distance,.001);changed=true;
  }
  if(ownedScene(app)&&s.steps[s.cursor]?.type==='dialogue'){s.complete=true;settle(app);}if(ownedScene(app)){G.HonroStoryStaging.snapshot(app);b.honroStory=clone(app.dialogue);app.dirty=true;}return changed;
 }

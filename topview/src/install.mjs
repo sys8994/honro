@@ -5,26 +5,49 @@ import {spatialEngine} from './engine.mjs';
 import {groundScene} from './scene.mjs';
 import {riverPath} from './ground.mjs';
 import {animals} from './actors.mjs';
+import {projectBattle} from './campaign-field.mjs';
+import {installChapterMotion} from './chapter-motion.mjs';
 import {bowPlane,actorBody} from './body.mjs';
 
 const G=globalThis, product=G.HonroTopview;
 const base=new URL('../',import.meta.url);
 const load=async path=>{const r=await fetch(new URL(path,base));if(!r.ok)throw Error(path+' '+r.status);return r.json();};
-const map=await load('data/yeonmok.json'),space=terrainSpace(map);
-const field=await load('assets/terrain/yeonmok/field.json');
-// Decks are in the receiver tiles. Tall props use their base and canopy sheets.
-const layered=new Set(['pine_a','pine_b','shrine','ruin_gate']);
-const props=[...new Set(map.objects.filter(o=>!o.deck&&!layered.has(o.asset)).map(o=>o.asset))]
-  .map(n=>[n,'assets/props/'+n+'.png']);
-for(const id of ['bridge_ne-near','bridge_se-near','pine_a-base','pine_a-crown','pine_b-base','pine_b-crown','shrine-base','shrine-roof','ruin_gate-base','ruin_gate-roof']){
-  props.push([id,'assets/props/'+id+'.png']);
+const loaded=new Map(),loading=new Map(),bitmaps=new Map();
+let map,space,field,miniGround,viewW,viewH;
+const extraActors=['damheo','hwigyeom','sodan','porter','medium','villager','villager_woman','possessed','mourner','shade','lantern','warden','ferry_warden','pier_warden','empty_bier'];
+const tallIds=new Set(['pine_a','pine_b','shrine','ruin_gate','hut','shed','lookout','guardtree']);
+function bitmap(path,id){
+  if(!bitmaps.has(path))bitmaps.set(path,(async()=>{const image=new Image();image.src=new URL(path,base);await image.decode();return fieldPalette(id,image,.88);})().catch(err=>{bitmaps.delete(path);throw err;}));
+  return bitmaps.get(path);
 }
-const actors=['seolo','seolo-front','seolo-states','seolo-bow','seolo-bow-ne',...animals.map(id=>'turns-'+id),'woodcutter'].map(n=>[n,'assets/actors/'+n+'.webp']);
-const images=new Map(await Promise.all([...props,...actors].map(async ([id,path])=>{
-  const image=new Image();image.src=new URL(path,base);await image.decode();return [id,fieldPalette(id,image,field.baseSaturation)];
-})));
-product.projection=groundProjection(space.cell,map.tileWidth,map.tileHeight);
-product.Engine=spatialEngine(G.HONRO_CORE,space,product.projection);product.Scene=groundScene(G.HonroScene,space,images,product.projection,field);
+async function loadField(id){
+  if(loaded.has(id))return loaded.get(id);
+  if(loading.has(id))return loading.get(id);
+  const promise=(async()=>{
+    const folder=id===1?'yeonmok':'act1-'+String(id).padStart(2,'0');
+    const [m,f]=await Promise.all([load('data/'+folder+'.json'),load('assets/terrain/'+folder+'/field.json')]);
+    const files=new Map();
+    for(const o of m.objects){
+      if(tallIds.has(o.asset)){for(const part of ['base',o.asset.startsWith('pine')?'crown':'roof'])files.set(o.asset+'-'+part,'props/'+o.asset+'-'+part+'.png');}
+      else if(o.deck)files.set(o.asset+'-near','props/'+o.asset+'-near.png');
+      else files.set(o.asset,'props/'+o.asset+'.png');
+    }
+    for(const name of ['seolo','seolo-front','seolo-states','seolo-bow','seolo-bow-ne','woodcutter',...animals.map(n=>'turns-'+n),...(id===1?[]:extraActors)])files.set(name,'actors/'+name+'.webp');
+    if(id>1)for(const key of ['binding','litter','funeral_bier','ruin_gate'])files.set(key,'props/'+key+'.png');
+    const images=new Map(await Promise.all([...files].map(async ([key,path])=>[key,await bitmap('assets/'+path,key)])));
+    const terrain=terrainSpace(m),projection=groundProjection(terrain.cell,m.tileWidth,m.tileHeight);
+    const item={map:m,space:terrain,field:f,projection,Engine:spatialEngine(G.HONRO_CORE,terrain,projection),Scene:groundScene(G.HonroScene,terrain,images,projection,f)};
+    loaded.set(id,item);return item;
+  })();
+  loading.set(id,promise);try{return await promise;}finally{loading.delete(id);}
+}
+function selectField(id){
+  const chapter=loaded.get(id);if(!chapter)throw Error('아직 불러오지 않은 전장 '+id);
+  ({map,space,field}=chapter);Object.assign(product,{space,projection:chapter.projection,Engine:chapter.Engine,Scene:chapter.Scene});
+  viewW=map.width*map.tileWidth;viewH=map.height*map.tileHeight;
+  miniGround=chapter.mini??=minimapGround();
+}
+await loadField(1);selectField(1);
 product.controls={x:0,y:0};
 product.atExit=(b,u,m)=>Math.hypot(u.x-m.x,center(u).y-m.y)<=120;
 
@@ -35,17 +58,23 @@ rules.sanitizeStageBattle=b=>b?.honroTopview?b:sanitize(b);
 const place=G.HonroTerrain.place;
 G.HonroTerrain.place=function(b,u,options){
   if(!b.honroTopview)return place.call(this,b,u,options);
-  const p=space.free(center(u),u.r,options?.flying,b.units.filter(v=>v.id!==u.id));
+  const pos=Number.isFinite(options?.x)&&Number.isFinite(options?.y)?{x:options.x,y:options.y}:center(u);
+  const others=b.units.filter(v=>v.id!==u.id),free=space.free(pos,u.r,options?.flying,others);
+  const p=free&&(!Number.isFinite(options?.maxDistance)||Math.hypot(free.x-pos.x,free.y-pos.y)<=options.maxDistance)?free:null;
   return p?{x:p.x,y:p.y+u.h*.5}:null;
 };
 const top=G.HonroWorld.top;
-G.HonroWorld.top=function(b,x,y,...args){return b.honroTopview?(Number.isFinite(y)?y:space.point('cart-wave').y):top.call(this,b,x,y,...args);};
+G.HonroWorld.top=function(b,x,y,...args){return b.honroTopview?(Number.isFinite(y)?y:space.point(map.meta.stage?'start':'cart-wave').y):top.call(this,b,x,y,...args);};
 const loader=G.HonroCampaignLoader;
-G.HonroCampaignLoader={...loader,destination:()=>1,prewarmNext(){},ensureStage(id){if(id!==1)return Promise.reject(Error('이 데모는 연목 고갯길까지입니다.'));return loader.ensureStage(id);}};
-
+const inAct=id=>Number.isInteger(id)&&id>=1&&id<=10;
+G.HonroCampaignLoader={...loader,destination:profile=>Math.min(10,loader.destination(profile)),has:id=>inAct(id)&&loaded.has(id)&&loader.has(id),
+  prewarmNext(id){if(id<10)loader.ensureStage(id+1).catch(()=>{});},
+  async ensureStage(id){if(!inAct(id))throw Error('탑뷰 1막의 마지막 장은 소단 — 놓지 못한 밤입니다.');await Promise.all([loadField(id),loader.ensureStage(id)]);}
+};
+installChapterMotion(product);
 function prepare(b) {
   if(b.honroTopview){
-    if(b.honroTopview!==1||b.honroStage!==1)throw Error('알 수 없는 탑뷰 지도 판본');
+    if(b.honroTopview!==1||!inAct(b.honroStage))throw Error('알 수 없는 탑뷰 지도 판본');
     if(b.tvTerrainRevision!==map.meta.revision){
       for(const u of b.units){
         if(u.dead)continue;delete u.tvPath;
@@ -58,6 +87,7 @@ function prepare(b) {
     }
     return;
   }
+  if(b.honroStage>1&&inAct(b.honroStage)&&b.mode==='campaign'){projectBattle(b,space);return;}
   if(b.honroStage!==1||b.mode!=='campaign')throw Error('장 배치가 없습니다.');
   b.honroTopview=1;b.tvTerrainRevision=map.meta.revision;
   b.tvPopulation=b.units.filter(u=>u.side===1).length+b.honroEvents.filter(ev=>ev.once&&ev.action?.type==='spawn').reduce((n,ev)=>n+ev.action.n,0);
@@ -85,7 +115,8 @@ function prepare(b) {
   b.sceneVersion++;
 }
 
-const miniGround=document.createElement('canvas'),viewW=map.width*map.tileWidth,viewH=map.height*map.tileHeight;
+function minimapGround(){
+const miniGround=document.createElement('canvas');
 miniGround.width=240;miniGround.height=Math.round(240*viewH/viewW);
 const miniPaint=miniGround.getContext('2d');miniPaint.scale(miniGround.width/viewW,miniGround.height/viewH);
 miniPaint.fillStyle='#53604e';miniPaint.fillRect(0,0,viewW,viewH);
@@ -98,6 +129,9 @@ for(const t of map.trails){
 miniPaint.fillStyle='#37616a';miniPaint.fill(riverPath(map.river),'evenodd');
 for(const obj of map.objects.filter(o=>o.deck)){
   const [a,b]=obj.deck.points;miniPaint.beginPath();miniPaint.moveTo(...a);miniPaint.lineTo(...b);miniPaint.lineWidth=obj.deck.width;miniPaint.strokeStyle='#c1ad85';miniPaint.stroke();
+}
+for(const ring of map.cliffs||[]){miniPaint.beginPath();ring.forEach(([x,y],i)=>i?miniPaint.lineTo(x,y):miniPaint.moveTo(x,y));miniPaint.closePath();miniPaint.fillStyle='#303b38';miniPaint.fill();}
+return miniGround;
 }
 product.windDial=function(app,u){
   const dial=document.querySelector('.tv-wind');if(!dial||!u)return;
@@ -123,7 +157,8 @@ product.minimap=function(app){
   const c=cv.getContext('2d');c.setTransform(dpr,0,0,dpr,0,0);c.imageSmoothingEnabled=false;c.drawImage(miniGround,0,0,w,h);
   const sx=w/space.width,sy=h/space.height;
   for(const a of app.engine.b.units){if(a.dead)continue;const p=center(a);c.fillStyle=a.side===0?'#f7e4a2':a.side===2?'#e3ceac':a.awake?'#ef8579':'#a88178';c.beginPath();c.arc(p.x*sx,p.y*sy,a.side===0?3:1.8,0,Math.PI*2);c.fill();}
-  const exit=space.point('marker-7');c.strokeStyle='#ffda87';c.strokeRect(exit.x*sx-2.5,exit.y*sy-2.5,5,5);
+  const exit=space.point(map.meta.stage?'exit':'marker-7');c.strokeStyle='#ffda87';c.strokeRect(exit.x*sx-2.5,exit.y*sy-2.5,5,5);
+  if(map.meta.stage)for(const t of app.scene.missionTargets||[]){if(t.done||!Number.isFinite(t.x)||!Number.isFinite(t.y))continue;c.fillStyle='#e4bc70';c.fillRect(t.x*sx-1.6,t.y*sy-1.6,3.2,3.2);}
   const scene=app.scene;if(!scene.viewport||!Number.isFinite(scene.cx))return;
   const width=scene.viewport.w/scene.zoomLevel,height=scene.viewport.h/scene.zoomLevel;
   c.strokeStyle='#e1d3b2';c.lineWidth=.8;
@@ -143,34 +178,23 @@ G.HonroUnitInfo.tick=function(app){
   panel.style.top=Math.max(roof,Math.min(floor-r.height,y))+'px';
 };
 product.configure=function(App) {
-  const P=App.prototype, title=P.showTitle, mount=P.mount, launch=P.launch, outcome=P.outcome, cancel=P.cancelInput, charge=P.beginCharge;
-  P.showTitle=function(...args){
-    // A completed demo returns to the native chapter-one rest and replay menu.
-    const j=this.profile.honroJourney;
-    if(this.profile.cleared[1]&&!this.profile.honroBattle&&j?.pendingDirect===2){
-      delete j.pendingDirect;j.restStageId=1;this.persist();
-    }
-    return title.apply(this,args);
+  const P=App.prototype,mount=P.mount,launch=P.launch,cancel=P.cancelInput,charge=P.beginCharge,help=P.battleHelp,rest=P.showRest;
+  P.showRest=function(...args){
+    if(this.profile.cleared[10]&&this.profile.seen?.['act-ending-v1:10']&&!this.profile.honroBattle&&!this.profile.honroActEnding&&!this.debugRestStage&&!this.profile.honroJourney?.restStageId){return this.showTitle();}
+    return rest.apply(this,args);
   };
   P.cancelInput=function(){product.resetFieldInput?.();return cancel.call(this);};
   P.beginCharge=function(){const ok=charge.call(this);if(ok&&this.engine?.active)delete this.engine.active.tvPath;return ok;};
-  P.mount=function(b,opts){prepare(b);const result=mount.call(this,b,opts);bindField(this);return result;};
+  P.mount=function(b,opts){selectField(b.honroStage);prepare(b);const result=mount.call(this,b,opts);bindField(this);return result;};
   P.launch=function(id=1,training=false,skill=null){
-    if(id!==1||training){this.notify('이번 여정은 연목 고갯길까지입니다.');return;}
-    return launch.call(this,1,false,skill);
+    if(!inAct(id)||training){this.notify('탑뷰 1막은 소단의 동쪽 외문까지 이어집니다.');return;}
+    if(G.HonroCampaignEntry.defer(this,id,()=>this.launch(id,false,skill)))return;
+    return launch.call(this,id,false,skill);
   };
-  P.startTraining=function(){this.notify('이번 여정은 연목 고갯길까지입니다.');};
+  P.startTraining=function(){this.notify('탑뷰에서는 1막의 열 장을 진행할 수 있습니다.');};
   P.displayAngle=function(u){const a=u.angle*Math.PI/180,v=product.projection.forward(Math.cos(a),-Math.sin(a));return (Math.atan2(v.x,-v.y)*180/Math.PI+360)%360;};
-  P.battleHelp=function(){this.open('<h2>연목 고갯길</h2><p>개울을 건너 나무꾼을 만나고 북동쪽 고개 끝에 닿으세요. 전장에서 마우스 왼쪽 버튼을 누르고 끌거나 미니맵을 끌면 전장을 둘러볼 수 있습니다. 적에게 마우스를 올리면 윤곽이 보이고 클릭하면 정보를 엽니다. 동행을 클릭하면 선택합니다.</p><p>원하는 지면을 마우스 오른쪽 버튼으로 클릭하면 그곳까지 걷습니다. 터치 화면에서는 지면을 짧게 누르세요. 방향키·WASD와 터치 스틱으로도 이동합니다. Shift를 누른 채 방향키를 누르면 제자리에서 천천히 돌아섭니다. Shift+클릭은 그 지점을 즉시 겨눕니다. 터치에서는 발사 옆 이동 잠금 버튼을 쓰세요. 활을 당기는 중에도 스틱으로 조준할 수 있습니다. 발사를 길게 눌렀다 놓으세요.</p><p>화살은 개울을 건너고 바위에 막힙니다. 예상 궤적은 북쪽 다리의 횡풍을 반영합니다. 방어하면 턴을 넘기며 기력을 회복합니다.</p><button data-action="close">전장으로</button>','battle-help');};
-  P.outcome=function(...args){
-    const result=outcome.apply(this,args);
-    if(this.done&&this.engine.b.phase==='won'){
-      // The native rest/book can replay chapter one. The next playable map is outside the demo.
-      const button=this.modal.querySelector('[data-action="result-continue"]');
-      if(button){button.dataset.action='title';button.textContent='타이틀로';}
-    }
-    return result;
-  };
+  P.battleHelp=function(){if(this.stageId>1)return help.call(this);this.open('<h2>연목 고갯길</h2><p>개울을 건너 나무꾼을 만나고 북동쪽 고개 끝에 닿으세요. 전장에서 마우스 왼쪽 버튼을 누르고 끌거나 미니맵을 끌면 전장을 둘러볼 수 있습니다. 적에게 마우스를 올리면 윤곽이 보이고 클릭하면 정보를 엽니다. 동행을 클릭하면 선택합니다.</p><p>원하는 지면을 마우스 오른쪽 버튼으로 클릭하면 그곳까지 걷습니다. 터치 화면에서는 지면을 짧게 누르세요. 방향키·WASD와 터치 스틱으로도 이동합니다. Shift를 누른 채 방향키를 누르면 제자리에서 천천히 돌아섭니다. Shift+클릭은 그 지점을 즉시 겨눕니다. 터치에서는 발사 옆 이동 잠금 버튼을 쓰세요. 활을 당기는 중에도 스틱으로 조준할 수 있습니다. 발사를 길게 눌렀다 놓으세요.</p><p>화살은 개울을 건너고 바위에 막힙니다. 예상 궤적은 북쪽 다리의 횡풍을 반영합니다. 방어하면 턴을 넘기며 기력을 회복합니다.</p><button data-action="close">전장으로</button>','battle-help');};
+
 }
 function bindField(app){
   const scene=app.scene,canvas=scene.canvas,control=product.controls,stick=document.getElementById('joystick');

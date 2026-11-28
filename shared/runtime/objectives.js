@@ -55,11 +55,11 @@ function rawState(b,st){
  let complete=false,summary=st.goal,kinds=[];
  switch(st.objective){
   case'arrival':complete=heroes.some(u=>b.honroTopview?G.HonroTopview.atExit(b,u,exit):u.x>=exitX-120);summary='연목 나루 방향 · 고개 끝까지 이동';kinds=['exit'];break;
-  case'overwatch':complete=!!obj&&obj.x>=exitX;summary=`상여 엄호 · 적 ${foes.length}명${pending?' / 뒤따르는 기척 있음':''}`;kinds=['objective','exit'];break;
+  case'overwatch':complete=!!obj&&(b.honroTopview?G.HonroTopview.atExit(b,obj,b.honroMapAnchors.exit):obj.x>=exitX);summary=`상여 엄호 · 적 ${foes.length}명${pending?' / 뒤따르는 기척 있음':''}`;kinds=['objective','exit'];break;
   case'ledger':complete=!!hs.ledger;summary=hs.ledger?'홍만의 장부 확보 · 철수 준비':b.units.some(u=>u.honroMidboss&&!u.dead)?'나루장승을 경계하며 움막의 장부 찾기':'나루 움막의 장부를 찾기';kinds=hs.ledger?[]:b.honroAct1SiteRevision===1?['interact']:['interact','midboss'];break;
   case'defend':{const rounds=Math.max(1,(st.holdRounds||6)-1);complete=b.round>=rounds+1;summary=`피란민 통로 보호 · ${Math.min(rounds,b.round-1)}/${rounds}턴`;kinds=['objective'];break;}
   case'seals':complete=!left.length;summary=left.length?(st.id===5?(hs.ritual?.active?'물틈이 열렸다 · 고리쇠 내구도 '+durability(left[0])+' · 설오로 사격':'담허로 받이진에 접근 · 의식 한 번 시작'):'받이진을 지키며 절벽 틈 고리쇠 파괴'):'고리쇠 파괴 완료 · 물길 안정화';kinds=left.length?(st.id===5&&!hs.ritual?.active?['interact']:['seal']):[];break;
-  case'rescue':{const mid=b.units.find(u=>u.honroMidboss&&!u.dead);complete=!!hs.rescued&&!!obj&&obj.x>exitX-140&&!mid;summary=mid?'부러진 교각귀를 제압해 호송로 확보':hs.rescued?'부상자 운반대를 쉼터까지 호송':'부상자 운반대에 접근';kinds=mid?['midboss']:hs.rescued?['objective','exit']:['objective'];break;}
+  case'rescue':{const mid=b.units.find(u=>u.honroMidboss&&!u.dead);complete=!!hs.rescued&&!!obj&&(b.honroTopview?G.HonroTopview.atExit(b,obj,exit||b.honroMapAnchors.exit):obj.x>exitX-140)&&!mid;summary=mid?'부러진 교각귀를 제압해 호송로 확보':hs.rescued?'부상자 운반대를 쉼터까지 호송':'부상자 운반대에 접근';kinds=mid?['midboss']:hs.rescued?['objective','exit']:['objective'];break;}
   case'rescue3':complete=(hs.rescuedCount||0)>=3;summary=`들린 주민 구조 · ${hs.rescuedCount||0}/3${foes.length?' · 주변 위협 '+foes.length+'명':''}`;kinds=(hs.rescuedCount||0)<3?['interact']:[];break;
   case'bierboss':complete=!left.length&&!!boss?.dead;summary=left.length?`빈 상여의 결박부터 파괴 · ${seals.length-left.length}/${seals.length}`:boss&&!boss.dead?'빈 상여 본체 제압':'빈 상여 제압 완료 · 원혼 수습';kinds=left.length?['seal']:boss&&!boss.dead?['boss']:[];break;
   case'prepare':complete=(hs.receivers||0)>=2;summary=`주민 대피 후 받이진 준비 · ${hs.receivers||0}/2${foes.length?' · 위협 '+foes.length+'명':''}`;kinds=(hs.receivers||0)<2?['interact']:[];break;

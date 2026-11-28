@@ -38,7 +38,7 @@ function spawnMembers(app,action,at){const e=app.engine,b=e.b;if(!active(b)||!Ar
  for(const [i,m]of at.members.entries()){
   const kind=m.kind,flying=!!G.HonroWorld.archetypes[kind]?.flying,x=m.x,y=m.y,support=m.support||m.surfaceId;
   if(!Number.isFinite(x)||!Number.isFinite(y)||!G.HonroWorld.archetypes[kind])return false;
-  const contact=m.air&&flying?{y}:G.HonroMapEngine.surfaceY(b.terrain,x,y,support);if(!contact||!m.air&&(!support||Math.abs(contact.y-y)>.1))return false;
+  const contact=b.honroTopview||m.air&&flying?{y}:G.HonroMapEngine.surfaceY(b.terrain,x,y,support);if(!contact||!m.air&&(!support||Math.abs(contact.y-y)>.1))return false;
   if(action.campaignApproach&&b.units.some(u=>alive(u)&&u.side!==1&&Math.hypot(u.x-x,(u.y-y)*.85)<170))return false;
   const u=G.HonroWorld.createEnemy(shadow,app.stage,x,kind,next+i,y,true);tune(b,u,app.stage,m);
   Object.assign(u,{honroContributionId:'wave:'+action.source+':'+i,id:'event-'+(next+i),awake:true,aggroUntil:b.round+3,honroSpawnSource:action.source,honroDensityBornRound:b.round,honroEncounterRole:m.role||m.honroDensityRole||'response',honroEncounterSupport:support,honroDensityCell:m.activationCell||null,honroCohort:m.cohort||m.honroCohort||'reinforcement',spawnX:x,spawnY:y,group:80+(b.honroEvents||[]).findIndex(ev=>ev.id===action.source)});

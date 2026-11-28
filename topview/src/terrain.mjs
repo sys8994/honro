@@ -85,6 +85,15 @@ export function terrainSpace(map) {
     for(let n=0;n<result.length;){let j=result.length-1;while(j>n&&nearest(at,result[j],r,flight))j--;smooth.push(result[j]);at=result[j];n=j+1;}
     return smooth;
   }
-  return {map,cell,width,height,nearest,legal,free,route,point:id=>({x:map.anchors[id].x*cell,y:map.anchors[id].y*cell}),
+  function landing(p,r,flight=false,units=[]){
+    let best=null,distance=Infinity;
+    for(let row=0;row<map.height;row++)for(let col=0;col<map.width;col++){
+      const q={x:(col+.5)*cell,y:(row+.5)*cell},d=Math.hypot(q.x-p.x,q.y-p.y);
+      if(d>=distance||!legal(q,r,flight)||units.some(u=>!u.dead&&Math.hypot(u.x-q.x,center(u).y-q.y)<=r+u.r+4))continue;
+      best=q;distance=d;
+    }
+    return best;
+  }
+  return {map,cell,width,height,nearest,legal,free,landing,route,point:id=>({x:map.anchors[id].x*cell,y:map.anchors[id].y*cell}),
     move:(p,dx,dy,r,flight=false)=>slide(p,dx,dy,(a,z)=>nearest(a,z,r,flight))};
 }
