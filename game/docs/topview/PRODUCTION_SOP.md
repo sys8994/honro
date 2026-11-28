@@ -6,22 +6,27 @@
 
 - 기존 혼로는 `cc81427699f40bebfe3716f4ed3bb5c2ca36ef8e`에서 원격 백업을 만들고 별도 체크아웃에서 포크했다. 원본 트리 식별자와 독립 보관본에서 복원한 다섯 파일의 해시를 기록했다. 새 제품의 저장 키는 `honro-topview-1-profile-v1`다. [복원 기록](evidence/backup.json) · [공통 코드 대응표](FORK_CONTRACT.md)
 - 대화에 남은 분할 보관본 20개를 순서대로 합쳐 최초 인계 ZIP을 복원했다. 14,642,174바이트, SHA-256 `ad1ad22eccacc3e77e290ee799604e55046ca356fccfc83f2afa285695260a3b`. `00_START_HERE.md`부터 문서 01~08을 읽고 동봉 검증기로 페이로드 68개를 대조했다. 배경 제작 실험은 소스 `0f83eb650a355031a96d114873de6f856f3b02d7`에서 따로 재현했다. [실험 재현값](evidence/source-lab.json)
-- 원본 ZIP을 보관하고 별도 개정본의 시작 문서·설계 문서·부트스트랩에 사용자가 정한 코드 계승 원칙을 반영했다. Library의 `honro-topview-act1-handoff-fork-20261128.zip`은 14,643,628바이트, SHA-256 `f3f6ef3dc7743cee840cd09128d18434633eba26891209e8d94c692e31487fa4`이다.
+- 원본 ZIP을 보관하고 별도 개정본의 시작 문서·설계 문서·부트스트랩에 사용자가 정한 코드 계승 원칙을 반영했다. Library의 `honro-topview-act1-handoff-fork-20261128.zip`은 14,646,501바이트, SHA-256 `5e51f3199f9a3ed3bc28c1f317935549ef6fdd8bb7ee1fea74c09077174c02ee`이다.
 - 원본 1장을 먼저 열어 설오 ID와 HP, 기예, 적 편성, 기승전결을 기록한다. 동일한 캠페인 로더·전투 엔진·턴·기예·피해·장비·성장·대사·오디오·메뉴를 포크에서도 호출한다. 새 장은 그 위에 장소, 접촉면, 카메라, 배우 이미지와 입력을 연결한다. [원본 1장](evidence/native-stage1.json) · [앱 설치 지점](../../../topview/src/install.mjs)
 
 ## 2. 장소를 만들고 실제 이동에 연결한다
 
-1. Tiled에서 `topview/editable/yeonmok.tmj`를 연다. 타일셋 두 개와 이미지의 상대 위치를 유지한다. `Ground`의 30×24칸을 흙·풀·길·물·돌로 칠한다. 개울을 먼저 끊고 남쪽·북쪽 다리에 실제 보행 칸을 연다. 이번 장은 가로 교량을 따로 그려 양끝이 길에 닿도록 놓았다. 화면에 보이는 지면은 1,920×1,056픽셀 직사각형이다. [저작 지도](../../../topview/editable/yeonmok.tmj)
-2. `Props` 81개와 `Ground decorations`의 교량 2개를 발점 기준으로 놓는다. 소나무 두 종류, 큰·작은 바위, 관목, 석등, 문과 교량을 앞·뒤로 겹쳐 배치했다. 동일 소품의 보행 차단·사격 차단·접촉 반경을 따로 설정한다. `Footprints (guide only)` 70개는 편집자용 표시다. 그리기는 실제 발점 순서를 따르고 다리의 앞 난간을 별도 레이어로 올린다. [타일셋과 소품 속성](../../../topview/editable/props.tsj) · [그리기와 가림](../../../topview/src/scene.mjs)
-3. `Chapter 1`의 점 27개에 원본 배우 ID, 증원, 대사, 고개 출구와 북쪽 횡풍을 연결한다. 월드 한 칸은 180×180, 화면 한 칸은 64×44다. 물은 설오를 막고 화살은 통과시킨다. 바위는 둘을 모두 막는다. 카메라가 표시할 수 있는 최소 배율을 현재 뷰포트와 지면 크기로 계산한다. 가장자리 숲·암반은 실제 지도 안에 둔다. [공간 변환](../../../topview/src/space.mjs) · [충돌과 경로](../../../topview/src/terrain.mjs)
-4. 지도 복사본을 GUI에서 수정하고 저장한 뒤 각각 컴파일한다. 이번에는 (7,22) 풀을 물로 바꿨다. 두 컴파일 결과에서 재질·통행 배열의 667번만 바뀌었다. 해당 칸의 보행과 화살, 제품에서 나온 화면을 확인하고 원본을 다시 연다. [편집 전후](evidence/tiled-change.json)
+1. Tiled에서 `topview/editable/yeonmok.tmj`를 연다. 지도 바깥은 1,920×1,056픽셀 직사각형이다. 내부 `Ground`는 96×48픽셀의 2:1 마름모 21열×45행으로 저작한다. 홀수 행을 반 칸 옮기고 가장자리 마름모만 자른다. 경로 탐색용 30×24 구획 및 지름 180인 게임 단위와 아트 타일을 구별한다. [편집 원본](../../../topview/editable/yeonmok.tmj) · [Tiled 화면](evidence/isometric/tiled.jpg)
+2. `Stream and trails`에서 개울의 양쪽 기슭과 갈림길을 그린다. `Bridge decks`에는 서로 반대 대각선인 다리의 실제 통행 폭과 사당의 기초를 둔다. 컴파일러가 곡선 기슭에 잔굴곡을 주고, 통행을 막는 물 면에서 교량 발판을 뺀다. 렌더러도 같은 곡선을 쓴다. 자갈에서 얕은 물·깊은 물로 농도가 변하는 마스크를 쓴다. 일정한 밝기와 폭으로 기슭을 따라 그은 시안은 돌 수로처럼 보여 제외했다. [소스와 그림 비교](evidence/isometric/comparison.jpg) · [지도 컴파일](../../../topview/tools/compile-map.py)
+3. 뿌리와 기초에 발점을 둔다. 풍경 소품은 총 84개, 배우·사건·출구·환경 좌표는 27개다. 소나무의 큰 수관과 줄기, 사당의 지붕과 벽, 다리의 앞 난간과 상판을 따로 그린다. 낮은 면은 발점으로, 수관과 처마는 지면에 투영한 앞끝으로 깊이를 정한다. 설오와 적은 같은 그리기 순서를 사용한다. 나란히 선 나무는 연결된 수관 전체를 한 번에 그려 세로 이음새를 없앴다. 그림자는 물체 알파 실루엣을 오른쪽 아래의 지면에 눕혀 시작 시 한 번 굽는다. [가림 레이어](../../../topview/src/canopy.mjs) · [그림자와 물가](../../../topview/src/ground.mjs)
+4. 편집기에 연 복사본에서 마름모 (5,42)를 풀에서 물로 칠해 저장했다. 게임 좌표계의 (7,22) 구획에서 그림과 보행·화살 판정을 대조했다. [편집 전후 데이터](evidence/isometric/tiled.json) · [수정 전 게임](evidence/isometric/grass.jpg) · [수정 후 게임](evidence/isometric/water.jpg)
+
+지도 컴파일에는 Python과 Shapely가 필요하다. 다음 명령은 저장소 루트에서 실행한다.
 
 ```sh
+python3 -m pip install -r topview/tools/requirements.txt
 python3 topview/tools/compile-map.py
 python3 topview/tools/compile-map.py /path/to/copy/editable/yeonmok.tmj --output /tmp/edited-yeonmok.json
 ```
 
 ## 3. 배우와 소품 이미지를 만든다
+
+- 소나무는 직전의 옆모습 시안을 제외했다. 앞쪽 가지가 줄기를 실제로 가리도록 Blender에서 두 수관의 3D 형태를 잡고, 위에서 비스듬히 내려다본 가이드를 이미지 생성에 사용했다. 결과를 게임용 최대 320픽셀로 줄이고, 사당·교량도 최대 384픽셀로 패킹했다. 게임 안에서 배우·지붕·나무가 같은 시점으로 보이는지 먼저 확인한다. [시점 가이드](../../../topview/assets/source/pine-camera-study.jpg) · [사용한 생성 지시](../../../topview/editable/isometric-art.json) · [가림 보행 비교](evidence/isometric/depth-walk.jpg)
 
 - 설오는 원본 전신 벡터의 비대칭 의상·활 손과 승인 초상을 기준으로 삼았다. 8방향 이동은 방향당 4프레임이다. 준비·놓기, 대기·회복·피격·퇴장은 별도 시트에서 읽는다. 남향 보행은 두 번의 생성에서 바탕이 남거나 앞발이 교대되지 않았다. 동봉 실험의 보폭 순서를 참조해 따로 생성한 네 프레임으로 교체했다. [원본 전신](../../../shared/assets/party/seol_o.svg) · [선택한 원본](../../../topview/assets/source) · [정면 보행과 사슴 후면 검토](evidence/pose-detail.jpg)
 - 산개·멧돼지·사슴·까마귀·박쥐·원혼은 종류마다 5개 방위로 대기, 좌우 걸음, 공격 예고, 공격, 피격, 퇴장을 그렸다. 좌우 대칭인 세 방향은 반전한다. 설오의 활 손은 방향별로 그렸다. 짐승의 회복은 예고 자세를 재사용한다. 사슴 첫 원본에 짙은 배경이 남고 북향에서 얼굴이 드러나서 투명 원본과 뒤쪽 일곱 자세를 다시 제작했다. [생성 지시와 참조 입력](../../../topview/editable/art-requests.json) · [게임의 동작 선택 규칙](../../../topview/src/actors.mjs)
@@ -31,14 +36,16 @@ python3 topview/tools/compile-map.py /path/to/copy/editable/yeonmok.tmj --output
 ```sh
 python3 topview/tools/pack-actors.py
 python3 topview/tools/pack-poses.py
+python3 topview/tools/pack-landscape.py
 ```
 
 ## 4. 기존 캠페인을 빌드하고 플레이한다
 
-Node와 npm, Python 3, 이미지 재패킹에는 Pillow를 쓴다. 저장소 루트의 잠금 파일에 맞춰 의존성을 설치한다. 편집 소스와 정적 게임의 배포 경로를 분리한다.
+Node와 npm, Python 3, Shapely와 Pillow를 쓴다. 저장소 루트의 잠금 파일에 맞춰 의존성을 설치한다. 편집 소스와 정적 게임의 배포 경로를 분리한다.
 
 ```sh
 npm ci
+python3 -m pip install -r topview/tools/requirements.txt
 python3 topview/tools/compile-map.py
 node topview/build.mjs
 npm --prefix game run typecheck

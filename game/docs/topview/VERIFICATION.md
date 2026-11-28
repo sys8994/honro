@@ -1,5 +1,21 @@
 # 연목 고갯길 탑뷰 검증 기록
 
+## 현재 2:1 지형판
+
+플레이 소스는 `81468793d39ba891c93f114042ad8bf18d8b478f`이다. 비공개 프리뷰 소스 `cce6b27c6aa1ae1c7e8c8033d7c74b216273bab5`의 배포 `appgdep_6b0ab77715d881919adff347e3326270`가 성공했다. 새 빈 폴더에서 만든 정적 파일은 817개, 78.8 MiB이며 생성용 원본 PNG는 포함하지 않는다. [비공개 게임](https://honro-yeonmok-topview.sys8994.chatgpt.site) · [전후 같은 세 시점](evidence/isometric/comparison.jpg)
+
+| 항목 | 이번 빌드에서 실행한 결과 |
+| --- | --- |
+| 직사각형과 마름모 | Tiled 2:1 마름모 945개가 1,920×1,056의 실제 지면을 덮었다. 가로·세로 세 뷰포트의 가장자리·모서리를 최소·최대 줌에서 터치한 48회 모두 요청한 경계에 도달했다. [카메라·터치](evidence/isometric/controls.json) |
+| 나무·지붕 | 일반 전장의 설오를 소나무와 사당으로 각각 걸어가게 했다. 뒤·아래·앞 세 위치 모두 보행이 가능한 곳이었다. 동일한 배우 프레임과 실제 전경 이미지의 불투명 픽셀 교집합을 측정했다. 수관이 가린 샘플 픽셀은 뒤 645, 가지 아래 130, 앞 0이었다. 지붕은 뒤 498, 처마 아래 200, 앞 0이었다. [보행 비교 화면](evidence/isometric/depth-walk.jpg) · [좌표·가림 수치](evidence/isometric/overhang.json) |
+| 물가와 다리 | 화면과 같은 곡선으로 물의 경계를 만들고 실재하는 두 대각선 발판을 통행 영역으로 뚫었다. 두 교량의 양 끝 사이를 각자 가로지를 수 있고, 바로 옆 물에서는 보행이 막혔다. Tiled GUI에서 (5,42) 한 칸을 물로 바꾸자 그 자리에서 보행은 막히고 화살은 통과했다. [편집기 기록](evidence/isometric/tiled.json) |
+| 1장 플레이 | Linux Chromium PC 1180×760과 모바일 터치 에뮬레이션 844×480에서 일반 사격, 2라운드 이어하기, 수레·증원·나무꾼·능선, 7라운드 도착, 정산·타이틀 복귀. 두 실행 모두 첫 산개의 체력이 76에서 1로 줄었고 페이지 오류는 0이었다. [PC](evidence/isometric/desktop.json) · [터치](evidence/isometric/touch.json) |
+| 프레임 표본 | 1180×760 Chromium에서 프레임 간격 p95는 이동 16.8 ms, 가장 넓은 줌 16.8 ms, 충전 16.7 ms, 발사·피격 16.8 ms였다. 실기기 발열·장시간 성능은 미실측이다. [측정값](evidence/isometric/render.json) |
+
+가림 검수는 `python3 topview/tests/check_overhang.py --base http://127.0.0.1:8000/ --out /tmp/yeonmok-depth`로 재현한다. 검수기는 카메라만 샘플 위치로 맞춘다. 배우가 가는 과정에는 실제 필드 클릭, 필요할 때 방어와 대사 버튼을 사용한다. 이전 판의 보존·패배·터치 세로 완주와 별개로 기록했다.
+
+## 이전 직사각형 초판의 회귀 기준
+
 2026-11-28. 플레이 빌드는 포크 `f3ff03ddf0c759536f8ea347b35765ffa0c6f1a2`이다. 정적 파일 803개(77.1 MiB)를 새 폴더에 패키징해 프리뷰 소스의 파일과 모두 바이트 단위로 비교했다. 비공개 Site 소스는 `8e980b93758b48f0b13e184f652a1f8bafd5a1de`, 배포 `appgdep_6b0ab11d42608191afdd0384ffde0397`의 상태는 `succeeded`다. 아래 브라우저 입력은 같은 정적 파일을 로컬 HTTP로 제공하고 매번 새 프로필에서 실행했다. [게임](https://honro-yeonmok-topview.sys8994.chatgpt.site) · [플레이 빌드 소스](https://github.com/sys8994/honro/commit/f3ff03ddf0c759536f8ea347b35765ffa0c6f1a2)
 
 ## 실제 1장 입장과 결말

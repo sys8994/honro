@@ -1,0 +1,41 @@
+{
+  "tiledVersion": "1.11.0",
+  "edit": "Qt GUI, selected Water on Ground, painted one diamond, Ctrl+S",
+  "tiledCoordinate": [
+    5,
+    42
+  ],
+  "sourceGidChange": [
+    1,
+    4
+  ],
+  "changedGroundIds": [
+    887
+  ],
+  "worldSampleNavigationCell": [
+    7,
+    22
+  ],
+  "before": {
+    "cell": [
+      7,
+      22
+    ],
+    "material": "grass",
+    "walkable": true,
+    "arrowClear": true,
+    "props": 84,
+    "anchors": 27
+  },
+  "after": {
+    "cell": [
+      7,
+      22
+    ],
+    "material": "water",
+    "walkable": false,
+    "arrowClear": true,
+    "props": 84,
+    "anchors": 27
+  }
+}

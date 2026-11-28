@@ -9,6 +9,8 @@
 
 탑뷰판은 독립적으로 실행하는 후속 제품이며 기존 혼로 저장소에서 갈라졌다. 플레이 범위는 1막 1장 〈연목 고갯길〉이다. 이후 장도 혼로의 캠페인 로더, 턴제 전투, 탄도·예측, 기예·속성, 피해·장비·성장, 대사, HUD와 음향 코드를 이어 쓴다. 공간 좌표, 이동·조준, 지형·물리장, 카메라와 이미지 제작 경로가 탑뷰 전환 지점이다. 이 절의 원본은 `backup/honro-before-topview-20261128`이며 개발 브랜치는 `work/topview-act1-demo-20261128`이다. [포크 범위](topview/FORK_CONTRACT.md) · [실제 제작 SOP](topview/PRODUCTION_SOP.md) · [실행 결과](topview/VERIFICATION.md)
 
+현재 1장은 직사각형 카메라 안에 2:1 마름모 지형을 쓴다. 나무 수관과 지붕은 독립된 전경이며 캐릭터의 발점에 따라 가리고 드러난다. 편집본에서 바꾼 물가와 다리를 실제 접촉에 연결한다. [현재 데모와 근거](topview/VERIFICATION.md)
+
 ## 1. 첫 10분: 어디서 시작할지
 
 - 저장소: [sys8994/honro](https://github.com/sys8994/honro), 통합 브랜치 `master`. [공개 게임](https://sys8994.github.io/honro/)은 GitHub Pages다. 이전 전투·지형 검수의 런타임 기준은 [b72d225a](https://github.com/sys8994/honro/commit/b72d225a483c3a4dd7dd58cf68b8991210f4d450), [성공한 Pages 배포](https://github.com/sys8994/honro/actions/runs/45781747334)다. 이 기준 이후 오프닝과 1~5막 엔딩 스틸컷을 확장했다. 착수 시 원격 HEAD와 공개판이 어느 커밋의 산출물을 제공하는지 다시 확인한다.

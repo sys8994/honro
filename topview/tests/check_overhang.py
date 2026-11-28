@@ -20,25 +20,27 @@ setup = """async id=>{
  for(const [key,path] of [[o.asset,'props/'+o.asset],[o.asset+'-base','props/'+o.asset+'-base'],[o.asset+'-'+high,'props/'+o.asset+'-'+high],['seolo-states','actors/seolo-states']]){
   const img=new Image();img.src=get('assets/'+path+(key==='seolo-states'?'.webp':'.png'));await img.decode();images.set(key,img);
  }
- const upper=sceneryParts(o,at,images).find(p=>p.part===high);
+ const parts=sceneryParts(o,at,images),upper=parts.find(p=>p.part===high),lower=parts.find(p=>p.part==='base');
  const canvas=document.createElement('canvas');canvas.width=96;canvas.height=80;const ctx=canvas.getContext('2d',{willReadFrequently:true});
- function coverage(x,y,row=0){
-  if(y>=upper.depth)return 0;
+ function coverage(x,y,row=0,part=upper){
+  if(y>=part.depth)return 0;
   ctx.setTransform(1,0,0,1,0,0);ctx.clearRect(0,0,96,80);ctx.globalCompositeOperation='source-over';
   paintSprite(ctx,images,'seolo','idle',row,0,48,71,58);
-  ctx.globalCompositeOperation='source-in';ctx.translate(48-x,71-y);drawScenery(ctx,upper);
+  ctx.globalCompositeOperation='source-in';ctx.translate(48-x,71-y);drawScenery(ctx,part);
   const rgba=ctx.getImageData(0,0,96,80).data;let n=0;
   for(let i=3;i<rgba.length;i+=4)if(rgba[i]>90)n++;return n;
  }
  const toWorld=(x,y)=>({x:x*m.cell/m.tileWidth,y:y*m.cell/m.tileHeight});
  const A=HonroApp,u=A.engine.active;
- const margins=o.asset==='shrine'?[[-42,-26],[-15,10]]:[[-45,-27],[3,23]];
- const choices=margins.map(([lo,hi])=>{
+ const margins=o.asset==='shrine'?[[-52,-32],[-53,20]]:[[-45,-27],[3,35]];
+ const choices=margins.map(([lo,hi],index)=>{
   let best=null;
   for(let dx=-o.width*.44;dx<o.width*.45;dx+=6)for(let dy=lo;dy<=hi;dy+=3){
     const x=at.x+dx,y=at.y+dy,world=toWorld(x,y);
     if(!space.legal(world,u.r+2))continue;
-    const count=coverage(x,y),score=count-.35*Math.abs(dx)-.40*Math.abs(dy-(lo+hi)/2);
+    const count=coverage(x,y),baseCount=coverage(x,y,0,lower);
+    if(index===1&&(baseCount>48||count<45||count>490))continue;
+    const score=(index===1?-Math.abs(count-260):count)-.20*Math.abs(dx)-.25*Math.abs(dy-(lo+hi)/2);
     if(count>0&&(!best||score>best.score))best={x,y,world,count,score};
   }
   if(!best)throw Error('No walkable overhang for '+id+' in '+lo+'..'+hi);return best;
@@ -48,7 +50,7 @@ setup = """async id=>{
  if(!front)throw Error('No clear approach');
  window.measureOverhang=()=>{
   const u=A.engine.active,foot=center(u),p=HonroTopview.projection.forward(foot.x,foot.y),v=HonroTopview.projection.forward(u.tvHeading.x,u.tvHeading.y);
-  return {actor:u.id,px:p.x,py:p.y,world:foot,highDepth:upper.depth,legal:space.legal(foot,u.r),coveredPixels:coverage(p.x,p.y,angleRow(v.x,v.y)),round:A.engine.b.round};
+  return {actor:u.id,px:p.x,py:p.y,world:foot,screen:A.scene.screenPoint(foot.x,foot.y),highDepth:upper.depth,legal:space.legal(foot,u.r),basePixels:coverage(p.x,p.y,angleRow(v.x,v.y),lower),coveredPixels:coverage(p.x,p.y,angleRow(v.x,v.y)),round:A.engine.b.round};
  };
  return {kind:high,at,goals:[...choices,front]};
 }"""
@@ -115,6 +117,11 @@ with sync_playwright() as pw:
                 raise RuntimeError((target, label, "goal not reached", state))
             ready()
             page.wait_for_timeout(240)
+            page.evaluate(
+                """({x,y})=>{const p=HonroTopview.projection.inverse(x,y-40);HonroApp.scene.centerAt(p.x,p.y)}""",
+                plan["at"],
+            )
+            page.wait_for_timeout(100)
             measure = page.evaluate("measureOverhang()")
             values.append({"label": label, **measure})
             page.locator("#battlecanvas").screenshot(

@@ -1,0 +1,126 @@
+{
+  "pine_b_010": {
+    "kind": "crown",
+    "positions": [
+      {
+        "label": "behind",
+        "actor": "p-archer",
+        "px": 143.87204480473625,
+        "py": 849.4461990655443,
+        "world": {
+          "x": 404.6401260133207,
+          "y": 3475.0071779954087
+        },
+        "screen": {
+          "x": 201.42086272663073,
+          "y": 290.49756629176204
+        },
+        "highDepth": 936.936216,
+        "legal": true,
+        "basePixels": 0,
+        "coveredPixels": 645,
+        "round": 1
+      },
+      {
+        "label": "under",
+        "actor": "p-archer",
+        "px": 120.0786234899724,
+        "py": 909.8419560284157,
+        "world": {
+          "x": 337.72112856554736,
+          "y": 3722.080729207155
+        },
+        "screen": {
+          "x": 168.11007288596136,
+          "y": 375.0516260397819
+        },
+        "highDepth": 936.936216,
+        "legal": true,
+        "basePixels": 0,
+        "coveredPixels": 130,
+        "round": 1
+      },
+      {
+        "label": "front",
+        "actor": "p-archer",
+        "px": 119.14917403901907,
+        "py": 948.3570260263606,
+        "world": {
+          "x": 335.10705198474113,
+          "y": 3879.642379198748
+        },
+        "screen": {
+          "x": 166.80884365462668,
+          "y": 428.9727240369048
+        },
+        "highDepth": 936.936216,
+        "legal": true,
+        "basePixels": 0,
+        "coveredPixels": 0,
+        "round": 1
+      }
+    ]
+  },
+  "shrine-at-fork": {
+    "kind": "roof",
+    "positions": [
+      {
+        "label": "behind",
+        "actor": "p-archer",
+        "px": 700.745265141113,
+        "py": 650.2583919904238,
+        "world": {
+          "x": 1970.8460582093803,
+          "y": 2660.1479672335518
+        },
+        "screen": {
+          "x": 528.2433711975582,
+          "y": 273.1555267865934
+        },
+        "highDepth": 738.23998,
+        "legal": true,
+        "basePixels": 0,
+        "coveredPixels": 498,
+        "round": 2
+      },
+      {
+        "label": "under",
+        "actor": "p-archer",
+        "px": 642.2026531921094,
+        "py": 660.8833442832178,
+        "world": {
+          "x": 1806.1949621028077,
+          "y": 2703.613681158618
+        },
+        "screen": {
+          "x": 446.28371446895324,
+          "y": 288.03045999650493
+        },
+        "highDepth": 738.23998,
+        "legal": true,
+        "basePixels": 6,
+        "coveredPixels": 200,
+        "round": 2
+      },
+      {
+        "label": "front",
+        "actor": "p-archer",
+        "px": 641.5636848326386,
+        "py": 749.7276286232188,
+        "world": {
+          "x": 1804.397863591796,
+          "y": 3067.0675716404407
+        },
+        "screen": {
+          "x": 445.38915876569405,
+          "y": 412.41245807250647
+        },
+        "highDepth": 738.23998,
+        "legal": true,
+        "basePixels": 0,
+        "coveredPixels": 0,
+        "round": 2
+      }
+    ]
+  }
+}
