@@ -5,6 +5,7 @@ on:
     paths:
       - 'index.html'
       - 'HONRO.html'
+      - 'package.json'
       - 'topview/**'
       - '.github/workflows/topview-public.yml'
   workflow_dispatch:

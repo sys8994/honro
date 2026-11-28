@@ -1,5 +1,9 @@
 # HONRO · Game + Workshop
 
+현재 공개판은 탑뷰 1막 1장 **연목 고갯길**이다. 첫 화면에서 **고갯길 들어가기**를 누르면 시작한다. [혼로 플레이](https://sys8994.github.io/honro/)
+
+루트에서 `npm run build`를 실행하면 저장소에 보관한 공통 런타임과 탑뷰 소스로 `index.html`과 `HONRO.html`을 생성한다. 기존 60장 캠페인은 배포 직전 트리에서 열 수 있다. [원본 백업](https://github.com/sys8994/honro/tree/backup/honro-before-topview-20261128)
+
 현재 실행 책임, 퇴역 코드·에셋 정리, 실제 배포와 검증 범위는 [2026-10-24 리팩토링 계획과 결과](game/docs/REFACTOR_PLAN_20261024.md)를 참고합니다. 아래 날짜별 기록은 당시 변경 이력이며 이후 개정과 함께 읽습니다.
 
 대사 원칙 v2와 부모 원고의 별도 통합·정확한 SHA·검사 및 시작 전송량/옛 검사 한계는 [서사 통합 기록](game/docs/story/narrative-voice-v2-release-20261022/README.md)을 참고합니다.
