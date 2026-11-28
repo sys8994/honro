@@ -1,0 +1,236 @@
+{
+  "type": "tileset",
+  "version": "1.10",
+  "name": "Honro modular props",
+  "tilewidth": 522,
+  "tileheight": 400,
+  "tilecount": 8,
+  "columns": 0,
+  "objectalignment": "bottom",
+  "tiles": [
+    {
+      "id": 0,
+      "image": "../assets/props/pine_a.png",
+      "imagewidth": 522,
+      "imageheight": 400,
+      "properties": [
+        {
+          "name": "asset",
+          "type": "string",
+          "value": "pine_a"
+        },
+        {
+          "name": "radius",
+          "type": "float",
+          "value": 0.35
+        },
+        {
+          "name": "blocksMovement",
+          "type": "bool",
+          "value": true
+        },
+        {
+          "name": "blocksProjectile",
+          "type": "bool",
+          "value": false
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "image": "../assets/props/pine_b.png",
+      "imagewidth": 460,
+      "imageheight": 371,
+      "properties": [
+        {
+          "name": "asset",
+          "type": "string",
+          "value": "pine_b"
+        },
+        {
+          "name": "radius",
+          "type": "float",
+          "value": 0.32
+        },
+        {
+          "name": "blocksMovement",
+          "type": "bool",
+          "value": true
+        },
+        {
+          "name": "blocksProjectile",
+          "type": "bool",
+          "value": false
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "image": "../assets/props/rock_large.png",
+      "imagewidth": 398,
+      "imageheight": 318,
+      "properties": [
+        {
+          "name": "asset",
+          "type": "string",
+          "value": "rock_large"
+        },
+        {
+          "name": "radius",
+          "type": "float",
+          "value": 0.76
+        },
+        {
+          "name": "blocksMovement",
+          "type": "bool",
+          "value": true
+        },
+        {
+          "name": "blocksProjectile",
+          "type": "bool",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "image": "../assets/props/rock_small.png",
+      "imagewidth": 262,
+      "imageheight": 201,
+      "properties": [
+        {
+          "name": "asset",
+          "type": "string",
+          "value": "rock_small"
+        },
+        {
+          "name": "radius",
+          "type": "float",
+          "value": 0.4
+        },
+        {
+          "name": "blocksMovement",
+          "type": "bool",
+          "value": true
+        },
+        {
+          "name": "blocksProjectile",
+          "type": "bool",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "image": "../assets/props/shrub.png",
+      "imagewidth": 376,
+      "imageheight": 221,
+      "properties": [
+        {
+          "name": "asset",
+          "type": "string",
+          "value": "shrub"
+        },
+        {
+          "name": "radius",
+          "type": "float",
+          "value": 0.15
+        },
+        {
+          "name": "blocksMovement",
+          "type": "bool",
+          "value": false
+        },
+        {
+          "name": "blocksProjectile",
+          "type": "bool",
+          "value": false
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "image": "../assets/props/stone_lantern.png",
+      "imagewidth": 206,
+      "imageheight": 352,
+      "properties": [
+        {
+          "name": "asset",
+          "type": "string",
+          "value": "stone_lantern"
+        },
+        {
+          "name": "radius",
+          "type": "float",
+          "value": 0.25
+        },
+        {
+          "name": "blocksMovement",
+          "type": "bool",
+          "value": true
+        },
+        {
+          "name": "blocksProjectile",
+          "type": "bool",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "image": "../assets/props/ruin_gate.png",
+      "imagewidth": 401,
+      "imageheight": 305,
+      "properties": [
+        {
+          "name": "asset",
+          "type": "string",
+          "value": "ruin_gate"
+        },
+        {
+          "name": "radius",
+          "type": "float",
+          "value": 0.65
+        },
+        {
+          "name": "blocksMovement",
+          "type": "bool",
+          "value": true
+        },
+        {
+          "name": "blocksProjectile",
+          "type": "bool",
+          "value": true
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "image": "../assets/props/bridge.png",
+      "imagewidth": 399,
+      "imageheight": 328,
+      "properties": [
+        {
+          "name": "asset",
+          "type": "string",
+          "value": "bridge"
+        },
+        {
+          "name": "radius",
+          "type": "int",
+          "value": 0
+        },
+        {
+          "name": "blocksMovement",
+          "type": "bool",
+          "value": false
+        },
+        {
+          "name": "blocksProjectile",
+          "type": "bool",
+          "value": false
+        }
+      ]
+    }
+  ]
+}

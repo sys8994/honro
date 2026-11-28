@@ -1,0 +1,2 @@
+import {loadCampaign} from './campaign-loader.23d8f08d1aa20099.mjs';
+globalThis.HONRO_PROJECT=await loadCampaign("web/data/campaign.f82860dbd86ed317.json",[HonroAct1Roster,HonroObjectiveRevision,HonroNarrativeRevision,HonroStage2Airborne,HonroBellAnomaly,HonroStoryCanonV1,HonroEvidenceQuests,HonroAct2Pacing,HonroNarrativeCatalogue,HonroStage11Quest,HonroStage14Rescue,HonroStage16Temple,HonroAct23V4,HonroStage11Compact,HonroAct2Compact,HonroAct1ReviewRepairs,HonroP1Placement,HonroOpeningCompanies],{firstStage:1});

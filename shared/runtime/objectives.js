@@ -54,7 +54,7 @@ function rawState(b,st){
  if(['arrival','rescue','overwatch'].includes(st.objective))add('exit',exit?.id||'mission-exit',exitX,exit?.y??G.HonroWorld.top(b,exitX,obj?.y),st.objective==='overwatch'?'상여 도착 지점':'도착 지점');
  let complete=false,summary=st.goal,kinds=[];
  switch(st.objective){
-  case'arrival':complete=heroes.some(u=>u.x>=exitX-120);summary='연목 나루 방향 · 고개 끝까지 이동';kinds=['exit'];break;
+  case'arrival':complete=heroes.some(u=>b.honroTopview?G.HonroTopview.atExit(b,u,exit):u.x>=exitX-120);summary='연목 나루 방향 · 고개 끝까지 이동';kinds=['exit'];break;
   case'overwatch':complete=!!obj&&obj.x>=exitX;summary=`상여 엄호 · 적 ${foes.length}명${pending?' / 뒤따르는 기척 있음':''}`;kinds=['objective','exit'];break;
   case'ledger':complete=!!hs.ledger;summary=hs.ledger?'홍만의 장부 확보 · 철수 준비':b.units.some(u=>u.honroMidboss&&!u.dead)?'나루장승을 경계하며 움막의 장부 찾기':'나루 움막의 장부를 찾기';kinds=hs.ledger?[]:b.honroAct1SiteRevision===1?['interact']:['interact','midboss'];break;
   case'defend':{const rounds=Math.max(1,(st.holdRounds||6)-1);complete=b.round>=rounds+1;summary=`피란민 통로 보호 · ${Math.min(rounds,b.round-1)}/${rounds}턴`;kinds=['objective'];break;}

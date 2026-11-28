@@ -107,7 +107,7 @@ export function prefetchProject(file){void request(file).then(manifest=>{
  hint=prefetchDestination(savedHint(),manifest);const index=manifest.catalog.findIndex(stage=>stage.metadata.stageId===hint);
  return Promise.all([manifest.base,manifest.shared,manifest.stages[index],manifest.stageLibraries[index]].filter(Boolean).map(path=>request(path)));
 }).catch(()=>{});}
-export async function loadCampaign(file,authors,{full=false}={}){
+export async function loadCampaign(file,authors,{full=false,firstStage}={}){
  if(full){let project=await loadProject(file);for(const author of authors){project=author.author(project);await yieldIfNeeded();}return project;}
  const manifest=await request(file),base=await loadData(manifest.base,manifest.assetPaths.base),project={...base,unitTemplates:manifest.unitTemplates,library:[],stages:manifest.catalog.map(stage=>({...stage}))},loading=new Map(),loaded=new Set(),assets=new Map();
  async function ensureStage(id){
@@ -178,5 +178,5 @@ export async function loadCampaign(file,authors,{full=false}={}){
   warmHandle=globalThis.requestIdleCallback?requestIdleCallback(warm,{timeout:5000}):setTimeout(warm,1500);
  }
  globalThis.HonroCampaignLoader={ensureStage,has:id=>loaded.has(id),hasBattleArt,ensureBattleArt,destination,prewarmNext,catalog:manifest.catalog};
- await ensureStage(hint??destination(savedHint()));return project;
+ await ensureStage(firstStage??hint??destination(savedHint()));return project;
 }

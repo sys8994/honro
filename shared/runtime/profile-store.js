@@ -1,7 +1,7 @@
 (function(G){'use strict';
 // Campaign storage has one writer and one failure owner. Failed bytes stay private
 // until explicitly downloaded or replaced; temporary title defaults are never saved.
-const C=G.HONRO_CORE,ROSTER=['archer','mage','knight','occultist'],KEY='honro-first-act-profile-1';
+const C=G.HONRO_CORE,ROSTER=['archer','mage','knight','occultist'],KEY=G.HonroTopview?.profileKey || 'honro-first-act-profile-1';
     function fresh() { const p = C.defaults(); for (const c of ROSTER)
         C.sanitizeLoadout(p, c); p.saved = null; p.cleared = {}; p.party = ['archer']; p.recruited = ['archer']; p.lastStage = 1; p.mapNode = 1; p.schema = 5; p.game = 'honro'; p.seen = {}; p.record = []; p.honroFlags = {}; p.settings = { ...p.settings, orientation: 'auto', music: true, musicVolume: .65, speed: 1.5, playerSpeed: 1.5, sound: true, volume: .55, minimapVisible: true, debugTerrainOutline: false, haptics: true }; return G.HonroEquipment.fresh(p); }
     function migrateGrowth(p,revision){

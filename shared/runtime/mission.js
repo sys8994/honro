@@ -101,7 +101,7 @@ function tick(app,dt){
  reinforceHold(app,boundary);
  if(st.objective==='overwatch'&&obj&&!obj.dead&&!e.alive(1).length&&!G.HonroEncounters.pending(b)&&!b.projectiles.length){obj.x=Math.min(b.honroEscortGoalX,obj.x+dt*180);obj.y=G.HonroWorld.top(b,obj.x,obj.y);}
  if(st.id===10){finale(app);G.HonroSodanWithdrawal.tick(app,dt);}
- if(st.objective==='arrival'){const exit=b.honroMarkers.find(m=>m.type==='exit')||b.honroMapAnchors?.exit||{x:b.width-180},arrived=heroes.filter(u=>u.x>=exit.x-120);if(arrived.length)G.HonroObjectiveContributions?.arrive(b,'arrival',[arrived.find(u=>u.id===b.active)||arrived[0]],p=>p.x>=exit.x-120);}
+ if(st.objective==='arrival'){const exit=b.honroMarkers.find(m=>m.type==='exit')||b.honroMapAnchors?.exit||{x:b.width-180},atExit=u=>b.honroTopview?G.HonroTopview.atExit(b,u,exit):u.x>=exit.x-120,arrived=heroes.filter(atExit);if(arrived.length)G.HonroObjectiveContributions?.arrive(b,'arrival',[arrived.find(u=>u.id===b.active)||arrived[0]],atExit);}
  G.HonroObjectiveContributions?.observe(b,heroes);
  app.checkMission(e);
 }

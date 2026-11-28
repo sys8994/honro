@@ -148,7 +148,9 @@ function indexedSegmentPlatformSurface(a: Vec, b: Vec, t: Terrain, pad = 0): { t
 }
 export function escapeHTML(v: unknown) { return String(v).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]!)); }
 
-export const AIM_MIN=-85, AIM_MAX=265;
+// A ground-plane azimuth makes a full turn; side-view elevation keeps its authored limits.
+export const AIM_MIN=(globalThis as any).HonroTopview ? -360 : -85;
+export const AIM_MAX=(globalThis as any).HonroTopview ? 360 : 265;
 export function swipeAxis(delta:number,range=54){const x=clamp(delta/range,-1,1),a=Math.abs(x);return a<.12?0:Math.sign(x)*Math.pow((a-.12)/.88,1.35);}
 
 /** Movement deadzone after intent has been chosen. Vertical aim must not suppress

@@ -1,0 +1,64 @@
+// Combat coordinates have the same isotropic unit on both ground axes.
+// The camera alone foreshortens the ground. A sprite's height is presentation.
+export function groundProjection(cell, tileWidth, tileHeight) {
+  if (![cell, tileWidth, tileHeight].every(n => Number.isFinite(n) && n > 0)) {
+    throw new RangeError('Invalid ground projection');
+  }
+  const halfWidth = tileWidth / (2 * cell), halfHeight = tileHeight / (2 * cell);
+  return {
+    forward(x, y) { return {x: (x - y) * halfWidth, y: (x + y) * halfHeight}; },
+    inverse(x, y) { return {x: (x / halfWidth + y / halfHeight) / 2, y: (y / halfHeight - x / halfWidth) / 2}; }
+  };
+}
+
+export function direction(dx, dy) {
+  const length = Math.hypot(dx, dy);
+  return length > 0 ? {x: dx / length, y: dy / length} : {x: 0, y: 0};
+}
+
+// Time and normal of first entry by a swept disc. Origins on an edge may leave it.
+export function sweepDisc(a, z, center, radius) {
+  const dx = z.x - a.x, dy = z.y - a.y;
+  const ox = a.x - center.x, oy = a.y - center.y;
+  const length2 = dx * dx + dy * dy, dot = ox * dx + oy * dy;
+  if (!length2 || dot >= 0) return null;
+  const c = ox * ox + oy * oy - radius * radius;
+  const determinant = dot * dot - length2 * c;
+  if (determinant < 0) return null;
+  const t = c <= 0 ? 0 : (-dot - Math.sqrt(determinant)) / length2;
+  if (t < 0 || t > 1) return null;
+  const x = a.x + t * dx, y = a.y + t * dy;
+  return {x, y, t, n: direction(x - center.x, y - center.y)};
+}
+
+// Sweep a disc against a tile or a box. Corners are rounded by the disc radius.
+export function sweepBox(a, z, box, radius) {
+  const dx = z.x - a.x, dy = z.y - a.y, x1 = box.x, y1 = box.y;
+  const x2 = x1 + box.w, y2 = y1 + box.h;
+  let best = null;
+  const add = hit => { if (hit && (!best || hit.t < best.t)) best = hit; };
+  function face(t, normalX, normalY, horizontal) {
+    if (t < 0 || t > 1) return;
+    const x = a.x + dx * t, y = a.y + dy * t;
+    if (horizontal ? x >= x1 && x <= x2 : y >= y1 && y <= y2) add({x, y, t, n: {x: normalX, y: normalY}});
+  }
+  if (dx > 0) face((x1 - radius - a.x) / dx, -1, 0, false);
+  if (dx < 0) face((x2 + radius - a.x) / dx, 1, 0, false);
+  if (dy > 0) face((y1 - radius - a.y) / dy, 0, -1, true);
+  if (dy < 0) face((y2 + radius - a.y) / dy, 0, 1, true);
+  for (const x of [x1, x2]) for (const y of [y1, y2]) add(sweepDisc(a, z, {x, y}, radius));
+  return best;
+}
+
+export function slide(start, dx, dy, contact) {
+  let {x, y} = start;
+  for (let i = 0; i < 3 && Math.hypot(dx, dy) > .001; i++) {
+    const target = {x: x + dx, y: y + dy}, hit = contact({x, y}, target);
+    if (!hit) return target;
+    x = hit.x + hit.n.x * .015; y = hit.y + hit.n.y * .015;
+    const left = 1 - hit.t, inward = Math.min(0, dx * hit.n.x + dy * hit.n.y);
+    dx = (dx - inward * hit.n.x) * left;
+    dy = (dy - inward * hit.n.y) * left;
+  }
+  return {x, y};
+}
