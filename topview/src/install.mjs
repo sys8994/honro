@@ -11,17 +11,20 @@ const G=globalThis, product=G.HonroTopview;
 const base=new URL('../',import.meta.url);
 const load=async path=>{const r=await fetch(new URL(path,base));if(!r.ok)throw Error(path+' '+r.status);return r.json();};
 const map=await load('data/yeonmok.json'),space=terrainSpace(map);
-const textures=[...new Set([...map.grid.materials,'dirt','rock','gravel','water'])].map(n=>[n+'_texture','assets/terrain/'+n+'_texture.png']);
-const props=[...new Set(map.objects.map(o=>o.asset))].map(n=>[n,'assets/props/'+n+'.png']);
+const field=await load('assets/terrain/yeonmok/field.json');
+// Decks are in the receiver tiles. Tall props use their base and canopy sheets.
+const layered=new Set(['pine_a','pine_b','shrine','ruin_gate']);
+const props=[...new Set(map.objects.filter(o=>!o.deck&&!layered.has(o.asset)).map(o=>o.asset))]
+  .map(n=>[n,'assets/props/'+n+'.png']);
 for(const id of ['bridge_ne-near','bridge_se-near','pine_a-base','pine_a-crown','pine_b-base','pine_b-crown','shrine-base','shrine-roof','ruin_gate-base','ruin_gate-roof']){
   props.push([id,'assets/props/'+id+'.png']);
 }
 const actors=['seolo','seolo-front','seolo-states','seolo-bow','seolo-bow-ne',...animals.map(id=>'turns-'+id),'woodcutter'].map(n=>[n,'assets/actors/'+n+'.webp']);
-const images=new Map(await Promise.all([...textures,...props,...actors].map(async ([id,path])=>{
-  const image=new Image();image.src=new URL(path,base);await image.decode();return [id,fieldPalette(id,image)];
+const images=new Map(await Promise.all([...props,...actors].map(async ([id,path])=>{
+  const image=new Image();image.src=new URL(path,base);await image.decode();return [id,fieldPalette(id,image,field.baseSaturation)];
 })));
 product.projection=groundProjection(space.cell,map.tileWidth,map.tileHeight);
-product.Engine=spatialEngine(G.HONRO_CORE,space,product.projection);product.Scene=groundScene(G.HonroScene,space,images,product.projection);
+product.Engine=spatialEngine(G.HONRO_CORE,space,product.projection);product.Scene=groundScene(G.HonroScene,space,images,product.projection,field);
 product.controls={x:0,y:0};
 product.atExit=(b,u,m)=>Math.hypot(u.x-m.x,center(u).y-m.y)<=120;
 
@@ -113,16 +116,18 @@ product.windDial=function(app,u){
 product.minimap=function(app){
   if(!app.minimapVisible||!app.scene)return;
   const cv=document.getElementById('minimap'),w=innerWidth<700?100:145,h=Math.round(w*viewH/viewW),dpr=Math.min(2,devicePixelRatio||1);
-  cv.style.setProperty('width',w+'px','important');cv.style.setProperty('height',h+'px','important');
-  if(cv.width!==w*dpr||cv.height!==h*dpr){cv.width=w*dpr;cv.height=h*dpr;}
+  if(cv.width!==Math.round(w*dpr)||cv.height!==Math.round(h*dpr)||cv.style.width!==w+'px'){
+    cv.style.setProperty('width',w+'px','important');cv.style.setProperty('height',h+'px','important');
+    cv.width=Math.round(w*dpr);cv.height=Math.round(h*dpr);
+  }
   const c=cv.getContext('2d');c.setTransform(dpr,0,0,dpr,0,0);c.imageSmoothingEnabled=false;c.drawImage(miniGround,0,0,w,h);
   const sx=w/space.width,sy=h/space.height;
   for(const a of app.engine.b.units){if(a.dead)continue;const p=center(a);c.fillStyle=a.side===0?'#f7e4a2':a.side===2?'#e3ceac':a.awake?'#ef8579':'#a88178';c.beginPath();c.arc(p.x*sx,p.y*sy,a.side===0?3:1.8,0,Math.PI*2);c.fill();}
   const exit=space.point('marker-7');c.strokeStyle='#ffda87';c.strokeRect(exit.x*sx-2.5,exit.y*sy-2.5,5,5);
-  const scene=app.scene,rect=scene.canvas.getBoundingClientRect();
-  if(!Number.isFinite(scene.cx))return;
-  c.beginPath();for(const [i,[x,y]] of [[0,0],[rect.width,0],[rect.width,rect.height],[0,rect.height]].entries()){const p=scene.world(x,y);if(i)c.lineTo(p.x*sx,p.y*sy);else c.moveTo(p.x*sx,p.y*sy);}
-  c.closePath();c.strokeStyle='#e1d3b2';c.lineWidth=.8;c.stroke();
+  const scene=app.scene;if(!scene.viewport||!Number.isFinite(scene.cx))return;
+  const width=scene.viewport.w/scene.zoomLevel,height=scene.viewport.h/scene.zoomLevel;
+  c.strokeStyle='#e1d3b2';c.lineWidth=.8;
+  c.strokeRect((scene.cx-width/2)*w/viewW,(scene.cy-height/2)*h/viewH,width*w/viewW,height*h/viewH);
 };
 const tickUnitInfo=G.HonroUnitInfo.tick;
 G.HonroUnitInfo.tick=function(app){
@@ -156,7 +161,7 @@ product.configure=function(App) {
   };
   P.startTraining=function(){this.notify('이번 여정은 연목 고갯길까지입니다.');};
   P.displayAngle=function(u){const a=u.angle*Math.PI/180,v=product.projection.forward(Math.cos(a),-Math.sin(a));return (Math.atan2(v.x,-v.y)*180/Math.PI+360)%360;};
-  P.battleHelp=function(){this.open('<h2>연목 고갯길</h2><p>개울을 건너 나무꾼을 만나고 북동쪽 고개 끝에 닿으세요. 화면 가장자리에 마우스를 두거나 미니맵을 눌러 끌면 전장을 둘러볼 수 있습니다. 적에게 마우스를 올리면 윤곽이 보이고 클릭하면 정보를 엽니다. 동행을 클릭하면 선택합니다.</p><p>원하는 지면을 클릭하면 길을 찾아 걷습니다. 방향키·WASD와 터치 스틱으로도 이동합니다. Shift를 누른 채 방향키를 누르면 제자리에서 천천히 돌아섭니다. Shift+클릭은 그 지점을 즉시 겨눕니다. 터치에서는 발사 옆 이동 잠금 버튼을 쓰세요. 활을 당기는 중에도 스틱으로 조준할 수 있습니다. 발사를 길게 눌렀다 놓으세요.</p><p>화살은 개울을 건너고 바위에 막힙니다. 예상 궤적은 북쪽 다리의 횡풍을 반영합니다. 방어하면 턴을 넘기며 기력을 회복합니다.</p><button data-action="close">전장으로</button>','battle-help');};
+  P.battleHelp=function(){this.open('<h2>연목 고갯길</h2><p>개울을 건너 나무꾼을 만나고 북동쪽 고개 끝에 닿으세요. 전장에서 마우스 왼쪽 버튼을 누르고 끌거나 미니맵을 끌면 전장을 둘러볼 수 있습니다. 적에게 마우스를 올리면 윤곽이 보이고 클릭하면 정보를 엽니다. 동행을 클릭하면 선택합니다.</p><p>원하는 지면을 마우스 오른쪽 버튼으로 클릭하면 그곳까지 걷습니다. 터치 화면에서는 지면을 짧게 누르세요. 방향키·WASD와 터치 스틱으로도 이동합니다. Shift를 누른 채 방향키를 누르면 제자리에서 천천히 돌아섭니다. Shift+클릭은 그 지점을 즉시 겨눕니다. 터치에서는 발사 옆 이동 잠금 버튼을 쓰세요. 활을 당기는 중에도 스틱으로 조준할 수 있습니다. 발사를 길게 눌렀다 놓으세요.</p><p>화살은 개울을 건너고 바위에 막힙니다. 예상 궤적은 북쪽 다리의 횡풍을 반영합니다. 방어하면 턴을 넘기며 기력을 회복합니다.</p><button data-action="close">전장으로</button>','battle-help');};
   P.outcome=function(...args){
     const result=outcome.apply(this,args);
     if(this.done&&this.engine.b.phase==='won'){
@@ -182,7 +187,7 @@ function bindField(app){
   for(const type of ['pointerdown','pointermove','pointerup','pointercancel','lostpointercapture']){
     miniDock.addEventListener(type,ev=>{
       if(type==='pointerdown'&&!scene.uiBlocked()&&ev.button===0&&miniPointer===null){
-        miniPointer=ev.pointerId;miniDock.setPointerCapture(miniPointer);scene.edgePointer=null;
+        miniPointer=ev.pointerId;miniDock.setPointerCapture(miniPointer);scene.mousePoint=null;
       }
       if(ev.pointerId!==miniPointer)return;
       ev.preventDefault();ev.stopImmediatePropagation();
@@ -206,7 +211,7 @@ function bindField(app){
   showLock();product.showLock=showLock;lock.onclick=toggle;
   const xy=ev=>{const r=canvas.getBoundingClientRect();return{x:ev.clientX-r.left,y:ev.clientY-r.top};};
   const dist=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y);
-  function tap(point,shift,mouse){
+  function tap(point,shift,select){
     if(scene.uiBlocked())return;const e=app.engine,u=e.active,z=scene.world(point.x,point.y);
     if(app.canInput()&&(battle.tvMoveLocked||control.shift||shift||app.charging)){
       const raised=scene.world(point.x,point.y+bowPlane*scene.zoomLevel),a=e.damageAim(u);
@@ -214,13 +219,13 @@ function bindField(app){
       const target=targets.filter(t=>((raised.x-t.x)/t.rx)**2+((raised.y-t.y)/t.ry)**2<=1).sort((v,w)=>dist(v,raised)-dist(w,raised))[0]||raised;
       delete u.tvPath;e.face(u,target.x-a.x,target.y-a.y);app.dirty=true;return;
     }
-    if(mouse){
+    if(select){
       const hit=scene.pickScreenUnit(point);
       if(hit){
         if(hit.side===0&&!hit.summoned)app.selectHero(hit.id);
         G.HonroUnitInfo.show(app,hit);return;
       }
-      G.HonroUnitInfo.close(app);
+      G.HonroUnitInfo.close(app);return;
     }
     if(!app.canInput())return;
     const path=space.route(center(u),z,u.r);if(path.length){u.tvPath=path;app.dirty=true;}else app.notify('발을 디딜 길이 없습니다.');
@@ -228,23 +233,46 @@ function bindField(app){
   // Replace gestures on the field alone. Native HUD charge/release, defend and
   // modal controls keep their original handlers.
   function handle(type,fn){canvas.addEventListener(type,ev=>{ev.preventDefault();ev.stopImmediatePropagation();fn(ev);},{capture:true,passive:false});}
-  handle('pointerdown',ev=>{scene.edgePointer=null;scene.mousePoint=null;if(ev.button!==0)return;const p=xy(ev);canvas.setPointerCapture(ev.pointerId);pointers.set(ev.pointerId,p);start=p;dragged=false;
-    if(pointers.size===2){const [a,b]=[...pointers.values()];initialPinch={dist:dist(a,b),zoom:scene.zoomLevel};dragged=true;}});
-  handle('pointermove',ev=>{const p=xy(ev);
-    if(!pointers.has(ev.pointerId)){
-      if(ev.pointerType==='mouse'&&!ev.buttons&&!scene.uiBlocked())scene.mousePoint=p;
+  canvas.addEventListener('contextmenu',ev=>ev.preventDefault());
+  handle('pointerdown',ev=>{
+    const mouse=ev.pointerType==='mouse';
+    if(scene.uiBlocked()||ev.button!==0&&!(mouse&&ev.button===2))return;
+    scene.mousePoint=null;const p=xy(ev);
+    canvas.setPointerCapture(ev.pointerId);pointers.set(ev.pointerId,{...p,button:ev.button});
+    if(pointers.size===1){start=p;dragged=false;}
+    else if(pointers.size===2){
+      const [a,b]=[...pointers.values()];initialPinch={dist:dist(a,b),zoom:scene.zoomLevel};dragged=true;
+    }
+  });
+  handle('pointermove',ev=>{
+    const p=xy(ev),prev=pointers.get(ev.pointerId);
+    if(!prev){if(ev.pointerType==='mouse'&&!ev.buttons&&!scene.uiBlocked())scene.mousePoint=p;return;}
+    pointers.set(ev.pointerId,{...p,button:prev.button});
+    if(scene.uiBlocked()){dragged=true;return;}
+    if(initialPinch){
+      if(pointers.size===2){const [a,b]=[...pointers.values()];
+        scene.zoom(initialPinch.zoom*dist(a,b)/(Math.max(1,initialPinch.dist)*scene.zoomLevel),(a.x+b.x)/2,(a.y+b.y)/2);}
       return;
     }
-    const prev=pointers.get(ev.pointerId);pointers.set(ev.pointerId,p);
-    if(initialPinch&&pointers.size===2){const [a,b]=[...pointers.values()];scene.zoom(initialPinch.zoom*dist(a,b)/(Math.max(1,initialPinch.dist)*scene.zoomLevel),(a.x+b.x)/2,(a.y+b.y)/2);return;}
-    if(!start)return;if(dist(start,p)>8)dragged=true;
-    if(dragged&&ev.pointerType!=='mouse')scene.pan((prev.x-p.x)/scene.zoomLevel,(prev.y-p.y)/scene.zoomLevel);});
-  handle('pointerup',ev=>{if(pointers.has(ev.pointerId)&&pointers.size===1&&!dragged&&!initialPinch)tap(xy(ev),ev.shiftKey,ev.pointerType==='mouse');pointers.delete(ev.pointerId);if(!pointers.size){initialPinch=null;start=null;}});
+    if(!start)return;
+    const origin=dragged?prev:start;
+    if(dist(start,p)>(ev.pointerType==='mouse'?5:8))dragged=true;
+    if(dragged&&prev.button===0)scene.pan((origin.x-p.x)/scene.zoomLevel,(origin.y-p.y)/scene.zoomLevel);
+  });
+  function release(ev){
+    const down=pointers.get(ev.pointerId);if(!down)return;
+    pointers.delete(ev.pointerId);
+    if(ev.type==='pointerup'&&ev.button===down.button&&!dragged&&!initialPinch)
+      tap(xy(ev),ev.shiftKey,ev.pointerType==='mouse'&&down.button===0);
+    if(!pointers.size){start=null;initialPinch=null;dragged=false;}
+    else dragged=true;
+  }
+  handle('pointerup',release);handle('pointercancel',release);
+  canvas.addEventListener('lostpointercapture',release);
   canvas.addEventListener('pointerleave',()=>{scene.mousePoint=null;});
-  handle('pointercancel',ev=>{pointers.delete(ev.pointerId);dragged=true;initialPinch=null;});
   handle('wheel',ev=>{const p=xy(ev);scene.zoom(Math.exp(-ev.deltaY*.001),p.x,p.y);});
   let sid=null;
-  product.resetFieldInput=()=>{held.clear();shiftKeys.clear();control.shift=false;showLock();sid=null;miniPointer=null;scene.edgePointer=scene.mousePoint=null;pointers.clear();initialPinch=null;start=null;control.x=control.y=0;if(app.engine?.active)delete app.engine.active.tvPath;};
+  product.resetFieldInput=()=>{held.clear();shiftKeys.clear();control.shift=false;showLock();sid=null;miniPointer=null;scene.mousePoint=null;pointers.clear();initialPinch=null;start=null;control.x=control.y=0;if(app.engine?.active)delete app.engine.active.tvPath;};
   document.getElementById('fire')?.addEventListener('pointercancel',ev=>{if(ev.pointerId===app.firePointer)app.cancelInput();},{capture:true});
   if(stick){
     stick.setAttribute('aria-label','자유 방향 이동 및 제자리 조준');
@@ -258,16 +286,6 @@ function bindField(app){
     },{capture:true,passive:false});
   }
 }
-// Cursor position at a window edge can fall on the frame around the battlefield.
-document.addEventListener('pointermove',ev=>{
-  const app=G.HonroApp,scene=app?.scene;
-  if(!scene?.pickScreenUnit||app.screen!=='battle'||ev.pointerType!=='mouse')return;
-  const target=ev.target.closest?.('button,input,select,a,#unit-info,#joystick,#minimap,.dialog');
-  scene.edgePointer=ev.buttons||target||scene.uiBlocked?.()?null:{x:ev.clientX,y:ev.clientY};
-},{capture:true,passive:true});
-window.addEventListener('pointerout',ev=>{
-  if(!ev.relatedTarget&&G.HonroApp?.scene)G.HonroApp.scene.edgePointer=null;
-});
 const held=new Set(),shiftKeys=new Set(),dirs={KeyW:[0,-1],KeyS:[0,1],KeyA:[-1,0],KeyD:[1,0],ArrowUp:[0,-1],ArrowDown:[0,1],ArrowLeft:[-1,0],ArrowRight:[1,0]};
 for(const type of ['keydown','keyup'])window.addEventListener(type,ev=>{
   if(ev.target?.matches?.('input,textarea,select,[contenteditable="true"]'))return;

@@ -1,29 +1,27 @@
 import {center} from './terrain.mjs';
-import {buildGround,bakePropShadows} from './ground.mjs';
+import {fieldLandscape} from './landscape.mjs';
 import {sceneryParts,drawScenery} from './canopy.mjs';
 import {cameraView,defaultZoom} from './space.mjs';
 import {actorBody,bowPlane} from './body.mjs';
 import {fieldActors,fieldBreeze,drawWoodArrow} from './field-art.mjs';
 
-export function groundScene(Base, space, images, projection) {
+export function groundScene(Base, space, images, projection, field) {
   const {map,cell}=space;
-  const ground=buildGround(map,id=>images.get(id+'_texture'));
   const props=map.objects.map(o=>({...o,x:o.x*cell,y:o.y*cell}));
-  bakePropShadows(ground,props,images,projection);
-  const scenery=props.map(o=>{const at=projection.forward(o.x,o.y);return {o,at,parts:sceneryParts(o,at,images)};});
+  const scenery=props.map(o=>{const at=projection.forward(o.x,o.y);return {o,at,parts:sceneryParts(o,at,images).filter(p=>!o.deck||p.part!=='base')};});
   const breeze=fieldBreeze(map), worldScale=projection.forward(1,1);
   return class TopviewScene extends Base {
-    constructor(canvas){super(canvas);this.zoomLevel=defaultZoom;this.panOffset={x:0,y:0};this.fieldFocus={x:ground.width/2,y:ground.height/2};this.departures=new Map();this.actorArt=fieldActors(images,projection);this.reducedMotion=matchMedia('(prefers-reduced-motion: reduce)');}
+    constructor(canvas){super(canvas);this.landscape=fieldLandscape(canvas,map,field);this.zoomLevel=defaultZoom;this.panOffset={x:0,y:0};this.fieldFocus={x:field.width/2,y:field.height/2};this.departures=new Map();this.actorArt=fieldActors(images,projection);this.reducedMotion=matchMedia('(prefers-reduced-motion: reduce)');}
     event(ev){
       if(ev.type!=='fx'||ev.damage>0&&ev.targetId)return super.event(ev);
       const p=projection.forward(ev.x,ev.y),end=Number.isFinite(ev.x2)?projection.forward(ev.x2,ev.y2):null;
       const projected={...ev,...p,y:p.y-bowPlane,size:ev.name==='text'?ev.size:ev.size*.45,...(end?{x2:end.x,y2:end.y}:{})};
       super.event(projected);
     }
-    world(x,y){const r=this.canvas.getBoundingClientRect(),k=this.zoomLevel;
-      return projection.inverse((x-r.width*.5)/k+this.cx,(y-r.height*.5)/k+this.cy);}
-    screenPoint(x,y){const p=projection.forward(x,y),r=this.canvas.getBoundingClientRect();
-      return {x:(p.x-this.cx)*this.zoomLevel+r.width*.5,y:(p.y-this.cy)*this.zoomLevel+r.height*.5};}
+    world(x,y){const {w:width,h:height}=this.viewport??this.size(),k=this.zoomLevel;
+      return projection.inverse((x-width*.5)/k+this.cx,(y-height*.5)/k+this.cy);}
+    screenPoint(x,y){const p=projection.forward(x,y),{w:width,h:height}=this.viewport??this.size();
+      return {x:(p.x-this.cx)*this.zoomLevel+width*.5,y:(p.y-this.cy)*this.zoomLevel+height*.5};}
     pickScreenUnit(point,padding=2,actors=this.visibleActors){
       if(!actors?.length)return null;
       const world=this.world(point.x,point.y),p=projection.forward(world.x,world.y);
@@ -39,7 +37,7 @@ export function groundScene(Base, space, images, projection) {
       return {x:p.x,y:p.y-(b.size+b.lift+4)*this.zoomLevel};
     }
     placeCamera(x,y,zoom=this.zoomLevel,rememberPan=true){
-      const r=this.canvas.getBoundingClientRect(),v=cameraView(ground.width,ground.height,r.width,r.height,zoom,x,y);
+      const {w,h}=this.viewport??this.size(),v=cameraView(field.width,field.height,w,h,zoom,x,y);
       this.cx=v.x;this.cy=v.y;this.scale=this.zoomLevel=v.zoom;if(rememberPan)this.panOffset={x:v.x-this.fieldFocus.x,y:v.y-this.fieldFocus.y};
     }
     pan(x,y){this.placeCamera(this.cx+x,this.cy+y);}
@@ -51,20 +49,14 @@ export function groundScene(Base, space, images, projection) {
     storyRelease(){this.tvStory=null;}
     focusUnit(id,duration,speaker){if(speaker)this.storyFocus(id);}
     render(e,dt,selected,power,charging){
-      this.lastEngine=e;const c=this.ctx,b=e.b,{w,h,d:dpr}=this.size(b);
+      this.lastEngine=e;const c=this.ctx,b=e.b,{w,h,d:dpr}=this.viewport=this.size(b);
       const hero=b.units.find(u=>!u.side&&!u.dead)||b.units[0];
       const focus=this.storyFrozen&&this.tvStory?this.tvStory:center(hero),p=projection.forward(focus.x,focus.y);
       this.fieldFocus=p;this.placeCamera(p.x+this.panOffset.x,p.y+this.panOffset.y,this.zoomLevel,false);const k=this.zoomLevel;
-      if(this.edgePointer&&!this.storyFrozen&&!this.uiBlocked?.()){
-        const band=26,clamp=v=>Math.max(0,Math.min(1,v)),v=this.edgePointer;
-        const axis=(p,limit)=>clamp((p-limit+band)/band)-clamp((band-p)/band);
-        const dx=axis(v.x,innerWidth),dy=axis(v.y,innerHeight),d=Math.max(1,Math.hypot(dx,dy));
-        if(dx||dy)this.pan(dx/d*610*Math.min(dt,.05)/k,dy/d*610*Math.min(dt,.05)/k);
-      }
       this.x=focus.x;this.y=focus.y;
-      c.setTransform(dpr,0,0,dpr,0,0);c.fillStyle='#202d27';c.fillRect(0,0,w,h);
+      this.landscape.place(this.cx,this.cy,k,w,h);
+      c.setTransform(dpr,0,0,dpr,0,0);c.clearRect(0,0,w,h);
       c.translate(w*.5-this.cx*k,h*.5-this.cy*k);c.scale(k,k);
-      c.drawImage(ground,0,0);
       const time=this.reducedMotion.matches?0:this.time;
       const view={x:this.cx-w/(2*k),right:this.cx+w/(2*k),y:this.cy-h/(2*k),bottom:this.cy+h/(2*k)};
       breeze(c,time,view);
@@ -101,7 +93,7 @@ export function groundScene(Base, space, images, projection) {
       }
       this.visibleActors=actors.sort((a,b)=>a.depth-b.depth);
       this.hoverUnitId=this.mousePoint&&!this.uiBlocked?.()?this.pickScreenUnit(this.mousePoint,2,actors)?.id:null;
-      this.canvas.style.cursor=this.hoverUnitId?'pointer':'';
+      const cursor=this.hoverUnitId?'pointer':'';if(this.canvas.style.cursor!==cursor)this.canvas.style.cursor=cursor;
       for(const item of actors)this.actorArt.shadow(c,item.art,item.at,item.body);
       // Two short ground marks bracket the active companion's boots. Scenery
       // covers them at the same depth as the feet. Projectile targets use no ring.
@@ -117,10 +109,7 @@ export function groundScene(Base, space, images, projection) {
         }});
       }
       drawables.sort((a,b)=>a.depth-b.depth);for(const item of drawables)item.draw();
-      c.save();c.setTransform(dpr,0,0,dpr,0,0);
-      const clock=globalThis.HonroTimeOfDay,grade=clock?.grade(this,b);
-      if(grade?.g)clock.apply(c,w,h,{...grade.g,hor:null},1);
-      c.restore();
+      this.landscape.grade(globalThis.HonroTimeOfDay?.grade(this,b)?.g);
       for(const {at,body,u,art,depth} of actors){
         const near=visibleParts.filter(part=>part.depth>depth&&part.x<at.x+body.size*.58&&part.x+part.width>at.x-body.size*.58&&part.y<at.y&&part.y+part.height>at.y-body.size-body.lift);
         this.actorArt.outline(c,art,at,body,near,u.side!==1,time,this.hoverUnitId===u.id||this.inspectUnitId===u.id);

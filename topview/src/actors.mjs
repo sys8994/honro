@@ -24,7 +24,7 @@ export function spriteFrame(kind,pose,row,stride){
   }
   const direction=row>4?8-row:row;
   const col=pose==='walk'?1+Math.floor(stride/42)%2:{idle:0,prepare:3,attack:4,recover:3,hurt:5,dead:6}[pose];
-  return {...frame('turns-'+kind,col,direction,144,128),flip:row>4};
+  return {...frame('turns-'+kind,col,direction,216,192),flip:row>4};
 }
 // Register the walk by the torso and shoe contact, not the edges of the bow or quiver.
 const registrations=new WeakMap();
@@ -82,6 +82,7 @@ export function paintSprite(c,images,kind,pose,row,stride,x,y,size,time=0){
   const width=size*f.width/f.height;
   c.save();c.translate(x,y);if(f.flip)c.scale(-1,1);
   if(kind==='seolo'&&pose!=='walk')c.translate(0,5*size/160);
+  if(kind==='hound'||kind==='boar'||kind==='stag')c.translate(0,6*size/192);
   if(pose==='idle')idleBody(c,im,f,kind,0,0,width,size,time);
   else if(kind==='seolo'&&pose==='walk'){
     const m=registerWalk(im)[f.row*4+f.col],scale=size*(150/160)/m.span;

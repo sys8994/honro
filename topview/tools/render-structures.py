@@ -12,6 +12,7 @@ from bpy_extras.object_utils import world_to_camera_view
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'assets/props'
+DENSITY = 3  # source pixels per projected map pixel at maximum tactical zoom
 bpy.ops.wm.read_factory_settings(use_empty=True)
 scene = bpy.context.scene
 scene.render.engine = 'CYCLES'
@@ -99,7 +100,7 @@ def map_points(name,coordinates):
     points=[]
     for s,t,z in coordinates:
         v=world_to_camera_view(scene,eye,Vector(position(s,t,z)))
-        points.append([round(v.x*scene.render.resolution_x/2,3),round((1-v.y)*scene.render.resolution_y/2,3)])
+        points.append([round(v.x*scene.render.resolution_x/DENSITY,3),round((1-v.y)*scene.render.resolution_y/DENSITY,3)])
     landmarks[name]=points
 
 for timber,length,width,height in [(True,10.544,392,256),(False,10.852,400,256)]:
@@ -152,7 +153,7 @@ for timber,length,width,height in [(True,10.544,392,256),(False,10.852,400,256)]
                 if idx<4 and not (side==1 and idx==2):
                     box('Parapet beam',s+length/8,t,.35,length/4-.14,.145,.13,stone2,bevel=.018)
     cam.ortho_scale=width/40
-    scene.render.resolution_x=2*width;scene.render.resolution_y=2*height
+    scene.render.resolution_x=DENSITY*width;scene.render.resolution_y=DENSITY*height
     map_points(asset+'/deck', [(-length/2,0,0),(length/2,0,0),(0,-1.05,0),(0,1.05,0)])
     for suffix in ('','-near'):
         for obj,near in assets:obj.hide_render=bool(suffix) and not near
@@ -176,7 +177,7 @@ def export_landmark(name,width,height,anchor,folder=OUT,layers=None,markers=None
     up=eye.rotation_euler.to_matrix()@Vector((0,1,0))
     origin=Vector((sqrt(.375)*38,-sqrt(.375)*38,.5*38))
     eye.location=origin+up*((anchor-.5)*height/40)
-    scene.render.resolution_x=2*width;scene.render.resolution_y=2*height
+    scene.render.resolution_x=DENSITY*width;scene.render.resolution_y=DENSITY*height
     for key,points in (markers or {}).items():map_points(name+'/'+key,points)
     for suffix,layer in layers or [('',None)]:
         for obj,part in assets:

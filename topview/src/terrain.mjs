@@ -15,20 +15,26 @@ export function terrainSpace(map) {
     ...o,x:o.x*cell,y:o.y*cell,r:o.radius*cell,terrain:solid(o.id)
   }));
   const walls=[{x:-cell,y:-cell,w:cell,h:height+2*cell},{x:width,y:-cell,w:cell,h:height+2*cell},{x:0,y:-cell,w:width,h:cell},{x:0,y:height,w:width,h:cell}];
+  const mapEdge=solid('map-edge'),bank=solid('bank');
   function nearest(a,z,r,flight=false,skip=[]){
     let hit=null;
     function add(h,t){if(h&&!skip.includes(t.id)&&(!hit||h.t<hit.t))hit={...h,terrain:t};}
-    for (const wall of walls) add(sweepBox(a,z,wall,r),solid('map-edge'));
-    if(!flight)add(shore.first(a,z,r),solid('bank'));
+    const left=Math.min(a.x,z.x)-r,right=Math.max(a.x,z.x)+r,top=Math.min(a.y,z.y)-r,bottom=Math.max(a.y,z.y)+r;
+    if(left<=0||right>=width||top<=0||bottom>=height)
+      for(const wall of walls)add(sweepBox(a,z,wall,r),mapEdge);
+    if(!flight)add(shore.first(a,z,r),bank);
     for(const f of foundations)if(flight?f.obj.blocksProjectile:f.obj.blocksMovement)add(f.body.first(a,z,r),solid(f.obj.id));
-    for(const o of props) if(flight?o.blocksProjectile:o.blocksMovement) add(sweepDisc(a,z,o,o.r+r),o.terrain);
+    for(const o of props){
+      if(o.x+o.r<left||o.x-o.r>right||o.y+o.r<top||o.y-o.r>bottom)continue;
+      if(flight?o.blocksProjectile:o.blocksMovement)add(sweepDisc(a,z,o,o.r+r),o.terrain);
+    }
     return hit;
   }
   function legal(p,r,flight=false){
     if(p.x<r||p.y<r||p.x>width-r||p.y>height-r)return false;
     if(!flight&&shore.contains(p,r))return false;
     if(foundations.some(f=>(flight?f.obj.blocksProjectile:f.obj.blocksMovement)&&f.body.contains(p,r)))return false;
-    return props.every(o=>!(flight?o.blocksProjectile:o.blocksMovement)||Math.hypot(p.x-o.x,p.y-o.y)>r+o.r);
+    return props.every(o=>!(flight?o.blocksProjectile:o.blocksMovement)||(p.x-o.x)**2+(p.y-o.y)**2>(r+o.r)**2);
   }
   function free(p,r,flight=false,units=[]){
     function ok(q){return legal(q,r,flight)&&units.every(u=>u.dead||Math.hypot(q.x-u.x,q.y-center(u).y)>r+u.r+4);}
@@ -39,20 +45,37 @@ export function terrainSpace(map) {
     }
     return null;
   }
+  // Only the two endpoints vary between orders. Interior navigation edges
+  // belong to immutable chapter geometry and to this exact collision radius.
+  const nav=new Map(),step=cell/2,cols=map.width*2,rows=map.height*2;
+  const adjacent=[[1,0],[0,1],[-1,0],[0,-1],[1,1],[-1,1],[-1,-1],[1,-1]];
+  const pos=i=>({x:(i%cols+.5)*step,y:(Math.floor(i/cols)+.5)*step});
   function route(start,goal,r,flight=false){
     if(!legal(goal,r,flight))return [];
     if(!nearest(start,goal,r,flight))return [goal];
-    const step=cell/2,cols=map.width*2,rows=map.height*2;
+    const cacheKey=r+'|'+flight;
+    if(!nav.has(cacheKey)){
+      if(nav.size>=12)nav.delete(nav.keys().next().value);
+      nav.set(cacheKey,new Uint8Array(cols*rows*adjacent.length));
+    }
+    const edges=nav.get(cacheKey);
     const index=p=>Math.floor(p.y/step)*cols+Math.floor(p.x/step);
     const startIdx=index(start),end=index(goal),parent=new Map([[startIdx,-1]]),queue=[startIdx];
-    const pos=i=>({x:(i%cols+.5)*step,y:(Math.floor(i/cols)+.5)*step});
     for(let n=0;n<queue.length&&!parent.has(end);n++){
       const i=queue[n],from=i===startIdx?start:pos(i);
-      for(const [x,y] of [[1,0],[0,1],[-1,0],[0,-1],[1,1],[-1,1],[-1,-1],[1,-1]]){
+      for(let dir=0;dir<adjacent.length;dir++){
+        const [x,y]=adjacent[dir];
         const col=i%cols+x,row=Math.floor(i/cols)+y;
         if(col<0||row<0||col>=cols||row>=rows)continue;
         const j=row*cols+col,to=j===end?goal:pos(j);
-        if(parent.has(j)||!legal(to,r,flight)||nearest(from,to,r,flight))continue;
+        if(parent.has(j))continue;
+        const key=i*adjacent.length+dir,interior=i!==startIdx&&j!==end;
+        let pass=interior?edges[key]:0;
+        if(!pass){
+          pass=legal(to,r,flight)&&!nearest(from,to,r,flight)?1:2;
+          if(interior)edges[key]=pass;
+        }
+        if(pass!==1)continue;
         parent.set(j,i);queue.push(j);
       }
     }

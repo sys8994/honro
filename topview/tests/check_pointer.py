@@ -30,22 +30,36 @@ with sync_playwright() as pw:
     mini=page.locator('#minimap').bounding_box()
     mid=lambda x,y: (mini['x']+x*mini['width'],mini['y']+y*mini['height'])
     page.mouse.click(*mid(.5,.5));before=camera()
-    drag((535,245),(630,270))
-    assert camera()==before, (before,camera())
+    player=lambda: page.evaluate("()=>{let u=HonroApp.engine.active;return [u.x,u.y,u.moveLeft,u.angle,u.tvPath?.length||0]}")
+    planted=player()
+    drag((535,245),(630,270));dragged=camera()
+    assert abs(dragged[0]-before[0]+95/before[2])<1 and abs(dragged[1]-before[1]+25/before[2])<1,(before,dragged)
+    assert player()==planted
     drag(mid(.50,.50),mid(.76,.67));after=camera()
     assert after[0]>before[0]+220 and after[1]>before[1]+100,(before,after)
-    report['fieldDragAndMinimap']=[before,after]
-    page.mouse.move(4,200)
-    page.wait_for_function('x=>HonroApp.scene.cx<x-50',arg=after[0])
-    page.mouse.move(575,215);stop=camera()
-    page.wait_for_timeout(200)
-    assert camera()==stop
-    report['edgePan']={'left':[after,stop]}
-    for name,x,y,axis,sign in [('right',1176,240,0,1),('up',530,2,1,-1),('down',570,758,1,1)]:
-        page.mouse.click(*mid(.5,.5));origin=camera();page.mouse.move(x,y)
-        prop='cx' if axis==0 else 'cy'
-        page.wait_for_function(f'([v,sign])=>(HonroApp.scene.{prop}-v)*sign>30',arg=[origin[axis],sign])
-        page.mouse.move(570,215);report['edgePan'][name]=[origin,camera()]
+    report['fieldDragAndMinimap']=[before,dragged,after]
+    for x,y in [(4,200),(1176,240),(530,2),(570,758)]:
+        page.mouse.move(x,y);page.wait_for_timeout(180);assert camera()==after
+    report['edgeStationary']=after
+    def ground_target():
+        return page.evaluate("""async()=>{const a=HonroApp,e=a.engine,u=e.active,s=a.scene;
+          s.centerAt(u.x,u.y-u.h/2);await new Promise(requestAnimationFrame);
+          return s.screenPoint(u.x+140,u.y-u.h/2+22);}""")
+    target=ground_target()
+    pt=(target['x'],target['y']);page.mouse.click(*pt);page.wait_for_timeout(180)
+    assert player()==planted
+    page.evaluate("window.fieldMenus=0;document.querySelector('#battlecanvas').addEventListener('contextmenu',e=>{if(e.defaultPrevented)fieldMenus++})")
+    page.mouse.click(*pt,button='right')
+    page.wait_for_function("v=>HonroApp.engine.active.moveLeft<v-10",arg=planted[2])
+    page.wait_for_function("!HonroApp.engine.active.tvPath?.length")
+    assert page.evaluate("window.fieldMenus")>=1
+    moved=player();assert moved[0]>planted[0]+90 and moved[2]<planted[2]
+    page.keyboard.down('Shift')
+    try:
+        target=ground_target();page.mouse.click(target['x']-160,target['y']-70)
+        aimed=player();assert aimed[:3]==moved[:3] and abs(aimed[3]-moved[3])>5
+    finally:page.keyboard.up('Shift')
+    report['groundOrders']={'start':planted,'rightClick':moved,'shiftLeftAim':aimed}
     # Place the camera on a real unit, then use a real pointer on its painted silhouette.
     def actor(id):
         return page.evaluate('''async id=>{
@@ -60,6 +74,9 @@ with sync_playwright() as pw:
     foe=actor(None)
     page.mouse.move(foe['x'],foe['y'])
     page.wait_for_function('id=>HonroApp.scene.hoverUnitId===id',arg=foe['id'])
+    drag((foe['x'],foe['y']),(foe['x']+33,foe['y']+10))
+    assert not page.locator('#unit-info:visible').count() and player()[:3]==moved[:3]
+    foe=actor(foe['id'])
     page.mouse.click(foe['x'],foe['y'])
     panel=page.locator('#unit-info')
     panel.wait_for(state='visible')

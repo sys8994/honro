@@ -2,8 +2,8 @@
   "type": "tileset",
   "version": "1.10",
   "name": "Honro modular props",
-  "tilewidth": 800,
-  "tileheight": 512,
+  "tilewidth": 1200,
+  "tileheight": 768,
   "tilecount": 11,
   "columns": 0,
   "objectalignment": "bottom",
@@ -11,8 +11,8 @@
     {
       "id": 0,
       "image": "../assets/props/pine_a.png",
-      "imagewidth": 320,
-      "imageheight": 306,
+      "imagewidth": 480,
+      "imageheight": 458,
       "properties": [
         {
           "name": "asset",
@@ -39,8 +39,8 @@
     {
       "id": 1,
       "image": "../assets/props/pine_b.png",
-      "imagewidth": 320,
-      "imageheight": 282,
+      "imagewidth": 480,
+      "imageheight": 423,
       "properties": [
         {
           "name": "asset",
@@ -179,8 +179,8 @@
     {
       "id": 6,
       "image": "../assets/props/ruin_gate.png",
-      "imagewidth": 352,
-      "imageheight": 324,
+      "imagewidth": 528,
+      "imageheight": 486,
       "properties": [
         {
           "name": "asset",
@@ -207,8 +207,8 @@
     {
       "id": 7,
       "image": "../assets/props/bridge_ne.png",
-      "imagewidth": 784,
-      "imageheight": 512,
+      "imagewidth": 1176,
+      "imageheight": 768,
       "properties": [
         {
           "name": "asset",
@@ -245,8 +245,8 @@
     {
       "id": 8,
       "image": "../assets/props/bridge_se.png",
-      "imagewidth": 800,
-      "imageheight": 512,
+      "imagewidth": 1200,
+      "imageheight": 768,
       "properties": [
         {
           "name": "asset",
@@ -283,8 +283,8 @@
     {
       "id": 9,
       "image": "../assets/props/shrine.png",
-      "imagewidth": 368,
-      "imageheight": 368,
+      "imagewidth": 552,
+      "imageheight": 552,
       "properties": [
         {
           "name": "asset",
@@ -348,8 +348,8 @@
           "value": true
         }
       ],
-      "imagewidth": 272,
-      "imageheight": 200
+      "imagewidth": 408,
+      "imageheight": 300
     }
   ]
 }

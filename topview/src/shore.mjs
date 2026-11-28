@@ -34,7 +34,7 @@ function sweepSegment(a,z,s,r){
 export function makeShore(polygons,map){
   const convert=([x,y])=>({x:x*map.cell/map.tileWidth,y:y*map.cell/map.tileHeight});
   const shapes=polygons.map(r=>{const rings=r.map(row=>row.map(convert));return {rings,...bounds(rings[0])};});
-  const buckets=new Map(),step=map.cell;
+  const extent=bounds(shapes.flatMap(s=>s.rings[0])),buckets=new Map(),step=map.cell;
   const key=(x,y)=>x+','+y;
   for(const shape of shapes)for(const ring of shape.rings)for(let i=0;i<ring.length;i++){
     const a=ring[i],b=ring[(i+1)%ring.length],length=Math.hypot(b.x-a.x,b.y-a.y);if(length<1e-6)continue;
@@ -51,6 +51,7 @@ export function makeShore(polygons,map){
   }
   return {
     contains(p,r){
+      if(!overlaps(extent,p.x-r,p.y-r,p.x+r,p.y+r))return false;
       if(shapes.some(s=>overlaps(s,p.x,p.y,p.x,p.y)&&inRing(p,s.rings[0])&&!s.rings.slice(1).some(h=>inRing(p,h))))return true;
       for(const s of nearby(p,p,r)){
         const t=Math.max(0,Math.min(s.length,(p.x-s.a.x)*s.ux+(p.y-s.a.y)*s.uy));
@@ -58,6 +59,8 @@ export function makeShore(polygons,map){
       }
       return false;
     },
-    first(a,z,r){let best=null;for(const s of nearby(a,z,r)){const h=sweepSegment(a,z,s,r);if(h&&(!best||h.t<best.t))best=h;}return best;}
+    first(a,z,r){
+      if(!overlaps(extent,Math.min(a.x,z.x)-r,Math.min(a.y,z.y)-r,Math.max(a.x,z.x)+r,Math.max(a.y,z.y)+r))return null;
+      let best=null;for(const s of nearby(a,z,r)){const h=sweepSegment(a,z,s,r);if(h&&(!best||h.t<best.t))best=h;}return best;}
   };
 }

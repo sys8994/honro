@@ -40,9 +40,9 @@ with sync_playwright() as p:
     def tap(loc):
         if args.mobile:loc.tap(timeout=18000)
         else:loc.click(timeout=18000)
-    def point(x,y):
+    def point(x,y,button="left"):
         if args.mobile:page.touchscreen.tap(x,y)
-        else:page.mouse.click(x,y)
+        else:page.mouse.click(x,y,button=button)
     def state():
         return page.evaluate("""()=>{const a=HonroApp,e=a.engine,b=e?.b,u=b?.units.find(u=>u.id==='p-archer');return {screen:a.screen,phase:b?.phase,round:b?.round,active:b?.active,who:a.dialogue?.lines?.[a.dialogue.index]?.[0],line:a.dialogue?.lines?.[a.dialogue.index]?.[1],modal:a.modal.classList.contains('open')?a.modalKind:'',done:a.done,hp:u?.hp,move:u?.moveLeft,x:u?.x,y:u?.y,route:u?.tvPath?.length||0,shot:b?.shot,events:b?.honroState?.eventLog?.map(e=>e.id)||[],cast:b?.units.length,error:a.lastError}}""")
     def readers():
@@ -81,6 +81,11 @@ with sync_playwright() as p:
             page.wait_for_timeout(180);page.keyboard.up('w');page.keyboard.up('d');after=state()
             log['checks']['keyboard']={'before':before,'after':after}
             if before['move']<=after['move'] or before['x']==after['x'] or before['y']==after['y']:raise AssertionError('대각선 이동과 이동도')
+            target=page.evaluate("()=>{const a=HonroApp,u=a.engine.active;return a.scene.screenPoint(u.x+65,u.y-u.h/2+10)}")
+            page.mouse.click(target['x'],target['y'],button='right')
+            page.wait_for_function("v=>HonroApp.engine.active.moveLeft<v-12",arg=after['move'])
+            page.wait_for_function("!HonroApp.engine.active.tvPath?.length")
+            log['checks']['rightClick']=state()
         if args.entry_only:
             entry=page.evaluate("""()=>{const a=HonroApp,b=a.engine.b;return {chapter:b.honroStage,topview:b.honroTopview,terrain:b.tvTerrainRevision,foes:b.units.filter(u=>u.side===1&&!u.dead).length,actor:b.active,screen:a.screen};}""")
             if entry!={'chapter':1,'topview':1,'terrain':mapdata['meta']['revision'],'foes':12,'actor':'p-archer','screen':'battle'} or log['errors']:
@@ -141,7 +146,7 @@ with sync_playwright() as p:
                     }
                     throw Error('No visible ground around the chapter marker');
                 }''',[cx,cy,not args.mobile])
-                point(loc['x'],loc['y']);note(target+' 이동',{'screen':loc,'distance':round(distance),'state':state()})
+                point(loc['x'],loc['y'],'right');note(target+' 이동',{'screen':loc,'distance':round(distance),'state':state()})
                 for step in range(85):
                     page.wait_for_timeout(170);v=state()
                     if v['done'] or v.get('line') or v.get('error') or v['move']<=1 or v['route']==0:break

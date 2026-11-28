@@ -114,7 +114,7 @@ with sync_playwright() as pw:
                     """({x,y})=>{const s=HonroApp.scene;s.centerAt(x,y);return s.screenPoint(x,y)}""",
                     goal["world"],
                 )
-                page.mouse.click(pt["x"], pt["y"])
+                page.mouse.click(pt["x"], pt["y"],button="right")
                 for _ in range(115):
                     page.wait_for_timeout(85)
                     if page.evaluate(

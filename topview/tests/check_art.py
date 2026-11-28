@@ -1,5 +1,6 @@
 """Measure the chapter's actual projected sprites and local edge contrast at neutral motion."""
-import argparse, json, os
+import argparse, io, json, os, statistics
+from PIL import Image
 from pathlib import Path
 from playwright.sync_api import sync_playwright
 from native_entry import enter_chapter
@@ -32,6 +33,8 @@ with sync_playwright() as pw:
             }""",[x,y])
             p.screenshot(path=args.out/(name+'.jpg'),quality=90)
         (args.out/'cameras.json').write_text(json.dumps(cameras,indent=2)+'\n')
+    # Terrain, moving water, figures and daylight are composited by the browser.
+    # Capture the visible field for contrast; the transparent actor canvas alone omits the bank.
     metrics=p.evaluate('''async original=>{
       const path=s=>new URL('topview/'+s,document.baseURI);
       const {paintSprite,animals}=await import(path('src/actors.mjs'));
@@ -66,34 +69,42 @@ with sync_playwright() as pw:
         near.push(...sceneryParts(o,at,imgs).filter(part=>part.depth>foot.y));
       }
       const ink=s.actorArt.frame(hero,false,true,0).art;
-      ctx.setTransform(1,0,0,1,0,0);ctx.clearRect(0,0,160,160);ctx.drawImage(ink,0,0);
+      ctx.setTransform(1,0,0,1,0,0);ctx.clearRect(0,0,160,160);ctx.drawImage(ink,0,0,160,160);
       const body=ctx.getImageData(0,0,160,160).data;ctx.clearRect(0,0,160,160);
       ctx.setTransform(1.6,0,0,1.6,80-foot.x*1.6,88*1.6-foot.y*1.6);
       for(const part of near)drawScenery(ctx,part,0);
       const occluders=ctx.getImageData(0,0,160,160).data;let covered=0,total=0;
       for(let i=3;i<body.length;i+=4)if(body[i]>=96){total++;if(occluders[i]>=96)covered++;}
       const next=()=>new Promise(requestAnimationFrame),rect=s.canvas.getBoundingClientRect(),dpr=s.canvas.width/rect.width;
-      for(const u of e.b.units){
-        const k=actorBody(u).kind;if(cast[k]||u.dead)continue;
-        const foot={x:u.x,y:u.y-u.h*.5};s.centerAt(foot.x,foot.y);await next();await next();
+      window.contrastSample=async id=>{
+        const u=e.unit(id),foot={x:u.x,y:u.y-u.h*.5};s.centerAt(foot.x,foot.y);await next();await next();
         const at=s.screenPoint(foot.x,foot.y),z=s.zoomLevel,im=s.actorArt.frame(u,false,u===e.active,0).art;
-        const area=s.ctx.getImageData(0,0,s.canvas.width,s.canvas.height),mask=im.getContext('2d').getImageData(0,0,im.width,im.height);
-        const alpha=(x,y)=>x<0||y<0||x>=im.width||y>=im.height?0:mask.data[(y*im.width+x)*4+3];
-        const l=(x,y)=>{const X=Math.round((at.x+(x/1.6-50)*z)*dpr),Y=Math.round((at.y+(y/1.6-88)*z)*dpr);
-          if(X<0||Y<0||X>=area.width||Y>=area.height)return NaN;
-          const n=(X+Y*area.width)*4;return .2126*area.data[n]+.7152*area.data[n+1]+.0722*area.data[n+2];};
-        const diffs=[];
-        for(let y=3;y<im.height-3;y+=2)for(let x=3;x<im.width-3;x+=2){
+        const left=Math.max(0,Math.floor(at.x-55*z)),top=Math.max(0,Math.floor(at.y-90*z));
+        const width=Math.min(Math.ceil(at.x+55*z),rect.width)-left,height=Math.min(Math.ceil(at.y+15*z),rect.height)-top;
+        ctx.setTransform(1,0,0,1,0,0);ctx.clearRect(0,0,160,160);ctx.drawImage(im,0,0,160,160);
+        const mask=ctx.getImageData(0,0,160,160);
+        const alpha=(x,y)=>x<0||y<0||x>=160||y>=160?0:mask.data[(y*160+x)*4+3];
+        const point=(x,y)=>[Math.round((at.x-left+(x/1.6-50)*z)*dpr),Math.round((at.y-top+(y/1.6-88)*z)*dpr)];
+        const pairs=[];
+        for(let y=3;y<157;y+=2)for(let x=3;x<157;x+=2){
           if(alpha(x,y)<180)continue;
           for(const [dx,dy] of [[1,0],[-1,0],[0,1],[0,-1]]){
-            if(alpha(x+dx*2,y+dy*2)<=64&&alpha(x+dx*5,y+dy*5)<35&&alpha(x-dx*2,y-dy*2)>185){
-              const diff=Math.abs(l(x-dx*2,y-dy*2)-l(x+dx*5,y+dy*5));if(Number.isFinite(diff))diffs.push(diff);
-            }
+            if(alpha(x+dx*2,y+dy*2)<=64&&alpha(x+dx*5,y+dy*5)<35&&alpha(x-dx*2,y-dy*2)>185)
+              pairs.push([point(x-dx*2,y-dy*2),point(x+dx*5,y+dy*5)]);
           }
         }
-        diffs.sort((a,b)=>a-b);cast[k]={id:u.id,n:diffs.length,contrast:Math.round(diffs[Math.floor(diffs.length/2)]*10)/10};
-      }
+        return {rect:{x:left+rect.x,y:top+rect.y,width,height},pairs};
+      };
+      for(const u of e.b.units){const k=actorBody(u).kind;if(!u.dead&&!cast[k])cast[k]={id:u.id};}
       return {zoom:s.zoomLevel,startingPines:{covered,total},atlasBounds:bounds,firstEncounter:cast};
     }''',args.original)
+    for row in metrics['firstEncounter'].values():
+        sample=p.evaluate('contrastSample',row['id'])
+        shot=Image.open(io.BytesIO(p.screenshot(clip=sample['rect']))).convert('RGB')
+        def light(point):
+            return sum(c*k for c,k in zip(shot.getpixel(tuple(point)),(.2126,.7152,.0722)))
+        differences=[abs(light(a)-light(b)) for a,b in sample['pairs']
+                     if all(0<=x<shot.width and 0<=y<shot.height for x,y in (a,b))]
+        row.update(n=len(differences),contrast=round(statistics.median(differences),1) if differences else None)
     (args.out/'art.json').write_text(json.dumps(metrics,ensure_ascii=False,indent=2)+'\n')
     b.close()

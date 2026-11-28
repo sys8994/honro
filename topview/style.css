@@ -27,3 +27,18 @@ body:has(.pose-lab){background:#17211e;color:#e4ddc8}.pose-lab{font-family:syste
 .honro #app .tv-field .honro-compact-hud .radial-actions #move-lock[aria-pressed=true]{background:#b9a472!important}
 @media(max-width:899px),(max-height:640px){.honro #app .battle.tv-field{--action-size:36px;--fire-size:74px;--aux-gap:5px}}
 @media(max-width:420px){.honro #app .battle.tv-field{--action-size:32px;--fire-size:64px;--aux-gap:4px}}
+
+.tv-ground{position:absolute;inset:0;overflow:hidden;pointer-events:none;background:#27332e}
+.tv-ground-map,.tv-current,.tv-bank-tile{position:absolute;top:0;left:0}
+.tv-ground-map{transform-origin:0 0}
+.tv-current{height:100%;overflow:hidden;background:#2a494e}
+.tv-current>div{position:absolute;inset:calc(-1 * var(--tile-y)) -32px 0;background-size:var(--tile-x) var(--tile-y);will-change:transform}
+.tv-water-current{animation:tv-downstream 20s linear infinite}
+.tv-water-ripples{animation:tv-crosscurrent 9s linear infinite}
+@keyframes tv-downstream{0%{transform:translate3d(0,0,0)}50%{transform:translate3d(-12px,calc(var(--tile-y)*.5),0)}100%{transform:translate3d(0,var(--tile-y),0)}}
+@keyframes tv-crosscurrent{0%{transform:translate3d(0,0,0)}50%{transform:translate3d(22px,calc(var(--tile-y)*.5),0)}100%{transform:translate3d(0,var(--tile-y),0)}}
+.tv-bank-tile{background-repeat:no-repeat}
+.honro .tv-field #battlecanvas{position:relative;background:transparent}
+@media(prefers-reduced-motion:reduce){.tv-current>div{animation:none;will-change:auto}}
+.tv-field .battle-view{isolation:isolate}
+.tv-light{position:absolute;inset:0;pointer-events:none;mix-blend-mode:multiply}

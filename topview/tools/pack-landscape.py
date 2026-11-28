@@ -27,7 +27,7 @@ def crop_sprite(sheet, col, row, columns, rows):
 trees = Image.open(base / "source/isometric-pines-elevated.png")
 for col, name in enumerate(["pine_a", "pine_b"]):
     pic = crop_sprite(trees, col, 0, 2, 1)
-    pic.thumbnail((320, 320), Image.Resampling.LANCZOS)
+    pic.thumbnail((480, 480), Image.Resampling.LANCZOS)
     pic.save(base / "props" / (name + ".png"), optimize=True)
 # Metre-authored architecture is baked separately by render-structures.py.
 surfaces = Image.open(base / "source/isometric-pass-surfaces.png").convert("RGB")

@@ -35,30 +35,35 @@ function trailMargin(points,width,noise){
   }
   return line([...sides[0],...sides[1].reverse()],true);
 }
-export function buildGround(map,sourceFor){
-  const w=map.width*map.tileWidth,h=map.height*map.tileHeight,base=canvas(w,h),c=base.getContext('2d');
+export function buildGround(map,sourceFor,density){
+  const w=map.width*map.tileWidth,h=map.height*map.tileHeight,base=canvas(w*density,h*density);
+  function paint(layer){const g=layer.getContext('2d');g.scale(density,density);return g;}
+  const c=paint(base);
   const noise=random(129045),grid=map.grid,materials={};
-  for(const name of ['grass','dirt','rock','path','gravel','water'])materials[name]=surface(c,sourceFor(name),name==='water'?.92:.77);
+  for(const name of ['grass','dirt','rock','path','gravel']){
+    const image=sourceFor(name),scale=.77*(name==='dirt'||name==='rock'?1:320/image.width);
+    materials[name]=surface(c,image,scale);
+  }
   c.fillStyle=materials.grass;c.fillRect(0,0,w,h);
   // Adjacent diamonds of the same material are masked and feathered together.
   for(const id of ['dirt','rock']){
-    const raw=canvas(w,h),mask=raw.getContext('2d');mask.fillStyle='#fff';
+    const raw=canvas(w*density,h*density),mask=paint(raw);mask.fillStyle='#fff';
     grid.materials.forEach((v,i)=>{
       if(v!==id)return;const row=Math.floor(i/grid.width),col=i%grid.width;
       const x=(col+.5+.5*(row%2))*grid.tileWidth-grid.offsetX,y=(row+1)*grid.tileHeight/2-grid.offsetY;
       const a=grid.tileWidth/2+.7,b=grid.tileHeight/2+.4;
       mask.fill(line([[x-a,y],[x,y-b],[x+a,y],[x,y+b]],true));
     });
-    const layer=canvas(w,h),g=layer.getContext('2d');g.filter='blur(6px)';g.drawImage(raw,0,0);g.filter='none';g.globalCompositeOperation='source-in';g.fillStyle=materials[id];g.fillRect(0,0,w,h);
-    c.globalAlpha=id==='dirt'?.23:.55;c.drawImage(layer,0,0);c.globalAlpha=1;
+    const layer=canvas(w*density,h*density),g=paint(layer);g.filter='blur('+6*density+'px)';g.drawImage(raw,0,0,w,h);g.filter='none';g.globalCompositeOperation='source-in';g.fillStyle=materials[id];g.fillRect(0,0,w,h);
+    c.globalAlpha=id==='dirt'?.23:.55;c.drawImage(layer,0,0,w,h);c.globalAlpha=1;raw.width=layer.width=0;
   }
   c.lineCap='round';c.lineJoin='round';
   for(const trail of map.trails){
     const p=line(trail.points),width=trail.width;
     const edge=trailMargin(trail.points,width,noise);
-    c.save();c.fillStyle=materials.path;c.globalAlpha=.55;c.filter='blur(3px)';c.fill(edge);c.restore();
+    c.save();c.fillStyle=materials.path;c.globalAlpha=.55;c.filter='blur('+3*density+'px)';c.fill(edge);c.restore();
     c.save();c.fillStyle=materials.path;c.globalAlpha=.78;c.fill(edge);c.restore();
-    c.save();c.strokeStyle='#bca38332';c.lineWidth=width*.68;c.filter='blur(2px)';c.stroke(p);c.restore();
+    c.save();c.strokeStyle='#bca38332';c.lineWidth=width*.68;c.filter='blur('+2*density+'px)';c.stroke(p);c.restore();
     // Wheel wear and grit follow the centreline. Branches under 30px are foot trails.
     for(let i=1;i<trail.points.length;i++){
       const [x,y]=trail.points[i-1],[x2,y2]=trail.points[i],dx=x2-x,dy=y2-y,len=Math.hypot(dx,dy);
@@ -77,18 +82,14 @@ export function buildGround(map,sourceFor){
   const shore=riverPath(map.river);
   // Blend the gravel bed into dry ground and the deep current into shallows.
   // A blurred alpha ramp replaces painted contour bands at the waterline.
-  const bed=canvas(w,h),bc=bed.getContext('2d');bc.filter='blur(6px)';bc.fillStyle='#fff';bc.fill(shore,'evenodd');bc.strokeStyle='#fff';bc.lineWidth=12;bc.stroke(shore);bc.filter='none';
-  bc.globalCompositeOperation='source-in';bc.fillStyle=materials.gravel;bc.fillRect(0,0,w,h);c.drawImage(bed,0,0);
-  c.save();c.clip(shore,'evenodd');c.fillStyle='#526e6575';c.fillRect(0,0,w,h);
-  const deep=canvas(w,h),dc=deep.getContext('2d');dc.fillStyle=materials.water;dc.fillRect(0,0,w,h);dc.fillStyle='#193f4342';dc.fillRect(0,0,w,h);
-  dc.globalCompositeOperation='destination-out';dc.filter='blur(8px)';dc.strokeStyle='#fff';dc.lineJoin='round';dc.lineWidth=26;dc.stroke(shore);c.drawImage(deep,0,0);
-  c.globalAlpha=1;c.lineCap='round';
-  for(let i=0;i<3900;i++){
-    const x=noise()*w,y=noise()*h;if(!c.isPointInPath(shore,x,y,'evenodd'))continue;
-    const length=3+noise()*15;c.beginPath();c.moveTo(x,y);c.quadraticCurveTo(x+length*.35,y-2,x+length,y-1.6-noise()*1.5);
-    c.strokeStyle=noise()>.4?'#adc4b345':'#0e353f80';c.lineWidth=.6+noise()*.6;c.stroke();
-  }
-  c.restore();
+  c.save();c.filter='blur('+5*density+'px)';c.fillStyle=materials.gravel;
+  c.fill(shore,'evenodd');c.strokeStyle=materials.gravel;c.lineWidth=11;c.stroke(shore);c.restore();
+  // The live current is behind this transparent opening. A feathered shelf
+  // leaves gravel showing through the shallow water on both banks.
+  c.save();c.globalCompositeOperation='destination-out';c.clip(shore,'evenodd');
+  c.fillStyle='#000';c.filter='blur('+4*density+'px)';c.fill(shore,'evenodd');c.restore();
+  c.save();c.clip(shore,'evenodd');c.filter='blur('+4*density+'px)';
+  c.strokeStyle=materials.gravel;c.lineWidth=9;c.globalAlpha=.72;c.stroke(shore);c.restore();
   // Small shoreline cobbles sit on the dry side. Their size follows the water,
   // and the stone and timber decks cover the continuing stream at the crossings.
   for(const region of map.river)for(const ring of region)for(let i=0;i<ring.length;i++){
@@ -96,7 +97,7 @@ export function buildGround(map,sourceFor){
     if(len<4||len>105)continue;
     for(let j=noise()*10;j<len;j+=9+noise()*12){
       const t=j/len,x=p[0]+(q[0]-p[0])*t+(noise()-.5)*16,y=p[1]+(q[1]-p[1])*t+(noise()-.5)*9;
-      const wet=c.isPointInPath(shore,x,y,'evenodd');const size=.7+noise()*2.9;
+      const wet=c.isPointInPath(shore,x*density,y*density,'evenodd');const size=.7+noise()*2.9;
       if(noise()>.55){
         c.fillStyle=wet?'#213c3955':'#1e2b2599';c.beginPath();c.ellipse(x+.7,y+.7,size*1.4,size*.57,-.26,0,Math.PI*2);c.fill();
         c.fillStyle=wet?'#71878380':'#777b66aa';c.fill(line([[x-size,y],[x-.3*size,y-size*.55],[x+.7*size,y-size*.35],[x+size,y+.2*size],[x,y+size*.37]],true));
@@ -111,17 +112,39 @@ export function buildGround(map,sourceFor){
   return base;
 }
 
-export function bakePropShadows(ground,props,images,projection){
-  const c=ground.getContext('2d'),masks=new Map();
+// Offline contact and cast shadows. Low piers cast along the span, while
+// upright silhouettes project from the registered foot towards the southeast.
+export function bakePropShadows(ground,props,images,projection,density){
+  const c=ground.getContext('2d'),masks=new Map();c.setTransform(density,0,0,density,0,0);
+  function ink(id){
+    if(masks.has(id))return masks.get(id);
+    const im=images.get(id),mask=canvas(im.width,im.height),g=mask.getContext('2d');
+    g.drawImage(im,0,0);g.globalCompositeOperation='source-in';g.fillStyle='#0d191c';g.fillRect(0,0,im.width,im.height);
+    masks.set(id,mask);return mask;
+  }
+  function contact(x,y,rx,ry,alpha){
+    c.save();c.translate(x,y);c.scale(rx,ry);
+    const shade=c.createRadialGradient(0,0,0,0,0,1);shade.addColorStop(0,'rgba(6,14,16,'+alpha+')');
+    shade.addColorStop(.52,'rgba(9,17,19,'+alpha*.67+')');shade.addColorStop(1,'rgba(9,17,19,0)');
+    c.fillStyle=shade;c.fillRect(-1,-1,2,2);c.restore();
+  }
   for(const o of props){
-    if(o.deck)continue;
-    const im=images.get(o.asset);if(!masks.has(o.asset)){
-      const mask=canvas(im.width,im.height),g=mask.getContext('2d');g.drawImage(im,0,0);g.globalCompositeOperation='source-in';g.fillStyle='#121e21';g.fillRect(0,0,im.width,im.height);masks.set(o.asset,mask);
+    const at=projection.forward(o.x,o.y),tree=o.asset.startsWith('pine'),roof=o.asset==='shrine'||o.asset==='ruin_gate';
+    const pic=ink(o.asset),left=-o.width*o.anchor[0],top=-o.height*o.anchor[1];
+    c.save();c.translate(at.x,at.y);
+    if(o.deck){
+      c.globalAlpha=.69;c.translate(11,10);c.drawImage(pic,left,top,o.width,o.height);
+    }else{
+      c.globalAlpha=tree?.71:roof?.72:.63;
+      c.transform(.86,.035,-.49,-.25,0,0);c.drawImage(pic,left,top,o.width,o.height);
     }
-    const at=projection.forward(o.x,o.y),tree=o.asset.startsWith('pine'),roof=o.asset==='shrine';
-    c.save();c.translate(at.x,at.y);c.globalAlpha=tree?.54:roof?.48:.37;
-    c.transform(.72,.065,-.46,-.23,0,0);c.drawImage(masks.get(o.asset),-o.width*o.anchor[0],-o.height*o.anchor[1],o.width,o.height);c.restore();
-    c.save();c.translate(at.x,at.y);c.scale(1,.46);const radius=tree?o.width*.19:o.width*.32;
-    const dark=c.createRadialGradient(0,0,0,0,0,radius);dark.addColorStop(0,'#0a151b8c');dark.addColorStop(1,'#0a151b00');c.fillStyle=dark;c.fillRect(-radius,-radius,radius*2,radius*2);c.restore();
+    c.restore();
+    if(o.deck){
+      const [a,b]=o.deck.points;for(const t of [0,.5,1])contact(a[0]+(b[0]-a[0])*t+7,a[1]+(b[1]-a[1])*t+12,25,8,.84);
+    }else contact(at.x,at.y,Math.max(5,o.width*(tree?.14:.35)),Math.max(2,o.width*(tree?.073:.14)),.86);
+  }
+  for(const o of props.filter(o=>o.deck)){
+    const at=projection.forward(o.x,o.y);
+    c.drawImage(images.get(o.asset),at.x-o.width*o.anchor[0],at.y-o.height*o.anchor[1],o.width,o.height);
   }
 }

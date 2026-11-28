@@ -31,11 +31,12 @@ def pack(name,parts,columns,width,height,pad):
 
 # These two replacement cells share a scale and a ground anchor. The seven
 # other bow directions continue to come from the original atlas.
-pack('seolo-bow-ne',frames('seolo-bow-ne.png',2,1),2,160,160,5)
-if sys.argv[1:]==['--bow-ne']:raise SystemExit(0)
+if sys.argv[1:]!=['--animals']:
+    pack('seolo-bow-ne',frames('seolo-bow-ne.png',2,1),2,160,160,5)
+    if sys.argv[1:]==['--bow-ne']:raise SystemExit(0)
 
-pack('seolo-states',registered_cells('seolo-states.png'),8,160,160,5)
-if sys.argv[1:]==['--seolo-states']:raise SystemExit(0)
+    pack('seolo-states',registered_cells('seolo-states.png'),8,160,160,5)
+    if sys.argv[1:]==['--seolo-states']:raise SystemExit(0)
 
 for name in ['hound','boar','stag','crow','bat','ghost']:
     source='turns-stag-clean.png' if name=='stag' else 'turns-'+name+'.png'
@@ -49,7 +50,18 @@ for name in ['hound','boar','stag','crow','bat','ghost']:
         # Different source canvases: match the neutral pose's anatomical height before packing.
         factor=poses[28].height/rear[0].height
         poses[28:]=[im.resize((round(im.width*factor),round(im.height*factor)),Image.Resampling.LANCZOS) for im in rear]
-    pack('turns-'+name,poses,7,144,128,4)
+    if name in ('boar','hound','stag'):
+        # Some source cells contain stray near-transparent fur below the feet.
+        # Register the lowest run of solid pixels before sharing the atlas scale.
+        trimmed=[]
+        for part in poses:
+            alpha=part.getchannel('A')
+            bottom=next(y+1 for y in range(part.height-1,-1,-1)
+                        if sum(alpha.crop((0,y,part.width,y+1)).histogram()[100:])>=3)
+            trimmed.append(part.crop((0,0,part.width,bottom)))
+        poses=trimmed
+    pack('turns-'+name,poses,7,216,192,6)
+if sys.argv[1:]==['--animals']:raise SystemExit(0)
 pack('seolo-front',frames('seolo-south-approved-pose.png',4,1),4,144,168,6)
 bridge=frames('east-bridge.png',1,1)[0];bridge.thumbnail((720,260),Image.Resampling.LANCZOS)
 bridge.save(assets/'props/bridge.png');front=bridge.copy();front.paste((0,0,0,0),(0,0,front.width,round(front.height*.74)));front.save(assets/'props/bridge-near.png')
