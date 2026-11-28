@@ -1,0 +1,87 @@
+{
+  "stage": "연목 고갯길",
+  "party": [
+    {
+      "id": "p-archer",
+      "name": "설오",
+      "hp": 365,
+      "skills": [
+        "A01"
+      ]
+    }
+  ],
+  "enemies": [
+    {
+      "id": "foe-0",
+      "kind": "beast",
+      "hp": 76
+    },
+    {
+      "id": "foe-1",
+      "kind": "crow",
+      "hp": 47
+    },
+    {
+      "id": "foe-2",
+      "kind": "beast",
+      "hp": 87
+    },
+    {
+      "id": "foe-3",
+      "kind": "beast",
+      "hp": 76
+    },
+    {
+      "id": "watch-1-pass-1-1",
+      "kind": "beast",
+      "hp": 76
+    },
+    {
+      "id": "watch-1-pine-2-1",
+      "kind": "ghost",
+      "hp": 76
+    },
+    {
+      "id": "watch-1-fork-3-1",
+      "kind": "beast",
+      "hp": 76
+    },
+    {
+      "id": "watch-1-ridge-4-1",
+      "kind": "beast",
+      "hp": 76
+    },
+    {
+      "id": "foe-0-cluster",
+      "kind": "beast",
+      "hp": 87
+    },
+    {
+      "id": "foe-1-cluster",
+      "kind": "bat",
+      "hp": 47
+    },
+    {
+      "id": "foe-2-cluster",
+      "kind": "beast",
+      "hp": 87
+    },
+    {
+      "id": "foe-3-cluster",
+      "kind": "beast",
+      "hp": 76
+    }
+  ],
+  "events": [
+    "cart",
+    "more",
+    "witness",
+    "ridge"
+  ],
+  "prediction": {
+    "skill": "A01",
+    "pointCount": 82
+  },
+  "mode": "campaign",
+  "scope": "fresh original stage, native launch called programmatically, no gameplay completion"
+}

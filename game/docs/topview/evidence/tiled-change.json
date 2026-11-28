@@ -1,0 +1,48 @@
+{
+  "editor": "Tiled 1.11.0, Debian, GUI in Xvfb",
+  "savedMethod": "Ground layer, selected water, painted cell (7,22), Ctrl+S in an independent copy",
+  "baseCompiledSHA256": "9b2a3ddc874574cb7c45d6625e94fd4bb18ddd7956c92f460db1738b669b01da",
+  "editedCompiledSHA256": "c4e28a3c6d6a1f821ebf5f3aec5f0ade18a1510960303b383c42dd8c9e101b6e",
+  "compiledValueDifferences": {
+    "terrain": [
+      {
+        "index": 667,
+        "before": "grass",
+        "after": "water"
+      }
+    ],
+    "walkable": [
+      {
+        "index": 667,
+        "before": true,
+        "after": false
+      }
+    ]
+  },
+  "sourceObjects": 83,
+  "sourceAnchors": 27,
+  "sourceCells": 720,
+  "sourceGuideShapes": 70,
+  "originalInBrowser": {
+    "cell": [
+      7,
+      22
+    ],
+    "material": "grass",
+    "walkable": true,
+    "arrowClear": true,
+    "props": 83,
+    "anchors": 27
+  },
+  "editedInBrowser": {
+    "cell": [
+      7,
+      22
+    ],
+    "material": "water",
+    "walkable": false,
+    "arrowClear": true,
+    "props": 83,
+    "anchors": 27
+  }
+}

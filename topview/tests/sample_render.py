@@ -1,4 +1,5 @@
 """Measure one Chromium renderer and compare native arrows in a copy of its battle."""
+
 import argparse
 import json
 from pathlib import Path
@@ -6,8 +7,8 @@ from urllib.parse import urljoin
 from playwright.sync_api import sync_playwright
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--base', required=True)
-parser.add_argument('--out', type=Path, required=True)
+parser.add_argument("--base", required=True)
+parser.add_argument("--out", type=Path, required=True)
 args = parser.parse_args()
 args.out.mkdir(parents=True, exist_ok=True)
 
@@ -49,7 +50,7 @@ sample_frames = """(count) => new Promise(resolve => {
         if(last !== undefined) {
             const e=HonroApp.engine;
             intervals.push(t-last);
-            objects.push([e.b.projectiles.length,HonroApp.scene.effects?.length||0]);
+            objects.push([e.b.projectiles.length,HonroApp.scene.arcFx?.fxs.length ?? HonroApp.scene.effects?.length ?? 0]);
         }
         last=t;
         if(intervals.length < count) return requestAnimationFrame(tick);
@@ -63,54 +64,73 @@ sample_frames = """(count) => new Promise(resolve => {
 
 with sync_playwright() as pw:
     import os
-    browser = pw.chromium.launch(executable_path=os.getenv('CHROMIUM','/usr/bin/chromium'),
-                                  args=['--no-sandbox','--disable-dev-shm-usage'])
-    page = browser.new_page(viewport={'width':1180,'height':760},device_scale_factor=1)
+
+    browser = pw.chromium.launch(
+        executable_path=os.getenv("CHROMIUM", "/usr/bin/chromium"),
+        args=["--no-sandbox", "--disable-dev-shm-usage"],
+    )
+    page = browser.new_page(
+        viewport={"width": 1180, "height": 760}, device_scale_factor=1
+    )
     errors = []
-    page.on('pageerror', lambda err: errors.append(str(err)))
+    page.on("pageerror", lambda err: errors.append(str(err)))
     page.goto(args.base)
-    page.locator('#tv-start').wait_for()
-    to_title = page.evaluate('performance.now()')
-    page.locator('#tv-start').click(timeout=18000)
-    page.wait_for_function('!!window.HonroApp?.engine')
-    to_battle = page.evaluate('performance.now()')
-    while page.locator('[data-action=dialogue-next]:visible').count():
-        page.locator('[data-action=dialogue-next]:visible').first.click()
-    page.wait_for_function('HonroApp.canInput()')
-    log = {'browser':browser.version,'viewport':[1180,760],'deviceScaleFactor':1,
-           'environment':page.evaluate("()=>({platform:navigator.platform,userAgent:navigator.userAgent})"),
-           'pageMsUntilTitleReady':round(to_title), 'pageMsUntilFirstBattle':round(to_battle)}
-    log['arrows'] = page.evaluate(compare_flight)
-    (args.out/'render.json').write_text(json.dumps(log,ensure_ascii=False,indent=2))
-    print('Arrows', [(round(r['distance']),round(r['error'],4)) for r in log['arrows']],flush=True)
-    weak,strong,wind_weak,wind_strong=log['arrows']
-    assert all(s['budget']>0 and s['error'] < .05 for s in log['arrows'])
-    assert strong['distance'] > weak['distance']+50
-    assert abs(wind_weak['actual']['y']-weak['actual']['y']) > 1
-    page.keyboard.down('d')
-    log['moving']=page.evaluate(sample_frames,45)
-    page.keyboard.up('d')
+    page.locator("#tv-start").wait_for()
+    to_title = page.evaluate("performance.now()")
+    page.locator("#tv-start").click(timeout=18000)
+    page.wait_for_function("!!window.HonroApp?.engine")
+    to_battle = page.evaluate("performance.now()")
+    while page.locator("[data-action=dialogue-next]:visible").count():
+        page.locator("[data-action=dialogue-next]:visible").first.click()
+    page.wait_for_function("HonroApp.canInput()")
+    log = {
+        "browser": browser.version,
+        "viewport": [1180, 760],
+        "deviceScaleFactor": 1,
+        "environment": page.evaluate(
+            "()=>({platform:navigator.platform,userAgent:navigator.userAgent})"
+        ),
+        "pageMsUntilTitleReady": round(to_title),
+        "pageMsUntilFirstBattle": round(to_battle),
+    }
+    log["arrows"] = page.evaluate(compare_flight)
+    (args.out / "render.json").write_text(json.dumps(log, ensure_ascii=False, indent=2))
+    print(
+        "Arrows",
+        [(round(r["distance"]), round(r["error"], 4)) for r in log["arrows"]],
+        flush=True,
+    )
+    weak, strong, wind_weak, wind_strong = log["arrows"]
+    assert all(s["budget"] > 0 and s["error"] < 0.05 for s in log["arrows"])
+    assert strong["distance"] > weak["distance"] + 50
+    assert abs(wind_weak["actual"]["y"] - weak["actual"]["y"]) > 1
+    page.keyboard.down("d")
+    log["moving"] = page.evaluate(sample_frames, 45)
+    page.keyboard.up("d")
     for _ in range(7):
-        page.locator('[data-zoom=out]').click()
-    log['minZoom']=page.evaluate(sample_frames,45)
-    log['zoom']=page.evaluate('HonroApp.scene.zoomLevel')
-    page.locator('[data-lock]').click()
-    enemy=page.evaluate("""()=>{const app=HonroApp,u=app.engine.unit('watch-1-pass-1-1');
+        page.locator("[data-zoom=out]").click()
+    log["minZoom"] = page.evaluate(sample_frames, 45)
+    log["zoom"] = page.evaluate("HonroApp.scene.zoomLevel")
+    page.locator("[data-lock]").click()
+    enemy = page.evaluate("""()=>{const app=HonroApp,u=app.engine.unit('watch-1-pass-1-1');
         return app.scene.screenPoint(u.x,u.y-u.h/2)}""")
-    page.mouse.click(enemy['x'],enemy['y'])
-    fire=page.locator('#fire').bounding_box()
-    page.mouse.move(fire['x']+fire['width']/2,fire['y']+fire['height']/2)
+    page.mouse.click(enemy["x"], enemy["y"])
+    fire = page.locator("#fire").bounding_box()
+    page.mouse.move(fire["x"] + fire["width"] / 2, fire["y"] + fire["height"] / 2)
     page.mouse.down()
-    log['charge']=page.evaluate(sample_frames,42)
+    log["charge"] = page.evaluate(sample_frames, 42)
     page.mouse.up()
-    log['release']=page.evaluate(sample_frames,90)
-    assert page.evaluate('HonroApp.engine.b.shot') >= 1
-    base=page.evaluate('document.baseURI')
-    page.goto(urljoin(base,'topview/motions.html'))
-    page.locator('#play').click()
-    page.wait_for_function("document.querySelector('#play').getAttribute('aria-pressed')==='false'")
+    log["release"] = page.evaluate(sample_frames, 90)
+    assert page.evaluate("HonroApp.engine.b.shot") >= 1
+    assert log["release"]["effectFrames"] > 0 and log["release"]["projectileFrames"] > 0
+    base = page.evaluate("document.baseURI")
+    page.goto(urljoin(base, "topview/motions.html"))
+    page.locator("#play").click()
+    page.wait_for_function(
+        "document.querySelector('#play').getAttribute('aria-pressed')==='false'"
+    )
     # Exercise every actual selector with the same renderer and images as the field.
-    frames=page.evaluate("""async()=>{
+    frames = page.evaluate("""async()=>{
         const read=id=>document.getElementById(id),actors=read('actor'),dirs=read('direction'),poses=read('pose');
         const next=()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));
         const canvas=document.querySelector('canvas'),ctx=canvas.getContext('2d');
@@ -123,13 +143,21 @@ with sync_playwright() as pw:
         }
         return {selections:n,minNonBackgroundPixels:minimum};
     }""")
-    log['motionInspector']=frames
-    assert frames['selections']==392 and frames['minNonBackgroundPixels']>12
-    page.select_option('#actor','seolo');page.select_option('#direction','S');page.select_option('#pose','walk')
-    page.locator('#step').click()
-    page.screenshot(path=str(args.out/'motion-inspector.jpg'),quality=84)
-    log['errors']=errors
-    assert not errors,errors
-    (args.out/'render.json').write_text(json.dumps(log,ensure_ascii=False,indent=2)+'\n')
-    print('Frame samples', {k:log[k]['p95ms'] for k in ('moving','minZoom','charge','release')}, flush=True)
+    log["motionInspector"] = frames
+    assert frames["selections"] == 392 and frames["minNonBackgroundPixels"] > 12
+    page.select_option("#actor", "seolo")
+    page.select_option("#direction", "S")
+    page.select_option("#pose", "walk")
+    page.locator("#step").click()
+    page.screenshot(path=str(args.out / "motion-inspector.jpg"), quality=84)
+    log["errors"] = errors
+    assert not errors, errors
+    (args.out / "render.json").write_text(
+        json.dumps(log, ensure_ascii=False, indent=2) + "\n"
+    )
+    print(
+        "Frame samples",
+        {k: log[k]["p95ms"] for k in ("moving", "minZoom", "charge", "release")},
+        flush=True,
+    )
     browser.close()
