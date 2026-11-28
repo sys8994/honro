@@ -9,8 +9,8 @@ def propdict(items):return {p['name']:p['value'] for p in items or []}
 def import_tiled(path: Path):
     m=json.loads(path.read_text(encoding="utf-8"))
     W,H,TW,TH=(m[k] for k in ("width","height","tilewidth","tileheight"))
-    if m.get("orientation")!="isometric" or m.get("infinite") or min(W,H,TW,TH)<=0:
-        raise ValueError("Expected a finite isometric ground grid.")
+    if m.get("orientation")!="orthogonal" or m.get("infinite") or min(W,H,TW,TH)<=0:
+        raise ValueError("Expected a finite rectangular ground map.")
     gidmap={}
     for ref in m["tilesets"]:
         ts=json.loads((path.parent/ref["source"]).read_text(encoding="utf-8")) if "source" in ref else ref
@@ -19,6 +19,12 @@ def import_tiled(path: Path):
         for t in ts["tiles"]:
             gidmap[ref["firstgid"]+t["id"]]=propdict(t.get("properties"))
     layers={l["name"]:l for l in m["layers"]}
+    supported={'Ground','Ground decorations','Props','Spawn and targets','Footprints (guide only)','Chapter 1'}
+    for layer in m['layers']:
+        if layer['name'] not in supported or layer.get('offsetx',0) or layer.get('offsety',0) or layer.get('x',0) or layer.get('y',0):
+            raise ValueError('Unsupported layer or offset: '+layer['name'])
+        expected='tilelayer' if layer['name']=='Ground' else 'objectgroup'
+        if layer['type']!=expected:raise ValueError('Unsupported layer type: '+layer['name'])
     ground=layers["Ground"]
     if ground["type"]!="tilelayer" or len(ground["data"])!=W*H:
         raise ValueError("Ground dimensions and native GID count disagree.")
@@ -38,13 +44,13 @@ def import_tiled(path: Path):
             raise ValueError(f"Unknown prop asset: {asset}")
         ax,ay=p.get("anchorX",.5),p.get("anchorY",1)
         dx=(.5-ax)*o["width"];dy=(1-ay)*o["height"]
-        objects.append({"id":o["name"],"asset":asset,"x":round((o["x"]-dy-dx/2)/TH,6),"y":round((o["y"]-dy+dx/2)/TH,6),
+        objects.append({"id":o["name"],"asset":asset,"x":round((o["x"]-dx)/TW,6),"y":round((o["y"]-dy)/TH,6),
                         "width":o["width"],"height":o["height"],"anchor":[ax,ay],
                         "blocksMovement":p.get("blocksMovement",False),"radius":p.get("radius",.3),"blocksProjectile":p.get("blocksProjectile",False)})
         if p.get("groundDecoration",False):objects[-1]["groundDecoration"]=True
     spawn=None; targets=[]
     for o in layers["Spawn and targets"]["objects"]:
-        point={"x":o["x"]/TH,"y":o["y"]/TH}
+        point={"x":o["x"]/TW,"y":o["y"]/TH}
         category=o.get('class') or o.get('type')
         if category=="Spawn":spawn=point
         elif category=="Target":targets.append({"id":o["name"],**point})
@@ -61,7 +67,7 @@ p=args.source
 mapdata=import_tiled(p)
 src=json.loads(p.read_text())
 layer=next(l for l in src['layers'] if l['name']=='Chapter 1')
-anchors={o['name']:{'x':o['x']/mapdata['tileHeight'],'y':o['y']/mapdata['tileHeight']} for o in layer['objects'] if o['point']}
+anchors={o['name']:{'x':o['x']/mapdata['tileWidth'],'y':o['y']/mapdata['tileHeight']} for o in layer['objects'] if o['point'] and not o.get('rotation')}
 if len(anchors)!=len(layer['objects']):raise ValueError('Duplicate or missing chapter point')
-mapdata.update(meta={'title':'연목 고갯길','revision':1,'source':'editable/yeonmok.tmj'},anchors=anchors,cell=180)
+mapdata.update(meta={'title':'연목 고갯길','revision':2,'source':'editable/yeonmok.tmj'},anchors=anchors,cell=180)
 args.output.write_text(json.dumps(mapdata,ensure_ascii=False,separators=(',',':'))+'\n')

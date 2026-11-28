@@ -2,6 +2,7 @@ import {groundProjection} from './space.mjs';
 import {terrainSpace,center} from './terrain.mjs';
 import {spatialEngine} from './engine.mjs';
 import {groundScene} from './scene.mjs';
+import {animals} from './actors.mjs';
 
 const G=globalThis, product=G.HonroTopview;
 const base=new URL('../',import.meta.url);
@@ -9,7 +10,8 @@ const load=async path=>{const r=await fetch(new URL(path,base));if(!r.ok)throw E
 const map=await load('data/yeonmok.json'),space=terrainSpace(map);
 const textures=[...new Set(map.terrain)].map(n=>[n+'_texture','assets/terrain/'+n+'_texture.png']);
 const props=[...new Set(map.objects.map(o=>o.asset))].map(n=>[n,'assets/props/'+n+'.png']);
-const actors=['seolo','seolo-bow','hound','boar','stag','crow','bat','ghost','cart','woodcutter'].map(n=>[n,'assets/actors/'+n+'.webp']);
+props.push(['bridge-near','assets/props/bridge-near.png']);
+const actors=['seolo','seolo-front','seolo-states','seolo-bow',...animals.map(id=>'turns-'+id),'cart','woodcutter'].map(n=>[n,'assets/actors/'+n+'.webp']);
 const images=new Map(await Promise.all([...textures,...props,...actors].map(async ([id,path])=>{
   const image=new Image();image.src=new URL(path,base);await image.decode();return [id,image];
 })));
@@ -82,7 +84,9 @@ product.minimap=function(app){
   c.closePath();c.strokeStyle='#e1d3b2';c.lineWidth=.8;c.stroke();
 };
 product.configure=function(App) {
-  const P=App.prototype, mount=P.mount, launch=P.launch, outcome=P.outcome;
+  const P=App.prototype, mount=P.mount, launch=P.launch, outcome=P.outcome, cancel=P.cancelInput, charge=P.beginCharge;
+  P.cancelInput=function(){product.resetFieldInput?.();return cancel.call(this);};
+  P.beginCharge=function(){const ok=charge.call(this);if(ok&&this.engine?.active)delete this.engine.active.tvPath;return ok;};
   P.mount=function(b,opts){prepare(b);const result=mount.call(this,b,opts);bindField(this);return result;};
   P.launch=function(id=1,training=false,skill=null){
     if(id!==1||training){this.notify('이번 여정은 연목 고갯길까지입니다.');return;}
@@ -100,10 +104,12 @@ product.configure=function(App) {
   // Leaving the licensed chapter returns to the demo title. Menus for equipment,
   // skills, reports and settings continue to use the original runtime.
   P.displayAngle=function(u){const a=u.angle*Math.PI/180,v=product.projection.forward(Math.cos(a),-Math.sin(a));return (Math.atan2(v.x,-v.y)*180/Math.PI+360)%360;};
-  P.battleHelp=function(){this.open('<h2>연목 고갯길</h2><p>나루로 가려면 개울을 건너 북동쪽 고개 끝에 닿으세요. 두 다리 중 하나를 고를 수 있습니다.</p><p>이동을 고르고 지면을 누르거나 방향키·WASD·왼쪽 스틱을 쓰세요. 조준을 고르고 원하는 방향을 누른 뒤 발사를 누르고 있다가 놓으세요. 점선은 실제 바람과 엄폐를 반영합니다.</p><p>발이 묶이는 물 위로도 화살은 지나갑니다. 돌은 몸과 화살을 막습니다. 방어하면 턴을 넘기며 기력을 회복합니다.</p><button data-action="close">전장으로</button>','battle-help');};
+  P.battleHelp=function(){this.open('<h2>연목 고갯길</h2><p>개울을 건너 나무꾼을 만나고 북동쪽 고개 끝에 닿으세요. 미니맵을 누르면 그곳을 볼 수 있습니다.</p><p>방향키·WASD·왼쪽 스틱 또는 지면을 눌러 이동합니다. 이동 잠금(L)을 켜면 발을 멈추고 입력한 방향만 봅니다. 활을 당기는 중에도 스틱으로 조준할 수 있습니다. 발사를 길게 눌렀다 놓으세요.</p><p>화살은 개울을 건너고 바위에 막힙니다. 예상 궤적은 북쪽 다리의 횡풍을 반영합니다. 방어하면 턴을 넘기며 기력을 회복합니다.</p><button data-action="close">전장으로</button>','battle-help');};
   P.showMap=P.showRest=P.showAtlas=function(){this.showTitle();};
   P.outcome=function(...args){const result=outcome.apply(this,args);
     if(this.done&&this.modal.classList.contains('open')){
+      const heading=this.modal.querySelector('.result-title');
+      if(heading&&this.engine.b.phase==='won')heading.textContent='연목 고갯길 · 1막 1장 데모 완료';
       for(const button of this.modal.querySelectorAll('[data-action="rest"],[data-action="map"],[data-action="next"],[data-action="journey-after-result"],[data-action="result-continue"]')){
         button.dataset.action='title';button.textContent='데모 타이틀';
       }
@@ -116,29 +122,26 @@ function bindField(app){
   const hud=document.querySelector('.battle');hud.classList.add('tv-field');
   const mini=document.getElementById('minimap');
   const miniPan=ev=>{ev.stopImmediatePropagation();ev.preventDefault();if(app.dialogue||app.modal.classList.contains('open'))return;
-    const r=mini.getBoundingClientRect(),p=product.projection.forward((ev.clientX-r.left)/r.width*space.width,(ev.clientY-r.top)/r.height*space.height),old=product.projection.forward(scene.x,scene.y);
-    scene.panOffset={x:p.x-old.x,y:p.y-old.y};
+    const r=mini.getBoundingClientRect();scene.centerAt((ev.clientX-r.left)/r.width*space.width,(ev.clientY-r.top)/r.height*space.height);
   };
   mini.addEventListener('pointerdown',miniPan,{capture:true});
   const bar=document.createElement('div');bar.className='tv-toolbar';
-  bar.innerHTML='<button type="button" data-mode="walk" aria-pressed="true">이동</button><button type="button" data-mode="aim" aria-pressed="false">조준</button><button type="button" data-zoom="out" aria-label="축소">−</button><button type="button" data-zoom="in" aria-label="확대">＋</button><button type="button" data-map aria-label="전장 전체 보기">전장</button>';
-  hud.append(bar);let mode='walk';const pointers=new Map();let initialPinch=null,dragged=false,start=null;
-  function setMode(m){mode=m;for(const b of bar.querySelectorAll('[data-mode]'))b.setAttribute('aria-pressed',String(b.dataset.mode===mode));}
-  bar.onclick=ev=>{const t=ev.target.closest('button');if(!t)return;if(t.dataset.mode)setMode(t.dataset.mode);
-    if(t.dataset.zoom){scene.zoomLevel=Math.min(3.2,Math.max(.52,scene.zoomLevel*(t.dataset.zoom==='in'?1.25:.8)));scene.panOffset={x:0,y:0};}
-    if(t.hasAttribute('data-map')){
-      scene.overview=!scene.overview;const r=canvas.getBoundingClientRect();
-      scene.zoomLevel=scene.overview?Math.min(r.width/(groundW()+40),r.height/(groundH()+110)):1.45;
-      scene.panOffset={x:0,y:0};
-    }};
-  const groundW=()=>(map.width+map.height)*map.tileWidth/2,groundH=()=>(map.width+map.height)*map.tileHeight/2;
+  bar.innerHTML='<button type="button" data-lock aria-keyshortcuts="L"></button><button type="button" data-zoom="out" aria-label="축소">−</button><button type="button" data-zoom="in" aria-label="확대">＋</button><button type="button" data-center aria-label="설오에게 카메라 복귀">설오 보기</button>';
+  hud.append(bar);const pointers=new Map();let initialPinch=null,dragged=false,start=null;
+  const lock=bar.querySelector('[data-lock]'),battle=app.engine.b;
+  function showLock(){lock.setAttribute('aria-pressed',String(!!battle.tvMoveLocked));lock.textContent=battle.tvMoveLocked?'이동 잠금 켜짐':'이동 잠금 꺼짐';}
+  function toggle(){if(!app.canInput())return;battle.tvMoveLocked=!battle.tvMoveLocked;const u=app.engine.active;if(u)delete u.tvPath;showLock();app.dirty=true;}
+  showLock();product.toggleLock=toggle;
+  bar.onclick=ev=>{const t=ev.target.closest('button');if(!t)return;if(t.hasAttribute('data-lock'))toggle();
+    if(t.dataset.zoom){const r=canvas.getBoundingClientRect();scene.zoom(t.dataset.zoom==='in'?1.16:1/1.16,r.width/2,r.height/2);}
+    if(t.hasAttribute('data-center'))scene.panOffset={x:0,y:0};};
   const xy=ev=>{const r=canvas.getBoundingClientRect();return{x:ev.clientX-r.left,y:ev.clientY-r.top};};
   const dist=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y);
-  const aim=p=>{if(!app.canInput())return;const u=app.engine.active,a=center(u);u.angle=Math.atan2(a.y-p.y,p.x-a.x)*180/Math.PI;u.facing=p.x>=a.x?1:-1;u.tvHeading={x:p.x-a.x,y:p.y-a.y};app.dirty=true;};
+  const aim=p=>{const u=app.engine.active,a=center(u);app.engine.face(u,p.x-a.x,p.y-a.y);app.dirty=true;};
   function tap(point){
     if(!app.canInput())return;const e=app.engine,u=e.active,z=scene.world(point.x,point.y);
     const target=e.b.units.find(v=>v.side===1&&!v.dead&&dist(center(v),z)<=Math.max(v.r,58/scene.zoomLevel));
-    if(mode==='aim'){aim(target?center(target):z);return;}
+    if(battle.tvMoveLocked||app.charging){aim(target?center(target):z);return;}
     const path=space.route(center(u),z,u.r);if(path.length){u.tvPath=path;app.dirty=true;}else app.notify('발을 디딜 길이 없습니다.');
   }
   // Replace gestures on the field alone. Native HUD charge/release, defend and
@@ -147,17 +150,20 @@ function bindField(app){
   handle('pointerdown',ev=>{const p=xy(ev);canvas.setPointerCapture(ev.pointerId);pointers.set(ev.pointerId,p);start=p;dragged=false;
     if(pointers.size===2){const [a,b]=[...pointers.values()];initialPinch={dist:dist(a,b),zoom:scene.zoomLevel};dragged=true;}});
   handle('pointermove',ev=>{if(!pointers.has(ev.pointerId))return;const p=xy(ev),prev=pointers.get(ev.pointerId);pointers.set(ev.pointerId,p);
-    if(initialPinch&&pointers.size===2){const [a,b]=[...pointers.values()];scene.zoomLevel=Math.max(.52,Math.min(3.2,initialPinch.zoom*dist(a,b)/Math.max(1,initialPinch.dist)));return;}
+    if(initialPinch&&pointers.size===2){const [a,b]=[...pointers.values()];scene.zoom(initialPinch.zoom*dist(a,b)/(Math.max(1,initialPinch.dist)*scene.zoomLevel),(a.x+b.x)/2,(a.y+b.y)/2);return;}
     if(!start)return;if(dist(start,p)>8)dragged=true;
-    if(dragged){scene.panOffset.x-=(p.x-prev.x)/scene.zoomLevel;scene.panOffset.y-=(p.y-prev.y)/scene.zoomLevel;}});
+    if(dragged)scene.pan((prev.x-p.x)/scene.zoomLevel,(prev.y-p.y)/scene.zoomLevel);});
   handle('pointerup',ev=>{if(pointers.size===1&&!dragged&&!initialPinch)tap(xy(ev));pointers.delete(ev.pointerId);if(!pointers.size){initialPinch=null;start=null;}});
   handle('pointercancel',ev=>{pointers.delete(ev.pointerId);dragged=true;initialPinch=null;});
   handle('wheel',ev=>{const p=xy(ev);scene.zoom(Math.exp(-ev.deltaY*.001),p.x,p.y);});
+  let sid=null;
+  product.resetFieldInput=()=>{held.clear();sid=null;pointers.clear();initialPinch=null;start=null;control.x=control.y=0;if(app.engine?.active)delete app.engine.active.tvPath;};
+  document.getElementById('fire')?.addEventListener('pointercancel',ev=>{if(ev.pointerId===app.firePointer)app.cancelInput();},{capture:true});
   if(stick){
     stick.setAttribute('aria-label','여덟 방향 이동');
     const knob=stick.querySelector('#stick-knob'),label=stick.querySelector('.stick-mode');if(label)label.textContent='이동';
-    let sid=null;const push=ev=>{const r=stick.getBoundingClientRect(),x=ev.clientX-r.left-r.width/2,y=ev.clientY-r.top-r.height/2,m=Math.hypot(x,y);
-      control.x=m>5?x/m:0;control.y=m>5?y/m:0;if(knob)knob.style.transform="translate("+control.x*16+"px,"+control.y*16+"px)";};
+    const push=ev=>{const r=stick.getBoundingClientRect(),x=ev.clientX-r.left-r.width/2,y=ev.clientY-r.top-r.height/2,m=Math.hypot(x,y),mag=Math.min(1,Math.max(0,(m-5)/Math.max(1,r.width*.41-5)));
+      control.x=m?x/m*mag:0;control.y=m?y/m*mag:0;if(knob)knob.style.transform="translate("+control.x*16+"px,"+control.y*16+"px)";};
     for(const type of ['pointerdown','pointermove','pointerup','pointercancel','lostpointercapture'])stick.addEventListener(type,ev=>{
       ev.stopImmediatePropagation();ev.preventDefault();
       if(type==='pointerdown'){if(!app.canInput())return;sid=ev.pointerId;stick.setPointerCapture(sid);push(ev);}
@@ -167,9 +173,13 @@ function bindField(app){
 }
 const held=new Set(),dirs={KeyW:[0,-1],KeyS:[0,1],KeyA:[-1,0],KeyD:[1,0],ArrowUp:[0,-1],ArrowDown:[0,1],ArrowLeft:[-1,0],ArrowRight:[1,0]};
 for(const type of ['keydown','keyup'])window.addEventListener(type,ev=>{
+  if(ev.target?.matches?.('input,textarea,select,[contenteditable="true"]'))return;
+  if(ev.code==='KeyL'&&G.HonroApp?.screen==='battle'&&!G.HonroApp?.dialogue&&!G.HonroApp.modal.classList.contains('open')){ev.preventDefault();ev.stopImmediatePropagation();if(type==='keydown'&&!ev.repeat)product.toggleLock?.();return;}
   if(!dirs[ev.code])return;
   if(!(type==='keyup'&&held.has(ev.code))&&(G.HonroApp?.screen!=='battle'||G.HonroApp?.dialogue||G.HonroApp?.modal?.classList.contains('open')))return;
+  if(type==='keydown'&&!G.HonroApp.canInput())return;
   ev.preventDefault();ev.stopImmediatePropagation();if(type==='keydown')held.add(ev.code);else held.delete(ev.code);
   const c=product.controls;c.x=c.y=0;for(const key of held){c.x+=dirs[key][0];c.y+=dirs[key][1];}
 },{capture:true});
-window.addEventListener('blur',()=>{held.clear();product.controls.x=product.controls.y=0;});
+function abandonInput(){if(G.HonroApp?.screen==='battle')G.HonroApp.cancelInput();}
+window.addEventListener('blur',abandonInput);document.addEventListener('visibilitychange',()=>{if(document.hidden)abandonInput();});

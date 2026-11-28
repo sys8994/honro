@@ -15,7 +15,7 @@ manifest=json.loads((root/'web/manifest.json').read_text())
 runtime=json.loads((root/'topview/generated/native.json').read_text())
 project=manifest['project']
 files={r['path'] for r in manifest['files']}
-pending=set(runtime['modules']+runtime['styles']+['topview/index.html','topview/style.css','topview/generated/native.json','topview/data/yeonmok.json'])
+pending=set(runtime['modules']+runtime['styles']+['topview/index.html','topview/motions.html','topview/style.css','topview/generated/native.json','topview/data/yeonmok.json'])
 for folder in ['src','assets/actors','assets/props','assets/terrain']:
     pending.update(str(p.relative_to(root)) for p in (root/'topview'/folder).rglob('*') if p.is_file())
 # Other chapters cannot be entered. Menus can show learned and locked techniques

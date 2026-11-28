@@ -23,6 +23,10 @@ export function spatialEngine(C,space) {
       return h;
     }
     bodyFlightCollision(u,a,z){return space.nearest(a,z,u.r);}
+    face(u,dx,dy){
+      if(Math.hypot(dx,dy)<1e-6)return;
+      u.tvHeading=direction(dx,dy);u.angle=Math.atan2(-dy,dx)*180/Math.PI;u.facing=dx>=0?1:-1;
+    }
     walkVector(u,dx,dy,dt){
       if(!u||u.fixed||u.dead||u.bound>0&&u.moveLeft<=0||u.meleeFollow==='ready')return 0;
       const d=direction(dx,dy),a=center(u),budget=Math.min(u.moveLeft,u.walkSpeed*dt);
@@ -30,7 +34,7 @@ export function spatialEngine(C,space) {
       const z=space.move(a,d.x*budget,d.y*budget,u.r,flying(u)),travel=Math.hypot(z.x-a.x,z.y-a.y);
       if(travel<.001)return 0;
       u.x=z.x;u.y=z.y+u.h*.5;u.moveLeft=Math.max(0,u.moveLeft-travel);u.moving=.14;
-      u.tvStride=(u.tvStride||0)+travel;u.tvHeading={x:d.x,y:d.y};u.facing=d.x>=0?1:-1;
+      u.tvStride=(u.tvStride||0)+travel;this.face(u,d.x,d.y);
       return travel;
     }
     moveVector(dx,dy,dt){if(!this.canAct())return;const u=this.active;delete u.tvPath;
@@ -57,10 +61,15 @@ export function spatialEngine(C,space) {
       u.x=z.x;u.y=z.y+u.h*.5;u.jumping=false;return true;
     }
     tick(dt){
-      if(this.canAct()){
-        const u=this.active,keys=globalThis.HonroTopview.controls,dx=keys?.x||0,dy=keys?.y||0;
-        if(dx||dy){const v=globalThis.HonroTopview.projection.inverse(dx,dy);this.moveVector(v.x,v.y,dt);}
-        else if(u.tvPath?.length&&u.moveLeft>0)this.travelToward(u,u.tvPath.at(-1),dt);
+      const product=globalThis.HonroTopview,app=globalThis.HonroApp;
+      if(app?.engine===this){const turn=this.b.round+'|'+this.b.active;
+        if(this.controlTurn!==undefined&&this.controlTurn!==turn)app.cancelInput();this.controlTurn=turn;
+      }
+      if(this.canAct()&&app?.engine===this&&app.canInput()){
+        const u=this.active,keys=product.controls,dx=keys.x,dy=keys.y;
+        if(dx||dy){const v=product.projection.inverse(dx,dy);delete u.tvPath;this.face(u,v.x,v.y);
+          if(!this.b.tvMoveLocked&&!app.charging)this.moveVector(v.x,v.y,dt*Math.min(1,Math.hypot(dx,dy)));
+        }else if(!this.b.tvMoveLocked&&!app.charging&&u.tvPath?.length&&u.moveLeft>0)this.travelToward(u,u.tvPath.at(-1),dt);
       }
       super.tick(dt);
     }

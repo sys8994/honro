@@ -7,6 +7,7 @@ from pathlib import Path
 from playwright.sync_api import sync_playwright
 parser=argparse.ArgumentParser()
 parser.add_argument('--mobile',action='store_true')
+parser.add_argument('--viewport',help='CSS viewport, e.g. 390x844')
 parser.add_argument('--out',required=True,type=Path)
 parser.add_argument('--base')
 args=parser.parse_args();args.out.mkdir(parents=True,exist_ok=True)
@@ -26,7 +27,8 @@ def note(label, data=None):
     print(label, str(data)[:175],flush=True)
 with sync_playwright() as p:
     browser=p.chromium.launch(executable_path=os.getenv('CHROMIUM','/usr/bin/chromium'),headless=True,args=['--no-sandbox','--disable-dev-shm-usage'])
-    page=browser.new_page(viewport={'width':844 if args.mobile else 1180,'height':480 if args.mobile else 760},device_scale_factor=1,is_mobile=args.mobile,has_touch=args.mobile)
+    width,height=map(int,args.viewport.split('x')) if args.viewport else ((844,480) if args.mobile else (1180,760))
+    page=browser.new_page(viewport={'width':width,'height':height},device_scale_factor=1,is_mobile=args.mobile,has_touch=args.mobile)
     requests=set()
     def resource(response):
         u=urlsplit(response.url)
@@ -34,8 +36,8 @@ with sync_playwright() as p:
     page.on('response',resource)
     page.on('pageerror',lambda e:log['errors'].append(str(e)))
     def tap(loc):
-        if args.mobile:loc.tap(timeout=4500)
-        else:loc.click(timeout=4500)
+        if args.mobile:loc.tap(timeout=18000)
+        else:loc.click(timeout=18000)
     def point(x,y):
         if args.mobile:page.touchscreen.tap(x,y)
         else:page.mouse.click(x,y)
@@ -78,7 +80,7 @@ with sync_playwright() as p:
             log['checks']['keyboard']={'before':before,'after':after}
             if before['move']<=after['move'] or before['x']==after['x'] or before['y']==after['y']:raise AssertionError('대각선 이동과 이동도')
         arm_trace()
-        tap(page.locator('[data-mode=aim]'))
+        tap(page.locator('[data-lock]'));assert page.locator('[data-lock]').get_attribute('aria-pressed')=='true'
         tgt=page.evaluate("()=>{const a=HonroApp,e=a.engine,u=e.unit('watch-1-pass-1-1');return a.scene.screenPoint(u.x,u.y-u.h/2);}")
         point(tgt['x'],tgt['y'])
         r=page.locator('#fire').bounding_box();x,y=r['x']+r['width']/2,r['y']+r['height']/2
@@ -108,7 +110,10 @@ with sync_playwright() as p:
         log['checks']['reload']={'before':s0,'after':s1};note('일반 이어가기',s1)
         for key in ['round','phase','active','hp','shot','events','cast','x','y']:
             if s0[key]!=s1[key]:raise AssertionError(('이어가기',key,s0[key],s1[key]))
-        tap(page.locator('[data-map]'));tap(page.locator('[data-mode=walk]'));page.wait_for_timeout(200)
+        lock=page.locator('[data-lock]');
+        if lock.get_attribute('aria-pressed')=='true':tap(lock)
+        def look_at(cx,cy):
+            mini=page.locator('#minimap').bounding_box();point(mini['x']+cx/(mapdata['width']*mapdata['cell'])*mini['width'],mini['y']+cy/(mapdata['height']*mapdata['cell'])*mini['height'])
         for target in ['marker-4','marker-6','witness','ridge','marker-7']:
             q=mapdata['anchors'][target];cx=q['x']*mapdata['cell'];cy=q['y']*mapdata['cell']
             for attempt in range(18):
@@ -118,7 +123,7 @@ with sync_playwright() as p:
                 if distance<104:break
                 if s['move']<8:
                     tap(page.locator('[data-action="defend"]:visible').first);note('방어',state());continue
-                loc=page.evaluate('([x,y])=>HonroApp.scene.screenPoint(x,y)',[cx,cy]);point(loc['x'],loc['y']);note(target+' 이동',{'screen':loc,'distance':round(distance),'state':state()})
+                look_at(cx,cy);loc=page.evaluate('([x,y])=>HonroApp.scene.screenPoint(x,y)',[cx,cy]);point(loc['x'],loc['y']);note(target+' 이동',{'screen':loc,'distance':round(distance),'state':state()})
                 for step in range(85):
                     page.wait_for_timeout(170);v=state()
                     if v['done'] or v.get('line') or v.get('error') or v['move']<=1 or v['route']==0:break

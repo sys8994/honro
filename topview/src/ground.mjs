@@ -1,10 +1,7 @@
 // Material compositor inherited from the original asset lab.
 export function buildGround(map, sourceFor) {
-    const tileWidth=()=>map.tileWidth,tileHeight=()=>map.tileHeight;
-    let groundLeft,groundTop,ground;
-    const pad = 8; groundLeft = -map.height * tileWidth() / 2 - pad; groundTop = -pad;
-    ground = document.createElement('canvas'); ground.width = Math.ceil((map.width + map.height) * tileWidth() / 2 + pad * 2); ground.height = Math.ceil((map.width + map.height) * tileHeight() / 2 + pad * 2);
-    const g = ground.getContext('2d'); g.translate(-groundLeft, -groundTop); g.imageSmoothingEnabled = true;
+    const ground = document.createElement('canvas'); ground.width = map.width*map.tileWidth; ground.height=map.height*map.tileHeight;
+    const g = ground.getContext('2d'); g.imageSmoothingEnabled = true;
     // The reusable source material is sampled in world coordinates. The same
     // semantic cell map still owns geography; masks only soften material joins.
     const materialIds = [...new Set(map.terrain)];
@@ -74,10 +71,8 @@ export function buildGround(map, sourceFor) {
         waterContext.globalCompositeOperation = 'source-in'; waterContext.fillStyle = patterns.get('water'); waterContext.fillRect(0, 0, water.width, water.height);
         pc.drawImage(water, 0, 0);
       }
-      g.save();
-      g.transform(tileWidth() / (2 * resolution), tileHeight() / (2 * resolution), -tileWidth() / (2 * resolution), tileHeight() / (2 * resolution), 0, 0);
-      g.drawImage(plane, 0, 0); g.restore();
-      return {image:ground,left:groundLeft,top:groundTop};
+      g.drawImage(plane,0,0,ground.width,ground.height);
+      return ground;
     }
     throw Error('지형 재질을 불러오지 못했습니다');
 }

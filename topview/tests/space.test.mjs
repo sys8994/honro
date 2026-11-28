@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {groundProjection, sweepBox, sweepDisc, slide} from '../src/space.mjs';
+import {groundProjection,cameraView, sweepBox, sweepDisc, slide} from '../src/space.mjs';
 
 test('screen ground vectors round trip at different aspect and tile sizes', () => {
   for (const sizes of [[96, 92, 46], [60, 64, 32]]) {
@@ -8,6 +8,15 @@ test('screen ground vectors round trip at different aspect and tile sizes', () =
     for (const [x, y] of [[0, 0], [-491, 1845], [312.17, 140.68]]) {
       const p = projection.forward(x, y), q = projection.inverse(p.x, p.y);
       assert.ok(Math.hypot(q.x - x, q.y - y) < 1e-9);
+    }
+  }
+});
+test('camera covers the authored rectangle at each corner and after resizing',()=>{
+  for(const [w,h] of [[1180,760],[844,480],[390,844],[2560,1080],[420,1480]]){
+    for(const x of [-1e5,0,1920,1e5])for(const y of [-1e5,0,1056,1e5]){
+      const camera=cameraView(1920,1056,w,h,.01,x,y);
+      assert.ok(camera.x-w/(2*camera.zoom)>=-1e-8 && camera.y-h/(2*camera.zoom)>=-1e-8);
+      assert.ok(camera.x+w/(2*camera.zoom)<=1920+1e-8 && camera.y+h/(2*camera.zoom)<=1056+1e-8);
     }
   }
 });

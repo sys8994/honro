@@ -3,20 +3,20 @@
   "version": "1.10",
   "name": "Honro ground",
   "tilewidth": 64,
-  "tileheight": 32,
+  "tileheight": 44,
   "tilecount": 5,
   "columns": 0,
   "grid": {
-    "orientation": "isometric",
+    "orientation": "orthogonal",
     "width": 64,
-    "height": 32
+    "height": 44
   },
   "tiles": [
     {
       "id": 0,
       "image": "../assets/terrain/grass.png",
       "imagewidth": 64,
-      "imageheight": 32,
+      "imageheight": 44,
       "properties": [
         {
           "name": "terrain",
@@ -39,7 +39,7 @@
       "id": 1,
       "image": "../assets/terrain/dirt.png",
       "imagewidth": 64,
-      "imageheight": 32,
+      "imageheight": 44,
       "properties": [
         {
           "name": "terrain",
@@ -62,7 +62,7 @@
       "id": 2,
       "image": "../assets/terrain/rock.png",
       "imagewidth": 64,
-      "imageheight": 32,
+      "imageheight": 44,
       "properties": [
         {
           "name": "terrain",
@@ -85,7 +85,7 @@
       "id": 3,
       "image": "../assets/terrain/water.png",
       "imagewidth": 64,
-      "imageheight": 32,
+      "imageheight": 44,
       "properties": [
         {
           "name": "terrain",
@@ -108,7 +108,7 @@
       "id": 4,
       "image": "../assets/terrain/path.png",
       "imagewidth": 64,
-      "imageheight": 32,
+      "imageheight": 44,
       "properties": [
         {
           "name": "terrain",

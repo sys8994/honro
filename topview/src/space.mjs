@@ -4,11 +4,19 @@ export function groundProjection(cell, tileWidth, tileHeight) {
   if (![cell, tileWidth, tileHeight].every(n => Number.isFinite(n) && n > 0)) {
     throw new RangeError('Invalid ground projection');
   }
-  const halfWidth = tileWidth / (2 * cell), halfHeight = tileHeight / (2 * cell);
+  const horizontal = tileWidth / cell, vertical = tileHeight / cell;
   return {
-    forward(x, y) { return {x: (x - y) * halfWidth, y: (x + y) * halfHeight}; },
-    inverse(x, y) { return {x: (x / halfWidth + y / halfHeight) / 2, y: (y / halfHeight - x / halfWidth) / 2}; }
+    forward(x, y) { return {x:x*horizontal,y:y*vertical}; },
+    inverse(x, y) { return {x:x/horizontal,y:y/vertical}; }
   };
+}
+
+// The center is in projected map units. Wide/tall screens increase the minimum
+// zoom until their entire CSS viewport fits inside the authored rectangle.
+export function cameraView(mapWidth,mapHeight,width,height,wanted,x,y){
+  const min=Math.max(1.05,width/mapWidth,height/mapHeight),max=Math.max(2.05,min);
+  const zoom=Math.min(max,Math.max(min,wanted)),halfX=width/(2*zoom),halfY=height/(2*zoom);
+  return {zoom,min,max,x:Math.max(halfX,Math.min(mapWidth-halfX,x)),y:Math.max(halfY,Math.min(mapHeight-halfY,y))};
 }
 
 export function direction(dx, dy) {

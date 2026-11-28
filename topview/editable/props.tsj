@@ -2,7 +2,7 @@
   "type": "tileset",
   "version": "1.10",
   "name": "Honro modular props",
-  "tilewidth": 522,
+  "tilewidth": 720,
   "tileheight": 400,
   "tilecount": 8,
   "columns": 0,
@@ -207,8 +207,8 @@
     {
       "id": 7,
       "image": "../assets/props/bridge.png",
-      "imagewidth": 399,
-      "imageheight": 328,
+      "imagewidth": 720,
+      "imageheight": 216,
       "properties": [
         {
           "name": "asset",

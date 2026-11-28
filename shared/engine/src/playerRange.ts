@@ -33,7 +33,7 @@ export function playerRangeSpeed(u:Unit,s:Skill,original:number){
  if(s.martial&&s.branch==='blade')speed*=Math.sqrt(1+.015*clamp(u.ranks.SP01||0,0,8));
  return speed;
 }
-export function initializePlayerRange(p:Projectile,u:Unit,s:Skill){
+export function initializePlayerRange(p:Projectile,u:Unit,s:Skill,planarFullSpeed=0){
  if(!playerRangeApplies(u,s))return;
  const t=PLAYER_RANGE_TUNING[s.id];
  p.rangeRevision=PLAYER_RANGE_REVISION;
@@ -41,6 +41,9 @@ export function initializePlayerRange(p:Projectile,u:Unit,s:Skill){
   p.flightRange={x:u.x,y:u.y-u.h*.63,distance:t.distance,seconds:t.seconds,rush:s.martial&&s.branch==='rush'?1500:undefined};p.flightAge=0;
  }
  if(s.cls==='archer'){
+  // Ground-plane arrows do not land under a downward gravity. Apply the original
+  // skill's range as a flight clock. The native charge curve still sets speed.
+  if(planarFullSpeed>0&&!p.flightRange){p.flightRange={x:p.x,y:p.y,seconds:t.target/planarFullSpeed};p.flightAge=0;}
   const old=s.speed*(1.26-u.tune*.14),ratio=old/playerRangeSpeed(u,s,old);
   p.trajectorySpeedScale=ratio;p.trajectoryDropScale=ratio*ratio;
  }
