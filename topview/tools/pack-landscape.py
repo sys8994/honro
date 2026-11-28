@@ -29,39 +29,7 @@ for col, name in enumerate(["pine_a", "pine_b"]):
     pic = crop_sprite(trees, col, 0, 2, 1)
     pic.thumbnail((320, 320), Image.Resampling.LANCZOS)
     pic.save(base / "props" / (name + ".png"), optimize=True)
-architecture = Image.open(base / "source/isometric-pass-structures.png")
-for name, col, row in [
-    ("bridge_ne", 0, 0),
-    ("bridge_se", 1, 0),
-    ("shrine", 0, 1),
-    ("ruin_gate", 1, 1),
-]:
-    sprite = crop_sprite(architecture, col, row, 2, 2)
-    sprite.thumbnail((384, 344), Image.Resampling.LANCZOS)
-    sprite.save(base / "props" / (name + ".png"), optimize=True)
-    if name.startswith("bridge"):
-        # Front faces only. Depth sorting later divides the diagonal rail at each post.
-        outline = (
-            [(0.195, 0.75), (0.955, 0.163), (1, 0.125), (1, 1), (0, 1), (0, 0.91)]
-            if name == "bridge_ne"
-            else [
-                (0, 0.18),
-                (0.055, 0.14),
-                (0.77, 0.70),
-                (0.92, 0.79),
-                (1, 0.79),
-                (1, 1),
-                (0, 1),
-            ]
-        )
-        w, h = sprite.size
-        mask = Image.new("L", (w, h))
-        ImageDraw.Draw(mask).polygon(
-            [(round(x * w), round(y * h)) for x, y in outline], fill=255
-        )
-        front = sprite.copy()
-        front.putalpha(ImageChops.multiply(sprite.getchannel("A"), mask))
-        front.save(base / "props" / (name + "-near.png"), optimize=True)
+# Metre-authored architecture is baked separately by render-structures.py.
 surfaces = Image.open(base / "source/isometric-pass-surfaces.png").convert("RGB")
 w, h = surfaces.size
 for name, col, row in [
@@ -120,19 +88,6 @@ for name, edge, high in [
             (1, 0.86),
         ],
         "crown",
-    ),
-    (
-        "shrine",
-        [
-            (0, 0.40),
-            (0.10, 0.47),
-            (0.25, 0.417),
-            (0.49, 0.57),
-            (0.55, 0.575),
-            (0.83, 0.456),
-            (1, 0.347),
-        ],
-        "roof",
     ),
 ]:
     src = Image.open(base / "props" / (name + ".png")).convert("RGBA")

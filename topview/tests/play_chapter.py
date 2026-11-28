@@ -131,7 +131,17 @@ with sync_playwright() as p:
                 if distance<104:break
                 if s['move']<8:
                     tap(page.locator('[data-action="defend"]:visible').first);note('방어',state());continue
-                look_at(cx,cy);loc=page.evaluate('([x,y])=>HonroApp.scene.screenPoint(x,y)',[cx,cy]);point(loc['x'],loc['y']);note(target+' 이동',{'screen':loc,'distance':round(distance),'state':state()})
+                look_at(cx,cy)
+                # The witness is a selectable actor. Click clear ground within the arrival range.
+                loc=page.evaluate('''([x,y,mouse])=>{
+                    const a=HonroApp,s=a.scene;
+                    for(const offset of [[0,0],[45,24],[-45,24],[0,54],[48,0],[-48,0],[0,-54]]){
+                        const p=s.screenPoint(x+offset[0],y+offset[1]);
+                        if(!mouse||!s.pickScreenUnit(p,3))return p;
+                    }
+                    throw Error('No visible ground around the chapter marker');
+                }''',[cx,cy,not args.mobile])
+                point(loc['x'],loc['y']);note(target+' 이동',{'screen':loc,'distance':round(distance),'state':state()})
                 for step in range(85):
                     page.wait_for_timeout(170);v=state()
                     if v['done'] or v.get('line') or v.get('error') or v['move']<=1 or v['route']==0:break

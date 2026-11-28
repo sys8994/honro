@@ -4,7 +4,7 @@ import argparse
 import math
 import json
 from pathlib import Path
-from shapely.geometry import LineString, Point, Polygon, box
+from shapely.geometry import Point, Polygon, box
 from shapely.ops import unary_union
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -150,13 +150,21 @@ def compile_map(source):
         if kind == "Deck":
             points = vertices(o, "polyline")
             width = attrs(o)["widthPx"]
+            (x0,y0),(x1,y1) = points
+            direction = 1 if y1 > y0 else -1
+            if abs((y1-y0)/(x1-x0) - direction*.5) > .001:
+                raise ValueError("Deck must follow a 2:1 ground axis")
+            # The cross beam follows the other dimetric axis; square metre corners
+            # are oblique in screen space. Width is measured normal to the road.
+            dx,dy = width * math.sqrt(1.25) / 2, -direction * width * math.sqrt(1.25) / 4
+            deck = Polygon([(x0+dx,y0+dy),(x1+dx,y1+dy),(x1-dx,y1-dy),(x0-dx,y0-dy)])
             decks[o["name"]] = (
-                LineString(points).buffer(width / 2, cap_style=2),
+                deck,
                 coords(points),
                 width,
             )
         elif kind == "Foundation":
-            foundations[o["name"]] = Polygon(vertices(o, "polygon"))
+            foundations.setdefault(o["name"], []).append(Polygon(vertices(o, "polygon")))
         else:
             raise ValueError("Unknown footprint " + o["name"])
     river = unary_union(streams + water_tiles).intersection(extent)
@@ -190,7 +198,7 @@ def compile_map(source):
             _, line, span = decks[item["id"]]
             item["deck"] = {"points": line, "width": span}
         if item["id"] in foundations:
-            item["foundation"] = rings(foundations[item["id"]])[0][0]
+            item["foundations"] = [rings(shape)[0][0] for shape in foundations[item["id"]]]
         objects.append(item)
     ids = {o["id"] for o in objects}
     if len(ids) != len(objects) or not (set(decks) | set(foundations)) <= ids:
@@ -255,7 +263,7 @@ def compile_map(source):
         river=rings(river),
         blockedWater=rings(water),
         trails=trails,
-        meta=dict(title=cfg["title"], revision=3, source="editable/yeonmok.tmj"),
+        meta=dict(title=cfg["title"], revision=cfg["honroSchema"], source="editable/yeonmok.tmj"),
     )
 
 

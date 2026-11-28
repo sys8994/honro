@@ -13,8 +13,10 @@ export function groundProjection(cell, tileWidth, tileHeight) {
 
 // The center is in projected map units. Wide/tall screens increase the minimum
 // zoom until their entire CSS viewport fits inside the authored rectangle.
+export const defaultZoom = 1.70;
+export const preciseTurnRate = Math.PI * .22;
 export function cameraView(mapWidth,mapHeight,width,height,wanted,x,y){
-  const min=Math.max(1.05,width/mapWidth,height/mapHeight),max=Math.max(2.05,min);
+  const min=Math.max(defaultZoom*.70,width/mapWidth,height/mapHeight),max=Math.max(defaultZoom*1.50,min);
   const zoom=Math.min(max,Math.max(min,wanted)),halfX=width/(2*zoom),halfY=height/(2*zoom);
   return {zoom,min,max,x:Math.max(halfX,Math.min(mapWidth-halfX,x)),y:Math.max(halfY,Math.min(mapHeight-halfY,y))};
 }

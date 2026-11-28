@@ -10,8 +10,8 @@ export function terrainSpace(map) {
     return records.get(id);
   }
   const shore=makeShore(map.blockedWater,map);
-  const foundations=map.objects.filter(o=>o.foundation).map(o=>({body:makeShore([[o.foundation]],map),obj:o}));
-  const props=map.objects.filter(o=>!o.foundation&&(o.blocksMovement||o.blocksProjectile)).map(o=>({
+  const foundations=map.objects.flatMap(obj=>(obj.foundations||(obj.foundation?[obj.foundation]:[])).map(ring=>({body:makeShore([[ring]],map),obj})));
+  const props=map.objects.filter(o=>!o.foundations&&!o.foundation&&(o.blocksMovement||o.blocksProjectile)).map(o=>({
     ...o,x:o.x*cell,y:o.y*cell,r:o.radius*cell,terrain:solid(o.id)
   }));
   const walls=[{x:-cell,y:-cell,w:cell,h:height+2*cell},{x:width,y:-cell,w:cell,h:height+2*cell},{x:0,y:-cell,w:width,h:cell},{x:0,y:height,w:width,h:cell}];

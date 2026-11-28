@@ -27,7 +27,7 @@ setup = """async id=>{
  function coverage(x,y,row=0,part=upper){
   if(y>=part.depth)return 0;
   ctx.setTransform(1,0,0,1,0,0);ctx.clearRect(0,0,96,80);ctx.globalCompositeOperation='source-over';
-  paintSprite(ctx,images,'seolo','idle',row,0,48,71,58);
+  paintSprite(ctx,images,'seolo','idle',row,0,48,71,actorBody(HonroApp.engine.active).size);
   ctx.globalCompositeOperation='source-in';ctx.translate(48-x,71-y);drawScenery(ctx,part);
   const rgba=ctx.getImageData(0,0,96,80).data;let n=0;
   for(let i=3;i<rgba.length;i+=4)if(rgba[i]>90)n++;return n;

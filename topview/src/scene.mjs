@@ -1,7 +1,7 @@
 import {center} from './terrain.mjs';
 import {buildGround,bakePropShadows} from './ground.mjs';
 import {sceneryParts,drawScenery} from './canopy.mjs';
-import {cameraView} from './space.mjs';
+import {cameraView,defaultZoom} from './space.mjs';
 import {actorBody,bowPlane} from './body.mjs';
 import {fieldActors,fieldBreeze,drawWoodArrow} from './field-art.mjs';
 
@@ -12,11 +12,8 @@ export function groundScene(Base, space, images, projection) {
   bakePropShadows(ground,props,images,projection);
   const scenery=props.map(o=>{const at=projection.forward(o.x,o.y);return {o,at,parts:sceneryParts(o,at,images)};});
   const breeze=fieldBreeze(map), worldScale=projection.forward(1,1);
-  const drawImage=(ctx,img,x,y,h,flip=false)=>{
-    const w=h*img.width/img.height;ctx.save();ctx.translate(x,y);if(flip)ctx.scale(-1,1);ctx.drawImage(img,-w/2,-h,w,h);ctx.restore();
-  };
   return class TopviewScene extends Base {
-    constructor(canvas){super(canvas);this.zoomLevel=1.4;this.panOffset={x:0,y:0};this.fieldFocus={x:ground.width/2,y:ground.height/2};this.departures=new Map();this.actorArt=fieldActors(images,projection);this.reducedMotion=matchMedia('(prefers-reduced-motion: reduce)');}
+    constructor(canvas){super(canvas);this.zoomLevel=defaultZoom;this.panOffset={x:0,y:0};this.fieldFocus={x:ground.width/2,y:ground.height/2};this.departures=new Map();this.actorArt=fieldActors(images,projection);this.reducedMotion=matchMedia('(prefers-reduced-motion: reduce)');}
     event(ev){
       if(ev.type!=='fx'||ev.damage>0&&ev.targetId)return super.event(ev);
       const p=projection.forward(ev.x,ev.y),end=Number.isFinite(ev.x2)?projection.forward(ev.x2,ev.y2):null;
@@ -27,6 +24,15 @@ export function groundScene(Base, space, images, projection) {
       return projection.inverse((x-r.width*.5)/k+this.cx,(y-r.height*.5)/k+this.cy);}
     screenPoint(x,y){const p=projection.forward(x,y),r=this.canvas.getBoundingClientRect();
       return {x:(p.x-this.cx)*this.zoomLevel+r.width*.5,y:(p.y-this.cy)*this.zoomLevel+r.height*.5};}
+    pickScreenUnit(point,padding=2,actors=this.visibleActors){
+      if(!actors?.length)return null;
+      const world=this.world(point.x,point.y),p=projection.forward(world.x,world.y);
+      for(let i=actors.length-1;i>=0;i--){
+        const {art,at,u}=actors[i];
+        if(!u.dead&&!u.eaterCapturedBy&&this.actorArt.hit(art,p.x-at.x,p.y-at.y,padding/this.zoomLevel))return u;
+      }
+      return null;
+    }
     damageNumberAnchor(u,ev){
       if(!u){const p=this.screenPoint(ev.x,ev.y);return {x:p.x,y:p.y-bowPlane*this.zoomLevel};}
       const b=actorBody(u),foot=center(u),p=this.screenPoint(foot.x,foot.y);
@@ -49,6 +55,12 @@ export function groundScene(Base, space, images, projection) {
       const hero=b.units.find(u=>!u.side&&!u.dead)||b.units[0];
       const focus=this.storyFrozen&&this.tvStory?this.tvStory:center(hero),p=projection.forward(focus.x,focus.y);
       this.fieldFocus=p;this.placeCamera(p.x+this.panOffset.x,p.y+this.panOffset.y,this.zoomLevel,false);const k=this.zoomLevel;
+      if(this.edgePointer&&!this.storyFrozen&&!this.uiBlocked?.()){
+        const band=26,clamp=v=>Math.max(0,Math.min(1,v)),v=this.edgePointer;
+        const axis=(p,limit)=>clamp((p-limit+band)/band)-clamp((band-p)/band);
+        const dx=axis(v.x,innerWidth),dy=axis(v.y,innerHeight),d=Math.max(1,Math.hypot(dx,dy));
+        if(dx||dy)this.pan(dx/d*610*Math.min(dt,.05)/k,dy/d*610*Math.min(dt,.05)/k);
+      }
       this.x=focus.x;this.y=focus.y;
       c.setTransform(dpr,0,0,dpr,0,0);c.fillStyle='#202d27';c.fillRect(0,0,w,h);
       c.translate(w*.5-this.cx*k,h*.5-this.cy*k);c.scale(k,k);
@@ -64,9 +76,6 @@ export function groundScene(Base, space, images, projection) {
       for(const {o,at,parts} of scenery){
         if(Math.abs(at.x-this.cx)>w/(2*k)+o.width||Math.abs(at.y-this.cy)>h/(2*k)+o.height)continue;
         for(const part of parts){visibleParts.push(part);drawables.push({depth:part.depth,draw(){drawScenery(c,part,time);}});}
-      }
-      for(const [id,img] of [['cart','cart']]){
-        const a=paintPoint(space.point(id));drawables.push({depth:a.y,draw(){drawImage(c,images.get(img),a.x,a.y,76);}});
       }
       for(const m of b.honroMarkers.filter(m=>m.type==='exit'||m.type==='rest'&&!m.collected)){
         const a=paintPoint(m);ring(a,m.type==='exit'?19:8,m.type==='exit'?'#eed38b':'#e3a35a','#d8b66628');
@@ -90,7 +99,23 @@ export function groundScene(Base, space, images, projection) {
           c.save();c.globalAlpha=visible;this.actorArt.actor(c,art,at,hit);c.restore();
         }});
       }
+      this.visibleActors=actors.sort((a,b)=>a.depth-b.depth);
+      this.hoverUnitId=this.mousePoint&&!this.uiBlocked?.()?this.pickScreenUnit(this.mousePoint,2,actors)?.id:null;
+      this.canvas.style.cursor=this.hoverUnitId?'pointer':'';
       for(const item of actors)this.actorArt.shadow(c,item.art,item.at,item.body);
+      // Two short ground marks bracket the active companion's boots. Scenery
+      // covers them at the same depth as the feet. Projectile targets use no ring.
+      const active=actors.find(item=>item.u.id===b.active&&item.u.side===0);
+      if(active&&!this.storyFrozen){
+        const {at}=active;
+        drawables.push({depth:at.y-.2,draw(){
+          c.save();c.lineWidth=1.2;c.strokeStyle='#dfc584c4';
+          for(const angle of [-.52,Math.PI-.52]){
+            c.beginPath();c.ellipse(at.x,at.y,12,4.7,0,angle,angle+1.04);c.stroke();
+          }
+          c.restore();
+        }});
+      }
       drawables.sort((a,b)=>a.depth-b.depth);for(const item of drawables)item.draw();
       c.save();c.setTransform(dpr,0,0,dpr,0,0);
       const clock=globalThis.HonroTimeOfDay,grade=clock?.grade(this,b);
@@ -98,7 +123,7 @@ export function groundScene(Base, space, images, projection) {
       c.restore();
       for(const {at,body,u,art,depth} of actors){
         const near=visibleParts.filter(part=>part.depth>depth&&part.x<at.x+body.size*.58&&part.x+part.width>at.x-body.size*.58&&part.y<at.y&&part.y+part.height>at.y-body.size-body.lift);
-        this.actorArt.outline(c,art,at,body,near,u.side!==1,time);
+        this.actorArt.outline(c,art,at,body,near,u.side!==1,time,this.hoverUnitId===u.id||this.inspectUnitId===u.id);
         if(u.side===0||u.awake||u.hurt>0){
           const y=at.y-body.size-body.lift-6;c.fillStyle='#19211de0';c.fillRect(at.x-15,y,30,3);
           c.fillStyle=u.side===0?'#a5bd85':'#bd806e';c.fillRect(at.x-15,y,30*Math.max(0,u.hp/u.maxHp),3);

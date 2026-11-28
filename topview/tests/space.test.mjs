@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {groundProjection,cameraView, sweepBox, sweepDisc, slide, steerHeading} from '../src/space.mjs';
+import {groundProjection,cameraView,preciseTurnRate,defaultZoom, sweepBox, sweepDisc, slide, steerHeading} from '../src/space.mjs';
 import {actorBody,bowPlane,strikeVolume,sweptTorso} from '../src/body.mjs';
 import {directions,spriteFrame} from '../src/actors.mjs';
 
@@ -17,6 +17,8 @@ test('camera covers the authored rectangle at each corner and after resizing',()
   for(const [w,h] of [[1180,760],[844,480],[390,844],[2560,1080],[420,1480]]){
     for(const x of [-1e5,0,1920,1e5])for(const y of [-1e5,0,1056,1e5]){
       const camera=cameraView(1920,1056,w,h,.01,x,y);
+      assert.equal(camera.min,Math.max(.7*defaultZoom,w/1920,h/1056));
+      assert.equal(camera.max,Math.max(1.5*defaultZoom,camera.min));
       assert.ok(camera.x-w/(2*camera.zoom)>=-1e-8 && camera.y-h/(2*camera.zoom)>=-1e-8);
       assert.ok(camera.x+w/(2*camera.zoom)<=1920+1e-8 && camera.y+h/(2*camera.zoom)<=1056+1e-8);
     }
@@ -40,9 +42,9 @@ test('precision turns cover the same intermediate screen angles at 60 and 120 Hz
   const projection=groundProjection(180,64,44);
   for(const rate of [60,120]){
     let aim={x:1,y:0};
-    for(let t=0;t<rate/4;t++)aim=steerHeading(aim,{x:0,y:-1},projection,2.8/rate);
+    for(let t=0;t<rate/4;t++)aim=steerHeading(aim,{x:0,y:-1},projection,preciseTurnRate/rate);
     const v=projection.forward(aim.x,aim.y);
-    assert.ok(Math.abs(Math.atan2(-v.y,v.x)-.7)<1e-8);
+    assert.ok(Math.abs(Math.atan2(-v.y,v.x)-Math.PI*.055)<1e-8);
   }
 });
 

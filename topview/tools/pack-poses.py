@@ -41,6 +41,10 @@ for name in ['hound','boar','stag','crow','bat','ghost']:
     source='turns-stag-clean.png' if name=='stag' else 'turns-'+name+'.png'
     poses=frames(source,7,5)
     if name=='stag':
+        # Side views show the back and the far hoof line at the same camera pitch as the field.
+        side=frames('stag-flank-elevated.png',4,2)[:7]
+        factor=poses[14].height/side[0].height
+        poses[14:21]=[im.resize((round(im.width*factor),round(im.height*factor)),Image.Resampling.LANCZOS) for im in side]
         rear=frames('stag-rear.png',7,1)
         # Different source canvases: match the neutral pose's anatomical height before packing.
         factor=poses[28].height/rear[0].height

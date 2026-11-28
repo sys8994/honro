@@ -2,9 +2,9 @@
   "type": "tileset",
   "version": "1.10",
   "name": "Honro modular props",
-  "tilewidth": 398,
-  "tileheight": 352,
-  "tilecount": 10,
+  "tilewidth": 800,
+  "tileheight": 512,
+  "tilecount": 11,
   "columns": 0,
   "objectalignment": "bottom",
   "tiles": [
@@ -179,8 +179,8 @@
     {
       "id": 6,
       "image": "../assets/props/ruin_gate.png",
-      "imagewidth": 384,
-      "imageheight": 323,
+      "imagewidth": 352,
+      "imageheight": 324,
       "properties": [
         {
           "name": "asset",
@@ -207,8 +207,8 @@
     {
       "id": 7,
       "image": "../assets/props/bridge_ne.png",
-      "imagewidth": 384,
-      "imageheight": 295,
+      "imagewidth": 784,
+      "imageheight": 512,
       "properties": [
         {
           "name": "asset",
@@ -245,8 +245,8 @@
     {
       "id": 8,
       "image": "../assets/props/bridge_se.png",
-      "imagewidth": 384,
-      "imageheight": 277,
+      "imagewidth": 800,
+      "imageheight": 512,
       "properties": [
         {
           "name": "asset",
@@ -283,8 +283,8 @@
     {
       "id": 9,
       "image": "../assets/props/shrine.png",
-      "imagewidth": 316,
-      "imageheight": 344,
+      "imagewidth": 368,
+      "imageheight": 368,
       "properties": [
         {
           "name": "asset",
@@ -317,6 +317,39 @@
           "value": 0.89
         }
       ]
+    },
+    {
+      "id": 10,
+      "image": "../assets/props/grain_cart.png",
+      "properties": [
+        {
+          "name": "asset",
+          "type": "string",
+          "value": "grain_cart"
+        },
+        {
+          "name": "anchorX",
+          "type": "float",
+          "value": 0.5
+        },
+        {
+          "name": "anchorY",
+          "type": "float",
+          "value": 0.65
+        },
+        {
+          "name": "blocksMovement",
+          "type": "bool",
+          "value": true
+        },
+        {
+          "name": "blocksProjectile",
+          "type": "bool",
+          "value": true
+        }
+      ],
+      "imagewidth": 272,
+      "imageheight": 200
     }
   ]
 }

@@ -1,5 +1,5 @@
 import {center} from './terrain.mjs';
-import {direction,steerHeading} from './space.mjs';
+import {direction,steerHeading,preciseTurnRate} from './space.mjs';
 import {strikeVolume,sweptTorso} from './body.mjs';
 const flying=u=>!!globalThis.HonroWorld.archetypes[u.honroVariant||u.honroType]?.flying;
 const angleTo=(a,z)=>Math.atan2(a.y-z.y,z.x-a.x)*180/Math.PI;
@@ -95,7 +95,7 @@ export function spatialEngine(C,space,projection) {
         if(dx||dy){
           const want=projection.inverse(dx,dy),prev=u.tvHeading||want;
           const steer=keys.source==='keyboard'&&(locked||app.charging||u.moving>0);
-          const v=steer?steerHeading(prev,want,projection,(locked||app.charging?2.8:7.8)*dt):want;
+          const v=steer?steerHeading(prev,want,projection,(locked||app.charging?preciseTurnRate:7.8)*dt):want;
           delete u.tvPath;this.face(u,v.x,v.y);
           if(!locked&&!app.charging)this.moveVector(v.x,v.y,dt*Math.min(1,Math.hypot(dx,dy)));
         }else if(!locked&&!app.charging&&u.tvPath?.length&&u.moveLeft>0)this.travelToward(u,u.tvPath.at(-1),dt);

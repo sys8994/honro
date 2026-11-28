@@ -17,13 +17,31 @@ function surface(c,image,scale){
   p.setTransform(new DOMMatrix([scale,scale*.5,-scale,scale*.5,0,0]));
   return p;
 }
+// A compacted trail breaks into grass at different distances on either side.
+function trailMargin(points,width,noise){
+  const sides=[[],[]];let distance=0;
+  for(let i=1;i<points.length;i++){
+    const [x,y]=points[i-1],[ex,ey]=points[i],dx=ex-x,dy=ey-y,len=Math.hypot(dx,dy);
+    if(!len)continue;
+    const steps=Math.max(1,Math.ceil(len/5));
+    for(let j=0;j<steps+(i===points.length-1?1:0);j++){
+      const t=j/steps,along=distance+len*t;
+      for(const side of [0,1]){
+        const sign=side?1:-1,offset=sign*(width*.48+2.1*Math.sin(along*.076+side*8)+1.15*Math.cos(along*.021+side)+noise()*2.6);
+        sides[side].push([x+t*dx-dy/len*offset,y+t*dy+dx/len*offset]);
+      }
+    }
+    distance+=len;
+  }
+  return line([...sides[0],...sides[1].reverse()],true);
+}
 export function buildGround(map,sourceFor){
   const w=map.width*map.tileWidth,h=map.height*map.tileHeight,base=canvas(w,h),c=base.getContext('2d');
   const noise=random(129045),grid=map.grid,materials={};
   for(const name of ['grass','dirt','rock','path','gravel','water'])materials[name]=surface(c,sourceFor(name),name==='water'?.92:.77);
   c.fillStyle=materials.grass;c.fillRect(0,0,w,h);
   // Adjacent diamonds of the same material are masked and feathered together.
-  for(const id of ['dirt','rock','path']){
+  for(const id of ['dirt','rock']){
     const raw=canvas(w,h),mask=raw.getContext('2d');mask.fillStyle='#fff';
     grid.materials.forEach((v,i)=>{
       if(v!==id)return;const row=Math.floor(i/grid.width),col=i%grid.width;
@@ -32,13 +50,29 @@ export function buildGround(map,sourceFor){
       mask.fill(line([[x-a,y],[x,y-b],[x+a,y],[x,y+b]],true));
     });
     const layer=canvas(w,h),g=layer.getContext('2d');g.filter='blur(6px)';g.drawImage(raw,0,0);g.filter='none';g.globalCompositeOperation='source-in';g.fillStyle=materials[id];g.fillRect(0,0,w,h);
-    c.globalAlpha=id==='path'?.53:.83;c.drawImage(layer,0,0);c.globalAlpha=1;
+    c.globalAlpha=id==='dirt'?.23:.55;c.drawImage(layer,0,0);c.globalAlpha=1;
   }
   c.lineCap='round';c.lineJoin='round';
   for(const trail of map.trails){
-    const p=line(trail.points);c.save();c.strokeStyle='#665844';c.globalAlpha=.45;c.filter='blur(6px)';c.lineWidth=trail.width+10;c.stroke(p);c.restore();
-    c.save();c.strokeStyle=materials.path;c.filter='blur(1.4px)';c.lineWidth=trail.width;c.stroke(p);c.restore();
-    c.strokeStyle='#b0a0841e';c.lineWidth=trail.width*.63;c.stroke(p);
+    const p=line(trail.points),width=trail.width;
+    const edge=trailMargin(trail.points,width,noise);
+    c.save();c.fillStyle=materials.path;c.globalAlpha=.55;c.filter='blur(3px)';c.fill(edge);c.restore();
+    c.save();c.fillStyle=materials.path;c.globalAlpha=.78;c.fill(edge);c.restore();
+    c.save();c.strokeStyle='#bca38332';c.lineWidth=width*.68;c.filter='blur(2px)';c.stroke(p);c.restore();
+    // Wheel wear and grit follow the centreline. Branches under 30px are foot trails.
+    for(let i=1;i<trail.points.length;i++){
+      const [x,y]=trail.points[i-1],[x2,y2]=trail.points[i],dx=x2-x,dy=y2-y,len=Math.hypot(dx,dy);
+      if(!len)continue;
+      for(let d=noise()*2;d<len;d+=2+noise()*3){
+        const t=d/len,side=noise()<.5?-1:1,offset=side*width*(.17+noise()*.07);
+        const px=x+t*dx-offset*dy/len,py=y+t*dy+offset*dx/len;
+        c.strokeStyle=width>=30?'#443e2d79':'#c0ae841c';c.lineWidth=.65+noise()*.65;
+        c.beginPath();c.moveTo(px,py);c.lineTo(px+dx/len*(2+noise()*5),py+dy/len*(2+noise()*5));c.stroke();
+        const edge=side*width*(.42+noise()*.14);
+        c.fillStyle=noise()<.50?'#71755781':'#92856d81';
+        c.fillRect(x+t*dx-edge*dy/len,y+t*dy+edge*dx/len,1.2+noise()*2,.8);
+      }
+    }
   }
   const shore=riverPath(map.river);
   // Blend the gravel bed into dry ground and the deep current into shallows.
@@ -56,7 +90,7 @@ export function buildGround(map,sourceFor){
   }
   c.restore();
   // Small shoreline cobbles sit on the dry side. Their size follows the water,
-  // and the two timber decks cover the continuing stream at the crossings.
+  // and the stone and timber decks cover the continuing stream at the crossings.
   for(const region of map.river)for(const ring of region)for(let i=0;i<ring.length;i++){
     const p=ring[i],q=ring[(i+1)%ring.length],len=Math.hypot(q[0]-p[0],q[1]-p[1]);
     if(len<4||len>105)continue;
@@ -86,7 +120,7 @@ export function bakePropShadows(ground,props,images,projection){
     }
     const at=projection.forward(o.x,o.y),tree=o.asset.startsWith('pine'),roof=o.asset==='shrine';
     c.save();c.translate(at.x,at.y);c.globalAlpha=tree?.54:roof?.48:.37;
-    c.transform(.65,.08,-.59,-.25,0,0);c.drawImage(masks.get(o.asset),-o.width*o.anchor[0],-o.height*o.anchor[1],o.width,o.height);c.restore();
+    c.transform(.72,.065,-.46,-.23,0,0);c.drawImage(masks.get(o.asset),-o.width*o.anchor[0],-o.height*o.anchor[1],o.width,o.height);c.restore();
     c.save();c.translate(at.x,at.y);c.scale(1,.46);const radius=tree?o.width*.19:o.width*.32;
     const dark=c.createRadialGradient(0,0,0,0,0,radius);dark.addColorStop(0,'#0a151b8c');dark.addColorStop(1,'#0a151b00');c.fillStyle=dark;c.fillRect(-radius,-radius,radius*2,radius*2);c.restore();
   }

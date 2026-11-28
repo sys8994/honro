@@ -102,13 +102,23 @@ with sync_playwright() as driver:
     page.wait_for_timeout(170)
     same(paused, state(), ["x", "y", "move", "path"])
     log["cancelledWalk"] = paused
+    touch("touchStart", (1, 312, 180), (2, 422, 180))
+    touch("touchMove", (1, 252, 180), (2, 482, 180))
+    page.wait_for_function("Math.abs(HonroApp.scene.zoomLevel-2.55)<.001")
+    touch("touchMove", (1, 342, 180), (2, 392, 180))
+    page.wait_for_function("Math.abs(HonroApp.scene.zoomLevel-1.19)<.001")
+    touch("touchEnd")
+    same(paused,state(),["x","y","move","path"])
+    log["touchPinch"]={"max":2.55,"min":1.19}
     log["cameras"] = []
     for width, height in [(1180, 760), (844, 480), (390, 844)]:
         page.set_viewport_size({"width": width, "height": height})
         page.wait_for_timeout(100)
         for zoom in ["out", "in"]:
-            for _ in range(8):
-                page.locator(f"[data-zoom={zoom}]").tap()
+            assert page.locator("[data-zoom],[data-center]").count() == 0
+            page.mouse.move(width * .5, height * .34)
+            page.mouse.wheel(0, 2400 if zoom == "out" else -2400)
+            page.wait_for_function("([v])=>Math.abs(HonroApp.scene.zoomLevel-v)<.001", arg=[1.19 if zoom == "out" else 2.55])
             mini = page.locator("#minimap").bounding_box()
             for label, x, y in [
                 ("NW", 0.01, 0.01),

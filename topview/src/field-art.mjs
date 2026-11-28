@@ -29,10 +29,22 @@ export function fieldActors(images,projection){
     }
     return item;
   }
+  function hit(item,dx,dy,tolerance){
+    const x=Math.round((dx+span/2)*sample),y=Math.round((dy+pad)*sample);
+    const r=Math.ceil(tolerance*sample),w=item.art.width,h=item.art.height;
+    if(x<-r||y<-r||x>=w+r||y>=h+r)return false;
+    if(item.maskPose!==item.key){
+      item.alpha=item.art.getContext('2d').getImageData(0,0,w,h).data;item.maskPose=item.key;
+    }
+    for(let j=Math.max(0,y-r);j<Math.min(h,y+r+1);j++)for(let i=Math.max(0,x-r);i<Math.min(w,x+r+1);i++){
+      if((i-x)**2+(j-y)**2<=r*r&&item.alpha[4*(j*w+i)+3]>=78)return true;
+    }
+    return false;
+  }
   function shadow(c,item,at,b){
-    c.save();c.translate(at.x+2+b.lift*.35,at.y+1+b.lift*.15);
+    c.save();c.translate(at.x+1+b.lift*.46,at.y+.7+b.lift*.23);
     c.fillStyle=b.lift?'#14221f48':'#101a1acf';c.beginPath();c.ellipse(0,0,b.rx*.91,Math.max(2.2,b.rx*.32),0,0,2*Math.PI);c.fill();
-    c.globalAlpha=b.lift ? .38 : .56;c.transform(.77,.08,-.54,-.22,0,0);stamp(c,item.ink,0,0);c.restore();
+    c.globalAlpha=b.lift ? .38 : .56;c.transform(.77,.06,-.46,-.23,0,0);stamp(c,item.ink,0,0);c.restore();
   }
   function actor(c,item,at,hit){
     stamp(c,item.art,at.x,at.y);
@@ -43,8 +55,8 @@ export function fieldActors(images,projection){
   }
   // Only ink hidden by a nearer opaque pixel is outlined. Transparent spaces
   // between branches and actors standing in front of the building stay clear.
-  function outline(c,item,at,b,near,ally,time){
-    if(!near.length)return;
+  function outline(c,item,at,b,near,ally,time,highlight=false){
+    if(!near.length&&!highlight)return;
     const m=clip.getContext('2d');m.clearRect(0,0,160,160);m.save();m.scale(sample,sample);m.translate(span/2-at.x,pad-at.y);
     for(const part of near)drawScenery(m,part,time);m.restore();
     if(item.rimPose!==item.key||item.rimAlly!==ally){
@@ -55,10 +67,11 @@ export function fieldActors(images,projection){
       edge.globalCompositeOperation='source-in';edge.fillStyle=ally?'#e9d3a1':'#d2a093';edge.fillRect(0,0,160,160);
       edge.globalCompositeOperation='source-over';item.rimPose=item.key;item.rimAlly=ally;
     }
+    if(highlight){stamp(c,item.rim,at.x,at.y);return;}
     const r=ring.getContext('2d');r.clearRect(0,0,160,160);r.drawImage(item.rim,0,0);
     r.globalCompositeOperation='destination-in';r.drawImage(clip,0,0);r.globalCompositeOperation='source-over';stamp(c,ring,at.x,at.y);
   }
-  return {frame,shadow,actor,outline};
+  return {frame,shadow,actor,outline,hit};
 }
 export function fieldBreeze(map){
   const shore=riverPath(map.river),water=[],grass=[],ctx=surface(1,1).getContext('2d');

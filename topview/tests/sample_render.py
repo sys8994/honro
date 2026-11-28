@@ -108,8 +108,9 @@ with sync_playwright() as pw:
     page.keyboard.down("d")
     log["moving"] = page.evaluate(sample_frames, 45)
     page.keyboard.up("d")
-    for _ in range(7):
-        page.locator("[data-zoom=out]").click()
+    page.mouse.move(420, 200)
+    page.mouse.wheel(0, 2000)
+    page.wait_for_function("Math.abs(HonroApp.scene.zoomLevel-1.19)<.001")
     log["minZoom"] = page.evaluate(sample_frames, 45)
     log["zoom"] = page.evaluate("HonroApp.scene.zoomLevel")
     page.locator("[data-lock]").click()
