@@ -14,7 +14,7 @@ let running=true,elapsed=0,last=0;
 function toggle(next){running=next;play.textContent=next?'멈춤':'재생';play.setAttribute('aria-pressed',String(running));}
 play.onclick=()=>toggle(!running);$('step').onclick=()=>{toggle(false);elapsed+=.18;};
 toggle(true);play.disabled=false;$('step').disabled=false;
-const sizes={seolo:58,hound:50,boar:60,stag:79,crow:54,bat:53,ghost:58,woodcutter:49};
+const sizes={seolo:64,hound:50,boar:60,stag:79,crow:54,bat:53,ghost:58,woodcutter:49};
 function render(now){if(last&&running)elapsed+=Math.min(.1,(now-last)/1000);last=now;ctx.fillStyle='#303a30';ctx.fillRect(0,0,720,300);
   for(const [x,k] of [[170,1],[485,3]]){const y=240;ctx.strokeStyle='#abb398';ctx.beginPath();ctx.moveTo(x-38,y);ctx.lineTo(x+38,y);ctx.moveTo(x,y-6);ctx.lineTo(x,y+6);ctx.stroke();
     const stride=elapsed*385;

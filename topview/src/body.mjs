@@ -2,7 +2,7 @@
 // Dimensions below are measured inside the painted pose cells in map pixels.
 export const bowPlane = 26;
 const bodies = {
-  seolo: [58, .55, .16, .30], woodcutter: [49, .54, .20, .30],
+  seolo: [64, .55, .16, .30], woodcutter: [49, .54, .20, .30],
   hound: [49.56, .36, .16, .20], boar: [60.18, .37, .20, .21],
   stag: [79.06, .43, .17, .19], crow: [54.28, .33, .26, .15],
   bat: [53.1, .29, .28, .13], ghost: [57.82, .48, .14, .25]

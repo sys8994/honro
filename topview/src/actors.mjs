@@ -55,6 +55,18 @@ function idleBody(c,im,f,kind,x,y,width,size,t){
       c.drawImage(im,sx+a*f.width,sy,f.width/n,f.height,0,-size,width/n+.08,size);c.restore();
     }return;
   }
+  if(kind==='seolo'){
+    // The top of the head and boot soles stay fixed. Only the shoulder and
+    // bow-hand bands shift by a fraction of a map pixel during a breath.
+    const cuts=[0,.21,.37,.55,.70,1],side=[0,0,.008*breath,.012*tilt,0,0],rise=[0,0,-.006*breath,-.004*breath,0,0];
+    for(let i=0;i<cuts.length-1;i++){
+      const a=cuts[i],span=cuts[i+1]-a;
+      c.save();c.translate(x+side[i]*size,y-size+(a+rise[i])*size);
+      c.transform(1,0,(side[i+1]-side[i])/span,1+(rise[i+1]-rise[i])/span,0,0);
+      c.drawImage(im,sx,sy+a*f.height,f.width,span*f.height,-width/2,0,width,span*size+.07);c.restore();
+    }
+    return;
+  }
   const bend=kind==='ghost'?.032:kind==='woodcutter'?.017:.014;
   const levels=[0,.28,.53,.76,1],dx=[tilt*size*bend,breath*size*.009,0,0,0],dy=[-breath*size*.023,-breath*size*.028,-breath*size*.012,0,0];
   for(let i=0;i<4;i++){
@@ -69,9 +81,10 @@ export function paintSprite(c,images,kind,pose,row,stride,x,y,size,time=0){
   const f=npc?frame(kind,0,0,imNpc.width,imNpc.height):spriteFrame(kind,pose,row,stride),im=images.get(f.image);
   const width=size*f.width/f.height;
   c.save();c.translate(x,y);if(f.flip)c.scale(-1,1);
+  if(kind==='seolo'&&pose!=='walk')c.translate(0,5*size/160);
   if(pose==='idle')idleBody(c,im,f,kind,0,0,width,size,time);
   else if(kind==='seolo'&&pose==='walk'){
-    const m=registerWalk(im)[f.row*4+f.col],scale=size*.815/m.span;
+    const m=registerWalk(im)[f.row*4+f.col],scale=size*(150/160)/m.span;
     const breath=Math.cos(stride/152*Math.PI*2)*size*.007;
     c.drawImage(im,f.col*f.width,f.row*f.height,f.width,f.height,-m.axis*scale,-m.foot*scale-1+breath,f.width*scale,f.height*scale);
   }else c.drawImage(im,f.col*f.width,f.row*f.height,f.width,f.height,-width/2,-size,width,size);
