@@ -1,5 +1,6 @@
 """Play the public topview chapter using only field, dialogue, guard and fire controls."""
 import argparse, json, os, threading, time
+from urllib.parse import unquote,urlsplit
 from functools import partial
 from http.server import SimpleHTTPRequestHandler,ThreadingHTTPServer
 from pathlib import Path
@@ -26,6 +27,11 @@ def note(label, data=None):
 with sync_playwright() as p:
     browser=p.chromium.launch(executable_path=os.getenv('CHROMIUM','/usr/bin/chromium'),headless=True,args=['--no-sandbox','--disable-dev-shm-usage'])
     page=browser.new_page(viewport={'width':844 if args.mobile else 1180,'height':480 if args.mobile else 760},device_scale_factor=1,is_mobile=args.mobile,has_touch=args.mobile)
+    requests=set()
+    def resource(response):
+        u=urlsplit(response.url)
+        if 200<=response.status<300 and u.scheme in ('http','https'):requests.add(unquote(u.path.lstrip('/')))
+    page.on('response',resource)
     page.on('pageerror',lambda e:log['errors'].append(str(e)))
     def tap(loc):
         if args.mobile:loc.tap(timeout=4500)
@@ -44,17 +50,33 @@ with sync_playwright() as p:
     def armed():
         page.wait_for_function("!!globalThis.HonroApp?.canInput()&&!HonroStory.turnPaused(HonroApp)",timeout=20000)
     try:
+        # Each run owns a fresh browser context. Seed the isolation control before
+        # first startup and never write it again on reload or redirect.
+        page.add_init_script("if(!sessionStorage.getItem('tv-test-control')){localStorage.setItem('honro-first-act-profile-1','topview-isolation-control');sessionStorage.setItem('tv-test-control','1');}")
         page.goto(url,wait_until='domcontentloaded')
-        # A separate existing campaign slot must survive startup, a battle save and a cold reload.
-        page.evaluate("localStorage.setItem('honro-first-act-profile-1','topview-isolation-control')")
         tap(page.locator('#tv-start'));page.wait_for_function("!!globalThis.HonroApp?.engine");readers();armed()
         note('입장',state());capture('entry')
+        log['checks']['nativeAudio']=page.evaluate("()=>{const a=HonroApp.audio,m=a.music;return {unlocked:m.unlocked,track:m.track,src:m.current?.src||m.current?.audio?.src,skills:!!a.skills,context:a.context?.state}}")
         mapdata=json.loads((root/'topview/data/yeonmok.json').read_text())
         def arm_trace():
             page.evaluate("""()=>{const a=HonroApp,e=a.engine,nativeFire=e.fire,nativeImpact=e.impact;window.trajectoryEvidence={};
-             e.fire=function(s,ang,p,...args){const u=this.active;if(u?.side===0){const q=this.predict(u,HONRO_CORE.SKILLS[s],ang,p),who=q.unit;trajectoryEvidence.prediction={x:q.x,y:q.y,id:typeof who==='string'?who:who?.id||null,power:p,angle:ang,skill:s};}return nativeFire.call(this,s,ang,p,...args);};
+            e.fire=function(s,ang,p,...args){const u=this.active;if(u?.side===0){const q=this.predict(u,HONRO_CORE.SKILLS[s],ang,p),who=q.unit,drawn=a.scene.pred;trajectoryEvidence.prediction={x:q.x,y:q.y,id:typeof who==='string'?who:who?.id||null,power:p,angle:ang,skill:s};if(drawn)trajectoryEvidence.lastDisplayed={x:drawn.x,y:drawn.y,id:typeof drawn.unit==='string'?drawn.unit:drawn.unit?.id||null};}return nativeFire.call(this,s,ang,p,...args);};
              e.impact=function(p,h,...args){if(p.owner==='p-archer'&&h&&!trajectoryEvidence.impact)trajectoryEvidence.impact={x:h.x,y:h.y,id:h.unit?.id||h.terrain?.id||null};return nativeImpact.call(this,p,h,...args);};
             }""")
+        if args.mobile:
+            stick=page.locator('#joystick').bounding_box();jx,jy=stick['x']+stick['width']/2,stick['y']+stick['height']/2
+            cdp=page.context.new_cdp_session(page)
+            before=state()
+            cdp.send('Input.dispatchTouchEvent',{'type':'touchStart','touchPoints':[{'x':jx,'y':jy}]})
+            cdp.send('Input.dispatchTouchEvent',{'type':'touchMove','touchPoints':[{'x':jx+21,'y':jy-7}]})
+            page.wait_for_timeout(330);cdp.send('Input.dispatchTouchEvent',{'type':'touchEnd','touchPoints':[]})
+            after=state();log['checks']['touchStick']={'before':before,'after':after}
+            if abs(before['x']-after['x'])+abs(before['y']-after['y'])<4:raise AssertionError('터치 스틱 이동')
+        else:
+            before=state();page.keyboard.down('w');page.keyboard.down('d')
+            page.wait_for_timeout(180);page.keyboard.up('w');page.keyboard.up('d');after=state()
+            log['checks']['keyboard']={'before':before,'after':after}
+            if before['move']<=after['move'] or before['x']==after['x'] or before['y']==after['y']:raise AssertionError('대각선 이동과 이동도')
         arm_trace()
         tap(page.locator('[data-mode=aim]'))
         tgt=page.evaluate("()=>{const a=HonroApp,e=a.engine,u=e.unit('watch-1-pass-1-1');return a.scene.screenPoint(u.x,u.y-u.h/2);}")
@@ -69,6 +91,10 @@ with sync_playwright() as p:
         page.wait_for_function("HonroApp.engine.unit('watch-1-pass-1-1').hp<76",timeout=15000)
         evidence=page.evaluate("()=>({...trajectoryEvidence,afterHP:HonroApp.engine.unit('watch-1-pass-1-1').hp})")
         log['checks']['shot']=evidence;note('평사 실제 피격',evidence);capture('hit')
+        point_of_impact=evidence['impact']
+        for prediction in [evidence['prediction'],evidence['lastDisplayed']]:
+            if prediction['id']!=point_of_impact['id'] or abs(prediction['x']-point_of_impact['x'])+abs(prediction['y']-point_of_impact['y'])>.05:
+                raise AssertionError(('화면 예측과 실제 첫 충돌',evidence))
         def prompt_ready():
             for _ in range(220):
                 s=state()
@@ -80,6 +106,8 @@ with sync_playwright() as p:
         prompt_ready()
         page.wait_for_timeout(1500);s0=state();page.reload(wait_until='domcontentloaded');tap(page.locator('#tv-start'));page.wait_for_function('!!globalThis.HonroApp?.engine');readers();s1=prompt_ready()
         log['checks']['reload']={'before':s0,'after':s1};note('일반 이어가기',s1)
+        for key in ['round','phase','active','hp','shot','events','cast','x','y']:
+            if s0[key]!=s1[key]:raise AssertionError(('이어가기',key,s0[key],s1[key]))
         tap(page.locator('[data-map]'));tap(page.locator('[data-mode=walk]'));page.wait_for_timeout(200)
         for target in ['marker-4','marker-6','witness','ridge','marker-7']:
             q=mapdata['anchors'][target];cx=q['x']*mapdata['cell'];cy=q['y']*mapdata['cell']
@@ -104,9 +132,19 @@ with sync_playwright() as p:
         page.wait_for_function("HonroApp.done&&!!HonroApp.profile.cleared[1]");capture('result')
         log['checks']['completion']=page.evaluate("()=>({visits:HonroApp.profile.cleared[1].visits,record:HonroApp.profile.record.at(-1),flags:HonroApp.engine.b.honroState.flags,storageIsolated:localStorage.getItem('honro-first-act-profile-1')==='topview-isolation-control',titleAction:[...document.querySelectorAll('#modal button')].map(e=>[e.dataset.action,e.textContent])})")
         note('장 정산',log['checks']['completion'])
+        result=log['checks']['completion']
+        if not result['storageIsolated'] or not all(result['flags'].get('event:'+name) for name in ['cart','more','witness','ridge']) or end['cast']!=18:
+            raise AssertionError(('사건·증원·저장 격리',result,end))
+        title=page.locator('#modal [data-action="title"]:visible')
+        tap(title.first);page.wait_for_selector('#tv-start')
+        log['checks']['returnToTitle']=state()['screen']=='title';note('데모 타이틀',state())
+        tap(page.locator('#tv-camp'));page.wait_for_function("HonroApp.screen==='camp'")
+        log['checks']['camp']={'screen':state()['screen'],'text':page.locator('#app').inner_text()[:520]};note('동행과 장비',log['checks']['camp']);capture('camp')
+        if not log['checks']['returnToTitle'] or log['errors']:raise AssertionError(log['errors'])
     except Exception as e:
         log['failure']=repr(e);note('검수 중단',state() if page.evaluate('!!window.HonroApp') else page.locator('body').inner_text());capture('failure');raise
     finally:
         (args.out/(mode+'.json')).write_text(json.dumps(log,ensure_ascii=False,indent=2))
+        (args.out/(mode+'-resources.json')).write_text(json.dumps(sorted(requests),ensure_ascii=False,indent=2))
         browser.close()
 if server:server.shutdown()

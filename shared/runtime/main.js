@@ -777,6 +777,7 @@
             G.HonroInteractions?.refresh(this);
             G.HonroCombatStatus.refresh(this,u);G.HonroCombatStatus.passives(this,u);
             this.tickBanter();
+            if(b.honroTopview&&G.HonroTopview){G.HonroTopview.minimap(this);return;}
             // RC12: minimap draws the exact authored polygon geometry at the world aspect ratio.
             if(!this.minimapVisible)return;
             const mc=$('minimap'),ratio=b.width/b.height,mobile=innerWidth<620,maxW=mobile?118:152,maxH=innerHeight<550?86:(mobile?108:132);let cssW,cssH;

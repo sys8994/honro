@@ -66,7 +66,11 @@ export function groundScene(Base, space, images, projection) {
           let ah=48;
           if(ally){const sheet=images.get('seolo'),a=Math.atan2(face.x,face.y),row=(8-Math.round(a/(Math.PI/4))+8)%8;
             const frame=u.moving>0?Math.floor((u.tvStride||0)/45)%4:0;
-            c.drawImage(sheet,frame*144,row*168,144,168,at.x-23,at.y-51,46,53);
+            const firing=b.phase==='flight'&&b.active===u.id&&u.anim>0;
+            if(charging&&b.active===u.id||firing){
+              const action=images.get('seolo-bow'),actionRow=Math.floor(row/4)+(firing?2:0);
+              c.drawImage(action,(row%4)*160,actionRow*160,160,160,at.x-28,at.y-53,56,55);
+            }else c.drawImage(sheet,frame*144,row*168,144,168,at.x-23,at.y-51,46,53);
           }else{
             const kind=u.id==='npc-woodcutter'?'woodcutter':u.honroVariant||u.honroType,img=images.get(kind);
             if(!img)throw Error('Missing actor image '+kind);
@@ -80,8 +84,8 @@ export function groundScene(Base, space, images, projection) {
       drawables.sort((a,b)=>a.depth-b.depth);for(const item of drawables)item.draw();
       const u=e.active,sk=globalThis.HONRO_CORE.SKILLS[selected];
       if(e.canAct()&&sk&&!this.storyFrozen){
-        const a=center(u),ang=u.angle,targetPower=charging?power:(u.lastPower||.62);
-        const key=[u.id,u.x,u.y,ang,targetPower.toFixed(2),selected,b.sceneVersion,b.shot,b.round,b.physics.revision].join('|');
+        const a=center(u),ang=u.angle,targetPower=charging?power:(u.lastPower||power);
+        const key=[u.id,u.x,u.y,ang,targetPower,selected,b.sceneVersion,b.shot,b.round,b.physics.revision].join('|');
         if(this.predKey!==key){this.predKey=key;this.pred=e.predict(u,sk,ang,targetPower);}
         const pred=this.pred;if(pred){line([a,...pred.points],'#f2dea8ce',1.25,[4,4]);ring(paintPoint(pred),4,'#ffe4ac');}
         if(u.tvPath?.length)line([a,...u.tvPath],'#a4d8ae',1.2,[2,4]);

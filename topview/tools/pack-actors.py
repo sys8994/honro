@@ -28,3 +28,17 @@ for idx,name in enumerate(['hound','boar','stag','crow','bat','ghost','cart','wo
     alpha=cell.getchannel('A');box=alpha.point(lambda n:255 if n>70 else 0).getbbox()
     cell.putalpha(alpha.point(lambda n:0 if n<15 else n))
     sprite=cell.crop(box);sprite.thumbnail((300,300),Image.Resampling.LANCZOS);sprite.save(root/f'actors/{name}.webp',quality=92)
+
+# A separate sheet keeps walking contact frames intact during the draw and release.
+source=Image.open(root/'source/seolo-bow.png').convert('RGBA')
+bow=Image.new('RGBA',(4*160,4*160))
+for row in range(4):
+    for col in range(4):
+        frame=source.crop((col*source.width//4,row*source.height//4,(col+1)*source.width//4,(row+1)*source.height//4))
+        alpha=frame.getchannel('A')
+        frame.putalpha(alpha.point(lambda n:0 if n<12 else n))
+        box=alpha.point(lambda n:255 if n>42 else 0).getbbox()
+        sprite=frame.crop(box)
+        sprite=sprite.resize((round(sprite.width*.46),round(sprite.height*.46)),Image.Resampling.LANCZOS)
+        bow.alpha_composite(sprite,(col*160+80-sprite.width//2,row*160+155-sprite.height))
+bow.save(root/'actors/seolo-bow.webp',quality=93,method=6)
