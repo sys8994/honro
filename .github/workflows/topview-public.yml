@@ -1,0 +1,70 @@
+name: Verify public topview chapter
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'index.html'
+      - 'HONRO.html'
+      - 'topview/**'
+      - '.github/workflows/topview-public.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  public-entry:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      PUBLIC_ROOT: https://sys8994.github.io/honro/
+      CHROMIUM: /usr/bin/google-chrome
+    steps:
+      - uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3
+        with:
+          sparse-checkout: |
+            index.html
+            HONRO.html
+            topview
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c
+        with:
+          python-version: '3.12'
+      - run: python -m pip install 'playwright==1.58.0'
+      - name: Wait for the checkout to reach Pages
+        run: |
+          python - <<'PY'
+          import hashlib, json, os, time
+          from pathlib import Path
+          from urllib.error import URLError
+          from urllib.request import urlopen
+          native = json.loads(Path('topview/generated/native.json').read_bytes())
+          entries = {'': 'index.html', 'HONRO.html': 'HONRO.html'}
+          for path in ['topview/generated/native.json','topview/data/yeonmok.json','topview/src/scene.mjs',*native['modules']]:
+              if path.startswith('topview/'):
+                  entries[path] = path
+          expected = {url: hashlib.sha256(Path(path).read_bytes()).digest() for url, path in entries.items()}
+          for attempt in range(45):
+              try:
+                  for url, digest in expected.items():
+                      request = os.environ['PUBLIC_ROOT'] + url + '?build=' + os.environ['GITHUB_SHA'] + '-' + str(attempt)
+                      with urlopen(request, timeout=12) as response:
+                          if hashlib.sha256(response.read()).digest() != digest:
+                              raise ValueError('Waiting for ' + (url or 'index.html'))
+                  break
+              except (URLError, TimeoutError, ValueError) as error:
+                  print(error, flush=True)
+                  time.sleep(8)
+          else:
+              raise SystemExit('Pages did not serve the checked-out files')
+          print('Matched public bytes for', len(expected), 'files')
+          PY
+      - name: Open chapter 1 and move on desktop and touch
+        run: |
+          python topview/tests/play_chapter.py --entry-only --base "${PUBLIC_ROOT}" --out _local/public-entry
+          python topview/tests/play_chapter.py --entry-only --mobile --base "${PUBLIC_ROOT}HONRO.html" --out _local/public-entry
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        if: always()
+        with:
+          name: public-topview-entry-${{ github.sha }}
+          path: _local/public-entry/
+          if-no-files-found: ignore
+          retention-days: 7

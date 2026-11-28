@@ -7,6 +7,7 @@ from pathlib import Path
 from playwright.sync_api import sync_playwright
 parser=argparse.ArgumentParser()
 parser.add_argument('--mobile',action='store_true')
+parser.add_argument('--entry-only',action='store_true',help='Stop after opening the chapter and moving through the normal controls.')
 parser.add_argument('--viewport',help='CSS viewport, e.g. 390x844')
 parser.add_argument('--out',required=True,type=Path)
 parser.add_argument('--base')
@@ -79,6 +80,12 @@ with sync_playwright() as p:
             page.wait_for_timeout(180);page.keyboard.up('w');page.keyboard.up('d');after=state()
             log['checks']['keyboard']={'before':before,'after':after}
             if before['move']<=after['move'] or before['x']==after['x'] or before['y']==after['y']:raise AssertionError('대각선 이동과 이동도')
+        if args.entry_only:
+            entry=page.evaluate("""()=>{const a=HonroApp,b=a.engine.b;return {chapter:b.honroStage,topview:b.honroTopview,terrain:b.tvTerrainRevision,foes:b.units.filter(u=>u.side===1&&!u.dead).length,actor:b.active,screen:a.screen};}""")
+            if entry!={'chapter':1,'topview':1,'terrain':mapdata['meta']['revision'],'foes':12,'actor':'p-archer','screen':'battle'} or log['errors']:
+                raise AssertionError((entry,log['errors']))
+            note('탑뷰 1장 이동 확인',entry)
+            raise SystemExit(0)
         arm_trace()
         tap(page.locator('[data-lock]'));assert page.locator('[data-lock]').get_attribute('aria-pressed')=='true'
         tgt=page.evaluate("()=>{const a=HonroApp,e=a.engine,u=e.unit('watch-1-pass-1-1');return a.scene.screenPoint(u.x,u.y-u.h/2);}")

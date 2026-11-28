@@ -485,8 +485,8 @@ catch(error){if(globalThis.HonroStartup)globalThis.HonroStartup.failed(error);el
   if(pilotReference&&pilotRuntime){workshopPilot.push(await dataModule('workshop-act4-pilot-reference',{HONRO_ACT4_PILOT_COMBAT_REFERENCE:pilotReference.data}));workshopPilot.push(await emit('runtime','workshop-act4-pilot-combat','js',pilotRuntime.code));}
   const workshopEntry=await bootstrap('workshop',[...common,stageRules,...workshopPilot,editorModule],{playtest:gameDocument+'?embedded=1'});
   const workshopHtml=(await read('workshop/src/index.html')).replace('<style>/*STYLE*/</style>',cssTag(workshopStyle)).replace('<script>/*SCRIPT*/</script>',scriptTag(workshopEntry));
-  await writeGenerated(destination,gameHtml());
-  await writeGenerated(path.join(root,'index.html'),gameHtml());
+  const publicGame = path.resolve(destination)===path.join(root,'HONRO.html');
+  if (!publicGame) await writeGenerated(destination,gameHtml());
   await writeGenerated(path.join(root,'HONRO_WORKSHOP.html'),workshopHtml);
   // The public listening page can read this small catalog without loading the game manifest.
   await writeGenerated(path.join(root,'assets/bgm/catalog.json'),await read('shared/data/bgm.json'));
@@ -499,11 +499,12 @@ catch(error){if(globalThis.HonroStartup)globalThis.HonroStartup.failed(error);el
   const {previousFiles,previousGenerations,obsoleteFiles}=planWebAssetRetention(previous,currentFiles,{now:retentionNow,maxIntermediateFileBytes:webJsonPartBytes,retireIntermediatePaths});
   const manifest={version:1,game:'HONRO.html',workshop:'HONRO_WORKSHOP.html',playtest:gameDocument+'?embedded=1',project:projectManifest,gameEntry,workshopEntry,common,gameOnly,optionalModules,styles,workshopStyle,files:currentFiles,previousFiles,previousGenerations,publishedRetention,publishedGenerations};
   await writeGenerated(path.join(root,'web/manifest.json'),JSON.stringify(manifest,null,2)+'\n');
+  const entryHtml = publicGame ? await (await import('../topview/build.mjs')).buildTopview() : gameHtml();
   for(const file of obsoleteFiles)try{await unlink(path.join(root,file.path));}catch(e){if(e.code!=='ENOENT')throw e;}
   await mkdir(path.join(root,'_local/reports/web-split'),{recursive:true});
-  const summary={gameBytes:Buffer.byteLength(gameHtml()),workshopBytes:Buffer.byteLength(workshopHtml),files:files.size,playtest:manifest.playtest};
+  const summary={gameBytes:Buffer.byteLength(entryHtml),workshopBytes:Buffer.byteLength(workshopHtml),files:files.size,playtest:manifest.playtest};
   await writeGenerated(path.join(root,'_local/reports/web-split/build.json'),JSON.stringify(summary,null,2)+'\n');
   console.log(JSON.stringify(summary));
-  return gameHtml();
+  return entryHtml;
 }
 

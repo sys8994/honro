@@ -15,7 +15,7 @@ manifest=json.loads((root/'web/manifest.json').read_text())
 runtime=json.loads((root/'topview/generated/native.json').read_text())
 project=manifest['project']
 files={r['path'] for r in manifest['files']}
-pending=set(runtime['modules']+runtime['styles']+['topview/index.html','topview/motions.html','topview/style.css','topview/generated/native.json','topview/data/yeonmok.json'])
+pending=set(runtime['modules']+runtime['styles']+['index.html','HONRO.html','topview/index.html','topview/motions.html','topview/style.css','topview/generated/native.json','topview/data/yeonmok.json'])
 for folder in ['src','assets/actors','assets/props','assets/terrain']:
     pending.update(str(p.relative_to(root)) for p in (root/'topview'/folder).rglob('*') if p.is_file())
 # Other chapters cannot be entered. Menus can show learned and locked techniques
@@ -51,5 +51,4 @@ while pending:
     for ref in relative.findall(contents):
         local=(src.parent/unquote(urlsplit(ref).path)).resolve()
         if local.is_file() and local.is_relative_to(root):pending.add(str(local.relative_to(root)))
-(out/'index.html').write_text('<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>혼로 탑뷰 · 연목 고갯길</title><meta http-equiv="refresh" content="0;url=topview/"><a href="topview/">연목 고갯길 들어가기</a></html>\n')
-print(f'{len(copied)+1} files, {sum(p.stat().st_size for p in out.rglob("*") if p.is_file())/1048576:.1f} MiB')
+print(f'{len(copied)} files, {sum(p.stat().st_size for p in out.rglob("*") if p.is_file())/1048576:.1f} MiB')

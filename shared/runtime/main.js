@@ -1190,7 +1190,7 @@
                 this.profile.settings[k] = v;
                 this.audio?.configure(this.profile.settings);
                 if ((k === 'sound'||k === 'music') && v)
-                    this.audio?.wake?.(); 
+                    this.audio?.wake?.();
                 if (k === 'difficulty' && this.engine && C.setDifficulty)
                     C.setDifficulty(this.engine.b, v);
                 if (k === 'orientation')

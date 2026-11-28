@@ -11,6 +11,11 @@ exclude:
   - review
   - migration
   - audit
+  - topview/assets/source
+  - topview/editable
+  - topview/tests
+  - topview/tools
+  - topview/build.mjs
   - tools/act1-vector-production
   - tools/act2-ci
   - tools/act2-dialogue-ci
