@@ -1,0 +1,570 @@
+{
+  "source": "98003e4fb3a43657299600158568ada54db505ba",
+  "previous": "c8d31e3b1ef1accf226a679972a598bb9711b4d5",
+  "original": "cc81427699f40bebfe3716f4ed3bb5c2ca36ef8e",
+  "bow": {
+    "sevenDirectionsSha256": "08481dec1abef57ed1ee4ad5e5b5f30d60f684f22292bb186ae12af440f5de87",
+    "northeastSha256": "31ee864981efd8e7abbd66bb62f9322651e8b52cc4ac3db5da3aa708ec1ff1fa"
+  },
+  "inputAndRendering": {
+    "errors": [],
+    "shift": [
+      {
+        "x": 792.0000000000001,
+        "y": 3250,
+        "move": 1100,
+        "bearing": 90
+      },
+      {
+        "x": 792.0000000000001,
+        "y": 3250,
+        "move": 1100,
+        "bearing": 56.577461950702
+      },
+      {
+        "x": 792.0000000000001,
+        "y": 3250,
+        "move": 1100,
+        "bearing": 0
+      },
+      {
+        "x": 792.0000000000001,
+        "y": 3250,
+        "move": 1100,
+        "bearing": 44.99999572581919
+      }
+    ],
+    "prepare": "5|prepare|0|seolo",
+    "attack": "5|attack|0|seolo",
+    "feedback": {
+      "widthBefore": 2006,
+      "widthAfter": 2006,
+      "shared": true,
+      "rows": [
+        [
+          "watch-1-pass-1-1",
+          26
+        ],
+        [
+          "p-archer",
+          19
+        ]
+      ],
+      "texts": [
+        "26",
+        "19"
+      ],
+      "flashes": [
+        [
+          "watch-1-pass-1-1",
+          0.260863479979889
+        ],
+        [
+          "p-archer",
+          0.260863479979889
+        ]
+      ],
+      "events": [
+        [
+          "watch-1-pass-1-1",
+          15
+        ],
+        [
+          "watch-1-pass-1-1",
+          11
+        ],
+        [
+          "p-archer",
+          19
+        ]
+      ],
+      "lostHP": [
+        19,
+        26
+      ]
+    },
+    "windAndRange": {
+      "calm": {
+        "label": "바람 잔잔",
+        "v": {
+          "x": 0,
+          "y": 0,
+          "k": 0.034
+        },
+        "css": "180deg"
+      },
+      "cross": {
+        "label": "바람 남서 132",
+        "v": {
+          "x": -65,
+          "y": 115,
+          "k": 0.034
+        },
+        "css": "219.42479942996206deg"
+      },
+      "speeds": [
+        616.009191567,
+        770.01148945875,
+        924.0137873504999,
+        1078.01608524225,
+        1232.018383134
+      ],
+      "clocks": [
+        {
+          "time": "1일차 15:30",
+          "tint": [
+            [
+              199,
+              185,
+              162
+            ],
+            0.1
+          ]
+        },
+        {
+          "time": "1일차 16:47",
+          "tint": [
+            [
+              179.07142857142864,
+              153.5000000000001,
+              129.85714285714297
+            ],
+            0.17714285714285688
+          ]
+        }
+      ]
+    }
+  },
+  "initialFoesHPAttack": {
+    "foe-0": [
+      76,
+      0.38688776218774895
+    ],
+    "foe-1": [
+      47,
+      0.43476466436691047
+    ],
+    "foe-2": [
+      87,
+      0.38688776218774895
+    ],
+    "foe-3": [
+      76,
+      0.38688776218774895
+    ],
+    "watch-1-pass-1-1": [
+      76,
+      0.3961883734185425
+    ],
+    "watch-1-pine-2-1": [
+      76,
+      0.4408766744519305
+    ],
+    "watch-1-fork-3-1": [
+      76,
+      0.400943958058863
+    ],
+    "watch-1-ridge-4-1": [
+      76,
+      0.3961883734185425
+    ],
+    "foe-0-cluster": [
+      87,
+      0.38688776218774895
+    ],
+    "foe-1-cluster": [
+      47,
+      0.43476466436691047
+    ],
+    "foe-2-cluster": [
+      87,
+      0.38688776218774895
+    ],
+    "foe-3-cluster": [
+      76,
+      0.38688776218774895
+    ]
+  },
+  "sameHPAttackOnAllThree": true,
+  "threeDefends": {
+    "original": [
+      {
+        "hp": 365,
+        "engaged": 5,
+        "awake": 6
+      },
+      {
+        "hp": 365,
+        "engaged": 5,
+        "awake": 6
+      },
+      {
+        "hp": 365,
+        "engaged": 5,
+        "awake": 6
+      },
+      {
+        "hp": 349,
+        "engaged": 5,
+        "awake": 6
+      }
+    ],
+    "old-topview": [
+      {
+        "hp": 365,
+        "engaged": 0,
+        "awake": 0
+      },
+      {
+        "hp": 365,
+        "engaged": 5,
+        "awake": 6
+      },
+      {
+        "hp": 365,
+        "engaged": 5,
+        "awake": 6
+      },
+      {
+        "hp": 341,
+        "engaged": 5,
+        "awake": 6
+      }
+    ],
+    "new-topview": [
+      {
+        "hp": 365,
+        "engaged": 0,
+        "awake": 0
+      },
+      {
+        "hp": 365,
+        "engaged": 1,
+        "awake": 1
+      },
+      {
+        "hp": 365,
+        "engaged": 1,
+        "awake": 1
+      },
+      {
+        "hp": 365,
+        "engaged": 1,
+        "awake": 1
+      }
+    ]
+  },
+  "chapter": {
+    "pc": {
+      "reloadRound": 2,
+      "shot": {
+        "prediction": {
+          "x": 1240.8050258100068,
+          "y": 3009.497805004127,
+          "id": "watch-1-pass-1-1",
+          "power": 0.574037148861769,
+          "angle": 9.347432001925995,
+          "skill": "A01"
+        },
+        "lastDisplayed": {
+          "x": 1240.805025810007,
+          "y": 3009.4978050041286,
+          "id": "watch-1-pass-1-1"
+        },
+        "impact": {
+          "x": 1240.8050258100068,
+          "y": 3009.497805004127,
+          "id": "watch-1-pass-1-1"
+        },
+        "afterHP": 1
+      },
+      "winRound": 7,
+      "eventIds": [
+        "cart",
+        "more",
+        "witness",
+        "ridge"
+      ],
+      "allActors": 18,
+      "visits": 1,
+      "isolatedSave": true,
+      "title": true,
+      "camp": "camp",
+      "errors": []
+    },
+    "touch": {
+      "reloadRound": 2,
+      "shot": {
+        "prediction": {
+          "x": 1241.8732518480035,
+          "y": 3015.3223983712346,
+          "id": "watch-1-pass-1-1",
+          "power": 0.5858655437944241,
+          "angle": 18.299065059832536,
+          "skill": "A01"
+        },
+        "lastDisplayed": {
+          "x": 1241.873251848004,
+          "y": 3015.322398371236,
+          "id": "watch-1-pass-1-1"
+        },
+        "impact": {
+          "x": 1241.8732518480035,
+          "y": 3015.3223983712346,
+          "id": "watch-1-pass-1-1"
+        },
+        "afterHP": 1
+      },
+      "winRound": 7,
+      "eventIds": [
+        "cart",
+        "more",
+        "witness",
+        "ridge"
+      ],
+      "allActors": 18,
+      "visits": 1,
+      "isolatedSave": true,
+      "title": true,
+      "camp": "camp",
+      "errors": []
+    }
+  },
+  "touch": {
+    "twoFinger": {
+      "before": {
+        "x": 792.0000000000001,
+        "y": 3250,
+        "move": 1100,
+        "focus": 96,
+        "angle": 0,
+        "shot": 0,
+        "round": 1,
+        "locked": true,
+        "path": 0,
+        "charge": false
+      },
+      "direction1": {
+        "x": 792.0000000000001,
+        "y": 3250,
+        "move": 1100,
+        "focus": 96,
+        "angle": -136.7357045889284,
+        "shot": 0,
+        "round": 1,
+        "locked": true,
+        "path": 0,
+        "charge": false
+      },
+      "direction2WhileCharging": {
+        "x": 792.0000000000001,
+        "y": 3250,
+        "move": 1100,
+        "focus": 96,
+        "angle": -37.435870979409266,
+        "shot": 0,
+        "round": 1,
+        "locked": true,
+        "path": 0,
+        "charge": true
+      },
+      "cancel": {
+        "x": 792.0000000000001,
+        "y": 3250,
+        "move": 1100,
+        "focus": 96,
+        "angle": -37.435870979409266,
+        "shot": 0,
+        "round": 1,
+        "locked": true,
+        "path": 0,
+        "charge": false
+      }
+    },
+    "cameraViews": 48
+  },
+  "render": {
+    "browser": "154.0.8037.57",
+    "viewport": [
+      1180,
+      760
+    ],
+    "deviceScaleFactor": 1,
+    "environment": {
+      "platform": "Linux x86_64",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/154.0.0.0 Safari/537.36"
+    },
+    "pageMsUntilTitleReady": 2985,
+    "pageMsUntilFirstBattle": 8231,
+    "arrows": [
+      {
+        "power": 0.15,
+        "wind": false,
+        "origin": {
+          "x": 2870,
+          "y": 1253.8636363636363
+        },
+        "budget": 0.6035624225901853,
+        "steps": 73,
+        "predicted": {
+          "x": 3290.7402009624475,
+          "y": 1253.8636363636363
+        },
+        "actual": {
+          "x": 3290.7402009624475,
+          "y": 1253.8636363636363
+        },
+        "distance": 420.7402009624475,
+        "error": 0
+      },
+      {
+        "power": 0.65,
+        "wind": false,
+        "origin": {
+          "x": 2870,
+          "y": 1253.8636363636363
+        },
+        "budget": 1.4899128333869607,
+        "steps": 179,
+        "predicted": {
+          "x": 4340.294928605114,
+          "y": 1253.8636363636363
+        },
+        "actual": {
+          "x": 4340.294928605114,
+          "y": 1253.8636363636363
+        },
+        "distance": 1470.2949286051144,
+        "error": 0
+      },
+      {
+        "power": 0.15,
+        "wind": true,
+        "origin": {
+          "x": 2870,
+          "y": 1253.8636363636363
+        },
+        "budget": 0.6035624225901853,
+        "steps": 73,
+        "predicted": {
+          "x": 3279.9326537302404,
+          "y": 1272.9846814667933
+        },
+        "actual": {
+          "x": 3279.9326537302404,
+          "y": 1272.9846814667933
+        },
+        "distance": 410.37835586218984,
+        "error": 0
+      },
+      {
+        "power": 0.65,
+        "wind": true,
+        "origin": {
+          "x": 2870,
+          "y": 1253.8636363636363
+        },
+        "budget": 1.4899128333869607,
+        "steps": 179,
+        "predicted": {
+          "x": 4314.251751486342,
+          "y": 1299.940026650709
+        },
+        "actual": {
+          "x": 4314.251751486342,
+          "y": 1299.940026650709
+        },
+        "distance": 1444.9865589040105,
+        "error": 0
+      }
+    ],
+    "moving": {
+      "frames": 45,
+      "p50ms": 16.7,
+      "p95ms": 33.4,
+      "maxMs": 33.4,
+      "projectileFrames": 0,
+      "maxProjectiles": 0,
+      "effectFrames": 0,
+      "maxEffects": 0
+    },
+    "minZoom": {
+      "frames": 45,
+      "p50ms": 16.7,
+      "p95ms": 16.7,
+      "maxMs": 16.8,
+      "projectileFrames": 0,
+      "maxProjectiles": 0,
+      "effectFrames": 0,
+      "maxEffects": 0
+    },
+    "zoom": 1.05,
+    "charge": {
+      "frames": 42,
+      "p50ms": 16.7,
+      "p95ms": 33.4,
+      "maxMs": 33.4,
+      "projectileFrames": 0,
+      "maxProjectiles": 0,
+      "effectFrames": 0,
+      "maxEffects": 0
+    },
+    "release": {
+      "frames": 90,
+      "p50ms": 16.7,
+      "p95ms": 16.8,
+      "maxMs": 33.4,
+      "projectileFrames": 1,
+      "maxProjectiles": 1,
+      "effectFrames": 61,
+      "maxEffects": 18
+    },
+    "motionInspector": {
+      "selections": 393,
+      "minNonBackgroundPixels": 481
+    },
+    "errors": []
+  },
+  "depth": {
+    "pine_b_010": [
+      {
+        "position": "behind",
+        "covered": 646,
+        "outline": 281,
+        "walkable": true
+      },
+      {
+        "position": "under",
+        "covered": 131,
+        "outline": 121,
+        "walkable": true
+      },
+      {
+        "position": "front",
+        "covered": 0,
+        "outline": 0,
+        "walkable": true
+      }
+    ],
+    "shrine-at-fork": [
+      {
+        "position": "behind",
+        "covered": 500,
+        "outline": 280,
+        "walkable": true
+      },
+      {
+        "position": "under",
+        "covered": 200,
+        "outline": 126,
+        "walkable": true
+      },
+      {
+        "position": "front",
+        "covered": 0,
+        "outline": 0,
+        "walkable": true
+      }
+    ]
+  }
+}
