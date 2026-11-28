@@ -1,0 +1,142 @@
+{
+  "browser": "154.0.8037.57",
+  "viewport": [
+    1180,
+    760
+  ],
+  "deviceScaleFactor": 1,
+  "environment": {
+    "platform": "Linux x86_64",
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/154.0.0.0 Safari/537.36"
+  },
+  "pageMsUntilTitleReady": 3552,
+  "pageMsUntilFirstBattle": 8498,
+  "arrows": [
+    {
+      "power": 0.15,
+      "wind": false,
+      "origin": {
+        "x": 2870,
+        "y": 1240.3636363636363
+      },
+      "budget": 0.6035624225901853,
+      "steps": 73,
+      "predicted": {
+        "x": 3290.7402009624475,
+        "y": 1240.3636363636363
+      },
+      "actual": {
+        "x": 3290.7402009624475,
+        "y": 1240.3636363636363
+      },
+      "distance": 420.7402009624475,
+      "error": 0
+    },
+    {
+      "power": 0.65,
+      "wind": false,
+      "origin": {
+        "x": 2870,
+        "y": 1240.3636363636363
+      },
+      "budget": 1.4899128333869607,
+      "steps": 179,
+      "predicted": {
+        "x": 4340.294928605114,
+        "y": 1240.3636363636363
+      },
+      "actual": {
+        "x": 4340.294928605114,
+        "y": 1240.3636363636363
+      },
+      "distance": 1470.2949286051144,
+      "error": 0
+    },
+    {
+      "power": 0.15,
+      "wind": true,
+      "origin": {
+        "x": 2870,
+        "y": 1240.3636363636363
+      },
+      "budget": 0.6035624225901853,
+      "steps": 73,
+      "predicted": {
+        "x": 3279.9326537302404,
+        "y": 1259.4846814667933
+      },
+      "actual": {
+        "x": 3279.9326537302404,
+        "y": 1259.4846814667933
+      },
+      "distance": 410.37835586218984,
+      "error": 0
+    },
+    {
+      "power": 0.65,
+      "wind": true,
+      "origin": {
+        "x": 2870,
+        "y": 1240.3636363636363
+      },
+      "budget": 1.4899128333869607,
+      "steps": 179,
+      "predicted": {
+        "x": 4314.251751486342,
+        "y": 1286.440026650709
+      },
+      "actual": {
+        "x": 4314.251751486342,
+        "y": 1286.440026650709
+      },
+      "distance": 1444.9865589040105,
+      "error": 0
+    }
+  ],
+  "moving": {
+    "frames": 45,
+    "p50ms": 16.7,
+    "p95ms": 16.7,
+    "maxMs": 16.8,
+    "projectileFrames": 0,
+    "maxProjectiles": 0,
+    "effectFrames": 0,
+    "maxEffects": 0
+  },
+  "minZoom": {
+    "frames": 45,
+    "p50ms": 16.7,
+    "p95ms": 16.8,
+    "maxMs": 16.8,
+    "projectileFrames": 0,
+    "maxProjectiles": 0,
+    "effectFrames": 0,
+    "maxEffects": 0
+  },
+  "zoom": 1.19,
+  "charge": {
+    "frames": 42,
+    "p50ms": 16.7,
+    "p95ms": 33.2,
+    "maxMs": 33.3,
+    "projectileFrames": 0,
+    "maxProjectiles": 0,
+    "effectFrames": 0,
+    "maxEffects": 0
+  },
+  "release": {
+    "frames": 90,
+    "p50ms": 16.7,
+    "p95ms": 16.8,
+    "maxMs": 33.3,
+    "projectileFrames": 3,
+    "maxProjectiles": 1,
+    "effectFrames": 64,
+    "maxEffects": 18
+  },
+  "motionInspector": {
+    "selections": 393,
+    "minNonBackgroundPixels": 273
+  },
+  "errors": []
+}

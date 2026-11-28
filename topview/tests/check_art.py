@@ -8,6 +8,7 @@ parser=argparse.ArgumentParser()
 parser.add_argument('--base',required=True)
 parser.add_argument('--original',action='store_true',help='Measure the 3472c704 baseline before per-sheet grading existed.')
 parser.add_argument('--out',type=Path,required=True)
+parser.add_argument('--views',action='store_true',help='Also save the six fixed-camera chapter views.')
 args=parser.parse_args()
 args.out.mkdir(parents=True,exist_ok=True)
 with sync_playwright() as pw:
@@ -18,6 +19,19 @@ with sync_playwright() as pw:
         p.locator('[data-action=dialogue-next]:visible').first.click()
     p.wait_for_function('HonroApp.canInput()&&!HonroStory.turnPaused(HonroApp)')
     p.wait_for_timeout(2500);p.mouse.move(380,320)
+    if args.views:
+        views=[('entry',320,791),('timber',994,308),('stone',927,791),('cart',654,563),('temple',710,670),('ridge',1518,310)]
+        cameras={}
+        p.mouse.move(560,354)
+        p.screenshot(path=args.out/'default.jpg',quality=89)
+        for name,x,y in views:
+            cameras[name]=p.evaluate("""async ([x,y])=>{
+                const s=HonroApp.scene;s.placeCamera(x,y,1.4);
+                await new Promise(requestAnimationFrame);await new Promise(requestAnimationFrame);
+                return [s.cx,s.cy,s.zoomLevel];
+            }""",[x,y])
+            p.screenshot(path=args.out/(name+'.jpg'),quality=90)
+        (args.out/'cameras.json').write_text(json.dumps(cameras,indent=2)+'\n')
     metrics=p.evaluate('''async original=>{
       const path=s=>new URL('topview/'+s,document.baseURI);
       const {paintSprite,animals}=await import(path('src/actors.mjs'));

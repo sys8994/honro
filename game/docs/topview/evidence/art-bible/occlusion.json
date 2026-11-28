@@ -1,0 +1,132 @@
+{
+  "pine_b_010": {
+    "kind": "crown",
+    "positions": [
+      {
+        "label": "behind",
+        "actor": "p-archer",
+        "outlinePixels": 374,
+        "px": 139.3885445806208,
+        "py": 852.6219429720863,
+        "world": {
+          "x": 392.030281632996,
+          "y": 3487.9988576130804
+        },
+        "screen": {
+          "x": 236.96052578705536,
+          "y": 299.9961810525468
+        },
+        "highDepth": 918.04301,
+        "legal": true,
+        "basePixels": 0,
+        "coveredPixels": 864,
+        "round": 1
+      },
+      {
+        "label": "under",
+        "actor": "p-archer",
+        "outlinePixels": 137,
+        "px": 133.52671532560467,
+        "py": 912.7956936322619,
+        "world": {
+          "x": 375.54388685326313,
+          "y": 3734.1642012228895
+        },
+        "screen": {
+          "x": 226.99541605352795,
+          "y": 402.2915571748452
+        },
+        "highDepth": 918.04301,
+        "legal": true,
+        "basePixels": 0,
+        "coveredPixels": 113,
+        "round": 1
+      },
+      {
+        "label": "front",
+        "actor": "p-archer",
+        "outlinePixels": 0,
+        "px": 133.03635134655818,
+        "py": 929.5673057067024,
+        "world": {
+          "x": 374.16473816219485,
+          "y": 3802.775341527419
+        },
+        "screen": {
+          "x": 226.16179728914892,
+          "y": 430.8032977013942
+        },
+        "highDepth": 918.04301,
+        "legal": true,
+        "basePixels": 0,
+        "coveredPixels": 0,
+        "round": 1
+      }
+    ]
+  },
+  "shrine-at-fork": {
+    "kind": "roof",
+    "positions": [
+      {
+        "label": "behind",
+        "actor": "p-archer",
+        "outlinePixels": 368,
+        "px": 698.6611661873426,
+        "py": 650.1208612558034,
+        "world": {
+          "x": 1964.984529901901,
+          "y": 2659.585341501014
+        },
+        "screen": {
+          "x": 524.3239825184824,
+          "y": 273.30549813486596
+        },
+        "highDepth": 725.9199799999999,
+        "legal": true,
+        "basePixels": 603,
+        "coveredPixels": 656,
+        "round": 2
+      },
+      {
+        "label": "under",
+        "actor": "p-archer",
+        "outlinePixels": 122,
+        "px": 645.8035962942345,
+        "py": 654.930498538534,
+        "world": {
+          "x": 1816.3226145775343,
+          "y": 2679.261130384912
+        },
+        "screen": {
+          "x": 434.4661137001986,
+          "y": 281.48188151550795
+        },
+        "highDepth": 725.9199799999999,
+        "legal": true,
+        "basePixels": 1,
+        "coveredPixels": 247,
+        "round": 2
+      },
+      {
+        "label": "front",
+        "actor": "p-archer",
+        "outlinePixels": 0,
+        "px": 644.5306826636265,
+        "py": 737.3518479719286,
+        "world": {
+          "x": 1812.7425449914494,
+          "y": 3016.4393780669807
+        },
+        "screen": {
+          "x": 432.3021605281651,
+          "y": 421.5981755522787
+        },
+        "highDepth": 725.9199799999999,
+        "legal": true,
+        "basePixels": 0,
+        "coveredPixels": 0,
+        "round": 2
+      }
+    ]
+  }
+}

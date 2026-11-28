@@ -1,0 +1,812 @@
+{
+  "entry": "http://127.0.0.1:18831/",
+  "mode": "desktop",
+  "actions": [
+    {
+      "at_s": 12.61,
+      "input": "다음",
+      "state": "이 고개만 넘으면 연목 나루다. 해가 더 기울기 전에 내려가야 해."
+    },
+    {
+      "at_s": 13.04,
+      "input": "다음",
+      "state": "……수레가 엎어져 있군. 짐승들 걸음걸이가 사나워. 주막에서 말한 들림인가."
+    },
+    {
+      "at_s": 13.29,
+      "input": "다음",
+      "state": "표시된 도착 지점으로 이동하세요"
+    },
+    {
+      "at_s": 13.81,
+      "input": "입장",
+      "state": {
+        "screen": "battle",
+        "phase": "aim",
+        "round": 1,
+        "active": "p-archer",
+        "who": null,
+        "line": null,
+        "modal": "",
+        "done": false,
+        "hp": 365,
+        "move": 1100,
+        "x": 792.0000000000001,
+        "y": 3250,
+        "route": 0,
+        "shot": 0,
+        "events": [],
+        "cast": 13,
+        "error": null
+      }
+    },
+    {
+      "at_s": 16.75,
+      "input": "평사 실제 피격",
+      "state": {
+        "prediction": {
+          "x": 1231.5290560589865,
+          "y": 2991.293759333885,
+          "id": "watch-1-pass-1-1",
+          "power": 0.5968196660585269,
+          "angle": 9.422470975321815,
+          "skill": "A01"
+        },
+        "lastDisplayed": {
+          "x": 1231.5290560589865,
+          "y": 2991.2937593338847,
+          "id": "watch-1-pass-1-1"
+        },
+        "impact": {
+          "x": 1231.5290560589865,
+          "y": 2991.293759333885,
+          "id": "watch-1-pass-1-1"
+        },
+        "afterHP": 1
+      }
+    },
+    {
+      "at_s": 25.18,
+      "input": "일반 이어가기",
+      "state": {
+        "screen": "battle",
+        "phase": "aim",
+        "round": 2,
+        "active": "p-archer",
+        "who": null,
+        "line": null,
+        "modal": "",
+        "done": false,
+        "hp": 341,
+        "move": 1100,
+        "x": 864.0809935652197,
+        "y": 3135.9088248014473,
+        "route": 0,
+        "shot": 2,
+        "events": [],
+        "cast": 13,
+        "error": null
+      }
+    },
+    {
+      "at_s": 25.47,
+      "input": "marker-4 이동",
+      "state": {
+        "screen": {
+          "x": 590.0003663793103,
+          "y": 318.5
+        },
+        "distance": 1233,
+        "state": {
+          "screen": "battle",
+          "phase": "aim",
+          "round": 2,
+          "active": "p-archer",
+          "who": null,
+          "line": null,
+          "modal": "",
+          "done": false,
+          "hp": 341,
+          "move": 1054.2499999999986,
+          "x": 909.4908195423674,
+          "y": 3141.477505500245,
+          "route": 1,
+          "shot": 2,
+          "events": [],
+          "cast": 13,
+          "error": null
+        }
+      }
+    },
+    {
+      "at_s": 28.05,
+      "input": "방어",
+      "state": {
+        "screen": "battle",
+        "phase": "review",
+        "round": 2,
+        "active": "p-archer",
+        "who": null,
+        "line": null,
+        "modal": "",
+        "done": false,
+        "hp": 365,
+        "move": 8.126832540256146e-14,
+        "x": 1955.9019460212369,
+        "y": 3269.800601165952,
+        "route": 0,
+        "shot": 2,
+        "events": [],
+        "cast": 13,
+        "error": null
+      }
+    },
+    {
+      "at_s": 28.55,
+      "input": "다음",
+      "state": "수풀에서 산개가 튀어나온다. 수레 앞길부터 비워야겠어."
+    },
+    {
+      "at_s": 34.79,
+      "input": "marker-4 이동",
+      "state": {
+        "screen": {
+          "x": 590.0003663793103,
+          "y": 318.5
+        },
+        "distance": 133,
+        "state": {
+          "screen": "battle",
+          "phase": "aim",
+          "round": 3,
+          "active": "p-archer",
+          "who": null,
+          "line": null,
+          "modal": "",
+          "done": false,
+          "hp": 365,
+          "move": 1051.7083333333342,
+          "x": 2003.834540108226,
+          "y": 3275.6786530146783,
+          "route": 1,
+          "shot": 3,
+          "events": [
+            "cart"
+          ],
+          "cast": 17,
+          "error": null
+        }
+      }
+    },
+    {
+      "at_s": 35.32,
+      "input": "marker-6 이동",
+      "state": {
+        "screen": {
+          "x": 589.9994504310346,
+          "y": 318.5
+        },
+        "distance": 1865,
+        "state": {
+          "screen": "battle",
+          "phase": "aim",
+          "round": 3,
+          "active": "p-archer",
+          "who": null,
+          "line": null,
+          "modal": "",
+          "done": false,
+          "hp": 365,
+          "move": 960.2083333333325,
+          "x": 2094.2878989910114,
+          "y": 3283.3835729409266,
+          "route": 4,
+          "shot": 3,
+          "events": [
+            "cart"
+          ],
+          "cast": 17,
+          "error": null
+        }
+      }
+    },
+    {
+      "at_s": 37.59,
+      "input": "방어",
+      "state": {
+        "screen": "battle",
+        "phase": "review",
+        "round": 3,
+        "active": "p-archer",
+        "who": null,
+        "line": null,
+        "modal": "",
+        "done": false,
+        "hp": 365,
+        "move": 0,
+        "x": 2964.6795591628425,
+        "y": 3249.619168321299,
+        "route": 0,
+        "shot": 3,
+        "events": [
+          "cart"
+        ],
+        "cast": 17,
+        "error": null
+      }
+    },
+    {
+      "at_s": 41.91,
+      "input": "marker-6 이동",
+      "state": {
+        "screen": {
+          "x": 589.9994504310346,
+          "y": 318.5
+        },
+        "distance": 1027,
+        "state": {
+          "screen": "battle",
+          "phase": "aim",
+          "round": 4,
+          "active": "p-archer",
+          "who": null,
+          "line": null,
+          "modal": "",
+          "done": false,
+          "hp": 365,
+          "move": 1092.3750000000005,
+          "x": 2971.5349520261443,
+          "y": 3246.280873293926,
+          "route": 1,
+          "shot": 3,
+          "events": [
+            "cart"
+          ],
+          "cast": 17,
+          "error": null
+        }
+      }
+    },
+    {
+      "at_s": 44.51,
+      "input": "witness 이동",
+      "state": {
+        "screen": {
+          "x": 589.9996336206891,
+          "y": 318.50002853393556
+        },
+        "distance": 470,
+        "state": {
+          "screen": "battle",
+          "phase": "aim",
+          "round": 4,
+          "active": "p-archer",
+          "who": null,
+          "line": null,
+          "modal": "",
+          "done": false,
+          "hp": 365,
+          "move": 29.958333333387078,
+          "x": 3903.5250581116575,
+          "y": 2759.0880481140384,
+          "route": 2,
+          "shot": 3,
+          "events": [
+            "cart"
+          ],
+          "cast": 17,
+          "error": null
+        }
+      }
+    },
+    {
+      "at_s": 44.91,
+      "input": "방어",
+      "state": {
+        "screen": "battle",
+        "phase": "review",
+        "round": 4,
+        "active": "p-archer",
+        "who": null,
+        "line": null,
+        "modal": "",
+        "done": false,
+        "hp": 365,
+        "move": 3.108624468950438e-14,
+        "x": 3915.2711635581973,
+        "y": 2731.5284627950773,
+        "route": 0,
+        "shot": 3,
+        "events": [
+          "cart"
+        ],
+        "cast": 17,
+        "error": null
+      }
+    },
+    {
+      "at_s": 45.31,
+      "input": "다음",
+      "state": "머리 위에서 까마귀 떼가 내리꽂힌다. 위쪽 사선도 봐야겠군."
+    },
+    {
+      "at_s": 45.9,
+      "input": "다음",
+      "state": "수레 뒤에 몸을 숨겼던 나무꾼이 설오의 목소리에 수레 곁으로 몸을 내민다."
+    },
+    {
+      "at_s": 46.33,
+      "input": "다음",
+      "state": "거기 활 든 양반! 짐승들은 다 쫓았소?"
+    },
+    {
+      "at_s": 46.61,
+      "input": "다음",
+      "state": "수레 곁에 있던 놈들은 정리했습니다. 다친 데는 없으십니까?"
+    },
+    {
+      "at_s": 46.9,
+      "input": "다음",
+      "state": "몸은 성하오. 어젯밤에 갑자기 짐말이 미쳐 날뛰더니, 거품을 물고 쓰러지자마자 산개가 눈이 뒤집혀 덮쳤소."
+    },
+    {
+      "at_s": 47.16,
+      "input": "다음",
+      "state": "말이 쓰러질 때, 그 몸에서 무언가 빠져나오는 걸 보셨습니까?"
+    },
+    {
+      "at_s": 47.33,
+      "input": "다음",
+      "state": "그런 걸 볼 정신이 어딨소! 수레 밑으로 기어들어가 숨 죽이느라 바빴지. 저 짐승들이 밤새도록 저 지경이었소."
+    },
+    {
+      "at_s": 47.57,
+      "input": "다음",
+      "state": "이 고개에 원래도 이런 일이 있었습니까?"
+    },
+    {
+      "at_s": 47.79,
+      "input": "다음",
+      "state": "어쩌다 한 번씩이야 있었지, 이렇게 산 전체가 들썩이는 건 처음이오. 밤엔 산 위에서 웬 종소리까지 울리고……."
+    },
+    {
+      "at_s": 47.98,
+      "input": "다음",
+      "state": "저 위에 절이 있습니까?"
+    },
+    {
+      "at_s": 48.08,
+      "input": "다음",
+      "state": "내 평생 저 산에 절이 있단 소리는 못 들었소. 아, 맞다! 조금 전에 아래 골짜기로 장례 행렬이 내려갔는데, 그 길에도 짐승들이 득실거릴 텐데……."
+    },
+    {
+      "at_s": 48.15,
+      "input": "다음",
+      "state": "수레 곁에서 나오지 마십시오. 아래 행렬은 제가 내려가 보겠습니다."
+    },
+    {
+      "at_s": 52.96,
+      "input": "witness 이동",
+      "state": {
+        "screen": {
+          "x": 617.199633620689,
+          "y": 328.4733618672689
+        },
+        "distance": 405,
+        "state": {
+          "screen": "battle",
+          "phase": "aim",
+          "round": 5,
+          "active": "p-archer",
+          "who": null,
+          "line": null,
+          "modal": "",
+          "done": false,
+          "hp": 365,
+          "move": 1100,
+          "x": 3915.2711635581973,
+          "y": 2731.5284627950773,
+          "route": 2,
+          "shot": 5,
+          "events": [
+            "cart",
+            "more",
+            "witness"
+          ],
+          "cast": 18,
+          "error": null
+        }
+      }
+    },
+    {
+      "at_s": 54.17,
+      "input": "ridge 이동",
+      "state": {
+        "screen": {
+          "x": 590.0005495689658,
+          "y": 318.5
+        },
+        "distance": 909,
+        "state": {
+          "screen": "battle",
+          "phase": "aim",
+          "round": 5,
+          "active": "p-archer",
+          "who": null,
+          "line": null,
+          "modal": "",
+          "done": false,
+          "hp": 365,
+          "move": 650.1250000000019,
+          "x": 3901.4104246917555,
+          "y": 2350.0994939324655,
+          "route": 1,
+          "shot": 5,
+          "events": [
+            "cart",
+            "more",
+            "witness"
+          ],
+          "cast": 18,
+          "error": null
+        }
+      }
+    },
+    {
+      "at_s": 55.74,
+      "input": "방어",
+      "state": {
+        "screen": "battle",
+        "phase": "review",
+        "round": 5,
+        "active": "p-archer",
+        "who": null,
+        "line": null,
+        "modal": "",
+        "done": false,
+        "hp": 365,
+        "move": 2.113864638886298e-13,
+        "x": 4125.443471453943,
+        "y": 1739.7948899981209,
+        "route": 0,
+        "shot": 5,
+        "events": [
+          "cart",
+          "more",
+          "witness"
+        ],
+        "cast": 18,
+        "error": null
+      }
+    },
+    {
+      "at_s": 60.35,
+      "input": "ridge 이동",
+      "state": {
+        "screen": {
+          "x": 617.2005495689658,
+          "y": 328.47333333333336
+        },
+        "distance": 251,
+        "state": {
+          "screen": "battle",
+          "phase": "aim",
+          "round": 6,
+          "active": "p-archer",
+          "who": null,
+          "line": null,
+          "modal": "",
+          "done": false,
+          "hp": 365,
+          "move": 1089.833333333333,
+          "x": 4130.80786778982,
+          "y": 1731.1586661090166,
+          "route": 1,
+          "shot": 6,
+          "events": [
+            "cart",
+            "more",
+            "witness"
+          ],
+          "cast": 18,
+          "error": null
+        }
+      }
+    },
+    {
+      "at_s": 61.03,
+      "input": "marker-7 이동",
+      "state": {
+        "screen": {
+          "x": 657.7599999999999,
+          "y": 314.15999999999997
+        },
+        "distance": 781,
+        "state": {
+          "screen": "battle",
+          "phase": "aim",
+          "round": 6,
+          "active": "p-archer",
+          "who": null,
+          "line": null,
+          "modal": "",
+          "done": false,
+          "hp": 365,
+          "move": 848.3750000000058,
+          "x": 4257.9339192748575,
+          "y": 1525.8874153634636,
+          "route": 2,
+          "shot": 6,
+          "events": [
+            "cart",
+            "more",
+            "witness"
+          ],
+          "cast": 18,
+          "error": null
+        }
+      }
+    },
+    {
+      "at_s": 62.58,
+      "input": "다음",
+      "state": "능선 아래에 상여가 보인다. 걸음을 재촉하자."
+    },
+    {
+      "at_s": 62.98,
+      "input": "다음",
+      "state": "말이 쓰러지자마자 산개가 날뛰었다…… 죽은 몸에서 무언가 옮겨 붙는 건가."
+    },
+    {
+      "at_s": 63.28,
+      "input": "다음",
+      "state": "아래쪽 상여 행렬이 위험하다. 사람들이 쓰러진 짐승 곁에 다가가지 못하게 막아야 해."
+    },
+    {
+      "at_s": 63.58,
+      "input": "도착",
+      "state": {
+        "screen": "battle",
+        "phase": "won",
+        "round": 6,
+        "active": "p-archer",
+        "who": null,
+        "line": null,
+        "modal": "result",
+        "done": true,
+        "hp": 365,
+        "move": 172.2916666667012,
+        "x": 4541.013983599383,
+        "y": 921.7766275009826,
+        "route": 0,
+        "shot": 6,
+        "events": [
+          "cart",
+          "more",
+          "witness"
+        ],
+        "cast": 18,
+        "error": null
+      }
+    },
+    {
+      "at_s": 63.73,
+      "input": "장 정산",
+      "state": {
+        "visits": 1,
+        "record": {
+          "place": "연목 고갯길",
+          "text": "설오 · 말이 쓰러지자마자 산개가 날뛰었다…… 죽은 몸에서 무언가 옮겨 붙는 건가.\n설오 · 아래쪽 상여 행렬이 위험하다. 사람들이 쓰러진 짐승 곁에 다가가지 못하게 막아야 해."
+        },
+        "flags": {
+          "sector-0": true,
+          "event:cart": true,
+          "sector-3": true,
+          "event:more": true,
+          "event:witness": true,
+          "event:ridge": true
+        },
+        "storageIsolated": true,
+        "titleAction": [
+          [
+            "close",
+            ""
+          ],
+          [
+            "retry",
+            "다시 걷기"
+          ],
+          [
+            "clear-report",
+            "상세 보고서"
+          ],
+          [
+            "title",
+            "타이틀로"
+          ]
+        ]
+      }
+    },
+    {
+      "at_s": 63.86,
+      "input": "데모 타이틀",
+      "state": {
+        "screen": "title",
+        "phase": null,
+        "round": null,
+        "active": null,
+        "who": null,
+        "line": null,
+        "modal": "",
+        "done": true,
+        "hp": null,
+        "move": null,
+        "x": null,
+        "y": null,
+        "route": 0,
+        "shot": null,
+        "events": [],
+        "cast": null,
+        "error": null
+      }
+    },
+    {
+      "at_s": 64.47,
+      "input": "동행과 장비",
+      "state": {
+        "screen": "camp",
+        "text": "모닥불\n설오\n궁수 · 경지 1\n3 수련점\n1\n미합류\n미합류\n미합류\n\n길게 눌러 순서 변경\n\n설오경지 1\n122 / 270 XP\n체력\n365\n기력\n96\n공격\n1.79×\n방어\n8%\n치명 확률\n8.0%\n치명 배율\n1.75×\n이동\n1100\n기력 회복\n14\n장비\n기예\n설오의 장비\n전용\n낡은 깃매듭\n＋\n공용\n비어 있음\n보유 물건 2\n낡은 깃매듭\n착용 중\nⅠ\n✓\n해진 장명부\n공용\nⅠ\n\n물건을 누르면 장착할 수 있습니다."
+      }
+    }
+  ],
+  "errors": [],
+  "checks": {
+    "nativeAudio": {
+      "unlocked": true,
+      "track": 1,
+      "src": "http://127.0.0.1:18831/assets/bgm/11_%EC%97%B0%EB%AA%A9_%EA%B3%A0%EA%B0%AF%EB%A7%88%EB%A3%A8.mp3?v=fb9cbc30b683a59eea98d0b343e1261478cab090",
+      "skills": true,
+      "context": "running"
+    },
+    "keyboard": {
+      "before": {
+        "screen": "battle",
+        "phase": "aim",
+        "round": 1,
+        "active": "p-archer",
+        "who": null,
+        "line": null,
+        "modal": "",
+        "done": false,
+        "hp": 365,
+        "move": 1100,
+        "x": 792.0000000000001,
+        "y": 3250,
+        "route": 0,
+        "shot": 0,
+        "events": [],
+        "cast": 13,
+        "error": null
+      },
+      "after": {
+        "screen": "battle",
+        "phase": "aim",
+        "round": 1,
+        "active": "p-archer",
+        "who": null,
+        "line": null,
+        "modal": "",
+        "done": false,
+        "hp": 365,
+        "move": 960.2083333333294,
+        "x": 864.0809935652197,
+        "y": 3135.9088248014473,
+        "route": 0,
+        "shot": 0,
+        "events": [],
+        "cast": 13,
+        "error": null
+      }
+    },
+    "shot": {
+      "prediction": {
+        "x": 1231.5290560589865,
+        "y": 2991.293759333885,
+        "id": "watch-1-pass-1-1",
+        "power": 0.5968196660585269,
+        "angle": 9.422470975321815,
+        "skill": "A01"
+      },
+      "lastDisplayed": {
+        "x": 1231.5290560589865,
+        "y": 2991.2937593338847,
+        "id": "watch-1-pass-1-1"
+      },
+      "impact": {
+        "x": 1231.5290560589865,
+        "y": 2991.293759333885,
+        "id": "watch-1-pass-1-1"
+      },
+      "afterHP": 1
+    },
+    "reload": {
+      "before": {
+        "screen": "battle",
+        "phase": "aim",
+        "round": 2,
+        "active": "p-archer",
+        "who": null,
+        "line": null,
+        "modal": "",
+        "done": false,
+        "hp": 341,
+        "move": 1100,
+        "x": 864.0809935652197,
+        "y": 3135.9088248014473,
+        "route": 0,
+        "shot": 2,
+        "events": [],
+        "cast": 13,
+        "error": null
+      },
+      "after": {
+        "screen": "battle",
+        "phase": "aim",
+        "round": 2,
+        "active": "p-archer",
+        "who": null,
+        "line": null,
+        "modal": "",
+        "done": false,
+        "hp": 341,
+        "move": 1100,
+        "x": 864.0809935652197,
+        "y": 3135.9088248014473,
+        "route": 0,
+        "shot": 2,
+        "events": [],
+        "cast": 13,
+        "error": null
+      }
+    },
+    "completion": {
+      "visits": 1,
+      "record": {
+        "place": "연목 고갯길",
+        "text": "설오 · 말이 쓰러지자마자 산개가 날뛰었다…… 죽은 몸에서 무언가 옮겨 붙는 건가.\n설오 · 아래쪽 상여 행렬이 위험하다. 사람들이 쓰러진 짐승 곁에 다가가지 못하게 막아야 해."
+      },
+      "flags": {
+        "sector-0": true,
+        "event:cart": true,
+        "sector-3": true,
+        "event:more": true,
+        "event:witness": true,
+        "event:ridge": true
+      },
+      "storageIsolated": true,
+      "titleAction": [
+        [
+          "close",
+          ""
+        ],
+        [
+          "retry",
+          "다시 걷기"
+        ],
+        [
+          "clear-report",
+          "상세 보고서"
+        ],
+        [
+          "title",
+          "타이틀로"
+        ]
+      ]
+    },
+    "returnToTitle": true,
+    "camp": {
+      "screen": "camp",
+      "text": "모닥불\n설오\n궁수 · 경지 1\n3 수련점\n1\n미합류\n미합류\n미합류\n\n길게 눌러 순서 변경\n\n설오경지 1\n122 / 270 XP\n체력\n365\n기력\n96\n공격\n1.79×\n방어\n8%\n치명 확률\n8.0%\n치명 배율\n1.75×\n이동\n1100\n기력 회복\n14\n장비\n기예\n설오의 장비\n전용\n낡은 깃매듭\n＋\n공용\n비어 있음\n보유 물건 2\n낡은 깃매듭\n착용 중\nⅠ\n✓\n해진 장명부\n공용\nⅠ\n\n물건을 누르면 장착할 수 있습니다."
+    }
+  }
+}
