@@ -7,11 +7,16 @@ const space=terrainSpace(map),cell=map.cell,to=(x,y)=>({x:x*cell,y:y*cell});
 
 test('both authored crossings connect the native opening to the exit',()=>{
   const start=space.point('p-archer'),end=space.point('marker-7');
-  for(const [x,y] of [[16,7],[14,18]]){
-    const across=to(x+.5,y+.5);
-    assert.ok(space.route(start,across,22).length);
-    assert.ok(space.route(across,end,22).length);
+  for(const bridge of map.objects.filter(o=>o.deck)){
+    const endpoints=bridge.deck.points.map(([x,y])=>({x:x*cell/map.tileWidth,y:y*cell/map.tileHeight}));
+    const mid=to(bridge.x,bridge.y);
+    assert.ok(space.route(start,mid,22).length);
+    assert.ok(space.route(mid,end,22).length);
+    assert.equal(space.nearest(endpoints[0],endpoints[1],18),null);
+    const off={x:mid.x,y:mid.y+bridge.deck.width*cell/map.tileHeight};
+    assert.equal(space.legal(off,12),false);assert.equal(space.legal(off,3,true),true);
   }
+
 });
 test('water stops feet while arrows cross, and a visible stone stops both',()=>{
   const water=to(15.5,12.5);

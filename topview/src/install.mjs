@@ -2,15 +2,18 @@ import {groundProjection} from './space.mjs';
 import {terrainSpace,center} from './terrain.mjs';
 import {spatialEngine} from './engine.mjs';
 import {groundScene} from './scene.mjs';
+import {riverPath} from './ground.mjs';
 import {animals} from './actors.mjs';
 
 const G=globalThis, product=G.HonroTopview;
 const base=new URL('../',import.meta.url);
 const load=async path=>{const r=await fetch(new URL(path,base));if(!r.ok)throw Error(path+' '+r.status);return r.json();};
 const map=await load('data/yeonmok.json'),space=terrainSpace(map);
-const textures=[...new Set(map.terrain)].map(n=>[n+'_texture','assets/terrain/'+n+'_texture.png']);
+const textures=[...new Set([...map.grid.materials,'dirt','rock','gravel','water'])].map(n=>[n+'_texture','assets/terrain/'+n+'_texture.png']);
 const props=[...new Set(map.objects.map(o=>o.asset))].map(n=>[n,'assets/props/'+n+'.png']);
-props.push(['bridge-near','assets/props/bridge-near.png']);
+for(const id of ['bridge_ne-near','bridge_se-near','pine_a-base','pine_a-crown','pine_b-base','pine_b-crown','shrine-base','shrine-roof']){
+  props.push([id,'assets/props/'+id+'.png']);
+}
 const actors=['seolo','seolo-front','seolo-states','seolo-bow',...animals.map(id=>'turns-'+id),'cart','woodcutter'].map(n=>[n,'assets/actors/'+n+'.webp']);
 const images=new Map(await Promise.all([...textures,...props,...actors].map(async ([id,path])=>{
   const image=new Image();image.src=new URL(path,base);await image.decode();return [id,image];
@@ -36,9 +39,22 @@ const loader=G.HonroCampaignLoader;
 G.HonroCampaignLoader={...loader,destination:()=>1,prewarmNext(){},ensureStage(id){if(id!==1)return Promise.reject(Error('이 데모는 연목 고갯길까지입니다.'));return loader.ensureStage(id);}};
 
 function prepare(b) {
-  if(b.honroTopview){if(b.honroTopview!==1||b.honroStage!==1)throw Error('알 수 없는 탑뷰 지도 판본');return;}
+  if(b.honroTopview){
+    if(b.honroTopview!==1||b.honroStage!==1)throw Error('알 수 없는 탑뷰 지도 판본');
+    if(b.tvTerrainRevision!==map.meta.revision){
+      for(const u of b.units){
+        if(u.dead)continue;delete u.tvPath;
+        const flight=!!G.HonroWorld.archetypes[u.honroVariant||u.honroType]?.flying;
+        if(space.legal(center(u),u.r,flight))continue;
+        const p=space.free(center(u),u.r,flight);if(!p)throw Error('이전 지도의 안전한 발점을 찾지 못했습니다.');
+        u.x=p.x;u.y=p.y+u.h*.5;
+      }
+      b.tvTerrainRevision=map.meta.revision;b.sceneVersion++;
+    }
+    return;
+  }
   if(b.honroStage!==1||b.mode!=='campaign')throw Error('장 배치가 없습니다.');
-  b.honroTopview=1;
+  b.honroTopview=1;b.tvTerrainRevision=map.meta.revision;
   b.tvPopulation=b.units.filter(u=>u.side===1).length+b.honroEvents.filter(ev=>ev.once&&ev.action?.type==='spawn').reduce((n,ev)=>n+ev.action.n,0);
   b.width=space.width;b.height=space.height;b.vertical=false;
   b.honroPlayBounds={x:0,y:0,w:b.width,h:b.height};b.honroTerrainBounds={...b.honroPlayBounds};
@@ -64,14 +80,25 @@ function prepare(b) {
   b.sceneVersion++;
 }
 
-const miniGround=document.createElement('canvas');miniGround.width=map.width;miniGround.height=map.height;
-const miniPaint=miniGround.getContext('2d'),colors={grass:'#54694c',rock:'#76796c',path:'#ab9777',dirt:'#776b52',water:'#396c74'};
-map.terrain.forEach((tile,i)=>{miniPaint.fillStyle=colors[tile];miniPaint.fillRect(i%map.width,Math.floor(i/map.width),1,1);});
+const miniGround=document.createElement('canvas'),viewW=map.width*map.tileWidth,viewH=map.height*map.tileHeight;
+miniGround.width=240;miniGround.height=Math.round(240*viewH/viewW);
+const miniPaint=miniGround.getContext('2d');miniPaint.scale(miniGround.width/viewW,miniGround.height/viewH);
+miniPaint.fillStyle='#53604e';miniPaint.fillRect(0,0,viewW,viewH);
+for(const o of map.objects.filter(o=>o.asset.startsWith('pine')||o.asset==='rock_large')){
+  miniPaint.fillStyle=o.asset==='rock_large'?'#888978':'#394d41';miniPaint.beginPath();miniPaint.ellipse(o.x*map.tileWidth,o.y*map.tileHeight,24,13,0,0,Math.PI*2);miniPaint.fill();
+}
+for(const t of map.trails){
+  miniPaint.beginPath();t.points.forEach(([x,y],i)=>i?miniPaint.lineTo(x,y):miniPaint.moveTo(x,y));miniPaint.strokeStyle='#a49776';miniPaint.lineWidth=t.width;miniPaint.lineJoin='round';miniPaint.stroke();
+}
+miniPaint.fillStyle='#37616a';miniPaint.fill(riverPath(map.river),'evenodd');
+for(const obj of map.objects.filter(o=>o.deck)){
+  const [a,b]=obj.deck.points;miniPaint.beginPath();miniPaint.moveTo(...a);miniPaint.lineTo(...b);miniPaint.lineWidth=obj.deck.width;miniPaint.strokeStyle='#c1ad85';miniPaint.stroke();
+}
 product.minimap=function(app){
   const wind=document.getElementById('wind-value'),u=app.engine.active,zone=app.engine.b.physics.regions[0];
   if(wind&&u&&zone){const p=center(u);wind.textContent=p.x>=zone.x&&p.x<=zone.x+zone.w&&p.y>=zone.y&&p.y<=zone.y+zone.h?'개울 횡풍 ↙':'바람 잔잔';}
   if(!app.minimapVisible||!app.scene)return;
-  const cv=document.getElementById('minimap'),w=innerWidth<700?100:145,h=Math.round(w*map.height/map.width),dpr=Math.min(2,devicePixelRatio||1);
+  const cv=document.getElementById('minimap'),w=innerWidth<700?100:145,h=Math.round(w*viewH/viewW),dpr=Math.min(2,devicePixelRatio||1);
   cv.style.setProperty('width',w+'px','important');cv.style.setProperty('height',h+'px','important');
   if(cv.width!==w*dpr||cv.height!==h*dpr){cv.width=w*dpr;cv.height=h*dpr;}
   const c=cv.getContext('2d');c.setTransform(dpr,0,0,dpr,0,0);c.imageSmoothingEnabled=false;c.drawImage(miniGround,0,0,w,h);

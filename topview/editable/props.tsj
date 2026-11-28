@@ -2,17 +2,17 @@
   "type": "tileset",
   "version": "1.10",
   "name": "Honro modular props",
-  "tilewidth": 720,
-  "tileheight": 400,
-  "tilecount": 8,
+  "tilewidth": 398,
+  "tileheight": 352,
+  "tilecount": 10,
   "columns": 0,
   "objectalignment": "bottom",
   "tiles": [
     {
       "id": 0,
       "image": "../assets/props/pine_a.png",
-      "imagewidth": 522,
-      "imageheight": 400,
+      "imagewidth": 320,
+      "imageheight": 306,
       "properties": [
         {
           "name": "asset",
@@ -39,8 +39,8 @@
     {
       "id": 1,
       "image": "../assets/props/pine_b.png",
-      "imagewidth": 460,
-      "imageheight": 371,
+      "imagewidth": 320,
+      "imageheight": 282,
       "properties": [
         {
           "name": "asset",
@@ -179,8 +179,8 @@
     {
       "id": 6,
       "image": "../assets/props/ruin_gate.png",
-      "imagewidth": 401,
-      "imageheight": 305,
+      "imagewidth": 384,
+      "imageheight": 323,
       "properties": [
         {
           "name": "asset",
@@ -206,14 +206,14 @@
     },
     {
       "id": 7,
-      "image": "../assets/props/bridge.png",
-      "imagewidth": 720,
-      "imageheight": 216,
+      "image": "../assets/props/bridge_ne.png",
+      "imagewidth": 384,
+      "imageheight": 295,
       "properties": [
         {
           "name": "asset",
           "type": "string",
-          "value": "bridge"
+          "value": "bridge_ne"
         },
         {
           "name": "radius",
@@ -229,6 +229,92 @@
           "name": "blocksProjectile",
           "type": "bool",
           "value": false
+        },
+        {
+          "name": "anchorX",
+          "type": "float",
+          "value": 0.5
+        },
+        {
+          "name": "anchorY",
+          "type": "float",
+          "value": 0.53
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "image": "../assets/props/bridge_se.png",
+      "imagewidth": 384,
+      "imageheight": 277,
+      "properties": [
+        {
+          "name": "asset",
+          "type": "string",
+          "value": "bridge_se"
+        },
+        {
+          "name": "radius",
+          "type": "int",
+          "value": 0
+        },
+        {
+          "name": "blocksMovement",
+          "type": "bool",
+          "value": false
+        },
+        {
+          "name": "blocksProjectile",
+          "type": "bool",
+          "value": false
+        },
+        {
+          "name": "anchorX",
+          "type": "float",
+          "value": 0.5
+        },
+        {
+          "name": "anchorY",
+          "type": "float",
+          "value": 0.53
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "image": "../assets/props/shrine.png",
+      "imagewidth": 316,
+      "imageheight": 344,
+      "properties": [
+        {
+          "name": "asset",
+          "type": "string",
+          "value": "shrine"
+        },
+        {
+          "name": "radius",
+          "type": "float",
+          "value": 0.65
+        },
+        {
+          "name": "blocksMovement",
+          "type": "bool",
+          "value": true
+        },
+        {
+          "name": "blocksProjectile",
+          "type": "bool",
+          "value": true
+        },
+        {
+          "name": "anchorX",
+          "type": "float",
+          "value": 0.5
+        },
+        {
+          "name": "anchorY",
+          "type": "float",
+          "value": 0.89
         }
       ]
     }

@@ -1,5 +1,6 @@
 import {center} from './terrain.mjs';
-import {buildGround} from './ground.mjs';
+import {buildGround,bakePropShadows} from './ground.mjs';
+import {sceneryParts,drawScenery} from './canopy.mjs';
 import {cameraView} from './space.mjs';
 import {angleRow,poseOf,paintSprite} from './actors.mjs';
 
@@ -7,6 +8,8 @@ export function groundScene(Base, space, images, projection) {
   const {map,cell}=space;
   const ground=buildGround(map,id=>images.get(id+'_texture'));
   const props=map.objects.map(o=>({...o,x:o.x*cell,y:o.y*cell}));
+  bakePropShadows(ground,props,images,projection);
+  const scenery=props.map(o=>{const at=projection.forward(o.x,o.y);return {o,at,parts:sceneryParts(o,at,images)};});
   const sizes={hound:42,boar:51,stag:67,crow:46,bat:45,ghost:49,woodcutter:49,cart:76};
   const drawImage=(ctx,img,x,y,h,flip=false)=>{
     const w=h*img.width/img.height;ctx.save();ctx.translate(x,y);if(flip)ctx.scale(-1,1);ctx.drawImage(img,-w/2,-h,w,h);ctx.restore();
@@ -51,16 +54,10 @@ export function groundScene(Base, space, images, projection) {
       const label=(p,text,color)=>{c.font='600 10px sans-serif';c.textAlign='center';c.lineWidth=3;c.strokeStyle='#17221eef';c.strokeText(text,p.x,p.y);c.fillStyle=color;c.fillText(text,p.x,p.y);};
       const line=(pts,color,width=1.5,dash=[])=>{if(!pts.length)return;c.beginPath();c.setLineDash(dash);pts.forEach((v,i)=>{const a=paintPoint(v);if(i)c.lineTo(a.x,a.y);else c.moveTo(a.x,a.y);});c.strokeStyle=color;c.lineWidth=width;c.stroke();c.setLineDash([]);};
       const drawables=[];
-      for(const o of props){const at=paintPoint(o);if(Math.abs(at.x-this.cx)>w/(2*k)+o.width||Math.abs(at.y-this.cy)>h/(2*k)+o.height)continue;
-        if(o.asset==='bridge'){
-          drawables.push({depth:-1e6,draw(){c.drawImage(images.get('bridge'),at.x-o.width/2,at.y-o.height/2,o.width,o.height);}});
-          drawables.push({depth:at.y+o.height*.32,draw(){c.drawImage(images.get('bridge-near'),at.x-o.width/2,at.y-o.height/2,o.width,o.height);}});continue;
-        }
-        drawables.push({depth:o.groundDecoration?-1e6:at.y,draw(){
-        const img=images.get(o.asset);const player=paintPoint(center(hero));c.save();
-        if(at.y>player.y&&at.y-o.height<player.y&&Math.abs(at.x-player.x)<o.width*.31)c.globalAlpha=.47;
-        c.drawImage(img,at.x-o.width*o.anchor[0],at.y-o.height*o.anchor[1],o.width,o.height);c.restore();
-      }});}
+      for(const {o,at,parts} of scenery){
+        if(Math.abs(at.x-this.cx)>w/(2*k)+o.width||Math.abs(at.y-this.cy)>h/(2*k)+o.height)continue;
+        for(const part of parts)drawables.push({depth:part.depth,draw(){drawScenery(c,part);}});
+      }
       for(const [id,img] of [['cart','cart']]){
         const a=paintPoint(space.point(id));drawables.push({depth:a.y,draw(){drawImage(c,images.get(img),a.x,a.y,sizes[img]);}});
       }
