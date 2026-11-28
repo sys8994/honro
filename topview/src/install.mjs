@@ -124,7 +124,8 @@ function bindField(app){
   const miniPan=ev=>{ev.stopImmediatePropagation();ev.preventDefault();if(app.dialogue||app.modal.classList.contains('open'))return;
     const r=mini.getBoundingClientRect();scene.centerAt((ev.clientX-r.left)/r.width*space.width,(ev.clientY-r.top)/r.height*space.height);
   };
-  mini.addEventListener('pointerdown',miniPan,{capture:true});
+  // Mobile hit adjustment can target the dock at the very edge of its canvas.
+  mini.parentElement.addEventListener('pointerdown',miniPan,{capture:true});
   const bar=document.createElement('div');bar.className='tv-toolbar';
   bar.innerHTML='<button type="button" data-lock aria-keyshortcuts="L"></button><button type="button" data-zoom="out" aria-label="축소">−</button><button type="button" data-zoom="in" aria-label="확대">＋</button><button type="button" data-center aria-label="설오에게 카메라 복귀">설오 보기</button>';
   hud.append(bar);const pointers=new Map();let initialPinch=null,dragged=false,start=null;

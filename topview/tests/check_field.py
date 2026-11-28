@@ -27,12 +27,19 @@ with sync_playwright() as driver:
     log['cameras']=[]
     for width,height in [(1180,760),(844,480),(390,844)]:
         page.set_viewport_size({'width':width,'height':height});page.wait_for_timeout(100)
-        for _ in range(6):page.locator('[data-zoom=out]').tap()
-        mini=page.locator('#minimap').bounding_box()
-        for label,x,y in [('NW',.01,.01),('NE',.99,.01),('SW',.01,.99),('SE',.99,.99)]:
-            page.touchscreen.tap(mini['x']+mini['width']*x,mini['y']+mini['height']*y);page.wait_for_timeout(90)
-            view=page.evaluate('''()=>{const s=HonroApp.scene,r=s.canvas.getBoundingClientRect();return {z:s.zoomLevel,tl:s.world(0,0),br:s.world(r.width,r.height),w:HonroApp.engine.b.width,h:HonroApp.engine.b.height}}''');assert min(view['tl'].values())>=-.001 and view['br']['x']<=view['w']+.001 and view['br']['y']<=view['h']+.001,view
-            log['cameras'].append({'width':width,'height':height,'corner':label,**view});page.locator('#battlecanvas').screenshot(path=str(a.out/f'{width}-{label}.jpg'),quality=72)
+        for zoom in ['out','in']:
+            for _ in range(8):page.locator(f'[data-zoom={zoom}]').tap()
+            mini=page.locator('#minimap').bounding_box()
+            for label,x,y in [('NW',.01,.01),('NE',.99,.01),('SW',.01,.99),('SE',.99,.99),('N',.5,.01),('S',.5,.99),('W',.01,.5),('E',.99,.5)]:
+                page.touchscreen.tap(mini['x']+mini['width']*x,mini['y']+mini['height']*y);page.wait_for_timeout(90)
+                view=page.evaluate('''()=>{const s=HonroApp.scene,r=s.canvas.getBoundingClientRect();return {z:s.zoomLevel,tl:s.world(0,0),br:s.world(r.width,r.height),w:HonroApp.engine.b.width,h:HonroApp.engine.b.height}}''')
+                assert min(view['tl'].values())>=-.001 and view['br']['x']<=view['w']+.001 and view['br']['y']<=view['h']+.001,view
+                if 'W' in label:assert abs(view['tl']['x'])<.01,(label,view)
+                if 'E' in label:assert abs(view['br']['x']-view['w'])<.01,(label,view)
+                if 'N' in label:assert abs(view['tl']['y'])<.01,(label,view)
+                if 'S' in label:assert abs(view['br']['y']-view['h'])<.01,(label,view)
+                log['cameras'].append({'width':width,'height':height,'zoom':zoom,'corner':label,**view})
+                if len(label)==2 and zoom=='out':page.locator('#battlecanvas').screenshot(path=str(a.out/f'{width}-{label}.jpg'),quality=72)
     # A sandboxed copy created by the real Tiled GUI can be supplied to compare the same cell in the game.
     log['authoringSample']=page.evaluate('''async()=>{const data=await (await fetch(new URL('topview/data/yeonmok.json',document.baseURI))).json(),{terrainSpace}=await import(new URL('topview/src/terrain.mjs',document.baseURI)),s=terrainSpace(data),p={x:7.5*s.cell,y:22.5*s.cell};HonroApp.scene.centerAt(p.x,p.y);return {cell:[7,22],material:data.terrain[22*data.width+7],walkable:s.legal(p,8),arrowClear:s.legal(p,3,true),props:data.objects.length,anchors:Object.keys(data.anchors).length}}''');page.wait_for_timeout(90);page.locator('#battlecanvas').screenshot(path=str(a.out/'authoring-cell.jpg'),quality=84)
     assert log['authoringSample']['walkable']==(not bool(a.edited_map)),log['authoringSample'];assert not log['errors'],log['errors'];(a.out/'field.json').write_text(json.dumps(log,ensure_ascii=False,indent=2)+'\n');browser.close()
