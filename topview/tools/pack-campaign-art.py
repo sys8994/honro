@@ -8,17 +8,17 @@ ROOT=Path(__file__).resolve().parents[1]
 SOURCE=ROOT/'assets/source/act1'
 ACTORS=ROOT/'assets/actors'
 PROPS=ROOT/'assets/props'
-def cells(filename):
+def cells(filename,cols=4,rows=3):
     src=Image.open(SOURCE/filename).convert('RGBA');a=np.asarray(src)[:,:,3]
     if (a<16).mean()<.22:raise ValueError('Opaque background: '+filename)
     mask=a>34
     labels,n=ndimage.label(ndimage.binary_closing(mask,iterations=1))
-    regions=ndimage.find_objects(labels);result=[[[] for _ in range(4)] for _ in range(3)]
+    regions=ndimage.find_objects(labels);result=[[[] for _ in range(cols)] for _ in range(rows)]
     for k,sl in enumerate(regions,1):
         if sl is None:continue
         y,x=sl;pix=labels[sl]==k
         if pix.sum()<12:continue
-        cy,cx=ndimage.center_of_mass(pix);r=min(2,int((cy+y.start)*3/a.shape[0]));c=min(3,int((cx+x.start)*4/a.shape[1]))
+        cy,cx=ndimage.center_of_mass(pix);r=min(rows-1,int((cy+y.start)*rows/a.shape[0]));c=min(cols-1,int((cx+x.start)*cols/a.shape[1]))
         result[r][c].append((k,sl))
     for row in result:
         out=[]
@@ -32,7 +32,18 @@ def cells(filename):
         yield out
 def padded(pic,w,h):
     out=Image.new('RGBA',(w,h));pic=pic.copy();pic.thumbnail((w-6,h-4),Image.Resampling.LANCZOS);out.alpha_composite(pic,((w-pic.width)//2,h-2-pic.height));return out
+def roadsides():
+    for name,img in zip(['palisade','terrace_wall','funeral_flags','bell_rack'],(p for row in cells('roadsides.webp',2,2) for p in row)):
+        img.thumbnail((460,400),Image.Resampling.LANCZOS);img.save(PROPS/(name+'.png'),optimize=True)
+        if name=='bell_rack':
+            a=np.asarray(img).copy();low=a.copy();yy,xx=np.mgrid[0:img.height,0:img.width]
+            edge=img.height*(.27+.35*xx/img.width)
+            low[:,:,3]=np.where(yy<=edge,0,a[:,:,3]);a[:,:,3]=np.where(yy<=edge,a[:,:,3],0)
+            Image.fromarray(low).save(PROPS/(name+'-base.png'),optimize=True)
+            Image.fromarray(a).save(PROPS/(name+'-roof.png'),optimize=True)
+
 if __name__=='__main__':
+    roadsides()
     people=['porter','medium','villager','villager_woman','possessed','mourner','shade','lantern','warden','ferry_warden','pier_warden','empty_bier']
     for i,p in enumerate(p for row in cells('village-cast.webp') for p in row):
         p.thumbnail((340,320),Image.Resampling.LANCZOS);p.save(ACTORS/(people[i]+'.webp'),quality=92,method=5)

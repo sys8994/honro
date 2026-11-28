@@ -5,7 +5,7 @@ import {spatialEngine} from './engine.mjs';
 import {groundScene} from './scene.mjs';
 import {riverPath} from './ground.mjs';
 import {animals} from './actors.mjs';
-import {projectBattle,configureAirspace} from './campaign-field.mjs';
+import {projectBattle,configureAirspace,placeBierEntries} from './campaign-field.mjs';
 import {installChapterMotion} from './chapter-motion.mjs';
 import {bowPlane,actorBody} from './body.mjs';
 
@@ -15,7 +15,7 @@ const load=async path=>{const r=await fetch(new URL(path,base));if(!r.ok)throw E
 const loaded=new Map(),loading=new Map(),bitmaps=new Map();
 let map,space,field,miniGround,viewW,viewH;
 const extraActors=['damheo','hwigyeom','sodan','porter','medium','villager','villager_woman','possessed','mourner','shade','lantern','warden','ferry_warden','pier_warden','empty_bier'];
-const tallIds=new Set(['pine_a','pine_b','shrine','ruin_gate','hut','shed','lookout','guardtree']);
+const tallIds=new Set(['pine_a','pine_b','shrine','ruin_gate','hut','shed','lookout','guardtree','bell_rack']);
 function bitmap(path,id){
   if(!bitmaps.has(path))bitmaps.set(path,(async()=>{const image=new Image();image.src=new URL(path,base);await image.decode();return fieldPalette(id,image,.88);})().catch(err=>{bitmaps.delete(path);throw err;}));
   return bitmaps.get(path);
@@ -80,6 +80,7 @@ function prepare(b) {
     if(b.honroTopview!==1||!inAct(b.honroStage))throw Error('알 수 없는 탑뷰 지도 판본');
     configureAirspace(b,space);
     if(b.tvTerrainRevision!==map.meta.revision){
+      placeBierEntries(b,space);
       for(const u of b.units){
         if(u.dead)continue;delete u.tvPath;
         const flight=!!G.HonroWorld.archetypes[u.honroVariant||u.honroType]?.flying;

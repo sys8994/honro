@@ -9,10 +9,11 @@ from shapely.ops import unary_union
 
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'editable/act1'))
-from fields import FIELDS, DECKS
+from fields import FIELDS, DECKS, BIER_ENTRIES
 TW, TH, CELL = 64,44,180
 # Sprite rectangle in projected map pixels, foot registration, physical radius in cells.
 SIZES={
+ 'palisade':(140,102,.73,.4),'terrace_wall':(126,77,.7,.35),'funeral_flags':(112,102,.74,0),'bell_rack':(140,99,.74,.55),
  'pine_a':(192,184,.94,.32),'pine_b':(170,158,.94,.29),'rock_large':(99,68,.84,.54),
  'rock_small':(49,37,.85,.23),'shrub':(42,33,.88,0),'stone_lantern':(43,69,.92,.18),
  'shrine':(184,184,.78,.72),'grain_cart':(136,112,.71,.48),'ruin_gate':(176,162,.72,0),
@@ -61,10 +62,18 @@ def build(id,f):
         w,h,ay,r=SIZES[asset];name=ALIASES.get(asset,asset);idx=len(objects)
         blocking=r>0;point=Point(x*TW,y*TH)
         objects.append(dict(id=f'{name}-{idx}',asset=name,x=round(x,3),y=round(y,3),width=round(w*factor,1),height=round(h*factor,1),anchor=[.5,ay],radius=round(r*factor,3),blocksMovement=blocking,blocksProjectile=blocking and name not in ('pine_a','pine_b','guardtree')))
-        occupied.append(point.buffer(max(12,w*.21)))
+        if name in ('palisade','terrace_wall'):
+            # Bottom course between the two visible feet of the wall.
+            dx=w*factor*.39;dy=dx*.50;px,py=point.x,point.y
+            base=LineString([(px-dx,py-dy),(px+dx,py+dy)]).buffer(5.8,cap_style=2)
+            objects[-1]['foundation']=rings(base)[0][0]
+            occupied.append(base.buffer(10))
+        else:occupied.append(point.buffer(max(12,w*.21)))
     for asset,x,y in f.structures:add(asset,x,y)
     sites=[project(p) for p in f.places.values()]
-    reserve=unary_union([Point(p).buffer(54) for p in sites]+[walkdecks.buffer(24)])
+    entries=BIER_ENTRIES if id==8 else {}
+    for pair in entries.values():sites.extend(project(p) for p in pair)
+    reserve=unary_union([Point(p).buffer(54) for p in sites]+[walkdecks.buffer(24)]+[Point(project(p)).buffer(108) for pair in entries.values() for p in pair])
     # The crown rises in screen space. A clear foot alone is insufficient if a
     # foreground tree permanently covers the actor, a binding or the debtor's ledger.
     crown_clearance=unary_union([box(x-64,y-12,x+64,y+104) for x,y in sites])
@@ -86,8 +95,8 @@ def build(id,f):
     anchors={n:{'x':p[0],'y':p[1]} for n,p in f.places.items()}
     stairs=[[list(project(p)) for p in row] for row in f.steps]
     return dict(width=nx,height=ny,tileWidth=TW,tileHeight=TH,cell=CELL,
-        meta=dict(title=f.title,stage=id,revision=2,source='editable/act1/fields.py',climate=f.climate),
-        anchors=anchors,placements=f.actors,convoy=[dict(x=p[0]*CELL,y=p[1]*CELL) for p in map(spot,f.convoy)],
+        meta=dict(title=f.title,stage=id,revision=3,source='editable/act1/fields.py',climate=f.climate),
+        anchors=anchors,placements=f.actors,waveSites=entries,convoy=[dict(x=p[0]*CELL,y=p[1]*CELL) for p in map(spot,f.convoy)],
         grid=dict(width=cols,height=rows,tileWidth=96,tileHeight=48,offsetX=50,offsetY=24,materials=grid),trails=roads,objects=objects,
         terrain=['water' if wet.contains(Point((x+.5)*TW,(y+.5)*TH)) else 'rock' if unwalkable.contains(Point((x+.5)*TW,(y+.5)*TH)) else 'grass' for y in range(ny) for x in range(nx)],
         river=rings(wet),blockedWater=rings(unwalkable),cliffs=[rings(p)[0][0] for p in drops],stairs=stairs,decks=decks)

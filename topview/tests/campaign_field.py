@@ -24,7 +24,7 @@ mode='touch' if args.mobile else 'desktop'
 if args.missions:mode+='-missions'
 if args.art:mode+='-art'
 report={}
-places={2:'archerPerch',3:'ledger',4:'gate',5:'cleat',6:'midDeck',7:'resident2',8:'bier',9:'well',10:'ritual'}
+places={2:'procession',3:'ferry',4:'gate',5:'cleat',6:'midDeck',7:'resident2',8:'bier',9:'well',10:'ritual'}
 def record():
     (args.out/(mode+'.json')).write_text(json.dumps(report,ensure_ascii=False,indent=2))
 def ready(p):
@@ -56,7 +56,8 @@ with sync_playwright() as pw:
             if args.art:
                 p.evaluate("""site=>{const a=HonroApp,t=HonroTopview.space,goal=t.point(site);a.scene.centerAt(goal.x,goal.y);}""",places[id])
                 p.wait_for_function("!document.getElementById('turn-banner')||document.getElementById('turn-banner').hidden")
-                p.wait_for_timeout(180)
+                p.wait_for_function("!document.getElementById('equipment-acquired')||document.getElementById('equipment-acquired').hidden")
+                p.wait_for_timeout(120)
                 p.screenshot(path=str(args.out/f'{id:02}-{mode}.jpg'),type='jpeg',quality=83)
             elif args.missions:
                 row['case']=p.evaluate((Path(__file__).with_name('campaign_missions.js')).read_text(),id)

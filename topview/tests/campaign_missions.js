@@ -105,7 +105,25 @@
     }
     const q=settlement();check('three recovered plus two enemy ends',hs.rescuedCount===3&&q.required===2&&q.after,q);
   }else if(id===8){
-    const boss=actor('boss'),left=hitTarget('bier-knot-0');
+    const boss=actor('boss'),waves=b.honroStage8BierSpec.entries;
+    const testFormation=(source,entry)=>{
+      const members=entry.members||[],action=b.honroEvents.find(v=>v.id===source).action;
+      if(!members.length)return;
+      // This probe uses a cloned live battle. It tests body/terrain reservation
+      // independently of when the native warning gate opens in the campaign.
+      const shadow=structuredClone(b);shadow.units=shadow.units.filter(v=>v.side===0);
+      const shell={engine:{b:shadow},stage:st},count=shadow.units.length,first=members[0];
+      const obstacle=shadow.units[0],old={x:obstacle.x,y:obstacle.y};
+      obstacle.x=first.x;obstacle.y=first.y;
+      const denied=HonroEncounterDensity.spawnMembers(shell,{...action,source},entry);
+      Object.assign(obstacle,old);
+      const allowed=HonroEncounterDensity.spawnMembers(shell,{...action,source},entry);
+      check(source+' '+entry.side+' reserves the complete formation',!denied&&allowed&&shadow.units.length===count+members.length,{denied,allowed,kinds:members.map(q=>q.kind)});
+    };
+    for(const [source,entry] of Object.entries(waves)){
+      testFormation(source,entry);for(const q of entry.variants||[])testFormation(source,q);
+    }
+    const left=hitTarget('bier-knot-0');
     check('first knot alone cannot close',left.dead&&!state().complete);
     const open=HonroTopview.bierRoute(a);result.measurements.initialRoadBlockers=open.blocked||[];
     // The safe-route control moves live occupants off the center line, preserving

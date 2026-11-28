@@ -13,6 +13,25 @@ export function configureAirspace(b,space){
   const upper=space.point('safeDescentUpper'),shelf=space.point('rightShelf'),basin=space.point('rightBasin');
   Object.assign(b.honroMap.flightRegion,{left:upper.x-610,right:shelf.x+640,top:shelf.y-870,bottom:basin.y+690});
 }
+export function placeBierEntries(b,space){
+  if(!b.honroStage8BierSpec||!space.map.waveSites)return;
+  function locate(entry){
+    const pair=space.map.waveSites[entry.side];if(!pair)return;
+    [entry,...(entry.alternates||[])].forEach((option,index)=>{
+      const [cx,cy]=pair[Math.min(index,pair.length-1)];
+      const x=cx*space.cell,y=cy*space.cell;
+      Object.assign(option,{x,y,spacing:180});
+      for(const [i,m] of (option.members||[]).entries()){
+        const def=globalThis.HonroWorld.archetypes[m.kind];
+        const foot=space.free({x:x+[-134,134,0][i],y:y+[30,18,-156][i]},def.r,!!def.flying);
+        if(!foot)throw Error('상여 증원 발점 '+m.role);
+        Object.assign(m,{x:foot.x,y:foot.y+def.h/2});
+      }
+    });
+    for(const alternate of entry.variants||[])locate(alternate);
+  }
+  for(const entry of Object.values(b.honroStage8BierSpec.entries))locate(entry);
+}
 // Native actors, named sites and event positions are authored in the original
 // stage coordinates. Preserve their local grouping on the corresponding shelf.
 export function projectBattle(b,space){
@@ -86,6 +105,7 @@ export function projectBattle(b,space){
   };
   if(b.honroStage8BierSpec){
     for(const o of Object.values(b.honroStage8BierSpec.entries))relocateEntry(o);
+    placeBierEntries(b,space);
     const movement=b.honroStage8BierSpec.movement;
     movement.destinations=[{id:'central-court',...space.point('courtyard')}];
     movement.routes=[{id:'east-courtyard',points:map.convoy}];

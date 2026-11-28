@@ -80,6 +80,18 @@ export function groundScene(Base, space, images, projection, field) {
           const a=paintPoint(target?center(target):m);
           ring(a,12,'#cbb67b','#b1964925');label({x:a.x,y:a.y+17},m.label||m.id,'#e0cda0');
         }
+        if(b.honroStage===9||b.honroStage===10){
+          // Both sites remain visibly built after installation in chapter 9.
+          // Chapter 10 inherits them, and lights the central binding when Sodan joins.
+          for(const m of b.honroMarkers.filter(m=>m.type==='receiver'&&m.collected)){
+            const p=paintPoint(m);ring(p,17,'#b6b391a8','#9e996e2e');
+            for(let i=0;i<4;i++){const angle=i*Math.PI/2+.78,dx=15*Math.cos(angle),dy=7.5*Math.sin(angle);
+              c.fillStyle='#d6ce9ba6';c.fillRect(p.x+dx-1,p.y+dy-2,2,4);}
+          }
+          if(b.honroStage===10&&b.honroState.sodanCoop&&!globalThis.HonroSodanWithdrawal.ready(b)){
+            const s=e.unit('boss'),p=paintPoint(center(s));ring(p,25+Math.sin(time*1.7)*1.4,'#d7bd7ba6','#92845328');
+          }
+        }
         if([2,6,10].includes(b.honroStage)){
           const a=paintPoint(space.point('exit'));ring(a,22,'#d2c090','#998b4724');
           label({x:a.x,y:a.y-12},({2:'나루로 가는 길',6:'북문 쉼터',10:'동쪽 외문'})[b.honroStage],'#dfc996');
