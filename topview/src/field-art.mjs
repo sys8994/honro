@@ -126,3 +126,37 @@ export function drawWoodArrow(c,position,velocity){
   c.save();c.translate(position.x,position.y);c.rotate(Math.atan2(velocity.y,velocity.x));
   c.drawImage(arrow,-19,-2.15,19,4.3);c.restore();
 }
+
+// The two rim pairs come from the same open/closed water volume that bends arrows.
+// Quiet gaps between the ribbons show the underlying current and its true width.
+export function drawWaterfall(c,vertices,closedRim,images,time){
+  const [left,bend,base,right,bendR,end]=vertices;
+  const blend=(p,q,t)=>({x:p.x+(q.x-p.x)*t,y:p.y+(q.y-p.y)*t});
+  const crest=blend(left,end,.5),pool=blend(base,right,.5),width=Math.hypot(end.x-left.x,end.y-left.y);
+  const lip=images.get('fall_lip'),foam=images.get('fall_foam');
+  // This rock is part of the east bank. Deflecting the water leaves it in place.
+  const rock=blend(closedRim[0],closedRim[5],.5),lipWidth=width*4.5,lipHeight=lipWidth*lip.height/lip.width*.8;
+  c.save();
+  c.drawImage(lip,rock.x-lipWidth*.34,rock.y-lipHeight*.70,lipWidth,lipHeight);
+  c.globalAlpha=.33;c.drawImage(foam,crest.x-width*.65,crest.y-width*.13,width*1.36,width*.26);c.globalAlpha=1;
+  const river=new Path2D();
+  vertices.forEach((p,i)=>i?river.lineTo(p.x,p.y):river.moveTo(p.x,p.y));river.closePath();
+  c.save();c.clip(river);c.lineCap='round';
+  for(let i=0;i<14;i++){
+    const offset=(i+.32+.25*Math.sin(i*5.17))/14;
+    const a=blend(left,end,offset),m=blend(bend,bendR,offset),f=blend(base,right,offset);
+    const stream=new Path2D();
+    stream.moveTo(a.x,a.y+1.5*Math.cos(i));
+    stream.bezierCurveTo(a.x+3*Math.sin(i),a.y+(m.y-a.y)*.58,m.x-1.8*Math.sin(i),m.y-5,m.x,m.y);
+    stream.quadraticCurveTo(m.x+(f.x-m.x)*.6+3*Math.sin(i*.9),m.y+(f.y-m.y)*.63,f.x,f.y);
+    const light=c.createLinearGradient(a.x,a.y,f.x,f.y);
+    light.addColorStop(0,'#ecf0db46');light.addColorStop(.10,'#e1e4cf60');light.addColorStop(.5,'#94bdba35');light.addColorStop(1,'#d9e3d64b');
+    c.strokeStyle=light;c.lineWidth=1.7+(i*7%4)*.62;c.stroke(stream);
+    c.strokeStyle='#c7dbd75c';c.lineWidth=.6;
+    c.setLineDash([3+i*11%23,17+i*7%28]);c.lineDashOffset=-time*(29+i%4*6)-i*i*1.8;c.stroke(stream);c.setLineDash([]);
+  }
+  c.restore();
+  const swell=1+.025*Math.sin(time*2.8),fw=width*2.4*swell,fh=fw*.32;
+  c.globalAlpha=.76;c.drawImage(foam,pool.x-fw*.5,pool.y-fh*.55,fw,fh);
+  c.restore();
+}

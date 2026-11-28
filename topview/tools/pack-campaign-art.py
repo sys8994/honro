@@ -42,8 +42,17 @@ def roadsides():
             Image.fromarray(low).save(PROPS/(name+'-base.png'),optimize=True)
             Image.fromarray(a).save(PROPS/(name+'-roof.png'),optimize=True)
 
+def waterworks():
+    lip,foam,wood,sill=(p for row in cells('waterworks.webp',2,2) for p in row)
+    for name,pic in [('fall_lip',lip),('fall_foam',foam),('broken_sill',sill)]:
+        pic.thumbnail((460,270),Image.Resampling.LANCZOS)
+        pic.save(PROPS/(name+'.png'),optimize=True)
+    w,h=wood.size
+    wood.crop((w//10,h//10,9*w//10,9*h//10)).convert('RGB').save(ROOT/'assets/terrain/deck-grain.webp',quality=89,method=5)
+
 if __name__=='__main__':
     roadsides()
+    waterworks()
     people=['porter','medium','villager','villager_woman','possessed','mourner','shade','lantern','warden','ferry_warden','pier_warden','empty_bier']
     for i,p in enumerate(p for row in cells('village-cast.webp') for p in row):
         p.thumbnail((340,320),Image.Resampling.LANCZOS);p.save(ACTORS/(people[i]+'.webp'),quality=92,method=5)

@@ -1,6 +1,8 @@
 # HONRO · Game + Workshop
 
-현재 공개판은 탑뷰 1막 1장 **연목 고갯길**이다. 새 여정은 **길을 열다**를 누르고 오프닝을 본 뒤 쉼터에서 **스테이지 진입**을 선택하면 시작한다. [혼로 플레이](https://sys8994.github.io/honro/)
+탑뷰 캠페인은 1막 **연목 고갯길**부터 **소단 — 놓지 못한 밤**까지 열 장이다. 새 여정은 **길을 열다**를 누르고 오프닝을 본 뒤 쉼터에서 **스테이지 진입**을 선택하면 시작한다. [혼로 플레이](https://sys8994.github.io/honro/)
+
+[장별 제작·검수 결과](game/docs/topview/ACT1_CAMPAIGN_QA.md) · [전장 화면 아홉 장](game/docs/topview/evidence/act1-campaign/contact.webp)
 
 루트에서 `npm run build`를 실행하면 저장소에 보관한 공통 런타임과 탑뷰 소스로 `index.html`과 `HONRO.html`을 생성한다. 기존 60장 캠페인은 배포 직전 트리에서 열 수 있다. [원본 백업](https://github.com/sys8994/honro/tree/backup/honro-before-topview-20261128)
 

@@ -57,13 +57,25 @@ export function paintRelief(ground,map,images,density){
         stroke([at(d,l,6),at(d+16,l,19)],'#51483a',3);
       }
     }
-    const boards=Math.ceil(len/7.7);
+    const timber=images.get('deck-grain'),boards=Math.ceil(len/8.2);
+    if(deck.broken){
+      const sill=images.get('broken_sill');
+      c.save();c.translate(z,w+4);c.rotate(Math.atan2(ty,tx));
+      if(tx<0)c.scale(1,-1);
+      c.drawImage(sill,-37,-half*.82,55,half*1.64);c.restore();
+    }
     for(let i=0;i<boards;i++){
       const a=i*len/boards,b=(i+1)*len/boards-.5;
       const split=deck.broken&&i===boards-1?2+rand()*3:0;
       span(at(a,-half),at(b-split,-half),at(b,half),at(a,half),['#776c54','#706650','#85775d','#7a7059'][Math.floor(rand()*4)]);
-      stroke([at(a,-half),at(a,half)],'#aaa187a0',.9);
-      for(let g=0;g<3;g++){const edge=rand()*half*.9;stroke([at(a+2+g,-half+edge),at(a+2.6+g,half-edge*.7)],'#4b46384d',.7);}
+      // Grain follows each individual plank, across the walking direction.
+      c.save();c.clip(loop([at(a,-half),at(b-split,-half),at(b,half),at(a,half)]));
+      c.transform(nx,ny,tx,ty,x,y);c.globalAlpha=.88;
+      const sw=timber.width*(.55+rand()*.4),sh=timber.height*.07;
+      c.drawImage(timber,rand()*(timber.width-sw),rand()*(timber.height-sh),sw,sh,-half,a,half*2,b-a);
+      c.restore();
+      stroke([at(a,-half+1),at(a,half-1)],'#a5997957',.67);
+      for(const edge of [-1,1]){const nail=at((a+b)*.5,edge*(half-4));c.fillStyle='#262c27bd';c.fillRect(nail[0],nail[1],1.4,1.1);}
     }
     for(let d=10;d<len-12;d+=65){const l=-half+2;
       stroke([at(d,l),at(d,l,-12)],'#4b4638',4);

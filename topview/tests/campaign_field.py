@@ -18,11 +18,13 @@ cli.add_argument('--chapters', nargs='+', type=int, default=list(range(2,11)))
 cli.add_argument('--mobile', action='store_true')
 cli.add_argument('--missions', action='store_true')
 cli.add_argument('--art', action='store_true')
+cli.add_argument('--frames', action='store_true', help='Observe animation frame intervals on the authored camera at normal and minimum zoom.')
 args=cli.parse_args()
 args.out.mkdir(parents=True, exist_ok=True)
 mode='touch' if args.mobile else 'desktop'
 if args.missions:mode+='-missions'
 if args.art:mode+='-art'
+if args.frames:mode+='-frames'
 report={}
 places={2:'procession',3:'ferry',4:'gate',5:'cleat',6:'midDeck',7:'resident2',8:'bier',9:'well',10:'ritual'}
 def record():
@@ -53,12 +55,24 @@ with sync_playwright() as pw:
                 for(let i=1;i<id;i++)a.profile.cleared[i]={visits:1};
                 a.launch(id);}""",id)
             ready(p);row['entry']=snapshot(p)
-            if args.art:
+            if args.art or args.frames:
                 p.evaluate("""site=>{const a=HonroApp,t=HonroTopview.space,goal=t.point(site);a.scene.centerAt(goal.x,goal.y);}""",places[id])
                 p.wait_for_function("!document.getElementById('turn-banner')||document.getElementById('turn-banner').hidden")
                 p.wait_for_function("!document.getElementById('equipment-acquired')||document.getElementById('equipment-acquired').hidden")
                 p.wait_for_timeout(120)
-                p.screenshot(path=str(args.out/f'{id:02}-{mode}.jpg'),type='jpeg',quality=83)
+                if args.art:p.screenshot(path=str(args.out/f'{id:02}-{mode}.jpg'),type='jpeg',quality=83)
+                if args.frames:
+                    sample="""()=>new Promise(done=>{let last;const times=[];
+                      function tick(t){if(last!==undefined)times.push(t-last);last=t;
+                        if(times.length<150){requestAnimationFrame(tick);return;}
+                        times.sort((a,b)=>a-b);const p=n=>+times[Math.ceil(times.length*n)-1].toFixed(1);
+                        done({frames:times.length,zoom:HonroApp.scene.zoomLevel,p50ms:p(.5),p95ms:p(.95),maxMs:p(1)});}
+                      requestAnimationFrame(tick);})"""
+                    row['defaultView']=p.evaluate(sample)
+                    p.mouse.move(p.viewport_size['width']//2,p.viewport_size['height']//2)
+                    p.mouse.wheel(0,2400)
+                    p.wait_for_function('z=>HonroApp.scene.zoomLevel<z',arg=row['defaultView']['zoom'])
+                    row['wideView']=p.evaluate(sample)
             elif args.missions:
                 row['case']=p.evaluate((Path(__file__).with_name('campaign_missions.js')).read_text(),id)
                 failures=[v for v in row['case']['checks'] if not v['pass']]

@@ -3,7 +3,7 @@ import {fieldLandscape} from './landscape.mjs';
 import {sceneryParts,drawScenery} from './canopy.mjs';
 import {cameraView,defaultZoom} from './space.mjs';
 import {actorBody,bowPlane} from './body.mjs';
-import {fieldActors,fieldBreeze,drawWoodArrow} from './field-art.mjs';
+import {fieldActors,fieldBreeze,drawWoodArrow,drawWaterfall} from './field-art.mjs';
 
 export function groundScene(Base, space, images, projection, field) {
   const {map,cell}=space;
@@ -99,17 +99,10 @@ export function groundScene(Base, space, images, projection, field) {
         if(b.honroStage===5){
           const course=b.tvWaterCourses?.[b.honroState.waterfallSight?'opened':'closed'];
           if(course){
-            const vertices=course.map(paintPoint),ribbon=new Path2D();
-            vertices.forEach((p,i)=>i?ribbon.lineTo(p.x,p.y):ribbon.moveTo(p.x,p.y));ribbon.closePath();
-            c.save();c.clip(ribbon);c.fillStyle='#8cbdc35e';c.fill(ribbon);c.lineCap='round';
-            const [a,bend,base,right,bendR,end]=vertices,lerp=(p,q,t)=>({x:p.x+(q.x-p.x)*t,y:p.y+(q.y-p.y)*t});
-            for(let n=0;n<18;n++){
-              const t=(n+.5)/18,top=lerp(a,end,t),mid=lerp(bend,bendR,t),foot=lerp(base,right,t);
-              c.beginPath();c.moveTo(top.x,top.y);c.quadraticCurveTo(mid.x,mid.y,foot.x,foot.y);
-              c.lineWidth=n%3?.65:1.3;c.strokeStyle=n%3?'#c3dee23d':'#d1e8e95e';c.stroke();
-              c.lineWidth=.7+.65*Math.sin(n*8.2)**2;c.strokeStyle='#c3e5e65c';
-              c.setLineDash([4+(n*17)%23,12+(n*23)%32]);c.lineDashOffset=-time*(36+n%5*5)-n*n*3;c.stroke();c.setLineDash([]);
-            }c.restore();
+            const rim=b.tvWaterCourses.closed,base=paintPoint(course[2]),top=paintPoint(rim[0]);
+            if(base.y>=view.y-60&&top.y<=view.bottom+80&&top.x<view.right+130&&base.x>view.x-180){
+              drawWaterfall(c,course.map(paintPoint),rim.map(paintPoint),images,time);
+            }
           }
         }
       }

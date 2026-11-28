@@ -1,0 +1,1372 @@
+{
+  "source": {
+    "sideViewBackup": "cc81427699f40bebfe3716f4ed3bb5c2ca36ef8e",
+    "firstChapterRelease": "6206a31380b89ab0238d62204b3d352bc27da9eb",
+    "nativeSaveSHA256": "6686d7e8678c66a3a594ff4db6f5c7676bcefba1b91b50d00d5318594609be6f",
+    "nativeSaveEarnedBy": "title, original opening, real chapter 1 victory, result, enter chapter 2, persist normally"
+  },
+  "inputMethod": "Isolated prerequisite clears only. Keyboard/touch walking, fire control and native cold continue in all nine chapters.",
+  "campaignMethod": "One browser tab, earned chapter-2 save. Native ticks accelerated; native sight, walking, shooting and objectives. Normal chapter transitions and end sequence.",
+  "chapters": {
+    "2": {
+      "startEnemies": 12,
+      "nativeRounds": 16,
+      "nativeActions": 16,
+      "finish": "won",
+      "wonBecause": "수소문해 찾아온 뱃사공 홍만은 이미 세상을 떠난 뒤였다. 딸 연실에게서 나루 움막에 홍만의 장부가 남아 있다는 말을 들었다. 들림이 급증한 까닭을 조사하는 도사 담허와 함께 나루로 내려간다.",
+      "survivors": [
+        [
+          "p-archer",
+          365,
+          6300,
+          2746
+        ]
+      ],
+      "nativeEvents": [
+        "event:procession-seen",
+        "event:road-pressure",
+        "event:sniper-seen",
+        "event:right-cliff",
+        "event:last-flight"
+      ],
+      "publicDesktop": {
+        "ok": true,
+        "moveBudgetSpent": 127.08,
+        "shots": 1,
+        "resumedChapter": 2,
+        "resumedShots": 3,
+        "resumedParty": [
+          "p-archer"
+        ],
+        "errors": []
+      },
+      "publicTouchEmulation": {
+        "ok": true,
+        "moveBudgetSpent": 136.26,
+        "shots": 1,
+        "resumedChapter": 2,
+        "resumedShots": 3,
+        "resumedParty": [
+          "p-archer"
+        ],
+        "errors": []
+      },
+      "isolatedCases": [
+        {
+          "name": "all player or mission approaches connected",
+          "pass": true,
+          "details": {
+            "start": true,
+            "archerPerch": true,
+            "procession": true,
+            "leftBasin": true,
+            "rightBasin": true,
+            "rightShelf": true,
+            "exit": true,
+            "safeDescentUpper": true,
+            "safeDescentLower": true
+          }
+        },
+        {
+          "name": "entry is pending",
+          "pass": true
+        },
+        {
+          "name": "hostile stops procession",
+          "pass": true
+        },
+        {
+          "name": "carriage traverses real lower road to the two-dimensional exit",
+          "pass": true,
+          "details": {
+            "distance": 6,
+            "samples": 8,
+            "steps": 350
+          }
+        },
+        {
+          "name": "same x on another shelf is insufficient",
+          "pass": true
+        },
+        {
+          "name": "convoy loss",
+          "pass": true
+        },
+        {
+          "name": "original flying encounter active",
+          "pass": true
+        },
+        {
+          "name": "native victory phase",
+          "pass": true,
+          "details": {
+            "summary": "상여 엄호 · 적 12명 / 뒤따르는 기척 있음"
+          }
+        }
+      ],
+      "interlude": "rest",
+      "nextChapter": 3
+    },
+    "3": {
+      "startEnemies": 13,
+      "nativeRounds": 6,
+      "nativeActions": 12,
+      "finish": "won",
+      "wonBecause": "서낭나루에서 찾은 홍만의 장부에는 북쪽 산사람 열셋, 그중 아이 둘이 적혀 있었다. 연목 주막에서 하룻밤을 묵은 뒤 북문으로 향했다는 기록이다. 피란민을 지키던 무사 휘겸은 북문으로 먼저 떠났다.",
+      "survivors": [
+        [
+          "p-archer",
+          395,
+          5593,
+          1891
+        ],
+        [
+          "p-mage",
+          422,
+          4993,
+          2612
+        ]
+      ],
+      "nativeEvents": [
+        "event:midboss-stage3-seen",
+        "event:transfer",
+        "event:dock-beasts"
+      ],
+      "publicDesktop": {
+        "ok": true,
+        "moveBudgetSpent": 114.37,
+        "shots": 1,
+        "resumedChapter": 3,
+        "resumedShots": 1,
+        "resumedParty": [
+          "p-archer",
+          "p-mage"
+        ],
+        "errors": []
+      },
+      "publicTouchEmulation": {
+        "ok": true,
+        "moveBudgetSpent": 142.27,
+        "shots": 1,
+        "resumedChapter": 3,
+        "resumedShots": 1,
+        "resumedParty": [
+          "p-archer",
+          "p-mage"
+        ],
+        "errors": []
+      },
+      "isolatedCases": [
+        {
+          "name": "all player or mission approaches connected",
+          "pass": true,
+          "details": {
+            "start": true,
+            "ferry": true,
+            "mudflat": true,
+            "cargo": true,
+            "ledger": true,
+            "roof": true,
+            "exit": true
+          }
+        },
+        {
+          "name": "entry is pending",
+          "pass": true
+        },
+        {
+          "name": "ledger requires approach",
+          "pass": true,
+          "details": "더 가까이 이동"
+        },
+        {
+          "name": "actual ledger interaction",
+          "pass": true,
+          "details": {
+            "ready": true,
+            "reason": "상호작용",
+            "used": true
+          }
+        },
+        {
+          "name": "two enemy actions after recovery",
+          "pass": true,
+          "details": {
+            "required": 2,
+            "before": false,
+            "after": true
+          }
+        },
+        {
+          "name": "native victory phase",
+          "pass": true,
+          "details": {
+            "summary": "홍만의 장부 확보 · 철수 준비"
+          }
+        }
+      ],
+      "interlude": "rest",
+      "nextChapter": 4
+    },
+    "4": {
+      "startEnemies": 14,
+      "nativeRounds": 9,
+      "nativeActions": 16,
+      "finish": "won",
+      "wonBecause": "북문에서 피란민이 빠져나올 길목을 지켰다. 주민 춘례는 방울 든 처녀가 붉은 실로 집을 지켰으나 어젯밤부터 폭포 쪽으로 줄이 당겨진다고 말했다. 안쪽 주민에게 가기 전, 폭포 절벽으로 이어진 실을 살피기로 했다.",
+      "survivors": [
+        [
+          "p-archer",
+          425,
+          1825,
+          2901
+        ],
+        [
+          "p-mage",
+          454,
+          1908,
+          2971
+        ]
+      ],
+      "nativeEvents": [
+        "event:siege-0",
+        "event:siege-mid",
+        "event:siege-1"
+      ],
+      "publicDesktop": {
+        "ok": true,
+        "moveBudgetSpent": 114.38,
+        "shots": 1,
+        "resumedChapter": 4,
+        "resumedShots": 1,
+        "resumedParty": [
+          "p-archer",
+          "p-mage"
+        ],
+        "errors": []
+      },
+      "publicTouchEmulation": {
+        "ok": true,
+        "moveBudgetSpent": 144.27,
+        "shots": 1,
+        "resumedChapter": 4,
+        "resumedShots": 1,
+        "resumedParty": [
+          "p-archer",
+          "p-mage"
+        ],
+        "errors": []
+      },
+      "isolatedCases": [
+        {
+          "name": "all player or mission approaches connected",
+          "pass": true,
+          "details": {
+            "start": true,
+            "gate": true,
+            "leftLane": true,
+            "cartChoke": true,
+            "rightLane": true,
+            "exit": true,
+            "watch": true,
+            "westVantage": true
+          }
+        },
+        {
+          "name": "entry is pending",
+          "pass": true
+        },
+        {
+          "name": "gate destruction fails",
+          "pass": true
+        },
+        {
+          "name": "gate survives the authored final round",
+          "pass": true,
+          "details": {
+            "until": 9,
+            "waves": [
+              [
+                "siege-0",
+                3
+              ],
+              [
+                "siege-mid",
+                5
+              ],
+              [
+                "siege-1",
+                7
+              ]
+            ]
+          }
+        },
+        {
+          "name": "native victory phase",
+          "pass": true,
+          "details": {
+            "summary": "피란민 통로 보호 · 8/8턴"
+          }
+        }
+      ],
+      "interlude": "rest",
+      "nextChapter": 5
+    },
+    "5": {
+      "startEnemies": 17,
+      "nativeRounds": 8,
+      "nativeActions": 16,
+      "finish": "won",
+      "wonBecause": "담허가 물길진으로 낙수를 비튼 사이 설오가 동굴 안의 주박목을 쏘아 부쉈다. 그러나 옆으로 이어진 다른 실은 오히려 더 팽팽하게 당겨졌다. 일행은 나무다리의 부상자 운반대를 돕기 위해 내려간다.",
+      "survivors": [
+        [
+          "p-mage",
+          486,
+          4569,
+          3620
+        ]
+      ],
+      "nativeEvents": [
+        "event:pine-flight-warning",
+        "event:pine-flight",
+        "event:lower-beasts-warning",
+        "event:bell"
+      ],
+      "publicDesktop": {
+        "ok": true,
+        "moveBudgetSpent": 111.83,
+        "shots": 1,
+        "resumedChapter": 5,
+        "resumedShots": 1,
+        "resumedParty": [
+          "p-archer",
+          "p-mage"
+        ],
+        "errors": []
+      },
+      "publicTouchEmulation": {
+        "ok": true,
+        "moveBudgetSpent": 142.27,
+        "shots": 1,
+        "resumedChapter": 5,
+        "resumedShots": 1,
+        "resumedParty": [
+          "p-archer",
+          "p-mage"
+        ],
+        "errors": []
+      },
+      "isolatedCases": [
+        {
+          "name": "all player or mission approaches connected",
+          "pass": true,
+          "details": {
+            "start": true,
+            "upperEntry": true,
+            "upperShot": true,
+            "shotGap": true,
+            "roost": true,
+            "lowerApproach": true,
+            "shoreShot": true,
+            "basin": true,
+            "receiver": true,
+            "ritualWest": true,
+            "ritualEast": true,
+            "cleat": true,
+            "exit": true
+          }
+        },
+        {
+          "name": "entry is pending",
+          "pass": true
+        },
+        {
+          "name": "loss of ritual holder before breaking seal",
+          "pass": true
+        },
+        {
+          "name": "archer cannot hold the ritual",
+          "pass": true,
+          "details": {
+            "ready": false,
+            "reason": "담허 필요",
+            "used": false
+          }
+        },
+        {
+          "name": "mage opens real fluid",
+          "pass": true
+        },
+        {
+          "name": "leaving closes the same water course",
+          "pass": true
+        },
+        {
+          "name": "closed fluid diverts the same shot",
+          "pass": true,
+          "details": {
+            "closed": [
+              5078,
+              2354
+            ],
+            "opened": "cliff-cleat"
+          }
+        },
+        {
+          "name": "normal arrow damages the cleat through the open lane",
+          "pass": true,
+          "details": {
+            "from": {
+              "x": 4320,
+              "y": 1720
+            },
+            "to": {
+              "x": 5362.541413587455,
+              "y": 1854.7880412532113,
+              "rx": 29.25,
+              "ry": 63.81818181818182
+            },
+            "predicted": "cliff-cleat",
+            "damage": 83,
+            "angle": -9.391055572859576,
+            "projectiles": 0
+          }
+        },
+        {
+          "name": "native victory phase",
+          "pass": true,
+          "details": {
+            "summary": "주박목 파괴 완료 · 물길 안정화"
+          }
+        }
+      ],
+      "interlude": "rest",
+      "nextChapter": 6
+    },
+    "6": {
+      "startEnemies": 21,
+      "nativeRounds": 13,
+      "nativeActions": 37,
+      "finish": "won",
+      "wonBecause": "휘겸과 함께 부상자 운반대를 북문 쉼터까지 무사히 데려왔다. 휘겸도 앞으로의 조사에 동행하기로 했다. 돌당골에는 제 몸을 가누지 못하는 살아 있는 주민들이 남아 있다.",
+      "survivors": [
+        [
+          "p-archer",
+          485,
+          7020,
+          2026
+        ],
+        [
+          "p-mage",
+          518,
+          6218,
+          2532
+        ],
+        [
+          "p-knight",
+          777,
+          6130,
+          2593
+        ]
+      ],
+      "nativeEvents": [
+        "event:midboss-stage6-seen",
+        "event:bridge-boars",
+        "event:pursuit",
+        "event:bridge-crows"
+      ],
+      "publicDesktop": {
+        "ok": true,
+        "moveBudgetSpent": 116.92,
+        "shots": 1,
+        "resumedChapter": 6,
+        "resumedShots": 1,
+        "resumedParty": [
+          "p-archer",
+          "p-mage",
+          "p-knight"
+        ],
+        "errors": []
+      },
+      "publicTouchEmulation": {
+        "ok": true,
+        "moveBudgetSpent": 144.27,
+        "shots": 1,
+        "resumedChapter": 6,
+        "resumedShots": 1,
+        "resumedParty": [
+          "p-archer",
+          "p-mage",
+          "p-knight"
+        ],
+        "errors": []
+      },
+      "isolatedCases": [
+        {
+          "name": "all player or mission approaches connected",
+          "pass": true,
+          "details": {
+            "start": true,
+            "westHead": true,
+            "westDeck": true,
+            "midDeck": true,
+            "pillarNest": true,
+            "rescue": true,
+            "eastHead": true,
+            "exit": true
+          }
+        },
+        {
+          "name": "entry is pending",
+          "pass": true
+        },
+        {
+          "name": "carrier loss",
+          "pass": true
+        },
+        {
+          "name": "contact rescues carrier",
+          "pass": true
+        },
+        {
+          "name": "living carrier follows a moving escort to shelter",
+          "pass": true,
+          "details": {
+            "shelterDistance": 0,
+            "traveled": 3097,
+            "waypoints": 4
+          }
+        },
+        {
+          "name": "living pier warden still blocks victory",
+          "pass": true
+        },
+        {
+          "name": "joint rescue and warden condition",
+          "pass": true
+        },
+        {
+          "name": "native victory phase",
+          "pass": true,
+          "details": {
+            "summary": "부상자 운반대를 쉼터까지 호송"
+          }
+        }
+      ],
+      "interlude": "rest",
+      "nextChapter": 7
+    },
+    "7": {
+      "startEnemies": 20,
+      "nativeRounds": 10,
+      "nativeActions": 30,
+      "finish": "won",
+      "wonBecause": "돌당골에 남은 주민 셋에게서 붙은 혼을 떼어냈다. 소단은 이들이 가족을 해치지 못하도록 붉은 실로 붙들고 있었다. 구조한 주민들의 귀환로를 가로막은 빈 상여부터 멈추러 간다.",
+      "survivors": [
+        [
+          "p-archer",
+          545,
+          3853,
+          1930
+        ],
+        [
+          "p-mage",
+          582,
+          4030,
+          1485
+        ],
+        [
+          "p-knight",
+          909,
+          3880,
+          1609
+        ]
+      ],
+      "nativeEvents": [
+        "event:yard-hounds",
+        "event:upper-crows"
+      ],
+      "publicDesktop": {
+        "ok": true,
+        "moveBudgetSpent": 122.0,
+        "shots": 1,
+        "resumedChapter": 7,
+        "resumedShots": 1,
+        "resumedParty": [
+          "p-archer",
+          "p-mage",
+          "p-knight"
+        ],
+        "errors": []
+      },
+      "publicTouchEmulation": {
+        "ok": true,
+        "moveBudgetSpent": 144.27,
+        "shots": 1,
+        "resumedChapter": 7,
+        "resumedShots": 1,
+        "resumedParty": [
+          "p-archer",
+          "p-mage",
+          "p-knight"
+        ],
+        "errors": []
+      },
+      "isolatedCases": [
+        {
+          "name": "all player or mission approaches connected",
+          "pass": true,
+          "details": {
+            "start": true,
+            "resident1": true,
+            "knot1": true,
+            "turn1": true,
+            "resident2": true,
+            "hollow": true,
+            "resident3": true,
+            "upperShrine": true,
+            "exit": true
+          }
+        },
+        {
+          "name": "entry is pending",
+          "pass": true
+        },
+        {
+          "name": "resident death fails",
+          "pass": true
+        },
+        {
+          "name": "덕수 guarded",
+          "pass": true,
+          "details": {
+            "guards": [
+              "site-7-patrol-0-0",
+              "site-7-patrol-0-2"
+            ],
+            "blocked": {
+              "ready": false,
+              "reason": "곁의 그슨대·들린 사람 밀쳐내기 또는 제압",
+              "used": false
+            }
+          }
+        },
+        {
+          "name": "덕수 recovered after sentinel stun",
+          "pass": true,
+          "details": {
+            "ready": true,
+            "reason": "상호작용",
+            "used": true
+          }
+        },
+        {
+          "name": "월이 guarded",
+          "pass": true,
+          "details": {
+            "guards": [
+              "site-7-patrol-1-0",
+              "site-7-patrol-1-3",
+              "site-7-patrol-1-5"
+            ],
+            "blocked": {
+              "ready": false,
+              "reason": "곁의 떠도는 혼·들린 사람·들린 산박쥐 밀쳐내기 또는 제압",
+              "used": false
+            }
+          }
+        },
+        {
+          "name": "월이 recovered after sentinel stun",
+          "pass": true,
+          "details": {
+            "ready": true,
+            "reason": "상호작용",
+            "used": true
+          }
+        },
+        {
+          "name": "칠복 guarded",
+          "pass": true,
+          "details": {
+            "guards": [
+              "site-7-patrol-2-0",
+              "site-7-patrol-2-1"
+            ],
+            "blocked": {
+              "ready": false,
+              "reason": "곁의 떠도는 혼·들린 사람 밀쳐내기 또는 제압",
+              "used": false
+            }
+          }
+        },
+        {
+          "name": "칠복 recovered after sentinel stun",
+          "pass": true,
+          "details": {
+            "ready": true,
+            "reason": "상호작용",
+            "used": true
+          }
+        },
+        {
+          "name": "three recovered plus two enemy ends",
+          "pass": true,
+          "details": {
+            "required": 2,
+            "before": false,
+            "after": true
+          }
+        },
+        {
+          "name": "native victory phase",
+          "pass": true,
+          "details": {
+            "summary": "들린 주민 구조 · 3/3 · 주변 위협 20명"
+          }
+        }
+      ],
+      "interlude": "rest",
+      "nextChapter": 8
+    },
+    "8": {
+      "startEnemies": 37,
+      "nativeRounds": 10,
+      "nativeActions": 30,
+      "finish": "won",
+      "wonBecause": "빈 상여에는 홍만이 아닌 다른 원혼이 들어 있었다. 상여 결박을 끊고 멈춰 세워 주민들의 귀환로를 열었다. 폭포의 줄을 푼 영향은 아직 단정할 수 없어, 소단을 만나기 전 아랫마당에 받이진을 마련하기로 했다.",
+      "survivors": [
+        [
+          "p-archer",
+          575,
+          8467,
+          2988
+        ],
+        [
+          "p-mage",
+          614,
+          8292,
+          2639
+        ],
+        [
+          "p-knight",
+          964,
+          8441,
+          2238
+        ]
+      ],
+      "nativeEvents": [
+        "event:stage8-gate-first-seal",
+        "event:stage8-first-seal",
+        "event:stage8-gate-low-health",
+        "event:stage8-low-health",
+        "event:stage8-settled-crows"
+      ],
+      "publicDesktop": {
+        "ok": true,
+        "moveBudgetSpent": 94.04,
+        "shots": 1,
+        "resumedChapter": 8,
+        "resumedShots": 1,
+        "resumedParty": [
+          "p-archer",
+          "p-mage",
+          "p-knight"
+        ],
+        "errors": []
+      },
+      "publicTouchEmulation": {
+        "ok": true,
+        "moveBudgetSpent": 144.27,
+        "shots": 1,
+        "resumedChapter": 8,
+        "resumedShots": 1,
+        "resumedParty": [
+          "p-archer",
+          "p-mage",
+          "p-knight"
+        ],
+        "errors": []
+      },
+      "isolatedCases": [
+        {
+          "name": "all player or mission approaches connected",
+          "pass": true,
+          "details": {
+            "start": true,
+            "spawn": true,
+            "store": true,
+            "knotWest": true,
+            "courtyard": true,
+            "storeHollow": true,
+            "knotEast": true,
+            "bier": true,
+            "exit": true
+          }
+        },
+        {
+          "name": "entry is pending",
+          "pass": true
+        },
+        {
+          "name": "stage8-first-seal west reserves the complete formation",
+          "pass": true,
+          "details": {
+            "denied": false,
+            "allowed": true,
+            "kinds": [
+              "hound",
+              "hound",
+              "crow"
+            ]
+          }
+        },
+        {
+          "name": "stage8-low-health east reserves the complete formation",
+          "pass": true,
+          "details": {
+            "denied": false,
+            "allowed": true,
+            "kinds": [
+              "hound",
+              "lantern"
+            ]
+          }
+        },
+        {
+          "name": "stage8-low-health west-shoulder reserves the complete formation",
+          "pass": true,
+          "details": {
+            "denied": false,
+            "allowed": true,
+            "kinds": [
+              "hound",
+              "lantern"
+            ]
+          }
+        },
+        {
+          "name": "stage8-low-health east-hatch reserves the complete formation",
+          "pass": true,
+          "details": {
+            "denied": false,
+            "allowed": true,
+            "kinds": [
+              "hound",
+              "lantern"
+            ]
+          }
+        },
+        {
+          "name": "first knot alone cannot close",
+          "pass": true
+        },
+        {
+          "name": "bier traverses real courtyard route",
+          "pass": true,
+          "details": {
+            "traveled": 3782,
+            "blocked": null,
+            "remaining": 0
+          }
+        },
+        {
+          "name": "boss still required after both knots",
+          "pass": true
+        },
+        {
+          "name": "two broken bindings and defeated boss",
+          "pass": true
+        },
+        {
+          "name": "native victory phase",
+          "pass": true,
+          "details": {
+            "summary": "빈 상여 제압 완료 · 원혼 수습"
+          }
+        }
+      ],
+      "interlude": "rest",
+      "nextChapter": 9,
+      "directBier": [
+        {
+          "round": 1,
+          "state": "anchored",
+          "entries": [],
+          "warnings": [],
+          "blockers": []
+        },
+        {
+          "round": 3,
+          "state": "anchored",
+          "entries": [
+            "stage8-first-seal"
+          ],
+          "warnings": [
+            "stage8-first-seal"
+          ],
+          "blockers": []
+        },
+        {
+          "round": 6,
+          "state": "blocked",
+          "entries": [
+            "stage8-first-seal"
+          ],
+          "warnings": [
+            "stage8-first-seal"
+          ],
+          "blockers": [
+            "s8-27"
+          ]
+        },
+        {
+          "round": 9,
+          "state": "blocked",
+          "entries": [
+            "stage8-first-seal",
+            "stage8-low-health"
+          ],
+          "warnings": [
+            "stage8-first-seal",
+            "stage8-low-health"
+          ],
+          "blockers": [
+            "p-archer"
+          ]
+        },
+        {
+          "round": 10,
+          "state": "cancelled",
+          "entries": [
+            "stage8-first-seal",
+            "stage8-low-health"
+          ],
+          "warnings": [
+            "stage8-first-seal",
+            "stage8-low-health",
+            "stage8-settled-crows"
+          ],
+          "blockers": []
+        }
+      ],
+      "clearBierRoad": [
+        {
+          "round": 1,
+          "state": "anchored",
+          "entries": [],
+          "warnings": [],
+          "blockers": []
+        },
+        {
+          "round": 3,
+          "state": "anchored",
+          "entries": [
+            "stage8-first-seal"
+          ],
+          "warnings": [
+            "stage8-first-seal"
+          ],
+          "blockers": []
+        },
+        {
+          "round": 6,
+          "state": "blocked",
+          "entries": [
+            "stage8-first-seal"
+          ],
+          "warnings": [
+            "stage8-first-seal"
+          ],
+          "blockers": [
+            "s8-27"
+          ]
+        },
+        {
+          "round": 22,
+          "state": "settled",
+          "entries": [
+            "stage8-first-seal"
+          ],
+          "warnings": [
+            "stage8-first-seal",
+            "stage8-settled-crows"
+          ],
+          "blockers": []
+        },
+        {
+          "round": 23,
+          "state": "settled",
+          "entries": [
+            "stage8-first-seal",
+            "stage8-settled-crows"
+          ],
+          "warnings": [
+            "stage8-first-seal",
+            "stage8-settled-crows"
+          ],
+          "blockers": []
+        },
+        {
+          "round": 28,
+          "state": "settled",
+          "entries": [
+            "stage8-first-seal",
+            "stage8-settled-crows",
+            "stage8-low-health"
+          ],
+          "warnings": [
+            "stage8-first-seal",
+            "stage8-settled-crows",
+            "stage8-low-health"
+          ],
+          "blockers": []
+        },
+        {
+          "round": 30,
+          "state": "cancelled",
+          "entries": [
+            "stage8-first-seal",
+            "stage8-settled-crows",
+            "stage8-low-health"
+          ],
+          "warnings": [
+            "stage8-first-seal",
+            "stage8-settled-crows",
+            "stage8-low-health"
+          ],
+          "blockers": []
+        }
+      ],
+      "alternateVictoryRound": 30
+    },
+    "9": {
+      "startEnemies": 24,
+      "nativeRounds": 12,
+      "nativeActions": 35,
+      "finish": "won",
+      "wonBecause": "마당 양쪽에 두 받이진을 세워 소단이 쥔 실의 하중을 덜어 주었다. 그러나 소단은 폭포에서 줄이 풀린 뒤 이쪽 매듭까지 조여들었다며 일행의 접근을 거부했다. 가운데 줄은 건드리지 않기로 약속하고 윗마당으로 향한다.",
+      "survivors": [
+        [
+          "p-archer",
+          605,
+          4785,
+          2141
+        ],
+        [
+          "p-mage",
+          646,
+          4936,
+          2190
+        ],
+        [
+          "p-knight",
+          1018,
+          4861,
+          2238
+        ]
+      ],
+      "nativeEvents": [
+        "event:evac-beasts",
+        "event:evac-crows"
+      ],
+      "publicDesktop": {
+        "ok": true,
+        "moveBudgetSpent": 109.29,
+        "shots": 1,
+        "resumedChapter": 9,
+        "resumedShots": 1,
+        "resumedParty": [
+          "p-archer",
+          "p-mage",
+          "p-knight"
+        ],
+        "errors": []
+      },
+      "publicTouchEmulation": {
+        "ok": true,
+        "moveBudgetSpent": 138.26,
+        "shots": 1,
+        "resumedChapter": 9,
+        "resumedShots": 1,
+        "resumedParty": [
+          "p-archer",
+          "p-mage",
+          "p-knight"
+        ],
+        "errors": []
+      },
+      "isolatedCases": [
+        {
+          "name": "all player or mission approaches connected",
+          "pass": true,
+          "details": {
+            "start": true,
+            "receiverWest": true,
+            "well": true,
+            "receiverEast": true,
+            "sodan": true,
+            "exit": true,
+            "lookout": true
+          }
+        },
+        {
+          "name": "entry is pending",
+          "pass": true
+        },
+        {
+          "name": "still courtyard",
+          "pass": true
+        },
+        {
+          "name": "contested site refuses installation",
+          "pass": true,
+          "details": {
+            "ready": false,
+            "reason": "터 곁의 적을 밀쳐내거나 제압하세요",
+            "used": false
+          }
+        },
+        {
+          "name": "receiver-west installed on legal ground",
+          "pass": true,
+          "details": {
+            "ready": true,
+            "reason": "상호작용",
+            "used": true
+          }
+        },
+        {
+          "name": "receiver-east installed on legal ground",
+          "pass": true,
+          "details": {
+            "ready": true,
+            "reason": "상호작용",
+            "used": true
+          }
+        },
+        {
+          "name": "both receivers required",
+          "pass": true
+        },
+        {
+          "name": "native victory phase",
+          "pass": true,
+          "details": {
+            "summary": "주민 대피 후 받이진 준비 · 2/2 · 위협 24명"
+          }
+        }
+      ],
+      "interlude": "battle",
+      "nextChapter": 10
+    },
+    "10": {
+      "startEnemies": 17,
+      "nativeRounds": 14,
+      "nativeActions": 42,
+      "finish": "won",
+      "wonBecause": "바깥 주박을 걷어내 혼을 나눠 받고 소단이 중심 매듭을 푸는 동안 호위했다. 새로운 원혼은 소단의 망이 아니라 동쪽 외문 밖의 산길에서 밀려들고 있었다. 안전하게 철수한 뒤 소단과 함께 북쪽 산길의 근원을 찾기로 했다.",
+      "survivors": [
+        [
+          "p-archer",
+          635,
+          6840,
+          3826
+        ],
+        [
+          "p-mage",
+          678,
+          6839,
+          3826
+        ],
+        [
+          "p-knight",
+          1072,
+          6840,
+          3826
+        ]
+      ],
+      "nativeEvents": [],
+      "publicDesktop": {
+        "ok": true,
+        "moveBudgetSpent": 122.0,
+        "shots": 1,
+        "resumedChapter": 10,
+        "resumedShots": 1,
+        "resumedParty": [
+          "p-archer",
+          "p-mage",
+          "p-knight"
+        ],
+        "errors": []
+      },
+      "publicTouchEmulation": {
+        "ok": true,
+        "moveBudgetSpent": 158.3,
+        "shots": 1,
+        "resumedChapter": 10,
+        "resumedShots": 1,
+        "resumedParty": [
+          "p-archer",
+          "p-mage",
+          "p-knight"
+        ],
+        "errors": []
+      },
+      "isolatedCases": [
+        {
+          "name": "all player or mission approaches connected",
+          "pass": true,
+          "details": {
+            "start": true,
+            "receiverWest": true,
+            "westHall": true,
+            "ritual": true,
+            "altar": true,
+            "eastHall": true,
+            "receiverEast": true,
+            "outerEast": true,
+            "exit": true
+          }
+        },
+        {
+          "name": "entry is pending",
+          "pass": true
+        },
+        {
+          "name": "bound Sodan is protected, two arrays inherited",
+          "pass": true
+        },
+        {
+          "name": "break outer binding without killing Sodan",
+          "pass": true
+        },
+        {
+          "name": "cooperation earns first real two-front wave",
+          "pass": true,
+          "details": {
+            "phase": "protecting",
+            "sources": [
+              "east",
+              "west"
+            ]
+          }
+        },
+        {
+          "name": "channeler loss fails",
+          "pass": true
+        },
+        {
+          "name": "six completed enemy intervals unlock withdrawal",
+          "pass": true,
+          "details": {
+            "hold": 6,
+            "waves": 2
+          }
+        },
+        {
+          "name": "three companions are insufficient",
+          "pass": true
+        },
+        {
+          "name": "Sodan walks to the same eastern gate",
+          "pass": true,
+          "details": {
+            "distance": 119,
+            "people": 4
+          }
+        },
+        {
+          "name": "normal act completion stored",
+          "pass": true
+        },
+        {
+          "name": "native victory phase",
+          "pass": true,
+          "details": {
+            "summary": "네 사람 모두 동쪽 외문으로 대피 완료"
+          }
+        }
+      ],
+      "interlude": null,
+      "nextChapter": null,
+      "sodanAtGate": {
+        "hp": 820,
+        "range": 1,
+        "phase": "safe",
+        "hold": 6
+      }
+    }
+  },
+  "ending": {
+    "screen": "title",
+    "seen": true,
+    "cleared": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "stills": [
+      "act1-release",
+      "act1-2",
+      "act1-3"
+    ]
+  },
+  "errors": [],
+  "outcome": true,
+  "frameSamples": {
+    "scope": "One Chromium viewport 1180x700, one tab, heads-up field visible at opening aim, 150 rAF intervals per camera. No phone hardware.",
+    "stages": {
+      "5": {
+        "defaultView": {
+          "frames": 150,
+          "zoom": 1.7,
+          "p50ms": 16.7,
+          "p95ms": 16.8,
+          "maxMs": 16.8
+        },
+        "wideView": {
+          "frames": 150,
+          "zoom": 1.19,
+          "p50ms": 16.7,
+          "p95ms": 16.8,
+          "maxMs": 33.3
+        }
+      },
+      "8": {
+        "defaultView": {
+          "frames": 150,
+          "zoom": 1.7,
+          "p50ms": 16.7,
+          "p95ms": 16.8,
+          "maxMs": 33.4
+        },
+        "wideView": {
+          "frames": 150,
+          "zoom": 1.19,
+          "p50ms": 16.7,
+          "p95ms": 16.8,
+          "maxMs": 33.4
+        }
+      }
+    }
+  },
+  "previousDemoContinue": {
+    "originalRelease": "6206a313",
+    "savedProfileSHA256": "9fb8e668631403344d3ba9523d4dd9350f0bc275d6339107f79e8a2886510aed",
+    "beforeFixOpened": 1,
+    "opened": 2,
+    "name": "상여 위의 높은 길",
+    "chapter1ClearIntact": true,
+    "recordsIntact": true,
+    "recruitedIntact": true,
+    "earnedXPIntact": true
+  }
+}

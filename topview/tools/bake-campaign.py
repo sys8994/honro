@@ -26,6 +26,10 @@ with sync_playwright() as pw:
           for(const id of ['dirt','rock'])pics.set(id,await bitmap('assets/terrain/'+id+'_texture.png'));
           pics.set('valley-depth',await bitmap('assets/source/act1/valley-depth.webp'));
           const m=await (await fetch(new URL('data/'+key+'.json',root))).json();
+          if(m.decks?.length){
+            pics.set('deck-grain',await bitmap('assets/terrain/deck-grain.webp'));
+            pics.set('broken_sill',await bitmap('assets/props/broken_sill.png'));
+          }
           await Promise.all([...new Set(m.objects.map(o=>o.asset))].map(async id=>pics.set(id,await bitmap('assets/props/'+id+'.png'))));
           const {buildGround,bakePropShadows}=await mod('ground.mjs'),{paintRelief}=await mod('relief.mjs'),{groundProjection}=await mod('space.mjs');
           const ground=buildGround(m,k=>pics.get(k),d);paintRelief(ground,m,pics,d);

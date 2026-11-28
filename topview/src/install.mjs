@@ -33,6 +33,7 @@ async function loadField(id){
       else files.set(o.asset,'props/'+o.asset+'.png');
     }
     for(const name of ['seolo','seolo-front','seolo-states','seolo-bow','seolo-bow-ne','woodcutter',...animals.map(n=>'turns-'+n),...(id===1?[]:extraActors)])files.set(name,'actors/'+name+'.webp');
+    if(id===5)for(const key of ['fall_lip','fall_foam'])files.set(key,'props/'+key+'.png');
     if(id>1)for(const key of ['binding','litter','funeral_bier','ruin_gate'])files.set(key,'props/'+key+'.png');
     const images=new Map(await Promise.all([...files].map(async ([key,path])=>[key,await bitmap('assets/'+path,key)])));
     const terrain=terrainSpace(m),projection=groundProjection(terrain.cell,m.tileWidth,m.tileHeight);
@@ -183,7 +184,18 @@ G.HonroUnitInfo.tick=function(app){
   panel.style.top=Math.max(roof,Math.min(floor-r.height,y))+'px';
 };
 product.configure=function(App) {
-  const P=App.prototype,mount=P.mount,launch=P.launch,cancel=P.cancelInput,charge=P.beginCharge,help=P.battleHelp,rest=P.showRest;
+  const P=App.prototype,mount=P.mount,launch=P.launch,cancel=P.cancelInput,charge=P.beginCharge,help=P.battleHelp,rest=P.showRest,title=P.showTitle;
+  P.showTitle=function(...args){
+    const p=this.profile,j=p.honroJourney;
+    if(j&&!j.topviewAct1Campaign&&!this.debugMode&&!this.profileStore.locked){
+      // The one-chapter product put completed players back at chapter one's rest.
+      // Restore its original direct continuation, retaining records and earned growth.
+      const oldEnding=j.restStageId===1&&j.stageId===1&&p.lastStage===1&&p.cleared[1]&&!p.cleared[2]&&!p.honroBattle&&!p.honroActEnding;
+      j.topviewAct1Campaign=1;
+      if(oldEnding){delete j.restStageId;j.pendingDirect=2;this.persist();}
+    }
+    return title.apply(this,args);
+  };
   P.showRest=function(...args){
     if(this.profile.cleared[10]&&this.profile.seen?.['act-ending-v1:10']&&!this.profile.honroBattle&&!this.profile.honroActEnding&&!this.debugRestStage&&!this.profile.honroJourney?.restStageId){
       this.profile.honroJourney.restStageId=10;this.persist();if(this.screen==='act-ending')return this.showTitle();

@@ -1,4 +1,4 @@
-name: Verify public topview chapter
+name: Verify public topview campaign
 on:
   push:
     branches: [master]
@@ -42,11 +42,18 @@ jobs:
           for path in ['topview/generated/native.json','topview/data/yeonmok.json','topview/src/scene.mjs','topview/src/actors.mjs','topview/src/body.mjs','topview/src/palette.mjs','topview/style.css','topview/assets/props/bridge_ne.png','topview/assets/props/bridge_se.png','topview/assets/props/shrine.png','topview/assets/actors/turns-stag.webp','topview/assets/actors/seolo-states.webp','topview/assets/actors/seolo-bow.webp','topview/assets/actors/seolo-bow-ne.webp',*native['modules']]:
               if path.startswith('topview/'):
                   entries[path] = path
-          for file in ['install','field-art','landscape','shore','terrain']:
+          for file in ['install','field-art','landscape','shore','terrain','campaign-field','chapter-motion']:
               path = f'topview/src/{file}.mjs'
               entries[path] = path
           for path in Path('topview/assets/terrain/yeonmok').glob('*'):
               entries[str(path)] = str(path)
+          for stage in range(2, 11):
+              key = f'act1-{stage:02d}'
+              for path in [f'topview/data/{key}.json', f'topview/assets/terrain/{key}/field.json',
+                           f'topview/assets/terrain/{key}/preview.webp']:
+                  entries[path] = path
+          for path in ['topview/assets/props/bell_rack-roof.png','topview/assets/actors/sodan.webp','topview/assets/props/fall_lip.png','topview/assets/props/fall_foam.png']:
+              entries[path] = path
           expected = {url: hashlib.sha256(Path(path).read_bytes()).digest() for url, path in entries.items()}
           for attempt in range(45):
               try:
@@ -67,6 +74,10 @@ jobs:
         run: |
           python topview/tests/play_chapter.py --entry-only --base "${PUBLIC_ROOT}" --out _local/public-entry
           python topview/tests/play_chapter.py --entry-only --mobile --base "${PUBLIC_ROOT}HONRO.html" --out _local/public-entry
+      - name: Open new fields, fire and reload the normal battle save
+        run: |
+          python topview/tests/campaign_field.py --base "${PUBLIC_ROOT}" --chapters 2 8 --out _local/public-entry/campaign
+          python topview/tests/campaign_field.py --mobile --base "${PUBLIC_ROOT}HONRO.html" --chapters 5 10 --out _local/public-entry/campaign
       - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
         if: always()
         with:
