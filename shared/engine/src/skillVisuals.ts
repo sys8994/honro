@@ -44,7 +44,7 @@ export function drawGuideContinuation(c:C,e:Engine,u:Unit,s:Skill,power:number,z
  }
  const path=[{x:pr.x,y:pr.y},...ext.points.slice(segment+1)];
  if(path.length<2||Math.hypot(path.at(-1)!.x-pr.x,path.at(-1)!.y-pr.y)<4/Math.max(.12,zoom))return;
- c.save();c.setLineDash([]);c.lineCap='round';c.lineJoin='round';c.strokeStyle=CLASSES[u.cls].color;c.lineWidth=.7/Math.max(.12,zoom);c.globalAlpha=.38;c.beginPath();path.forEach((p,i)=>i?c.lineTo(p.x,p.y):c.moveTo(p.x,p.y));c.stroke();c.restore();
+ c.save();c.setLineDash([]);c.lineCap='round';c.lineJoin='round';c.strokeStyle=CLASSES[u.cls].color;c.lineWidth=.7/Math.max(.12,zoom);c.globalAlpha=.38;c.beginPath();path.forEach((p,i)=>i?c.lineTo(p.x,p.y):c.moveTo(p.x,p.y));uniformGuideScale(c);c.stroke();c.restore();
 }
 const echoGuideCache=new WeakMap<Engine,{key:string;paths:Array<Array<{x:number;y:number}>>}>();
 export function drawEchoGuides(c:C,e:Engine,u:Unit,s:Skill,power:number,zoom:number,root:ReturnType<Engine['predict']>){
@@ -298,9 +298,16 @@ export function drawFireBloom(c:C,x:number,y:number,size:number,t:number){
  }
  c.restore();
 }
+// Canvas retains the projected centreline when a path is built. Stroke it in
+// isotropic pixels so a foreshortened view keeps the same native dash grammar.
+function uniformGuideScale(c:C){
+ if(typeof c.getTransform!=='function')return;
+ const t=c.getTransform(),x=Math.hypot(t.a,t.b),y=Math.hypot(t.c,t.d);
+ if(x>0&&y>0&&Math.abs(x-y)>.00001){const k=Math.sqrt(x*y);c.scale(k/x,k/y);}
+}
 /** Pixel-sized dashes retain contrast at every camera zoom. */
 export function guideStroke(c:C,path:{x:number;y:number}[],zoom:number,color='#d9e1d2',alpha=.64,width=1.35){
- if(path.length<2)return;zoom=Math.max(.12,zoom);c.save();c.lineCap='round';c.lineJoin='round';c.setLineDash([4/zoom,7/zoom]);c.beginPath();path.forEach((p,i)=>i?c.lineTo(p.x,p.y):c.moveTo(p.x,p.y));c.strokeStyle='#10242a';c.lineWidth=(width+1.95)/zoom;c.globalAlpha=.45;c.stroke();c.strokeStyle=color;c.lineWidth=width/zoom;c.globalAlpha=alpha;c.stroke();c.restore();
+ if(path.length<2)return;zoom=Math.max(.12,zoom);c.save();c.lineCap='round';c.lineJoin='round';c.setLineDash([4/zoom,7/zoom]);c.beginPath();path.forEach((p,i)=>i?c.lineTo(p.x,p.y):c.moveTo(p.x,p.y));uniformGuideScale(c);c.strokeStyle='#10242a';c.lineWidth=(width+1.95)/zoom;c.globalAlpha=.45;c.stroke();c.strokeStyle=color;c.lineWidth=width/zoom;c.globalAlpha=alpha;c.stroke();c.restore();
 }
 const turnGuideCache=new WeakMap<Engine,{key:string;prediction:ReturnType<typeof turnPrediction>}>();
 export function drawTurnGuide(c:C,e:Engine,zoom=1,point?:{x:number;y:number}){

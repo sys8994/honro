@@ -2,6 +2,7 @@
 
 import argparse, json, os, time
 from pathlib import Path
+from native_entry import enter_chapter
 from playwright.sync_api import sync_playwright
 
 parser = argparse.ArgumentParser()
@@ -27,7 +28,7 @@ with sync_playwright() as driver:
             lambda r: r.fulfill(path=a.edited_map, content_type="application/json"),
         )
     page.goto(a.base)
-    page.locator("#tv-start").tap(timeout=18000)
+    enter_chapter(page, True)
     page.wait_for_function("!!HonroApp.engine")
     for i in range(20):
         n = page.locator("[data-action=dialogue-next]:visible")
@@ -87,7 +88,7 @@ with sync_playwright() as driver:
         "direction2WhileCharging": aim2,
         "cancel": cancel,
     }
-    page.keyboard.press("l")
+    lock.tap()
     assert not state()["locked"]
     goal = page.evaluate(
         """()=>{const a=HonroApp,u=a.engine.active;return a.scene.screenPoint(u.x+570,u.y-u.h/2+70)}"""

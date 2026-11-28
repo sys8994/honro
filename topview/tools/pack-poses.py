@@ -1,4 +1,5 @@
 """Build common-footpoint pose atlases and the bridge's foreground occluder."""
+import sys
 from pathlib import Path
 from PIL import Image
 
@@ -26,6 +27,11 @@ def pack(name,parts,columns,width,height,pad):
         x=i%columns*width+(width-pic.width)//2;y=(i//columns+1)*height-pad-pic.height
         out.alpha_composite(pic,(x,y))
     out.save(assets/'actors'/(name+'.webp'),quality=92,method=6)
+
+# These two replacement cells share a scale and a ground anchor. The seven
+# other bow directions continue to come from the original atlas.
+pack('seolo-bow-ne',frames('seolo-bow-ne.png',2,1),2,160,160,5)
+if sys.argv[1:]==['--bow-ne']:raise SystemExit(0)
 
 for name in ['hound','boar','stag','crow','bat','ghost']:
     source='turns-stag-clean.png' if name=='stag' else 'turns-'+name+'.png'

@@ -42,8 +42,11 @@ export function initializePlayerRange(p:Projectile,u:Unit,s:Skill,planarFullSpee
  }
  if(s.cls==='archer'){
   // Ground-plane arrows do not land under a downward gravity. Apply the original
-  // skill's range as a flight clock. The native charge curve still sets speed.
-  if(planarFullSpeed>0&&!p.flightRange){p.flightRange={x:p.x,y:p.y,seconds:t.target/planarFullSpeed};p.flightAge=0;}
+  // skill's full reach. A light draw reduces flight time more than launch speed.
+  if(planarFullSpeed>0){
+   const charge=clamp(u.lastPower,0,1),seconds=(.16+.84*charge)*t.target/planarFullSpeed;
+   p.flightRange={...p.flightRange,x:p.x,y:p.y,seconds};p.flightAge=0;
+  }
   const old=s.speed*(1.26-u.tune*.14),ratio=old/playerRangeSpeed(u,s,old);
   p.trajectorySpeedScale=ratio;p.trajectoryDropScale=ratio*ratio;
  }

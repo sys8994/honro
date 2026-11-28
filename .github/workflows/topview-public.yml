@@ -39,7 +39,7 @@ jobs:
           from urllib.request import urlopen
           native = json.loads(Path('topview/generated/native.json').read_bytes())
           entries = {'': 'index.html', 'HONRO.html': 'HONRO.html'}
-          for path in ['topview/generated/native.json','topview/data/yeonmok.json','topview/src/scene.mjs',*native['modules']]:
+          for path in ['topview/generated/native.json','topview/data/yeonmok.json','topview/src/scene.mjs','topview/src/actors.mjs','topview/assets/actors/seolo-bow-ne.webp',*native['modules']]:
               if path.startswith('topview/'):
                   entries[path] = path
           expected = {url: hashlib.sha256(Path(path).read_bytes()).digest() for url, path in entries.items()}

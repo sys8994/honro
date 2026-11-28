@@ -2,6 +2,7 @@
 
 import argparse, json, os, time
 from pathlib import Path
+from native_entry import enter_chapter
 from playwright.sync_api import sync_playwright
 
 parser = argparse.ArgumentParser()
@@ -20,7 +21,7 @@ with sync_playwright() as pw:
     pg = b.new_page(viewport={"width": 1180, "height": 760})
     pg.on("pageerror", lambda e: log["errors"].append(str(e)))
     pg.goto(args.base)
-    pg.locator("#tv-start").click()
+    enter_chapter(pg)
     pg.wait_for_function("!!window.HonroApp?.engine")
     log["environment"] = pg.evaluate(
         """()=>{const e=HonroApp.engine,region=e.b.physics.regions[0];const advance=(x,y)=>{const p={x,y,vx:250,vy:0,wind:0,gravityScale:1,drag:0,skill:'A01'};for(let i=0;i<30;i++)Object.assign(p,e.advanceProjectile(p,1/120));return {dx:p.x-x,dy:p.y-y,vx:p.vx,vy:p.vy}};return {id:region.id,sector:advance(region.x+region.w/2,region.y+region.h/2),calm:advance(400,400)}}"""

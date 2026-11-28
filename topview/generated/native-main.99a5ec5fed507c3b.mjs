@@ -621,7 +621,7 @@
             } };
             const cancelFire = e => { if(this.firePointer===e.pointerId){this.charging=false;this.firePointer=null;} };
             fire.onpointercancel = fire.onlostpointercapture = cancelFire;
-            jump.onpointerdown = e => { e.preventDefault(); this.jump(); };
+            if(jump)jump.onpointerdown = e => { e.preventDefault(); this.jump(); };
             G.HonroUnitInfo.bind(this);
             let lastPair = null, start = null, moved = false;
             const pos = e => { let r = cv.getBoundingClientRect(); return { x: e.clientX - r.left, y: e.clientY - r.top }; }, pair = () => { const ps = [...this.contacts.values()]; return ps.length > 1 ? { x: (ps[0].x + ps[1].x) / 2, y: (ps[0].y + ps[1].y) / 2, d: Math.hypot(ps[0].x - ps[1].x, ps[0].y - ps[1].y) } : null; };
@@ -765,13 +765,16 @@
             const allyRoot=$('allied-roster');if(allyRoot._allySignature!==alSig){allyRoot._allySignature=alSig;allyRoot.innerHTML=allies.map(v=>`<span class="allied-chip" data-tooltip="${v.name} · 동맹"><i></i><span>${v.name}</span><b style="--ally-hp:${Math.max(0,v.hp)/v.maxHp*100}%"></b><small>${Math.round(Math.max(0,v.hp))}</small></span>`).join('');}
             setText($('read-aim'),`${Math.round(this.displayAngle(u))}° · ${Math.round(this.power*100)}%`);
             const turnLabel=e.noncombatWalk()?'이동 · 대화':G.HonroStory.turnLabel(b);setText($('turn-text'),e.noncombatWalk()?turnLabel:b.round+'턴'+(turnLabel?' · '+turnLabel:''));{const side=e.noncombatWalk()?'walk':b.side===0?'ally':'enemy',el=$('turn-text');if(el&&el.dataset.side!==side)el.dataset.side=side;}
+            if(G.HonroTopview?.windDial)G.HonroTopview.windDial(this,u);
+            else {
             const wind=Math.max(-30,Math.min(30,b.wind)),fraction=Math.abs(wind)/30*50;
             setStyle($('wind-left'),'width',(wind<0?fraction:0)+'%');setStyle($('wind-right'),'width',(wind>0?fraction:0)+'%');setText($('wind-value'),`바람 ${Math.abs(Math.round(b.wind))}`);$('joystick').querySelector('.wind-gauge').setAttribute('aria-valuenow',String(b.wind));
+            }
             const steering=e.iceGourdReady()||e.canTurnArrow()||b.phase==='flight'&&b.projectiles.some(p=>p.owner===u.id&&p.mode==='warriorDive'&&!p.dived);
             const planned=this.plannedTurn();
             $('fire').disabled=!!(planned&&!planned.order)||!steering&&(u.retreat||!e.skillAllowed(sk,u)||!this.canInput()||!e.grounded(e.active)||!e.canAfford(sk,u,0)||cd>0);setStyle($('fire'),'--power',Math.round(this.power*100)+'%');$('fire').classList.toggle('charging',this.charging);
             this.updateChargeDisplay();
-            $('jump').disabled=u.meleeFollow==='ready'||!this.canInput()||!e.grounded(e.active)||e.active.moveLeft<e.jumpCost(e.active);$('joystick').style.opacity=this.canInput()?1:.4;const defend=document.querySelector('[data-action=defend]');if(defend)defend.disabled=!this.canInput()||!!u.platformDrop&&u.platformDrop.phase!=='land';const drop=$('drop');if(drop)drop.disabled=!this.canInput()||!e.canDrop(u);
+            if($('jump'))$('jump').disabled=u.meleeFollow==='ready'||!this.canInput()||!e.grounded(e.active)||e.active.moveLeft<e.jumpCost(e.active);$('joystick').style.opacity=this.canInput()?1:.4;const defend=document.querySelector('[data-action=defend]');if(defend)defend.disabled=!this.canInput()||!!u.platformDrop&&u.platformDrop.phase!=='land';const drop=$('drop');if(drop)drop.disabled=!this.canInput()||!e.canDrop(u);
             if(e.noncombatWalk()){setText($('move-left'),'이동');const mode=$('joystick').querySelector('.stick-mode');if(mode)setText(mode,'이동');$('joystick').setAttribute('aria-label','이동');}
             G.HonroObjectives.refresh(this);
             G.HonroInteractions?.refresh(this);

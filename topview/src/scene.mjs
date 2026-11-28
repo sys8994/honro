@@ -2,7 +2,8 @@ import {center} from './terrain.mjs';
 import {buildGround,bakePropShadows} from './ground.mjs';
 import {sceneryParts,drawScenery} from './canopy.mjs';
 import {cameraView} from './space.mjs';
-import {angleRow,poseOf,paintSprite} from './actors.mjs';
+import {actorBody,bowPlane} from './body.mjs';
+import {fieldActors,fieldBreeze,drawWoodArrow} from './field-art.mjs';
 
 export function groundScene(Base, space, images, projection) {
   const {map,cell}=space;
@@ -10,22 +11,27 @@ export function groundScene(Base, space, images, projection) {
   const props=map.objects.map(o=>({...o,x:o.x*cell,y:o.y*cell}));
   bakePropShadows(ground,props,images,projection);
   const scenery=props.map(o=>{const at=projection.forward(o.x,o.y);return {o,at,parts:sceneryParts(o,at,images)};});
-  const sizes={hound:42,boar:51,stag:67,crow:46,bat:45,ghost:49,woodcutter:49,cart:76};
+  const breeze=fieldBreeze(map), worldScale=projection.forward(1,1);
   const drawImage=(ctx,img,x,y,h,flip=false)=>{
     const w=h*img.width/img.height;ctx.save();ctx.translate(x,y);if(flip)ctx.scale(-1,1);ctx.drawImage(img,-w/2,-h,w,h);ctx.restore();
   };
   return class TopviewScene extends Base {
-    constructor(canvas){super(canvas);this.zoomLevel=1.4;this.panOffset={x:0,y:0};this.fieldFocus={x:ground.width/2,y:ground.height/2};this.departures=new Map();}
+    constructor(canvas){super(canvas);this.zoomLevel=1.4;this.panOffset={x:0,y:0};this.fieldFocus={x:ground.width/2,y:ground.height/2};this.departures=new Map();this.actorArt=fieldActors(images,projection);this.reducedMotion=matchMedia('(prefers-reduced-motion: reduce)');}
     event(ev){
-      if(ev.type!=='fx')return;
+      if(ev.type!=='fx'||ev.damage>0&&ev.targetId)return super.event(ev);
       const p=projection.forward(ev.x,ev.y),end=Number.isFinite(ev.x2)?projection.forward(ev.x2,ev.y2):null;
-      const projected={...ev,...p,size:ev.name==='text'?ev.size:ev.size*.45,...(end?{x2:end.x,y2:end.y}:{})};
+      const projected={...ev,...p,y:p.y-bowPlane,size:ev.name==='text'?ev.size:ev.size*.45,...(end?{x2:end.x,y2:end.y}:{})};
       super.event(projected);
     }
     world(x,y){const r=this.canvas.getBoundingClientRect(),k=this.zoomLevel;
       return projection.inverse((x-r.width*.5)/k+this.cx,(y-r.height*.5)/k+this.cy);}
     screenPoint(x,y){const p=projection.forward(x,y),r=this.canvas.getBoundingClientRect();
       return {x:(p.x-this.cx)*this.zoomLevel+r.width*.5,y:(p.y-this.cy)*this.zoomLevel+r.height*.5};}
+    damageNumberAnchor(u,ev){
+      if(!u){const p=this.screenPoint(ev.x,ev.y);return {x:p.x,y:p.y-bowPlane*this.zoomLevel};}
+      const b=actorBody(u),foot=center(u),p=this.screenPoint(foot.x,foot.y);
+      return {x:p.x,y:p.y-(b.size+b.lift+4)*this.zoomLevel};
+    }
     placeCamera(x,y,zoom=this.zoomLevel,rememberPan=true){
       const r=this.canvas.getBoundingClientRect(),v=cameraView(ground.width,ground.height,r.width,r.height,zoom,x,y);
       this.cx=v.x;this.cy=v.y;this.scale=this.zoomLevel=v.zoom;if(rememberPan)this.panOffset={x:v.x-this.fieldFocus.x,y:v.y-this.fieldFocus.y};
@@ -39,9 +45,7 @@ export function groundScene(Base, space, images, projection) {
     storyRelease(){this.tvStory=null;}
     focusUnit(id,duration,speaker){if(speaker)this.storyFocus(id);}
     render(e,dt,selected,power,charging){
-      this.lastEngine=e;const c=this.ctx,b=e.b,cv=this.canvas,r=cv.getBoundingClientRect(),w=r.width,h=r.height,dpr=Math.min(2,devicePixelRatio||1);
-      if(!w||!h)return;
-      if(cv.width!==Math.round(w*dpr)||cv.height!==Math.round(h*dpr)){cv.width=Math.round(w*dpr);cv.height=Math.round(h*dpr);}
+      this.lastEngine=e;const c=this.ctx,b=e.b,{w,h,d:dpr}=this.size(b);
       const hero=b.units.find(u=>!u.side&&!u.dead)||b.units[0];
       const focus=this.storyFrozen&&this.tvStory?this.tvStory:center(hero),p=projection.forward(focus.x,focus.y);
       this.fieldFocus=p;this.placeCamera(p.x+this.panOffset.x,p.y+this.panOffset.y,this.zoomLevel,false);const k=this.zoomLevel;
@@ -49,17 +53,20 @@ export function groundScene(Base, space, images, projection) {
       c.setTransform(dpr,0,0,dpr,0,0);c.fillStyle='#202d27';c.fillRect(0,0,w,h);
       c.translate(w*.5-this.cx*k,h*.5-this.cy*k);c.scale(k,k);
       c.drawImage(ground,0,0);
+      const time=this.reducedMotion.matches?0:this.time;
+      const view={x:this.cx-w/(2*k),right:this.cx+w/(2*k),y:this.cy-h/(2*k),bottom:this.cy+h/(2*k)};
+      breeze(c,time,view);
       const paintPoint=(v)=>projection.forward(v.x,v.y);
       const ring=(p,rx,color,fill)=>{c.beginPath();c.ellipse(p.x,p.y,rx,rx*.52,0,0,Math.PI*2);if(fill){c.fillStyle=fill;c.fill();}c.strokeStyle=color;c.lineWidth=1.25;c.stroke();};
       const label=(p,text,color)=>{c.font='600 10px sans-serif';c.textAlign='center';c.lineWidth=3;c.strokeStyle='#17221eef';c.strokeText(text,p.x,p.y);c.fillStyle=color;c.fillText(text,p.x,p.y);};
       const line=(pts,color,width=1.5,dash=[])=>{if(!pts.length)return;c.beginPath();c.setLineDash(dash);pts.forEach((v,i)=>{const a=paintPoint(v);if(i)c.lineTo(a.x,a.y);else c.moveTo(a.x,a.y);});c.strokeStyle=color;c.lineWidth=width;c.stroke();c.setLineDash([]);};
-      const drawables=[];
+      const drawables=[],visibleParts=[],actors=[];
       for(const {o,at,parts} of scenery){
         if(Math.abs(at.x-this.cx)>w/(2*k)+o.width||Math.abs(at.y-this.cy)>h/(2*k)+o.height)continue;
-        for(const part of parts)drawables.push({depth:part.depth,draw(){drawScenery(c,part);}});
+        for(const part of parts){visibleParts.push(part);drawables.push({depth:part.depth,draw(){drawScenery(c,part,time);}});}
       }
       for(const [id,img] of [['cart','cart']]){
-        const a=paintPoint(space.point(id));drawables.push({depth:a.y,draw(){drawImage(c,images.get(img),a.x,a.y,sizes[img]);}});
+        const a=paintPoint(space.point(id));drawables.push({depth:a.y,draw(){drawImage(c,images.get(img),a.x,a.y,76);}});
       }
       for(const m of b.honroMarkers.filter(m=>m.type==='exit'||m.type==='rest'&&!m.collected)){
         const a=paintPoint(m);ring(a,m.type==='exit'?19:8,m.type==='exit'?'#eed38b':'#e3a35a','#d8b66628');
@@ -72,42 +79,52 @@ export function groundScene(Base, space, images, projection) {
         if(u.dead&&!this.departures.has(u.id))this.departures.set(u.id,this.time);
         if(!u.dead)this.departures.delete(u.id);
         const elapsed=u.dead?this.time-this.departures.get(u.id):0;if(elapsed>1.45)continue;
-        const p=center(u),at=paintPoint(p),flying=!u.dead&&['crow','bat'].includes(u.honroVariant||u.honroType);
+        const p=center(u),at=paintPoint(p),body=actorBody(u);
+        if(at.x<view.x-60||at.x>view.right+60||at.y<view.y-10||at.y>view.bottom+100)continue;
+        const art=this.actorArt.frame(u,charging,b.active===u.id,time);
+        const visible=u.dead?Math.max(0,Math.min(1,(1.45-elapsed)/.6)):1;
+        const hit=this.hitFlashVisible(u)?(this.reducedMotion.matches ? .38 : .24+.55*(.5+.5*Math.cos(u.hurt*23))):0;
+        const entry={depth:at.y,at,body,u,art};
+        if(!u.dead)actors.push(entry);
         drawables.push({depth:at.y,draw:()=>{
-          const ally=!u.side,hd=u.tvHeading||{x:1,y:0},face=projection.forward(hd.x,hd.y);
-          if(!u.dead)ring(at,ally?10:Math.max(7,u.r*.27),ally?'#d8c585':u.awake?'#af6257':'#4d635b','#17251d62');
-          let ah=48;
-          c.save();if(u.dead)c.globalAlpha=Math.max(0,Math.min(1,(1.45-elapsed)/.6));
-          if(u.id==='npc-woodcutter'){ah=sizes.woodcutter;drawImage(c,images.get('woodcutter'),at.x,at.y,ah);}
-          else{const kind=ally?'seolo':u.honroVariant||u.honroType;ah=ally?58:(sizes[kind]||48)*1.18;
-            paintSprite(c,images,kind,poseOf(u,charging,b.active===u.id),angleRow(face.x,face.y),u.tvStride||0,at.x,at.y-(flying?12:0),ah);}
-          c.restore();
-          if(!u.dead&&(ally||u.awake||u.hurt>0)){
-            const y=at.y-ah-(flying?15:6);c.fillStyle='#19211de0';c.fillRect(at.x-15,y,30,3);c.fillStyle=ally?'#a5bd85':'#bd806e';c.fillRect(at.x-15,y,30*Math.max(0,u.hp/u.maxHp),3);
-          }
+          c.save();c.globalAlpha=visible;this.actorArt.actor(c,art,at,hit);c.restore();
         }});
       }
+      for(const item of actors)this.actorArt.shadow(c,item.art,item.at,item.body);
       drawables.sort((a,b)=>a.depth-b.depth);for(const item of drawables)item.draw();
+      c.save();c.setTransform(dpr,0,0,dpr,0,0);
+      const clock=globalThis.HonroTimeOfDay,grade=clock?.grade(this,b);
+      if(grade?.g)clock.apply(c,w,h,{...grade.g,hor:null},1);
+      c.restore();
+      for(const {at,body,u,art,depth} of actors){
+        const near=visibleParts.filter(part=>part.depth>depth&&part.x<at.x+body.size*.58&&part.x+part.width>at.x-body.size*.58&&part.y<at.y&&part.y+part.height>at.y-body.size-body.lift);
+        this.actorArt.outline(c,art,at,body,near,u.side!==1,time);
+        if(u.side===0||u.awake||u.hurt>0){
+          const y=at.y-body.size-body.lift-6;c.fillStyle='#19211de0';c.fillRect(at.x-15,y,30,3);
+          c.fillStyle=u.side===0?'#a5bd85':'#bd806e';c.fillRect(at.x-15,y,30*Math.max(0,u.hp/u.maxHp),3);
+        }
+      }
       const u=e.active,sk=globalThis.HONRO_CORE.SKILLS[selected];
       if(e.canAct()&&sk&&!this.storyFrozen){
-        const a=center(u),ang=u.angle,targetPower=charging?power:(u.lastPower||power);
-        const key=[u.id,u.x,u.y,ang,targetPower,selected,b.sceneVersion,b.shot,b.round,b.physics.revision].join('|');
-        if(this.predKey!==key){this.predKey=key;this.pred=e.predict(u,sk,ang,targetPower);}
-        const pred=this.pred;if(pred){
-          const hitUnit=!!pred.unit,hitCover=!!(pred.terrain||pred.terrainAtEnd),color=hitUnit?'#f2a393':hitCover?'#e0b784':'#d7e2a9';
-          line([a,...pred.points],'#f2dea8ce',1.25,[4,4]);const end=paintPoint(pred);ring(end,hitUnit?6:4,color);
-          if(b.tvMoveLocked||charging)label({x:end.x,y:end.y-8},hitUnit?'피격':hitCover?'엄폐':'도달',color);
-        }
+        const a=center(u),targetPower=charging?power:(u.lastPower??power);
+        this.pred=globalThis.HONRO_CORE.guidePrediction(e,u,sk,targetPower);
+        c.save();c.translate(0,-bowPlane);c.scale(worldScale.x,worldScale.y);
+        this.arcFx.time=this.time;this.arcFx.scale=k*Math.sqrt(worldScale.x*worldScale.y);
+        this.arcFx.predictionGuide(c,e,u,selected,power,charging);
+        c.restore();
         if(u.tvPath?.length)line([a,...u.tvPath],'#a4d8ae',1.2,[2,4]);
       }
       for(const shot of b.projectiles){
         const v=projection.forward(shot.vx,shot.vy),pos=paintPoint(shot);
-        const q={...shot,...pos,vx:v.x,vy:v.y,trail:(shot.trail||[]).map(paintPoint)};
+        pos.y-=bowPlane;
+        if(!shot.body&&['A01','A14'].includes(shot.skill)){drawWoodArrow(c,pos,v);continue;}
+        const q={...shot,...pos,vx:v.x,vy:v.y,trail:(shot.trail||[]).map(point=>{const p=paintPoint(point);p.y-=bowPlane;return p;})};
         if(this.arcFx){this.arcFx.time=this.time;this.arcFx.scale=k;if(q.body)this.arcFx.bodyTrail(c,q);else this.arcFx.projectile(c,q);}
         else this.projectile(c,q);
       }
       if(this.arcFx)this.arcFx.worldFx(c,dt,false,dt);
       else{for(const f of this.effects){f.life+=dt;this.effect(c,f);}this.effects=this.effects.filter(f=>f.life<(f.name==='text'?1.6:.9));}
+      this.drawDamageNumbers(e);
       this.time+=dt;
     }
   };

@@ -20,7 +20,11 @@ export function sceneryParts(o,at,images){
   }
   return result;
 }
-export function drawScenery(c,p){
+export function drawScenery(c,p,time=0){
+  const crown=p.part==='crown';
+  if(crown){const sway=.009*Math.sin(time*1.18+p.x*.023)+.004*Math.sin(time*.63+p.y*.017);
+    c.save();c.transform(1,0,sway,1,-sway*(p.y+p.height*.9),0);}
   if(p.sw)c.drawImage(p.image,p.sx,0,p.sw,p.image.height,p.x,p.y,p.width,p.height);
   else c.drawImage(p.image,p.x,p.y,p.width,p.height);
+  if(crown)c.restore();
 }

@@ -4,6 +4,7 @@ import argparse
 import json
 from pathlib import Path
 from urllib.parse import urljoin
+from native_entry import enter_chapter
 from playwright.sync_api import sync_playwright
 
 parser = argparse.ArgumentParser()
@@ -75,9 +76,9 @@ with sync_playwright() as pw:
     errors = []
     page.on("pageerror", lambda err: errors.append(str(err)))
     page.goto(args.base)
-    page.locator("#tv-start").wait_for()
+    page.locator(".honro-title button[data-action=rest]").wait_for()
     to_title = page.evaluate("performance.now()")
-    page.locator("#tv-start").click(timeout=18000)
+    enter_chapter(page)
     page.wait_for_function("!!window.HonroApp?.engine")
     to_battle = page.evaluate("performance.now()")
     while page.locator("[data-action=dialogue-next]:visible").count():
@@ -113,7 +114,7 @@ with sync_playwright() as pw:
     log["zoom"] = page.evaluate("HonroApp.scene.zoomLevel")
     page.locator("[data-lock]").click()
     enemy = page.evaluate("""()=>{const app=HonroApp,u=app.engine.unit('watch-1-pass-1-1');
-        return app.scene.screenPoint(u.x,u.y-u.h/2)}""")
+        const at=app.engine.damageAim(u),p=app.scene.screenPoint(at.x,at.y);return {x:p.x,y:p.y-26*app.scene.zoomLevel}}""")
     page.mouse.click(enemy["x"], enemy["y"])
     fire = page.locator("#fire").bounding_box()
     page.mouse.move(fire["x"] + fire["width"] / 2, fire["y"] + fire["height"] / 2)
@@ -136,6 +137,7 @@ with sync_playwright() as pw:
         const canvas=document.querySelector('canvas'),ctx=canvas.getContext('2d');
         let n=0,minimum=Infinity;
         for(const a of actors.options)for(const d of dirs.options)for(const p of poses.options){
+          if(a.value==='woodcutter' && (d.value!=='S'||p.value!=='idle'))continue;
           actors.value=a.value;dirs.value=d.value;poses.value=p.value;await next();
           const pixels=ctx.getImageData(91,115,158,122).data;let changed=0;
           for(let i=0;i<pixels.length;i+=4)if(pixels[i]!==48||pixels[i+1]!==58||pixels[i+2]!==48)changed++;
@@ -144,7 +146,7 @@ with sync_playwright() as pw:
         return {selections:n,minNonBackgroundPixels:minimum};
     }""")
     log["motionInspector"] = frames
-    assert frames["selections"] == 392 and frames["minNonBackgroundPixels"] > 12
+    assert frames["selections"] == 8 * 7 * 7 + 1 and frames["minNonBackgroundPixels"] > 12
     page.select_option("#actor", "seolo")
     page.select_option("#direction", "S")
     page.select_option("#pose", "walk")

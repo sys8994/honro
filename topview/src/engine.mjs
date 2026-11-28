@@ -1,23 +1,47 @@
 import {center} from './terrain.mjs';
-import {direction,sweepDisc} from './space.mjs';
+import {direction,steerHeading} from './space.mjs';
+import {strikeVolume,sweptTorso} from './body.mjs';
 const flying=u=>!!globalThis.HonroWorld.archetypes[u.honroVariant||u.honroType]?.flying;
 const angleTo=(a,z)=>Math.atan2(a.y-z.y,z.x-a.x)*180/Math.PI;
-export function spatialEngine(C,space) {
+export function spatialEngine(C,space,projection) {
   return class GroundEngine extends C.Engine {
     grounded(u){return !u.dead&&!u.airborne&&Math.hypot(u.vx||0,u.vy||0)<3&&space.legal(center(u),u.r,flying(u));}
-    damageAim(u){return center(u);}
-    damageDistance(u,p){const c=center(u);return Math.hypot(c.x-p.x,c.y-p.y);}
-    damageSweep(u,a,z,r){return sweepDisc(a,z,center(u),r+u.r);}
-    origin(u,angle,body=false){const c=center(u),a=angle*Math.PI/180,reach=body?4:Math.min(u.r+4,32);return {x:c.x+Math.cos(a)*reach,y:c.y-Math.sin(a)*reach};}
+    damageAim(u){return strikeVolume(u,projection);}
+    velocity(u,s,angle,power){
+      if(u.side!==0||u.summoned||s.cls!=='archer')return super.velocity(u,s,angle,power);
+      const full=super.velocity(u,s,angle,1),factor=1.32*(.5+.5*Math.min(1,Math.max(0,power)));
+      return {vx:full.vx*factor,vy:full.vy*factor};
+    }
+    refreshActivation(){
+      if(!this.b.honroTopview)return super.refreshActivation();
+      const allies=this.heroesAlive();
+      for(const foe of this.actors(1)){
+        if(foe.awake)continue;
+        const a=center(foe);
+        foe.awake=foe.aggroUntil>=this.b.round||allies.some(hero=>{
+          const z=center(hero),d=Math.hypot(a.x-z.x,a.y-z.y);
+          return d<180||d<900&&!space.nearest(a,z,2,true);
+        });
+      }
+    }
+    combatEnemies(){
+      const foes=super.combatEnemies();
+      if(!this.b.honroTopview)return foes;
+      const allies=this.heroesAlive();
+      return foes.filter(foe=>foe.aggroUntil>=this.b.round||allies.some(hero=>Math.hypot(hero.x-foe.x,center(hero).y-center(foe).y)<1320));
+    }
+    damageDistance(u,p){const c=this.damageAim(u);return Math.hypot(c.x-p.x,c.y-p.y);}
+    damageSweep(u,a,z,r){return sweptTorso(a,z,this.damageAim(u),r);}
+    origin(u,angle,body=false){const c=body?center(u):this.damageAim(u),a=angle*Math.PI/180,reach=body?4:Math.min(u.r+4,32);return {x:c.x+Math.cos(a)*reach,y:c.y-Math.sin(a)*reach};}
     projectileOrigin(u,s,angle){
-      const a=center(u),z=this.origin(u,angle),h=s.phase==='terrain'||s.phase==='all'?null:space.nearest(a,z,3,true);
+      const a=this.damageAim(u),z=this.origin(u,angle),h=s.phase==='terrain'||s.phase==='all'?null:space.nearest(a,z,3,true);
       return h?{x:h.x+h.n.x*.05,y:h.y+h.n.y*.05}:z;
     }
     collision(a,z,r,owner,hit=[],units=true,skip=[],terrain=true,projectile=false,attack){
       let h=terrain?space.nearest(a,z,r,projectile,skip):null;
       if(units) for(const u of this.b.units){
         if(u.dead||u.id===owner||hit.includes(u.id)||!this.attackAllows(u,owner,attack))continue;
-        const q=sweepDisc(a,z,center(u),r+u.r);
+        const q=this.damageSweep(u,a,z,r);
         if(q&&(!h||q.t<h.t))h={...q,unit:u};
       }
       return h;
@@ -67,14 +91,19 @@ export function spatialEngine(C,space) {
       }
       if(this.canAct()&&app?.engine===this&&app.canInput()){
         const u=this.active,keys=product.controls,dx=keys.x,dy=keys.y;
-        if(dx||dy){const v=product.projection.inverse(dx,dy);delete u.tvPath;this.face(u,v.x,v.y);
-          if(!this.b.tvMoveLocked&&!app.charging)this.moveVector(v.x,v.y,dt*Math.min(1,Math.hypot(dx,dy)));
-        }else if(!this.b.tvMoveLocked&&!app.charging&&u.tvPath?.length&&u.moveLeft>0)this.travelToward(u,u.tvPath.at(-1),dt);
+        const locked=this.b.tvMoveLocked||keys.shift;
+        if(dx||dy){
+          const want=projection.inverse(dx,dy),prev=u.tvHeading||want;
+          const steer=keys.source==='keyboard'&&(locked||app.charging||u.moving>0);
+          const v=steer?steerHeading(prev,want,projection,(locked||app.charging?2.8:7.8)*dt):want;
+          delete u.tvPath;this.face(u,v.x,v.y);
+          if(!locked&&!app.charging)this.moveVector(v.x,v.y,dt*Math.min(1,Math.hypot(dx,dy)));
+        }else if(!locked&&!app.charging&&u.tvPath?.length&&u.moveLeft>0)this.travelToward(u,u.tvPath.at(-1),dt);
       }
       super.tick(dt);
     }
     bestShot(u,s,target){
-      const a=center(u),t=center(target),base=angleTo(a,t);let best=null;
+      const a=this.damageAim(u),t=this.damageAim(target),base=angleTo(a,t);let best=null;
       for(const delta of [0,-3,3,-8,8]){const angle=base+delta,power=.78;
         const hit=this.predict(u,s,angle,power,target,false);
         const error=Math.hypot(hit.x-t.x,hit.y-t.y);
@@ -86,7 +115,7 @@ export function spatialEngine(C,space) {
     enemyAction(){
       const b=this.b,u=this.active;if(!u||u.dead||u.aiAim||u.enemyEffectCast||u.enemyEffectRecovery)return super.enemyAction();
       if(b.turnAge<.22)return;
-      const t=this.heroesAlive().sort((a,c)=>this.damageDistance(a,center(u))-this.damageDistance(c,center(u)))[0];
+      const t=this.heroesAlive().sort((a,c)=>this.damageDistance(a,this.damageAim(u))-this.damageDistance(c,this.damageAim(u)))[0];
       if(!t)return this.checkEnd();
       const a=center(u),z=center(t),d=Math.hypot(z.x-a.x,z.y-a.y),v=direction(z.x-a.x,z.y-a.y);
       const skill=C.SKILLS[u.loadout[(b.round+u.id.length)%u.loadout.length]],melee=skill.mode.startsWith('beast');
@@ -96,7 +125,7 @@ export function spatialEngine(C,space) {
         return;
       }
       delete u.tvPath;u.tvEnemyBearing=v;u.tvHeading=v;u.facing=v.x>=0?1:-1;
-      if(blocked||melee&&d>u.r+t.r+34){u.intent='길목 경계';this.finishAction();return;}
+      if(blocked||(melee?d>u.r+t.r+34:d>900)){u.intent='길목 경계';this.finishAction();return;}
       const shot=melee?{angle:angleTo(a,z),power:.7}:this.bestShot(u,skill,t);
       u.aiAim={skill:skill.id,angle:shot.angle,power:shot.power,age:0,targetId:t.id};
       u.intent=skill.name+' · 준비';this.emit('change');

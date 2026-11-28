@@ -70,3 +70,13 @@ export function slide(start, dx, dy, contact) {
   }
   return {x, y};
 }
+
+// Rotate in the view the player sees; projection foreshortens the ground axes.
+export function steerHeading(current, desired, projection, limit) {
+  const a=projection.forward(current.x,current.y), b=projection.forward(desired.x,desired.y);
+  const from=Math.atan2(a.y,a.x), to=Math.atan2(b.y,b.x);
+  const diff=Math.atan2(Math.sin(to-from),Math.cos(to-from));
+  const angle=from+Math.max(-limit,Math.min(limit,diff));
+  const v=projection.inverse(Math.cos(angle),Math.sin(angle));
+  return direction(v.x,v.y);
+}

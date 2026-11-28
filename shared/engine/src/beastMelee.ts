@@ -15,8 +15,11 @@ export function beastLaneClear(e:Engine,u:Unit,t:Unit){
  const a={x:u.x,y:u.y-u.h*.55},z={x:clamp(a.x,t.x-t.r,t.x+t.r),y:clamp(a.y,t.y-t.h+4,t.y-4)};
  return !e.collision(a,z,1,u.id,[],false);
 }
+// A bite or charge closes the gap between the two ground contacts. A tall
+// target's painted chest is further up the screen, not further along the trail.
+function groundGap(u:Unit,t:Unit){return Math.hypot(t.x-u.x,(t.y-t.h*.5)-(u.y-u.h*.5));}
 export function beastContact(e:Engine,u:Unit,t:Unit){
- if((e.b as any).honroTopview)return !t.dead&&t.hp>0&&!t.eaterCapturedBy&&e.grounded(u)&&e.damageDistance(t,e.damageAim(u))<=u.r+t.r+beastReach(u)&&beastLaneClear(e,u,t);
+ if((e.b as any).honroTopview)return !t.dead&&t.hp>0&&!t.eaterCapturedBy&&e.grounded(u)&&groundGap(u,t)<=u.r+t.r+beastReach(u)&&beastLaneClear(e,u,t);
  if(t.dead||t.hp<=0||t.eaterCapturedBy||Math.abs(t.y-u.y)>45||!e.grounded(u))return false;
  const facing=u.facing||1,dx=(t.x-u.x)*facing;
  if(dx<0||dx>u.r+t.r+beastReach(u))return false;
@@ -37,7 +40,8 @@ export function tickBeasts(e:Engine,dt:number){
   if(active){
    u.intent=a.skill==='HBM01'?'깨물기':a.skill==='HBM02'?'돌진':'뿔 받기';
    if(t&&!a.struck&&e.grounded(u)){
-    const cap=beastKind(u)==='boar'?72:24,remaining=Math.min(cap-a.travel,Math.max(0,(t.x-u.x)*a.facing-u.r-t.r));
+    const gap=(e.b as any).honroTopview?groundGap(u,t):(t.x-u.x)*a.facing;
+    const cap=beastKind(u)==='boar'?72:24,remaining=Math.min(cap-a.travel,Math.max(0,gap-u.r-t.r));
     const before=u.x,beforeY=u.y,speed=u.walkSpeed;
     u.walkSpeed=Math.max(speed,beastKind(u)==='boar'?380:240);
     // walkTerrain sweeps walls, respects flight reservations, supports and the existing budget.

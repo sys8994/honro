@@ -2,6 +2,7 @@
 
 import argparse, json, os, time
 from pathlib import Path
+from native_entry import enter_chapter
 from playwright.sync_api import sync_playwright
 
 parser = argparse.ArgumentParser()
@@ -15,6 +16,7 @@ setup = """async id=>{
  const {terrainSpace,center}=await import(get('src/terrain.mjs')),space=terrainSpace(m);
  const {sceneryParts,drawScenery}=await import(get('src/canopy.mjs'));
  const {paintSprite,angleRow}=await import(get('src/actors.mjs'));
+ const {actorBody}=await import(get('src/body.mjs'));
  const o=m.objects.find(o=>o.id===id),at={x:o.x*m.tileWidth,y:o.y*m.tileHeight};
  const high=o.asset==='shrine'?'roof':'crown',images=new Map();
  for(const [key,path] of [[o.asset,'props/'+o.asset],[o.asset+'-base','props/'+o.asset+'-base'],[o.asset+'-'+high,'props/'+o.asset+'-'+high],['seolo-states','actors/seolo-states']]){
@@ -50,7 +52,13 @@ setup = """async id=>{
  if(!front)throw Error('No clear approach');
  window.measureOverhang=()=>{
   const u=A.engine.active,foot=center(u),p=HonroTopview.projection.forward(foot.x,foot.y),v=HonroTopview.projection.forward(u.tvHeading.x,u.tvHeading.y);
-  return {actor:u.id,px:p.x,py:p.y,world:foot,screen:A.scene.screenPoint(foot.x,foot.y),highDepth:upper.depth,legal:space.legal(foot,u.r),basePixels:coverage(p.x,p.y,angleRow(v.x,v.y),lower),coveredPixels:coverage(p.x,p.y,angleRow(v.x,v.y)),round:A.engine.b.round};
+  const rim=document.createElement('canvas');rim.width=120;rim.height=110;
+  const pen=rim.getContext('2d');pen.translate(60-p.x,90-p.y);
+  const a=A.scene.actorArt,time=A.scene.time,art=a.frame(u,false,true,time);
+  a.outline(pen,art,p,actorBody(u),parts.filter(part=>part.depth>p.y),true,time);
+  const ink=pen.getImageData(0,0,120,110).data;
+  let outlinePixels=0;for(let i=3;i<ink.length;i+=4)if(ink[i]>60)outlinePixels++;
+  return {actor:u.id,outlinePixels,px:p.x,py:p.y,world:foot,screen:A.scene.screenPoint(foot.x,foot.y),highDepth:upper.depth,legal:space.legal(foot,u.r),basePixels:coverage(p.x,p.y,angleRow(v.x,v.y),lower),coveredPixels:coverage(p.x,p.y,angleRow(v.x,v.y)),round:A.engine.b.round};
  };
  return {kind:high,at,goals:[...choices,front]};
 }"""
@@ -63,7 +71,7 @@ with sync_playwright() as pw:
     for target in ["pine_b_010", "shrine-at-fork"]:
         page = browser.new_page(viewport={"width": 1060, "height": 710})
         page.goto(args.base)
-        page.locator("#tv-start").click(timeout=20000)
+        enter_chapter(page)
         page.wait_for_function("!!HonroApp.engine")
 
         def ready():
@@ -133,6 +141,7 @@ with sync_playwright() as pw:
                 if label != "front"
                 else measure["coveredPixels"] == 0
             ), (target, label, measure)
+            assert (measure["outlinePixels"] > 0) == (label != "front"), (target, label, measure)
             (args.out / "overhang.json").write_text(
                 json.dumps(log, ensure_ascii=False, indent=2) + "\n"
             )

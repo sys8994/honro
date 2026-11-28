@@ -85,7 +85,7 @@ export function bakePropShadows(ground,props,images,projection){
       const mask=canvas(im.width,im.height),g=mask.getContext('2d');g.drawImage(im,0,0);g.globalCompositeOperation='source-in';g.fillStyle='#121e21';g.fillRect(0,0,im.width,im.height);masks.set(o.asset,mask);
     }
     const at=projection.forward(o.x,o.y),tree=o.asset.startsWith('pine'),roof=o.asset==='shrine';
-    c.save();c.translate(at.x,at.y);c.globalAlpha=tree?.45:roof?.41:.32;
+    c.save();c.translate(at.x,at.y);c.globalAlpha=tree?.54:roof?.48:.37;
     c.transform(.65,.08,-.59,-.25,0,0);c.drawImage(masks.get(o.asset),-o.width*o.anchor[0],-o.height*o.anchor[1],o.width,o.height);c.restore();
     c.save();c.translate(at.x,at.y);c.scale(1,.46);const radius=tree?o.width*.19:o.width*.32;
     const dark=c.createRadialGradient(0,0,0,0,0,radius);dark.addColorStop(0,'#0a151b8c');dark.addColorStop(1,'#0a151b00');c.fillStyle=dark;c.fillRect(-radius,-radius,radius*2,radius*2);c.restore();

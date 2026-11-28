@@ -5,6 +5,7 @@ from functools import partial
 from http.server import SimpleHTTPRequestHandler,ThreadingHTTPServer
 from pathlib import Path
 from playwright.sync_api import sync_playwright
+from native_entry import enter_chapter
 parser=argparse.ArgumentParser()
 parser.add_argument('--mobile',action='store_true')
 parser.add_argument('--entry-only',action='store_true',help='Stop after opening the chapter and moving through the normal controls.')
@@ -57,7 +58,7 @@ with sync_playwright() as p:
         # first startup and never write it again on reload or redirect.
         page.add_init_script("if(!sessionStorage.getItem('tv-test-control')){localStorage.setItem('honro-first-act-profile-1','topview-isolation-control');sessionStorage.setItem('tv-test-control','1');}")
         page.goto(url,wait_until='domcontentloaded')
-        tap(page.locator('#tv-start'));page.wait_for_function("!!globalThis.HonroApp?.engine");readers();armed()
+        enter_chapter(page,args.mobile);readers();armed()
         note('입장',state());capture('entry')
         log['checks']['nativeAudio']=page.evaluate("()=>{const a=HonroApp.audio,m=a.music;return {unlocked:m.unlocked,track:m.track,src:m.current?.src||m.current?.audio?.src,skills:!!a.skills,context:a.context?.state}}")
         mapdata=json.loads((root/'topview/data/yeonmok.json').read_text())
@@ -88,7 +89,7 @@ with sync_playwright() as p:
             raise SystemExit(0)
         arm_trace()
         tap(page.locator('[data-lock]'));assert page.locator('[data-lock]').get_attribute('aria-pressed')=='true'
-        tgt=page.evaluate("()=>{const a=HonroApp,e=a.engine,u=e.unit('watch-1-pass-1-1');return a.scene.screenPoint(u.x,u.y-u.h/2);}")
+        tgt=page.evaluate("()=>{const a=HonroApp,e=a.engine,u=e.unit('watch-1-pass-1-1');const p=e.damageAim(u),q=a.scene.screenPoint(p.x,p.y);return {x:q.x,y:q.y-26*a.scene.zoomLevel};}")
         point(tgt['x'],tgt['y'])
         r=page.locator('#fire').bounding_box();x,y=r['x']+r['width']/2,r['y']+r['height']/2
         if args.mobile:
@@ -113,7 +114,7 @@ with sync_playwright() as p:
                 page.wait_for_timeout(150)
             raise RuntimeError('다음 조작 대기 '+str(state()))
         prompt_ready()
-        page.wait_for_timeout(1500);s0=state();page.reload(wait_until='domcontentloaded');tap(page.locator('#tv-start'));page.wait_for_function('!!globalThis.HonroApp?.engine');readers();s1=prompt_ready()
+        page.wait_for_timeout(1500);s0=state();page.reload(wait_until='domcontentloaded');enter_chapter(page,args.mobile);readers();s1=prompt_ready()
         log['checks']['reload']={'before':s0,'after':s1};note('일반 이어가기',s1)
         for key in ['round','phase','active','hp','shot','events','cast','x','y']:
             if s0[key]!=s1[key]:raise AssertionError(('이어가기',key,s0[key],s1[key]))
@@ -148,9 +149,9 @@ with sync_playwright() as p:
         if not result['storageIsolated'] or not all(result['flags'].get('event:'+name) for name in ['cart','more','witness','ridge']) or end['cast']!=18:
             raise AssertionError(('사건·증원·저장 격리',result,end))
         title=page.locator('#modal [data-action="title"]:visible')
-        tap(title.first);page.wait_for_selector('#tv-start')
+        tap(title.first);page.wait_for_selector('.honro-title .title-actions')
         log['checks']['returnToTitle']=state()['screen']=='title';note('데모 타이틀',state())
-        tap(page.locator('#tv-camp'));page.wait_for_function("HonroApp.screen==='camp'")
+        tap(page.locator('.honro-title .title-actions button[data-action]').first);page.wait_for_function("HonroApp.screen==='rest'");page.wait_for_function("performance.now()>=(HonroApp.journeyInputAfter||0)");tap(page.locator('[data-action=camp]:visible').first);page.wait_for_function("HonroApp.screen==='camp'")
         log['checks']['camp']={'screen':state()['screen'],'text':page.locator('#app').inner_text()[:520]};note('동행과 장비',log['checks']['camp']);capture('camp')
         if not log['checks']['returnToTitle'] or log['errors']:raise AssertionError(log['errors'])
     except Exception as e:
